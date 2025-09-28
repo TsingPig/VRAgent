@@ -1,28 +1,23 @@
+using HenryLab.VRExplorer;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
-using Unity.Plastic.Newtonsoft.Json;
-using HenryLab;
-using HenryLab.VRExplorer;
-using Codice.Client.Common.GameUI;
-using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace HenryLab.VRAgent
 {
-
-
-    public class XRAgent : BaseExplorer
+    public class VRAgent : BaseExplorer
     {
-        class TestPlanCounter
+        private class TestPlanCounter
         {
             public int taskUnitCount = 0, actionUnitCount = 0;
             public int grabCount = 0, transformCount = 0, triggerCount = 0;
             public int objCount = 0, hitObjCount = 0;
             public int componentCount = 0, hitComponentCount = 0;
+
             public void Log()
             {
                 // ====== Debug 输出 ======
@@ -42,10 +37,10 @@ namespace HenryLab.VRAgent
 
         [Header("Show for Debug")]
         [SerializeField] private GameObject objA;
+
         [SerializeField] private GameObject objB;
 
         public bool useFileID = true;
-
 
         private static FileIdManager GetOrCreateManager()
         {
@@ -119,7 +114,6 @@ namespace HenryLab.VRAgent
                     Debug.LogException(ex);
                 }
             }
-
         }
 
         protected override void ResetExploration()
@@ -128,7 +122,7 @@ namespace HenryLab.VRAgent
 
         protected override bool TestFinished => _index >= _taskUnits.Count;
 
-        #endregion
+        #endregion 基于行为执行的场景探索（Scene Exploration with Behaviour Executation）
 
         private static TaskList GetTaskListFromJson()
         {
@@ -172,7 +166,6 @@ namespace HenryLab.VRAgent
             // ====== 统计信息 ======
             TestPlanCounter counter = new TestPlanCounter();
             counter.taskUnitCount = tasklist.taskUnits.Count;
-
 
             foreach(var taskUnit in tasklist.taskUnits)
             {
@@ -322,6 +315,7 @@ namespace HenryLab.VRAgent
                     debugText.Add(" | Target: ", color: Color.white)
                              .Add(targetInfo, color: Color.cyan);
                     break;
+
                     case TransformActionUnit transform:
                     debugText.Add(" | ΔPos: ", color: Color.white)
                              .Add(transform.deltaPosition.ToString(), color: Color.cyan)
@@ -330,6 +324,7 @@ namespace HenryLab.VRAgent
                              .Add(" | ΔScale: ", color: Color.white)
                              .Add(transform.deltaScale.ToString(), color: Color.cyan);
                     break;
+
                     case TriggerActionUnit trigger:
                     int triggingCount = trigger.triggerringEvents?.Count ?? 0;
                     int trigredCount = trigger.triggerredEvents?.Count ?? 0;
@@ -340,7 +335,6 @@ namespace HenryLab.VRAgent
                     break;
                 }
                 Debug.Log(debugText);
-
 
                 objA = GetOrCreateManager().GetObject(action.objectA);
 

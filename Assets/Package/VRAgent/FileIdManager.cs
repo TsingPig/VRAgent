@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using Unity.Plastic.Newtonsoft.Json;
-using UnityEditor;
 using UnityEngine;
+
 namespace HenryLab.VRAgent
 {
     public class FileIdManager : MonoBehaviour
@@ -59,7 +57,6 @@ namespace HenryLab.VRAgent
         /// <param name="hitMethodCallCount">输出总有效methodCall数量</param>
         public void AddComponents(IEnumerable<eventUnit> eventUnits, ref int methodCallCount, ref int hitMethodCallCount)
         {
-
             if(eventUnits == null) return;
 
             foreach(var eventUnit in eventUnits)

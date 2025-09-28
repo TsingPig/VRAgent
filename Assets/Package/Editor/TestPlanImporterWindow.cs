@@ -79,8 +79,8 @@ namespace HenryLab.VRAgent
             // 导入按钮
             if(GUILayout.Button("Import Test Plan"))
             {
-                XRAgent.RemoveTestPlan();
-                XRAgent.ImportTestPlan();
+                VRAgent.RemoveTestPlan();
+                VRAgent.ImportTestPlan();
             }
 
             if(GUILayout.Button("Remove Test Plan"))
@@ -89,7 +89,7 @@ namespace HenryLab.VRAgent
                    "This will remove all components added by the test plan. Continue?",
                    "Yes", "No"))
                 {
-                    XRAgent.RemoveTestPlan();
+                    VRAgent.RemoveTestPlan();
                 }
             }
         }
