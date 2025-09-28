@@ -7,12 +7,37 @@ using UnityEngine;
 using Unity.Plastic.Newtonsoft.Json;
 using HenryLab;
 using HenryLab.VRExplorer;
+using Codice.Client.Common.GameUI;
+using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 namespace HenryLab.VRAgent
 {
+
+
     public class XRAgent : BaseExplorer
     {
+        class TestPlanCounter
+        {
+            public int taskUnitCount = 0, actionUnitCount = 0;
+            public int grabCount = 0, transformCount = 0, triggerCount = 0;
+            public int objCount = 0, hitObjCount = 0;
+            public int componentCount = 0, hitComponentCount = 0;
+            public void Log()
+            {
+                // ====== Debug 输出 ======
+                Debug.Log(
+                    $"{Str.Tags.LogsTag} Test Plan Metrics:\n" +
+                    new RichText().Add($"Tasks: {taskUnitCount}, Actions: {actionUnitCount}\n", color: Color.yellow, bold: true) +
+                    new RichText().Add($"Grab: {grabCount}, Trigger: {triggerCount}, Transform: {transformCount}\n", color: Color.yellow, bold: true) +
+                    new RichText().Add($"Objects: {objCount}, HitObjects: {hitObjCount}\n", color: Color.yellow, bold: true) +
+                    new RichText().Add($"Components: {componentCount}, HitComponents: {hitComponentCount}", color: Color.yellow, bold: true)
+                );
+            }
+        }
+
         private int _index = 0;
+        private TestPlanCounter _testPlanCounter;
         private List<TaskUnit> _taskUnits = new List<TaskUnit>();
 
         [Header("Show for Debug")]
@@ -20,6 +45,7 @@ namespace HenryLab.VRAgent
         [SerializeField] private GameObject objB;
 
         public bool useFileID = true;
+
 
         private static FileIdManager GetOrCreateManager()
         {
@@ -131,45 +157,79 @@ namespace HenryLab.VRAgent
             return null;
         }
 
+        /// <summary>
+        /// 导入测试计划
+        /// </summary>
+        /// <param name="useFileID"></param>
         public static void ImportTestPlan(bool useFileID = true)
         {
             TaskList tasklist = GetTaskListFromJson();
+            if(tasklist == null) return;
 
-            // 获取场景的FileIdManager
             FileIdManager manager = GetOrCreateManager();
             manager.Clear();
+
+            // ====== 统计信息 ======
+            TestPlanCounter counter = new TestPlanCounter();
+            counter.taskUnitCount = tasklist.taskUnits.Count;
+
+
             foreach(var taskUnit in tasklist.taskUnits)
             {
                 foreach(var action in taskUnit.actionUnits)
                 {
-                    GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
-                    if(objA != null) manager.Add(action.objectA, objA);
+                    counter.actionUnitCount++;
+                    if(!string.IsNullOrEmpty(action.objectA)) counter.objCount++;
 
-                    if(action.type == "Grab")
+                    GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
+                    if(objA != null)
                     {
+                        counter.hitObjCount++;
+                        manager.Add(action.objectA, objA);
+                    }
+
+                    switch(action.type)
+                    {
+                        case "Grab":
+                        counter.grabCount++;
                         GrabActionUnit grabAction = action as GrabActionUnit;
-                        if(grabAction.objectB != null)
+                        if(grabAction != null && !string.IsNullOrEmpty(grabAction.objectB))
                         {
+                            counter.objCount++;
                             GameObject objB = FileIdResolver.FindGameObject(grabAction.objectB, useFileID);
                             if(objB != null)
+                            {
+                                counter.hitObjCount++;
                                 manager.Add(grabAction.objectB, objB);
+                            }
                         }
-                    }
-                    else if(action.type == "Trigger")
-                    {
-                        TriggerActionUnit triggerAction = action as TriggerActionUnit;
-                        if(triggerAction == null) continue;
+                        break;
 
-                        manager.AddMonos(triggerAction.triggerringEvents);
-                        manager.AddMonos(triggerAction.triggerredEvents);
-                    }
-                    else if(action.type == "Transform")
-                    {
+                        case "Trigger":
+                        counter.triggerCount++;
+                        TriggerActionUnit triggerAction = action as TriggerActionUnit;
+                        if(triggerAction != null)
+                        {
+                            manager.AddComponents(triggerAction.triggerringEvents, ref counter.componentCount, ref counter.hitComponentCount);
+                            manager.AddComponents(triggerAction.triggerredEvents, ref counter.componentCount, ref counter.hitComponentCount);
+                        }
+                        break;
+
+                        case "Transform":
+                        counter.transformCount++;
+                        break;
                     }
                 }
             }
+
+            // ====== Debug 输出 ======
+            counter.Log();
         }
 
+        /// <summary>
+        /// 清除已导入的测试计划
+        /// </summary>
+        /// <param name="useFileID"></param>
         public static void RemoveTestPlan(bool useFileID = true)
         {
             // 移除临时目标物体

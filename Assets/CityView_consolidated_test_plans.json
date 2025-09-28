@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "test",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 179157733,
+          "condition": "On EventTrigger PointerClick (eventID=4; script guid d0b148fe25e99eb48b9724523833bab1) on GameObject 'Building101' (PrefabInstance/fileID 137028025) which has a Bank MonoBehaviour (component fileID 137028027; script guid b78288e601dcaac41ae0297908e55692). The configured callback invokes Bank.showlabel(). Expected behavior: showlabel sets Player/child[1] TextMeshPro text to first 20 chars of GetLabel(), which for Building101 is 'Bank:Lucario's Bank Co.' -> truncated to 20 chars.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 179157735,
+                  "method_name": "testFunc",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

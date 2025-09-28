@@ -8,15 +8,11 @@ using UnityEngine.Events;
 
 namespace HenryLab.VRAgent
 {
-
     /// <summary>
     /// 构建 FileID -> GameObject 的映射
     /// </summary>
     public static class FileIdResolver
     {
-
-
-
         /// <summary>
         /// 根据 eventUnit 创建 UnityEvent 并绑定所有 methodCallUnit
         /// </summary>
@@ -31,12 +27,12 @@ namespace HenryLab.VRAgent
                 if(string.IsNullOrEmpty(methodCallUnit.script) || string.IsNullOrEmpty(methodCallUnit.methodName))
                     continue;
 
-                MonoBehaviour mono = FindMonoByFileID(methodCallUnit.script);
-                MethodInfo method = mono.GetType().GetMethod(methodCallUnit.methodName,
+                MonoBehaviour component = FindComponentByFileID(methodCallUnit.script);
+                MethodInfo method = component.GetType().GetMethod(methodCallUnit.methodName,
                     BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
                 if(method == null)
                 {
-                    Debug.LogWarning($"{Str.Tags.Logs}Method {methodCallUnit.methodName} not found on {mono.name}");
+                    Debug.LogWarning($"{Str.Tags.LogsTag}Method {methodCallUnit.methodName} not found on {component.name}");
                     continue;
                 }
 
@@ -45,7 +41,7 @@ namespace HenryLab.VRAgent
                 {
 #if UNITY_EDITOR
                     // 创建 UnityAction
-                    UnityAction action = System.Delegate.CreateDelegate(typeof(UnityAction), mono, method) as UnityAction;
+                    UnityAction action = System.Delegate.CreateDelegate(typeof(UnityAction), component, method) as UnityAction;
                     if(action != null)
                         UnityEventTools.AddPersistentListener(evt, action);
                     else
@@ -57,10 +53,8 @@ namespace HenryLab.VRAgent
                     // 目前无法解决将带有参数的方法加入到event的问题
                 }
             }
-
             return evt;
         }
-
 
         /// <summary>
         /// 绑定一组 eventUnit 到目标 UnityEvent 列表
@@ -76,8 +70,12 @@ namespace HenryLab.VRAgent
             }
         }
 
-
-        public static long GetObjectFileID(UnityEngine.Object obj)
+        /// <summary>
+        /// 获取 Object FileID
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static long GetObjectFileID(Object obj)
         {
             if(obj == null)
             {
@@ -138,7 +136,6 @@ namespace HenryLab.VRAgent
             return 0;
         }
 
-
         /// <summary>
         /// 获取 Object GUID
         /// </summary>
@@ -167,11 +164,82 @@ namespace HenryLab.VRAgent
             }
         }
 
-        public static GameObject FindGameObjectByFileID(long fileId)
+        /// <summary>
+        /// 根据FileID 查找场景中的脚本组件实例
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public static MonoBehaviour FindComponentByFileID(string fileId)
+        {
+            if(!long.TryParse(fileId, out long id) || id == 0)
+            {
+                Debug.LogWarning("FileID is invalid or 0");
+                return null;
+            }
+
+            // 先在场景里找
+            MonoBehaviour[] allMonos = GameObject.FindObjectsOfType<MonoBehaviour>(true);
+            foreach(MonoBehaviour mono in allMonos)
+            {
+                if(GetObjectFileID(mono) == id) // 注意这里用 mono 自身
+                    return mono;
+            }
+
+            // 再查 prefab
+            string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab");
+            foreach(string guid in prefabGuids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                if(prefab == null) continue;
+
+                foreach(MonoBehaviour mono in prefab.GetComponentsInChildren<MonoBehaviour>(true))
+                {
+                    if(GetObjectFileID(mono) == id) 
+                        return mono;
+                }
+            }
+
+            Debug.LogWarning($"{Str.Tags.LogsTag} Cannot find Component with FileID: {id}");
+            return null;
+        }
+
+        /// <summary>
+        /// 从场景中查找物体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="useFileID"></param>
+        /// <returns></returns>
+        public static GameObject FindGameObject(string id, bool useFileID)
+        {
+            if(useFileID)
+            {
+                if(long.TryParse(id, out long fileID))
+                {
+                    return _FindGameObjectByFileID(fileID);
+                }
+                else
+                {
+                    Debug.LogError($"Invalid FileID: {id}");
+                    return null;
+                }
+            }
+            else
+            {
+                return _FindGameObjectByGuid(id);
+            }
+        }
+
+        /// <summary>
+        /// 根据FileID从场景中查找物体
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        internal static GameObject _FindGameObjectByFileID(long fileId)
         {
             if(fileId == 0)
             {
-                Debug.LogWarning("FileID is 0");
+                Debug.LogWarning($"{Str.Tags.LogsTag} FileID is 0");
                 return null;
             }
 
@@ -214,52 +282,16 @@ namespace HenryLab.VRAgent
                 }
             }
 
-            Debug.LogWarning($"Cannot find GameObject with FileID: {fileId}");
+            Debug.LogWarning($"{Str.Tags.LogsTag} Cannot find GameObject with FileID: {fileId}");
             return null;
         }
-
-        public static MonoBehaviour FindMonoByFileID(string fileId)
-        {
-            if(!long.TryParse(fileId, out long id) || id == 0)
-            {
-                Debug.LogWarning("FileID is invalid or 0");
-                return null;
-            }
-
-            // 先在场景里找
-            MonoBehaviour[] allMonos = GameObject.FindObjectsOfType<MonoBehaviour>(true);
-            foreach(MonoBehaviour mono in allMonos)
-            {
-                if(GetObjectFileID(mono) == id) // 注意这里用 mono 自身
-                    return mono;
-            }
-
-            // 再查 prefab
-            string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab");
-            foreach(string guid in prefabGuids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                if(prefab == null) continue;
-
-                foreach(MonoBehaviour mono in prefab.GetComponentsInChildren<MonoBehaviour>(true))
-                {
-                    if(GetObjectFileID(mono) == id) // 也是用 mono 自身
-                        return mono;
-                }
-            }
-
-            Debug.LogWarning($"Cannot find MonoBehaviour with FileID: {id}");
-            return null;
-        }
-
 
         /// <summary>
-        /// 通过 GUID 获取物体
+        /// 根据GUID 从场景中查找物体
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        public static GameObject FindGameObjectByGuid(string guid)
+        internal static GameObject _FindGameObjectByGuid(string guid)
         {
             if(string.IsNullOrEmpty(guid)) return null;
 
@@ -283,29 +315,6 @@ namespace HenryLab.VRAgent
 
             return null;
         }
-
-        public static GameObject FindGameObject(string id, bool useFileID)
-        {
-            if(useFileID)
-            {
-                if(long.TryParse(id, out long fileID))
-                {
-                    return FindGameObjectByFileID(fileID);
-                }
-                else
-                {
-                    Debug.LogError($"Invalid FileID: {id}");
-                    return null;
-                }
-            }
-            else
-            {
-                return FindGameObjectByGuid(id);
-            }
-        }
-
-
-
     }
 }
 #endif
