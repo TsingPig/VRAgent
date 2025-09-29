@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.8.4] - 2025-09-16
+## [1.8.5] - 2025-09-29
 
 ### Updated 
 
@@ -11,11 +11,17 @@
 
 - MoveAction Path Checking
 - VRAgent fileID debug logs
+- ***[Star]*** **support binding methods with return values to UnityEvent**
 
 ### Fixed
 
 - Grab target ObjectB catching bugs
+
 - Task Action Execution Broken bug
+
+-  VRAgent GameObject FileID missing Log & Runtime component got method; 
+
+    
 
 ### Updated
 

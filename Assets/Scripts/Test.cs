@@ -21,4 +21,8 @@ public class Test : MonoBehaviour
     {
         Debug.Log(go.name);
     }
+    public string TestFuncStr()
+    {
+        return go.name;
+    }
 }

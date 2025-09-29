@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 namespace HenryLab.VRAgent
 {
@@ -18,7 +19,7 @@ namespace HenryLab.VRAgent
         /// </summary>
         public static UnityEvent CreateUnityEvent(eventUnit e, bool useFileID = true)
         {
-            var manager = Object.FindAnyObjectByType<FileIdManager>();
+            var manager = UnityEngine.Object.FindAnyObjectByType<FileIdManager>();
             UnityEvent evt = new UnityEvent();
             if(e.methodCallUnits == null) return evt;
 
@@ -43,21 +44,116 @@ namespace HenryLab.VRAgent
                 if(method.GetParameters().Length == 0)
                 {
 #if UNITY_EDITOR
-                    // 创建 UnityAction
-                    UnityAction action = System.Delegate.CreateDelegate(typeof(UnityAction), component, method) as UnityAction;
-                    if(action != null)
-                        UnityEventTools.AddPersistentListener(evt, action);
+                    if(method.ReturnType == typeof(void))
+                    {
+                        // 无返回值方法，直接创建 UnityAction
+                        UnityAction action = System.Delegate.CreateDelegate(typeof(UnityAction), component, method) as UnityAction;
+                        if(action != null)
+                            UnityEventTools.AddPersistentListener(evt, action);
+                        else
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Cannot create UnityAction for method {method.Name}");
+                    }
                     else
-                        Debug.LogWarning($"Cannot create UnityAction for method {method.Name}");
+                    {
+                        // 有返回值的方法，创建包装器方法
+                        CreateReturnValueWrapper(evt, component, method);
+                    }
 #endif
                 }
                 else
                 {
-                    // 目前无法解决将带有参数的方法加入到event的问题
+                    Debug.LogError($"{Str.Tags.LogsTag} Method {method.Name} has parameters {method.GetParameters()}.");
                 }
             }
             return evt;
         }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// 为有返回值的方法创建包装器，使其能够在 Inspector 中序列化
+        /// </summary>
+        private static void CreateReturnValueWrapper(UnityEvent evt, MonoBehaviour component, MethodInfo method)
+        {
+            // 创建一个包装器方法，调用原方法但忽略返回值
+            string wrapperMethodName = $"_Wrapper_{method.Name}_{method.GetHashCode()}";
+            
+            // 检查是否已经存在包装器方法
+            MethodInfo existingWrapper = component.GetType().GetMethod(wrapperMethodName, 
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            
+            if(existingWrapper == null)
+            {
+                // 动态创建包装器方法（运行时方案）
+                UnityAction wrapperAction = () => {
+                    try 
+                    {
+                        object result = method.Invoke(component, null);
+                        Debug.Log($"{Str.Tags.LogsTag} Method {method.Name} returned: {result}");
+                    }
+                    catch(System.Exception ex)
+                    {
+                        Debug.LogError($"{Str.Tags.LogsTag} Error invoking {method.Name}: {ex.Message}");
+                    }
+                };
+                
+                // 使用 UnityEventTools.AddVoidPersistentListener 来添加可序列化的监听器
+                // 这需要在目标组件上创建一个实际的void方法
+                CreateAndAddVoidWrapper(evt, component, method);
+            }
+            else
+            {
+                UnityAction action = System.Delegate.CreateDelegate(typeof(UnityAction), component, existingWrapper) as UnityAction;
+                if(action != null)
+                    UnityEventTools.AddPersistentListener(evt, action);
+            }
+        }
+
+        /// <summary>
+        /// 创建并添加 void 包装器方法
+        /// </summary>
+        private static void CreateAndAddVoidWrapper(UnityEvent evt, MonoBehaviour component, MethodInfo originalMethod)
+        {
+            try
+            {
+                // 方案1: 尝试在同一个GameObject上找到或创建SerializableMethodWrapper
+                GameObject targetGO = component.gameObject;
+                SerializableMethodWrapper wrapper = targetGO.GetComponent<SerializableMethodWrapper>();
+                
+                if(wrapper == null)
+                {
+                    wrapper = targetGO.AddComponent<SerializableMethodWrapper>();
+                    Debug.Log($"{Str.Tags.LogsTag} Added SerializableMethodWrapper to {targetGO.name}");
+                }
+                
+                // 设置包装器参数
+                wrapper.Setup(component, originalMethod.Name, true);
+                
+                // 添加可序列化的监听器
+                UnityEventTools.AddPersistentListener(evt, wrapper.InvokeWrappedMethod);
+                
+                Debug.Log($"{Str.Tags.LogsTag} Successfully wrapped method {originalMethod.Name} with return type {originalMethod.ReturnType}");
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError($"{Str.Tags.LogsTag} Failed to create wrapper for {originalMethod.Name}: {ex.Message}");
+                
+                // 备选方案：使用运行时调用（不可序列化）
+                UnityAction fallbackAction = () => {
+                    try 
+                    {
+                        object result = originalMethod.Invoke(component, null);
+                        Debug.Log($"{Str.Tags.LogsTag} {component.name}.{originalMethod.Name}() returned: {result}");
+                    }
+                    catch(Exception invokeEx)
+                    {
+                        Debug.LogError($"{Str.Tags.LogsTag} Error invoking {originalMethod.Name}: {invokeEx.Message}");
+                    }
+                };
+                
+                UnityEventTools.AddPersistentListener(evt, fallbackAction);
+            }
+        }
+#endif
 
         /// <summary>
         /// 绑定一组 eventUnit 到目标 UnityEvent 列表
@@ -78,7 +174,7 @@ namespace HenryLab.VRAgent
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static long GetObjectFileID(Object obj)
+        public static long GetObjectFileID(UnityEngine.Object obj)
         {
             if(obj == null)
             {
@@ -202,7 +298,7 @@ namespace HenryLab.VRAgent
 
                 foreach(MonoBehaviour mono in prefab.GetComponentsInChildren<MonoBehaviour>(true))
                 {
-                    if(GetObjectFileID(mono) == id) 
+                    if(GetObjectFileID(mono) == id)
                         return mono;
                 }
             }
@@ -321,6 +417,100 @@ namespace HenryLab.VRAgent
             }
 
             return null;
+        }
+    }
+
+    /// <summary>
+    /// 辅助组件，用于包装有返回值的方法调用，使其能在Inspector中序列化
+    /// </summary>
+    [System.Serializable]
+    public class SerializableMethodWrapper : MonoBehaviour
+    {
+        [SerializeField] private MonoBehaviour targetComponent;
+        [SerializeField] private string methodName;
+        [SerializeField] private bool logReturnValue = true;
+
+        /// <summary>
+        /// 包装器方法，调用目标方法并处理返回值
+        /// </summary>
+        public void InvokeWrappedMethod()
+        {
+            if(targetComponent == null || string.IsNullOrEmpty(methodName))
+            {
+                Debug.LogWarning($"{Str.Tags.LogsTag} SerializableMethodWrapper: Invalid target or method name");
+                return;
+            }
+
+            try
+            {
+                MethodInfo method = targetComponent.GetType().GetMethod(methodName,
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                
+                if(method == null)
+                {
+                    Debug.LogError($"{Str.Tags.LogsTag} Method {methodName} not found on {targetComponent.GetType().Name}");
+                    return;
+                }
+
+                object result = method.Invoke(targetComponent, null);
+                
+                if(logReturnValue && result != null)
+                {
+                    Debug.Log($"{Str.Tags.LogsTag} {targetComponent.name}.{methodName}() returned: {result}");
+                }
+                
+                // 可以在这里添加额外的返回值处理逻辑
+                HandleReturnValue(result, method.ReturnType);
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError($"{Str.Tags.LogsTag} Error invoking {methodName}: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// 处理方法返回值
+        /// </summary>
+        private void HandleReturnValue(object returnValue, Type returnType)
+        {
+            // 这里可以根据需要处理不同类型的返回值
+            // 例如：存储到变量、触发其他事件、发送消息等
+            
+            if(returnValue == null) return;
+
+            // 示例：根据返回值类型进行不同处理
+            switch(Type.GetTypeCode(returnType))
+            {
+                case TypeCode.Boolean:
+                    bool boolResult = (bool)returnValue;
+                    // 可以根据布尔结果触发不同行为
+                    break;
+                    
+                case TypeCode.Int32:
+                case TypeCode.Single:
+                case TypeCode.Double:
+                    // 数值类型的处理
+                    break;
+                    
+                case TypeCode.String:
+                    string stringResult = (string)returnValue;
+                    // 字符串类型的处理
+                    break;
+                    
+                default:
+                    // 其他类型的处理
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 设置包装器参数
+        /// </summary>
+        public void Setup(MonoBehaviour target, string method, bool logReturn = true)
+        {
+            targetComponent = target;
+            methodName = method;
+            logReturnValue = logReturn;
         }
     }
 }
