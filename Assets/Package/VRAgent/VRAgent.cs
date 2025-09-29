@@ -296,6 +296,12 @@ namespace HenryLab.VRAgent
 
         private List<BaseAction> TaskGenerator(TaskUnit taskUnit)
         {
+            if(taskUnit.actionUnits.Count == 0)
+            {
+                Debug.LogError($"{Str.Tags.LogsTag} {taskUnit} is null");
+                return null;
+            }
+
             List<BaseAction> task = new List<BaseAction>();
 
             for(int actionIndex = 0; actionIndex < taskUnit.actionUnits.Count; actionIndex++)
@@ -337,6 +343,8 @@ namespace HenryLab.VRAgent
                 Debug.Log(debugText);
 
                 objA = GetOrCreateManager().GetObject(action.objectA);
+                if(objA == null) continue;
+
 
                 if(action.type == "Grab")
                 {
@@ -407,7 +415,6 @@ namespace HenryLab.VRAgent
                     task.AddRange(TransformTask(transformable));
                 }
             }
-            if(task.Count == 0) Debug.LogError($"{taskUnit} is null");
             return task;
         }
 

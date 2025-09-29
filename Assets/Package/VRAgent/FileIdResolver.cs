@@ -18,7 +18,7 @@ namespace HenryLab.VRAgent
         /// </summary>
         public static UnityEvent CreateUnityEvent(eventUnit e, bool useFileID = true)
         {
-            var manager = UnityEngine.Object.FindAnyObjectByType<FileIdManager>();
+            var manager = Object.FindAnyObjectByType<FileIdManager>();
             UnityEvent evt = new UnityEvent();
             if(e.methodCallUnits == null) return evt;
 
@@ -27,7 +27,10 @@ namespace HenryLab.VRAgent
                 if(string.IsNullOrEmpty(methodCallUnit.script) || string.IsNullOrEmpty(methodCallUnit.methodName))
                     continue;
 
-                MonoBehaviour component = FindComponentByFileID(methodCallUnit.script);
+                // MonoBehaviour component = FindComponentByFileID(methodCallUnit.script);
+                MonoBehaviour component = manager.GetComponent(methodCallUnit.script);
+                if(component == null) continue;
+
                 MethodInfo method = component.GetType().GetMethod(methodCallUnit.methodName,
                     BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
                 if(method == null)
@@ -79,7 +82,7 @@ namespace HenryLab.VRAgent
         {
             if(obj == null)
             {
-                Debug.LogWarning("Object is null!");
+                Debug.LogWarning($"{Str.Tags.LogsTag} Object is null!");
                 return 0;
             }
 
@@ -139,28 +142,32 @@ namespace HenryLab.VRAgent
         /// <summary>
         /// 获取 Object GUID
         /// </summary>
-        /// <param name="go"></param>
+        /// <param name="obj"></param>
         /// <returns></returns>
-        public static string GetObjectGuid(GameObject go)
+        public static string GetObjectGuid(GameObject obj)
         {
-            if(go == null) return null;
+            if(obj == null)
+            {
+                Debug.LogWarning($"{Str.Tags.LogsTag} Object is null!");
+                return null;
+            }
 
             // 1. 如果是预制体资源
-            if(PrefabUtility.IsPartOfPrefabAsset(go))
+            if(PrefabUtility.IsPartOfPrefabAsset(obj))
             {
-                return AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(go));
+                return AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(obj));
             }
             // 2. 如果是场景中的物体（且是在Editor中）
             else if(Application.isEditor)
             {
                 // 使用GlobalObjectId获取稳定的场景对象ID
-                GlobalObjectId globalId = GlobalObjectId.GetGlobalObjectIdSlow(go);
+                GlobalObjectId globalId = GlobalObjectId.GetGlobalObjectIdSlow(obj);
                 return globalId.ToString(); // 格式如："Scene:GlobalObjectId_V1-2-xxxx-64330974-0"
             }
             // 3. 运行时回退方案
             else
             {
-                return go.GetInstanceID().ToString();
+                return obj.GetInstanceID().ToString();
             }
         }
 

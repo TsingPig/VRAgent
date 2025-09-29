@@ -38,6 +38,7 @@ namespace HenryLab.VRAgent
             int index = fileIds.IndexOf(fileId);
             if(index >= 0 && index < objects.Count)
                 return objects[index];
+            Debug.LogWarning($"{Str.Tags.LogsTag} Missing object for FileID: {fileId}", this);
             return null;
         }
 
@@ -46,6 +47,7 @@ namespace HenryLab.VRAgent
             int index = scriptFileIds.IndexOf(scriptFileId);
             if(index >= 0 && index < scripts.Count)
                 return scripts[index];
+            Debug.LogWarning($"{Str.Tags.LogsTag} Missing script for FileID: {scriptFileId}", this);
             return null;
         }
 
