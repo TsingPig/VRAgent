@@ -1,30 +1,32 @@
 {
   "taskUnits": [
     {
-     "actionUnits": [
-      {
-        "type": "Trigger",
-        "source_object_name": "Cube",
-        "triggerring_time": 0.1,
-        "source_object_fileID": 179157733,
-        "condition": "MonoBehaviour component (id: 179157739) on GameObject 'Un 1' is configured in the scene to use script GUID f4688fdb7df04437aeb418b961361dc5 (TMPro.TextMeshProUGUI). This is the scene-file setting for the attached script we want to test. Although many updates (layout, material, culling) can occur automatically, we manually invoke public parameterless methods to ensure coverage. Note: This UI component includes UnityEvent (m_OnCullStateChanged) and supports direct invocation of safe public no-arg methods.",
-        "triggerring_events": [
-          {
-            "methodCallUnits": [
-   
-              {
-                "script_fileID": 179157739,
-                "method_name": "UpdateVertexData",
-                "parameter_fileID": []
-              }
-   
-
-            ]
-          }
-        ],
-        "triggerred_events": []
-      }
-    ]
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 179157733,
+          "condition": "MonoBehaviour component (id: 179157739) on GameObject 'Un 1' is configured in the scene to use script GUID f4688fdb7df04437aeb418b961361dc5 (TMPro.TextMeshProUGUI). This is the scene-file setting for the attached script we want to test. Although many updates (layout, material, culling) can occur automatically, we manually invoke public parameterless methods to ensure coverage. Note: This UI component includes UnityEvent (m_OnCullStateChanged) and supports direct invocation of safe public no-arg methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 179157739,
+                  "method_name": "UpdateVertexData",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 179157739,
+                  "method_name": "ClearMesh",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
     }
   ]
 }

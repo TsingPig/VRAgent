@@ -40,13 +40,14 @@ namespace HenryLab.VRAgent
                 MethodInfo method = FindMethodSafely(component, methodCallUnit.methodName);
                 if(method == null)
                 {
-                    Debug.LogWarning($"{Str.Tags.LogsTag} Method {methodCallUnit.methodName} not found on {component.GetType().FullName} ({component.name})");
+                    Debug.LogError($"{Str.Tags.LogsTag} No parameterless method '{methodCallUnit.methodName}' found on {component.GetType().FullName} ({component.name}). Only methods without parameters are supported for UnityEvent binding.");
                     continue;
                 }
 
-                // 方法无参数
+                // 处理找到的方法（已确保是无参数的，除非是属性setter）
                 if(method.GetParameters().Length == 0)
                 {
+                    // 无参数方法的标准处理
 #if UNITY_EDITOR
                     if(method.ReturnType == typeof(void))
                     {
@@ -78,9 +79,15 @@ namespace HenryLab.VRAgent
                     }
 #endif
                 }
+                else if(method.GetParameters().Length == 1)
+                {
+                    // 特殊情况：属性setter（有一个参数）
+                    Debug.LogWarning($"{Str.Tags.LogsTag} Method {method.Name} appears to be a property setter with one parameter. This is not fully supported yet.");
+                }
                 else
                 {
-                    Debug.LogWarning($"{Str.Tags.LogsTag} Method {method.Name} has parameters, not supported for UnityEvent binding");
+                    // 这种情况理论上不应该发生，因为FindMethodSafely已经过滤了
+                    Debug.LogError($"{Str.Tags.LogsTag} Method {method.Name} has {method.GetParameters().Length} parameters, which should not happen.");
                 }
             }
             return evt;
@@ -88,6 +95,7 @@ namespace HenryLab.VRAgent
 
         /// <summary>
         /// 安全地查找方法，支持第三方库组件
+        /// 优先选择无参数版本，有参数版本将被忽略
         /// </summary>
         private static MethodInfo FindMethodSafely(MonoBehaviour component, string methodName)
         {
@@ -95,42 +103,61 @@ namespace HenryLab.VRAgent
             {
                 Type componentType = component.GetType();
                 
-                // 方案1：尝试标准查找
-                MethodInfo method = componentType.GetMethod(methodName,
-                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                
-                if(method != null) return method;
-                
-                // 方案2：查找所有同名方法，选择无参数的
+                // 统一策略：查找所有同名方法，优先选择无参数的
                 MethodInfo[] methods = componentType.GetMethods(
                     BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
                 
+                MethodInfo parameterlessMethod = null;
+                MethodInfo anyMethod = null;
+                
                 foreach(var m in methods)
                 {
-                    if(m.Name == methodName && m.GetParameters().Length == 0)
+                    if(m.Name == methodName)
                     {
-                        Debug.Log($"{Str.Tags.LogsTag} Found method {methodName} using fallback search on {componentType.Name}");
-                        return m;
+                        anyMethod = m; // 记录任意一个同名方法
+                        if(m.GetParameters().Length == 0)
+                        {
+                            parameterlessMethod = m; // 找到无参数版本
+                            break; // 立即返回无参数版本
+                        }
                     }
                 }
                 
-                // 方案3：查找基类和接口方法
-                method = FindMethodInHierarchy(componentType, methodName);
-                if(method != null)
+                if(parameterlessMethod != null)
                 {
-                    Debug.Log($"{Str.Tags.LogsTag} Found method {methodName} in class hierarchy of {componentType.Name}");
-                    return method;
+                    Debug.Log($"{Str.Tags.LogsTag} Found parameterless method {methodName} on {componentType.Name}");
+                    return parameterlessMethod;
                 }
                 
-                // 方案4：如果是第三方组件，尝试查找公共属性的setter
-                if(!componentType.Assembly.FullName.Contains("Assembly-CSharp"))
+                // 如果没有找到无参数版本，尝试在继承链中查找
+                MethodInfo hierarchyMethod = FindMethodInHierarchy(componentType, methodName);
+                if(hierarchyMethod != null)
                 {
-                    PropertyInfo property = componentType.GetProperty(methodName.Replace("set_", ""), 
-                        BindingFlags.Public | BindingFlags.Instance);
-                    if(property != null && property.CanWrite)
+                    Debug.Log($"{Str.Tags.LogsTag} Found parameterless method {methodName} in class hierarchy of {componentType.Name}");
+                    return hierarchyMethod;
+                }
+                
+                // 如果还是没找到，尝试查找属性的setter
+                PropertyInfo property = componentType.GetProperty(methodName.Replace("set_", ""), 
+                    BindingFlags.Public | BindingFlags.Instance);
+                if(property != null && property.CanWrite)
+                {
+                    MethodInfo setter = property.GetSetMethod();
+                    if(setter != null && setter.GetParameters().Length == 1) // setter通常有一个参数，但我们可以特殊处理
                     {
                         Debug.Log($"{Str.Tags.LogsTag} Found property setter for {methodName} on {componentType.Name}");
-                        return property.GetSetMethod();
+                        return setter;
+                    }
+                }
+                
+                // 如果找到了同名方法但都有参数，给出更明确的错误提示
+                if(anyMethod != null)
+                {
+                    var parameters = anyMethod.GetParameters();
+                    Debug.LogWarning($"{Str.Tags.LogsTag} Method {methodName} found on {componentType.Name} but has {parameters.Length} parameters. Only parameterless methods are supported for UnityEvent binding.");
+                    foreach(var param in parameters)
+                    {
+                        Debug.LogWarning($"{Str.Tags.LogsTag} - Parameter: {param.ParameterType.Name} {param.Name}");
                     }
                 }
                 
