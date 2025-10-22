@@ -22,8 +22,21 @@
 | UnityVR_VRAgent_Disallow_Replicated_MethodCall | Tasks: 5, Actions: 9<br/>Grab: 0, Trigger: 9, Transform: 0<br/>Objects: 9, HitObjects: 9<br/>Components: 13, HitComponents: 13 | Line coverage: 68.5% (37 of 54)<br />Method coverage: 84.6% (11 of 13) | [Summary - Coverage Report](https://tsingpig.github.io/files/Experiment_Result/UnityVR_VRAgent_Disallow_Replicated_MethodCall/Report/index.html) |
 | UnityCityView                                  | Tasks: 16, Actions: 20<br/>Grab: 1, Trigger: 18, Transform: 1<br/>Objects: 20, HitObjects: 20<br/>Components: 21, HitComponents: 21 | Line coverage: 93% (148 of 159)<br />Method coverage:100% (37 of 37) | [Summary - Coverage Report](https://tsingpig.github.io/files/Experiment_Result/UnityCityView_VRAgent/Report/index.html) |
 | escapeVr                                       | **Room1**: <br />Tasks: 1, Actions: 4<br/>Grab: 2, Trigger: 1, Transform: 1<br/>Objects: 6, HitObjects: 6<br/>Components: 0, HitComponents: 0<br /><br />**Room2**:<br /><br />Tasks: 1, Actions: 3<br/>Grab: 3, Trigger: 0, Transform: 0<br/>Objects: 6, HitObjects: 6<br/>Components: 0, HitComponents: 0<br /><br />**Room3**: <br />Tasks: 1, Actions: 9<br/>Grab: 2, Trigger: 7, Transform: 0<br/>Objects: 9, HitObjects: 9<br/>Components: 7, HitComponents: 7 | Line coverage: 100% (106 of 106)<br />Method coverage: 100% (19 of 19) | [Summary - Coverage Report](https://tsingpig.github.io/files/Experiment_Result/escapeVr_VRAgent/Report/index.html) |
-| EscapeGameVR                                   | Tasks: 28, Actions: 58<br/>Grab: 0, Trigger: 58, Transform: 0<br/>Objects: 58, HitObjects: 42<br/>Components: 138, HitComponents: 138 |                                                              |                                                              |
-|                                                |                                                              |                                                              |                                                              |
-|                                                |                                                              |                                                              |                                                              |
-|                                                |                                                              |                                                              |                                                              |
-|                                                |                                                              |                                                              |                                                              |
+| EscapeGameVR                                   | **SampleScene**<br />Tasks: 20, Actions: 88<br/>Grab: 22, Trigger: 59, Transform: 7<br/>Objects: 89, HitObjects: 89<br/>Components: 163, HitComponents: 161 |                                                              |                                                              |
+| EE-Room                                        |                                                              |                                                              |                                                              |
+| VRChess                                        |                                                              |                                                              |                                                              |
+| VR-Basic                                       |                                                              |                                                              |                                                              |
+| VR-Room                                        |                                                              |                                                              |                                                              |
+
+Tested Scenes (with number representing total Scenes):
+
+- Parkinson-VR: Gems
+- VGuns: Endless Level
+- EE-Rooms: EscapeRoom
+- EscapeGameVR(2): EndMenu, SampleScene
+- VRChess: chess
+- VR-Basics(2): Architecture_Prototype_Broken, Training_Prototype_Broken
+
+- VR-Room: My VR Room
+
+- VR-Adventure: MainScene

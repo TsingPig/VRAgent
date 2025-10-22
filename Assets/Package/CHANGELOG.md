@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.8.5] - 2025-09-29
+## [1.8.6] - 2025-10-22
 
 ### Updated 
 
@@ -12,6 +12,7 @@
 - MoveAction Path Checking
 - VRAgent fileID debug logs
 - ***[Star]*** **support binding methods with return values to UnityEvent**
+- ***[Star]*** **support cross-assembly method invocation failures in third-party components**
 
 ### Fixed
 

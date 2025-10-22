@@ -30,13 +30,17 @@ namespace HenryLab.VRAgent
 
                 // MonoBehaviour component = FindComponentByFileID(methodCallUnit.script);
                 MonoBehaviour component = manager.GetComponent(methodCallUnit.script);
-                if(component == null) continue;
+                if(component == null) 
+                {
+                    Debug.LogWarning($"{Str.Tags.LogsTag} Component with script FileID {methodCallUnit.script} not found");
+                    continue;
+                }
 
-                MethodInfo method = component.GetType().GetMethod(methodCallUnit.methodName,
-                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                // 改进的方法查找，支持第三方库
+                MethodInfo method = FindMethodSafely(component, methodCallUnit.methodName);
                 if(method == null)
                 {
-                    Debug.LogWarning($"{Str.Tags.LogsTag}Method {methodCallUnit.methodName} not found on {component.name}");
+                    Debug.LogWarning($"{Str.Tags.LogsTag} Method {methodCallUnit.methodName} not found on {component.GetType().FullName} ({component.name})");
                     continue;
                 }
 
@@ -47,11 +51,25 @@ namespace HenryLab.VRAgent
                     if(method.ReturnType == typeof(void))
                     {
                         // 无返回值方法，直接创建 UnityAction
-                        UnityAction action = System.Delegate.CreateDelegate(typeof(UnityAction), component, method) as UnityAction;
-                        if(action != null)
-                            UnityEventTools.AddPersistentListener(evt, action);
-                        else
-                            Debug.LogWarning($"{Str.Tags.LogsTag} Cannot create UnityAction for method {method.Name}");
+                        try
+                        {
+                            UnityAction action = System.Delegate.CreateDelegate(typeof(UnityAction), component, method) as UnityAction;
+                            if(action != null)
+                            {
+                                UnityEventTools.AddPersistentListener(evt, action);
+                                Debug.Log($"{Str.Tags.LogsTag} Successfully bound void method: {component.GetType().Name}.{method.Name}");
+                            }
+                            else
+                            {
+                                Debug.LogWarning($"{Str.Tags.LogsTag} Cannot create UnityAction for method {method.Name}");
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            Debug.LogError($"{Str.Tags.LogsTag} Failed to create delegate for {method.Name}: {ex.Message}");
+                            // 备选方案：使用运行时调用
+                            CreateRuntimeWrapper(evt, component, method);
+                        }
                     }
                     else
                     {
@@ -62,10 +80,134 @@ namespace HenryLab.VRAgent
                 }
                 else
                 {
-                    Debug.LogError($"{Str.Tags.LogsTag} Method {method.Name} has parameters {method.GetParameters()}.");
+                    Debug.LogWarning($"{Str.Tags.LogsTag} Method {method.Name} has parameters, not supported for UnityEvent binding");
                 }
             }
             return evt;
+        }
+
+        /// <summary>
+        /// 安全地查找方法，支持第三方库组件
+        /// </summary>
+        private static MethodInfo FindMethodSafely(MonoBehaviour component, string methodName)
+        {
+            try
+            {
+                Type componentType = component.GetType();
+                
+                // 方案1：尝试标准查找
+                MethodInfo method = componentType.GetMethod(methodName,
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                
+                if(method != null) return method;
+                
+                // 方案2：查找所有同名方法，选择无参数的
+                MethodInfo[] methods = componentType.GetMethods(
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                
+                foreach(var m in methods)
+                {
+                    if(m.Name == methodName && m.GetParameters().Length == 0)
+                    {
+                        Debug.Log($"{Str.Tags.LogsTag} Found method {methodName} using fallback search on {componentType.Name}");
+                        return m;
+                    }
+                }
+                
+                // 方案3：查找基类和接口方法
+                method = FindMethodInHierarchy(componentType, methodName);
+                if(method != null)
+                {
+                    Debug.Log($"{Str.Tags.LogsTag} Found method {methodName} in class hierarchy of {componentType.Name}");
+                    return method;
+                }
+                
+                // 方案4：如果是第三方组件，尝试查找公共属性的setter
+                if(!componentType.Assembly.FullName.Contains("Assembly-CSharp"))
+                {
+                    PropertyInfo property = componentType.GetProperty(methodName.Replace("set_", ""), 
+                        BindingFlags.Public | BindingFlags.Instance);
+                    if(property != null && property.CanWrite)
+                    {
+                        Debug.Log($"{Str.Tags.LogsTag} Found property setter for {methodName} on {componentType.Name}");
+                        return property.GetSetMethod();
+                    }
+                }
+                
+                return null;
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError($"{Str.Tags.LogsTag} Error finding method {methodName} on {component.GetType().Name}: {ex.Message}");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 在类层次结构中查找方法
+        /// </summary>
+        private static MethodInfo FindMethodInHierarchy(Type type, string methodName)
+        {
+            Type currentType = type;
+            while(currentType != null)
+            {
+                try
+                {
+                    MethodInfo method = currentType.GetMethod(methodName,
+                        BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                    
+                    if(method != null && method.GetParameters().Length == 0)
+                        return method;
+                }
+                catch(Exception)
+                {
+                    // 忽略异常，继续查找
+                }
+                
+                currentType = currentType.BaseType;
+            }
+            
+            // 查找接口方法
+            foreach(Type interfaceType in type.GetInterfaces())
+            {
+                try
+                {
+                    MethodInfo method = interfaceType.GetMethod(methodName);
+                    if(method != null && method.GetParameters().Length == 0)
+                        return method;
+                }
+                catch(Exception)
+                {
+                    // 忽略异常，继续查找
+                }
+            }
+            
+            return null;
+        }
+
+        /// <summary>
+        /// 创建运行时包装器（备选方案）
+        /// </summary>
+        private static void CreateRuntimeWrapper(UnityEvent evt, MonoBehaviour component, MethodInfo method)
+        {
+            UnityAction runtimeAction = () => {
+                try 
+                {
+                    if(component != null && component.gameObject != null)
+                    {
+                        object result = method.Invoke(component, null);
+                        Debug.Log($"{Str.Tags.LogsTag} Runtime call: {component.GetType().Name}.{method.Name}() completed");
+                        if(result != null)
+                            Debug.Log($"{Str.Tags.LogsTag} Result: {result}");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Debug.LogError($"{Str.Tags.LogsTag} Runtime error calling {method.Name}: {ex.Message}");
+                }
+            };
+            
+            UnityEventTools.AddPersistentListener(evt, runtimeAction);
         }
 
 #if UNITY_EDITOR
