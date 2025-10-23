@@ -392,17 +392,17 @@ Core purposes of Transform include:
   "type": "Transform",
   "source_object_name": "<string>",        // Name of the target object
   "source_object_fileID": <long>,          // FileID of the target object in the Unity scene
-  "target_position": {                     // Position delta (offset)
+  "delta_position": {                     // Position delta (offset)
     "x": <float>,
     "y": <float>,
     "z": <float>
   },
-  "target_rotation": {                     // Rotation delta (offset)
+  "delta_rotation": {                     // Rotation delta (offset)
     "x": <float>,
     "y": <float>,
     "z": <float>
   },
-  "target_scale": {                        // Scale delta (offset)
+  "delta_scale": {                        // Scale delta (offset)
     "x": <float>,
     "y": <float>,
     "z": <float>
