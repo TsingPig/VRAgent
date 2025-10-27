@@ -4,10 +4,38 @@
       "actionUnits": [
         {
           "type": "Trigger",
-          "source_object_name": "Cube",
-          "source_object_fileID": 179157733,
+          "source_object_name": "Button",
+          "source_object_fileID": 460574862,
           "triggerring_events": [],
-          "triggerred_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 460574869,
+                  "method_name": "DestroyTarget",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Wall",
+          "source_object_fileID": 7892439747271580212,
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 179157735,
+                  "method_name": "TestF",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
           "triggerring_time": 0.01
         }
       ]

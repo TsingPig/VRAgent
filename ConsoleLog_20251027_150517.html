@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Unity Console Log Export</title>
+    <style>
+        body { font-family: 'Consolas', 'Monaco', monospace; margin: 20px; background: #1e1e1e; color: #d4d4d4; }
+        .header { background: #252526; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .header h1 { margin: 0; color: #4ec9b0; }
+        .header .info { margin-top: 10px; color: #858585; font-size: 14px; }
+        .log-entry { background: #252526; margin: 10px 0; padding: 15px; border-radius: 5px; border-left: 4px solid; }
+        .log-entry.log { border-color: #4ec9b0; }
+        .log-entry.warning { border-color: #dcdcaa; background: #2d2d20; }
+        .log-entry.error { border-color: #f48771; background: #2d2020; }
+        .log-type { font-weight: bold; margin-bottom: 8px; padding: 3px 8px; border-radius: 3px; display: inline-block; }
+        .log-type.log { background: #1a4040; color: #4ec9b0; }
+        .log-type.warning { background: #3d3d20; color: #dcdcaa; }
+        .log-type.error { background: #3d2020; color: #f48771; }
+        .message { color: #d4d4d4; margin: 10px 0; white-space: pre-wrap; word-wrap: break-word; }
+        .stacktrace { color: #858585; font-size: 12px; margin-top: 10px; padding: 10px; background: #1e1e1e; border-radius: 3px; white-space: pre-wrap; }
+        .stacktrace-toggle { color: #569cd6; cursor: pointer; text-decoration: underline; margin-top: 5px; display: inline-block; }
+        .stacktrace-toggle:hover { color: #8ac6ff; }
+        .stacktrace.collapsed { display: none; }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <h1>Unity Console Log Export</h1>
+        <div class='info'>导出时间: 2025-10-27 15:05:17 | 总计: 2 条日志</div>
+        <div class='info'>前缀过滤: "[Henr"</div>
+    </div>
+    <div class='log-entry log'>
+        <div class='log-type log'>LOG</div>
+        <div class='message'>[HenryLab.XR] Missing object for FileID: 460574862
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+HenryLab.VRAgent.FileIdManager:GetObject (string) (at Assets/Package/VRAgent/FileIdManager.cs:41)
+HenryLab.VRAgent.VRAgent:TaskGenerator (HenryLab.VRAgent.TaskUnit) (at Assets/Package/VRAgent/VRAgent.cs:345)
+HenryLab.VRAgent.VRAgent/&lt;TaskExecutation&gt;d__12:MoveNext () (at Assets/Package/VRAgent/VRAgent.cs:104)
+System.Runtime.CompilerServices.AsyncTaskMethodBuilder:Start&lt;HenryLab.VRAgent.VRAgent/&lt;TaskExecutation&gt;d__12&gt; (HenryLab.VRAgent.VRAgent/&lt;TaskExecutation&gt;d__12&amp;)
+HenryLab.VRAgent.VRAgent:TaskExecutation ()
+HenryLab.VRAgent.VRAgent/&lt;SceneExplore&gt;d__11:MoveNext () (at Assets/Package/VRAgent/VRAgent.cs:98)
+System.Runtime.CompilerServices.AsyncTaskMethodBuilder:Start&lt;HenryLab.VRAgent.VRAgent/&lt;SceneExplore&gt;d__11&gt; (HenryLab.VRAgent.VRAgent/&lt;SceneExplore&gt;d__11&amp;)
+HenryLab.VRAgent.VRAgent:SceneExplore ()
+HenryLab.VRAgent.VRAgent/&lt;RepeatSceneExplore&gt;d__10:MoveNext () (at Assets/Package/VRAgent/VRAgent.cs:72)
+System.Runtime.CompilerServices.AsyncTaskMethodBuilder:Start&lt;HenryLab.VRAgent.VRAgent/&lt;RepeatSceneExplore&gt;d__10&gt; (HenryLab.VRAgent.VRAgent/&lt;RepeatSceneExplore&gt;d__10&amp;)
+HenryLab.VRAgent.VRAgent:RepeatSceneExplore ()
+</div>
+    </div>
+    <div class='log-entry log'>
+        <div class='log-type log'>LOG</div>
+        <div class='message'>[HenryLab.XR] Missing object for FileID: 7892439747271580212
+UnityEngine.Debug:LogWarning (object,UnityEngine.Object)
+HenryLab.VRAgent.FileIdManager:GetObject (string) (at Assets/Package/VRAgent/FileIdManager.cs:41)
+HenryLab.VRAgent.VRAgent:TaskGenerator (HenryLab.VRAgent.TaskUnit) (at Assets/Package/VRAgent/VRAgent.cs:345)
+HenryLab.VRAgent.VRAgent/&lt;TaskExecutation&gt;d__12:MoveNext () (at Assets/Package/VRAgent/VRAgent.cs:104)
+System.Runtime.CompilerServices.AsyncTaskMethodBuilder:Start&lt;HenryLab.VRAgent.VRAgent/&lt;TaskExecutation&gt;d__12&gt; (HenryLab.VRAgent.VRAgent/&lt;TaskExecutation&gt;d__12&amp;)
+HenryLab.VRAgent.VRAgent:TaskExecutation ()
+HenryLab.VRAgent.VRAgent/&lt;SceneExplore&gt;d__11:MoveNext () (at Assets/Package/VRAgent/VRAgent.cs:98)
+System.Runtime.CompilerServices.AsyncTaskMethodBuilder:Start&lt;HenryLab.VRAgent.VRAgent/&lt;SceneExplore&gt;d__11&gt; (HenryLab.VRAgent.VRAgent/&lt;SceneExplore&gt;d__11&amp;)
+HenryLab.VRAgent.VRAgent:SceneExplore ()
+HenryLab.VRAgent.VRAgent/&lt;RepeatSceneExplore&gt;d__10:MoveNext () (at Assets/Package/VRAgent/VRAgent.cs:72)
+System.Runtime.CompilerServices.AsyncTaskMethodBuilder:Start&lt;HenryLab.VRAgent.VRAgent/&lt;RepeatSceneExplore&gt;d__10&gt; (HenryLab.VRAgent.VRAgent/&lt;RepeatSceneExplore&gt;d__10&amp;)
+HenryLab.VRAgent.VRAgent:RepeatSceneExplore ()
+</div>
+    </div>
+    <script>
+        function toggleStackTrace(id) {
+            const stack = document.getElementById('stack' + id);
+            const toggle = stack.previousElementSibling;
+            if (stack.classList.contains('collapsed')) {
+                stack.classList.remove('collapsed');
+                toggle.textContent = '隐藏堆栈跟踪 ▲';
+            } else {
+                stack.classList.add('collapsed');
+                toggle.textContent = '显示堆栈跟踪 ▼';
+            }
+        }
+    </script>
+</body>
+</html>

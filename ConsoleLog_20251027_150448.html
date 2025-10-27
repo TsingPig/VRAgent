@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Unity Console Log Export</title>
+    <style>
+        body { font-family: 'Consolas', 'Monaco', monospace; margin: 20px; background: #1e1e1e; color: #d4d4d4; }
+        .header { background: #252526; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .header h1 { margin: 0; color: #4ec9b0; }
+        .header .info { margin-top: 10px; color: #858585; font-size: 14px; }
+        .log-entry { background: #252526; margin: 10px 0; padding: 15px; border-radius: 5px; border-left: 4px solid; }
+        .log-entry.log { border-color: #4ec9b0; }
+        .log-entry.warning { border-color: #dcdcaa; background: #2d2d20; }
+        .log-entry.error { border-color: #f48771; background: #2d2020; }
+        .log-type { font-weight: bold; margin-bottom: 8px; padding: 3px 8px; border-radius: 3px; display: inline-block; }
+        .log-type.log { background: #1a4040; color: #4ec9b0; }
+        .log-type.warning { background: #3d3d20; color: #dcdcaa; }
+        .log-type.error { background: #3d2020; color: #f48771; }
+        .message { color: #d4d4d4; margin: 10px 0; white-space: pre-wrap; word-wrap: break-word; }
+        .stacktrace { color: #858585; font-size: 12px; margin-top: 10px; padding: 10px; background: #1e1e1e; border-radius: 3px; white-space: pre-wrap; }
+        .stacktrace-toggle { color: #569cd6; cursor: pointer; text-decoration: underline; margin-top: 5px; display: inline-block; }
+        .stacktrace-toggle:hover { color: #8ac6ff; }
+        .stacktrace.collapsed { display: none; }
+    </style>
+</head>
+<body>
+    <div class='header'>
+        <h1>Unity Console Log Export</h1>
+        <div class='info'>导出时间: 2025-10-27 15:04:48 | 总计: 31 条日志</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <div class='log-entry assert'>
+        <div class='log-type assert'>ERROR</div>
+        <div class='message'>Assertion failed on expression: &#39;m_CurrentEntriesPtr != NULL &amp;&amp; m_IsGettingEntries&#39;
+System.Reflection.MethodBase:Invoke (object,object[])
+ExportEditorLogWindow:GetConsoleEntries () (at Assets/Package/Editor/ExportEditorLogWindow.cs:164)
+ExportEditorLogWindow:ExportToHtml () (at Assets/Package/Editor/ExportEditorLogWindow.cs:96)
+ExportEditorLogWindow:OnGUI () (at Assets/Package/Editor/ExportEditorLogWindow.cs:84)
+UnityEngine.GUIUtility:ProcessEvent (int,intptr,bool&amp;)
+</div>
+    </div>
+    <script>
+        function toggleStackTrace(id) {
+            const stack = document.getElementById('stack' + id);
+            const toggle = stack.previousElementSibling;
+            if (stack.classList.contains('collapsed')) {
+                stack.classList.remove('collapsed');
+                toggle.textContent = '隐藏堆栈跟踪 ▲';
+            } else {
+                stack.classList.add('collapsed');
+                toggle.textContent = '显示堆栈跟踪 ▼';
+            }
+        }
+    </script>
+</body>
+</html>
