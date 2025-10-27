@@ -1,21 +1,21 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 using System.Text;
+using System.Collections.Generic;
 using System;
 
 public class ExportEditorLogWindow : EditorWindow
 {
     private string outputDirectory = "";
-    private string messagePrefix = "";
     private bool exportLog = true;
     private bool exportWarning = true;
     private bool exportError = true;
-    private int maxLines = 5000;
+    private string messagePrefix = "";
 
-    [MenuItem("Tools/VR Explorer/Export Console (Advanced)")]
+    private static readonly List<LogRecord> logs = new();
+
+    [MenuItem("Tools/VR Explorer/Export Console (Simple)")]
     public static void ShowWindow()
     {
         var window = GetWindow<ExportEditorLogWindow>("导出控制台日志");
@@ -25,336 +25,181 @@ public class ExportEditorLogWindow : EditorWindow
 
     private void OnEnable()
     {
-        // 默认输出目录为项目根目录
         outputDirectory = Application.dataPath.Replace("/Assets", "");
+
+        // 注册日志回调，只在编辑器运行时生效
+        Application.logMessageReceivedThreaded -= HandleLog;
+        Application.logMessageReceivedThreaded += HandleLog;
+    }
+
+    private void OnDisable()
+    {
+        Application.logMessageReceivedThreaded -= HandleLog;
     }
 
     private void OnGUI()
     {
-        GUILayout.Space(10);
-        GUILayout.Label("控制台日志导出工具", EditorStyles.boldLabel);
+        GUILayout.Label("控制台日志导出", EditorStyles.boldLabel);
         GUILayout.Space(10);
 
-        // 输出目录选择
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("输出目录:", GUILayout.Width(70));
         outputDirectory = EditorGUILayout.TextField(outputDirectory);
-        if (GUILayout.Button("浏览", GUILayout.Width(60)))
+        if(GUILayout.Button("浏览", GUILayout.Width(60)))
         {
             string selected = EditorUtility.OpenFolderPanel("选择输出目录", outputDirectory, "");
-            if (!string.IsNullOrEmpty(selected))
-            {
+            if(!string.IsNullOrEmpty(selected))
                 outputDirectory = selected;
-            }
         }
         EditorGUILayout.EndHorizontal();
 
         GUILayout.Space(10);
-
-        // 消息前缀过滤
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("消息前缀:", GUILayout.Width(70));
-        messagePrefix = EditorGUILayout.TextField(messagePrefix, GUILayout.ExpandWidth(true));
-        EditorGUILayout.EndHorizontal();
-        EditorGUILayout.HelpBox("留空表示不过滤,填写后只导出以指定前缀开头的消息", MessageType.Info);
+        messagePrefix = EditorGUILayout.TextField("消息前缀:", messagePrefix);
+        EditorGUILayout.HelpBox("留空表示不过滤，仅导出 Console 显示内容，不含堆栈。", MessageType.Info);
 
         GUILayout.Space(10);
-
-        // 日志类型选择
-        GUILayout.Label("日志类型:", EditorStyles.boldLabel);
         exportLog = EditorGUILayout.ToggleLeft("普通日志 (Log)", exportLog);
         exportWarning = EditorGUILayout.ToggleLeft("警告 (Warning)", exportWarning);
         exportError = EditorGUILayout.ToggleLeft("错误 (Error)", exportError);
 
-        GUILayout.Space(10);
-
-        // 注释掉最大行数设置,因为我们直接从Console读取
-        // EditorGUILayout.BeginHorizontal();
-        // EditorGUILayout.LabelField("最大读取行数:", GUILayout.Width(100));
-        // maxLines = EditorGUILayout.IntField(maxLines, GUILayout.Width(100));
-        // EditorGUILayout.EndHorizontal();
-        // EditorGUILayout.HelpBox("直接从Unity Console读取所有日志条目", MessageType.Info);
-
         GUILayout.Space(20);
 
-        // 导出按钮
-        GUI.enabled = !string.IsNullOrEmpty(outputDirectory) && (exportLog || exportWarning || exportError);
-        if (GUILayout.Button("导出为 HTML", GUILayout.Height(40)))
+        GUI.enabled = logs.Count > 0;
+        if(GUILayout.Button($"导出为 HTML ({logs.Count} 条)", GUILayout.Height(40)))
         {
             ExportToHtml();
         }
         GUI.enabled = true;
 
         GUILayout.Space(10);
+        if(GUILayout.Button("清空缓存"))
+        {
+            logs.Clear();
+        }
+    }
+
+    private void HandleLog(string message, string stackTrace, LogType type)
+    {
+        lock(logs)
+        {
+            logs.Add(new LogRecord
+            {
+                Time = DateTime.Now,
+                Type = type,
+                Message = message
+            });
+        }
     }
 
     private void ExportToHtml()
     {
         try
         {
-            // 直接从Unity Console获取日志条目
-            var logs = GetConsoleEntries();
-
-            if (logs.Count == 0)
+            var filtered = logs.FindAll(l =>
             {
-                EditorUtility.DisplayDialog("提示", "Console中没有日志条目", "确定");
+                if(!string.IsNullOrWhiteSpace(messagePrefix) && !l.Message.StartsWith(messagePrefix))
+                    return false;
+
+                return (l.Type == LogType.Log && exportLog)
+                    || (l.Type == LogType.Warning && exportWarning)
+                    || ((l.Type == LogType.Error || l.Type == LogType.Exception) && exportError);
+            });
+
+            if(filtered.Count == 0)
+            {
+                EditorUtility.DisplayDialog("提示", "没有符合条件的日志。", "确定");
                 return;
             }
 
-            // 生成HTML
-            string html = GenerateHtml(logs);
+            string html = GenerateHtml(filtered);
+            string filename = $"ConsoleLog_{DateTime.Now:yyyyMMdd_HHmmss}.html";
+            string path = Path.Combine(outputDirectory, filename);
+            File.WriteAllText(path, html, Encoding.UTF8);
+            EditorUtility.RevealInFinder(path);
 
-            // 保存文件
-            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string filename = $"ConsoleLog_{timestamp}.html";
-            string savePath = Path.Combine(outputDirectory, filename);
-
-            File.WriteAllText(savePath, html, Encoding.UTF8);
-
-            EditorUtility.RevealInFinder(savePath);
-            Debug.Log($"✅ 成功导出 {logs.Count} 条日志到: {savePath}");
+            Debug.Log($"✅ 成功导出 {filtered.Count} 条日志到: {path}");
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
-            EditorUtility.DisplayDialog("错误", $"导出失败: {ex.Message}", "确定");
-            Debug.LogError($"导出日志失败: {ex}");
+            Debug.LogError($"导出失败: {ex}");
         }
     }
 
-    private List<LogEntry> GetConsoleEntries()
-    {
-        var logs = new List<LogEntry>();
-        
-        // 使用反射获取Console窗口的日志条目
-        var logEntriesType = typeof(UnityEditor.EditorWindow).Assembly.GetType("UnityEditor.LogEntries");
-        if (logEntriesType == null)
-        {
-            Debug.LogError("无法找到 LogEntries 类型");
-            return logs;
-        }
-
-        // 获取日志条目数量
-        var getCountMethod = logEntriesType.GetMethod("GetCount");
-        if (getCountMethod == null)
-        {
-            Debug.LogError("无法找到 GetCount 方法");
-            return logs;
-        }
-
-        int count = (int)getCountMethod.Invoke(null, null);
-        
-        // 获取每个日志条目
-        var getEntryInternalMethod = logEntriesType.GetMethod("GetEntryInternal");
-        if (getEntryInternalMethod == null)
-        {
-            Debug.LogError("无法找到 GetEntryInternal 方法");
-            return logs;
-        }
-
-        var logEntryType = typeof(UnityEditor.EditorWindow).Assembly.GetType("UnityEditor.LogEntry");
-        if (logEntryType == null)
-        {
-            Debug.LogError("无法找到 LogEntry 类型");
-            return logs;
-        }
-
-        for (int i = 0; i < count; i++)
-        {
-            var logEntry = System.Activator.CreateInstance(logEntryType);
-            getEntryInternalMethod.Invoke(null, new object[] { i, logEntry });
-
-            // 获取日志属性
-            var messageProperty = logEntryType.GetField("message");
-            var modeProperty = logEntryType.GetField("mode");
-            
-            if (messageProperty != null && modeProperty != null)
-            {
-                string message = (string)messageProperty.GetValue(logEntry);
-                int mode = (int)modeProperty.GetValue(logEntry);
-
-                // 转换Unity的mode到LogType
-                LogType logType = LogType.Log;
-                if ((mode & 0x01) != 0) logType = LogType.Error;        // Error
-                else if ((mode & 0x02) != 0) logType = LogType.Assert;  // Assert  
-                else if ((mode & 0x10) != 0) logType = LogType.Warning; // Warning
-                else if ((mode & 0x20) != 0) logType = LogType.Log;     // Log
-                else if ((mode & 0x40) != 0) logType = LogType.Exception; // Exception
-
-                // 获取堆栈跟踪信息
-                var stackTrace = new List<string>();
-                try
-                {
-                    // 尝试获取堆栈跟踪 - 使用LogEntries.GetEntryInternal的详细信息
-                    var getEntryMethod = logEntriesType.GetMethod("GetLinesAndModeFromEntryInternal");
-                    if (getEntryMethod != null)
-                    {
-                        string outString = "";
-                        int outMode = 0;
-                        object[] parameters = { i, 1, outString, outMode }; // 1表示获取详细信息
-                        getEntryMethod.Invoke(null, parameters);
-                        
-                        string fullText = (string)parameters[2];
-                        if (!string.IsNullOrEmpty(fullText) && fullText != message)
-                        {
-                            // 分割堆栈跟踪行
-                            var lines = fullText.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-                            bool foundMessage = false;
-                            foreach (var line in lines)
-                            {
-                                if (foundMessage && !string.IsNullOrWhiteSpace(line))
-                                {
-                                    if (line.Contains("(at ") || line.StartsWith("  at ") || line.Contains(":line "))
-                                    {
-                                        stackTrace.Add(line.Trim());
-                                    }
-                                }
-                                else if (line.Trim() == message.Trim())
-                                {
-                                    foundMessage = true;
-                                }
-                            }
-                        }
-                    }
-                }
-                catch
-                {
-                    // 如果获取堆栈跟踪失败，就忽略
-                }
-
-                var entry = new LogEntry
-                {
-                    Type = logType,
-                    Message = message ?? "",
-                    StackTrace = stackTrace
-                };
-
-                if (ShouldIncludeLog(entry))
-                {
-                    logs.Add(entry);
-                }
-            }
-        }
-
-        return logs;
-    }
-
-    private bool ShouldIncludeLog(LogEntry log)
-    {
-        // 检查日志类型
-        if (log.Type == LogType.Log && !exportLog) return false;
-        if (log.Type == LogType.Warning && !exportWarning) return false;
-        if (log.Type == LogType.Error && !exportError) return false;
-
-        // 消息为空则跳过 (但允许空字符串，因为有些日志就是空行)
-        if (log.Message == null) return false;
-
-        // 检查前缀 (只有在设置了前缀时才过滤)
-        if (!string.IsNullOrWhiteSpace(messagePrefix))
-        {
-            if (!log.Message.StartsWith(messagePrefix, StringComparison.OrdinalIgnoreCase))
-                return false;
-        }
-
-        return true;
-    }
-
-
-
-    private string GenerateHtml(List<LogEntry> logs)
+    private string GenerateHtml(List<LogRecord> list)
     {
         var sb = new StringBuilder();
-        
-        sb.AppendLine("<!DOCTYPE html>");
-        sb.AppendLine("<html lang='zh-CN'>");
-        sb.AppendLine("<head>");
-        sb.AppendLine("    <meta charset='UTF-8'>");
-        sb.AppendLine("    <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-        sb.AppendLine("    <title>Unity Console Log Export</title>");
-        sb.AppendLine("    <style>");
-        sb.AppendLine("        body { font-family: 'Consolas', 'Monaco', monospace; margin: 20px; background: #1e1e1e; color: #d4d4d4; }");
-        sb.AppendLine("        .header { background: #252526; padding: 20px; border-radius: 8px; margin-bottom: 20px; }");
-        sb.AppendLine("        .header h1 { margin: 0; color: #4ec9b0; }");
-        sb.AppendLine("        .header .info { margin-top: 10px; color: #858585; font-size: 14px; }");
-        sb.AppendLine("        .log-entry { background: #252526; margin: 10px 0; padding: 15px; border-radius: 5px; border-left: 4px solid; }");
-        sb.AppendLine("        .log-entry.log { border-color: #4ec9b0; }");
-        sb.AppendLine("        .log-entry.warning { border-color: #dcdcaa; background: #2d2d20; }");
-        sb.AppendLine("        .log-entry.error { border-color: #f48771; background: #2d2020; }");
-        sb.AppendLine("        .log-type { font-weight: bold; margin-bottom: 8px; padding: 3px 8px; border-radius: 3px; display: inline-block; }");
-        sb.AppendLine("        .log-type.log { background: #1a4040; color: #4ec9b0; }");
-        sb.AppendLine("        .log-type.warning { background: #3d3d20; color: #dcdcaa; }");
-        sb.AppendLine("        .log-type.error { background: #3d2020; color: #f48771; }");
-        sb.AppendLine("        .message { color: #d4d4d4; margin: 10px 0; white-space: pre-wrap; word-wrap: break-word; }");
-        sb.AppendLine("        .stacktrace { color: #858585; font-size: 12px; margin-top: 10px; padding: 10px; background: #1e1e1e; border-radius: 3px; white-space: pre-wrap; }");
-        sb.AppendLine("        .stacktrace-toggle { color: #569cd6; cursor: pointer; text-decoration: underline; margin-top: 5px; display: inline-block; }");
-        sb.AppendLine("        .stacktrace-toggle:hover { color: #8ac6ff; }");
-        sb.AppendLine("        .stacktrace.collapsed { display: none; }");
-        sb.AppendLine("    </style>");
-        sb.AppendLine("</head>");
-        sb.AppendLine("<body>");
-        
-        // Header
-        sb.AppendLine("    <div class='header'>");
-        sb.AppendLine($"        <h1>Unity Console Log Export</h1>");
-        sb.AppendLine($"        <div class='info'>导出时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss} | 总计: {logs.Count} 条日志</div>");
-        if (!string.IsNullOrEmpty(messagePrefix))
-        {
-            sb.AppendLine($"        <div class='info'>前缀过滤: \"{messagePrefix}\"</div>");
-        }
-        sb.AppendLine("    </div>");
+        sb.AppendLine("<html><head><meta charset='utf-8'><style>");
+        sb.AppendLine("body{font-family:Consolas;background:#1e1e1e;color:#d4d4d4;padding:20px;}");
+        sb.AppendLine("h2{color:#61dafb;}");
+        sb.AppendLine(".log{color:#4ec9b0;}");
+        sb.AppendLine(".warn{color:#f9d23b;}");
+        sb.AppendLine(".err{color:#ff6b6b;}");
+        sb.AppendLine(".day-header{margin-top:30px;padding:8px;background:#333;border-radius:6px;font-size:16px;font-weight:bold;}");
+        sb.AppendLine(".entry{margin:4px 0;line-height:1.4em;}");
+        sb.AppendLine("</style></head><body>");
+        sb.AppendLine($"<h2>Unity Console Export ({DateTime.Now:yyyy-MM-dd HH:mm:ss})</h2>");
+        sb.AppendLine("<hr>");
 
-        // Logs
-        int logId = 0;
-        foreach (var log in logs)
+        // 按日期分组
+        var byDay = new SortedDictionary<string, List<LogRecord>>();
+        foreach(var l in list)
         {
-            string typeClass = log.Type.ToString().ToLower();
-            string typeText = log.Type == LogType.Log ? "LOG" : (log.Type == LogType.Warning ? "WARNING" : "ERROR");
-            
-            sb.AppendLine($"    <div class='log-entry {typeClass}'>");
-            sb.AppendLine($"        <div class='log-type {typeClass}'>{typeText}</div>");
-            sb.AppendLine($"        <div class='message'>{EscapeHtml(log.Message)}</div>");
-            
-            if (log.StackTrace.Count > 0)
+            string day = l.Time.ToString("yyyy-MM-dd");
+            if(!byDay.ContainsKey(day))
+                byDay[day] = new List<LogRecord>();
+            byDay[day].Add(l);
+        }
+
+        foreach(var kv in byDay)
+        {
+            sb.AppendLine($"<div class='day-header'>📅 {kv.Key}</div>");
+            foreach(var l in kv.Value)
             {
-                sb.AppendLine($"        <span class='stacktrace-toggle' onclick='toggleStackTrace({logId})'>显示堆栈跟踪 ▼</span>");
-                sb.AppendLine($"        <div id='stack{logId}' class='stacktrace collapsed'>{EscapeHtml(string.Join("\n", log.StackTrace))}</div>");
+                string cls = l.Type == LogType.Warning ? "warn" :
+                             (l.Type == LogType.Error || l.Type == LogType.Exception ? "err" : "log");
+
+                // 不转义 Unity 的 <color> 标签
+                string msg = EscapeExceptColor(l.Message);
+
+                sb.AppendLine($"<div class='entry {cls}'><b>[{l.Time:HH:mm:ss}] [{l.Type}]</b> {msg}</div>");
             }
-            
-            sb.AppendLine("    </div>");
-            logId++;
         }
 
-        sb.AppendLine("    <script>");
-        sb.AppendLine("        function toggleStackTrace(id) {");
-        sb.AppendLine("            const stack = document.getElementById('stack' + id);");
-        sb.AppendLine("            const toggle = stack.previousElementSibling;");
-        sb.AppendLine("            if (stack.classList.contains('collapsed')) {");
-        sb.AppendLine("                stack.classList.remove('collapsed');");
-        sb.AppendLine("                toggle.textContent = '隐藏堆栈跟踪 ▲';");
-        sb.AppendLine("            } else {");
-        sb.AppendLine("                stack.classList.add('collapsed');");
-        sb.AppendLine("                toggle.textContent = '显示堆栈跟踪 ▼';");
-        sb.AppendLine("            }");
-        sb.AppendLine("        }");
-        sb.AppendLine("    </script>");
-        sb.AppendLine("</body>");
-        sb.AppendLine("</html>");
-
+        sb.AppendLine("</body></html>");
         return sb.ToString();
     }
 
-    private string EscapeHtml(string text)
+    /// <summary>
+    /// 转义 HTML 特殊字符，但保留 Unity 的 <color=...> 标签
+    /// </summary>
+    private string EscapeExceptColor(string text)
     {
-        return text.Replace("&", "&amp;")
+        if(string.IsNullOrEmpty(text)) return "";
+
+        // 先转义
+        text = text.Replace("&", "&amp;")
                    .Replace("<", "&lt;")
-                   .Replace(">", "&gt;")
-                   .Replace("\"", "&quot;")
-                   .Replace("'", "&#39;");
+                   .Replace(">", "&gt;");
+
+        // 再恢复 Unity 的 <color> 标签
+        text = System.Text.RegularExpressions.Regex.Replace(text,
+            "&lt;color=([^&]*)&gt;", "<color=$1>");
+        text = text.Replace("&lt;/color&gt;", "</color>");
+
+        // 处理 Unity 的 color 标签为 HTML span
+        text = System.Text.RegularExpressions.Regex.Replace(text,
+            "<color=([^>]+)>(.*?)</color>",
+            "<span style='color:$1'>$2</span>",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Singleline);
+
+        return text;
     }
 
-    private class LogEntry
+
+    private class LogRecord
     {
+        public DateTime Time;
         public LogType Type;
         public string Message;
-        public List<string> StackTrace;
     }
 }
