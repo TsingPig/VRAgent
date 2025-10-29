@@ -32,6 +32,10 @@ namespace HenryLab.VRAgent
                 action = new TransformActionUnit();
                 break;
 
+                case "Move":
+                action = new MoveActionUnit();
+                break;
+
                 default:
                 action = new ActionUnit();
                 break;

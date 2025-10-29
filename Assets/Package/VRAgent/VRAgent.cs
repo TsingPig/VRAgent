@@ -174,42 +174,71 @@ namespace HenryLab.VRAgent
                     counter.actionUnitCount++;
                     if(!string.IsNullOrEmpty(action.objectA)) counter.objCount++;
 
-                    GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
-                    if(objA != null)
-                    {
-                        counter.hitObjCount++;
-                        manager.Add(action.objectA, objA);
-                    }
+
 
                     switch(action.type)
                     {
                         case "Grab":
-                        counter.grabCount++;
-                        GrabActionUnit grabAction = action as GrabActionUnit;
-                        if(grabAction != null && !string.IsNullOrEmpty(grabAction.objectB))
                         {
-                            counter.objCount++;
-                            GameObject objB = FileIdResolver.FindGameObject(grabAction.objectB, useFileID);
-                            if(objB != null)
+                            GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
+                            if(objA != null)
                             {
                                 counter.hitObjCount++;
-                                manager.Add(grabAction.objectB, objB);
+                                manager.Add(action.objectA, objA);
+                            }
+
+                            counter.grabCount++;
+                            GrabActionUnit grabAction = action as GrabActionUnit;
+                            if(grabAction != null && !string.IsNullOrEmpty(grabAction.objectB))
+                            {
+                                counter.objCount++;
+                                GameObject objB = FileIdResolver.FindGameObject(grabAction.objectB, useFileID);
+                                if(objB != null)
+                                {
+                                    counter.hitObjCount++;
+                                    manager.Add(grabAction.objectB, objB);
+                                }
                             }
                         }
                         break;
 
+
                         case "Trigger":
-                        counter.triggerCount++;
-                        TriggerActionUnit triggerAction = action as TriggerActionUnit;
-                        if(triggerAction != null)
                         {
-                            manager.AddComponents(triggerAction.triggerringEvents, ref counter.componentCount, ref counter.hitComponentCount);
-                            manager.AddComponents(triggerAction.triggerredEvents, ref counter.componentCount, ref counter.hitComponentCount);
+                            GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
+                            if(objA != null)
+                            {
+                                counter.hitObjCount++;
+                                manager.Add(action.objectA, objA);
+                            }
+
+                            counter.triggerCount++;
+                            TriggerActionUnit triggerAction = action as TriggerActionUnit;
+                            if(triggerAction != null)
+                            {
+                                manager.AddComponents(triggerAction.triggerringEvents, ref counter.componentCount, ref counter.hitComponentCount);
+                                manager.AddComponents(triggerAction.triggerredEvents, ref counter.componentCount, ref counter.hitComponentCount);
+                            }
                         }
                         break;
 
                         case "Transform":
                         counter.transformCount++;
+                        break;
+
+
+                        case "Move":
+                        MoveActionUnit moveAction = action as MoveActionUnit;
+                        if(!string.IsNullOrEmpty(moveAction.objectB))
+                        {
+                            counter.objCount++;
+                            GameObject objB = FileIdResolver.FindGameObject(moveAction.objectB, useFileID);
+                            if(objB != null)
+                            {
+                                counter.hitObjCount++;
+                                manager.Add(moveAction.objectB, objB);
+                            }
+                        }
                         break;
                     }
                 }
@@ -244,6 +273,9 @@ namespace HenryLab.VRAgent
             {
                 foreach(var action in taskUnit.actionUnits)
                 {
+                    if(action.type == "Move") continue;     // 无需操作
+
+
                     GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
                     if(objA == null) continue;
 
@@ -339,15 +371,23 @@ namespace HenryLab.VRAgent
                              .Add(" | TriggerredEvents: ", color: Color.white)
                              .Add(trigredCount.ToString(), color: Color.magenta);
                     break;
+
+                    case MoveActionUnit move:
+                    targetInfo = move.objectB ?? (move.targetPosition?.ToString() ?? "null");
+                    debugText.Add(" | Target: ", color: Color.white)
+                             .Add(targetInfo, color: Color.cyan);
+                    break;
                 }
                 Debug.Log(debugText);
 
-                objA = GetOrCreateManager().GetObject(action.objectA);
-                if(objA == null) continue;
+               
 
 
                 if(action.type == "Grab")
                 {
+                    objA = GetOrCreateManager().GetObject(action.objectA);
+                    if(objA == null) continue;
+
                     GrabActionUnit grabAction = action as GrabActionUnit;
                     if(grabAction == null) continue;
                     XRGrabbable grabbable = objA.AddComponent<XRGrabbable>();
@@ -385,6 +425,9 @@ namespace HenryLab.VRAgent
                 }
                 else if(action.type == "Trigger")
                 {
+                    objA = GetOrCreateManager().GetObject(action.objectA);
+                    if(objA == null) continue;
+
                     TriggerActionUnit triggerAction = action as TriggerActionUnit;
                     if(triggerAction == null) continue;
                     XRTriggerable triggerable = objA.AddComponent<XRTriggerable>();
@@ -398,6 +441,9 @@ namespace HenryLab.VRAgent
                 }
                 else if(action.type == "Transform")
                 {
+                    objA = GetOrCreateManager().GetObject(action.objectA);
+                    if(objA == null) continue;
+
                     TransformActionUnit transformAction = action as TransformActionUnit;
                     if(transformAction == null) continue;
                     XRTransformable transformable = objA.AddComponent<XRTransformable>();
@@ -413,6 +459,43 @@ namespace HenryLab.VRAgent
                         transformable.triggerringTime = (float)transformAction.trigerringTime;
 
                     task.AddRange(TransformTask(transformable));
+                }
+                else if(action.type == "Move")
+                {
+                    // 思路和Grab基本一致
+                    Vector3 destination = transform.position;
+                    MoveActionUnit moveAction = action as MoveActionUnit;
+                    if(moveAction == null) continue;
+
+                    if(moveAction.objectB != null)
+                    {
+                        objB = GetOrCreateManager().GetObject(moveAction.objectB);
+                        destination = objB.transform.position;
+                    }
+                    else if(moveAction.targetPosition != null)// 使用 Vector3作为 target
+                    {
+                        Vector3 targetPos = (Vector3)moveAction.targetPosition;
+                        // 先查找场景中是否已有临时目标
+                        GameObject targetObj = GameObject.Find($"{objB.name}_TargetPosition");
+                        if(targetObj == null)
+                        {
+                            targetObj = new GameObject($"{objB.name}_TargetPosition_{Str.Tags.TempTargetTag}");
+                            targetObj.transform.position = targetPos;
+                            targetObj.tag = Str.Tags.TempTargetTag;  // 给临时目标加标记，方便后续删除
+                        }
+                        else
+                        {
+                            targetObj.transform.position = targetPos; // 更新位置
+                        }
+
+                        destination = targetObj.transform.position;
+                        Debug.Log($"Set {objB.name}'s destination to position {destination}");
+                    }
+                    else
+                    {
+                        Debug.LogError("Lacking of Destination");
+                    }
+                    task.Add(new MoveAction(_navMeshAgent, moveSpeed, destination));
                 }
             }
             return task;

@@ -17,6 +17,8 @@ namespace HenryLab.VRAgent
         [JsonProperty("target_position")] public Vector3? targetPosition;
     }
 
+
+
     public class TriggerActionUnit : ActionUnit
     {
         [JsonProperty("triggerring_time")] public float? trigerringTime;
@@ -32,5 +34,11 @@ namespace HenryLab.VRAgent
         [JsonProperty("delta_position")] public Vector3 deltaPosition;
         [JsonProperty("delta_rotation")] public Vector3 deltaRotation;
         [JsonProperty("delta_scale")] public Vector3 deltaScale;
+    }
+
+    public class MoveActionUnit : ActionUnit
+    {
+        [JsonProperty("target_object_fileID")] public string? objectB;
+        [JsonProperty("target_position")] public Vector3? targetPosition;
     }
 }

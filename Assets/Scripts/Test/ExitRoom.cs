@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class ExitRoom : MonoBehaviour
 {
-    public void ExitTheRoom()
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Exit!");
-        Application.Quit();     
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Exit!");
+            Application.Quit();
+        }
     }
 }
