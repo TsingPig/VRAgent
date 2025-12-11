@@ -1,5 +1,10 @@
 # Changelog
 
+
+## [1.8.10] - 2025-12-11
+### Updated
+- NavMeshPointChecker editor tool
+
 ## [1.8.6] - 2025-10-22
 
 ### Updated 
