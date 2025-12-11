@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 
 # 全局配置参数
-FIG_W, FIG_H = 16, 4.5  # 图表宽度和高度
-BAR_WIDTH = 0.22  # 柱子宽度
+FIG_W, FIG_H = 17, 4.5  # 图表宽度和高度
+BAR_WIDTH = 0.27  # 柱子宽度
 PROJECT_NAME_FONTSIZE = 13.5  # 项目名字体大小
 PROJECT_NAME_ROTATION = 10  # 项目名旋转角度
 DATA_LABEL_FONTSIZE = 10  # 数据标签字体大小
@@ -14,7 +14,7 @@ LEGEND_TITLE_FONTSIZE = 16  # 图例标题字体大小
 TITLE_FONTSIZE = 18  # 主标题字体大小
 AXIS_LABEL_FONTSIZE = 11  # 轴标签字体大小
 AXIS_TICK_FONTSIZE = 12  # 轴刻度字体大小
-AGENT_NAME = 'XRAgent'   # 我们的方法名称
+AGENT_NAME = 'VRAgent'   # 我们的方法名称
 
 # 显示控制参数
 SHOW_DATA_LABELS = True  # 是否显示数据标签（一键隐藏/显示）
@@ -22,62 +22,50 @@ SHOW_DATA_LABELS = True  # 是否显示数据标签（一键隐藏/显示）
 # 数据 - Group 1 (原始数据) + Group 2 (新增数据)
 data = {
     'Project': [
-        # Group 1 - 原始4个项目
-        'unity-vr-maze', 'unity-vr-maze', 'unity-vr-maze',
+        'maze', 'maze', 'maze',
         'UnityCityView', 'UnityCityView', 'UnityCityView',
         'UnityVR', 'UnityVR', 'UnityVR',
         'escapeVr', 'escapeVr', 'escapeVr',
-        # Group 2 - 新增8个项目
-        'VR-Basics', 'VR-Basics', 'VR-Basics',
-        'VR-Room', 'VR-Room', 'VR-Room',
-        'VGuns', 'VGuns', 'VGuns',
-        'VR-Adventure', 'VR-Adventure', 'VR-Adventure',
         'EE-Room', 'EE-Room', 'EE-Room',
-        'EscapeGameVR', 'EscapeGameVR', 'EscapeGameVR',
+        'VGuns', 'VGuns', 'VGuns',
+        'VR-Room', 'VR-Room', 'VR-Room',
         'Parkinson-VR', 'Parkinson-VR', 'Parkinson-VR',
-        'VRChess', 'VRChess', 'VRChess'
+        'VR-Basics', 'VR-Basics', 'VR-Basics'
     ],
-    'Method': ['VRGuide', 'VRExplorer', AGENT_NAME] * 12,  # 12个项目
+    'Method': ['VRGuide', 'VRExplorer', AGENT_NAME] * 9,
     'LineCoverage': [
-        # Group 1 数据 (EC = Edge Coverage, 对应LineCoverage)
-        66.53, 81.67, 84.86,        # maze
-        67.66, 92.22, 93.08,        # UnityCityView
-        64.81, 75.93, 85.19,        # UnityVR
-        70.75, 84.91, 100.00,       # escapeVr
-        # Group 2 数据 (VRAgent暂时用100%代替)
-        41.38, 80.17, 100.00,       # VR-Basics
-        40.97, 77.61, 100.00,       # VR-Room
-        28.68, 77.57, 100.00,       # VGuns
-        54.12, 91.76, 100.00,       # VR-Adventure
-        38.08, 70.61, 61.55,       # EE-Room
-        41.77, 71.08, 100.00,       # EscapeGameVR
-        42.03, 95.65, 100.00,       # Parkinson-VR
-        10.74, 71.74, 100.00        # VRChess
+        66.53, 81.67, 84.86,       # maze
+        67.66, 92.22, 93.08,       # UnityCityView
+        64.81, 75.93, 85.19,       # UnityVR
+        70.75, 84.91, 100.00,      # escapeVr
+        38.08, 70.61, 62.66,       # EE-Room
+        28.68, 77.57, 75.74,       # VGuns
+        40.97, 77.61, 77.86,       # VR-Room
+        42.03, 95.65, 95.65,       # Parkinson-VR
+        40.97, 78.95, 82.43        # VR-Basics
     ],
     'MethodCoverage': [
-        # Group 1 数据 (MC = Method Coverage)
-        70.59, 82.35, 85.29,        # maze
-        78.38, 100.0, 100.0,        # UnityCityView
-        84.62, 92.31, 92.31,        # UnityVR
-        84.21, 84.21, 100.0,        # escapeVr
-        # Group 2 数据 (VRAgent暂时用100%代替)
-        53.22, 91.93, 100.00,       # VR-Basics
-        50.63, 83.54, 100.00,       # VR-Room
-        38.89, 77.78, 100.00,       # VGuns
-        65.00, 95.00, 100.00,       # VR-Adventure
-        58.06, 88.17, 86.02,       # EE-Room
-        55.26, 73.68, 100.00,       # EscapeGameVR
-        53.85, 100.00, 100.00,      # Parkinson-VR
-        50.88, 87.72, 100.00        # VRChess
+        70.59, 82.35, 85.29,       # maze
+        78.38, 100.00, 100.00,     # UnityCityView
+        84.62, 92.31, 92.31,       # UnityVR
+        84.21, 84.21, 100.00,      # escapeVr
+        58.06, 88.17, 88.17,       # EE-Room
+        38.89, 77.78, 72.22,       # VGuns
+        50.63, 83.54, 83.54,       # VR-Room
+        53.85, 100.00, 100.00,     # Parkinson-VR
+        50.63, 84.92, 92.06        # VR-Basics
     ]
-} 
+}
+
 
 df = pd.DataFrame(data)
 
-# 所有项目按顺序排列 - 总共12个项目
-all_projects = ['unity-vr-maze', 'UnityCityView', 'UnityVR', 'escapeVr',
-                'VR-Basics', 'VR-Room', 'VGuns', 'VR-Adventure', 
-                'EE-Room', 'EscapeGameVR', 'Parkinson-VR', 'VRChess']
+# 所有项目按顺序排列 - 总共9个项目
+all_projects = [
+    'maze', 'UnityCityView', 'UnityVR', 'escapeVr',
+    'EE-Room', 'VGuns', 'VR-Room', 'Parkinson-VR', 'VR-Basics'
+]
+
 methods = ['VRGuide', 'VRExplorer', AGENT_NAME]
 
 # 使用顶级会议风格的专业配色 - 参考ICSE/NeurIPS等
