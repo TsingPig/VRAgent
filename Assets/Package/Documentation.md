@@ -94,9 +94,9 @@ In the Unity Editor, import the test plan via:
 Tools → VRExplorer → Import Test Plan → Browse → Import Test Plan
 ```
 
-<img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd.png" alt="d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd" style="zoom:43%;" />
+<img src="Docs\d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd.png" alt="d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd" style="zoom:43%;" />
 
-<img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\0c628c71-fc60-463e-9bca-1e2a04d6f26a.png" alt="0c628c71-fc60-463e-9bca-1e2a04d6f26a" style="zoom:50%;" />
+<img src="Docs\0c628c71-fc60-463e-9bca-1e2a04d6f26a.png" alt="0c628c71-fc60-463e-9bca-1e2a04d6f26a" style="zoom:50%;" />
 
 
 
