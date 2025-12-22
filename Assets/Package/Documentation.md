@@ -106,9 +106,9 @@ Tools → VRExplorer → Import Test Plan → Browse → Import Test Plan
 
 Before execution, verify that:
 
-- A **FileIdManager** has been generated in the testing scene.<img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\f23fa1c193641069134af1cff847e2c7.png" alt="f23fa1c193641069134af1cff847e2c7" style="zoom:43%;" />
+- A **FileIdManager** has been generated in the testing scene.<img src="Docs\f23fa1c193641069134af1cff847e2c7.png" alt="f23fa1c193641069134af1cff847e2c7" style="zoom:43%;" />
 - All fileID mappings are correct and complete.
-    ![8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73](D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73.png)
+    ![8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73](Docs\8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73.png)
 
 ### *[Optional]* Code Coverage Recorading
 

@@ -20,7 +20,7 @@ This repository demonstrates how to integrate **Large Language Models (LLMs)** w
 
     1. Open **Unity Editor**
     2. Go to **Window → Package Manager**         <img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\4f72b677-b246-4b3e-8b92-e896fea4d7d8.png" alt="image-20251222122744225" style="zoom:33%;" />
-    3. Click **`+` → Add package from git URL…**<img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\e1ddbed4-e99d-442e-94ae-f073a25551db.png" alt="image-20251222122744225" style="zoom:33%;" />
+    3. Click **`+` → Add package from git URL…**<img src="Docs\e1ddbed4-e99d-442e-94ae-f073a25551db.png" alt="image-20251222122744225" style="zoom:33%;" />
     4. Add the following packages:
 
     - **VRExplorer**
@@ -29,7 +29,7 @@ This repository demonstrates how to integrate **Large Language Models (LLMs)** w
         https://github.com/TsingPig/VRExplorer_Release.git
         ```
 
-        <img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\903bd5df-f96e-4659-93ca-3e6275d1c921.png" alt="image-20251222122744225" style="zoom:50%;" />
+        <img src="Docs\903bd5df-f96e-4659-93ca-3e6275d1c921.png" alt="image-20251222122744225" style="zoom:50%;" />
 
     - **VRAgent**
 
@@ -43,13 +43,13 @@ This repository demonstrates how to integrate **Large Language Models (LLMs)** w
 
 1. Open or select the **scene to be tested** in Unity.
 
-2. From the **Package** view, navigate to:<img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\21b88997-a1d8-4971-98e1-a0e65e3f99fb.png" alt="image-20251222122744225" style="zoom:33%;" />
+2. From the **Package** view, navigate to:<img src="Docs\21b88997-a1d8-4971-98e1-a0e65e3f99fb.png" alt="image-20251222122744225" style="zoom:33%;" />
 
     ```
     Packages → VRAgent
     ```
 
-3. Drag the **VRAgent Prefab** into the selected scene.<img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\f2a695a1-e4e9-4f09-adfa-55e5f6d996fe.png" alt="image-20251222122744225" style="zoom:30%;" />
+3. Drag the **VRAgent Prefab** into the selected scene.<img src="Docs\f2a695a1-e4e9-4f09-adfa-55e5f6d996fe.png" alt="image-20251222122744225" style="zoom:30%;" />
 
 ------
 
@@ -58,7 +58,7 @@ This repository demonstrates how to integrate **Large Language Models (LLMs)** w
 1. Select all static environment objects (e.g., walls, floors, obstacles).
 
 2. Mark them as **Static** in the Inspector.
-    <img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\9fa18dd5-1806-4b23-bd73-62dae6e22a34.png" alt="image-20251222122744225" style="zoom:33%;" />
+    <img src="Docs\9fa18dd5-1806-4b23-bd73-62dae6e22a34.png" alt="image-20251222122744225" style="zoom:33%;" />
 
 3. Open the Navigation window:
 
@@ -66,10 +66,10 @@ This repository demonstrates how to integrate **Large Language Models (LLMs)** w
     Window → AI → Navigation
     ```
 
-    <img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\bfba4b5c-d2a0-48fb-bdb7-b06788a1c146.png" alt="image-20251222122744225" style="zoom:33%;" />
+    <img src="Docs\bfba4b5c-d2a0-48fb-bdb7-b06788a1c146.png" alt="image-20251222122744225" style="zoom:33%;" />
 
 4. Bake the **NavMesh** for the scene.
-    <img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\152bc526-eb60-4f45-a4a3-ae922f00f8d4.png" alt="image-20251222122744225" style="zoom:33%;" />
+    <img src="Docs\152bc526-eb60-4f45-a4a3-ae922f00f8d4.png" alt="image-20251222122744225" style="zoom:33%;" />
 
 ------
 
@@ -94,9 +94,9 @@ In the Unity Editor, import the test plan via:
 Tools → VRExplorer → Import Test Plan → Browse → Import Test Plan
 ```
 
-<img src="D:/--UnityProject/HenryLabXR/VRAgent/Assets/Package/Docs/d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd.png" alt="d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd" style="zoom:43%;" />
+<img src="Docs/d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd.png" alt="d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd" style="zoom:43%;" />
 
-<img src="D:/--UnityProject/HenryLabXR/VRAgent/Assets/Package/Docs/0c628c71-fc60-463e-9bca-1e2a04d6f26a.png" alt="0c628c71-fc60-463e-9bca-1e2a04d6f26a" style="zoom:50%;" />
+<img src="Docs/0c628c71-fc60-463e-9bca-1e2a04d6f26a.png" alt="0c628c71-fc60-463e-9bca-1e2a04d6f26a" style="zoom:50%;" />
 
 
 
@@ -106,9 +106,9 @@ Tools → VRExplorer → Import Test Plan → Browse → Import Test Plan
 
 Before execution, verify that:
 
-- A **FileIdManager** has been generated in the testing scene.<img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\f23fa1c193641069134af1cff847e2c7.png" alt="f23fa1c193641069134af1cff847e2c7" style="zoom:43%;" />
+- A **FileIdManager** has been generated in the testing scene.<img src="Docs\f23fa1c193641069134af1cff847e2c7.png" alt="f23fa1c193641069134af1cff847e2c7" style="zoom:43%;" />
 - All fileID mappings are correct and complete.
-    ![8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73](D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73.png)
+    ![8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73](Docs\8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73.png)
 
 ### *[Optional]* Code Coverage Recorading
 
