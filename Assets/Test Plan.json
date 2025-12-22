@@ -3,21 +3,47 @@
     {
       "actionUnits": [
         {
+          "type": "Trigger",
+          "source_object_name": "Button",
+          "source_object_fileID": 460574862,
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 460574869,
+                  "method_name": "DestroyTargetObject",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerring_time": 0.01
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube",
+          "source_object_fileID": 179157733,
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.01
+        },
+        {
           "type": "Move",
           "target_object_name": "Cube",
           "target_object_fileID": 179157733
         },
         {
           "type": "Trigger",
-          "source_object_name": "Wall",
-          "source_object_fileID": 7892439747271580212,
+          "source_object_name": "Button",
+          "source_object_fileID": 460574862,
           "triggerring_events": [],
           "triggerred_events": [
             {
               "methodCallUnits": [
                 {
-                  "script_fileID": 179157742,
-                  "method_name": "ExitTheRoom",
+                  "script_fileID": 460574869,
+                  "method_name": "DestroyTargetObject",
                   "parameter_fileID": []
                 }
               ]
