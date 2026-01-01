@@ -1,0 +1,441 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": -3.15,
+            "y": -0.49,
+            "z": -5.83
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Force the enemy close to the player so that, per EnemyAi (script guid 16000b3396174ab49b4983590de64f34), Update() sets playerInSightRange && playerInAttackRange true. This triggers AttackPlayer() automatically on the attached MonoBehaviour component (example: MonoBehaviour_4 id 1673477538 with sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, forceup=1.5, Attackpoint fileID 2913934810850566424). Expected behavior: agent stops (destination set to self, acceleration=0), enemy faces player, AudioManager.Play(\"Gun Fire\") called, a projectile prefab (guid 647ac56353c74ad49ae408a2c10d8464, fileID 6845118643277486568) is instantiated at Attackpoint and propelled by AddForce forward and up. alreadyAttacked toggles true and ResetAttack() auto-invokes after timeBetweenAttacks. Note: The MonoBehaviour component settings in the scene file (fileID 1673477538 and peers) are the exact serialized configuration of the attached EnemyAi script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "EnemyAi (script guid 16000b3396174ab49b4983590de64f34) is attached multiple times to this GameObject with exact serialized settings per scene MonoBehaviour components (ids: 614338935, 1888436447, 1640000274, 1646766445, 1673477538). After moving Enemy near the player (Camera Offset, id 4940586919770313183, found in Awake via GameObject.Find), Update() should detect playerInSightRange && playerInAttackRange and invoke AttackPlayer() automatically. Expected: agent stops (SetDestination(self)), acceleration=0, LookAt(player), AudioManager.Play(\"Gun Fire\"), instantiate projectile (guid 647ac56353c74ad49ae408a2c10d8464, fileID 6845118643277486568) at Attackpoint (fileID 2913934810850566424) and AddForce forward/up using forceforward/forceup per component (e.g., id 1673477538: forceforward=10, forceup=1.5, timeBetweenAttacks=0.5). alreadyAttacked toggles true and ResetAttack() auto-invokes after timeBetweenAttacks.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 3.15,
+            "y": 0.49,
+            "z": 5.83
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Chase scenario: With player (Camera Offset) present and enemy positioned so distance is within sightRange but > attackRange for at least one attached EnemyAi component (e.g., ids 614338935/1888436447: sightRange=8, attackRange=6; ids 1640000274/1646766445: sightRange=10, attackRange=7), Update() should route to ChasePlayer(). Expected: agent.SetDestination(player.position), transform.LookAt(player) with constrained rotation about Y.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 12.0,
+            "y": 0.0,
+            "z": 12.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Patrol scenario: Place enemy clearly outside all sightRange values (>= 12 units from Camera Offset) so Update() routes to Patroling(). Expected: if no walkPointSet, SearchWalkPoint() picks a point on whatIsGround (m_Bits 2048) within walkPointRange=10, then agent.SetDestination(walkPoint). On reaching within 1f, walkPointSet resets.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 6845118643277486568,
+          "condition": "Interact with the projectile prefab instantiated by EnemyAi.AttackPlayer() on Enemy Type 5. The scene MonoBehaviour components (ids: 614338935, 1888436447, 1640000274, 1646766445, 1673477538; all mapped to script guid 16000b3396174ab49b4983590de64f34) reference this prefab in the 'projectile' field (fileID 6845118643277486568, guid 647ac56353c74ad49ae408a2c10d8464). After Enemy Type 5 enters playerInAttackRange && playerInSightRange, AttackPlayer() should Instantiate this prefab at Attackpoint (fileID 2913934810850566424) and propel it with AddForce using forceforward/forceup from each component. Expected: a Laser instance appears and moves forward/up from the enemy. This Trigger validates interaction with the instantiated projectile asset.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (MonoBehaviour fileID 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2) m_Activated event is configured to call Gun.TriggerPulled(ActivateEventArgs) then Gun.Shoot() on MonoBehaviour fileID 8183513503680063775 (guid d01186f01818ef24ead588d87fd2fea5). Fire rate is 1.5 shots/sec so cooldown is ~0.667s.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Second shot to validate fire-rate gating. XRGrabInteractable m_Activated persistent calls remain the same; ensure Time.time > nextShootTime before this trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (fileID 1135932914521357561) m_Deactivated event is configured to call Gun.TriggerReleased(DeactivateEventArgs) on fileID 8183513503680063775.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Manually invoke reload to test state change and UI/audio. Gun.reloadTime = 2.5 seconds. Should set text to 'Reloading', play 'Reload', and after duration reset remainingAmmunition to ammunition.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (fileID 1135932914521357561) m_SelectExited event is configured to call Gun.DroppedGun(SelectExitEventArgs) on fileID 8183513503680063775.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Gun",
+          "source_object_fileID": 299703487714392757,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.1,
+            "z": -0.15
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Trigger XRGrabInteractable m_Activated (MonoBehaviour fileID 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2). Scene persistent calls invoke Gun.TriggerPulled(ActivateEventArgs) and then Gun.Shoot() on MonoBehaviour fileID 8183513503680063775 (guid d01186f01818ef24ead588d87fd2fea5). Fire rate 1.5 shots/sec (~0.667s cooldown). This should also instantiate 'Laser' (prefab fileID 6845118643277486568) and set its Rigidbody velocity.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Second activation to validate fire-rate gating and multiple instantiations of 'Laser'. Relies on XRGrabInteractable m_Activated persistent calls as above; ensure Time.time > nextShootTime before this trigger.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Trigger XRGrabInteractable m_Deactivated (fileID 1135932914521357561) which is wired to call Gun.TriggerReleased(DeactivateEventArgs) on fileID 8183513503680063775.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Manually invoke reload to test state transition and UI/audio when gun is Ready. Gun.reloadTime = 2.5s; expect text 'Reloading', AudioManager.Play('Reload'), and after duration remainingAmmunition resets to ammunition.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Trigger XRGrabInteractable m_SelectExited (fileID 1135932914521357561) which is wired to call Gun.DroppedGun(SelectExitEventArgs) on fileID 8183513503680063775, resetting trigger state if dropped mid-use.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 6845118643277486568,
+          "condition": "Interact with the instantiated projectile prefab 'Laser' after Gun.Shoot to validate projectile lifecycle/collision. Note: Code expects a Rigidbody on 'Laser' (rb = GetComponent<Rigidbody>(); rb.velocity = ...), but provided prefab metadata lists Has_Rigidbody: False. Please confirm if 'Laser' has a Rigidbody and/or Collider so we can target appropriate interactions or simulate collisions.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Manually toggle the pause menu using PauseMenu.PauseMenu.PauseMenuCheck() to simulate InputAction started. Script fileID=4460531382388078979, guid=28d50a2d56ade1341ae8d933ebdfbe0c. Expect first call to Show (Time.timeScale=0, rays enabled, LocomotionSystem and Teleport managers disabled), then after 2s second call to Hide (Time.timeScale=1, rays disabled, LocomotionSystem enabled, RightTeleport=true => TeleportManagzerRight enabled).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Toggle the pause menu via PauseMenu.PauseMenuCheck() to simulate InputAction started. MonoBehaviour (PauseMenu) script_fileID=4460531382388078979, guid=28d50a2d56ade1341ae8d933ebdfbe0c. Expect first call to Show (Time.timeScale=0, ray_Right and ray_Left enabled, LocomotionSystem and both Teleport managers disabled), then after 2s second call to Hide (Time.timeScale=1, rays disabled, LocomotionSystem enabled, RightTeleport=true -> TeleportManagzerRight enabled).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.75,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 10.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 1",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Interact with Enemy Type 1 (tag=Enemy, PrefabInstance guid=2c3278d9e90e58e4a9b2d03c2de9efe0) to allow its AI/collider to engage the XR Rig (tag=XRRig). Expected: Enemy scripts will damage the XR Rig by invoking XRTarget.Hit(damage) on script_fileID=1221334210 until health is reduced from initial 10. XRTarget.Update will continuously update health UI.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 2",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Interact with Enemy Type 2 (tag=Enemy, PrefabInstance guid=bd4f238c957c283488d4a745fff71f33) to continue damaging the XR Rig via enemy logic using CompareTag/tag-based targeting. Expect further health reduction on XRTarget (script_fileID=1221334210).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 3",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Interact with Enemy Type 3 (tag=Enemy, PrefabInstance guid=0269d75519f38b0438a6a701dfb1196e) to allow continued engagement with XR Rig. Expected: If cumulative damage drives XRTarget.health <= 0, XRTarget.Update (script_fileID=1221334210) will: find all GameObjects with tag 'Enemy' and set them inactive, enable ray_Right/ray_Left, disable LocomotionSystem and TeleportManagers, activate deathScreen, start Wait coroutine, and call SceneManager.LoadScene(0).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 4",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Interact with Enemy Type 4 (tag=Enemy, PrefabInstance guid=476bac3c87a199a4d9f407530b2ab42a) to continue pressure; if XRTarget.health already <= 0, enemies should be set inactive by XRTarget.Update and main menu load initiated.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Interact with Enemy Type 5 (tag=Enemy, PrefabInstance guid=ecf49e437bf4de845930a6533a3f3425) as final escalation to ensure XRTarget.health reaches 0 if not already. On reaching 0, verify XRTarget death flow as per script_fileID=1221334210 and that SceneManager.LoadScene(0) is invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

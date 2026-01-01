@@ -1,0 +1,135 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1943288798,
+          "condition": "MonoBehaviour WinLose attached (m_Script guid d8624f87f98aa484bb7925103f5d458e; component fileID 4225679855366766214). Serialized: restartdelay=2, WinUI -> fileID 109963297, LoseUI -> fileID 109963299. No m_Calls found in scene; Has_Rigidbody=False. Manually invoke to show Win UI.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1943288798,
+          "condition": "MonoBehaviour WinLose attached (m_Script guid d8624f87f98aa484bb7925103f5d458e; component fileID 4225679855366766214). Serialized: restartdelay=2, WinUI -> fileID 109963297, LoseUI -> fileID 109963299. No m_Calls found in scene; Has_Rigidbody=False. Manually invoke to show Lose UI.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1943288798,
+          "condition": "Optional coverage: Call empty Restart() on the same WinLose component to verify callable binding.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (1)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 764083140,
+          "condition": "GameObject 'platform2 (1)' (PrefabInstance fileID: 764083140) has a BoxCollider (id: 764083144, IsTrigger=0) and no Rigidbody. Attached MonoBehaviour (id: 764083142, Script GUID: 077cb2d6a53b18f4ea7d76e72138fc77) corresponds to AttachToElevator with only private OnTriggerEnter/OnTriggerExit methods that require Collider parameters. The 'player' field is null. There are no UnityEvent m_Calls in the component. As-is, trigger events will not occur automatically (collider is not a trigger and at least one Rigidbody is required for physics events). No public parameterless methods are available to invoke manually.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 2013310823,
+          "condition": "MonoBehaviour (instance id: 2013310826) matches script AttachToElevator (script guid: 077cb2d6a53b18f4ea7d76e72138fc77, script fileID: 11500000) attached to platform2 (2). To cover OnTriggerEnter: BoxCollider id 2013310828 must be set as isTrigger=1 (currently 0), and either platform2 (2) or the Player must have a Rigidbody. The 'player' field on the component is currently null (fileID: 0) and must be assigned to the intended Player GameObject. Then cause the Player to overlap platform2 (2). Note: due to code condition (if (gameObject == player)), even on enter no parenting will occur; still validates OnTriggerEnter execution.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 2013310823,
+          "condition": "To cover OnTriggerExit for AttachToElevator (MonoBehaviour instance id: 2013310826): maintain same setup as enter (BoxCollider id 2013310828 set to isTrigger=1, one Rigidbody present, 'player' field assigned). Move the Player out of overlap from platform2 (2) to produce exit. Note: due to code condition (if (gameObject == player)), even on exit no un-parenting will change because parenting never happened; still validates OnTriggerExit execution.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (3)",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 666190384,
+          "condition": "MonoBehaviour id 666190386 (guid 077cb2d6a53b18f4ea7d76e72138fc77) matches script AttachToElevator with field 'player' = null. BoxCollider id 666190388 has m_IsTrigger=0 and the GameObject has no Rigidbody. The script only reacts to OnTriggerEnter/OnTriggerExit(Collider), which will not fire with current collider settings, and there are no public no-arg methods or UnityEvent m_Calls to invoke. To cover code, we would need either: (a) set BoxCollider.isTrigger = true and provide a colliding object, and (b) assign 'player' reference appropriately (note: the script checks if gameObject == player).",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 397541581,
+          "condition": "Attempt to exercise AttachToElevator (MonoBehaviour fileID: 397541585, guid: 077cb2d6a53b18f4ea7d76e72138fc77). Current scene config prevents automatic trigger: BoxCollider (id: 397541586) has m_IsTrigger=0; GameObject has no Rigidbody; serialized field 'player' is unassigned (fileID: 0); script compares 'gameObject == player' instead of 'other.gameObject == player'. There are no UnityEvents (m_Calls) and no public no-arg methods to invoke. Expected behavior if properly configured: OnTriggerEnter -> player.transform.SetParent(platform2.transform, true); OnTriggerExit -> player.transform.parent=null.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1468535024,
+          "condition": "Scoremanager MonoBehaviour (m_Script guid=f7de224e5fee443418417f9f2bfa2998, script_fileID likely 738895513262049452 per prefab modifications) is attached to GameObject 'ScoreManager'. Start() and Update() are auto-invoked on enable; no public no-arg methods exist to call manually. Prefab overrides set: ScoreText=fileID 109963300, AmountUI=109963301, Timer=109963298, StarValue=1, winAmount=6, winlosescript=1943288799. This hold allows Update() to run and update Timer text.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

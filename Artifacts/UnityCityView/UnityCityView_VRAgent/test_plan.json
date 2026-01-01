@@ -1,0 +1,460 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building101",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 137028025,
+          "condition": "Has_Event_Trigger: True. MonoBehaviour_0 id 137028027 (m_Script guid b78288e601dcaac41ae0297908e55692, fileID 11500000) corresponds to the Bank script attached to Building101 (PrefabInstance id 137028025) in CityView.unity. Manually invoke the public method Bank.showlabel() to ensure coverage regardless of automatic EventTrigger wiring. Expected: Player.transform.GetChild(1).GetComponent(TextMeshPro).text becomes the first 20 chars of 'Bank:Lucario's Bank Co.' -> 'Bank:Lucario's Bank '. Requires: a GameObject named 'Player' with at least two children, and child[1] has a TextMeshPro component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 137028027,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building10",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 565466289,
+          "condition": "MonoBehaviour_0 (id: 565466291) on Building10 references script guid b78288e601dcaac41ae0297908e55692 (Bank). Building10 has Has_Event_Trigger = true. Ensure a GameObject named 'Player' exists and its Transform child at index 1 has a TextMeshPro component; otherwise showlabel() will throw NullReferenceException. On trigger, Bank.showlabel() should set Player/child[1] TextMeshPro.text to the first 20 chars of GetLabel() where gameObject.name == 'Building10' (from scene m_Modifications: m_Name = 'Building10'), yielding 'Bank:Eevee Global Ba'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 565466291,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building1",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1877717395,
+          "condition": "GameObject 'Building1' (fileID: 1877717395) in CityView.unity has Has_Event_Trigger = True and no Rigidbody (Has_Rigidbody = False). The attached MonoBehaviour component MonoBehaviour_0 (id: 1877717397) in the scene meta corresponds to the Residential script (m_Script guid: 10a92b1b4549024468ecbc96831def68, fileID: 11500000) and is enabled (m_Enabled = 1). Preconditions: Residential.Start() has executed so 'label' is initialized via GameObject.Find('Player').transform.GetChild(1); that child must have a TextMeshPro component. When showlabel() is triggered on Building1, it calls GetLabel(), takes Substring(0,20), and updates the label text. For Building1, GetLabel() returns 'Residential:Saru Apartment', so expected label text becomes 'Residential:Saru Apa'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1877717397,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 798612649,
+          "condition": "Has_Event_Trigger is true on Building2. MonoBehaviour component (fileID: 798612651, m_Script GUID: 10a92b1b4549024468ecbc96831def68) corresponds to the attached Residential script. Triggering the public method 'showlabel' should set the Player's label (TextMeshPro on Player child index 1) to the first 20 characters of GetLabel(), expected to start with 'Residential:Usagi Ap'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 798612651,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building3",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1554268808,
+          "condition": "Building3 has EventTrigger = True. The attached MonoBehaviour_0 (id: 1554268810) uses script GUID 10a92b1b4549024468ecbc96831def68 (Residential.cs) and is the settings of the script attached to Building3 (fileID: 1554268808). When the player interacts with Building3 (e.g., click/hover configured via EventTrigger), call Residential.showlabel() to update Player->child[1] TextMeshPro to the first 20 chars of 'Residential:Kumo Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1554268810,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building41",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1789995939,
+          "condition": "CityView.unity loaded. Residential MonoBehaviour (fileID: 1789995941, Script GUID: 10a92b1b4549024468ecbc96831def68) attached to Building41 is enabled and its Start() has executed (label = GameObject.Find(\"Player\").transform.GetChild(1).gameObject). Building41 has EventTrigger (Has_Event_Trigger: True). Ensure Player child[1] has a TextMeshPro component. Calling showlabel() should set TMP.text to the first 20 chars of 'Residential:Inu Apartment' => 'Residential:Inu Apar'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1789995941,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building42",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 45104957,
+          "condition": "MonoBehaviour_0 (id: 45104959) in scene meta has m_Script guid=10a92b1b4549024468ecbc96831def68, which corresponds to Residential.cs attached to Building42. Building42 has Has_Event_Trigger=true (interactive). After scene load (Start() executed), a GameObject named 'Player' must exist and its child index 1 must have a TextMeshPro component. Calling Residential.showlabel() should set that label's text to the first 20 chars of 'Residential:Tora Apartment' => expected 'Residential:Tora Apa'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 45104959,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building4",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 297462331,
+          "condition": "Manual trigger to invoke Residential.showlabel() on Building4. Building4 has EventTrigger (Has_Event_Trigger: True), enabling a Trigger action without Rigidbody. The attached MonoBehaviour component in the scene (MonoBehaviour_0, instance id 297462333) corresponds to the Residential script (script guid: 10a92b1b4549024468ecbc96831def68, asset fileID: 11500000) attached to Building4. Precondition: Start() has executed so 'label' is cached as Player.transform.GetChild(1); the scene contains a GameObject named 'Player' whose child at index 1 has a TextMeshPro component. Expected result: the label text becomes the first 20 characters of 'Residential:' + 'Neko Apartment' → 'Residential:Neko Apa'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 297462333,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 227892003,
+          "condition": "MonoBehaviour_0 (id: 227892005) on GameObject Building5 (fileID: 227892003) is the Hotel script (m_Script guid: f713beac870e2bd45bed25f1cda3a140). Building5 has EventTrigger = True, allowing Trigger actions. Precondition: A GameObject named 'Player' exists in the scene and Player.transform.GetChild(1) has a TextMeshPro component. Expected behavior: calling Hotel.showlabel() will compute GetLabel() for Building5 ('Hotel:Udon Hotel') and attempt to set TextMeshPro.text to GetLabel().Substring(0, 20). Note: 'Hotel:Udon Hotel' length is 16; Substring(0, 20) will cause ArgumentOutOfRangeException unless label text length is >= 20. Test should capture any error logs or exceptions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 227892003,
+          "condition": "MonoBehaviour_0 (id: 227892005) on GameObject Building5 (fileID: 227892003) is the Hotel script (m_Script guid: f713beac870e2bd45bed25f1cda3a140). This call directly verifies the name-based branch in GetLabel() without relying on TextMeshPro availability.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "GetLabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building61",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 449034031,
+          "condition": "Building61 has Has_Event_Trigger = true and no Rigidbody. The attached MonoBehaviour (script guid a8e394fec5558d54daa16e3fcb3cc7d3) is the Commercial script with component fileID 449034033. Preconditions: A GameObject named 'Player' exists, and its child at index 1 has a TextMeshPro component. When calling Commercial.showlabel(), it should set that TextMeshPro.text to the first 20 chars of GetLabel() for Building61, i.e., 'Commercial:Kaiseki R'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 449034033,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building6",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 31730558,
+          "condition": "GameObject 'Building6' (fileID: 31730558) has EventTrigger enabled and a MonoBehaviour component (fileID: 31730560) bound to script guid a8e394fec5558d54daa16e3fcb3cc7d3, which corresponds to the 'Commercial' script provided. Preconditions: Start() has executed to cache Player.transform.GetChild(1) into 'label', and that child has a TextMeshPro component. Expected behavior: calling Commercial.showlabel() updates that TextMeshPro.text to the first 20 chars of GetLabel() => 'Commercial:Pokemon ' (from 'Commercial:Pokemon Shopping Center').",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 31730560,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building7",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 300765811,
+          "condition": "MonoBehaviour component id 300765813 in the scene is the attached script settings for 'Commercial' (m_Script guid a8e394fec5558d54daa16e3fcb3cc7d3) on GameObject 'Building7' (fileID 300765811). Has_Event_Trigger is true, allowing Trigger interactions. Precondition: Start() has executed; a GameObject named 'Player' exists and its child at index 1 has a TextMeshPro component. Expected behavior: showlabel() calls GetLabel()->GetBuilding7Name() and sets Player/Child(1)/TextMeshPro.text to the first 20 characters of 'Commercial:Totoro Theater' (i.e., 'Commercial:Totoro Th').",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 300765813,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building8",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 964435064,
+          "condition": "Building8 has Has_Event_Trigger = True and no Rigidbody (so only Trigger is applicable). MonoBehaviour component fileID 964435066 in scene references m_Script guid ed3b45ff7bbab2146bc55b624801e08e, which corresponds to Government.cs attached to Building8. Precondition: A GameObject named 'Player' exists and its child at index 1 has a TextMeshPro component to receive the label text. Expected effect: Government.showlabel() sets Player.transform.GetChild(1).TextMeshPro.text to the first 20 chars of 'Government:Town Hall' (which equals 'Government:Town Hall').",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 964435066,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building91",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 954951891,
+          "condition": "Building91 has EventTrigger in scene (Has_Event_Trigger: True). The attached MonoBehaviour component MonoBehaviour_0 (script_fileID: 954951893, m_Script GUID: ed3b45ff7bbab2146bc55b624801e08e) corresponds to the provided Government script. After scene load and Start() has executed (so label is assigned to Player->child[1] with a TextMeshPro component), manually invoke the public method to update the label. Expected behavior: label text becomes the first 20 chars of 'Government:Financial Department' => 'Government:Financial'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 954951893,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building9",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1647098179,
+          "condition": "Scene 'CityView.unity' loaded. Building9 has EventTrigger (Has_Event_Trigger: True), no Rigidbody. The attached MonoBehaviour component with scene fileID 1647098181 (m_Script guid: ed3b45ff7bbab2146bc55b624801e08e) corresponds to the 'Government' script. Preconditions: A GameObject named 'Player' exists, and its child at index 1 has a TextMeshPro component so Government.Start() can cache it. Expected result of method call: The TextMeshPro text on Player.transform.GetChild(1) is set to the first 20 characters of 'Government:Police Department', i.e., 'Government:Police De'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1647098181,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Player",
+          "source_object_fileID": 94196998,
+          "target_position": {
+            "x": -0.4,
+            "y": 5.5,
+            "z": -65.7
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Player",
+          "source_object_fileID": 94196998,
+          "target_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.5
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Player",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 94196998,
+          "condition": "Invoke public method Raycast on MonoBehaviour id 963194229 configured with m_Script (fileID: 11500000, guid: eb5dd43baba2d4dc1bab789615567e3d, type: 3), which corresponds to GvrPointerPhysicsRaycaster attached to GameObject 'Main Camera' (fileID: 963194225). Scene config shows raycasterEventMask bits=0xFFFFFFFF and maxRaycastHits=96. To exercise code paths, an EventSystem with GvrPointerInputModule must provide a non-null Pointer; pointer.raycastMode and CurrentPointerRadius determine whether GvrBasePointerRaycaster.Raycast calls RaycastDefault/Hybrid and whether PerformRaycast uses Physics.RaycastNonAlloc (radius==0) or Physics.SphereCastNonAlloc (radius>0). Ensure at least one Collider is in the Main Camera forward direction and within the event mask.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 963194229,
+                  "method_name": "Raycast",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Player",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 94196998,
+          "condition": "Trigger public methods on GvrReticlePointer MonoBehaviour (id: 723926960) instantiated from prefab instance (fileID: 1783449437) attached under 'Main Camera'. Scene meta shows MonoBehaviour.m_Script {fileID:11500000,guid:e7dcc90c2e60c4011896c7f21fc1f557,type:3} which corresponds to GvrReticlePointer.cs provided. This will cover reticle click events and diameter updates without relying on EventSystem. Note: Player MonoBehaviour (id: 94197002, guid:3256cf44665cfef47aebd3ad3a953393) has only Start/Update which run automatically. Main Camera MonoBehaviour (id: 963194229, guid:eb5dd43baba2d4dc1bab789615567e3d) corresponds to GvrPointerPhysicsRaycaster; its public Raycast requires PointerEventData parameters and a GvrPointerInputModule to populate Pointer; thus we avoid redundant manual trigger until EventSystem details are provided.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickDown",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickUp",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerExit",
+                  "parameter_fileID": [
+                    94196998
+                  ]
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1901 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSource GameObject",
+          "source_object_fileID": 112451387,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSource GameObject",
+          "source_object_fileID": 112451387,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -12.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SteamAudioSource GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 112451387,
+          "condition": "Verify SteamAudioSource MonoBehaviour (id 112451389, guid 59c3684b22f00604a97bb68037fcf4cd) is attached and responsive; safe no-arg public call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 112451389,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_112451387",
+          "source_object_fileID": 112451387,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 26.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_112451387",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 112451387,
+          "condition": "Scene MonoBehaviour id 112451392 (guid 77f9a59041a2de446bf7704b5c31f103) matches FireBasedAudioManager with config: fireLimit=10, timeInterval=25. Test conditional event: external fire system should call IFireDependant.NotifyFireChange(int) with values both below (e.g., 0) and at/above limit (e.g., 10) to toggle shouldPlay. Note: NotifyFireChange has an int parameter and cannot be invoked via a no-arg Trigger; this step documents the event we need to trigger via the appropriate manager/UnityEvent.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_208486863",
+          "source_object_fileID": 208486863,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_208486863",
+          "source_object_fileID": 208486863,
+          "delta_position": {
+            "x": 3.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 208486865,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_208486863",
+          "source_object_fileID": 208486863,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -4.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": -45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CardboardStartup",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 334916439,
+          "condition": "MonoBehaviour component for CardboardStartup attached in GameScene.unity. Scene meta: m_Script.fileID=11500000, guid=dd68f027e715c44aa8d097000d4cccfb, type=3; component fileID=334916441 on GameObject fileID=334916439, m_PrefabInstance=0. No m_Calls UnityEvents are defined; manual invocation of lifecycle methods is used to validate initialization and per-frame behavior (Screen sleep/brightness, Cardboard Api device param scan/reload, quit/recenter/UpdateScreenParams polling).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 334916441,
+                  "method_name": "Start",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 334916441,
+                  "method_name": "Update",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_389740526",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 389740526,
+          "condition": "MonoBehaviour fileID 389740528 uses script GUID 59c3684b22f00604a97bb68037fcf4cd (SteamAudioSource). Settings: directBinaural=1, interpolation=0, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1 with SimulationDefined, directivity=0, occlusion=0, transmission=0, reflections=0, pathing=0. This confirms the component matches the provided script and enables distance/air attenuation behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 389740528,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_389740526",
+          "source_object_fileID": 389740526,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 20.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_389740526",
+          "source_object_fileID": 389740526,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -20.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_392301220",
+          "source_object_fileID": 392301220,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_392301220",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 392301220,
+          "condition": "Manual invoke of a public parameterless method on SteamAudioSource (MonoBehaviour fileID: 392301224, script GUID: 59c3684b22f00604a97bb68037fcf4cd). Scene config: distanceAttenuation=1 with PhysicsBased input, airAbsorption=1 with SimulationDefined input, reflections/pathing/directivity/occlusion/transmission disabled. No serialized m_Calls present; this trigger validates component responsiveness while other effects are exercised via Transform.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 392301224,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_392301220",
+          "source_object_fileID": 392301220,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_392301220",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 392301220,
+          "condition": "MonoBehaviour fileID 392301225 uses script guid 7fbbd89654d4642d187f0fa0e4dc316a (PlaySound). Serialized canPlay=1 (true). On trigger, expects to call AudioSource.PlayOneShot(this.source.clip) if an AudioSource is attached on the same GameObject. No m_Calls configured in scene, so manual method trigger is required for testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 392301225,
+                  "method_name": "PlaySoundShot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject(446970151)",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 446970151,
+          "condition": "MonoBehaviour component 446970152 on GameObject 446970151 uses script guid 8173b2a8dbe2d2d48995bb2ba9a49ff1 (SteamAudioStaticMesh). It is enabled (m_Enabled=1), has asset guid 48b3d1d93d8cd495884ef80daae159b7 assigned, sceneNameWhenExported='GameScene'. No m_Calls/UnityEvents present; the script exposes no public no-arg methods to trigger manually. Behavior to verify occurs automatically: Start logs warning only if asset==null (not the case here); Update instantiates and adds StaticMesh to SteamAudioManager.CurrentScene when first run; OnEnable/OnDisable add/remove; OnDestroy releases.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject(446970151)",
+          "source_object_fileID": 446970151,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudio Source (GameObject)",
+          "source_object_fileID": 592733083,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudio Source (GameObject)",
+          "source_object_fileID": 592733083,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudio Source (GameObject)",
+          "source_object_fileID": 592733083,
+          "delta_position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "FireVisualsController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 676587431,
+          "condition": "Manual initialization required: MonoBehaviour component 676587433 (script GUID f742c92c23cdb4c51bb7d099258cdb4b) on GameObject 676587431 has no m_Calls and Start() does not call InitializeVisuals(). Scene config: flickerIntensity[1.95,2.05], flickerMultiplier 0.25, timeToFlicker 0.025, timeToBreak 15, delayLimits[1,5], lights[1975023121,778717856], audioSources[2102051198,512491321], allSmoke[1556168500,1778919060], lifetimeSettings[6,7.5], maxFireDistance 8, debug false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 676587433,
+                  "method_name": "InitializeVisuals",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#778717854",
+          "source_object_fileID": 778717854,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#778717854",
+          "source_object_fileID": 778717854,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 20.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudienceController GameObject",
+          "triggerring_time": 11.5,
+          "source_object_fileID": 865422727,
+          "condition": "Call AudienceController.StartVictory() on MonoBehaviour id 865422729 (script guid 568674ad8ac51e348a0d5515b1de19c1). Serialized refs: puppets[1658050753,1913892541,392301220], crowdAudioSources[2107226608,1810874850,815100929], player[1421263847], celebrationAnimator(guid 00a66a0ae4c7cdf4b90cbb78134f82f9), celebrationSoundClip(guid c8ad6ccf87d28cd45891fca1eb7bbba4), crowdCelebrationSoundClip(guid fea3296555b18b341ae96c7e4ef53278), fadeController[1989938081]. Expected: Celebrate() runs immediately (animators/audio updated, celebrating=true), after ~10s fadeController.FadeOut(), then SceneController.GoToMenuScene().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 865422729,
+                  "method_name": "StartVictory",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Puppet_1658050753",
+          "source_object_fileID": 1658050753,
+          "delta_position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 865422729,
+                  "method_name": "Celebrate",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 2.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_988770326",
+          "source_object_fileID": 988770326,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_988770326",
+          "source_object_fileID": 988770326,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "FireBasedAudioManager (GameObject 988770326)",
+          "source_object_fileID": 988770326,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 21.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "FireBasedAudioManager (GameObject 988770326)",
+          "source_object_fileID": 988770326,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 20.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1010962365",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1010962365,
+          "condition": "Manual verification of PostProcessVolume (m_Script guid: 8b9a305e18de0c04dbd257a21cd47087, component fileID: 1010962366) in GameScene.unity. Scene serialization: isGlobal=1, blendDistance=0, weight=1, priority=0, sharedProfile guid=7052c3e58033ba34d99c16b11516da0d. Trigger a public no-arg method to validate component is active and accessible.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1010962366,
+                  "method_name": "HasInstantiatedProfile",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1034990897",
+          "source_object_fileID": 1034990897,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1034990899,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1034990897",
+          "source_object_fileID": 1034990897,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1034990897",
+          "source_object_fileID": 1034990897,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 20.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "FireBasedAudioManager_GO",
+          "source_object_fileID": 1034990897,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 11.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "FireBasedAudioManager_GO",
+          "source_object_fileID": 1034990897,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 10.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1589941764",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1589941764,
+          "condition": "SteamAudioGeometry (script guid e829c87dc2a2ed2419c5f67848317fe4, MonoBehaviour id 1589941766) on GameObject fileID 1589941764 with material guid a086f686223eed942816c70be67841b0, exportAllChildren=0, terrainSimplificationLevel=0. Scene meta shows no m_Calls, so manual invocation is required to validate geometry queries.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceObject",
+          "source_object_fileID": 1658050753,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -3.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceObject",
+          "source_object_fileID": 1658050753,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceObject",
+          "source_object_fileID": 1658050753,
+          "delta_position": {
+            "x": 2.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.8
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSource_Object_1678975683",
+          "source_object_fileID": 1678975683,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSource_Object_1678975683",
+          "source_object_fileID": 1678975683,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 20.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1678975683",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1678975683,
+          "condition": "MonoBehaviour component id=1678975687 on GameObject fileID=1678975683 uses script guid=77f9a59041a2de446bf7704b5c31f103 (FireBasedAudioManager). Serialized config: audioSource=fileID 0 (assigned via GetComponent in Awake), fireLimit=5, timeInterval=30. No m_Calls UnityEvents are defined; the script exposes no public no-arg methods to trigger manually. Behavior: Awake sets shouldPlay=true; Update will call audioSource.Play() once lastPlayed >= timeInterval, then repeat every 30s while shouldPlay remains true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1678975683",
+          "source_object_fileID": 1678975683,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 31.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1695945194,
+          "condition": "Manually exercise runtime reinitialization for SteamAudioManager (MonoBehaviour id=1695945195, script guid=b11066ff95bbf3344b868394742f7002). Current serialized config: currentHRTF=0, hrtfNames=[]. Expected: simulation thread restarted, devices (Embree/OpenCL/RadeonRays/TAN) re-validated, AudioEngineState reinitialized.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "Reinitialize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1695945194,
+          "condition": "Explicitly test shutdown path for SteamAudioManager to validate cleanup of simulation thread, devices, HRTFs, and context. This event is not triggered automatically in normal play; use for teardown verification.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "ShutDown",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SteamAudioSource_Object",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1696544506,
+          "condition": "Manual trigger of audio source simulation update based on SteamAudioSource MonoBehaviour (script_fileID: 11500000, GUID: 59c3684b22f00604a97bb68037fcf4cd) with serialized properties: distanceAttenuation=1, distanceAttenuationInput=PhysicsBased, airAbsorption=1, occlusion=1. This is to test simulation flag processing and output updating when events from m_Calls are not automatically fired.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1696544507,
+                  "method_name": "Update",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SimpleMovement Object",
+          "source_object_fileID": 1696544506,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 10.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SimpleMovement Object",
+          "source_object_fileID": 1696544506,
+          "delta_position": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SimpleMovement Object",
+          "source_object_fileID": 1696544506,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 21.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Unknown_AudioSource_538382129",
+          "source_object_fileID": 538382129,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Unknown_AudioSource_538382129",
+          "source_object_fileID": 538382129,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Unknown_AudioSource_538382129",
+          "source_object_fileID": 538382129,
+          "delta_position": {
+            "x": -2.0,
+            "y": 0.0,
+            "z": -5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SteamAudioSourceHost",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1854226667,
+          "condition": "Verify MonoBehaviour mapping: component fileID 1854226669 on GameObject fileID 1854226667 uses script guid 59c3684b22f00604a97bb68037fcf4cd (SteamAudio.SteamAudioSource). Scene settings match: directBinaural=1, interpolation=0, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1 (SimulationDefined), directivity=0, occlusion=0, transmission=0, reflections=0, pathing=0. No UnityEvent m_Calls present in scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1854226669,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceHost",
+          "source_object_fileID": 1854226667,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceHost",
+          "source_object_fileID": 1854226667,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 40.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceHost",
+          "source_object_fileID": 1854226667,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -50.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "AudioSourceObject_1913892541",
+          "source_object_fileID": 1913892541,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "AudioSourceObject_1913892541",
+          "source_object_fileID": 1913892541,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -9.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "AudioSourceObject_1913892541",
+          "source_object_fileID": 1913892541,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1915639391",
+          "source_object_fileID": 1915639391,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1915639391",
+          "source_object_fileID": 1915639391,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 25.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1915639391",
+          "source_object_fileID": 1915639391,
+          "delta_position": {
+            "x": 5.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1915639391",
+          "source_object_fileID": 1915639391,
+          "delta_position": {
+            "x": 5.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1915639391",
+          "source_object_fileID": 1915639391,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1917998003",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1917998003,
+          "condition": "Target MonoBehaviour fileID 1917998009 on GameObject fileID 1917998003. Script GUID f3c735cd07257d448babb6fb31e61089 (HoseHandleMovement). Serialized config: onRotation(-45,0,0), offRotation(-112,0,0), rotationSpeed=220. Awake initializes localRotation to offRotation and isTurning=false. Test: poll state via parameterless getter; full activation requires an external UnityEvent (m_Calls) to invoke ActivateHandleMovement(bool).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1917998009,
+                  "method_name": "getIsTurning",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "FireController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1920635016,
+          "condition": "Target MonoBehaviour is FireController (script guid: 0fd19a8a27a542c45932ea66, component fileID: 1920635018) on GameObject fileID: 1920635016. Scene config: totalLitFires=0 (serialized), initialFireProbability=0.7, audienceController fileID=865422729, maximumTurnOffLimit=210. After scene loads, Start() auto-initializes fires, neighbors, visuals, and State. Manually invoke a safe, no-arg public method to validate initialization state without relying on automatic game flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1920635018,
+                  "method_name": "GetTotalFires",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "HoseController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1406595866,
+          "condition": "MonoBehaviour id=1921583764 on GameObject fileID=1406595866 uses script guid=ec977d61dc6bcaa4b851caa19dbd2ab0 (HoseController). Scene config: hoseHandle=1917998009, hoseWaterPs=921683140, audioSource resolved via GetComponent, hoseAudioStart guid=5f9e1ec2926171148b4eb76e35a4160b, hoseAudioDuring guid=ef708c36b889d174b8a4dde4a456d1f0, waterDelayTime=0.4, changeStateInterval=2. No UnityEvent m_Calls configured. Preconditions: IsValidChange()==true (lastChangeState>=2; initially true), hoseHandle.getIsTurning()==false, and ActionMapper.GetDevicesTrigger()==true. Expected: toggle hoseIsOn->true, hoseHandle.ActivateHandleMovement(true), audio start clip then during clip, water plays after 0.4s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "HoseController",
+          "source_object_fileID": 1406595866,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "HoseController",
+          "source_object_fileID": 1406595866,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "HoseController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1406595866,
+          "condition": "Second input press to toggle off. Preconditions: lastChangeState>=2 (after wait), hoseHandle.getIsTurning()==false, ActionMapper.GetDevicesTrigger()==true. Expected: toggle hoseIsOn->false, hoseHandle.ActivateHandleMovement(false), water stops after 0.4s delay, audio fades out over ~0.7s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "HoseController",
+          "source_object_fileID": 1406595866,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.8
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudio Source",
+          "source_object_fileID": 1406595866,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 10
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudio Source",
+          "source_object_fileID": 1406595866,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 100
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudio Source",
+          "source_object_fileID": 1406595866,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": -110
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SteamAudio Source",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1406595866,
+          "condition": "MonoBehaviour component 1921583765 (guid: 59c3684b22f00604a97bb68037fcf4cd) SteamAudioSource with distanceAttenuation=1 (PhysicsBased), airAbsorption=1 (SimulationDefined), directivity=0, occlusion=0, reflections=0, pathing=0. No m_Calls present; trigger public no-arg API to validate binding/state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1921583765,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceObject",
+          "source_object_fileID": 1975023119,
+          "delta_position": {
+            "x": -2.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceObject",
+          "source_object_fileID": 1975023119,
+          "delta_position": {
+            "x": 5.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSourceObject",
+          "source_object_fileID": 1975023119,
+          "delta_position": {
+            "x": 20.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSource (GameObject)",
+          "source_object_fileID": 2107226606,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 5.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSource (GameObject)",
+          "source_object_fileID": 2107226606,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 20.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioSource (GameObject)",
+          "source_object_fileID": 2107226606,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -25.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SteamAudioSource (GameObject)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2107226606,
+          "condition": "No UnityEvent m_Calls provided in scene meta; invoke a safe public no-arg MonoBehaviour method for SteamAudioSource (script guid 59c3684b22f00604a97bb68037fcf4cd, component fileID 2107226610) to verify component responsiveness.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2107226610,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SteamAudioGeometryObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3206529234001464345,
+          "condition": "SteamAudioGeometry (Script GUID: e829c87dc2a2ed2419c5f67848317fe4) attached to GameObject fileID 3206529234001464345 with material guid a086f686223eed942816c70be67841b0, exportAllChildren: false, terrainSimplificationLevel: 0. No UnityEvents (m_Calls) present; manually invoke public no-arg methods to validate geometry export interface.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SteamAudioGeometry_Object",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1616856287260946002,
+          "condition": "Component SteamAudioGeometry (m_Script.guid=e829c87dc2a2ed2419c5f67848317fe4) attached and enabled (m_Enabled=1). Scene config: material.guid=a086f686223eed942816c70be67841b0, exportAllChildren=0, terrainSimplificationLevel=0. With exportAllChildren=0, counts should reflect only this GameObject’s meshes, not its children.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SteamAudioGeometry_Object",
+          "source_object_fileID": 1616856287260946002,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.0,
+            "z": 0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.1
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        }
+      ]
+    }
+  ]
+}

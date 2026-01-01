@@ -1,0 +1,1714 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "AppButtonInside",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 166,
+          "condition": "MonoBehaviour id=950 on GameObject 'AppButtonInside' matches script guid=7c52851ea0de74a228fa29a84de008ba (GvrTooltip). Serialized config: location=3 (AppButtonInside), text=fileID 1015, alwaysVisible=false. No explicit UnityEvents (no m_Calls). Intention: Manually invoke public parameterless methods to validate logic: IsTooltipInside() should return true for AppButtonInside, and IsTooltipOnLeft() should reflect handedness per GvrSettings.Handedness and inside-location. Note: This GameObject appears to have no Rigidbody/Collider/EventTrigger; automatic lifecycle events (Awake/Start/OnRenderObject/OnValidate) occur via engine.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "AppButtonOutside",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 103,
+          "condition": "MonoBehaviour (fileID: 929) on GameObject 'AppButtonOutside' (fileID: 103) uses script guid 7c52851ea0de74a228fa29a84de008ba, which matches GvrTooltip. Scene config: location=2 (enum: AppButtonOutside), text=fileID 1013, alwaysVisible=false. No Collider, Rigidbody, or EventTrigger present; no UnityEvent m_Calls listed. We will directly invoke public, parameterless methods to validate inside/left-side logic. Note: Full coverage of runtime fade behavior and side switching on arm-model updates requires a valid GvrArmModel instance and handedness changes, which are not provided in the scene data.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 929,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 929,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 202,
+          "condition": "GvrAudioSource (MonoBehaviour fileID 973, script GUID 6dbca64e524ea44f9b26142ec59aca8a) attached to ButtonClickSound. Scene config matches script fields: playOnAwake=0, sourceClip set (guid ec4642a7ec8557245a62d08bb0076fd9), loop=0, mute=0, pitch=1, priority=128, dopplerLevel=1, spread=0, volume=1, rolloffMode=Logarithmic(0), maxDistance=500, minDistance=1, hrtfEnabled=1. No Rigidbody/Collider/EventTrigger; manual method invocation is required to exercise playback lifecycle. This trigger starts playback.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "Pause playback to cover isPaused path and AudioSource.Pause().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "Resume playback to cover UnPause path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "Stop playback to exercise Stop() and ShutdownSource() paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 149,
+          "condition": "GvrAudioSource (MonoBehaviour fileID 944, guid 6dbca64e524ea44f9b26142ec59aca8a) on ButtonHoverSound has playOnAwake=false and a valid AudioClip assigned. Invoke Play to initialize and start playback, then Pause after 0.5s to test pause path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 149,
+          "condition": "Resume from paused state and then stop to exercise UnPause and Stop (which also calls ShutdownSource).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 149,
+          "condition": "Validate re-initialization after Stop by starting playback again and then stopping shortly after.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 97,
+          "condition": "MonoBehaviour_0 (id: 927) on GameObject 'Canvas' uses script guid 739800cd36aba44e9b04ce977e5784bd, which corresponds to GvrPointerGraphicRaycaster. Scene settings on this component: raycastMode=Camera(0), ignoreReversedGraphics=true(1), blockingObjects=None(0), blockingMask=All bits (4294967295). Note: No 'm_Calls' UnityEvents are configured on this GameObject, and there is no Collider/EventTrigger listed. To fully exercise GvrPointerGraphicRaycaster.Raycast, Canvas.renderMode must be WorldSpace and a GvrPointerManager.Pointer with a valid PointerTransform (and Camera.main) must exist at runtime. In this plan we directly invoke public no-arg methods on the attached raycaster to verify availability and ray state; additional environment details are needed to execute the full raycast path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 927,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 927,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 927,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 927,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "DemoInputManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 197,
+          "condition": "Call the public static query methods on DemoInputManager (script fileID 972, GUID ddd25f1308577456cbaa207901961126) to verify VR SDK configuration paths. No Collider/Rigidbody/EventTrigger present; only static, parameterless methods are callable.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 972,
+                  "method_name": "playerSettingsHasDaydream",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 972,
+                  "method_name": "playerSettingsHasCardboard",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Floor Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 213,
+          "condition": "Target MonoBehaviour (fileID: 976, GUID: 739800cd36aba44e9b04ce977e5784bd) is GvrPointerGraphicRaycaster on Floor Canvas. Serialized config: raycastMode=Camera(0), ignoreReversedGraphics=true(1), blockingObjects=None(0), blockingMask=0xFFFFFFFF. Preconditions needed for full runtime path: (1) Canvas.renderMode must be WorldSpace; (2) A GvrPointerManager.Pointer with a valid PointerTransform must exist; (3) Camera.main must be available. These allow EventSystem to call Raycast automatically. We will manually invoke safe public methods to validate pointer availability and last computed ray.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 976,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 976,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Furniture",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 237,
+          "condition": "Furniture (fileID: 237) has no Rigidbody, so only Trigger actions are applicable. Execute manual UnityEvent invocations if and only if: (a) a Collider (isTrigger or collision-based) exists on Furniture or its children, (b) an EventTrigger component exists, or (c) a MonoBehaviour on Furniture/children exposes UnityEvents (m_Calls) or public no-arg methods. The provided scene excerpt does not include any MonoBehaviour, Collider, or EventTrigger components for Furniture; therefore enumerate and invoke those once their script_fileID and m_Calls are known.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 264,
+          "condition": "EventTrigger (script_fileID: 994, guid f70555f1...) on default(fileID: 264, tag: mirror) has delegate eventID 0 mapped to Collectable.SetGazedAt(true) on MonoBehaviour Collectable (script_fileID: 995, guid fd9b592f...). This simulates gaze enter/highlight. BoxCollider (id: 794) present enables interaction. MonoBehaviour settings in scene match the attached Collectable script (inactiveMaterial, gazedAtMaterial, dispatch).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 264,
+          "condition": "EventTrigger (script_fileID: 994) delegate eventID 1 mapped to Collectable.SetGazedAt(false) on Collectable (script_fileID: 995). This simulates gaze exit/unhighlight. Scene MonoBehaviour configuration corresponds to the Collectable.SetGazedAt(bool) call in the script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 264,
+          "condition": "Use (click/activate) path: EventTrigger (script_fileID: 994) delegate eventID 4 invokes Usable.Use(Inventory inv= fileID: 985) on MonoBehaviour Usable (script_fileID: 996, guid 164fdbff...). Failure/inspect branch: when Inventory.SelectedItem == null or != useItem (as serialized in scene), Usable.Inspect() or Inspect(failureMessage) is executed. Usable MonoBehaviour in scene has dispatch UnityEvent wired to FindEscape.Escape (script_fileID: 997) but only fires on success; this case verifies failure messaging. Scene MonoBehaviour settings match Usable/Inspectable scripts (inspectMessage, dispatch persistent call).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 264,
+          "condition": "Use success branch: Precondition Inventory.SelectedItem == Usable.useItem (guid 3ecd47c1...). EventTrigger (script_fileID: 994) delegate eventID 4 invokes Usable.Use(inv) on Usable (script_fileID: 996), which on success invokes its dispatch UnityEvent, persistently mapped to FindEscape.Escape() on MonoBehaviour FindEscape (script_fileID: 997, guid 039fb840...). This covers the escape sequence that manipulates objects by tag 'mirror' and 'digitalLED', disables components, and stops audio.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 997,
+                  "method_name": "Escape",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 264,
+          "condition": "Direct pickup path to cover Collectable.Collect(): Collectable (script_fileID: 995) exposes a public no-arg Collect() that adds item to Inventory (if assigned) and invokes its dispatch UnityEvent. Scene shows Collectable.dispatch with no persistent calls; calling Collect() still validates destruction path and event safety.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 995,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 277,
+          "condition": "Gaze enter highlight via EventTrigger on vase. MonoBehaviour id 1010 (UnityEngine.EventSystems.EventTrigger, guid f70555f1...) on default(fileID: 277, tag: vase) has delegate eventID 0 mapped to Collectable.SetGazedAt(true) on MonoBehaviour id 1009 (Collectable, guid fd9b592f...). BoxCollider id 798 enabled, so trigger is valid. Scene MonoBehaviour fields (inactiveMaterial, gazedAtMaterial, dispatch) match Collectable script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 277,
+          "condition": "Gaze exit unhighlight via EventTrigger on vase. EventTrigger (id 1010) delegate eventID 1 mapped to Collectable.SetGazedAt(false) on MonoBehaviour id 1009 (Collectable).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 277,
+          "condition": "Use (activate) failure/inspect branch. EventTrigger (id 1010) delegate eventID 4 invokes Usable.Use(Inventory inv=fileID: 985) on MonoBehaviour id 1008 (Usable, guid 164fdbff...). Precondition: Inventory.SelectedItem == null or != Usable.useItem. Expected: Usable.Inspect() or Inspect(failureMessage). This covers Usable path without success dispatch. Scene components confirm Usable is the target of eventID 4.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 277,
+          "condition": "Use (activate) success branch leading to placing the flower. EventTrigger (id 1010) delegate eventID 4 invokes Usable.Use(inv=fileID: 985) on MonoBehaviour id 1008 (Usable). Precondition: Inventory.SelectedItem == Usable.useItem. ReplaceFlower script is attached as MonoBehaviour id 1011 (guid b9a7c98e...).",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1011,
+                  "method_name": "PlaceFlower",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 277,
+          "condition": "Directly exercise Collectable.Collect() on vase to cover pickup/destruction path and UnityEvent safety. MonoBehaviour id 1009 matches Collectable script (guid fd9b592f...), dispatch has no persistent calls in scene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1009,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 57,
+          "condition": "Inspectable (MonoBehaviour id: 909, guid: 20f309bd30f854a1cb08cabddfbc74e5) is attached to default (fileID: 57) and serialized with inspectMessage 'This looks out of place...'. Calling Inspect() covers Inspect() -> Inspect(string) path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 909,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 57,
+          "condition": "Collectable (MonoBehaviour id: 911, guid: fd9b592feb7384d0a9c94749396c5a5e) on default (fileID: 57) has UnityEvent 'dispatch' persistently mapped to MovePillow.MovePillowAway() (MonoBehaviour id: 910, guid: 85f9854fdebef48de893bf8e6be7bb91). BoxCollider (id: 778) present; components may be disabled at runtime by MovePillow.Start(), but direct invocation ensures coverage. Calling Collect() triggers dispatch -> MovePillowAway(), which translates the pillow, sets isMoved, and enables the key collider.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 911,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 27,
+          "condition": "default (fileID: 27) under Furniture has BoxCollider (id: 776, isTrigger: 0) and three MonoBehaviours configured as follows in the scene: Collectable (MonoBehaviour id: 898, script guid: fd9b592feb7384d0a9c94749396c5a5e) with dispatch.m_Calls empty and item null; Inspectable (MonoBehaviour id: 899, script guid: 20f309bd30f854a1cb08cabddfbc74e5) with inspectMessage ''; Lightable (MonoBehaviour id: 900, script guid: 88bc783c768ce4eb29e7f2d95dc4f793). Lightable requires a child Light component to be present; ToggleLight updates Inspectable.inspectMessage when toggled. Trigger is valid due to the Collider on this object.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 900,
+                  "method_name": "ToggleLight",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 899,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 900,
+                  "method_name": "ToggleLight",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 899,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 898,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "COLLIDER grp1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 255,
+          "condition": "Scene meta confirms: COLLIDER grp1 (fileID: 255) has BoxCollider (id: 793, isTrigger: 0) enabling Trigger action. It has MonoBehaviour id: 992 configured for script guid: 164fdbff0d3254b5691f0f3dddc50068 (Usable : Inspectable). Serialized fields: inspectMessage: '', useItem: {guid: d9c6c5f21512a48a1bad97806c346fc7}, successMessage: '', failureMessage: '', dispatch UnityEvent with m_Calls: []. This matches the provided Usable/Inspectable scripts. To achieve partial coverage without parameters, invoke the inherited no-arg Inspect() on the Usable component, which exercises Inspectable.Inspect() and UI message flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 992,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "grp2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 195,
+          "condition": "Scene meta confirms grp2 (fileID: 195, parent: Mid Drawer) has BoxCollider (id: 786, isTrigger: 0) enabling Trigger actions. It has MonoBehaviour id: 971 bound to script guid: 311424da740a844ab963ccaad56ef8b6, which matches AnimateDrawer. This script exposes Start() and OpenDrawer() (both public, no params). Start sets origin and reparents child 'Knife' to the drawer's parent; OpenDrawer translates the drawer and disables Usable, Collectable, and Collider on this object. Note: If Usable/Collectable are not present on grp2, OpenDrawer() will attempt to access null components and could throw; ensure they exist or expect a NullReference during testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 971,
+                  "method_name": "Start",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 971,
+                  "method_name": "OpenDrawer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Knife",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 265,
+          "condition": "Scene meta confirms Knife (fileID: 265) has BoxCollider (id: 795, isTrigger: 0) enabling Trigger actions. It has: Collectable (MonoBehaviour id: 999, script guid: fd9b592feb7384d0a9c94749396c5a5e) with item set, inactive/gazed materials assigned, dispatch.m_Calls empty; Inspectable (MonoBehaviour id: 1000, script guid: 20f309bd30f854a1cb08cabddfbc74e5) with a serialized inspectMessage. An EventTrigger component is present and serialized to call Collectable.SetGazedAt(true) on pointer enter (eventID: 0). This action simulates pointer enter to execute that EventTrigger call.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Knife",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 265,
+          "condition": "Simulate pointer exit (EventTrigger eventID: 1) to invoke Collectable.SetGazedAt(false) per scene meta m_Calls, exercising the other branch of SetGazedAt.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Knife",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 265,
+          "condition": "Simulate pointer click (EventTrigger eventID: 4). Scene meta m_Calls map click to Collectable.Collect() (id: 999) then Inspectable.Inspect() (id: 1000). Collect will add the configured item to Inventory and schedule this GameObject for destruction at end of frame; Inspect will show the serialized message.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 999,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1000,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 108,
+          "condition": "MonoBehaviour_1 (id: 933) in scene meta is the Inspectable script (guid: 20f309bd30f854a1cb08cabddfbc74e5) attached to GameObject 'default' (fileID: 108). It has inspectMessage='Someone took this out of its vase.'. GameObject also has a CapsuleCollider (id: 812, isTrigger: 0), so Trigger action is valid. Calling Inspect() (no args) will internally call Inspect(string) and dispatch the message to SubtitlesCanvas/MessageText via ShowMessage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 933,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 108,
+          "condition": "MonoBehaviour_0 (id: 931) in scene meta is the Collectable script (guid: fd9b592feb7384d0a9c94749396c5a5e) attached to GameObject 'default' (fileID: 108). It references item (guid: a874fb11274d84eb3b6f5c630630c27a), inactiveMaterial (guid: 28db40d0099852448a1816652a486146), gazedAtMaterial (guid: 4ad709961269449e38e60dcaa32e102e), and dispatch UnityEvent with m_Calls=[ ] (no persistent listeners). CapsuleCollider (id: 812) present, so Trigger is valid. Call Collect() last because it adds the item to Inventory then destroys this GameObject and invokes dispatch (no listeners).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TableClock Type3",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 230,
+          "condition": "MonoBehaviour_0 (id: 981) is ClockTimer (script guid: e7961a963e9940a44b4f5cf35ce83696) attached to GameObject 'TableClock Type3' (fileID: 230). Scene meta shows fields: initialHoursValue=0, initialMinutesValue=0, initialSecondsValue=0, clockSpeed=1, pointFlicker=true, reverse=false. ClockTimer exposes no public no-arg methods; its coverage-relevant callbacks are OnEnable() and Update(). To cover OnEnable, the component or GameObject must be toggled from disabled to enabled; to cover Update, the object must remain enabled for at least one frame. However, this GameObject has no Rigidbody/Collider/EventTrigger and the script does not derive from UnityEngine.Events, so a test-time Trigger interaction is only valid if: (a) a Collider/EventTrigger exists on this object or its interaction policy allows lifecycle toggling, or (b) you authorize enabling/disabling the component/GameObject during the test. This step requests toggling the enabled state to invoke OnEnable, then waiting triggerring_time to exercise Update’s assignment of digitalClock.clockSpeed.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 167,
+          "condition": "GameObject 'default' (fileID: 167) under MeshGroup has BoxCollider (id: 784, isTrigger: 0) so Trigger is valid. MonoBehaviour_1 (id: 954) is Inspectable (guid: 20f309bd30f854a1cb08cabddfbc74e5) with inspectMessage serialized (starts with 'Its midnight...'). Calling Inspect() exercises Inspect() -> Inspect(string) path to display message via ShowMessage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 954,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 167,
+          "condition": "MonoBehaviour_0 (id: 953) is Collectable (guid: fd9b592feb7384d0a9c94749396c5a5e) on GameObject 'default' with item=null, inactiveMaterial (guid: f9add7219a5b60440b1d464521ead527), gazedAtMaterial (guid: 06d4a6d1487d54823874dd42f37af836), and dispatch UnityEvent with no persistent calls. Calling Collect() will invoke dispatch but will NOT destroy the GameObject because item is null, covering Collect() code path safely.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 953,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "default",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 167,
+          "condition": "MonoBehaviour_0 (id: 942) in scene meta is the DigitalClock script (guid: 21b908ce4d9cbc14489c84c042cae40b) attached to GameObject 'DigitalClock2_LED' (fileID: 138). Its serialized fields map as: hoursDCV=925, minutesDCV=913, secondsDCV=null, pointsDCV=943, pointFlicker=true, clockSpeed=1. DigitalClock.Start() auto-starts PlayTime and, because secondsDCV is null and pointFlicker=true, also PlayPointFlicker. GameObject 'default' (fileID: 167, tag: 'clock') under the same TableClock has a BoxCollider (id: 784) and an Inspectable component (id: 954), satisfying Trigger constraints and serving as the target for DigitalClock’s runtime update to Inspectable.inspectMessage. Wait 61 seconds to cover: (1) PlayPointFlicker’s 1-second tick loop, and (2) PlayTime’s else-branch (secondsDCV==null) with a 60-second wait, which calls minutesDCV.ChangeTimeValue(), updates the tagged 'clock' Inspectable message to 'It reads HH:MM.', and sets DigitalClock.score = hours*60 + minutes.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hours",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 92,
+          "condition": "MonoBehaviour_0 (id: 925) on GameObject 'Hours' (fileID: 92) uses script guid 99d3f5635e2a2c94bba763a859e816ec, which corresponds to DigitalClockValue. Serialized settings match the script fields: currentValue=0, maximumValue=24, NextValue=null, tens=fileID:901, units=fileID:1016, tensValue=10, reverse=false. No UnityEvent m_Calls are defined on this component. To cover increment and rollover branches in ChangeTimeValue(), invoke it 24 times consecutively (covering normal increments and the wrap from 23→0). Note: branches requiring reverse=true, NextValue!=null, or ChangeToTargetTime(int) cannot be covered without additional scene setup or a way to pass parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hours",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 92,
+          "condition": "LED Yellow Numbers (fileID: 29) has MonoBehaviour_0 id: 901 with script guid 1bd5b4c54e111e240aa7b6088078e1f9, which is DisplaySelectedObject. Scene settings match the script fields: displayOptions=[126,134,52,203,67,259,286,185,182,113], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=false. OnEnable will auto-run at scene load (temporalGOArrange==0), calling TurnOffAll(), then activating displayOptions[currentDisplay] and setting oldDisplay=0. To cover DisplaySelectedObject.TurnSelectedWithButton both branches (curDisp==oldDisplay and curDisp!=oldDisplay) without direct parameter calls, drive it via parent 'Hours' DigitalClockValue (MonoBehaviour id: 925, guid 99d3f5635e2a2c94bba763a859e816ec). Invoking ChangeTimeValue() increments currentValue and calls tens.TurnSelectedWithButton(currentValue/10). Starting at 0, one call yields tens=0 (equals oldDisplay); after ten total calls, tens=1 (not equal), exercising both paths. No UnityEvent m_Calls are defined on id: 901.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hours",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 92,
+          "condition": "LED Yellow Numbers (fileID: 293) has MonoBehaviour_0 id: 1016 with script guid 1bd5b4c54e111e240aa7b6088078e1f9, matching DisplaySelectedObject. Scene settings: displayOptions=[199,89,50,30,284,281,125,205,75,11], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=false. OnEnable (auto) runs with temporalGOArrange==0, calls TurnOffAll(), activates displayOptions[0], sets oldDisplay=0. Parent 'Hours' holds DigitalClockValue (id: 925, guid 99d3f5635e2a2c94bba763a859e816ec) with units set to fileID 1016. Each DigitalClockValue.ChangeTimeValue() increments currentValue and calls units.TurnSelectedWithButton(currentValue % 10). The calls below exercise DisplaySelectedObject’s non-equality branch repeatedly and include a wrap to 0.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Minutes",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 65,
+          "condition": "MonoBehaviour_0 (id: 913) on GameObject 'Minutes' (fileID: 65) uses script guid 99d3f5635e2a2c94bba763a859e816ec, which matches DigitalClockValue. Scene settings map to script fields: currentValue=0, maximumValue=60, NextValue=fileID:925 (Hours DigitalClockValue), tens=fileID:893, units=fileID:895, tensValue=10, reverse=false. Trigger ChangeTimeValue 60 times to cover: (1) normal increment path (!reverse), (2) rollover branch when currentValue becomes 60 (> maximumValue-1) resetting to 0, and (3) NextValue!=null cascade invoking Hours.ChangeTimeValue() once. Each call will also exercise tens.TurnSelectedWithButton(currentValue/10) and units.TurnSelectedWithButton(currentValue%10) on their DisplaySelectedObject components.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LED Yellow Numbers",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 9,
+          "condition": "Validate MonoBehaviour_0 (id: 893) on GameObject 'LED Yellow Numbers' (fileID: 9) matches the provided DisplaySelectedObject script (m_Script guid: 1bd5b4c54e111e240aa7b6088078e1f9). Scene settings map to fields: displayOptions=[220,112,256,101,241,184,214,18,188,74], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=0. Has_Rigidbody is false, so only Trigger is applicable (Grab/Transform not allowed). This trigger forces initialization path OnEnable -> TurnOffAll() -> Activate displayOptions[currentDisplay] -> set oldDisplay=currentDisplay. To achieve full functional coverage of TurnSelectedWithButton(int) across indices 0..9, we need either: (a) the parent 'Minutes' GameObject's script (e.g., a clock incrementer) script_fileID and a parameterless method (e.g., ChangeTimeValue) that invokes TurnSelectedWithButton on this component, or (b) an EventTrigger/UnityEvent (m_Calls) on this or a related GameObject configured to call TurnSelectedWithButton with an int argument. Provide the 'Minutes' MonoBehaviour component details (script_fileID, method name) or any UnityEvent m_Calls that pass the required int. If temporalGOArrange=1 is ever used in-scene, we also need a configuration or method to toggle it to cover TemporalMethodArrangeModels/TemporalPlaceArrangeModels branch.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 893,
+                  "method_name": "OnEnable",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LED Yellow Numbers",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 24,
+          "condition": "MonoBehaviour_0 (id: 895) on GameObject 'LED Yellow Numbers' (fileID: 24) is the DisplaySelectedObject script (m_Script guid: 1bd5b4c54e111e240aa7b6088078e1f9). Scene settings map to fields: displayOptions=[39,136,99,2082198968,139,26,168,127,111,19], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=0. OnEnable should run automatically when active, executing TurnOffAll(), then enabling displayOptions[currentDisplay], and setting oldDisplay=currentDisplay. To fully cover TurnSelectedWithButton(int), we need a no-arg method elsewhere (e.g., on parent 'Minutes') or a configured UnityEvent (m_Calls) that invokes TurnSelectedWithButton with varying indices (including a no-op case where curDisp==oldDisplay and changes across 0..9). Please provide the 'Minutes' MonoBehaviour component details (script_fileID and a public no-arg method to call) or any UnityEvent m_Calls linking to this component. If testing the temporal branch is required, provide a configuration or callable method that sets temporalGOArrange=1 to cover TemporalMethodArrangeModels and TemporalPlaceArrangeModels.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LEDPoint",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 148,
+          "condition": "MonoBehaviour_0 (id: 943) on GameObject 'LEDPoint' (fileID: 148) is the DigitalClockValue script (m_Script guid: 99d3f5635e2a2c94bba763a859e816ec). Scene settings map to fields: currentValue=0, maximumValue=2, NextValue=null, tens=null, units=fileID:923 (DisplaySelectedObject), tensValue=2, reverse=false. Calls to ChangeTimeValue() should cover: (1) normal increment path (!reverse) from 0->1 invoking units.TurnSelectedWithButton(1), and (2) rollover path when currentValue exceeds maximumValue-1 (1->2) resetting to 0 and invoking units.TurnSelectedWithButton(0). Branches requiring underflow (currentValue<0), NextValue!=null cascade, or tens!=null cannot be covered with current scene configuration.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 943,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LEDPoint",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 148,
+          "condition": "Validate scene-to-script mapping: (A) Child GameObject 'LED Yellow Point' (fileID: 84) has MonoBehaviour_0 (id: 923) using script guid 1bd5b4c54e111e240aa7b6088078e1f9, which is DisplaySelectedObject. Serialized fields: displayOptions=[208,226], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=0. OnEnable (auto) will call TurnOffAll(), then enable displayOptions[0], and set oldDisplay=0. (B) Parent GameObject 'LEDPoint' (fileID: 148) has MonoBehaviour_0 (id: 943) using script guid 99d3f5635e2a2c94bba763a859e816ec, which is DigitalClockValue. Serialized fields: currentValue=0, maximumValue=2, NextValue=null, tens=null, units=fileID:923 (the DisplaySelectedObject on 'LED Yellow Point'), tensValue=2, reverse=false. Calling ChangeTimeValue() increments currentValue and invokes units.TurnSelectedWithButton(currentValue % 2). Two calls will cover: (1) normal increment path (0 -> 1) driving TurnSelectedWithButton(1), and (2) rollover path (1 -> 2 -> 0) driving TurnSelectedWithButton(0). This exercises DisplaySelectedObject's branch where curDisp != oldDisplay and toggles both options.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 943,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 163,
+          "condition": "Auto-run the per-frame controller update loop to fire events. Scene config: MonoBehaviour_1 (id=949, guid=adde9bdea083943199c7959004756e60) = GvrController with emulatorConnectionMode=USB(1). MonoBehaviour_0 (id=948, guid=7dda4bb2d5509e44e978d2bf56e25d7c) = GvrArmModel with addedElbowHeight=0, addedElbowDepth=0, pointerTiltAngle=15, fadeDistanceFromFace=0.32, tooltipMinDistanceFromFace=0.45, followGaze=DuringMotion(1), useAccelerometer=false(0). Expected behavior: OnEnable auto-starts EndOfFrame coroutine on GvrController -> UpdateController -> invokes GvrController.OnControllerUpdate each frame; GvrArmModel.Start subscribes to GvrController.OnControllerUpdate and its handler runs arm model update and then raises GvrArmModel.OnArmModelUpdate.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 163,
+          "condition": "Recenter and connected-state coverage. Requires controller provider/emulator to: (a) set controllerState.connectionState=Connected so GvrArmModel.UpdateFromController() path executes; (b) trigger a recenter sequence so GvrController.Recentered == true for one frame, which causes GvrArmModel.ResetState() at the next OnControllerUpdate. Scene config: same as above (GvrController id=949, GvrArmModel id=948). Expected events: GvrController.OnControllerUpdate fires each frame; within GvrArmModel's handler, when Recentered is observed, ResetState() is executed then normal ApplyArmModel/UpdateTransparency/UpdatePointer; GvrArmModel.OnArmModelUpdate then fires.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Inventory",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 94,
+          "condition": "Invoke Inventory.ToggleVisibility to simulate GvrController.AppButtonUp. Requirements: Inventory MonoBehaviour (fileID 985, script GUID 3652d147b24254c618ce4989e3b9003c) is enabled and a CanvasGroup component is present on the same GameObject. First call should set CanvasGroup alpha=1 and blocksRaycasts=true (show). After delay, second call should set alpha=0 and blocksRaycasts=false (hide).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 985,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 985,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "MessageText",
+          "triggerring_time": 7.5,
+          "source_object_fileID": 130,
+          "condition": "Target MonoBehaviour (id: 939) on GameObject 'MessageText' (fileID: 130) maps to script GUID 6e888d82ad62a4fd99699eeee0553755, which corresponds to ShowMessage. ShowMessage exposes one public entry point RunMessage(string) that starts a coroutine to set the UI Text and fade the parent CanvasGroup in, wait 5s, then fade out. Start() will auto-run on scene load to cache Text and CanvasGroup. However: (1) MessageText has no Rigidbody, Collider, or EventTrigger; (2) There are no UnityEvents (m_Calls) configured in the scene; (3) The only public method requires a string parameter, while this test framework only allows parameterless method calls. Therefore we cannot legally invoke RunMessage under current constraints. To achieve coverage, we need either: a) a configured UnityEvent (Button/Interactable) that invokes ShowMessage.RunMessage with a test string; or b) allowance to pass a string parameter to RunMessage; or c) an additional parameterless wrapper method on the component (e.g., RunHello) that internally calls RunMessage(\"Hello VR\"); and d) confirm the parent has a CanvasGroup and its initial alpha is 0 so the fade-in path is exercised. This Trigger reserves 7.5s to cover ~1s fade-in + 5s wait + ~1s fade-out once RunMessage is invocable.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 95,
+          "condition": "Scene meta confirms MonoBehaviour id=926 (m_Script guid=e7dcc90c2e60c4011896c7f21fc1f557) is GvrReticlePointer with settings reticleSegments=20 and reticleGrowthSpeed=8. On enable, Awake should instantiate GvrReticlePointerImpl; Start should call OnStart(), assign Renderer.material to MaterialComp, UpdateReticleProperties(), and CreateReticleVertices() (adds MeshFilter and builds mesh). During this trigger window, Update runs each frame calling UpdateReticleProperties() and reticlePointerImpl.UpdateDiameters(). This plan also sets this pointer as the active GvrPointer via public API to integrate with GvrPointerPhysicsRaycaster on Main Camera.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 926,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerPointer",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 25,
+          "condition": "Scene meta confirms MonoBehaviour id=896 (m_Script guid=f3bf9c1bacbb04f72bb43e892c3a98a9) is GvrControllerVisualManager attached to GvrControllerPointer (fileID=25). No serialized fields; default behavior. Precondition: Ensure compilation symbols enable this script (UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR)). Set GvrController.State = Disconnected BEFORE scene load so Start() reads 'Disconnected' and calls SetChildrenActive(false) on its children (Transform children fileIDs 527 and 365). Verify both children become inactive.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerPointer",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 25,
+          "condition": "At runtime, toggle controller connection to simulate state change: set GvrController.State = Connected. This exercises Update() path where isControllerConnected != wasControllerConnected and calls SetChildrenActive(true). Verify children (fileIDs 527 and 365) become active.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerPointer",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 25,
+          "condition": "Maintain a few frames with no state change to cover the no-op branch (isControllerConnected == wasControllerConnected), then toggle back to Disconnected: set GvrController.State = Disconnected. This again exercises the Update() change-detected branch and calls SetChildrenActive(false). Verify children (fileIDs 527 and 365) are inactive.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 68,
+          "condition": "Verification and initialization. MonoBehaviour id=915 on ddcontroller uses m_Script guid=aa952cbcc0eb13d4ca558b6da550ff55 (GvrControllerVisual). Serialized fields map to: touchPoint fileID=109; material_idle guid=3b4f6031d569a624ba87b631c93a788a; material_app guid=3fe59d3fe0697b84196c28c184197906; material_system guid=6c9fcd230d4724c40af9e27326dc25f1; material_touchpad guid=a89bc9f2db5f60743a95275d0336b6c2; touchTransparent guid=089662c06964d614db131b6b344431e4; touchOpaque guid=7bc1b31ae424a1448b1be6be3707ad31. No m_Calls (no UnityEvents) are defined on this component. Ensure compilation symbols enable the script: UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR). Ensure GvrArmModel.Instance is not null so Start() subscribes to OnArmModelUpdate. Precondition: ddcontroller is active.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 68,
+          "condition": "ClickButton branch. Set GvrController.ClickButton = true. Raise GvrArmModel.Instance.OnArmModelUpdate once. Expect: controllerRenderer.material = material_touchpad; touchPoint.SetActive(false); AlphaValue defaults to 1.0 so touchRenderer.material becomes touchOpaque and color.a == 1.0 via property block.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 68,
+          "condition": "AppButton branch. Set GvrController.ClickButton = false; GvrController.AppButton = true; GvrController.Recentering = false. Raise OnArmModelUpdate once. Expect: controllerRenderer.material = material_app; touchPoint.SetActive(true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 68,
+          "condition": "Recentering branch with transparency < 1.0. Set GvrController.ClickButton = false; GvrController.AppButton = false; GvrController.Recentering = true; GvrController.IsTouching = false. Set GvrControllerVisual.AlphaValue = 0.5f. Raise OnArmModelUpdate once. Expect: controllerRenderer.material = material_system; touchPoint active; touchRenderer.material = touchTransparent; both controller and touch renderer colors have a=0.5 via property blocks.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 68,
+          "condition": "Idle + touch begin and hold (scale up path). Set GvrController.ClickButton = false; GvrController.AppButton = false; GvrController.Recentering = false; GvrController.IsTouching = true; GvrController.TouchPos = (0.7, 0.3). Ensure GvrControllerVisual.AlphaValue = 1.0f. Continuously raise OnArmModelUpdate over triggerring_time to simulate frames. Expect on first frame: wasTouching toggles false->true, elapsedScaleTimeSeconds resets to 0, touchPoint.SetActive(true), localScale interpolates from zero toward TOUCHPAD_POINT_DIMENSIONS, localPosition uses TOUCHPAD_RADIUS mapping; subsequent frames increase scale toward full; touchRenderer.material = touchOpaque.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 68,
+          "condition": "Touch end (scale down path). Keep idle buttons (Click=false, App=false, Recentering=false). Set GvrController.IsTouching = false. Continuously raise OnArmModelUpdate over triggerring_time. Expect first frame after release: wasTouching true->false, elapsedScaleTimeSeconds resets to 0; scale interpolates from TOUCHPAD_POINT_DIMENSIONS toward zero across frames; touchRenderer.material remains touchOpaque because AlphaValue == 1.0.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 68,
+          "condition": "Unsubscription coverage. Destroy or deactivate ddcontroller to invoke OnDestroy(). Expect: if GvrArmModel.Instance != null, handler is removed from GvrArmModel.Instance.OnArmModelUpdate without error.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 83,
+          "condition": "Component mapping and serialization verification. Laser (fileID=83) has two MonoBehaviours: id=921 uses m_Script guid=51b65678ccdd949e9a58874d2880c0ef (GvrLaserPointer) with serialized fields laserColor=(1,1,1,0.2509804), maxLaserDistance=0.75, maxReticleDistance=2.5, reticle=fileID=176, reticleSortingOrder=32767. id=922 uses m_Script guid=4c173f7c6a736fe469d4acc5b108d6d5 (GvrArmModelOffsets) with joint=Pointer (0) and debugDrawTo=null. Ensure script compilation symbols: UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR). Ensure GvrArmModel.Instance and Camera.main are present so Start() subscriptions and assignments succeed.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 83,
+          "condition": "GvrLaserPointer initialization path. Let Awake() run to create GvrLaserPointerImpl and cache LineRenderer; verify reticle's Renderer.sortingOrder == 32767. Then Start(): call laserPointerImpl.OnStart(), set MainCamera to Camera.main, and apply initial properties via UpdateLaserPointerProperties().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 83,
+          "condition": "Public API coverage for GvrLaserPointer. Invoke SetAsMainPointer() to assign this pointer as the active GvrPointerManager.Pointer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 921,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 83,
+          "condition": "GvrLaserPointer LateUpdate path. Simulate one frame so LateUpdate() runs: UpdateLaserPointerProperties() should assign: LaserColor=(1,1,1,0.2509804), Reticle=reticle (fileID=176), MaxLaserDistance=0.75, MaxReticleDistance=2.5, PointerTransform=Laser.transform; then laserPointerImpl.OnUpdate().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 83,
+          "condition": "GvrArmModelOffsets default branch (Pointer) with null debug draw. Keep joint=Pointer (0), debugDrawTo=null. Raise GvrArmModel.Instance.OnArmModelUpdate once. Expect transform.localPosition=GvrArmModel.Instance.pointerPosition and localRotation=...pointerRotation. DrawDebugLine() early-returns because debugDrawTo==null.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 83,
+          "condition": "GvrArmModelOffsets Wrist branch with world-space debug line. Set component field joint=Wrist (1) and assign debugDrawTo to reticle (fileID=176). Ensure LineRenderer.useWorldSpace=true. Raise GvrArmModel.Instance.OnArmModelUpdate once. Expect localPosition/Rotation from wristPosition/wristRotation; DrawDebugLine() sets positions using world space: SetPosition(0, transform.position), SetPosition(1, debugDrawTo.transform.position).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 83,
+          "condition": "GvrArmModelOffsets Elbow branch with local-space debug line. Set joint=Elbow (2); keep debugDrawTo=reticle (fileID=176). Set LineRenderer.useWorldSpace=false. Raise GvrArmModel.Instance.OnArmModelUpdate once. Expect localPosition/Rotation from elbowPosition/elbowRotation; DrawDebugLine() uses local positions: SetPosition(0, Vector3.zero), SetPosition(1, transform.InverseTransformPoint(debugDrawTo.transform.position)).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 83,
+          "condition": "GvrArmModelOffsets Shoulder branch. Set joint=Shoulder (3). Raise GvrArmModel.Instance.OnArmModelUpdate once. Expect localPosition/Rotation from shoulderPosition/shoulderRotation; DrawDebugLine executes with whichever LineRenderer.useWorldSpace setting is currently active from the prior step.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 83,
+          "condition": "Unsubscription coverage. Destroy or disable Laser object to trigger OnDestroy() in GvrArmModelOffsets. Expect handler removed from GvrArmModel.Instance.OnArmModelUpdate without errors.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "TabSimple",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 36,
+          "condition": "TabSimple contains: Tab (MonoBehaviour fileID 904, guid c2bcf79fd38b2441fa17fde42cfce34d) with pagePrefab (guid e749a5bf695bb464390eb1ffd27aba4f) and cachePage=false; UIFadeTransition (MonoBehaviour fileID 903, guid a4ab599ee1dbcea41b165ae5170d9f03) configured with durationSeconds=0.25, transitionInDelaySeconds=0.1875, transitionOutDelaySeconds=0.0. Tab requires a Toggle in a ToggleGroup with a TabGroup on the group object. Triggering Tab.Open() will instantiate/enable the page and invoke UIFadeTransition.TransitionIn(Page.transform). Assumes TabSimple has an EventTrigger/Collider/Rigidbody to allow a Trigger action.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 904,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "TouchPadOutside",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2,
+          "condition": "Call public, parameterless methods on GvrTooltip (MonoBehaviour id=892; script guid=7c52851ea0de74a228fa29a84de008ba) to cover branch logic. Serialized config: location=0 (TouchPadOutside), text fileID=975, alwaysVisible=0. Expect IsTooltipInside() -> false. IsTooltipOnLeft() result depends on GvrSettings.Handedness: true when Left-handed (outside), false when Right-handed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

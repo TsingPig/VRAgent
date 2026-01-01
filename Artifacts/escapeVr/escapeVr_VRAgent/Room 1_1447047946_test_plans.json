@@ -1,0 +1,57 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Cube_salle1",
+          "source_object_fileID": 816818218,
+          "target_object_name": "collider_porte",
+          "target_object_fileID": 86838640
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 86838640,
+          "condition": "MonoBehaviour (script_fileID 8870310304005890639) on collider_porte is DoorOpenScript configured via the scene meta (openTrigger=true, myDoor must reference a valid Animator). BoxCollider (id 6650539076773276978) isTrigger=true. When a Rigidbody object tagged 'Objet1' with SnapToTrigger component (e.g., Cube_salle1 816818218) enters this trigger, DoorOpenScript.OnTriggerEnter should call SnapToTrigger.Snap, Animator.Play('DoorOpen'), disable collider_porte, and set openTrigger=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Cube_salle3 (1)",
+          "source_object_fileID": 1131040470,
+          "target_object_name": "collider_porte",
+          "target_object_fileID": 86838640
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle1",
+          "source_object_fileID": 816818218,
+          "target_position": {
+            "x": 0.05,
+            "y": 0.0,
+            "z": 0.05
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        }
+      ]
+    }
+  ]
+}

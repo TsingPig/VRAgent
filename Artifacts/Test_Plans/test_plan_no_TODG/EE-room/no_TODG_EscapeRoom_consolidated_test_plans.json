@@ -1,0 +1,5342 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgentRightHand",
+          "source_object_fileID": 1984326213,
+          "target_object_name": "XRGrabObjectInEscapeRoom",
+          "target_object_fileID": 304294
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabObjectInEscapeRoom",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 304294,
+          "condition": "Manual trigger of grab-related selectable events because scene config 'm_Calls' arrays are all empty; no automatic listeners present. Target MonoBehaviour script fileID: 304296, GUID: 0ad34abafad169848a38072baa96cdb2, serialized MovementType: Instantaneous(2), AttachEaseInTime: 0.15, ThrowOnDetach enabled. Expected public no-parameter event methods from XRGrabInteractable to be invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 304296,
+                  "method_name": "OnSelectEntering",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownTextObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 23413687,
+          "condition": "Manual trigger required because MonoBehaviour (script guid: 9541d86e2fd84c1d9990edf0852d74ab, fileID: 23413689) has no m_Calls defined in m_OnCullStateChanged; in-scene settings indicate UI text object with '=' content which may require manual state change for testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 23413689,
+                  "method_name": "OnManualTrigger",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 24002682,
+          "condition": "Manual trigger of GraphicRaycaster-related interaction in EscapeRoom.unity scene to ensure raycast functionality works under conditions with m_IgnoreReversedGraphics=1, m_BlockingObjects=None, and full LayerMask (m_Bits=4294967295). Script GUID: dc42784cf147c0c48a680349fa168899; Script fileID matches attached MonoBehaviour component 24002682.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 24002682,
+                  "method_name": "Raycast",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CanvasScaler",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 24002683,
+          "condition": "Manual trigger of CanvasScaler.Handle() to apply scaling logic according to current m_UiScaleMode=ConstantPixelSize and m_PresetInfoIsWorld=1 in EscapeRoom.unity scene. Script GUID 0cd44c1031e13a943bb63640046fad76. This ensures UI scaling is updated on demand rather than waiting for automatic preWillRenderCanvases event.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 24002683,
+                  "method_name": "Handle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeypadButton2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 28697937,
+          "condition": "Manual trigger of OnTriggerEnter in KeyDetector script (script_fileID=28697939, guid=4f1f41ed7c4cfc94d930897342a16527) when colliding with object tagged 'KeypadButton2', simulating keypad button press to test display update and CheckIfCorrect method call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 28697939,
+                  "method_name": "OnTriggerEnter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "sphere",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 28697937,
+          "condition": "MonoBehaviour component with script GUID b2271d93e3a800d4187f23bf815e8f77 (fileID 11500000) attached to GameObject ID 28697937; manual trigger of interactable event due to 'm_Calls' not being specified as auto-triggered in scene config",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyDetector",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 28697942,
+          "condition": "Manually trigger OnTriggerEnter when a Collider with tag 'KeypadButton' enters the KeyDetector's trigger zone in EscapeRoom scene. The attached script (GUID: 4f1f41ed7c4cfc94d930897342a16527) processes keypad input, updates the display, and interacts with KeyPadControll.CheckIfCorrect(). This event may not be triggered automatically in all test scenarios.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 28697942,
+                  "method_name": "OnTriggerEnter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyDetector",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 33018426,
+          "condition": "Manually trigger OnTriggerEnter in KeyDetector when collider with tag 'KeypadButton' enters; Script GUID 4f1f41ed7c4cfc94d930897342a16527; This simulates keypad button presses handled by the KeyDetector script in EscapeRoom.unity.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 33018426,
+                  "method_name": "OnTriggerEnter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 33018423,
+          "condition": "Manual trigger of interactable event from MonoBehaviour (script GUID: b2271d93e3a800d4187f23bf815e8f77, fileID: 11500000) attached to sphere object in EscapeRoom.unity. Scene meta properties indicate 'm_Calls' is tied to teleport functionality, requiring explicit activation in test.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "OnTeleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeypadButton2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 33018423,
+          "condition": "Simulate collider entry with an object tagged 'KeypadButton2' to invoke OnTriggerEnter in MonoBehaviour ID 33018431 (Script GUID: 4f1f41ed7c4cfc94d930897342a16527) and test keypad input handling, including interaction with KeyFeedback.keyHit and KeyPadControll.CheckIfCorrect.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRInteractorLineVisual",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 41270345,
+          "condition": "Manual trigger of UpdateLineVisual to test line rendering behavior with scene config (script GUID: e988983f96fe1dd48800bcdfc82f23e9, m_LineWidth=0.015, m_OverrideInteractorLineLength=1, m_StopLineAtFirstRaycastHit=1, gradients set for valid/invalid state). This will simulate explicit rendering update rather than relying on Application.onBeforeRender automatic calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 41270345,
+                  "method_name": "UpdateLineVisual",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRRayInteractor",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 41270347,
+          "condition": "Manual trigger of interaction events because MonoBehaviour component has empty m_Calls for Hover/Select events, script fileID 11500000 with GUID 6803edce0201f574f923fd9d10e5b30a. The component is currently disabled (m_Enabled=0) and would not automatically invoke interaction callbacks.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Controller (Action-based)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 41270348,
+          "condition": "Manually trigger interaction events on the controller as per MonoBehaviour ID 41270348, GUID caff514de9b15ad48ab85dcff5508221, since m_EnableInputActions is set to 0 and events tied to input actions may not fire automatically.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InputActionManager_Object",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 41270343,
+          "condition": "Manual trigger of EnableInput method from MonoBehaviour component (script GUID: 017c5e3933235514c9520e1dace2a4b2, m_ActionAssets set with fileID: -944628639613478452) to ensure input actions are enabled under specific test conditions in EscapeRoom.unity.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 41270349,
+                  "method_name": "EnableInput",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgent",
+          "source_object_fileID": 1984326213,
+          "target_object_name": "EscapeRoom_Interactable",
+          "target_object_fileID": 50810970
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EscapeRoom_Interactable",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 50810970,
+          "condition": "Manual trigger of OnSelectEntered to simulate object grab interaction; MonoBehaviour component ID 50810971; script GUID 0ad34abafad169848a38072baa96cdb2; no persistent calls configured in scene meta so manual trigger ensures test coverage",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 50810971,
+                  "method_name": "OnSelectEntered",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "EscapeRoom_Interactable",
+          "source_object_fileID": 50810970,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgentHand",
+          "source_object_fileID": 100001,
+          "target_object_name": "KeyObject",
+          "target_object_fileID": 61338475
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyObject",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 61338475,
+          "condition": "Manually invoke event to set keyHit true for MonoBehaviour script with guid ffd4469d3349eb647afb29c196c0a1d4, fileID 11500000, to test audio and color change response",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 61338478,
+                  "method_name": "",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "KeyObject",
+          "source_object_fileID": 61338475,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TeleportController",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 79813987,
+          "condition": "Manually toggle teleport mode via TeleportController to invoke onTeleportActivate UnityEvent as configured in scene meta (Script GUID: b095db2c7e1fcd24ea55dcbfd4c44ef4, fileID: 11500000). This will execute m_Calls targets including enabling/disabling XRBaseController input actions, GameObject activation/deactivation, and controller model visibility changes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 79813987,
+                  "method_name": "TeleportModeActivate",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GripActivatorObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 79813988,
+          "condition": "Manual trigger of grip activation to test disableSphere method bound in onGripActivate (script GUID: 474205c7e80edfc4384b329a9ec35a65, m_Calls target fileID: 28697940)",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 28697940,
+                  "method_name": "disableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GripActivatorObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 79813988,
+          "condition": "Manual trigger of grip cancel to test enableSphere method bound in onGripCancel (script GUID: 474205c7e80edfc4384b329a9ec35a65, m_Calls target fileID: 28697940)",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 28697940,
+                  "method_name": "enableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TextInstruction",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 88905586,
+          "condition": "Manual trigger of MonoBehaviour component (script GUID: 9541d86e2fd84c1d9990edf0852d74ab, script_fileID: 11500000) attached to GameObject to ensure instruction-related events run when variable x is created on the opposite wall. No automatic event in m_Calls, so require manual trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "OnVariableXCreated",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRSocketInteractor_Object",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 112350687,
+          "condition": "Manual trigger of SelectEntered and SelectExited events from XRSocketInteractor MonoBehaviour (script_fileID=112350689, guid=60523e0647cc6ab43acc73cb266a32a7). Scene meta settings show m_Calls for m_SelectEntered and m_SelectExited with GameObject.SetActive(bool) calls targeting fileID=470087499 to toggle visibility.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 112350689,
+                  "method_name": "SelectEntered",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 112350689,
+                  "method_name": "SelectExited",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgentHand",
+          "source_object_fileID": 200001,
+          "target_object_name": "PuzzlePiecePart2",
+          "target_object_fileID": 395096718
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "FinalPuzzleSocket",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 112350693,
+          "condition": "Manual trigger of ObjectSnapped to simulate XRSocketInteractor.selectEntered event; Script ID f85184c8ae0d47b4c853fe653d267e42; linkedPuzzleManager expects incrementFirstPart and possibly incrementSecondPart if secondPartCorrect matches.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 112350693,
+                  "method_name": "ObjectSnapped",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "PuzzlePiecePart2",
+          "source_object_fileID": 395096718,
+          "delta_position": {
+            "x": 0.05,
+            "y": 0.0,
+            "z": -0.02
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 112515761,
+          "condition": "Manually set 'keyHit' to true to trigger KeyFeedback behavior in script ID 112515767 (GUID: ffd4469d3349eb647afb29c196c0a1d4), expecting audio playback of 'keySound' and temporary green color change before reverting to original color.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 112515767,
+                  "method_name": "KeyHitTrigger",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgentHand",
+          "source_object_fileID": 1984326213,
+          "target_object_name": "EscapeRoomInteractable",
+          "target_object_fileID": 126931296
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgentHand",
+          "source_object_fileID": 1984326213,
+          "target_object_name": "EscapeRoom_GrabObject",
+          "target_object_fileID": 133773493
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EscapeRoom_GrabObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 133773493,
+          "condition": "Manual trigger for XRGrabInteractable events in case automatic grab/select does not fire. Script GUID: 0ad34abafad169848a38072baa96cdb2, m_Calls: all interaction events empty.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 133773495,
+                  "method_name": "Grab",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgent",
+          "source_object_fileID": 100000,
+          "target_object_name": "EscapeRoom_GrabObject",
+          "target_object_fileID": 161715769
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EscapeRoom_GrabObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 161715769,
+          "condition": "MonoBehaviour component with script GUID 0ad34abafad169848a38072baa96cdb2 defines XRGrabInteractable. Scene meta shows m_Calls arrays (interaction events) all empty, meaning no linked UnityEvent listeners, so triggering public grab/drop related methods manually is necessary for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 161715771,
+                  "method_name": "Grab",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "EscapeRoom_GrabObject",
+          "source_object_fileID": 161715769,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": -0.1
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "FinalDoor",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 169359321,
+          "condition": "Manual trigger of openFinalDoor() method on FinalDoor script (MonoBehaviour fileID: 169359324, GUID: d84ff1f9c82018d42a92710dbf9695df) to set canOpen = true, allowing door to open when player enters Collider.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 169359324,
+                  "method_name": "openFinalDoor",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 195114625,
+          "condition": "Manually set 'keyHit' to true in MonoBehaviour (script GUID: ffd4469d3349eb647afb29c196c0a1d4, fileID: 195114628) to simulate key interaction and test audio and color feedback logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 195114628,
+                  "method_name": "SimulateKeyHit",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 196110055,
+          "condition": "Manual trigger of raycast interaction for UI element in EscapeRoom.unity, using GraphicRaycaster MonoBehaviour component (script_fileID: 11500000, GUID: dc42784cf147c0c48a680349fa168899) with m_IgnoreReversedGraphics=1, m_BlockingObjects=None, m_BlockingMask=4294967295. This is to ensure UI elements can be interacted with under controlled conditions in tests when automatic PointerEventData is not dispatched.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 196110055,
+                  "method_name": "Raycast",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CanvasScalerObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 196110056,
+          "condition": "Manual trigger of CanvasScaler.Handle() to verify scaling behavior under specific UI scale mode and resolution settings. Script ID: 196110056, GUID: 0cd44c1031e13a943bb63640046fad76, m_UiScaleMode=0 (ConstantPixelSize), m_ReferencePixelsPerUnit=100, m_ScaleFactor=1, m_PresetInfoIsWorld=1.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 196110056,
+                  "method_name": "Handle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgent",
+          "source_object_fileID": 100000,
+          "target_object_name": "XRGrabInteractableObject",
+          "target_object_fileID": 202727933
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgent",
+          "source_object_fileID": 1000001,
+          "target_object_name": "XRGrabObject",
+          "target_object_fileID": 232174805
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 232174805,
+          "condition": "Manual trigger of OnSelectEntered event on XRGrabInteractable (script_fileID: 232174807, guid: 0ad34abafad169848a38072baa96cdb2) in cases where interaction layer mask m_Bits: 4294967295 and m_Calls list is empty so automatic calls may not occur.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 232174807,
+                  "method_name": "OnSelectEntered",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabObject",
+          "source_object_fileID": 232174805,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabObject_274050336",
+          "source_object_fileID": 274050336,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabObject_274050336",
+          "source_object_fileID": 274050336,
+          "target_position": {
+            "x": 0.5,
+            "y": 1.2,
+            "z": -0.3
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabObject_274050336",
+          "source_object_fileID": 274050336,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GrabInteractable_277179185",
+          "source_object_fileID": 277179185,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_277274598",
+          "source_object_fileID": 277274598,
+          "delta_position": {
+            "x": 0.6,
+            "y": 0.1,
+            "z": 0.7
+          },
+          "delta_rotation": {
+            "x": 20,
+            "y": 45,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabInteractable_277274598",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 277274598,
+          "condition": "Scene MonoBehaviour id 277274600 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable). All UnityEvent fields (m_OnSelectEntered/m_OnSelectExited/etc.) have empty m_Calls, so no manual event needs triggering; interactions will be raised automatically by Grab/Release.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "whilePiece",
+          "source_object_fileID": 1647075877,
+          "target_object_name": "OutsidePiece",
+          "target_object_fileID": 284814592
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "whilePiece",
+          "source_object_fileID": 1647075877,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "ifTruePiece",
+          "source_object_fileID": 298341144,
+          "target_object_name": "OutsidePiece",
+          "target_object_fileID": 284814592
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ifTruePiece",
+          "source_object_fileID": 298341144,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "ifFalsePiece",
+          "source_object_fileID": 2044387484,
+          "target_object_name": "OutsidePiece",
+          "target_object_fileID": 284814592
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ifFalsePiece",
+          "source_object_fileID": 2044387484,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_285458024",
+          "source_object_fileID": 285458024,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.5,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedback Host",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 291533635,
+          "condition": "MonoBehaviour id 291533638 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Serialized config: keySound:fileID=0, keyHit=0. Script has no public no-arg methods; Update reacts only when 'keyHit' becomes true (plays keySound via an AudioSource, sets renderer color to green, then reverts to original after ~0.1s). No m_Calls UnityEvent is present in the scene data to set keyHit automatically; an external interaction is required to toggle keyHit=true for testing.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_294570348",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 294570348,
+          "condition": "KeyFeedback requires 'keyHit' to become true to play sound and flash green. The attached component (MonoBehaviour id 294570351, m_Script guid ffd4469d3349eb647afb29c196c0a1d4, fileID 11500000) has no public no-arg method and the scene meta shows no m_Calls UnityEvents to toggle 'keyHit'. Provide an Interactable event (m_Calls) or expose a public method that sets keyHit = true so we can trigger it.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Object_294570348",
+          "source_object_fileID": 294570348,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 298341143,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 298341143,
+          "target_position": {
+            "x": 1.0,
+            "y": 1.2,
+            "z": 0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 298341143,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "TestAgentHand",
+          "source_object_fileID": 1984326213,
+          "target_object_name": "EscapeRoomInteractable",
+          "target_object_fileID": 304787152
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EscapeRoomInteractable",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 304787152,
+          "condition": "Manual trigger of OnSelectEntered event as defined by MonoBehaviour with script GUID 0ad34abafad169848a38072baa96cdb2 to ensure grab behavior executes even if interaction is not initiated by natural XR Interactor events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 304787154,
+                  "method_name": "Grab",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text_x",
+          "source_object_fileID": 312813835,
+          "delta_position": {
+            "x": 200.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Clock",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 314576052,
+          "condition": "Clock MonoBehaviour (fileID 314576056, guid 27b31662383b39d4a9c98eb14ed39152) on GameObject 314576052; serialized: time=0, clockText=314576054, BestTime=1936206876, finished=false. Manually trigger finish flow to stop timer and record best time.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Clock",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 314576052,
+          "condition": "Clock MonoBehaviour (fileID 314576056, guid 27b31662383b39d4a9c98eb14ed39152) on GameObject 314576052; serialized: time=0, clockText=314576054, BestTime=1936206876, finished=false. Manually trigger timeout flow to stop timer without recording best time.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onTimeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_318607023",
+          "source_object_fileID": 318607023,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_318607023",
+          "source_object_fileID": 318607023,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable (fileID 343767238)",
+          "source_object_fileID": 343767238,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 15.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_349218715",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 349218715,
+          "condition": "MonoBehaviour 349218716 (m_Script guid ebe465df961443d48804431d04f45f98) matches script Restart.cs on target GameObject 349218715; serialized field 'scene' = 0. No m_Calls listed in scene meta, so this event will not be invoked automatically. Expected behavior: SceneManager.LoadScene(0).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 349218716,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door (DoorAnimationEvent)",
+          "source_object_fileID": 353440278,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.6
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door (DoorAnimationEvent)",
+          "source_object_fileID": 353440278,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.6
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.7
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "AudioTrigger(GameObject) [script guid:3dc13bc17e982d54e848fac3441c08c4, componentID:353440283]",
+          "source_object_fileID": 353440278,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "AudioTrigger(GameObject) [script guid:3dc13bc17e982d54e848fac3441c08c4, componentID:353440283]",
+          "source_object_fileID": 353440278,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.6
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "AudioTrigger(GameObject) [script guid:3dc13bc17e982d54e848fac3441c08c4, componentID:353440283]",
+          "source_object_fileID": 353440278,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.6
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_354067704",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 354067704,
+          "condition": "EscapeRoom.unity: trigger KeyFeedback behavior by setting `keyHit = true` on MonoBehaviour fileID 354067707 (guid ffd4469d3349eb647afb29c196c0a1d4). Scene meta shows keySound: fileID 0 (no clip assigned) and keyHit: 0 initially. There are no public no-arg methods or m_Calls provided; this Trigger represents an external interactable event (e.g., OnSelectEnter/OnCollision) that toggles `keyHit`. Expected: on next Update when `returnColor < Time.time`, call AudioSource.PlayOneShot(keySound), set material color to green, then auto-revert to original color after ~0.1s.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 382230225,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 382230225,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": -180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_395096717",
+          "source_object_fileID": 395096717,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.1
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedback Host (EscapeRoom)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 439296336,
+          "condition": "MonoBehaviour instance 439296342 uses script GUID ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Manually set KeyFeedback.keyHit = true at t=0 to simulate a key press. Expected: on next Update, audioSource.PlayOneShot(keySound) is called (keySound is null per scene meta), material color changes to green, then reverts to original after ~0.1s. No m_Calls UnityEvents are configured in this component, so this manual trigger is required.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "inFinalRoom (guid f62a7ab4f006a5c4f8ff5342c43c441f, MonoBehaviour id 479130727)",
+          "source_object_fileID": 479130725,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "inFinalRoom",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 479130725,
+          "condition": "Manual fallback when physics-based OnTriggerEnter cannot be guaranteed; component id 479130727, script guid f62a7ab4f006a5c4f8ff5342c43c441f. Calls FinalDoor.inside() on serialized references finalDoor1(fileID=169359324) and finalDoor2(fileID=1650952632). Expected behavior: both final doors process entry.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 169359324,
+                  "method_name": "inside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1650952632,
+                  "method_name": "inside",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable",
+          "source_object_fileID": 486296661,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Teleportation Area",
+          "source_object_fileID": 515040906,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Teleportation Area",
+          "source_object_fileID": 515040906,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "IfPuzzle_Socket",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 515040906,
+          "condition": "MonoBehaviour 515040909 on GameObject 515040906 uses script GUID a4fe0afa74eee4b4d9b3c22a64e1dc6b (IfPuzzle). Serialized fields: correctPiece=fileID 0 (unassigned), linkedIfManager=fileID 0 (unassigned). The script listens to XRSocketInteractor.selectEntered/selectExited to call linkedIfManager.correctPiece()/removedPiece().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackObject",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 543214147,
+          "condition": "MonoBehaviour id 543214153 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Serialized fields: keySound=fileID 0 (None), keyHit=false. No m_Calls UnityEvents are configured in this scene meta. Manually set KeyFeedback.keyHit = true to simulate a key press; Update should detect it when returnColor < Time.time, call AudioSource.PlayOneShot(keySound) (no sound if clip is None), set renderer.material.color to green, and reset keyHit to false. renderer then reverts to original color after 0.1s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "KeyFeedbackObject",
+          "source_object_fileID": 543214147,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "CodeHintText",
+          "source_object_fileID": 546580977,
+          "delta_position": {
+            "x": 0.0,
+            "y": -3.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "CodeHintText",
+          "source_object_fileID": 546580977,
+          "delta_position": {
+            "x": 0.0,
+            "y": 3.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UnknownInteractable",
+          "source_object_fileID": 552094136,
+          "delta_position": {
+            "x": 0.3,
+            "y": 0.2,
+            "z": -0.3
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "UnknownInteractable",
+          "source_object_fileID": 552094136,
+          "target_position": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": 1.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_558555705",
+          "source_object_fileID": 558555705,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_558555705",
+          "source_object_fileID": 558555705,
+          "delta_position": {
+            "x": 0.3,
+            "y": 0.0,
+            "z": 0.3
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_558555705",
+          "source_object_fileID": 558555705,
+          "target_position": {
+            "x": 0.0,
+            "y": 0.8,
+            "z": 0.6
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackObject",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 571652021,
+          "condition": "Target MonoBehaviour fileID 571652024 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) on GameObject fileID 571652021. Serialized fields: keySound=fileID 0 (none), keyHit=false. The event we need to trigger under test conditions is any Interactable m_Calls or other component event that sets KeyFeedback.keyHit=true so Update() plays the key sound and flashes the Renderer color to green for ~0.1s, then reverts to the original color. No public parameterless methods exist on KeyFeedback, so we require the specific m_Calls/event that toggles keyHit.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "EscapeRoom_Grabbable_605135352",
+          "source_object_fileID": 605135352,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.5,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_605151683",
+          "source_object_fileID": 605151683,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.2,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 616327987,
+          "condition": "MonoBehaviour fileID 616327989 uses script guid e19747de3f5aca642ab2be37e372fb86 (UnityEngine.UI.Outline). Serialized settings match: m_EffectColor=(1,1,1,1), m_EffectDistance=(0.02,0.02), m_UseGraphicAlpha=1. No m_Calls UnityEvents present and no public no-arg methods on Outline; effect updates automatically on mesh rebuild (e.g., transform/resize).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "",
+          "source_object_fileID": 616327987,
+          "delta_position": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "",
+          "source_object_fileID": 616327987,
+          "delta_position": {
+            "x": -0.05,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Image",
+          "source_object_fileID": 616327987,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": -0.25,
+            "y": -0.25,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI_Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 616327987,
+          "condition": "Manually trigger parameterless public methods on UnityEngine.UI.Image (script_fileID 616327990, guid fe87c0e1cc204ed48ad3b37840f39efc). Scene serialization: m_Type=0 (Simple), m_FillMethod=4 (Radial360), m_FillAmount=1, m_FillClockwise=1, m_FillOrigin=0, m_Color=RGBA(0,0,0,1), m_Sprite=null, m_RaycastTarget=1. No persistent UnityEvent calls (m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty). We trigger methods to ensure behavior is exercised even without automatic events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 616327990,
+                  "method_name": "DisableSpriteOptimizations",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 616327990,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 616327987,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 616327987,
+          "condition": "GraphicRaycaster component (component fileID: 616327992) matches script guid dc42784cf147c0c48a680349fa168899 (script fileID: 11500000). Scene settings: m_IgnoreReversedGraphics=1, m_BlockingObjects=0 (None), m_BlockingMask=0xFFFFFFFF. Under these settings, UI raycasts are evaluated for on-screen graphics and are not blocked by 2D/3D physics objects. This trigger step reserves time to simulate a pointer interaction frame when EventSystem input is not automatically driving the raycaster.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 616327987,
+          "condition": "Target is MonoBehaviour 616327993 on GameObject 616327987 using script guid 0cd44c1031e13a943bb63640046fad76 (UnityEngine.UI.CanvasScaler). Scene settings: uiScaleMode=ConstantPixelSize(0), referencePixelsPerUnit=100, scaleFactor=1, referenceResolution=800x600, screenMatchMode=MatchWidthOrHeight(0), matchWidthOrHeight=0, physicalUnit=Points(3), fallbackScreenDPI=96, defaultSpriteDPI=96, dynamicPixelsPerUnit=1, presetInfoIsWorld=true. CanvasScaler automatically executes Handle()/HandleWorldCanvas in OnEnable and via Canvas.preWillRenderCanvases when it is a root Canvas in World Space; no 'm_Calls' UnityEvents are serialized for this component. This trigger step represents waiting a frame to observe the automatic scaling effects (Canvas.scaleFactor and Canvas.referencePixelsPerUnit) under the configured world-space preset.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_617416331",
+          "source_object_fileID": 617416331,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_617416331",
+          "source_object_fileID": 617416331,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_618725198",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 618725198,
+          "condition": "Target MonoBehaviour is KeyFeedback (component id 618725204, m_Script guid ffd4469d3349eb647afb29c196c0a1d4). Scene config shows keySound:fileID 0 (none) and keyHit:false. KeyFeedback has no public methods; behavior triggers when keyHit is set to true by some external event (e.g., Interactable m_Calls or another script). Expected on keyHit:true: AudioSource.PlayOneShot(keySound), color -> green for ~0.1s, then revert to original color.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_634275529",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 634275529,
+          "condition": "MonoBehaviour id 634275531 uses script guid ebe465df961443d48804431d04f45f98 (fileID 11500000), field scene=0; no m_Calls present in scene meta; manually invoke Restart.RestartGame to load scene index 0 via SceneManager.LoadScene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 634275531,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_637861110",
+          "source_object_fileID": 637861110,
+          "target_position": {
+            "x": 1.0,
+            "y": 1.2,
+            "z": 0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable(GameObject#638117857)",
+          "source_object_fileID": 638117857,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.3,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "CorrectPiece",
+          "source_object_fileID": 2134952222,
+          "target_object_name": "IfPuzzleSocketHost",
+          "target_object_fileID": 684269935
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "CorrectPiece",
+          "source_object_fileID": 2134952222,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRSocketInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 684269935,
+          "condition": "Manually fire the interactor's HoverEntered UnityEvent if hover cannot be produced via placement. MonoBehaviour fileID: 684269939 (guid: 60523e0647cc6ab43acc73cb266a32a7). Scene m_Calls: on HoverEntered -> GameObject(fileID: 1928956107).SetActive(false). Config: m_ShowInteractableHoverMeshes=1, m_SocketActive=1, m_InteractableHoverScale=1, m_RecycleDelayTime=1, m_InteractionLayers.m_Bits=4, m_AttachTransform.fileID=508113479.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRSocketInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 684269935,
+          "condition": "Manually fire the interactor's SelectEntered UnityEvent if selection cannot be produced via placement. MonoBehaviour fileID: 684269939 (guid: 60523e0647cc6ab43acc73cb266a32a7). Scene m_Calls: on SelectEntered -> GameObject(fileID: 1928956107).SetActive(false). Selection allowed when no current selection and target not selected elsewhere; recycle delay may prevent immediate re-hover.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRSocketInteractor",
+          "triggerring_time": 1.1,
+          "source_object_fileID": 684269935,
+          "condition": "After at least recycleDelayTime (1.0s) has elapsed since a remove/select-exit, verify exit events restore visibility. MonoBehaviour fileID: 684269939 (guid: 60523e0647cc6ab43acc73cb266a32a7). Scene m_Calls: on HoverExited -> GameObject(fileID: 1928956107).SetActive(true); on SelectExited -> GameObject(fileID: 1928956107).SetActive(true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Key Object",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 691591083,
+          "condition": "Manually toggle KeyFeedback.keyHit = true on the component (MonoBehaviour id: 691591086, m_Script guid: ffd4469d3349eb647afb29c196c0a1d4; serialized: keyHit: 0 -> 1). Expect: on next Update if Time.time >= internal returnColor, it plays AudioSource.PlayOneShot(keySound) (note: keySound is currently unassigned: fileID 0, so only color feedback occurs), sets renderer.material.color = Color.green, schedules revert after 0.1s, and resets keyHit = false. Verify color returns to original after ~0.1s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonVR",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 732398528,
+          "condition": "Simulate ButtonVR onPress invoked when a collider tagged 'hand' enters the trigger. Scene MonoBehaviour component id=732398528 (guid=7401fcbb2352a5d4aa45b4e4cd766f3f) has UnityEvent onPress wired via m_PersistentCalls.m_Calls to target fileID=634275531 (Restart, Assembly-CSharp) calling method RestartGame (no args), CallState=2 (enabled).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 634275531,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabInteractable@733952606",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 733952606,
+          "condition": "Manually trigger selection exit if automatic release cannot be performed. Target MonoBehaviour component fileID 733952608 (script guid 0ad34abafad169848a38072baa96cdb2) configured with MovementType=Instantaneous (2) and m_ThrowOnDetach=1; expect Drop->Detach to apply smoothed velocities. UnityEvent fields (m_OnSelectEntered/m_OnSelectExited/etc.) have empty m_Calls, so no external listeners will be invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable@733952606",
+          "source_object_fileID": 733952606,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_745994415",
+          "source_object_fileID": 745994415,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_745994415",
+          "source_object_fileID": 745994415,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 749547995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 749547995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 749547995,
+          "condition": "MonoBehaviour component fileID 749547997 on this GameObject references script guid a8a2c5194e4c1f1458096e7bee47220e (DoorAnimationEvent). No m_Calls are defined in the scene meta. Expected behavior: entering trigger sets Animator 'DoorTrigger' to open; exiting trigger invokes close after 0.5s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 756537417,
+          "target_position": {
+            "x": 0.5,
+            "y": 1.0,
+            "z": -0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 756537417,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "TextMeshProUGUI",
+          "source_object_fileID": 761057686,
+          "delta_position": {
+            "x": 0,
+            "y": -1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "TextMeshProUGUI",
+          "source_object_fileID": 761057686,
+          "delta_position": {
+            "x": 0,
+            "y": 1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRSocketInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "Simulate SelectEntered on XRSocketInteractor (script guid 60523e0647cc6ab43acc73cb266a32a7, component fileID 761734090). Scene m_SelectEntered persistent calls include: Renderer(fileID 649733117).set_enabled(false) and keyMainScript(fileID 2046914207).IncrementKeys(). We manually trigger only the no-arg MonoBehaviour method to validate side effects when automatic selection cannot be performed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRSocketInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "Simulate SelectExited on XRSocketInteractor (script guid 60523e0647cc6ab43acc73cb266a32a7, component fileID 761734090). Scene m_SelectExited persistent calls include: Renderer(fileID 649733117).set_enabled(true) and keyMainScript(fileID 2046914207).DecrementKeys(). We manually trigger only the no-arg MonoBehaviour method to validate side effects when automatic deselection cannot be performed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 773249836,
+          "delta_position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ExitDoor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 790247593,
+          "condition": "Manually invoke ExitDoor.onFinish to simulate puzzle completion. Target MonoBehaviour fileID 790247597 (m_Script guid 8b8ed8ba81bb325499339acba43c4747), with serialized Timer reference fileID 1269740007. Expected: set isOpened=true and Animator.SetTrigger('DoorTrigger'). No m_Calls found in scene config, so event will not be triggered automatically.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 790247597,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonVR",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 791172510,
+          "condition": "MonoBehaviour id 791172512 (m_Script guid 7401fcbb2352a5d4aa45b4e4cd766f3f) is ButtonVR on GameObject fileID 791172510. OnTriggerEnter with a collider tagged 'hand' calls onPress, which via scene meta m_Calls invokes Restart.RestartGame on component fileID 349218716. Manually trigger this event path to validate behavior when a 'hand' collider may not be available.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 349218716,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 797657008,
+          "target_position": {
+            "x": 1.0,
+            "y": 1.2,
+            "z": 0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 797657008,
+          "delta_position": {
+            "x": 0.3,
+            "y": 0.0,
+            "z": -0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 797657008,
+          "target_position": {
+            "x": 2.0,
+            "y": 1.0,
+            "z": -1.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 799863782,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 799863782,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": -0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRInteractorLineVisual GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 806232320,
+          "condition": "MonoBehaviour id 806232322 is XRInteractorLineVisual (script guid e988983f96fe1dd48800bcdfc82f23e9). This component has no UnityEvent m_Calls configured in scene meta and exposes no public no-arg methods. Behavior updates automatically via OnBeforeRender using ILineRenderable.GetLinePoints/TryGetHitInfo. No manual triggerable events for this component.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_806232320",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 806232320,
+          "condition": "MonoBehaviour id 806232326 (script guid 017c5e3933235514c9520e1dace2a4b2, InputActionManager) is enabled (m_Enabled=1), which auto-calls OnEnable -> EnableInput(). To validate the manual disable path, explicitly call DisableInput() to ensure all action maps in m_ActionAssets (asset guid c348712bda248c246b8c49b3db54643f) are disabled via InputActionAsset.Disable().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 806232326,
+                  "method_name": "DisableInput",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_806232320",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 806232320,
+          "condition": "After manual DisableInput(), verify re-enabling behavior by calling EnableInput() on MonoBehaviour id 806232326 (script guid 017c5e3933235514c9520e1dace2a4b2). Expect all action maps in m_ActionAssets (asset guid c348712bda248c246b8c49b3db54643f) to be enabled via InputActionAsset.Enable().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 806232326,
+                  "method_name": "EnableInput",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GrabInteractableObject",
+          "source_object_fileID": 807057805,
+          "target_position": {
+            "x": 0.25,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GrabInteractableObject",
+          "source_object_fileID": 807057805,
+          "target_position": {
+            "x": 1.0,
+            "y": 1.6,
+            "z": -0.5
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject#817914826",
+          "source_object_fileID": 817914826,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 822093423,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 822093423,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.0,
+            "z": -0.15
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BodyCollider GameObject",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 822151143,
+          "condition": "Validate mapping: MonoBehaviour id 822151145 on GameObject fileID 822151143 uses script guid 349b1e6dd63d78147bcda3eab8cc058e (BodyCollider). Serialized refs: MainCamera fileID 1241724591, feet fileID 1054322465. No public no-arg methods and no m_Calls present; lifecycle Start/Update run automatically.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "feet",
+          "source_object_fileID": 1054322465,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "BodyCollider GameObject",
+          "source_object_fileID": 822151143,
+          "delta_position": {
+            "x": -2.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackHost",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 847153210,
+          "condition": "MonoBehaviour KeyFeedback (component fileID 847153216, script guid ffd4469d3349eb647afb29c196c0a1d4) on GameObject fileID 847153210. Scene config shows keySound=fileID 0 (null) and keyHit=0; no m_Calls are defined. The event to exercise is toggling KeyFeedback.keyHit from false to true. Expected result: AudioSource.PlayOneShot(keySound) fires and the Renderer color flashes green for ~0.1s, then returns to the original color.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_851985417",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 851985417,
+          "condition": "MonoBehaviour 851985420 (script fileID 11500000, guid ffd4469d3349eb647afb29c196c0a1d4) on GameObject 851985417 matches KeyFeedback. Serialized config: keySound=fileID 0 (null), keyHit=false. No m_Calls UnityEvent entries are present in the scene meta, so no configured Interactable event will set keyHit. To test, we need a condition that sets keyHit=true (e.g., via another script or a public no-arg method) so Update() can play keySound and flash renderer color to green for ~0.1s, then revert to originalColor.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 852305644,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 852305644,
+          "delta_position": {
+            "x": 0.35,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 25.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabInteractable_Object",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 852305644,
+          "condition": "Manually force a SelectExited-like state if auto drop cannot occur (no active interactor) to validate detach/throw behavior for XRGrabInteractable. Scene MonoBehaviour fileID=852305645 (guid=0ad34abafad169848a38072baa96cdb2) with movementType=VelocityTracking (m_MovementType=2), throwOnDetach=1, m_ThrowSmoothingDuration=0.25, m_ThrowVelocityScale=1.5, m_ThrowAngularVelocityScale=1.0. All UnityEvent m_Calls (m_OnSelectEntered/m_OnSelectExited/etc.) are empty in scene, so no bound receiver methods; this manual trigger is only for state transition testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_899989818",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 899989818,
+          "condition": "MonoBehaviour component 899989824 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Serialized fields: keySound fileID=0 (no clip assigned), keyHit=false. Manually set KeyFeedback.keyHit=true under test condition (e.g., simulated key press) to validate: on next Update when returnColor < Time.time, audioSource.PlayOneShot(keySound) is called, renderer.material.color switches to green, then reverts to original after ~0.1s.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TeleportController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 900660954,
+          "condition": "EscapeRoom.unity MonoBehaviour (id:900660956, script guid:b095db2c7e1fcd24ea55dcbfd4c44ef4) matches TeleportController. With teleport=false, simulate InputAction performed on teleportActivationReference (fileID:187161793506945269, guid:c348712bda248c246b8c49b3db54643f) to invoke onTeleportActivate. Expected UnityEvent m_Calls: XRBaseController 452756136 set_enableInputActions(false) and Behaviour 452756135 set_enabled(false); XRBaseController 41270348 set_enableInputActions(true) and Behaviour 41270347 set_enabled(true); GameObject 33018423 SetActive(false); GameObject 179138242 SetActive(true); XRBaseController 452756136 set_hideControllerModel(true); Sphere (fileID:33018430) swapTeleportMode().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_900660954",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 900660954,
+          "condition": "Grip input handler gripActivate (m_Script.guid=474205c7e80edfc4384b329a9ec35a65) on MonoBehaviour id=900660957 is disabled (m_Enabled=0), so input will not invoke UnityEvents automatically. Manually trigger onGripActivate persistent call targeting Sphere.disableSphere on component fileID=33018430.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 33018430,
+                  "method_name": "disableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_900660954",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 900660954,
+          "condition": "Grip input handler gripActivate (m_Script.guid=474205c7e80edfc4384b329a9ec35a65) on MonoBehaviour id=900660957 is disabled (m_Enabled=0), so input will not invoke UnityEvents automatically. Manually trigger onGripCancel persistent call targeting Sphere.enableSphere on component fileID=33018430.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 33018430,
+                  "method_name": "enableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 930286059,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_938973847",
+          "source_object_fileID": 938973847,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_938973847",
+          "source_object_fileID": 938973847,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#947103538",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 947103538,
+          "condition": "Target MonoBehaviour component maps to TextMeshProUGUI (m_Script.fileID=11500000, guid=9541d86e2fd84c1d9990edf0852d74ab, type=3) on GameObject fileID=947103538. Serialized text='bool'. UnityEvent m_OnCullStateChanged exists with m_PersistentCalls.m_Calls=[] (no persistent listeners). Event under test: OnCullStateChanged, expected to fire when the text is culled/un-culled (e.g., moved out of or back into the canvas view).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#947103538",
+          "source_object_fileID": 947103538,
+          "delta_position": {
+            "x": 0,
+            "y": -10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#947103538",
+          "source_object_fileID": 947103538,
+          "delta_position": {
+            "x": 0,
+            "y": 10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonVR",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 948828962,
+          "condition": "MonoBehaviour id 948828964 (m_Script guid 7401fcbb2352a5d4aa45b4e4cd766f3f, ButtonVR) invokes onPress on OnTriggerEnter when collider tagged 'hand' enters. Scene m_Calls wire onPress -> LoopManager.ButtonPressed (target MonoBehaviour fileID 1250790196). onRelease has no persistent calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedback_Object",
+          "triggerring_time": 0.016,
+          "source_object_fileID": 951466313,
+          "condition": "MonoBehaviour id 951466316 uses script GUID ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Scene config: keySound.fileID=0 (no clip), keyHit=false at start, no m_Calls UnityEvents present. This script has no public no-arg methods; to test, externally set KeyFeedback.keyHit=true so that on the next Update it plays AudioSource.PlayOneShot(keySound) and sets material color=green for ~0.1s, then resets keyHit=false.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedback_Object",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 951466313,
+          "condition": "Wait for colorReturnTime (0.1s) to elapse so renderer.material.color returns to originalColor. Expectation: after ~0.1s from first trigger, color reverts; audio may be silent due to keySound=null.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 956177456,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabInteractable_Object",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 956177456,
+          "condition": "Scene MonoBehaviour id 956177458 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable). Serialized config confirms MovementType=2 (Instantaneous), trackPosition/trackRotation=true, throwOnDetach=true, attachEaseInTime=0.15. Interactable UnityEvents (m_Calls) are empty, so Select/Hover/Activate events must be exercised via interaction. Manual Trigger contains no method calls because the attached script exposes no public no-arg methods; events will be triggered by the Grab action.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 956177456,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 45.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas (GraphicRaycaster)",
+          "source_object_fileID": 956691508,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas (GraphicRaycaster)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 956691508,
+          "condition": "UnityEngine.UI.GraphicRaycaster (MonoBehaviour id 956691510, script guid dc42784cf147c0c48a680349fa168899) with m_IgnoreReversedGraphics=1, m_BlockingObjects=0 (None), m_BlockingMask=0xFFFFFFFF. Expect eventCamera to be null for ScreenSpaceOverlay, or canvas.worldCamera/Camera.main otherwise.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 956691510,
+                  "method_name": "eventCamera",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 956691508,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_CodeHint_Text",
+          "source_object_fileID": 960740010,
+          "delta_position": {
+            "x": 2.0,
+            "y": 2.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_CodeHint_Text",
+          "source_object_fileID": 960740010,
+          "delta_position": {
+            "x": -2.0,
+            "y": -2.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI_CodeHint_Text",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 960740010,
+          "condition": "MonoBehaviour component 960740012 in EscapeRoom.unity uses script fileID 11500000 guid f4688fdb7df04437aeb418b961361dc5 (TextMeshProUGUI-like). Serialized fields include m_text with the code hint. m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so there are no Interactable UnityEvent listeners to invoke. No public parameterless methods are specified in-scene for manual triggering; this placeholder documents the mapping and that no manual trigger events exist.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 967794461,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 967794461,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable (EscapeRoom)",
+          "source_object_fileID": 990976475,
+          "delta_position": {
+            "x": 0.3,
+            "y": 0.2,
+            "z": -0.1
+          },
+          "delta_rotation": {
+            "x": 15,
+            "y": 30,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject#1019422769",
+          "source_object_fileID": 1019422769,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject#1019422769",
+          "source_object_fileID": 1019422769,
+          "target_position": {
+            "x": 1.0,
+            "y": 1.2,
+            "z": 0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#1019422769",
+          "source_object_fileID": 1019422769,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 90.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GrabbableObject_1031835459",
+          "source_object_fileID": 1031835459,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.5,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1041458779",
+          "source_object_fileID": 1041458779,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyPadControll",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1060933183,
+          "condition": "MonoBehaviour 1060933185 in EscapeRoom.unity is KeyPadControll (m_Script guid 695ad83b06c34684fac24f392ff03680). Serialized config: correctCombination=4826, accessGranted=false. UnityEvent onCorrectCode has 1 PersistentCall: target GameObject fileID 822093423, method UnityEngine.GameObject.SetActive(bool) with argument true (m_CallState=2). Trigger condition: simulate entering the correct code (CheckIfCorrect(4826) => sets accessGranted=true); in Update(), onCorrectCode.Invoke() will fire automatically and then accessGranted resets to false. Expected behavior: GameObject 822093423 becomes active.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 1083849417,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 1083849417,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GrabbableObject_1088186054",
+          "source_object_fileID": 1088186054,
+          "target_position": {
+            "x": "0.0",
+            "y": "1.2",
+            "z": "0.0"
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GrabbableObject_1088186054",
+          "source_object_fileID": 1088186054,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1130596043",
+          "source_object_fileID": 1130596043,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": -50
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1130596043",
+          "source_object_fileID": 1130596043,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 50
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1155231226",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1155231226,
+          "condition": "UnityEngine.UI.GraphicRaycaster attached (MonoBehaviour id 1155231228) via script guid dc42784cf147c0c48a680349fa168899 fileID 11500000. Serialized config: m_IgnoreReversedGraphics=1, m_BlockingObjects=0 (None), m_BlockingMask.m_Bits=4294967295 (-1 no event mask set). No m_Calls UnityEvents present in this component, so there are no direct parameterless methods to invoke; pointer interactions are driven by EventSystem.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1155231226",
+          "source_object_fileID": 1155231226,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1155231226",
+          "source_object_fileID": 1155231226,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": -180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 1155231226,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_1210149929",
+          "source_object_fileID": 1210149929,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.1,
+            "z": -0.3
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 45,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UnknownInteractable (Renderer target)",
+          "source_object_fileID": 1134185475,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Socket Interactor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Manual fallback when auto SelectEntered cannot occur (e.g., due to recycle delay/layer mask). Scene MonoBehaviour id 1243741904 uses script guid 60523e0647cc6ab43acc73cb266a32a7 (XRSocketInteractor). Its m_SelectEntered.m_PersistentCalls include keyMainScript.IncrementKeys on script fileID 2046914207; call state enabled.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UnknownInteractable (Renderer target)",
+          "source_object_fileID": 1134185475,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.35
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Socket Interactor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Manual fallback when auto SelectExited cannot occur (e.g., object not properly removed or selection not owned by this interactor). Scene MonoBehaviour id 1243741904 uses script guid 60523e0647cc6ab43acc73cb266a32a7 (XRSocketInteractor). Its m_SelectExited.m_PersistentCalls include keyMainScript.DecrementKeys on script fileID 2046914207; call state enabled.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text",
+          "source_object_fileID": 1243991202,
+          "delta_position": {
+            "x": 0,
+            "y": -1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI_Text",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243991202,
+          "condition": "Target MonoBehaviour component id 1243991204 on GameObject 1243991202; script guid 9541d86e2fd84c1d9990edf0852d74ab (TextMeshProUGUI/TMP_Text). Scene meta shows m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty (no listeners). After repositioning (possible cull), force a mesh/layout refresh to validate rendering updates.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1243991204,
+                  "method_name": "ForceMeshUpdate",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text",
+          "source_object_fileID": 1243991202,
+          "delta_position": {
+            "x": 0,
+            "y": 1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedback_Host",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1249007308,
+          "condition": "MonoBehaviour component 1249007311 on GameObject 1249007308 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (fileID 11500000). Serialized: keySound fileID=0 (unset), keyHit=false. To exercise behavior, externally set KeyFeedback.keyHit=true so Update() plays keySound and flashes green, then reverts after 0.1s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedback_Host",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1249007308,
+          "condition": "Repeat: after color has reverted (returnColor gate passed), set KeyFeedback.keyHit=true again to validate it re-triggers correctly with the same serialized config (keySound still unset).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LoopManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1250790195,
+          "condition": "Invoke LoopManager.ButtonPressed on MonoBehaviour fileID 1250790196 (script GUID db10f7dcf4a9fa34393c045abf6dc5e4) attached to GameObject fileID 1250790195. Serialized config: key->fileID 1552249130, spotlight->fileID 1073180116, outsideState=0, insideState=0. No m_Calls found in scene meta; manual trigger required. Expected: with outsideState==0, key and spotlight remain inactive.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "keyPiece",
+          "source_object_fileID": 938973848,
+          "target_object_name": "InsidePieceSocket",
+          "target_object_fileID": 1255358095
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "keyPiece",
+          "source_object_fileID": 938973848,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "lightPiece",
+          "source_object_fileID": 799863783,
+          "target_object_name": "InsidePieceSocket",
+          "target_object_fileID": 1255358095
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "nothingPiece",
+          "source_object_fileID": 1338170482,
+          "target_object_name": "InsidePieceSocket",
+          "target_object_fileID": 1255358095
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "nothingPiece",
+          "source_object_fileID": 1338170482,
+          "delta_position": {
+            "x": -0.25,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRSocketInteractor GameObject",
+          "source_object_fileID": 1255358095,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRSocketInteractor GameObject",
+          "source_object_fileID": 1255358095,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.6
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRSocketInteractor GameObject",
+          "source_object_fileID": 1255358095,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRSocketInteractor GameObject",
+          "source_object_fileID": 1255358095,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable@1261474853",
+          "source_object_fileID": 1261474853,
+          "delta_position": {
+            "x": 0.3,
+            "y": 0.2,
+            "z": -0.1
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Timer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1269740005,
+          "condition": "Timer MonoBehaviour (script GUID f3d6f6fd8aa8da74282c3996ca9da30e, component fileID 1269740007) in EscapeRoom.unity. Serialized config: timeCountdown=300, StartTimer=0, myAudio=772265305, clock=314576056, tempOutOfTime=1832276387, outOfTime=0. Manually simulate the win condition to verify timer halts counting independent of trigger-collider start. Expected: sets gameDone=true; Update no longer decrements time; does not invoke clock.onTimeOut or exitDoor.onFinish.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1269740007,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1269740005",
+          "source_object_fileID": 1269740005,
+          "delta_position": {
+            "x": 1000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1269740005",
+          "source_object_fileID": 1269740005,
+          "delta_position": {
+            "x": -1000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "finalPuzzle",
+          "source_object_fileID": 1293205244,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "blocks1",
+          "source_object_fileID": 809540741,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.8
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "blocks2",
+          "source_object_fileID": 538247018,
+          "delta_position": {
+            "x": 0.4,
+            "y": 0.5,
+            "z": -0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": -10.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.8
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "blocks3",
+          "source_object_fileID": 1974232861,
+          "delta_position": {
+            "x": -0.3,
+            "y": 0.5,
+            "z": 0.3
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 20.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.8
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "code",
+          "source_object_fileID": 832259078,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "StartingSelectedInteractable",
+          "source_object_fileID": 1557924605,
+          "target_position": {
+            "x": 3.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SocketInteractor",
+          "source_object_fileID": 1308749550,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.1
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "StartingSelectedInteractable",
+          "source_object_fileID": 1557924605,
+          "target_object_name": "SocketInteractor",
+          "target_object_fileID": 1308749550
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "secondPartCorrect",
+          "source_object_fileID": 304295,
+          "target_object_name": "Socket_GameObject",
+          "target_object_fileID": 1308749550
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "secondPartCorrect",
+          "source_object_fileID": 304295,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackHost",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1312058130,
+          "condition": "MonoBehaviour fileID 1312058133 (script guid ffd4469d3349eb647afb29c196c0a1d4) attached to GameObject fileID 1312058130; serialized keyHit=false, keySound=null. No m_Calls present. Manually set KeyFeedback.keyHit=true to simulate a key hit. Expected: AudioSource.PlayOneShot(keySound) (if clip assigned), renderer color -> green, then after ~0.1s color returns to original.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackHost",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1312058130,
+          "condition": "Second rapid activation within the 0.1s gate. Set KeyFeedback.keyHit=true again before returnColor elapses to test rate-limiting. Expected: No immediate PlayOneShot (gate active), keyHit remains true until gate opens.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackHost",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1312058130,
+          "condition": "Allow time to pass beyond returnColor window while keyHit is still true. Expected: On first Update after gate opens, PlayOneShot(keySound) occurs and color flashes green again, then returns to original after ~0.1s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackHost",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1312058130,
+          "condition": "Normal spaced activation after gate. Set KeyFeedback.keyHit=true once more after >0.1s since the last activation. Expected: Immediate PlayOneShot(keySound) and color -> green, then revert after ~0.1s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyPad",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1315446518,
+          "condition": "MonoBehaviour id 1315446520 on GameObject 1315446518 uses script GUID 695ad83b06c34684fac24f392ff03680 (KeyPadControll). Scene config: correctCombination=1212, accessGranted=false. onCorrectCode has a PersistentCall targeting component fileID 1489944610, method Victory.onWin (void), CallState=2. Since KeyPadControll exposes no public no-arg method to set accessGranted or submit the code (CheckIfCorrect(int) not allowed by Trigger), we manually invoke the configured UnityEvent target to validate the win flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_1316631797",
+          "source_object_fileID": 1316631797,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1316631797",
+          "source_object_fileID": 1316631797,
+          "delta_position": {
+            "x": 0.3,
+            "y": 0.0,
+            "z": -0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 25.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door (DoorAnimationEvent)",
+          "source_object_fileID": 1331476500,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door (DoorAnimationEvent)",
+          "source_object_fileID": 1331476500,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.7
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 1338170481,
+          "target_position": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 1338170481,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.0,
+            "z": -0.15
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 90.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackObject",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1362274088,
+          "condition": "MonoBehaviour id 1362274091 (m_Script guid ffd4469d3349eb647afb29c196c0a1d4, fileID 11500000) matches KeyFeedback. Scene config shows keySound fileID 0 (null) and keyHit=false; no m_Calls present. Manually set KeyFeedback.keyHit=true once to simulate a key press. Expected: audioSource.PlayOneShot(keySound) (no sound if keySound is null) and renderer.material.color -> Color.green immediately, then auto-revert to original color after 0.1s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable Object",
+          "source_object_fileID": 1373921279,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 10.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabInteractable Object",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1373921279,
+          "condition": "Simulate select/grab interaction to validate XRGrabInteractable (MonoBehaviour fileID 1373921281, script guid 0ad34abafad169848a38072baa96cdb2) with serialized config: movementType=VelocityTracking(2), trackPosition=1, trackRotation=1, throwOnDetach=1, throwSmoothingDuration=0.25. Expect internal OnSelectEntering/Grab and OnSelectExiting/Drop/Detach to run; scene UnityEvents (m_OnSelectEntered/m_OnSelectExited etc.) have empty m_Calls and therefore produce no external side effects.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Socket Interactor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1389924503,
+          "condition": "Auto-selection on Start via XRSocketInteractor (MonoBehaviour fileID=1389924503, guid=60523e0647cc6ab43acc73cb266a32a7). The socket has m_StartingSelectedInteractable=fileID 1031835462, socketActive=1, interactionLayers.m_Bits=512, recycleDelayTime=1. This causes SelectEntered to fire; scene meta m_SelectEntered.m_PersistentCalls.m_Calls invokes GameObject (fileID=771622881).SetActive(false).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Socket Interactor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1389924503,
+          "condition": "Trigger SelectExited when the currently selected interactable (fileID=1031835462) is taken by another interactor (e.g., a Direct Interactor/hand). Note keepSelectedTargetValid=1, so removal must occur by transfer of selection to another interactor. Expected scene meta call on SelectExited: GameObject (fileID=771622881).SetActive(true).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "secondPartCorrect (Transform, fileID 2065480344)",
+          "source_object_fileID": 2065480344,
+          "target_object_name": "Socket GameObject with finalPuzzleSockets (m_GameObject fileID 1389924501, m_Script guid f85184c8ae0d47b4c853fe653d267e42)",
+          "target_object_fileID": 1389924501
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "secondPartCorrect (Transform, fileID 2065480344)",
+          "source_object_fileID": 2065480344,
+          "target_position": {
+            "x": 0.0,
+            "y": 2.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 1429191273,
+          "target_position": {
+            "x": "0",
+            "y": "1.0",
+            "z": "0"
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1462677196",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1462677196,
+          "condition": "MonoBehaviour fileID 1462677202 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Serialized fields: keySound fileID 0 (no clip assigned), keyHit = false. Scene meta shows no m_Calls UnityEvent binding. To test the behavior, an external interaction must set keyHit = true. Expected: On next Update when returnColor < Time.time, AudioSource.PlayOneShot(keySound) is invoked (no audible sound if clip is null), renderer material color becomes green, then reverts to original after ~0.1s.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UnknownText_1478817469",
+          "source_object_fileID": 1478817469,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownText_1478817469",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1478817469,
+          "condition": "TMP_Text UI component (MonoBehaviour fileID 1478817471) with script GUID 9541d86e2fd84c1d9990edf0852d74ab, m_text='5;'. m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so no automatic event; manually refresh mesh after transform.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1478817471,
+                  "method_name": "ForceMeshUpdate",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Victory",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1489944608,
+          "condition": "Call Victory.onWin on MonoBehaviour component id=1489944610 (m_Script guid=4776ee613acabb5469b6e008e6cb6b12). Serialized refs: clock->fileID 314576056, timer->fileID 1269740007, exitDoor->fileID 790247597. Precondition: Timer.outOfTime == false. Expected: Clock.onFinish(), Timer.onWin(), and ExitDoor.onFinish() are invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Victory",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1489944608,
+          "condition": "Negative path: same component id=1489944610 (m_Script guid=4776ee613acabb5469b6e008e6cb6b12), but with Timer.outOfTime == true so Victory.onWin should be a no-op. Expect no calls to Clock.onFinish(), Timer.onWin(), or ExitDoor.onFinish().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject(1497380448)",
+          "source_object_fileID": 1497380448,
+          "target_position": {
+            "x": 0.5,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#1514299899 (TextMeshProUGUI guid:9541d86e2fd84c1d9990edf0852d74ab)",
+          "source_object_fileID": 1514299899,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#1514299899 (TextMeshProUGUI guid:9541d86e2fd84c1d9990edf0852d74ab)",
+          "source_object_fileID": 1514299899,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "EscapeRoom_Grabbable",
+          "source_object_fileID": 1552249130,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "EscapeRoom_Grabbable",
+          "source_object_fileID": 1552249130,
+          "delta_position": {
+            "x": 0.6,
+            "y": 0.0,
+            "z": 0.4
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "EscapeRoom_Grabbable",
+          "source_object_fileID": 1552249130,
+          "delta_position": {
+            "x": 1.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable(GameObject)",
+          "source_object_fileID": 1557924602,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable(GameObject)",
+          "source_object_fileID": 1557924602,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.3
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable(GameObject)",
+          "source_object_fileID": 1557924602,
+          "target_position": {
+            "x": 0.8,
+            "y": 1.0,
+            "z": 0.8
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "KeyFeedbackHost",
+          "source_object_fileID": 1619357597,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedbackHost",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1619357597,
+          "condition": "EscapeRoom.unity MonoBehaviour component id 1619357600 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Serialized fields: keySound fileID 0 (none), keyHit 0. Behavior: when 'keyHit' becomes true (set by external logic/UnityEvent), Update plays AudioSource.PlayOneShot(keySound), sets renderer color to green for ~0.1s, then resets to original. No public parameterless methods exist on KeyFeedback to invoke directly; needs an external event (m_Calls) or another script to set 'keyHit = true'.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1635398362,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1635398362,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1638207398,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1638207398,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1638207398,
+          "delta_position": {
+            "x": -0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1638207398,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ifManager Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1643180047,
+          "condition": "Scene MonoBehaviour fileID 1643180049 (m_Script guid 0c72f20872f85ad4a956dfdc4f0a6197) corresponds to script ifManager. Serialized field 'key' is bound to fileID 852305644. This component has no UnityEvent m_Calls in scene data and exposes no public no-arg methods (correctPiece()/removedPiece() are internal), so it cannot be triggered directly. Intended condition: when a correct puzzle piece is placed, expect ifManager.correctPiece() to be invoked to SetActive(true) on key (852305644).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ifManager Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1643180047,
+          "condition": "Intended condition: when the correct piece is removed, expect ifManager.removedPiece() (internal) to be invoked to SetActive(false) on key (fileID 852305644). No public methods or m_Calls available to trigger directly; awaiting the upstream interaction script that calls into ifManager.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "key",
+          "source_object_fileID": 852305644,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GrabbableObject",
+          "source_object_fileID": 1646064341,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.25,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GrabbableObject",
+          "source_object_fileID": 1646064341,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GameObject_1647075876",
+          "source_object_fileID": 1647075876,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1647075876",
+          "source_object_fileID": 1647075876,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.0,
+            "z": -0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 90.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "FinalDoor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1650952629,
+          "condition": "Call public no-arg method to arm the door for opening; FinalDoor script (GUID d84ff1f9c82018d42a92710dbf9695df) on MonoBehaviour fileID 1650952632; scene meta shows this component attached and enabled; no m_Calls listed so manual trigger is needed to simulate puzzle completion that sets canOpen=true; expected: next OnTriggerEnter will set isOpened=true and Animator.SetTrigger(\"DoorTrigger\").",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1650952632,
+                  "method_name": "openFinalDoor",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "GrabInteractableObject",
+          "source_object_fileID": 1661197752,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.5,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable",
+          "source_object_fileID": 1674108137,
+          "target_position": {
+            "x": 0.5,
+            "y": 1.2,
+            "z": -0.3
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable",
+          "source_object_fileID": 1674108137,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 45.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GrabInteractable",
+          "source_object_fileID": 1696693279,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.2,
+            "z": -0.3
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 45,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "UnknownInteractor",
+          "source_object_fileID": -1,
+          "target_object_name": "XRGrabInteractable_Object",
+          "target_object_fileID": 1744078478
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 1744078478,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 1773592298,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1844490001,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Door",
+          "source_object_fileID": 1844490001,
+          "delta_position": {
+            "x": -0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.7
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_1861641131",
+          "source_object_fileID": 1861641131,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Direct Interactor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1887085101,
+          "condition": "Simulate a Select Enter event on MonoBehaviour 1887085104 (guid 4253f32900bcc4d499d675566142ded0) when an interactable is in reach. Expected UnityEvent m_SelectEntered to call Renderer.set_enabled(false) on target component fileID 314576055.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Direct Interactor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1887085101,
+          "condition": "Simulate a Select Exit event on MonoBehaviour 1887085104 (guid 4253f32900bcc4d499d675566142ded0) after a prior selection. Expected UnityEvent m_SelectExited to call Renderer.set_enabled(true) on target component fileID 314576055.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#1887085101",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1887085101,
+          "condition": "MonoBehaviour id 1887085105 uses script guid caff514de9b15ad48ab85dcff5508221 (ActionBasedController). Input tracking and actions are enabled (m_EnableInputTracking=1, m_EnableInputActions=1). Action references point to Input Action Asset guid c348712bda248c246b8c49b3db54643f for Position/Rotation/TrackingState/Select/Activate/UI press. This script exposes no public parameterless methods to invoke; interactions are driven by InputAction phases (Select/Activate/UIPress) and controller state. Awaiting child interactables or m_Calls UnityEvents to specify invokable targets.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_GO",
+          "source_object_fileID": 1887487475,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.25,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "TeleportationArea",
+          "source_object_fileID": 1907241302,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TeleportationArea",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1907241302,
+          "condition": "MonoBehaviour id 1907241303 uses script fileID 11500000, guid 38f6bf3d943ac7945842268c9ef1dca6 (UnityEngine.XR.Interaction.Toolkit.TeleportationArea). m_TeleportTrigger=0 (OnSelectEntered); when an XR Interactor selects this area with a valid RaycastHit collider, GenerateTeleportRequest sets destinationPosition=raycastHit.point and destinationRotation=this.transform.rotation. InteractionManager fileID 1984326213 set; TeleportationProvider not assigned; all UnityEvents (m_Teleporting, m_OnSelectEntered, etc.) have no persistent calls.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TerrainGroup Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1909180081,
+          "condition": "MonoBehaviour fileID 1909180083 matches script guid 0ca34a6148db2d54493f84f379293f33 (TerrainGroup). Config: GroupID=0 on GameObject fileID 1909180081. Expectation: sets Terrain.groupingID=0 for all child Terrain components.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1909180083,
+                  "method_name": "UpdateChildTerrains",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TerrainGroup Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1909180081,
+          "condition": "MonoBehaviour fileID 1909180083 matches script guid 0ca34a6148db2d54493f84f379293f33 (TerrainGroup). This call uses DestroyImmediate on all child Terrain GameObjects; run in Editor/testing context. Expectation: all child Terrain GameObjects under fileID 1909180081 are destroyed immediately.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1909180083,
+                  "method_name": "DestroyChildTerrains",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BestTime_GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1936206875,
+          "condition": "MonoBehaviour id 1936206876 on GameObject fileID 1936206875 uses script guid 2664046b114218c42bfef99a90e8522c (BestTime). No UnityEvent m_Calls are configured in the scene meta; BestTime exposes no public no-arg methods (Start is not public; checkTime(float) has a parameter). In EscapeRoom scene, Start will not display since scene != 'Hub'. No manual Triggerable method is available for this component; awaiting additional child/object info or an exposed public no-arg method to proceed.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable (guid:0ad34abafad169848a38072baa96cdb2)",
+          "source_object_fileID": 1942540303,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable (guid:0ad34abafad169848a38072baa96cdb2)",
+          "source_object_fileID": 1942540303,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI_Text_int",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1950491243,
+          "condition": "MonoBehaviour component 1950491245 on GameObject 1950491243 uses script guid 9541d86e2fd84c1d9990edf0852d74ab (TextMeshProUGUI/TMP_Text-like). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so no automatic UnityEvent callbacks; manually trigger a safe, public, parameterless refresh to validate rendering update.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1950491245,
+                  "method_name": "SetVerticesDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object",
+          "source_object_fileID": 1956010342,
+          "target_position": {
+            "x": 0.5,
+            "y": 1.0,
+            "z": 0.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object#2044387483",
+          "source_object_fileID": 2044387483,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.2,
+            "z": -0.3
+          },
+          "delta_rotation": {
+            "x": 15.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object#2044387483",
+          "source_object_fileID": 2044387483,
+          "target_position": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabInteractable_Object#2044387483",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2044387483,
+          "condition": "MonoBehaviour fileID 2044387485 uses script GUID 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable). Settings: m_MovementType=2 (Instantaneous), attachEaseInTime=0.15, throwOnDetach=1, smoothing disabled, interaction layers m_Bits=17. All UnityEvents (m_First/Last/On Hover/Select/Activate/Deactivate) have empty m_Calls; events will be produced automatically by grab/drop; no persistent handlers to invoke manually.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_2046914205",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2046914205,
+          "condition": "keyMainScript MonoBehaviour (fileID=2046914207, guid=f6ab5a15a9b2ab74b87810ad765cd14e) with numKeys=0, numKeysWin=3; finalDoor1->fileID=169359324, finalDoor2->fileID=1650952632. Expect numKeys=1; no FinalDoor.openFinalDoor() yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_2046914205",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2046914205,
+          "condition": "Precondition: numKeys=1 on keyMainScript (fileID=2046914207). After trigger, expect numKeys=2; no FinalDoor.openFinalDoor() yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_2046914205",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2046914205,
+          "condition": "Precondition: numKeys=2 on keyMainScript (fileID=2046914207). After trigger, numKeys reaches >=3 which should call FinalDoor.openFinalDoor() on finalDoor1 (fileID=169359324) and finalDoor2 (fileID=1650952632).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "EscapeRoom_GrabItem",
+          "source_object_fileID": 2065480343,
+          "target_position": {
+            "x": 0.5,
+            "y": 1.2,
+            "z": -0.3
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "EscapeRoom_GrabItem",
+          "source_object_fileID": 2065480343,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.1
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 90.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_2087223067",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2087223067,
+          "condition": "EscapeRoom.unity MonoBehaviour id=2087223070 (guid ffd4469d3349eb647afb29c196c0a1d4, script KeyFeedback). Serialized: keySound fileID=0 (none), keyHit=false. Manually cause KeyFeedback.keyHit -> true once; expected: AudioSource.PlayOneShot(keySound) and Renderer.material.color=green immediately, then auto-revert to original color after ~0.1s (colorReturnTime). Note: no public no-arg methods exposed; no m_Calls UnityEvents present in scene snippet.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyFeedback Host",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2087223367,
+          "condition": "MonoBehaviour id 2087223373 (Script guid ffd4469d3349eb647afb29c196c0a1d4) KeyFeedback: no public no-arg methods; no UnityEvent m_Calls present in scene. Behavior requires external change keyHit=true to fire audio/color; expected: PlayOneShot(keySound), color->green, revert after 0.1s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractable_Object_2089050059",
+          "source_object_fileID": 2089050059,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.3,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractable_Object_2089050059",
+          "source_object_fileID": 2089050059,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.3,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "EscapeRoom_Grabbable_2089108518",
+          "source_object_fileID": 2089108518,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.5,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "EscapeRoom_Grabbable_2089108518",
+          "source_object_fileID": 2089108518,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Interactable_2092066959",
+          "source_object_fileID": 2092066959,
+          "target_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Interactable_2092066959",
+          "source_object_fileID": 2092066959,
+          "target_position": {
+            "x": 2.0,
+            "y": 1.5,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 2101925275,
+          "target_position": {
+            "x": 0.5,
+            "y": 1.2,
+            "z": -0.3
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRGrabInteractableObject",
+          "source_object_fileID": 2101925275,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRGrabInteractableObject",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 2101925275,
+          "condition": "Verification: MonoBehaviour id 2101925277 in EscapeRoom.unity uses script GUID 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable). Serialized config matches scene meta: m_AttachEaseInTime=0.15, m_MovementType=2, trackPosition/trackRotation=true, throwOnDetach=true, smoothing disabled. All UnityEvent fields (m_Calls) are empty, so no bound events to invoke manually; selection/hover events will occur automatically during Grab/Drop.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownGameObject_2122760608",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 2122760608,
+          "condition": "EscapeRoom.unity → MonoBehaviour component id 2122760611 uses script GUID ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback). Serialized state: keySound fileID:0 (none), keyHit:false. We want to trigger the condition where KeyFeedback.keyHit becomes true (via external interaction/inspector/another script), so Update() plays the AudioClip and flashes material to green for 0.1s, then reverts to the original color.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Socket Interactor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Simulate SelectEntered UnityEvent of XRSocketInteractor to verify scene-bound calls. Source MonoBehaviour id 2124835096 uses script guid 60523e0647cc6ab43acc73cb266a32a7. Expected behavior per m_Calls: Renderer(2103973645).set_enabled(false) and keyMainScript.IncrementKeys() on component 2046914207.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Socket Interactor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Simulate SelectExited UnityEvent of XRSocketInteractor to verify scene-bound calls. Source MonoBehaviour id 2124835096 uses script guid 60523e0647cc6ab43acc73cb266a32a7. Expected behavior per m_Calls: Renderer(2103973645).set_enabled(true) and keyMainScript.DecrementKeys() on component 2046914207.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

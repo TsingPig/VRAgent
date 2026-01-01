@@ -1,0 +1,1383 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Text",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 121777188,
+          "condition": "UI Text (MonoBehaviour fileID 121777190, guid 5f7201a12d95ffc409449d95f23cf332) shows: 'Thanks for coins... Now I will teleport you. Ready?'. No m_Calls in m_OnCullStateChanged, so manually refresh the Graphic to validate render updates after coin collection/teleport prompt.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 121777190,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text",
+          "source_object_fileID": 121777188,
+          "delta_position": {
+            "x": -2000,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text",
+          "source_object_fileID": 121777188,
+          "delta_position": {
+            "x": 2000,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_271775930",
+          "source_object_fileID": 193608273,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_271775930",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 193608273,
+          "condition": "MonoBehaviour component fileID 271775933 (m_Script guid 66c63f8350cb04a2683f8606cc8d36f7, scene m_PrefabInstance 193608273). No m_Calls or script source provided; placeholder manual trigger to be bound to a public no-arg method when available.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 343541951,
+          "condition": "MonoBehaviour component 343541953 uses m_Script guid fe87c0e1cc204ed48ad3b37840f39efc (UnityEngine.UI.Image). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty (no persistent listeners). Trigger the public no-arg API to validate behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 343541953,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Unknown",
+          "source_object_fileID": 343541951,
+          "delta_position": {
+            "x": 100.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_343541951",
+          "source_object_fileID": 343541951,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 343541955,
+                  "method_name": "SetLayoutHorizontal",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 343541955,
+                  "method_name": "SetLayoutVertical",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_343541951",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 343541951,
+          "condition": "MonoBehaviour component 343541955 is UnityEngine.UI.VerticalLayoutGroup (m_Script guid: 59f8146938fff824cb5fd77236b75775, fileID: 11500000) on GameObject fileID 343541951 with settings: Padding L/R/T/B=20, ChildAlignment=0, Spacing=0, ChildForceExpandWidth/Height=1, ChildControlWidth/Height=1, ChildScaleWidth/Height=0. No m_Calls (UnityEvents) are defined, so layout methods are triggered explicitly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 343541955,
+                  "method_name": "CalculateLayoutInputHorizontal",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 343541955,
+                  "method_name": "CalculateLayoutInputVertical",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 351181021,
+          "condition": "UnityEngine.UI.Button component (MonoBehaviour fileID 351181023, m_Script guid 4e29b1a8efbd4b44bb3f3716e73f07ff) is enabled (m_Enabled=1, m_Interactable=1). Its m_OnClick.m_PersistentCalls.m_Calls targets MonoBehaviour fileID 791898217 invoking public void Restart(). Trigger to validate this configured event.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_351181021",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 351181021,
+          "condition": "UnityEngine.UI.Image component on target (component fileID 351181024, m_Script.fileID 11500000, guid fe87c0e1cc204ed48ad3b37840f39efc) with m_OnCullStateChanged.m_PersistentCalls.m_Calls = [] (no automatic listeners). Manually invoke Image.SetNativeSize() (no params) to resize to the native size of m_Sprite (fileID 10905).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 351181024,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_594625909",
+          "source_object_fileID": 594625909,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_594625909",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 594625909,
+          "condition": "MonoBehaviour id=594625911 on this GameObject has m_Script {fileID:11500000,guid:dc42784cf147c0c48a680349fa168899,type:3} with properties m_IgnoreReversedGraphics=1, m_BlockingObjects=0, and m_Bits=4294967295, which matches a UI GraphicRaycaster-like component; no m_Calls UnityEvents are present, so there are no interactable callbacks to invoke directly. Public no-arg methods (if any) are unknown from the provided data.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_594625909",
+          "source_object_fileID": 594625909,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI.Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 791121152,
+          "condition": "UnityEngine.UI.Button component (component fileID 791121154, m_Script guid 4e29b1a8efbd4b44bb3f3716e73f07ff) is enabled and m_Interactable=1; its m_OnClick.m_PersistentCalls.m_Calls[0] targets fileID 791898217 invoking public method TakeCoins() with no parameters (CallState=2).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "TakeCoins",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image",
+          "source_object_fileID": 791121152,
+          "delta_position": {
+            "x": 0,
+            "y": -2000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI Image",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 791121152,
+          "condition": "MonoBehaviour component id 791121155 in Maze.unity uses script guid fe87c0e1cc204ed48ad3b37840f39efc (UnityEngine.UI.Image). Properties match scene settings: m_RaycastTarget=1, m_Sprite(fileID=10905, builtin guid), m_Type=1, m_FillAmount=1, color=white. m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so there are no serialized Interactable events to invoke; event effects must be observed via automatic culling changes.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_791898212",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 791898212,
+          "condition": "MonoBehaviour fileID 791898216 is configured with script guid d0b148fe25e99eb48b9724523833bab1 (Unity UI EventTrigger). It registers m_Delegates eventID 4 (PointerClick) with a PersistentCall targeting fileID 791898217, method Touch, mode 1 (no args), callState 2 (RuntimeOnly). Manually trigger to simulate PointerClick when not auto-invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "Touch",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crystal",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 791898212,
+          "condition": "Simulate player entering the temple to enable clicking. Target MonoBehaviour fileID=791898217 (guid=7ec1f4a241dbe3243aed64a4afbc8b66). Expects MeshCollider to be enabled by Crystal.MakeClickable().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "MakeClickable",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crystal",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 791898212,
+          "condition": "Touch the crystal to start greeting audio and later show speech bubble when AudioSource finishes. MonoBehaviour fileID=791898217 (guid=7ec1f4a241dbe3243aed64a4afbc8b66). Serialized refs: speechBubble=594625909, dialog_hi=343541951.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "Touch",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crystal",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 791898212,
+          "condition": "Attempt to take coins. If no GameObjects with tag 'Coin' remain, Crystal.TakeCoins() should open teleport dialog (dialog_teleport=1208720665). MonoBehaviour fileID=791898217.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "TakeCoins",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crystal",
+          "triggerring_time": 4.0,
+          "source_object_fileID": 791898212,
+          "condition": "Teleport after successful coin check. Plays teleport_sound (guid=5d3186b95a5aaef4b87b7f3d2a4de69a), vibrates while playing, then shows end dialog (dialog_end=805090090) when audio stops. MonoBehaviour fileID=791898217.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crystal",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 791898212,
+          "condition": "Alternate failure path: If any GameObjects with tag 'Coin' still exist, Crystal.TakeCoins() should show dialog_fail=2058198330. MonoBehaviour fileID=791898217.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "TakeCoins",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crystal",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 791898212,
+          "condition": "Optional: Test scene restart via Crystal.Restart() which calls SceneManager.LoadScene(0). Use at the end of the suite. MonoBehaviour fileID=791898217.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_805090090",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 805090090,
+          "condition": "MonoBehaviour fileID 805090092 with m_Script guid 59f8146938fff824cb5fd77236b75775 matches a UI LayoutGroup (fields: m_Padding, m_ChildAlignment, m_Spacing, m_ChildForceExpandWidth/Height, m_ChildControlWidth/Height, m_ChildScaleWidth/Height). No m_Calls present. Manually force layout rebuild after child changes to validate layout behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 805090092,
+                  "method_name": "SetLayoutHorizontal",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 805090092,
+                  "method_name": "SetLayoutVertical",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Image",
+          "source_object_fileID": 805090090,
+          "delta_position": {
+            "x": 2000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 805090090,
+          "condition": "Call UnityEngine.UI.Image.SetNativeSize() on component 805090093 (guid fe87c0e1cc204ed48ad3b37840f39efc). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so no automatic listeners; verify the Image resizes to match its sprite's native size.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 805090093,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Image",
+          "source_object_fileID": 805090090,
+          "delta_position": {
+            "x": -2000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text",
+          "source_object_fileID": 949638655,
+          "delta_position": {
+            "x": 1000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Text",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 949638655,
+          "condition": "MonoBehaviour 949638657 on GameObject 949638655 uses m_Script guid 5f7201a12d95ffc409449d95f23cf332 (UnityEngine.UI.Text). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so no automatic persistent event is configured. Manually force a rebuild to validate UI update flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 949638657,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text",
+          "source_object_fileID": 959360376,
+          "delta_position": {
+            "x": 0,
+            "y": -800,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text",
+          "source_object_fileID": 959360376,
+          "delta_position": {
+            "x": 0,
+            "y": 800,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 969361663,
+          "condition": "MonoBehaviour component 969361668 on GameObject 969361663 (m_Script guid=d0b148fe25e99eb48b9724523833bab1, fileID=11500000, type=3, enabled=1) defines m_Delegates with eventID=4 and a PersistentCall: target fileID=1602679153, method=Open(), mode=1 (no args), callState=2 (RuntimeOnly). Manually trigger this to validate the configured interaction since code is unavailable.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1602679153,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1150098099,
+          "condition": "MonoBehaviour component id 1150098101 is UnityEngine.UI.Button (m_Script guid 4e29b1a8efbd4b44bb3f3716e73f07ff, type 3). It is Interactable (m_Interactable=1). Its m_OnClick PersistentCalls has one call: target MonoBehaviour fileID 791898217, method Restart (no params), CallState=2. Trigger to simulate a UI click to invoke Restart.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#1150098099",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1150098099,
+          "condition": "UnityEngine.UI.Image component (m_Script guid fe87c0e1cc204ed48ad3b37840f39efc) on GameObject fileID 1150098099; component fileID 1150098102. Scene shows m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so no automatic listeners; manually trigger a safe public no-arg API to validate behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1150098102,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#1150098099",
+          "source_object_fileID": 1150098099,
+          "delta_position": {
+            "x": 100.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text",
+          "source_object_fileID": 1200723378,
+          "delta_position": {
+            "x": 500,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Text",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1200723378,
+          "condition": "UnityEngine.UI.Text component (MonoBehaviour id 1200723380; m_Script guid 5f7201a12d95ffc409449d95f23cf332, fileID 11500000). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty; manually refresh the graphic to validate state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1200723380,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1208720665",
+          "source_object_fileID": 1208720665,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0.2,
+            "y": 0.2,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1208720665",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1208720665,
+          "condition": "Force a layout rebuild on the UI LayoutGroup (MonoBehaviour fileID 1208720667, script GUID 59f8146938fff824cb5fd77236b75775) after container size/content changes or if automatic layout update does not occur. This MonoBehaviour matches the scene component with m_Padding, m_ChildAlignment, m_Spacing, and ChildControl/ForceExpand settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1208720667,
+                  "method_name": "SetLayoutHorizontal",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1208720667,
+                  "method_name": "SetLayoutVertical",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image",
+          "source_object_fileID": 1208720665,
+          "delta_position": {
+            "x": 0,
+            "y": 2000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image",
+          "source_object_fileID": 1208720665,
+          "delta_position": {
+            "x": 0,
+            "y": -2000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1208720665,
+          "condition": "Target MonoBehaviour fileID 1208720668 (guid fe87c0e1cc204ed48ad3b37840f39efc, UnityEngine.UI.Image). Scene shows m_OnCullStateChanged.m_PersistentCalls.m_Calls = []. This Trigger manually invokes a public no-arg method on the attached Image to validate interaction when no automatic event calls are configured.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1208720668,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Go! (Text)",
+          "source_object_fileID": 1269205876,
+          "delta_position": {
+            "x": 10000,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Go! (Text)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1269205876,
+          "condition": "Target MonoBehaviour 1269205878 with m_Script guid 5f7201a12d95ffc409449d95f23cf332 (UnityEngine.UI.Text). This is the exact component serialized with m_Text='Go!'. m_OnCullStateChanged.m_Calls is empty; event can be auto-triggered by culling via Transform. This manual trigger forces a UI rebuild to verify no errors.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1269205878,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1602679148,
+          "condition": "MonoBehaviour component 1602679153 maps to Door script (m_Script.fileID:11500000, guid:39f8a5a2b11c2426cb2a2bea3e825751). Initial state Closed with locked=true. No m_Calls configured in scene; manual trigger required. Expect Open() to fail while locked and play open_fail_sound (guid:b6a0517e9a9d14b7b8fd6be65f68f1a5) via AudioSource.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1602679153,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1602679148,
+          "condition": "Unlock the door to allow opening. This calls Door.Unlock() on MonoBehaviour 1602679153; no parameters; requires AudioSource present for subsequent sounds.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1602679153,
+                  "method_name": "Unlock",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door",
+          "triggerring_time": 4.0,
+          "source_object_fileID": 1602679148,
+          "condition": "With locked=false and state Closed, trigger Door.Open() to start opening animation. Expect open_success_sound (guid:e5a423fc890c5445fb9c3b126422891b). Door slides along +Y at _slide_speed=2.0 toward _initial_position.y+_opened_position_offset=7.0; needs ~3.5s to reach Opened.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1602679153,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door",
+          "triggerring_time": 4.0,
+          "source_object_fileID": 1602679148,
+          "condition": "From Opened (or Opening), trigger Door.Close() to start closing. Expect same success sound. Door should slide toward initial Y at 2.0 u/s; ~3.5s to finish. Note: current script sets state to Opened at end of Closing (likely a defect); expected final state is Closed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1602679153,
+                  "method_name": "Close",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "FPS",
+          "source_object_fileID": 319845676,
+          "delta_position": {
+            "x": 1200,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1647300776",
+          "source_object_fileID": 319845676,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1647300776",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 319845676,
+          "condition": "MonoBehaviour id=1647300780 with m_Script guid=dc42784cf147c0c48a680349fa168899, m_Enabled=0, m_IgnoreReversedGraphics=1, m_BlockingObjects=0, m_BlockingMask=4294967295; m_PrefabInstance=319845676; m_GameObject=1647300776. No m_Calls UnityEvent entries found in this component; no public no-arg methods exposed to trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 319845676,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PrefabInstance_319845676",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 319845676,
+          "condition": "MonoBehaviour component 1647300783 on GameObject 1647300776 uses script guid 644076fb2b4854a72b6de9578e358b8e (m_Script fileID 11500000). No UnityEvent m_Calls present in scene meta; manually trigger the component's default public no-arg entry point if available to validate interaction response.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text: OK, take me to the beginning",
+          "source_object_fileID": 1675899442,
+          "delta_position": {
+            "x": 0.0,
+            "y": 2000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text: OK, take me to the beginning",
+          "source_object_fileID": 1675899442,
+          "delta_position": {
+            "x": 0.0,
+            "y": -2000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Text: OK, take me to the beginning",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1675899442,
+          "condition": "MonoBehaviour fileID 1675899444 on GameObject fileID 1675899442; m_Script guid 5f7201a12d95ffc409449d95f23cf332 (UnityEngine.UI.Text). m_Text='OK, take me to the beginning'. m_OnCullStateChanged.m_PersistentCalls.m_Calls = [] (no configured interactable events). This component exposes no public no-arg methods to invoke; this trigger is a placeholder to document mapping.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1698611392",
+          "source_object_fileID": 1698611392,
+          "delta_position": {
+            "x": 0,
+            "y": 1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1698611392",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1698611392,
+          "condition": "MonoBehaviour fileID 1698611394 matches UnityEngine.UI.Text (m_Script guid 5f7201a12d95ffc409449d95f23cf332, type 3) attached to GameObject fileID 1698611392. Current settings: m_RaycastTarget=1, m_Color=RGBA(1,1,1,1), m_FontSize=25, m_FontStyle=1, m_Text='Hey,\\nI can help you to get out if you give me all your coins.'. UnityEvent m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty (no persistent listeners). Event to observe/verify: OnCullStateChanged should fire automatically when the graphic becomes culled/unculled (e.g., via masking or moving off-canvas). No manual public no-arg method available to invoke; rely on state change induced by Transform actions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1698611392",
+          "source_object_fileID": 1698611392,
+          "delta_position": {
+            "x": 0,
+            "y": -1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "MazeUILayoutGroup",
+          "source_object_fileID": 2058198330,
+          "delta_position": {
+            "x": 0.0,
+            "y": 20.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "MazeUILayoutGroup",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 2058198330,
+          "condition": "MonoBehaviour fileID 2058198332 uses script guid 59f8146938fff824cb5fd77236b75775 (Unity UI LayoutGroup with padding/spacing/child control flags). No m_Calls present; manually invoke layout passes to ensure layout rebuild after transform.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2058198332,
+                  "method_name": "SetLayoutHorizontal",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 2058198332,
+                  "method_name": "SetLayoutVertical",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_2058198330",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 2058198330,
+          "condition": "MonoBehaviour 2058198333 (guid fe87c0e1cc204ed48ad3b37840f39efc, likely UnityEngine.UI.Image) is attached to GameObject 2058198330 with m_OnCullStateChanged.m_PersistentCalls.m_Calls = []. This event is auto-fired on cull state changes and has no persistent listeners or public no-arg methods to invoke manually. We will drive its automatic firing via Transform changes.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_2058198330",
+          "source_object_fileID": 2058198330,
+          "delta_position": {
+            "x": 0,
+            "y": 2000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_2058198330",
+          "source_object_fileID": 2058198330,
+          "delta_position": {
+            "x": 0,
+            "y": -2000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2120354054,
+          "condition": "UnityEngine.UI.Button (m_Script.fileID 11500000, guid 4e29b1a8efbd4b44bb3f3716e73f07ff) attached to GameObject fileID 2120354054 with m_OnClick PersistentCall: target fileID 791898217, method 'Teleport', mode=Void (1), state=Enabled (2). Trigger simulates a click to invoke Teleport.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 791898217,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_2120354054",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2120354054,
+          "condition": "MonoBehaviour component 2120354057 is UnityEngine.UI.Image (m_Script.guid=fe87c0e1cc204ed48ad3b37840f39efc) attached to GameObject 2120354054; settings match scene meta (raycastTarget=1, type=1, preserveAspect=0, fillAmount=1). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so no UnityEvent hooks to auto-trigger. Manually call a safe, public, no-arg method to validate behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2120354057,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text",
+          "source_object_fileID": 2134530802,
+          "delta_position": {
+            "x": 0,
+            "y": 1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text",
+          "source_object_fileID": 2134530802,
+          "delta_position": {
+            "x": 0,
+            "y": -1000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        }
+      ]
+    }
+  ]
+}

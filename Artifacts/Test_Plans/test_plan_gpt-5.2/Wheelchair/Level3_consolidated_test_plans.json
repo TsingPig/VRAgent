@@ -1,0 +1,121 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1269087272,
+          "condition": "Physics trigger enter on BoxCollider (id: 265568267, isTrigger: true) of Elevator (1). Ensure a Rigidbody object assigned to 'player' (fileID: 7425022) intersects the trigger so Unity invokes AttachToElevator.OnTriggerEnter on MonoBehaviour id: 265568265 (Script GUID: 077cb2d6a53b18f4ea7d76e72138fc77). Note: The scene’s MonoBehaviour settings match the provided script (player = fileID 7425022). Given the code checks (gameObject == player), and 'player' is not Elevator (1), expect no SetParent to occur.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1269087272,
+          "condition": "Physics trigger exit on BoxCollider (id: 265568267). Ensure the same Rigidbody 'player' (fileID: 7425022) exits the trigger so Unity invokes AttachToElevator.OnTriggerExit on MonoBehaviour id: 265568265 (Script GUID: 077cb2d6a53b18f4ea7d76e72138fc77). Due to (gameObject == player) check, expect no unparenting to occur.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 15099978,
+          "condition": "Simulate Player (serialized reference fileID: 7425022) entering the Elevator's trigger volume (BoxCollider id: 1067963289, isTrigger = true) to invoke AttachToElevator.OnTriggerEnter on MonoBehaviour (component id: 1067963293, script guid: 077cb2d6a53b18f4ea7d76e72138fc77). Note: At least one of the colliders (Player or Elevator) must have a Rigidbody; Elevator has no Rigidbody per scene. Also note: current script compares gameObject == player instead of other.gameObject == player, so parenting will not occur unless 'player' is set to the Elevator itself.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 15099978,
+          "condition": "Simulate Player (serialized reference fileID: 7425022) exiting the Elevator's trigger volume (BoxCollider id: 1067963289) to invoke AttachToElevator.OnTriggerExit on MonoBehaviour (component id: 1067963293, script guid: 077cb2d6a53b18f4ea7d76e72138fc77). Requires the entering condition to have happened and at least one Rigidbody between the two colliders. Due to the script's equality check (gameObject == player), unparenting logic will not execute unless 'player' is assigned to the Elevator.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1176795495,
+          "condition": "MonoBehaviour WinLose (script GUID d8624f87f98aa484bb7925103f5d458e, script asset fileID 11500000) attached to GameCondition. Serialized fields: restartdelay=2, WinUI->fileID 365561371, LoseUI->fileID 365561372 (overridden via PrefabInstance). No Collider/Rigidbody/EventTrigger present and no m_Calls defined, so manual method invocation is required to cover public no-arg methods. Expected: Winlevel() activates WinUI, loselevel() activates LoseUI, Restart() is a no-op.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 606197083,
+          "condition": "Physics trigger enter: Move any non-player object with a Rigidbody through BoxCollider id 606197088 (isTrigger: true) on platform2 (2) to invoke AttachToElevator.OnTriggerEnter on MonoBehaviour id 606197086 (script guid: 077cb2d6a53b18f4ea7d76e72138fc77, player property fileID: 7425022). Note: due to code condition if (gameObject == player), parenting will not occur, but the trigger event should still fire.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 606197083,
+          "condition": "Physics trigger exit: Move the same Rigidbody object back out of BoxCollider id 606197088 to invoke AttachToElevator.OnTriggerExit on MonoBehaviour id 606197086. Note: due to the same if (gameObject == player) condition, unparenting will not occur, but the trigger event should still fire.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1039689951,
+          "condition": "MonoBehaviour_0 in the scene references script guid f7de224e5fee443418417f9f2bfa2998 (Scoremanager). Its serialized fields align with the script: ScoreText, AmountUI, StarValue, winAmount, winlosescript, Timer. PrefabInstance overrides indicate ScoreText -> fileID 2028567966, AmountUI -> 1730453064, Timer -> 365561373, winAmount -> 4, and winlosescript -> 1176795496. The scene-level MonoBehaviour excerpt also shows winAmount '2', but the PrefabInstance modification to '4' should be the effective runtime value. No Collider, Rigidbody, or EventTrigger components are present on ScoreManager, and there are no UnityEvent m_Calls listed for it. The only public callable method in Scoremanager is changescore(int), which requires a parameter and thus cannot be invoked via this framework’s Trigger (no-arg only). Start() and Update() run automatically. To cover the branch where winlosescript.Winlevel() is called, we need either: (a) an event-wired object (e.g., star collectibles) that invokes Scoremanager.changescore with a positive int, repeated until score == winAmount (expected 4), or (b) a no-argument proxy method on any object that internally calls Scoremanager.changescore or directly calls WinLose.Winlevel(). Please provide the fileIDs and MonoBehaviour component IDs for such event sources or a no-arg wrapper to enable triggering.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

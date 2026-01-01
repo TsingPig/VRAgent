@@ -1,0 +1,1034 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1026361730,
+          "condition": "Manual invocation of PlaySoundsFromList methods on GameObject 'Audio Source' (MonoBehaviour fileID 1026361732, script GUID 76a895b5e674db04d8b4f8110c068852). Scene config: shouldLoop=false; audioClips has 2 entries (guids 3c7b3ef689cc94af0bd824489050effd and 39eeabf0f489f4e46a024aa733bf1b4b). No Rigidbody/Collider/EventTrigger present; no m_Calls in scene, so these interactions must be triggered directly to exercise code paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Box (0)",
+          "source_object_fileID": 3569975690511002028,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.25,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (0)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3569975690511002028,
+          "condition": "Manual trigger of PlayQuickSound.Play to cover the OnCollision.OnEnter m_Calls in case no collision occurs. OnCollision (script id 7040005640398465217, guid 6bf7bf2b5cedc0b4fb673b10c7900629) has OnEnter -> PlayQuickSound.Play (script id 2085702217920827848, guid 0755a2ba17a31d643b4a27e3034d8a79). BoxCollider enabled (isTrigger=false) and Rigidbody present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2085702217920827848,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 730385652,
+          "condition": "Box (1) is a PrefabInstance (guid 97e89670ed7696d489d6ddba4543a01b) under 'Boxes'. MonoBehaviour id 203819839 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject). The prefab includes a BoxCollider (no removed components), so Trigger is permitted. Manually invoke the parameterless method to cover TranslateObject.ResetToStartingPosition().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 331566651,
+          "condition": "PrefabInstance id 331566651 (guid 97e89670ed7696d489d6ddba4543a01b) under 'Boxes'. MonoBehaviour id 531403574 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject). The prefab retains its collider (m_RemovedComponents=[]), allowing Trigger per rules. Manually invoke the only parameterless public method to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1736349558,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1736349558 (guid 97e89670ed7696d489d6ddba4543a01b). MonoBehaviour id 898355187 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject). No m_Calls listed; prefab keeps default components (m_RemovedComponents=[]), so its Collider from the prefab remains, allowing manual Trigger of parameterless public methods for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1058824938,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1058824938 (guid 97e89670ed7696d489d6ddba4543a01b). MonoBehaviour id 1147109801 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this scene MonoBehaviour is the exact settings of the attached script. No m_Calls listed; prefab keeps default components (m_RemovedComponents=[]), implying its Collider remains, enabling a manual Trigger of parameterless public methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1.2,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 49734231,
+          "condition": "PrefabInstance id 49734231 (child of 'Boxes'). MonoBehaviour id 7040005640398465217 uses script guid 6bf7bf2b5cedc0b4fb673b10c7900629 (OnCollision). Its OnEnter.m_PersistentCalls.m_Calls targets MonoBehaviour id 2085702217920827848 (PlayQuickSound, guid 0755a2ba17a31d643b4a27e3034d8a79) calling Play(). BoxCollider (id 3174054499936259574) has m_IsTrigger=0, and Has_Rigidbody=True, so collisions from the Transform actions above automatically invoke OnEnter/OnExit. Additionally, Box (5) has two TranslateObject components (guid 866d134ae31a01841b6156f8d0a87054) with ids 74831552 and 1248989243; the following manual triggers call their parameterless method for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 49734231,
+          "condition": "Second TranslateObject instance on Box (5): MonoBehaviour id 1248989243 uses script guid 866d134ae31a01841b6156f8d0a87054. Manual call ensures both attached instances execute their parameterless public method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (6)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1843663307,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1843663307 (guid 97e89670ed7696d489d6ddba4543a01b). MonoBehaviour id 1124768097 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this scene MonoBehaviour is the exact settings of the attached script. Object has no Rigidbody (Has_Rigidbody=False), but the prefab keeps default components (m_RemovedComponents=[]), so its Collider from the base 'Box' prefab remains, permitting manual Trigger per rules. No m_Calls events are defined, so invoke the parameterless public method directly for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (7)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 930118958,
+          "condition": "Child of 'Boxes' via PrefabInstance id 930118958. Scene MonoBehaviour id 988422739 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this MonoBehaviour component is the exact settings of the attached script. Has_Rigidbody=False; prefab kept default components (m_RemovedComponents=[]), so collider from the base prefab is expected to remain, satisfying Trigger prerequisites. Expect ResetToStartingPosition() to set transform back to Start-captured pose.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (8)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 176049113,
+          "condition": "Child of 'Boxes' via PrefabInstance id 176049113. Scene MonoBehaviour id 1793308541 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this MonoBehaviour component is the exact settings of the attached script on this GameObject. Has_Rigidbody=False; prefab kept default components (m_RemovedComponents=[]), so its collider from the base prefab is expected to remain, satisfying Trigger prerequisites. Start() caches starting pose automatically; manually invoke the only public parameterless method to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1793308541,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (9)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1025029724,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1025029724. Scene MonoBehaviour id 1320904625 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this MonoBehaviour component is the exact settings of the attached script on this GameObject. Has_Rigidbody=False; prefab kept default components (m_RemovedComponents=[]), so its collider from the base prefab is expected to remain, satisfying Trigger prerequisites. Start() caches starting pose automatically; manually invoke the only public parameterless method to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1320904625,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 263574719,
+          "condition": "Manual call to start fade-in. Scene: Training_Prototype_Broken.unity. GameObject Canvas_Fade (fileID 263574719) has MonoBehaviour FadeCanvas (component id 263574720, script guid 969b8e08cffa4e44681eb600a8dfc099) with defaultDuration=1.0. No UnityEvent m_Calls present, so trigger manually. This short duration ensures the next call interrupts, covering StopAllCoroutines.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 263574719,
+          "condition": "Interrupt ongoing fade and perform a full default-duration fade-out to completion. Verifies StopAllCoroutines and FadeOut coroutine behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Quick fade-in using quickFadeDuration (0.25s) to verify accelerated FadeIn path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Quick fade-out using quickFadeDuration (0.25s) to verify accelerated FadeOut path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Labels",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1963046883,
+          "condition": "Manual invocation of ToggleVisibility.Toggle on MonoBehaviour id 1963046888 (guid: 064216bc04beaca4fab9a6b5d9bca977). No m_Calls configured in scene; object lacks Rigidbody/Collider/EventTrigger, so this won't trigger automatically. Expected behavior: toggles Renderer.enabled on the same GameObject; if no Renderer is present (likely for a Canvas), this may raise a NullReferenceException, which should be captured for robustness testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1963046888,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spawn Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669398301968894,
+          "condition": "Manually invoke SpawnObject.Spawn (MonoBehaviour id 131723510, guid a658f19182a575a46b14f720a8e295a7) to instantiate prefab 'Box' (fileID 6150933721197494150) at spawnPosition = Transform id 7863669398301968895. XRButton (id 3016069961412692236, guid acde65f5db6773e49ad668404cf55472) has OnPress UnityEvent with m_Calls (PlaySoundsFromList.PlayAtIndex on 1145393436748058495; GameObject.SetActive on 41552074), but we do not rely on XR hover/press to fire it.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 131723510,
+                  "method_name": "Spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box",
+          "source_object_fileID": 6150933721197494150,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2085702217920827848,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Move Down Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669397899538604,
+          "condition": "Manually invoke SpawnObject.Spawn (MonoBehaviour id 1086352045, guid a658f19182a575a46b14f720a8e295a7) on 'Move Down Button' to instantiate prefab 'Box' (fileID 6150933721197494150) at spawnPosition = Transform id 7863669397899538605. XRButton (id 3016069961546575966, guid acde65f5db6773e49ad668404cf55472) also defines OnPress UnityEvent m_Calls (TranslateObject.TranslateY(-0.1) on fileID 1718703368; PlaySoundsFromList.PlayAtIndex(1) on fileID 341662333), which require XR hover/press or parameterized calls not supported by this Trigger action.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1086352045,
+                  "method_name": "Spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Move Up Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669396577847636,
+          "condition": "Invoke SpawnObject.Spawn on 'Move Up Button' to instantiate prefab 'Box' (fileID 6150933721197494150) at spawnPosition = Transform id 7863669396577847637. MonoBehaviour mapping: SpawnObject (id 839586645, guid a658f19182a575a46b14f720a8e295a7) matches scene meta. XRButton (id 3016069959630375334, guid acde65f5db6773e49ad668404cf55472) defines OnPress UnityEvent with parameterized calls (TranslateObject.TranslateY(0.1), PlaySoundsFromList.PlayAtIndex(0)) which cannot be invoked directly via Trigger without XR interaction.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 839586645,
+                  "method_name": "Spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box",
+          "source_object_fileID": 6150933721197494150,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.2,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Controls",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1718703366,
+          "condition": "MonoBehaviour_0 (id: 1718703368) on GameObject 'Controls' maps to script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject class. Start() runs automatically at play, initializing startPos/startRot. To cover the only public no-parameter API, invoke TranslateObject.ResetToStartingPosition(). No m_Calls defined on this component; additional interactions may exist on child objects with colliders/events to drive parameterized TranslateX/Y/Z and SetLocal* methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1718703368,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Reset Button",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669397134400380,
+          "condition": "XRButton (MonoBehaviour_1 id: 3016069960143379342, guid: acde65f5db6773e49ad668404cf55472) on 'Reset Button' defines OnPress UnityEvent with persistent calls to multiple TranslateObject.ResetToStartingPosition() targets and one PlaySoundsFromList.PlayAtIndex(3). Manual XR hover/press is not available; we directly invoke the no-parameter ResetToStartingPosition() methods to mirror OnPress behavior. RemoveObjectsWithTag (MonoBehaviour_0 id: 1824525328, guid: 67ddb01715fbbc34fb1b56a1a852d398) is present but not wired in m_Calls and its RemoveObjects(string tag) cannot be invoked via Trigger (requires parameter).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Lever",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 9152294701084620516,
+          "condition": "XRLever (MonoBehaviour_0 id: 5754956525560203020, guid: e601cf28e9702c945abe3b90e7f51974) is attached to 'Lever' and matches the provided script. Its defaultValue is true, so Start() will automatically call SetValue(true), which invokes OnLeverActivate. OnLeverActivate has m_PersistentCalls to: (1) call SetOriginalLayer() on component fileID 7541936460893253790 (no parameters) and (2) call PlaySoundsFromList.PlayAtIndex(0) on component fileID 1145393436748058495. These will be triggered automatically at scene start; no manual trigger is required to cover them. To also cover OnLeverDeactivate, we need a way to toggle the lever to false (e.g., via XR selection/exit or a public no-arg API), but XRLever exposes no public parameterless method for this and we cannot drive XR controllers directly per constraints. Please provide the child objects with colliders/handles (handle id: 7509008427246001996; collider id referenced: 5238779549397348332; children: 9152294701888420776, 7509008427246001996, 3728792975646475010) or any additional public no-arg methods to invoke.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Knob",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4502080887094448763,
+          "condition": "XRKnob is confirmed: MonoBehaviour_0 (id: 774548518, guid: 65a8500fa86faa04596fb5f9d40efeae) on 'Knob'. Start() initializes rotation/value and invokes OnValueChange internally (no persistent calls in scene). To cover UnityEvent-driven audio behavior, mirror XR select interactions: OnSelectEntered -> PlayContinuousSound.Play() and OnSelectExited -> PlayContinuousSound.Pause() on script fileID 4079354613688537254. These are parameterless MonoBehaviour methods and can be invoked directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Joystick_Move",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 6324349190722330084,
+          "condition": "MonoBehaviour_0 (fileID: 3386109985877062375) on 'Joystick_Move' matches XRJoystick (guid: 754d27665ba38d44b9c1633441bdd691). It references a Collider (fileID: 6324349191716621893). Scene UnityEvents include m_SelectEntered -> PlayContinuousSound.Play and m_SelectExited -> PlayContinuousSound.Pause with target script_fileID 931956745451022772. Manually invoke these parameterless methods to simulate XR select enter/exit and cover persistent event calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Joystick_Raise",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 6324349190692529312,
+          "condition": "MonoBehaviour_0 (fileID: 3386109985780108195) on 'Joystick_Raise' matches XRJoystick (guid: 754d27665ba38d44b9c1633441bdd691). It references a Collider (fileID: 6324349191611299585). Scene UnityEvents configure m_SelectEntered -> PlayContinuousSound.Play and m_SelectExited -> PlayContinuousSound.Pause targeting script_fileID 4025780930682781986. Manually invoke these parameterless methods to simulate XR select enter/exit and cover the persistent calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 341662330,
+          "condition": "MonoBehaviour_0 (fileID: 341662333) on 'Audio Source' is PlaySoundsFromList (guid: 76a895b5e674db04d8b4f8110c068852) and requires an AudioSource (component fileID: 341662332). Scene meta shows two audio clips assigned. No Collider/Rigidbody/EventTrigger present, so these public parameterless methods must be invoked directly by the test harness to exercise behavior: PlayCurrentClip, NextClip, PreviousClip, RandomClip, PauseClip, StopClip.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Magnet (fileID: 7541936462315295362) has Rigidbody (Has_Rigidbody: true). Attached MonoBehaviours in scene match scripts: MatchRotation (script guid: ae83748d921a24c479bbf9e63dd4ea89, component id: 14, matchY=true, targetTransform fileID: 4502080888245813405), PlaySoundsFromList (guid: 76a895b5e674db04d8b4f8110c068852, component id: 1145393436748058495, shouldLoop=false, audioClips set), MoveWithVelocity (guid: 082c3f8b71935c2468a296c7e6146e9b, component id: 2093529275998283900, speed=5, origin fileID: 354555025). No UnityEvent m_Calls on Magnet; manually trigger no-parameter public methods for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Socket",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7541936460893253787,
+          "condition": "Socket (fileID: 7541936460893253787) has BoxCollider (id: 1145393438020323227, isTrigger=true). XRSocketInteractor MonoBehaviour present (component id: 8477993898470408151, script guid: 60523e0647cc6ab43acc73cb266a32a7). Interactable UnityEvents configured: m_OnSelectEntered and m_OnSelectExited each have m_Calls to PlaySoundsFromList.PlayAtIndex on Magnet's component (fileID: 1145393436748058495) with m_IntArgument=4. Manually simulate select enter/exit to ensure PlaySoundsFromList.PlayAtIndex(int) path is executed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Invoke child component methods via parent with Rigidbody to satisfy Trigger constraints. Audio Source Move (fileID: 8792796093255807276) is a child of Magnet and has MonoBehaviour PlayContinuousSound (component id: 931956745451022772, script guid: 0ab6d3e7b225a7342a0d702b6151692b) configured with sound guid f3d02eed8de884b8f8e2df103802faf5, playOnStart=false, volume=1. No UnityEvent m_Calls present on this object; manual triggering of no-parameter public methods is required for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source Raise",
+          "triggerring_time": 0.75,
+          "source_object_fileID": 1803692743623512621,
+          "condition": "MonoBehaviour_0 (id: 4025780930682781986) on 'Audio Source Raise' is PlayContinuousSound (m_Script guid: 0ab6d3e7b225a7342a0d702b6151692b). Scene meta shows sound assigned (guid: f3d02eed8de884b8f8e2df103802faf5), playOnStart=false, volume=1. No UnityEvent m_Calls are configured; manual invocation of no-parameter public methods is required to cover Play, Pause, TogglePlay, and IsPlaying paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source Rotate",
+          "triggerring_time": 0.75,
+          "source_object_fileID": 7727694622217070388,
+          "condition": "MonoBehaviour_0 (id: 4079354613688537254) on 'Audio Source Rotate' is PlayContinuousSound (m_Script guid: 0ab6d3e7b225a7342a0d702b6151692b). This MonoBehaviour component in the scene is the settings of the attached script: sound assigned (guid: f3d02eed8de884b8f8e2df103802faf5), playOnStart=false, volume=1. No UnityEvent m_Calls are configured; manual invocation of the script’s public no-parameter methods is required to cover Play, Pause, TogglePlay, and IsPlaying code paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "SceneLoad",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1907113014,
+          "condition": "Manually reload the current scene via LoadScene (MonoBehaviour_1, id=1907113017, guid=403efda511d335c4a865b0a1f33cc9e0) to ensure OnSceneLoad.OnLoad (MonoBehaviour_0, id=1907113015, guid=e9315cd1bd0bb624886da5b1f92c045e) UnityEvent is invoked. The OnLoad UnityEvent has persistent calls (m_Calls) to TeleportPlayer.Teleport (target fileID=692630298) and FadeCanvas.StartFadeOut (target fileID=263574720), which should execute upon sceneLoaded. This validates OnSceneLoad.Awake subscription, PlayEvent invocation, and UnityEvent wiring.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig ",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 692630294,
+          "condition": "Manual invocation of TeleportPlayer.Teleport() to validate teleport request queuing. Script MonoBehaviour_1 (fileID: 692630298, GUID: 9469e5ef7ce252d48a689ad38d7b5695) is enabled and serialized with anchor fileID 1702822959 and provider fileID 692630299. Expected: provider.QueueTeleportRequest() called with destination from anchor.teleportAnchorTransform.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 692630298,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig ",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 692630294,
+          "condition": "Scene meta OnButtonPress (MonoBehaviour_0, fileID: 692630297, GUID: 4a8d337e8bc7ac4498e0df29e7b8bd5e) binds XRController {Left/Right} secondaryButton to OnPress UnityEvent. OnPress has m_Calls targeting LoadScene.ReloadCurrentScene on script fileID 1907113017. Since input may not be simulated, directly trigger the persistent call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

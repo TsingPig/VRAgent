@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Target MonoBehaviour is WinLose (m_Script: fileID=11500000, guid=d8624f87f98aa484bb7925103f5d458e, type=3) attached to GameCondition. Scene config: restartdelay=2; WinUI and LoseUI serialized. PrefabInstance modifications set WinUI->fileID 852022849 and LoseUI->fileID 215505909 (expect SetActive(true) on respective UI objects). No m_Calls in scene; manual trigger required. Has_Rigidbody: False; collider presence not specified.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Invoke Lose UI path on WinLose to cover loselevel(); expect LoseUI.SetActive(true). Same component: guid d8624f87f98aa484bb7925103f5d458e, script_fileID 4225679855366766214.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Invoke Restart() on WinLose to complete method coverage; method is no-op in current implementation. Same component: guid d8624f87f98aa484bb7925103f5d458e, script_fileID 4225679855366766214.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 738895513262049453,
+          "condition": "Manual invocation to simulate the win condition because Scoremanager.changescore(int) cannot be triggered via Trigger (it requires a parameter) and the object has no Collider/Rigidbody/EventTrigger. Call WinLose.Winlevel() (referenced by ScoreManager.winlosescript with objectReference fileID 93502226) to verify the win path that Scoremanager would call when score == winAmount (configured winAmount = 2). Start() and Update() run automatically to set AmountUI and update Timer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 93502226,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

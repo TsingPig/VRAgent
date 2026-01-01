@@ -1,0 +1,161 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1538632858,
+          "condition": "MonoBehaviour id 829909757 (guid 1b862119da8709d4e9055a3c441a7bb4) on GameObject id 829909756 is the 'room3' script. doorAnim (Animator fileID 1865011923) and winton (AudioSource fileID 829909759) are serialized in the scene. Child 'Sender' has a BoxCollider and LaserBeamSender MonoBehaviour id 5803819061987961593 (guid fe963bb06f1c63d4fa78e077220a709b). Manually invoke room3.SetLaser() once to simulate sender disconnect. Expected: laser1=true; door remains closed; no audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 807270095,
+          "condition": "Second manual sender simulation. 'Sender (1)' also has LaserBeamSender (MonoBehaviour id 5803819061987961593, guid fe963bb06f1c63d4fa78e077220a709b). Call room3.SetLaser() again. In room3.Update(), when (laser1 && laser2 && !doorOpen) becomes true, doorAnim.Play('DoorOpen',0,0.0f) on Animator id 1865011923 and winton.Play() on AudioSource id 829909759 should run once; doorOpen=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Receiver",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 307824527,
+          "condition": "Simulate LaserBeamSender hitting an object tagged 'Receiver' (CompareTag('Receiver') branch). Invoke room3.DesactivateLaser() on MonoBehaviour id 829909757. Expected: laser1=false if it was true; doorOpen remains true; no further animation/audio due to Update guard.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Receiver (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1764688939,
+          "condition": "Simulate subsequent disconnect (non-Receiver branch) by calling room3.SetLaser() again on MonoBehaviour id 829909757 after door is open. Expected: laser1 becomes true again if it was false; doorOpen already true prevents re-triggering door animation/audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1538632858,
+          "condition": "Coverage for additional script on Room 3: MonoBehaviour id 829909760 (guid e9bec2616c6206946b1a15b3faa151c2) is QuitGame attached to GameObject id 829909756. Invoke ExitGame() -> Application.Quit().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909760,
+                  "method_name": "ExitGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Cube Interactable",
+          "source_object_fileID": 1131040470,
+          "target_position": {
+            "x": 34.9,
+            "y": 11.4,
+            "z": 16.3
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube Interactable",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1131040470,
+          "condition": "MonoBehaviour id 5374773463603666079 (guid 2723dba42bd113044ad231906b498006) attached to this GameObject is SnapToTrigger. Call Snap(Vector3 trigger_pos). After Snap(): XRGrabInteractable and XRGeneralGrabTransformer disabled, Rigidbody constraints FreezeAll, isSnapped=true and the cube rotates around local Y each Update.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5374773463603666079,
+                  "method_name": "Snap",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Cube Interactable",
+          "source_object_fileID": 1448143134,
+          "target_position": {
+            "x": 34.6,
+            "y": 11.4,
+            "z": 16.6
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube Interactable",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1448143134,
+          "condition": "MonoBehaviour id 5374773463603666079 (guid 2723dba42bd113044ad231906b498006) attached to this GameObject is SnapToTrigger. Call Snap(Vector3 trigger_pos) to snap and lock the second cube as well. Same postconditions as above.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5374773463603666079,
+                  "method_name": "Snap",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

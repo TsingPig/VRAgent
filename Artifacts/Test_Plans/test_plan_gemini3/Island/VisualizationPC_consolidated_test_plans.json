@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Scene confirms MonoBehaviour_0 is HouseController (m_Script guid: 340adb04e4e259e4b9c3e716ea2e6ced) attached to House. Serialized fields match the script: windowGlassObjects=[821553098795559414,821553099003664447,821553098404871707,821553099487161785], lightsOnEmissionColor=(27.53272,7.6399693,0,0), lightsOffEmissionColor=(0.26855642,0.5613641,0.6698113,0), lightStatus=false, switchSound component=821553098848002450. No UnityEvent m_Calls are defined on this object. Start() already calls changeLights() automatically on load; this manual trigger calls the public no-arg method changeLights() to verify emission color application and _EMISSION keyword enabling on all window materials. Expected result: each windowGlassObject Renderer.material _EmissionColor equals lightsOffEmissionColor (since currentLightStatus is false) and no AudioSource plays (switchSound.Play() is only invoked when Update() detects lightStatus toggled).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

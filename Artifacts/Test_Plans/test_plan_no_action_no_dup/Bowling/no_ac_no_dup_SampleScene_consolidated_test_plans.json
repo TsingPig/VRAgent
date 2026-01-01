@@ -1,0 +1,114 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (1)",
+          "triggerring_time": 5.2,
+          "source_object_fileID": 127885129,
+          "condition": "Invoke OnTriggerEnter on Plane (1) by having a Collider tagged 'Ball' enter its MeshCollider (isTrigger=1, convex=1). The attached MonoBehaviour (fileID 127885130, script GUID 9cde80f2fe6fe6e47b57eb962721c06f, class OtherLaneController) will run as a coroutine: yield 5 seconds, then if other.tag == 'Ball', read BallSoundController.peso (float) and pesoEnKgs (int) from the entering object, Destroy it, and call private GeneraBola() to set those values on bolaPrefab (prefab guid 1be75124d3e50ad4997a90e0d8d1fe74, sub-fileID 424594858964415916), call changePeso(), Instantiate at aparicionBola (Transform fileID 165335085), and AddForce to its Rigidbody. Preconditions: the entering collider must have component BallSoundController and tag 'Ball'; bolaPrefab must include BallSoundController and a Rigidbody.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 5.2,
+          "source_object_fileID": 1620417930,
+          "condition": "MonoBehaviour fileID 1620417931 (script GUID 9cde80f2fe6fe6e47b57eb962721c06f) on GameObject 'Plane (2)' matches the provided OtherLaneController script settings (aparicionBola=fileID 165335085, bolaPrefab guid 1be75124d3e50ad4997a90e0d8d1fe74). Trigger OnTriggerEnter(Collider other) coroutine on its MeshCollider trigger (id 1620417933, isTrigger=true) by entering with a Collider tagged 'Ball' that has BallSoundController (with fields peso, pesoEnKgs). Expectation after 5 seconds wait: destroy the entering ball, then GeneraBola(bolaPrefab, pesoEnKgs, peso) is invoked; instantiate bolaPrefab at aparicionBola position/rotation and apply Rigidbody.AddForce(new Vector3(1,0,0)*1.5, Impulse).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 5.2,
+          "source_object_fileID": 1620417930,
+          "condition": "Negative path for coverage: Trigger OtherLaneController.OnTriggerEnter with a Collider NOT tagged 'Ball'. After the 5-second wait, the if (other.tag == 'Ball') condition fails; no destruction or instantiation occurs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 385680589,
+          "condition": "MonoBehaviour_0 (guid: 8817b2a8c34ba5d4d941beaf47d0be6f) matches script Mirar with fields {canvas, camaraAMirar}. At Start camaraAMirar = Camera.main. This trigger tests enabling and disabling the Canvas through public methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "Mira",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "Para",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 385680589,
+          "condition": "MonoBehaviour_1 (guid: 8fcde7f4195eca944bfe1e2addf5338a) matches script BallSoundController with fields {peso=0.7, pesoEnKgs=7, textoPeso(fileID:4278895081965267523)}. This trigger forces changePeso() to set Rigidbody.mass and update the TMP text to '7KG'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "changePeso",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        }
+      ]
+    }
+  ]
+}

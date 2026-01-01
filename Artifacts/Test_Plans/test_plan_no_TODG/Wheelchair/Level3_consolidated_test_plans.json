@@ -1,0 +1,166 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 265568263,
+          "condition": "Level3.unity MonoBehaviour id 265568265 on GameObject fileID 265568263 uses script GUID 077cb2d6a53b18f4ea7d76e72138fc77 (AttachToElevator). Serialized field 'player' -> fileID 7425022. No UnityEvent m_Calls present; behavior relies on physics OnTriggerEnter/OnTriggerExit.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 265568263,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 265568263,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 606197084,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 606197084,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 606197084,
+          "condition": "MonoBehaviour component id 606197086 on GameObject 606197084 uses script guid 077cb2d6a53b18f4ea7d76e72138fc77 (AttachToElevator). Serialized field 'player' references fileID 7425022. No UnityEvent m_Calls present. Intended behavior: when the elevator's trigger overlaps the player, OnTriggerEnter should parent the player to the elevator, and OnTriggerExit should unparent. Current code checks 'gameObject == player' which may prevent parenting; this plan moves the elevator to naturally trigger these events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 1067963286,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 1067963286,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        }
+      ]
+    }
+  ]
+}

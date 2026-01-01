@@ -1,0 +1,164 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1094190421,
+          "condition": "Allow Timeout.Start() on MonoBehaviour (fileID: 1094190426, guid: 9da68a9b408a56a4294168dd4694f0dc) to start coroutine ExecuteAfterTime(60). After WaitForSeconds(60), it should call canvas.SetActive(false). No m_Calls (UnityEvents) are defined on this object. This covers the coroutine path.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1094190421,
+          "condition": "Simulate the input condition Input.GetButtonDown('Fire1') while Canvas is active so that Timeout.Update() (MonoBehaviour fileID: 1094190426) executes and calls canvas.SetActive(false). Note: Canvas has no Rigidbody/Collider/EventTrigger and the script has no public parameterless methods to invoke directly; this action represents an input simulation. If the previous task already deactivated the Canvas, a scene reset or reactivation is required before running this.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1677032915,
+          "condition": "GvrReticlePointer (MonoBehaviour fileID 723926960, script guid e7dcc90c2e60c4011896c7f21fc1f557) is active and enabled. Start() already executed so MaterialComp is initialized from an attached Renderer and mesh created. Default serialized settings from scene: raycastMode=0 (Hybrid), maxReticleDistance=20, reticleSegments=20, reticleGrowthSpeed=8, reticleSortingOrder=32767. This trigger simulates a click press and release on the pointer to cover click handlers and material update.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickDown",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickUp",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 543585960,
+          "condition": "Invoke SoundPlayer.PlaySound then SpawnPaper.spawn on prefab instance (m_PrefabInstance fileID 543585960) under parent 'Models' to cover both scripts. MonoBehaviour_1 (id: 698430411) matches SoundPlayer{ source: fileID 2093747358, sound: guid 5bf50410f355a654e91279204bd96587 }. MonoBehaviour_0 (id: 698430408) matches SpawnPaper{ clip: guid 5bf50410f355a654e91279204bd96587, paperToSpawn: fileID 8817731074829524137 (prefab 'Paper'), position: fileID 1038081565 }. No UnityEvent m_Calls are defined in scene; methods must be called directly. Wait at least AudioClip.length before verifying instantiation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430411,
+                  "method_name": "PlaySound",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Paper",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 8817731074829524137,
+          "condition": "Interact with the instantiated 'Paper' prefab (fileID 8817731074829524137) after it spawns to validate presence/activation and any Collider/EventTrigger-driven reactions. Requires that 'Paper' has a Collider or EventTrigger in the prefab to satisfy Trigger preconditions.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 1054453170,
+          "condition": "Call RunPC.TogglePC twice to cover both StartPC() and ShutDownPC() branches. MonoBehaviour_0 (id: 759145567) in scene maps to script RunPC with fields: canvas=fileID 1480975538, source=fileID 1768927072, StartSound=guid c7ed05b156a403a42b5d91316854e42d, EndSound=guid 33e37c2c5603b534a84188086a3b9147. No UnityEvent m_Calls present; invoke public methods directly on prefab instance (m_PrefabInstance fileID 1054453170) under parent 'Models'. Wait to allow audio state to update before toggling off.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1873334408,
+          "condition": "Call PlayTV.ToggleVisibility twice to cover both visibility states (true then false). MonoBehaviour_0 (id: 154554978) in scene matches script PlayTV with field mapping: canvas=fileID 1417754200. This MonoBehaviour is attached to the prefab instance (m_PrefabInstance fileID 1873334408) under parent 'Models'. No UnityEvent m_Calls are defined; invoke the public method directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "MoonController",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 227156925,
+          "condition": "Manually trigger MonoBehaviour events for MoonController (Script GUID: 243873248f8e3f6468b009a9e2d86557, fileID: 11500000) to ensure rotation updates toward 'player' transform (fileID: 1121179986) occur on demand rather than only per-frame Update.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VisualizationPC_Image",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 523606595,
+          "condition": "Manual triggering of interactable event for MonoBehaviour with script GUID 'fe87c0e1cc204ed48ad3b37840f39efc', fileID 11500000. Scene configuration shows m_Calls list is empty, so no persistent events are bound to m_OnCullStateChanged. Use trigger to simulate behavior that may not fire automatically.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 523606597,
+                  "method_name": "OnCullStateChanged",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VisualizationPC_Light",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 561238572,
+          "condition": "Manual trigger of light-related behavior for MonoBehaviour with script GUID 474bcb49853aa07438625e644c072ee6 (fileID 11500000). The scene meta shows this MonoBehaviour is controlling additional light shadow resolution and light layer mask — likely requiring explicit test to verify custom shadow/layer setup.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 561238574,
+                  "method_name": "OnLightSettingsChanged",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GlobalPostProcessing",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 873894588,
+          "condition": "Manually trigger the event on the MonoBehaviour component with script GUID 172515602e62fb746b5d573b38a5fe58 and fileID 11500000, as the scene meta file indicates an 'm_Calls' style interaction may be present but no source script is provided. This component is globally enabled (m_IsGlobal=1) and uses shared profile GUID 136bc7d29c193c347bf083a12c1b0afe. Event triggering required to ensure post-processing behavior runs under specified test conditions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "OnPostProcessEvent",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1677746319,
+          "condition": "Manual trigger of MonoBehaviour (script GUID: 474bcb49853aa07438625e644c072ee6, fileID: 11500000) attached to GameObject fileID: 1677746319 in scene 'VisualizationPC.unity'. No m_Calls auto-events detected; must invoke public method(s) without parameters under certain test conditions to validate script behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "PublicMethodNamePlaceholder",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown_Object_1791719575",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1791719575,
+          "condition": "MonoBehaviour component (fileID: 1791719577, guid: dc42784cf147c0c48a680349fa168899) contains m_Calls configuration that represents Interactable events; these should be manually triggered to test interactions when automatic triggers are not guaranteed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1791719577,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CanvasScaler_Object",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1791719575,
+          "condition": "Manual triggering of UI event bound to MonoBehaviour script (fileID: 11500000, GUID: 0cd44c1031e13a943bb63640046fad76) of CanvasScaler component in VisualizationPC.unity scene. Trigger needed because no automatic interaction is defined in m_Calls, and testing requires validation of public method(s) tied to the MonoBehaviour with given serialization configuration.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1791719578,
+                  "method_name": "OnUIScaleChange",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

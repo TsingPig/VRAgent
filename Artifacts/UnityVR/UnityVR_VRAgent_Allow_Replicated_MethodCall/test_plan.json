@@ -1,0 +1,319 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHandController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 0,
+          "condition": "Simulate Input.GetButtonDown('Fire1') while Canvas (fileID 1094190421) is active so that Timeout.Update() runs and calls canvas.SetActive(false). The MonoBehaviour component with id 1094190426 (Script GUID 9da68a9b408a56a4294168dd4694f0dc) in the scene file corresponds to the provided Timeout script and has its 'canvas' field referencing fileID 1094190421.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TestAgent",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 0,
+          "condition": "Allow Start() to automatically invoke StartCoroutine(ExecuteAfterTime(60)) on Timeout (MonoBehaviour id 1094190426, Script GUID 9da68a9b408a56a4294168dd4694f0dc) attached to 'Canvas' (fileID 1094190421). After WaitForSeconds(60), ExecuteAfterTime will call canvas.SetActive(false). No manual method calls are performed; this waits for the automatically triggered event to complete.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "EventSystem",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1446812202,
+          "condition": "Draft plan for manual invocation of public, parameterless methods on GvrPointerInputModule (MonoBehaviour fileID 1446812204, GUID fcd4baceb58cc40c98e500572bede6a6). Scene config: vrModeOnly=false, scrollInput.inertia=1, scrollInput.decelerationRate=0.05. Precondition: EventSystem.current exists and is this object. Note: To satisfy the framework’s Trigger interaction constraint (requires Rigidbody/Collider/EventTrigger), either attach a temporary EventTrigger component to the EventSystem for testing, or specify a valid controller/source object with a Collider/EventTrigger; otherwise this Trigger is conceptual only. Expected behavior: ShouldActivate/ShouldActivateModule evaluate activation, Process performs per-frame processing and event dispatch if a pointer and raycasters are present, Deactivate tears down module state, GetBaseEventData returns a BaseEventData instance.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1446812204,
+                  "method_name": "ShouldActivateModule",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1446812204,
+                  "method_name": "ShouldActivate",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1446812204,
+                  "method_name": "Process",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1446812204,
+                  "method_name": "GetBaseEventData",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1446812204,
+                  "method_name": "Deactivate",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1677032915,
+          "condition": "MonoBehaviour (id: 723926960, GUID: e7dcc90c2e60c4011896c7f21fc1f557) in scene.unity corresponds to script GvrReticlePointer attached to GameObject fileID 1677032915. Scene config: raycastMode=Camera(0), maxReticleDistance=20, reticleSegments=20, reticleGrowthSpeed=8, reticleSortingOrder=32767. This manual trigger aims to validate UpdateDiameters behavior (material properties _InnerDiameter, _OuterDiameter, _DistanceInMeters) after Awake/Start set initial angles and MaterialComp. Note: Trigger actions require Rigidbody/Collider/EventTrigger; current object shows Has_Rigidbody=false and no Collider/EventTrigger listed—add a Collider or EventTrigger if needed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1677032915,
+          "condition": "Simulate click cycle on GvrReticlePointer to cover pointer click handlers. MonoBehaviour (id: 723926960, GUID: e7dcc90c2e60c4011896c7f21fc1f557). These are public, parameterless methods. Note: OnPointerEnter/OnPointerHover/OnPointerExit require RaycastResult/objects and are typically auto-fired by GvrPointerInputModule; they are not manually triggered here due to parameter constraints. Trigger actions require Rigidbody/Collider/EventTrigger; current object shows Has_Rigidbody=false and no Collider/EventTrigger listed—add a Collider or EventTrigger if needed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickDown",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickUp",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "MainCamera",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1486385203,
+          "condition": "MonoBehaviour id=1486385207 (GUID eb5dd43baba2d4dc1bab789615567e3d) on MainCamera corresponds to GvrPointerPhysicsRaycaster, derived from GvrBasePointerRaycaster. Trigger the parameterless public method GetLastRay() to retrieve the last computed pointer ray. Preconditions for meaningful coverage: EventSystem with GvrPointerInputModule present; GvrPointerInputModule.Pointer available and configured so eventCamera != null. Variations to cover branches (need scene info/child colliders): pointer null (covers early-return paths), Hybrid vs Direct/Camera modes, radius > 0 vs == 0 via pointer.CurrentPointerRadius, hit count 0 vs >0 vs == MaxRaycastHits, and delta < distanceFromStart. Note: MainCamera currently has no Rigidbody/Collider/EventTrigger; if the framework enforces Triggerable constraints, attach a temporary EventTrigger or target a child with a Collider.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1486385207,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 543585960,
+          "condition": "MonoBehaviour_1 (id: 698430411) in scene meta is the settings for SoundPlayer (m_Script guid: 71e616354a0b0cd47a7526ce46ba3eaf) attached to this GameObject. Serialized refs: AudioSource fileID: 2093747358, AudioClip guid: 5bf50410f355a654e91279204bd96587. Expected: source.clip = sound; source.Play().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430411,
+                  "method_name": "PlaySound",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 543585960,
+          "condition": "MonoBehaviour_0 (id: 698430408) in scene meta is the settings for SpawnPaper (m_Script guid: c3441e8102712e94eb08515cc7e18fb8) attached to this GameObject. Serialized refs: clip (guid: 5bf50410f355a654e91279204bd96587), paperToSpawn prefab (fileID: 8817731074829524137 'Paper'), position (fileID: 1038081565). Expected: StartCoroutine waits clip.length seconds, then Instantiate(Paper) at position.transform.position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1054453170,
+          "condition": "MonoBehaviour_0 (id: 759145567) in scene meta is the settings for RunPC (m_Script guid: d40707984c8c8654a8e7422e0d85449f) attached to this GameObject. Serialized refs: canvas (fileID: 1480975538), source (AudioSource fileID: 1768927072), StartSound (guid: c7ed05b156a403a42b5d91316854e42d), EndSound (guid: 33e37c2c5603b534a84188086a3b9147). First call covers StartPC(): canvas.SetActive(true); source.clip = StartSound; source.Play(); Isvisible = true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1054453170,
+          "condition": "Second TogglePC() call on RunPC (MonoBehaviour_0 id: 759145567) to cover ShutDownPC(): canvas.SetActive(false), play EndSound, Isvisible=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1054453170,
+          "condition": "Second TogglePC() call on RunPC (MonoBehaviour_0 id: 759145567) to cover ShutDownPC(): canvas.SetActive(false); source.clip = EndSound; source.Play(); Isvisible = false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1873334408,
+          "condition": "MonoBehaviour_0 (id: 154554978) in scene meta is the settings for PlayTV (m_Script guid: d39ba5afdc055594f8b27d3626aef4f5) attached to this GameObject. Serialized ref: canvas (fileID: 1417754200). First call covers toggling visibility from false to true: Isvisible becomes true; canvas.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1873334408,
+          "condition": "Second ToggleVisibility() call on PlayTV (MonoBehaviour_0 id: 154554978) to cover toggling back to false: Isvisible becomes false; canvas.SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Player",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1625246633,
+          "condition": "MonoBehaviour component (id=1625246635, guid=4b480839cc4455844a007a3d6fa53445, script Autowalk) is enabled with serialization config: speed=2, walkWhenTriggered=false, walkWhenLookDown=true, thresholdAngle=45, freezeYPosition=false, yOffset=0. Simulate mainCamera.transform.eulerAngles.x being set within [thresholdAngle=45, RIGHT_ANGLE=90], e.g., 60 degrees. Expect Update() to set isWalking=true and movement to occur via transform.Translate(...) using projected camera forward and speed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Logo",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1035906841,
+          "condition": "Manually trigger StartGame() from MonoBehaviour component (script ID 11500000, GUID c1ceb0bd42f671d408c3d38e45a789af, nextSceneName=VisualizationPC, timeDuration=4.25) to bypass automatic Invoke delay.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1035906843,
+                  "method_name": "StartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LogoUIRoot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1575173857,
+          "condition": "Manual trigger of MonoBehaviour with Script GUID dc42784cf147c0c48a680349fa168899 to execute its public no-parameter method; MonoBehaviour id 1575173859, FileID 11500000, m_Calls present for interactable events; ensure interaction when automatic UI event may not occur.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1575173859,
+                  "method_name": "OnClick",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LogoUIRoot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1575173860,
+          "condition": "Manual trigger of UI event bound to MonoBehaviour with script GUID 0cd44c1031e13a943bb63640046fad76, to ensure the attached Canvas/Logo UI logic is executed regardless of automatic scene load conditions",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1575173860,
+                  "method_name": "OnLogoAnimationComplete",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LogoImage",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1938501907,
+          "condition": "MonoBehaviour component (script GUID: fe87c0e1cc204ed48ad3b37840f39efc, script_fileID: 11500000) attached to LogoImage has an event list 'm_Calls' that is currently empty. No automatic triggers defined, therefore manual trigger is required to test initialization/update methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1938501907,
+                  "method_name": "OnLogoDisplayed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

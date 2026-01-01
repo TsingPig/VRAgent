@@ -1,0 +1,78 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 821553099666843527,
+          "condition": "HouseController (MonoBehaviour guid: 340adb04e4e259e4b9c3e716ea2e6ced) is attached to House. Scene config matches script fields: windowGlassObjects[4], lightsOnEmissionColor, lightsOffEmissionColor, lightStatus=false (default), switchSound -> component fileID 821553098848002450. This step explicitly invokes the public no-arg method to apply currentLightStatus=false emission to all windowGlassObjects.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Before triggering, set HouseController.lightStatus = true (via inspector, UI binding, or another game event). Expected: in Update(), currentLightStatus != lightStatus, so currentLightStatus becomes true, changeLights() is called automatically, and switchSound.Play() is invoked. This wait allows Update to run.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Before triggering, set HouseController.lightStatus = false (via inspector, UI binding, or another game event). Expected: in Update(), currentLightStatus != lightStatus, so currentLightStatus becomes false, changeLights() is called automatically to set lightsOffEmissionColor, and switchSound.Play() is invoked. This wait allows Update to run.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Island",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1300569560,
+          "condition": "Proceed only if GameObject 'Island' (fileID 1300569560) has a Collider, an EventTrigger component, or its attached MonoBehaviour (component fileID 1300569562) exposes UnityEvents (m_Calls) or public no-arg methods. The scene snippet did not include the MonoBehaviour serialization or any Collider/EventTrigger, so we need the exact serialized MonoBehaviour (fileID 1300569562) including script class/assembly/GUID, its UnityEvent m_Calls, and any public no-parameter methods; plus confirmation of Collider presence and Has_Event_Trigger flag. If none exist on 'Island', provide the component details for its children to identify a triggerable target.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

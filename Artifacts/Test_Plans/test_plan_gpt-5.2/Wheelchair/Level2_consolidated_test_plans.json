@@ -1,0 +1,321 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Cause any other Collider with a Rigidbody to ENTER the Elevator's BoxCollider (IsTrigger=1) so Unity physics invokes AttachToElevator.OnTriggerEnter on Elevator. Script: AttachToElevator (MonoBehaviour fileID=4942415221793979109, m_Script guid=077cb2d6a53b18f4ea7d76e72138fc77). Note: Scene shows 'player' field is null; and the code checks if (gameObject == player), so the SetParent branch will not execute unless the 'player' reference equals this Elevator.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Cause the same Rigidbody collider to EXIT the Elevator's BoxCollider so Unity physics invokes AttachToElevator.OnTriggerExit on Elevator. Script: AttachToElevator (MonoBehaviour fileID=4942415221793979109). Note: Due to the same (gameObject == player) check and null 'player' reference, the 'player.transform.parent = null' branch will not execute unless the 'player' reference equals this Elevator.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 283832887,
+          "condition": "Manual invoke to simulate win condition on GameCondition. MonoBehaviour fileID=283832888, script GUID=d8624f87f98aa484bb7925103f5d458e (WinLose). Serialized fields: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. Expected: WinUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 283832887,
+          "condition": "Manual invoke to simulate lose condition on GameCondition. MonoBehaviour fileID=283832888, script GUID=d8624f87f98aa484bb7925103f5d458e (WinLose). Serialized fields: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. Expected: LoseUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 283832887,
+          "condition": "Manual invoke to cover Restart() on GameCondition. MonoBehaviour fileID=283832888, script GUID=d8624f87f98aa484bb7925103f5d458e (WinLose). Serialized fields: restartdelay=2 (not used in current implementation). Expected: no visible changes; method exists for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 665489382,
+          "condition": "Scoremanager (MonoBehaviour, m_Script guid=f7de224e5fee443418417f9f2bfa2998) in Level2.unity. PrefabInstance applies: ScoreText=fileID 1410783274, AmountUI=fileID 101471811, Timer=fileID 1937840742, winAmount=4, winlosescript=fileID 283832888. Start() sets AmountUI text; Update() updates Timer; changescore(int) increments score and calls WinLose.Winlevel() when score == winAmount. No Collider/Rigidbody/EventTrigger on ScoreManager and no m_Calls provided; to cover the win path we directly invoke the referenced WinLose.Winlevel().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manually invoke WinLose.Winlevel on VRWC_WheelchairRig to validate UI activation because automatic triggers via PlayerTriggers.OnTriggerEnter may not be reachable without Cars/WinBox details. Scene MonoBehaviour_1 uses script GUID d8624f87f98aa484bb7925103f5d458e (WinLose) and matches the provided script. Prefab modifications target component fileID 8900446968063909830 with WinUI(fileID:1345324351) and LoseUI(fileID:1999610191). Expected: WinUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manually invoke WinLose.loselevel on VRWC_WheelchairRig to validate UI activation because automatic loss via PlayerTriggers.OnTriggerEnter with tag \"Cars\" may not be reachable without collision target details. Scene MonoBehaviour_1 uses script GUID d8624f87f98aa484bb7925103f5d458e (WinLose). Expected: LoseUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 5.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -11.34,
+            "y": -0.34,
+            "z": -38.41
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 29.25,
+            "y": 0.0,
+            "z": -19.97
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -23.0,
+            "y": 1.23,
+            "z": 70.56
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -2.86,
+            "y": -1.06,
+            "z": -16.26
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 2.86,
+            "y": 1.06,
+            "z": 16.26
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manual coverage for WinLose methods on VRWC_WheelchairRig. MonoBehaviour_1 uses script GUID d8624f87f98aa484bb7925103f5d458e (WinLose) with restartdelay=2. Prefab modifications on component fileID 8900446968063909830 assign WinUI(fileID:1345324351) and LoseUI(fileID:1999610191). Expect WinUI.SetActive(true) and Restart() executes (no-op).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

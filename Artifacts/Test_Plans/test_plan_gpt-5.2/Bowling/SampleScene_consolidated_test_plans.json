@@ -1,0 +1,114 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (1)",
+          "triggerring_time": 5.2,
+          "source_object_fileID": 127885129,
+          "condition": "Physics-based trigger: invoke OtherLaneController.OnTriggerEnter (IEnumerator) on MonoBehaviour fileID 127885130 (script GUID: 9cde80f2fe6fe6e47b57eb962721c06f) when a GameObject with tag 'Ball' and a Rigidbody enters the MeshCollider (id: 127885132, isTrigger: true) of Plane (1). After a 5-second wait in the coroutine, the script should read BallSoundController.peso/pesoEnKgs from the entering ball, destroy it, then instantiate bolaPrefab (guid: 1be75124d3e50ad4997a90e0d8d1fe74, fileID: 424594858964415916) at aparicionBola (Transform id: 165335085), apply BallSoundController.changePeso(), and add an impulse via Rigidbody.AddForce.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1620417930,
+          "condition": "Validate mapping: MonoBehaviour id:1620417931 on GameObject id:1620417930 uses script guid:9cde80f2fe6fe6e47b57eb962721c06f (OtherLaneController). Serialized fields: aparicionBola=fileID:165335085, bolaPrefab guid:1be75124d3e50ad4997a90e0d8d1fe74 fileID:424594858964415916. Collider config: MeshCollider id:1620417933 isTrigger:true, convex:true; GameObject has no Rigidbody (Has_Rigidbody:false). Target event to cover: IEnumerator OnTriggerEnter(Collider other) with 5s wait, requires other.tag == 'Ball' and other has BallSoundController (with fields peso, pesoEnKgs). Expected behavior after 5s: destroy incoming ball, propagate its peso/pesoEnKgs to bolaPrefab via BallSoundController.changePeso(), instantiate at aparicionBola and apply Rigidbody.AddForce((1,0,0)*1.5, Impulse). This will be automatically triggered when a rigidbody 'Ball' collider enters Plane (2)'s trigger.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 385680589,
+          "condition": "Call Mirar.Mira() then Mirar.Para() on the same frame-separated trigger to toggle the Canvas. This component is identified by script GUID 8817b2a8c34ba5d4d941beaf47d0be6f (fields: canvas=3689742487867136667, camaraAMirar=Camera.main assigned in Start).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "Mira",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "Para",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 385680589,
+          "condition": "Invoke BallSoundController.changePeso() to re-apply mass and update the TMP text. Component identified by script GUID 8fcde7f4195eca944bfe1e2addf5338a (fields: peso=0.7, pesoEnKgs=7, textoPeso=4278895081965267523).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "changePeso",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.1,
+            "z": 10.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 3.0
+        }
+      ]
+    }
+  ]
+}

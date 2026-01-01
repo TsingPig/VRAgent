@@ -1,0 +1,486 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_177433464",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 177433464,
+          "condition": "MonoBehaviour fileID 177433465 (guid 9541d86e2fd84c1d9990edf0852d74ab) is a TextMeshProUGUI component attached to GameObject fileID 177433464 with m_text='Enemies will endlessly appear so be ready!'. Target event to verify: m_OnCullStateChanged (UnityEvent). Scene meta shows no persistent listeners (m_PersistentCalls.m_Calls is empty). We will induce the cull-state change by moving the UI element on/off screen.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Object_177433464",
+          "source_object_fileID": 177433464,
+          "delta_position": {
+            "x": -10000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Object_177433464",
+          "source_object_fileID": 177433464,
+          "delta_position": {
+            "x": 10000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_304325018",
+          "source_object_fileID": 304325018,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_304325018",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 304325018,
+          "condition": "After moving the object (or at runtime when mesh arrays may be uninitialized), ensure ProBuilderMesh computes and caches arrays if missing. Target MonoBehaviour id 304325023 (script guid 8233d90336aea43098adf6dbabd606a2, UnityEngine.ProBuilder.ProBuilderMesh). Expect Normals.CalculateNormals(this) and Normals.CalculateTangents(this) to run when arrays are absent; m_MeshFormatVersion=2.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 304325023,
+                  "method_name": "GetNormals",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 304325023,
+                  "method_name": "GetTangents",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_304325018",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 304325018,
+          "condition": "Validate color array fallback behavior on ProBuilderMesh MonoBehaviour id 304325023 (guid 8233d90336aea43098adf6dbabd606a2). Expect GetColors() to return Color.white[] if no explicit vertex colors are present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 304325023,
+                  "method_name": "GetColors",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ProBuilder Mesh Object",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 540514206,
+          "condition": "MonoBehaviour id=540514211 on GameObject fileID=540514206 uses script guid=8233d90336aea43098adf6dbabd606a2 (UnityEngine.ProBuilder.ProBuilderMesh). Scene config sets m_MeshFormatVersion=2 with serialized faces/positions. Trigger to validate runtime mesh data generation (normals/tangents/colors/vertices) and mesh sync state behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 540514211,
+                  "method_name": "GetNormals",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 540514211,
+                  "method_name": "GetTangents",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 540514211,
+                  "method_name": "GetColors",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 540514211,
+                  "method_name": "GetVertices",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ProBuilderMesh GameObject",
+          "source_object_fileID": 793469498,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.25,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TextMeshProUGUI (Go UP! (Teleport))",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1356352379,
+          "condition": "Scene MonoBehaviour id=1356352381 is a TextMeshProUGUI component (m_Script guid=9541d86e2fd84c1d9990edf0852d74ab, fileID=11500000) on GameObject fileID=1356352379. No UnityEvent m_Calls are configured (m_OnCullStateChanged.m_PersistentCalls.m_Calls=[]), and no public parameterless methods are exposed for manual triggering in this component. Likely requires an external Button/Interactable to invoke teleport.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "TextMeshProUGUI (Go UP! (Teleport))",
+          "source_object_fileID": 1356352379,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.2,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1426713336",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1426713336,
+          "condition": "On GameObject fileID 1426713336, MonoBehaviour component id 1426713341 (script guid 8233d90336aea43098adf6dbabd606a2, UnityEngine.ProBuilder.ProBuilderMesh) with m_MeshFormatVersion=2 and defined faces. If mesh lacks normals/tangents (HasArrays(Normal/Tangent) is false), trigger public no-arg methods to generate cached normals/tangents for the mesh.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1426713341,
+                  "method_name": "GetNormals",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1426713341,
+                  "method_name": "GetTangents",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1426713341,
+                  "method_name": "GetColors",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1579936930",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1579936930,
+          "condition": "MonoBehaviour ProBuilderMesh (script fileID 1579936935, guid 8233d90336aea43098adf6dbabd606a2) on Endless Level.unity object. MeshFormatVersion=2, faces/vertices serialized. If normals are missing or length != vertexCount, calling GetNormals() should invoke Normals.CalculateNormals(this) and populate m_Normals to vertexCount.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1579936935,
+                  "method_name": "GetNormals",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1579936930",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1579936930,
+          "condition": "MonoBehaviour ProBuilderMesh (script fileID 1579936935, guid 8233d90336aea43098adf6dbabd606a2). If tangents are missing or length != vertexCount, calling GetTangents() should invoke Normals.CalculateTangents(this) and populate m_Tangents to vertexCount.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1579936935,
+                  "method_name": "GetTangents",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1579936930",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1579936930,
+          "condition": "MonoBehaviour ProBuilderMesh (script fileID 1579936935, guid 8233d90336aea43098adf6dbabd606a2). If vertex colors are not present, GetColors() returns a new Color[] filled with Color.white of length vertexCount without modifying m_Colors.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1579936935,
+                  "method_name": "GetColors",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Reset (GameObject with MonoBehaviour 1648876975)",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1648876974,
+          "condition": "Scene MonoBehaviour(id=1648876975) points to script GUID 22172de818174a8b99ab08c2d6c3f0b2 (Reset). Serialized StartLocation=(9.47, -6.6, -5.84). No m_Calls UnityEvent hooks present; behavior is driven by OnCollisionEnter when colliding object has tag 'XRRig' or 'Weapon'. Expected result: the colliding object's transform.position is set to StartLocation.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Reset (GameObject with MonoBehaviour 1648876975)",
+          "source_object_fileID": 1648876974,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ProBuilderMesh GameObject",
+          "source_object_fileID": 1656249384,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1656249389,
+                  "method_name": "GetNormals",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1656249389,
+                  "method_name": "GetTangents",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1656249389,
+                  "method_name": "GetColors",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1666688801",
+          "source_object_fileID": 1666688801,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1666688806,
+                  "method_name": "GetNormals",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1666688806,
+                  "method_name": "GetTangents",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1666688801",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1666688801,
+          "condition": "MonoBehaviour component 1666688806 uses script guid 8233d90336aea43098adf6dbabd606a2 (UnityEngine.ProBuilder.ProBuilderMesh). Calling GetColors() should return the serialized colors if present; otherwise, it should synthesize an array filled with Color.white per script logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1666688806,
+                  "method_name": "GetColors",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1883097003",
+          "source_object_fileID": 1883097003,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1883097003",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1883097003,
+          "condition": "Manual mesh data validation on ProBuilderMesh (component id 1883097007, script guid 8233d90336aea43098adf6dbabd606a2, m_MeshFormatVersion=2). Calling public no-arg getters to ensure normals/tangents are generated if missing (expected internal: Normals.CalculateNormals / Normals.CalculateTangents). No m_Calls present in scene; require explicit trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1883097007,
+                  "method_name": "GetNormals",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1883097007,
+                  "method_name": "GetTangents",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1883097007,
+                  "method_name": "GetColors",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Manual invocation because GameCondition shows no Rigidbody/Collider/EventTrigger in provided meta. Target MonoBehaviour component fileID 4225679855366766214 (script guid d8624f87f98aa484bb7925103f5d458e). Expect WinUI (fileID 852022849) to be SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Manual invocation for coverage; expect LoseUI (fileID 215505909) to be SetActive(true). Target MonoBehaviour component fileID 4225679855366766214.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Optional: call Restart() for completeness. No side effects expected. Target MonoBehaviour component fileID 4225679855366766214.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mesh_TrafficLight",
+          "triggerring_time": 70.0,
+          "source_object_fileID": 1221980191,
+          "condition": "Auto-cycle coverage wait. MonoBehaviour component fileID 123183794 on Mesh_TrafficLight uses script guid 50410efda0128f248aadbf8266a903cb (TrafficLights). Serialized fields: Red->fileID 8569639267829841366 (prefab ref), Green->fileID 2097357867, Yellow->fileID 888664352. No m_Calls (UnityEvent) configured. The IEnumerator Start() auto-runs and cycles lights: Green on 30s, Yellow on 5s, Red on 30s with Debug.Log(\"on\") twice. Wait 70s to cover a full cycle without manual invocation.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

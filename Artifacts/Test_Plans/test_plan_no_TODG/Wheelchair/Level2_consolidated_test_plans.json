@@ -1,0 +1,65 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "WinLose",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 283832887,
+          "condition": "Invoke WinLose.Winlevel on MonoBehaviour fileID 283832888 (m_Script guid d8624f87f98aa484bb7925103f5d458e, type 3). Serialized fields: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. Expect WinUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "WinLose",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 283832887,
+          "condition": "Invoke WinLose.loselevel on MonoBehaviour fileID 283832888 (m_Script guid d8624f87f98aa484bb7925103f5d458e). Serialized fields: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. Expect LoseUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "WinLose",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 283832887,
+          "condition": "Invoke WinLose.Restart on MonoBehaviour fileID 283832888 (m_Script guid d8624f87f98aa484bb7925103f5d458e). Method currently empty; expect no visible changes. Serialized fields: restartdelay=2.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

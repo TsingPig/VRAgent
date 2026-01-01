@@ -1,0 +1,78 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (1)",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 127885129,
+          "condition": "MonoBehaviour (fileID: 127885130, GUID: 9cde80f2fe6fe6e47b57eb962721c06f) is OtherLaneController attached to Plane (1). MeshCollider (fileID: 127885132) isTrigger=true, convex=true. To exercise OnTriggerEnter (IEnumerator) the Plane (1) trigger must be entered by another GameObject that has: Collider + Rigidbody and tag == 'Ball', and component BallSoundController with fields 'peso' (float) and 'pesoEnKgs' (int). Expected behavior: after 5 seconds (WaitForSeconds(5)), if tag == 'Ball' then destroy the incoming ball, read its BallSoundController values, then instantiate 'bolaPrefab' (GUID: 1be75124d3e50ad4997a90e0d8d1fe74) at 'aparicionBola' (fileID: 165335085), copy peso values into the prefab's BallSoundController, call changePeso(), and apply Rigidbody.AddForce(Vector3.right * 1.5f, Impulse). No UnityEvent m_Calls are present for manual invocation.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1620417930,
+          "condition": "Physics trigger enter on Plane (2) (MeshCollider id=1620417933, m_IsTrigger=1, convex=1). MonoBehaviour id=1620417931 uses script guid=9cde80f2fe6fe6e47b57eb962721c06f (OtherLaneController) with aparicionBola=Transform fileID 165335085 and bolaPrefab guid=1be75124d3e50ad4997a90e0d8d1fe74. When an object with Rigidbody and tag 'Ball' enters this trigger, OtherLaneController.OnTriggerEnter (IEnumerator) waits 5s, reads BallSoundController.peso and pesoEnKgs from the entering object, destroys it, then calls GeneraBola to set those values on bolaPrefab, instantiate it at aparicionBola, and apply Rigidbody.AddForce(Vector3(1,0,0)*1.5, Impulse). Ensure the entering object has tag 'Ball' and component BallSoundController, and the instantiated bolaPrefab has Rigidbody and BallSoundController.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.25,
+            "y": 0.0,
+            "z": -0.25
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 385680589,
+          "condition": "Call Mirar.Mira() (public no-arg) on MonoBehaviour bound to PosAparicionBola to enable its Canvas. Scene MonoBehaviour_0 uses m_Script guid=8817b2a8c34ba5d4d941beaf47d0be6f (Mirar), canvas ref fileID=3689742487867136667, camaraAMirar defaults to Camera.main. This method is not automatically invoked elsewhere, so manual trigger is required.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 0,
+                  "method_name": "Mira",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 385680589,
+          "condition": "Call Mirar.Para() (public no-arg) on MonoBehaviour bound to PosAparicionBola to disable its Canvas. Same component as above: m_Script guid=8817b2a8c34ba5d4d941beaf47d0be6f. This method is not automatically invoked elsewhere, so manual trigger is required.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 0,
+                  "method_name": "Para",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

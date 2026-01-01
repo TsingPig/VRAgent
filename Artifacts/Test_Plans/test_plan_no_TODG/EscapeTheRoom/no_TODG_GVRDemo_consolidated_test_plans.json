@@ -1,0 +1,2512 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "GvrTooltip",
+          "source_object_fileID": 2,
+          "target_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrTooltip",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2,
+          "condition": "MonoBehaviour component id=892 uses script guid=7c52851ea0de74a228fa29a84de008ba (GvrTooltip). Serialized config: location=0 (TouchPadOutside), text=975, alwaysVisible=0. This tooltip's side depends on GvrSettings.Handedness and IsTooltipInside(). No m_Calls configured in scene; manually invoke public no-arg methods to probe state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GvrTooltip",
+          "source_object_fileID": 2,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 180.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DisplaySelectedObject Host",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 9,
+          "condition": "Verify mapping: MonoBehaviour component fileID 893 uses script guid 1bd5b4c54e111e240aa7b6088078e1f9 (DisplaySelectedObject). Serialized config in scene GVRDemo.unity: displayOptions=[220,112,256,101,241,184,214,18,188,74], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=0. OnEnable will automatically TurnOffAll() and SetActive(true) on displayOptions[currentDisplay] (index 0). No m_Calls provided for this component, and the only public method TurnSelectedWithButton(int) requires a parameter (not invocable via no-arg Trigger).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Reset (Text)",
+          "source_object_fileID": 23,
+          "delta_position": {
+            "x": 0.0,
+            "y": 2000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Reset (Text)",
+          "source_object_fileID": 23,
+          "delta_position": {
+            "x": 0.0,
+            "y": -2000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Reset (Text)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 23,
+          "condition": "Mapping and chosen event: MonoBehaviour id 894 on GameObject fileID 23 uses script fileID 708705254 (guid f5f67c52d1564df4a8936ccd202a3bd8, type 3), which corresponds to UnityEngine.UI.Text. The scene meta shows UnityEngine.UI.MaskableGraphic.CullStateChangedEvent (m_OnCullStateChanged) with m_Calls = [] (no persistent listeners). We will trigger this event indirectly by moving the Text off-screen/on-screen (see Transform steps). No public parameterless methods are exposed here to call directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DisplaySelectedObject Host",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 24,
+          "condition": "MonoBehaviour component id=895 on GameObject fileID=24 uses script guid=1bd5b4c54e111e240aa7b6088078e1f9 (fileID=11500000) for DisplaySelectedObject. Serialized config: displayOptions=[39,136,99,2082198968,139,26,168,127,111,19], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=0. No m_Calls (UnityEvents) defined in this component; script exposes no public no-arg methods (TurnSelectedWithButton(int) requires a parameter). OnEnable will auto-run on component enable/scene load to activate displayOptions[currentDisplay] and disable others.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "DisplaySelectedObject Host",
+          "source_object_fileID": 24,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#25",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 25,
+          "condition": "MonoBehaviour component id 896 in scene (m_Script guid f3bf9c1bacbb04f72bb43e892c3a98a9) maps to GvrControllerVisualManager. This script auto‑toggles the active state of all children based on GvrController.State (Connected vs not). There are no public no‑arg methods and no m_Calls UnityEvents in the scene meta, so the only meaningful trigger is simulating controller connection state changes. Requires UNITY_HAS_GOOGLEVR and Android/Editor platform symbols.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EventTriggerHost_FileID_27",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 27,
+          "condition": "MonoBehaviour id 897 is UnityEngine.EventSystems.EventTrigger (m_Script fileID -1862395651, guid f70555f144d8491a825f0804e09c671c) attached to GameObject fileID 27. In m_Delegates/m_Calls, eventID 4 (PointerClick) invokes ToggleLight() on component fileID 900 and Inspect() on component fileID 899. Manually trigger the click to ensure these no-arg public methods execute.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 900,
+                  "method_name": "ToggleLight",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 899,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_27",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 27,
+          "condition": "Call Collect on Collectable MonoBehaviour fileID 898 (m_Script guid fd9b592feb7384d0a9c94749396c5a5e) on m_GameObject fileID 27. Scene config: item is unassigned (fileID 0); inactiveMaterial guid f9add7219a5b60440b1d464521ead527; gazedAtMaterial guid 1ff5f63f4268348078849f4888cf1c49; dispatch.m_PersistentCalls.m_Calls is empty. Expected: no inventory.AddItem and no Destroy since item is null; dispatch.Invoke still executes but with no bound listeners.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 898,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_27",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 27,
+          "condition": "MonoBehaviour component id 899 on GameObject fileID 27 uses script guid 20f309bd30f854a1cb08cabddfbc74e5 (Inspectable). Serialized field inspectMessage is ''. No m_Calls configured in scene meta, so manual trigger is required. Calling public zero-arg Inspect() should route to ShowMessage.RunMessage(msg) on SubtitlesCanvas/MessageText; ensure that UI path exists to avoid NullReference.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 899,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Lightable",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 27,
+          "condition": "MonoBehaviour id 900 on GameObject fileID 27 uses m_Script guid 88bc783c768ce4eb29e7f2d95dc4f793 (Lightable.cs). Start() sets on=false and disables child Light. Trigger ToggleLight to enable Light and update Inspectable.inspectMessage to \"That's much better...\"",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 900,
+                  "method_name": "ToggleLight",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Lightable",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 27,
+          "condition": "Second toggle to verify state flips back to off; Light disabled and Inspectable.inspectMessage set to \"Hello darkness, my old friend...\"",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 900,
+                  "method_name": "ToggleLight",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DisplaySelectedObject host (fileID 29)",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 29,
+          "condition": "MonoBehaviour id 901 on GameObject fileID 29 uses script guid 1bd5b4c54e111e240aa7b6088078e1f9 (DisplaySelectedObject). Serialized settings: displayOptions=[126,134,52,203,67,259,286,185,182,113], currentDisplay=0, temporalGOArrange=0, ButtonSelectable=0. OnEnable will turn off all then activate displayOptions[currentDisplay]. There are no public parameterless methods to invoke; selection changes require TurnSelectedWithButton(int). No m_Calls were provided in this component to drive it automatically; awaiting UI/event bindings that call TurnSelectedWithButton with a specific index.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "DisplaySelectedObject host (fileID 29)",
+          "source_object_fileID": 29,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 5.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EventTrigger(GameObject fileID 36)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 36,
+          "condition": "MonoBehaviour id 902 is UnityEngine.EventSystems.EventTrigger (guid f5f67c52d1564df4a8936ccd202a3bd8, fileID -1862395651) on GameObject fileID 36 with m_Enabled=0. It defines m_Delegates eventID=0 (PointerEnter) to invoke Play on target component fileID 944 (callState=2). EventTrigger is disabled, so this interaction will not occur automatically; trigger manually.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EventTrigger(GameObject fileID 36)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 36,
+          "condition": "MonoBehaviour id 902 EventTrigger also defines m_Delegates eventID=4 (PointerClick) to invoke Play on target component fileID 973 (callState=2). EventTrigger is disabled; trigger manually to validate the expected call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#36:UIFadeTransition",
+          "triggerring_time": 0.4375,
+          "source_object_fileID": 36,
+          "condition": "Manually trigger a fade-in using UIFadeTransition on MonoBehaviour component id 903 (script guid a4ab599ee1dbcea41b165ae5170d9f03). Current config: durationSeconds=0.25, transitionInDelaySeconds=0.1875, transitionOutDelaySeconds=0.0. No m_Calls UnityEvents are present in the scene meta; an external invoker must call TransitionIn(Transform, Action, Action). Expected behavior: a CanvasGroup is added if missing and alpha animates 0→1 after the 0.1875s delay.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#36:UIFadeTransition",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 36,
+          "condition": "Manually trigger a fade-out using the same UIFadeTransition (component id 903, guid a4ab599ee1dbcea41b165ae5170d9f03). Current config: durationSeconds=0.25, transitionOutDelaySeconds=0.0. No m_Calls UnityEvents; an external invoker must call TransitionOut(Transform, Action, Action). Expected behavior: CanvasGroup alpha animates 1→0 with no delay.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Tab",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 36,
+          "condition": "Manually open the Tab to validate page instantiation and state change because UI Toggle click is not available via allowed actions. MonoBehaviour id=904 uses script guid=c2bcf79fd38b2441fa17fde42cfce34d (Tab). Serialized config: pagePrefab guid=e749a5bf695bb464390eb1ffd27aba4f, cachePage=false. Expected: EnablePage creates page instance under TabGroup.TabPageParent, optional IUITransition.TransitionIn runs if present, Toggle becomes non-interactable and any EventTrigger on this object is disabled.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 904,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI Toggle",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 36,
+          "condition": "MonoBehaviour id 905 is UnityEngine.UI.Toggle (m_Script fileID 2109663825, guid f5f67c52d1564df4a8936ccd202a3bd8) on GameObject fileID 36. Config: m_Interactable=0 (disabled), m_IsOn=1, m_Group=fileID 958, targetGraphic=fileID 907, graphic=fileID 914. onValueChanged.m_PersistentCalls.m_Calls is empty, so no listeners will run automatically. Manually simulate a toggle action to validate state change and ToggleGroup constraints even without listeners.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI_Image",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 40,
+          "condition": "MonoBehaviour component id 906 on GameObject fileID 40 matches UnityEngine.UI.Image (m_Script guid f5f67c52d1564df4a8936ccd202a3bd8, fileID -765806418). This component has m_OnCullStateChanged with m_Calls [], so there are no persistent listeners to invoke. No public no-arg script methods are exposed for manual triggering; interaction is via visual/culling behavior.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Image",
+          "source_object_fileID": 40,
+          "delta_position": {
+            "x": 0,
+            "y": 5000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Image",
+          "source_object_fileID": 40,
+          "delta_position": {
+            "x": 0,
+            "y": -5000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image (UnityEngine.UI.Image) — MonoBehaviour 907",
+          "source_object_fileID": 45,
+          "delta_position": {
+            "x": 0,
+            "y": 10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image (UnityEngine.UI.Image) — MonoBehaviour 907",
+          "source_object_fileID": 45,
+          "delta_position": {
+            "x": 0,
+            "y": -10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI Image (UnityEngine.UI.Image) — MonoBehaviour 907",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 45,
+          "condition": "MonoBehaviour id 907 uses script fileID -765806418, guid f5f67c52d1564df4a8936ccd202a3bd8 (UnityEngine.UI.Image). Interactable event present: m_OnCullStateChanged (MaskableGraphic+CullStateChangedEvent). m_PersistentCalls.m_Calls is empty; no persistent listeners. Verify this event can be raised by culling via the Transform actions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image (MaskableGraphic)",
+          "source_object_fileID": 51,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 908,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InspectableObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 57,
+          "condition": "MonoBehaviour fileID 909 on GameObject fileID 57 uses script guid 20f309bd30f854a1cb08cabddfbc74e5 (Inspectable). Serialized inspectMessage='This looks out of place...'. Trigger when player inspects the object; expected behavior: SubtitlesCanvas/MessageText.ShowMessage.RunMessage('This looks out of place...') is invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 909,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Pillow",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 57,
+          "condition": "MovePillow MonoBehaviour (component fileID 910) on GameObject 57, script m_Script fileID 11500000 GUID 85f9854fdebef48de893bf8e6be7bb91; serialized refs lamps=[964,900], key=273. Precondition: at least one Lightable in lamps has on==true so Update() enables Inspectable/Collectable/Collider. Expected: MovePillowAway translates by (0.5,0,0), sets isMoved=true, enables key collider.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 910,
+                  "method_name": "MovePillowAway",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collectable",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 57,
+          "condition": "MonoBehaviour#911 (script guid fd9b592feb7384d0a9c94749396c5a5e) on GameObject#57; item is null (fileID 0); materials set (inactive guid f9add7219a5b60440b1d464521ead527, gazed guid 609001eded5304312a961e8e1f05dd63); UnityEvent 'dispatch' has m_Calls → target fileID 910, method MovePillowAway, mode 1, callState 2. Triggering Collect() should Invoke() dispatch and call MovePillowAway on target#910.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 911,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_57",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 57,
+          "condition": "MonoBehaviour id 912 is an EventTrigger (m_Script fileID -1862395651, guid f70555f144d8491a825f0804e09c671c). It defines: eventID 0 -> 911.SetGazedAt(true), eventID 1 -> 911.SetGazedAt(false) [have bool param, not triggerable directly]; eventID 4 (PointerClick) -> 911.Collect() and 909.Inspect() with no parameters. Manually trigger PointerClick equivalents to ensure these calls execute.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 911,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 909,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_65",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 65,
+          "condition": "Manually tick the DigitalClockValue to simulate a time increment when no auto-tick driver or m_Calls are present. Target MonoBehaviour id=913 (script guid=99d3f5635e2a2c94bba763a859e816ec) with serialized config: currentValue=0, maximumValue=60, tensValue=10, reverse=false, NextValue=fileID 925, tens=fileID 893, units=fileID 895. Expect units/tens display to update and rollover to cascade to NextValue when currentValue exceeds maximumValue-1.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 913,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image",
+          "source_object_fileID": 66,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": -1000
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Image",
+          "source_object_fileID": 66,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 1000
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 66,
+          "condition": "Force a UI rebuild on UnityEngine.UI.Image (MonoBehaviour id 914, m_Script guid f5f67c52d1564df4a8936ccd202a3bd8, fileID -765806418). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty; this manual trigger ensures refresh even without listeners.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 914,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerVisual",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 68,
+          "condition": "Manually invoke the visual update pathway tied to GvrArmModel.Instance.OnArmModelUpdate for script fileID 915 (m_Script guid aa952cbcc0eb13d4ca558b6da550ff55). Scene meta shows no m_Calls, and the script exposes no public no-arg methods; expected behavior is material swap (idle/app/system/touchpad) and touch point scale/position update based on GvrController state.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GvrControllerVisual",
+          "source_object_fileID": 68,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 5.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "TouchPoint",
+          "source_object_fileID": 109,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0025
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.005,
+            "y": 0.0002,
+            "z": 0.005
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#73 (UI Image)",
+          "source_object_fileID": 73,
+          "delta_position": {
+            "x": 0,
+            "y": 5000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#73 (UI Image)",
+          "source_object_fileID": 73,
+          "delta_position": {
+            "x": 0,
+            "y": -5000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#73 (UI Image)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 73,
+          "condition": "Target MonoBehaviour id=916 uses m_Script guid=f5f67c52d1564df4a8936ccd202a3bd8 (UnityEngine.UI.Image, fileID=-765806418). Settings: m_RaycastTarget=0; m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty (no scene-registered listeners). We manually invoke public no-arg methods to force a UI refresh after culling/visibility changes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 916,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 916,
+                  "method_name": "SetVerticesDirty",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 916,
+                  "method_name": "SetLayoutDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_76",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 76,
+          "condition": "UnityEngine.UI.Button (m_Script fileID=1392445389, guid=f5f67c52d1564df4a8936ccd202a3bd8) on GameObject fileID=76 has m_Interactable=1 and an OnClick PersistentCall (m_Calls) targeting component fileID=967 invoking public method Recenter() with CallState=2.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 967,
+                  "method_name": "Recenter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_76",
+          "source_object_fileID": 76,
+          "delta_position": {
+            "x": 2000,
+            "y": 2000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_76",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 76,
+          "condition": "Target MonoBehaviour id=918 on m_GameObject fileID=76. Script reference: fileID=-765806418 guid=f5f67c52d1564df4a8936ccd202a3bd8 type=3 (UnityEngine.UI.Image derived from MaskableGraphic). m_OnCullStateChanged has m_PersistentCalls.m_Calls=[] (no persistent listeners). We will manually invoke a public no-arg method to validate behavior even when no listeners are present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 918,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_77",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 77,
+          "condition": "MonoBehaviour component fileID 919 on GameObject fileID 77 is a UnityEngine.UI.Button (m_Script fileID 1392445389, guid f5f67c52d1564df4a8936ccd202a3bd8). Its m_OnClick.m_PersistentCalls.m_Calls contains one entry configured to call method 'Reset' (mode 1, callState 2) with m_Target fileID 0 (unset). Simulate a button click/submit to invoke the Button's persistent calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_77",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 77,
+          "condition": "MonoBehaviour component id 920 on GameObject fileID 77 uses script guid f5f67c52d1564df4a8936ccd202a3bd8 (fileID -765806418, UnityEngine.UI.Image). This is the exact serialized setting for the attached Image script. m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so there are no persistent interactable calls to invoke; the only relevant event is CullStateChangedEvent which fires automatically when the graphic is culled/unculled.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_77",
+          "source_object_fileID": 77,
+          "delta_position": {
+            "x": 10000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_77",
+          "source_object_fileID": 77,
+          "delta_position": {
+            "x": -10000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_83",
+          "source_object_fileID": 83,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_83",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 83,
+          "condition": "MonoBehaviour id 921 is GvrLaserPointer (m_Script guid 51b65678ccdd949e9a58874d2880c0ef, fileID 11500000). Serialized config: laserColor RGBA(1,1,1,0.2509804), maxLaserDistance 0.75, maxReticleDistance 2.5, reticle fileID 176, reticleSortingOrder 32767. No m_Calls present in scene; manually set as main pointer. Expected: GvrPointerManager.Pointer becomes this laser pointer; LineRenderer and reticle sorting order already set by Awake/Start.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 921,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ArmModelOffsets (Pointer joint, guid 4c173f7c6a736fe469d4acc5b108d6d5, matches scene MonoBehaviour id 922)",
+          "source_object_fileID": 83,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_91",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 91,
+          "condition": "MonoBehaviour component id 924 on GameObject fileID 91 references script fileID 1980459831 with GUID f5f67c52d1564df4a8936ccd202a3bd8 (UnityEngine.UI.CanvasScaler). No m_Calls are defined in this component, and no public no-argument methods are exposed for manual triggering. This component primarily reacts to screen/resolution changes.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_92",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 92,
+          "condition": "Manual trigger of DigitalClockValue.ChangeTimeValue on component id 925 (m_Script guid 99d3f5635e2a2c94bba763a859e816ec) attached to GameObject fileID 92; serialized: currentValue=0, maximumValue=24, reverse=false, NextValue=null (fileID 0), tens=fileID 901, units=fileID 1016, tensValue=10. Expected: currentValue increments by +1 (wraps to 0 if >23), tens/unites updated via DisplaySelectedObject.TurnSelectedWithButton with floor(currentValue/10) and currentValue%10.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 925,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 95,
+          "condition": "MonoBehaviour id 926 with m_Script guid e7dcc90c2e60c4011896c7f21fc1f557 (GvrReticlePointer) on GameObject fileID 95; reticleSegments=20, reticleGrowthSpeed=8. No m_Calls UnityEvents present, so SetAsMainPointer must be invoked to register this as the active pointer via GvrPointerManager.Pointer after the component has started.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 926,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas (WorldSpace) with GvrPointerGraphicRaycaster [component id 927, script guid 739800cd36aba44e9b04ce977e5784bd, raycastMode=0, ignoreReversedGraphics=1, blockingObjects=0, blockingMask=0xFFFFFFFF]",
+          "source_object_fileID": 97,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas (WorldSpace) with GvrPointerGraphicRaycaster [component id 927, script guid 739800cd36aba44e9b04ce977e5784bd, raycastMode=0, ignoreReversedGraphics=1, blockingObjects=0, blockingMask=0xFFFFFFFF]",
+          "source_object_fileID": 97,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": -180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_97",
+          "source_object_fileID": 97,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_97",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 97,
+          "condition": "MonoBehaviour component id 928 on GameObject fileID 97 is UnityEngine.UI.CanvasScaler (m_Script fileID 1980459831, guid f5f67c52d1564df4a8936ccd202a3bd8). This is a non-interactable UI scaler; no m_Calls UnityEvents are present and no public no-arg methods to invoke. Settings: UiScaleMode=0, ReferencePixelsPerUnit=100, ScaleFactor=1, ReferenceResolution=800x600, ScreenMatchMode=0, MatchWidthOrHeight=0, PhysicalUnit=3, FallbackScreenDPI=96, DefaultSpriteDPI=96, DynamicPixelsPerUnit=1.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject(fileID:103)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 103,
+          "condition": "GvrTooltip (script guid: 7c52851ea0de74a228fa29a84de008ba) attached as MonoBehaviour id 929 on GameObject fileID 103; serialized config: location=2 (AppButtonOutside), text=fileID 1013, alwaysVisible=false. No UnityEvent m_Calls listed for this component; manually invoke public no-arg methods to validate configured state (inside/outside and handedness-based side).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 929,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 929,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown (GameObject#108)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 108,
+          "condition": "MonoBehaviour component fileID 930 on GameObject fileID 108 references script (m_Script.fileID 11500000, guid 370d0b02dab22430ea3f5965031baba7, type 3). This is the exact script setup attached to the target GameObject in GVRDemo.unity. No m_Calls (UnityEvent) were provided in the scene meta; plan to manually trigger public no-arg MonoBehaviour methods on this component if present.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collectable",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 108,
+          "condition": "Trigger Collect on MonoBehaviour id=931 (m_Script guid=fd9b592feb7384d0a9c94749396c5a5e) attached to GameObject fileID=108; serialized fields: item guid=a874fb11274d84eb3b6f5c630630c27a (type=2), inactiveMaterial guid=28db40d0099852448a1816652a486146, gazedAtMaterial guid=4ad709961269449e38e60dcaa32e102e; dispatch.m_PersistentCalls.m_Calls is empty. Expected: Inventory.AddItem(item), this GameObject destroyed, dispatch.Invoke() with no listeners.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_108",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 108,
+          "condition": "MonoBehaviour id 932 on m_GameObject fileID 108 is UnityEngine.EventSystems.EventTrigger (m_Script fileID -1862395651, guid f70555f144d8491a825f0804e09c671c). Trigger EventTriggerType PointerClick (eventID=4) to invoke m_PersistentCalls: fileID 931.Collect() and fileID 933.Inspect().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 933,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#108",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 108,
+          "condition": "MonoBehaviour fileID 933 (script guid 20f309bd30f854a1cb08cabddfbc74e5, class Inspectable) on GameObject fileID 108 with inspectMessage='Someone took this out of its vase.'. Expected behavior: Inspect() should route to Inspect(string) and call SubtitlesCanvas/MessageText.ShowMessage.RunMessage(msg) to display the message. No m_Calls found in scene excerpt; manual trigger used.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 933,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject#124",
+          "source_object_fileID": 124,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_124",
+          "source_object_fileID": 124,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_124",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 124,
+          "condition": "MonoBehaviour component fileID 935 (script guid f5f67c52d1564df4a8936ccd202a3bd8, script fileID -405508275) with properties m_Padding/m_ChildAlignment/m_Spacing/m_ChildForceExpand* maps to the UI LayoutGroup on this GameObject. No m_Calls UnityEvents present; manually force layout recalculation if automatic update does not occur after Transform.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 935,
+                  "method_name": "CalculateLayoutInputHorizontal",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 935,
+                  "method_name": "CalculateLayoutInputVertical",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_124",
+          "source_object_fileID": 124,
+          "delta_position": {
+            "x": 800,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_124",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 124,
+          "condition": "Observe Unity UI cull state change: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent on component fileID 936 (script guid f5f67c52d1564df4a8936ccd202a3bd8 = UnityEngine.UI.Image). m_Calls is empty, so no persistent listeners; event should fire when the Image is culled/unculled due to movement outside/inside the Canvas/viewport.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_124",
+          "source_object_fileID": 124,
+          "delta_position": {
+            "x": -800,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_128",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 128,
+          "condition": "MonoBehaviour id 937 on GameObject fileID 128 references script {fileID:1980459831,guid:f5f67c52d1564df4a8936ccd202a3bd8,type:3}, which corresponds to UnityEngine.UI.CanvasScaler. Serialized settings match CanvasScaler fields: m_UiScaleMode=0, m_ReferencePixelsPerUnit=100, m_ScaleFactor=1, m_ReferenceResolution=(800,600), m_ScreenMatchMode=0, m_MatchWidthOrHeight=0, m_PhysicalUnit=3, m_FallbackScreenDPI=96, m_DefaultSpriteDPI=96, m_DynamicPixelsPerUnit=1. No 'm_Calls' were present in this component, and CanvasScaler exposes no public parameterless methods intended for runtime triggering; therefore there are no interactable events to invoke for this component.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text (UnityEngine.UI.Text)",
+          "source_object_fileID": 130,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Text (UnityEngine.UI.Text)",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 130,
+          "condition": "Validate MaskableGraphic.OnCullStateChanged UnityEvent for Text component. MonoBehaviour component fileID=938 with m_Script fileID=708705254, guid=f5f67c52d1564df4a8936ccd202a3bd8 (UnityEngine.UI.Text). Scene meta shows m_OnCullStateChanged.m_PersistentCalls.m_Calls=[] (no persistent listeners). Event should be raised automatically when the cull state changes due to the preceding transform; no manual public no-arg method is available to invoke.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text (UnityEngine.UI.Text)",
+          "source_object_fileID": 130,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1000.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Text",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 130,
+          "condition": "MonoBehaviour component id 939 on GameObject fileID 130 references script guid 6e888d82ad62a4fd99699eeee0553755 (ShowMessage). No UnityEvent m_Calls are configured in scene meta. ShowMessage only exposes RunMessage(string), which cannot be triggered via no-arg Trigger. Need a no-arg public method or a UnityEvent hookup to invoke RunMessage.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "clock",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 138,
+          "condition": "Scene component 942 maps to DigitalClock (script guid 21b908ce4d9cbc14489c84c042cae40b) on GameObject 138 with hoursDCV=925, minutesDCV=913, secondsDCV=null, pointsDCV=943, pointFlicker=true, clockSpeed=1. This script has no public no-arg methods to trigger manually (Start/coroutines auto-run; SetReverseClock(bool) requires a parameter). Awaiting interactable m_Calls or a separate UI/Inspectable event to invoke state changes (e.g., toggling reverse) for testing.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GVRDemo.DigitalClockValue",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 148,
+          "condition": "Manual tick to advance time by 1 on DigitalClockValue (MonoBehaviour fileID 943; m_Script guid 99d3f5635e2a2c94bba763a859e816ec). Serialized: currentValue=0, maximumValue=2, NextValue=null, tens=null, units=fileID 923, tensValue=2, reverse=false. No m_Calls present, so not auto-triggered. Expect units.TurnSelectedWithButton(currentValue%2).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GVRDemo.DigitalClockValue",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 148,
+          "condition": "Second manual tick to validate wrap-around with maximumValue=2 (valid values 0..1). Starting from 1, ChangeTimeValue() should wrap to 0, NextValue is null so no cascade. Verify units.TurnSelectedWithButton(0).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943,
+                  "method_name": "ChangeTimeValue",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrAudioSource_GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "MonoBehaviour fileID 944 (guid 6dbca64e524ea44f9b26142ec59aca8a) is GvrAudioSource. Scene config: playOnAwake=0, clip guid=3b1bac9d0cdfad24e9ffb75aa75e4f96, loop=0, volume=1, occlusionEnabled=0. Since playOnAwake is false, audio will not start automatically; explicitly invoke Play() to initialize and start playback.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrAudioSource_GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "After playback has started via Play(), pause playback to validate Pause() behavior. GvrAudioSource.Pause() sets isPaused=true and pauses the internal AudioSource.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrAudioSource_GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "With playback paused, resume using UnPause() to confirm audio continues and isPaused=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrAudioSource_GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "Stop playback and validate that ShutdownSource() runs (spatializer Id set to -1, ZeroOutput=1) and a subsequent Play() would re-initialize.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_154",
+          "source_object_fileID": 154,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_154",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 154,
+          "condition": "MonoBehaviour id 945 on m_GameObject fileID 154 uses script fileID 1980459831 (guid f5f67c52d1564df4a8936ccd202a3bd8), which matches UnityEngine.UI.CanvasScaler. Settings: UiScaleMode=0, ReferencePixelsPerUnit=100, ScaleFactor=1, ReferenceResolution=800x600, ScreenMatchMode=0, MatchWidthOrHeight=0, PhysicalUnit=3, FallbackScreenDPI=96, DefaultSpriteDPI=96, DynamicPixelsPerUnit=1. No m_Calls present, so there are no UnityEvent-driven interactions to invoke automatically or manually for this component.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 158,
+          "condition": "Target is UnityEngine.UI.Image (MonoBehaviour id 946) from UnityEngine.UI (m_Script: fileID -765806418, guid f5f67c52d1564df4a8936ccd202a3bd8, type 3). Scene meta shows m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty (no wired UnityEvents). Manually invoke a safe, parameterless UI API to validate response.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 946,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Image",
+          "source_object_fileID": 158,
+          "delta_position": {
+            "x": 1000.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 946,
+                  "method_name": "SetAllDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_159",
+          "source_object_fileID": 159,
+          "delta_position": {
+            "x": 10000,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_159",
+          "source_object_fileID": 159,
+          "delta_position": {
+            "x": -10000,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_159",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 159,
+          "condition": "Target MonoBehaviour component fileID 947 on GameObject fileID 159 is UnityEngine.UI.Image (m_Script fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type:3). m_RaycastTarget=0 (non-clickable). m_OnCullStateChanged.m_PersistentCalls.m_Calls=[] so no persistent listeners; cull-state events will occur automatically when moved off/on screen. Manually invoke a safe public no-arg method to validate script behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 947,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GvrController",
+          "source_object_fileID": 163,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 15.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GvrController",
+          "source_object_fileID": 163,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": -30.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 163,
+          "condition": "Scene MonoBehaviour id=949 (script guid=adde9bdea083943199c7959004756e60) matches GvrController; emulatorConnectionMode=1 (USB). OnControllerUpdate event is automatically raised each end-of-frame after UpdateController reads provider state; no public no-arg methods are exposed to trigger manually; verify OnControllerUpdate firing under controller state changes (e.g., recenter request).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrTooltip",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 166,
+          "condition": "MonoBehaviour id 950 on GameObject fileID 166; script guid 7c52851ea0de74a228fa29a84de008ba (fileID 11500000, type 3). Serialized config: location=3 (AppButtonInside), text=fileID 1015, alwaysVisible=false. Expectation: for right-handed setting, tooltip should resolve to left side; OnSideChanged applies LEFT_SIDE_ROTATION to tooltip and aligns Text MiddleRight.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EventTriggerObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 167,
+          "condition": "MonoBehaviour id 951 is UnityEngine.EventSystems.EventTrigger (m_Script fileID -1862395651, guid f70555f144d8491a825f0804e09c671c) on GameObject fileID 167. Its m_Delegates define: eventID 0 (PointerEnter) -> SetGazedAt(true) on MonoBehaviour fileID 953; eventID 1 (PointerExit) -> SetGazedAt(false) on MonoBehaviour fileID 953; eventID 4 (PointerClick) -> Inspect() on MonoBehaviour fileID 954. Manually trigger eventID 4 to invoke Inspect(), the only parameterless public method wired via m_Calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 954,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_167",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 167,
+          "condition": "Manual trigger of a no-arg public method on the attached MonoBehaviour (component fileID 952) which references script guid 370d0b02dab22430ea3f5965031baba7 (m_Script.fileID 11500000). No m_Calls were found in the scene meta, so interactive UnityEvents are not auto-configured; manual invocation may be required.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Object_167",
+          "source_object_fileID": 167,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collectable",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 167,
+          "condition": "Manually invoke Collect() on MonoBehaviour id 953 (m_Script guid fd9b592feb7384d0a9c94749396c5a5e) to simulate pickup. Scene config: item=null (fileID:0), materials set (inactiveMaterial guid f9add7219a5b60440b1d464521ead527; gazedAtMaterial guid 06d4a6d1487d54823874dd42f37af836), dispatch has empty m_Calls. Expected: if item assigned in future, adds to Inventory and destroys GameObject; with current config (item=null) only dispatch.Invoke() executes with no persistent listeners.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 953,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Interactable_183",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 183,
+          "condition": "GVRDemo.unity: EventTrigger MonoBehaviour (fileID: 962) on GameObject 183 has m_Calls for eventID:4 (pointer click) invoking Inspectable.Inspect() on MonoBehaviour fileID:965 (m_Script guid:20f309bd30f854a1cb08cabddfbc74e5). Inspectable script matches provided code; calling Inspect() should route to ShowMessage.RunMessage(inspectMessage) on SubtitlesCanvas/MessageText.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 965,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_195",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 195,
+          "condition": "Manual trigger of AnimateDrawer.OpenDrawer() on MonoBehaviour fileID 971 (script guid 311424da740a844ab963ccaad56ef8b6). Start() runs automatically on scene load to cache origin and reparent 'Knife'. OpenDrawer translates parent by +0.5 on Z and disables Usable, Collectable, and Collider on this object.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 971,
+                  "method_name": "OpenDrawer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DemoInputManager",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 197,
+          "condition": "Manual trigger for testing UpdateStatusMessage in DemoInputManager (script_fileID 972, GUID ddd25f1308577456cbaa207901961126). This is needed to verify controller state-dependent message display and VR SDK list warnings when messageCanvas is active. Since MonoBehaviour in scene meta does not list m_Calls for automatic events, triggering must be done manually.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 972,
+                  "method_name": "UpdateStatusMessage",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrAudioSource_Object",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 202,
+          "condition": "The GvrAudioSource MonoBehaviour (script_fileID: 973, GUID: 6dbca64e524ea44f9b26142ec59aca8a) in scene 'GVRDemo.unity' is configured with playOnAwake=0, so audio will not start automatically. We manually trigger the public 'Play' method (no parameters) to start playback of the attached AudioClip under test conditions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 209,
+          "condition": "Trigger interaction for MonoBehaviour component with script GUID f5f67c52d1564df4a8936ccd202a3bd8 and fileID -900027084; m_EffectColor, m_EffectDistance, m_UseGraphicAlpha indicate possible UI element requiring manual activation; no explicit m_Calls found in scene meta.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Touch Pad Outside",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 975,
+          "condition": "Manual triggering of UI text element event because m_Calls list in m_OnCullStateChanged is empty; no automatic interaction is present. Script fileID 708705254 (guid: f5f67c52d1564df4a8936ccd202a3bd8) attached to gameobject fileID 209.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrPointerGraphicRaycaster",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 976,
+          "condition": "Manually trigger raycast interaction event for GvrPointerGraphicRaycaster in scene 'GVRDemo.unity'. Script GUID 739800cd36aba44e9b04ce977e5784bd (raycastMode=0, ignoreReversedGraphics=true, blockingObjects=None, blockingMask=all bits). Event requires pointer availability and WorldSpace canvas. Testing ensures raycast detects graphics under pointer for VR interactions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 976,
+                  "method_name": "Raycast",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CanvasScaler_UI",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 213,
+          "condition": "MonoBehaviour component with script GUID f5f67c52d1564df4a8936ccd202a3bd8 controls UI scaling in scene 'GVRDemo.unity'. No automatic event m_Calls present; requires manual triggering for UI-related scale adjustments.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 977,
+                  "method_name": "UpdateUIScale",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownGameObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 227,
+          "condition": "MonoBehaviour with id=978 is attached to GameObject fileID=227, using script guid=f5f67c52d1564df4a8936ccd202a3bd8 (fileID=1741964061). Scene meta shows 'm_Calls' events which correspond to interactable events; they may need to be triggered manually if not fired automatically. The MonoBehaviour settings indicate UI layout fitting behaviors (HorizontalFit=2, VerticalFit=0), so triggering the linked event may simulate user interaction.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1741964061,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GVRDemo_UIContainer",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 227,
+          "condition": "Manual trigger for UI layout object in GVRDemo.unity; attached MonoBehaviour (scriptFileID: -405508275, GUID: f5f67c52d1564df4a8936ccd202a3bd8) managing layout and potential VR interactions. Scene meta indicates serialized UnityEvent m_Calls — trigger to ensure corresponding interactable events fire for test coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -405508275,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unnamed_UI_Image",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 227,
+          "condition": "Manual triggering of MonoBehaviour (script guid: f5f67c52d1564df4a8936ccd202a3bd8, fileID: -765806418) attached to UI Image with no automatic m_Calls. Scene meta shows empty m_Calls list, so interaction needs to be simulated to test event handling or rendering changes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 980,
+                  "method_name": "OnImageInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockTimer",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 981,
+          "condition": "Manual trigger of MonoBehaviour methods for ClockTimer script (script GUID: e7961a963e9940a44b4f5cf35ce83696) when automatic event from m_Calls is not activated; test initialization and update flow for clock setup.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 981,
+                  "method_name": "OnEnable",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownGameObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 233,
+          "condition": "MonoBehaviour component with script GUID f5f67c52d1564df4a8936ccd202a3bd8, fileID -405508275 is currently disabled (m_Enabled=0) and contains interactable events in 'm_Calls' that need manual triggering.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -405508275,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnnamedGameObject_233",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 233,
+          "condition": "MonoBehaviour component with fileID -900027084 (GUID: f5f67c52d1564df4a8936ccd202a3bd8) attached; m_Calls section indicates Interactable events. The script appears to involve UI or graphic effects (m_EffectColor, m_EffectDistance) and may require explicit manual triggering to validate event handling.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -900027084,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Touch Pad Inside",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 233,
+          "condition": "Manually trigger UI interaction for MonoBehaviour with script GUID f5f67c52d1564df4a8936ccd202a3bd8 and fileID 708705254, as no m_Calls events are configured in m_OnCullStateChanged. Simulates player pressing or activating the UI element displaying 'Touch Pad Inside'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 708705254,
+                  "method_name": "OnPointerClick",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InventoryCanvas",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 94,
+          "condition": "Manually trigger inventory visibility toggle. Script MonoBehaviour fileID=985, GUID=3652d147b24254c618ce4989e3b9003c. Expected: CanvasGroup alpha toggles between 0 and 1, blocksRaycasts toggles between false and true, isVisible updated to opposite state. This simulates GvrController.AppButtonUp without relying on hardware input.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 985,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 246,
+          "condition": "MonoBehaviour component with script GUID f5f67c52d1564df4a8936ccd202a3bd8 and fileID 1741964061 is attached to the target GameObject. Scene meta settings indicate an Interactable event ('m_Calls') may need to be manually triggered due to absence of automatic triggers in the provided data.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1741964061,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownObjectFromPrefab",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 246,
+          "condition": "MonoBehaviour id=989, script GUID=f5f67c52d1564df4a8936ccd202a3bd8, script_fileID=-405508275; m_Calls indicate Interactable events bound in UnityEvent that should be invoked manually if not triggered automatically in gameplay. No script source code available, method names need confirmation from developer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -405508275,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown_UI_Image",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 246,
+          "condition": "No m_Calls defined in m_OnCullStateChanged event; MonoBehaviour (Script GUID: f5f67c52d1564df4a8936ccd202a3bd8, fileID: -765806418) is a UnityEngine.UI.Image component with possible interaction through manual trigger if automatic event is absent",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Inventory",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 991,
+          "condition": "Manual trigger of UI text component events attached via script guid f5f67c52d1564df4a8936ccd202a3bd8, since m_Calls list is empty in m_OnCullStateChanged, verify UI rendering behavior and font setup.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UsableObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 255,
+          "condition": "Manual trigger of 'Use' behavior from Usable script (MonoBehaviour fileID 992, GUID 164fdbff0d3254b5691f0f3dddc50068) because UnityEvent 'dispatch' (m_Calls) is empty and will not be invoked automatically without interaction; designed to test success/failure branching with Inventory.SelectedItem matching useItem GUID d9c6c5f21512a48a1bad97806c346fc7",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 992,
+                  "method_name": "Use",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownGameObject_255",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 255,
+          "condition": "When EventTrigger eventID=4 is activated, call MonoBehaviour script GUID f70555f144d8491a825f0804e09c671c (script_fileID=-1862395651) method 'Use' with Inventory (fileID=985) as parameter; scene config m_Calls specify this manual trigger to ensure proper execution of 'Use'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1862395651,
+                  "method_name": "Use",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InteractableObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 264,
+          "condition": "Manual trigger of the 'Use' method on MonoBehaviour script fileID 996 with Inventory parameter, as defined in scene meta eventID 4 (GUID: f70555f144d8491a825f0804e09c671c). Intended to simulate explicit player action beyond natural gaze-based triggers.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 996,
+                  "method_name": "Use",
+                  "parameter_fileID": [
+                    985
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collectable",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 995,
+          "condition": "Manual triggering of the Collect() method from MonoBehaviour script GUID fd9b592feb7384d0a9c94749396c5a5e attached to the gameobject in 'GVRDemo.unity'. Scene 'dispatch.m_Calls' is empty, indicating no automatic UnityEvent callbacks, so manual method invocation is needed to test inventory addition and object destruction flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 995,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Mirror",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 264,
+          "condition": "Testing Usable script (MonoBehaviour id 996, guid 164fdbff0d3254b5691f0f3dddc50068) configured with useItem guid 3ecd47c1fc0a445c286421e6e3bfaac8. Trigger UnityEvent 'dispatch' which calls method 'Escape' on target object fileID 997 under specific conditions where the player uses the correct inventory item.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 997,
+                  "method_name": "Escape",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EscapeObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 264,
+          "condition": "Manually trigger Escape() method from FindEscape MonoBehaviour component with script_fileID=997, GUID=039fb8407de0f43eea2f8c130a6df149, to simulate player successfully escaping the room.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 997,
+                  "method_name": "Escape",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unnamed_Object_265",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 265,
+          "condition": "Manual trigger of EventTrigger callbacks defined in MonoBehaviour component (id 998, script GUID f70555f144d8491a825f0804e09c671c). This simulates gazing at and interacting with the object to ensure 'SetGazedAt', 'Collect', and 'Inspect' methods execute as expected. Persistent calls reference targets with fileIDs 999 and 1000.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 998,
+                  "method_name": "SetGazedAt",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 998,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 998,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collectable",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 265,
+          "condition": "Trigger the Collect() method from script GUID fd9b592feb7384d0a9c94749396c5a5e (MonoBehaviour ID 999) when certain conditions are met; m_Calls is empty so UnityEvent 'dispatch' will not trigger automatically; expected behavior is adding the item GUID 3ecd47c1fc0a445c286421e6e3bfaac8 to the inventory and destroying the gameobject.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 999,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Key",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 273,
+          "condition": "Manual trigger of eventID 4 configured in MonoBehaviour (fileID 1004, guid f70555f144d8491a825f0804e09c671c) which calls Collect() on script fileID 1005 (guid fd9b592feb7384d0a9c94749396c5a5e) and Inspect() on script fileID 1006 (guid 20f309bd30f854a1cb08cabddfbc74e5). Expected behavior is showing 'This key may be useful...' via Inspectable.Inspect and adding key to inventory via Collect.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1005,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1006,
+                  "method_name": "Inspect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collectable",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 277,
+          "condition": "Manually invoke the 'Collect' method from MonoBehaviour (script GUID: fd9b592feb7384d0a9c94749396c5a5e, fileID: 1009) because 'dispatch' UnityEvent has no persistent m_Calls in scene config and will not trigger automatically without player gaze/interaction.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1009,
+                  "method_name": "Collect",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown_GameObject_277",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 277,
+          "condition": "Trigger EventID 0 from MonoBehaviour id 1010 (guid: f70555f144d8491a825f0804e09c671c) that calls SetGazedAt(true) on script_fileID 1009",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1009,
+                  "method_name": "SetGazedAt",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown_GameObject_277",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 277,
+          "condition": "Trigger EventID 1 from MonoBehaviour id 1010 that calls SetGazedAt(false) on script_fileID 1009",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1009,
+                  "method_name": "SetGazedAt",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ReplaceFlowerObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 277,
+          "condition": "Manual trigger of PlaceFlower method in ReplaceFlower MonoBehaviour (script_fileID: 1011, GUID: b9a7c98e07a2a4348a8fa4e52d5fd6af) to test flower placement behavior and related component state changes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1011,
+                  "method_name": "PlaceFlower",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 280,
+          "condition": "MonoBehaviour component with script GUID f5f67c52d1564df4a8936ccd202a3bd8 (fileID -900027084) is active in scene 'GVRDemo.unity'. Event triggering is based on scene meta settings, m_Calls not explicitly specified but may relate to Interactable UI events such as button click or interaction within Google VR demo.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -900027084,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "App Button Outside",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 280,
+          "condition": "Manual trigger of UI button press event; MonoBehaviour script with fileID 708705254 and GUID f5f67c52d1564df4a8936ccd202a3bd8 attached to the GameObject named 'App Button Outside'. Scene meta shows m_Calls[] empty, meaning no automatic events are configured and manual trigger is necessary to test.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 708705254,
+                  "method_name": "OnClick",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownGameObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 289,
+          "condition": "Manual trigger of interactable event from MonoBehaviour with script GUID f5f67c52d1564df4a8936ccd202a3bd8, script_fileID -900027084, to verify m_Calls functionality in absence of auto-triggering.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -900027084,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "App Button Inside",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 289,
+          "condition": "Manual trigger of UI button 'App Button Inside'; MonoBehaviour with script GUID f5f67c52d1564df4a8936ccd202a3bd8, script_fileID 708705254. Scene meta indicates empty m_Calls, requiring direct testing of public no-parameter methods in the attached script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 708705254,
+                  "method_name": "OnClick",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DisplaySelectedObject",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 293,
+          "condition": "Manual trigger of TurnSelectedWithButton to change displayed GameObject based on scene config. MonoBehaviour id=1016, Script GUID=1bd5b4c54e111e240aa7b6088078e1f9, currentDisplay=0, ButtonSelectable=false. Ensures the displayOptions array responds correctly when selection changes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1016,
+                  "method_name": "TurnSelectedWithButton",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

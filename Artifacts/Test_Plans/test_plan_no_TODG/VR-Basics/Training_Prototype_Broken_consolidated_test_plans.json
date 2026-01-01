@@ -1,0 +1,2501 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Unknown",
+          "source_object_fileID": 4502080888245813405,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 45,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Call MatchRotation.FollowRotation (MonoBehaviour fileID 14, script GUID ae83748d921a24c479bbf9e63dd4ea89) with serialization: matchX=false, matchY=true, matchZ=false; targetTransform fileID 4502080888245813405. Expected: only Y rotation matches target, X/Z remain at originalRotation captured in Awake.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Magnet On/Off",
+          "source_object_fileID": 20253445,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet On/Off",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 20253445,
+          "condition": "MonoBehaviour fileID 20253448 (guid f4688fdb7df04437aeb418b961361dc5, type 3) is attached to GameObject fileID 20253445 and serializes TextMeshProUGUI-like fields (m_text='Magnet On/Off'). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so there are no serialized interactable UnityEvents to invoke from this component.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "TranslateObject GameObject",
+          "source_object_fileID": -1,
+          "delta_position": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": -0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TranslateObject GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": -1,
+          "condition": "After object has been moved/rotated from its starting transform, manually invoke TranslateObject.ResetToStartingPosition() since scene meta provides no m_Calls. Expected: transform returns to Start()-cached startPos/startRot.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "SpawnPosition",
+          "source_object_fileID": 7863669398301968895,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spawner",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 7863669398301968894,
+          "condition": "Call Spawn on MonoBehaviour fileID 131723510 (guid a658f19182a575a46b14f720a8e295a7). originalObject -> prefab guid 97e89670ed7696d489d6ddba4543a01b (fileID 6150933721197494150). spawnPosition -> Transform fileID 7863669398301968895. Expected: Instantiate(originalObject) at spawnPosition.position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 131723510,
+                  "method_name": "Spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_203819837",
+          "source_object_fileID": 203819837,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.25,
+            "z": -0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_203819837",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 203819837,
+          "condition": "Manual trigger of ResetToStartingPosition() on MonoBehaviour id 203819839 (m_Script guid 866d134ae31a01841b6156f8d0a87054, fileID 11500000). Expected: transform resets to Start()-recorded startPos and startRot. No m_Calls specified in scene; triggering ensures coverage of public no-arg API.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRInteractorLineVisual Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 243225247,
+          "condition": "Manual test of reticle management on XRInteractorLineVisual (MonoBehaviour id=243225250, Script GUID=e988983f96fe1dd48800bcdfc82f23e9). Scene config: m_LineWidth=0.02, m_OverrideInteractorLineLength=false, m_LineLength=6, m_SmoothMovement=false, m_SnapThresholdDistance=10, m_StopLineAtFirstRaycastHit=true, m_Reticle=null. Expected: calling RemoveCustomReticle() safely detaches any custom reticle if present (no-op if none), ensuring the visual falls back to default behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 243225250,
+                  "method_name": "RemoveCustomReticle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRRayInteractor_GO",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 243225247,
+          "condition": "Call public method IsOverUIGameObject() on MonoBehaviour id=243225252 (script guid=6803edce0201f574f923fd9d10e5b30a, XRRayInteractor) with current serialized config: enableUIInteraction=true, m_RaycastMask.m_Bits=545, m_MaxRaycastDistance=6, m_HitDetectionType=Raycast, m_RaycastTriggerInteraction=1 (Collide). Expect false unless a UI element lies under the ray; used to validate UI interaction path when no explicit UnityEvent m_Calls are configured.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 243225252,
+                  "method_name": "IsOverUIGameObject",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 259193821,
+          "condition": "UnityEngine.UI.Image component (MonoBehaviour id 259193823, script guid fe87c0e1cc204ed48ad3b37840f39efc) on GameObject 259193821. Serialized: m_Sprite=0 (no sprite assigned), m_Type=0 (Simple), m_PreserveAspect=0, m_FillCenter=1, m_FillMethod=4 (Radial360), m_FillAmount=1, m_FillClockwise=1, m_FillOrigin=0, m_RaycastTarget=0 (non-interactable by UI raycasts), m_OnCullStateChanged.m_PersistentCalls.m_Calls=[]. With raycasts disabled and no persistent events, invoke public no-arg methods directly to test behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 259193823,
+                  "method_name": "DisableSpriteOptimizations",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 259193821,
+          "condition": "Call SetNativeSize on Image (script guid fe87c0e1cc204ed48ad3b37840f39efc, component id 259193823). Note m_Sprite is null in serialized data, so SetNativeSize should safely no-op without errors; verifies robustness with no sprite assigned.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 259193823,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Image",
+          "source_object_fileID": 259193821,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_263574719",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "MonoBehaviour id=263574720 uses script guid=969b8e08cffa4e44681eb600a8dfc099 (FadeCanvas). Serialized defaultDuration=1.0. Requires CanvasGroup. No m_Calls configured in scene; manual trigger needed. Expect CanvasGroup.alpha to fade quickly to 1.0.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_263574719",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "MonoBehaviour id=263574720, guid=969b8e08cffa4e44681eb600a8dfc099 (FadeCanvas). Quick fade to 0 to validate fade-out path and CanvasGroup.alpha reaching 0.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_263574719",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 263574719,
+          "condition": "Start a normal fade-in (defaultDuration=1.0) and interrupt mid-way to validate StopAllCoroutines and switching to a quick fade-out.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_263574719",
+          "triggerring_time": 1.1,
+          "source_object_fileID": 263574719,
+          "condition": "Run a full-duration fade-out to completion to verify default timing and final alpha=0. MonoBehaviour id=263574720; guid=969b8e08cffa4e44681eb600a8dfc099.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 263574719,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 263574719,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": -180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Console Labels",
+          "source_object_fileID": 326360035,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.2,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Console Labels",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 326360035,
+          "condition": "MonoBehaviour id 326360037 on GameObject fileID 326360035; m_Script guid f4688fdb7df04437aeb418b961361dc5 (TextMeshProUGUI/TMP_Text-like). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty; no automatic UnityEvents; manually force a geometry refresh when layout/visibility changes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 326360037,
+                  "method_name": "SetVerticesDirty",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_341662330",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 341662330,
+          "condition": "PlaySoundsFromList (script guid: 76a895b5e674db04d8b4f8110c068852, component fileID: 341662333) on m_GameObject fileID 341662330; shouldLoop=0; audioClips count=2 (guids: 3c7b3ef689cc94af0bd824489050effd, 02e01164404134d2c9265aa08b65ba96). Expect to start playing clip at current index (initially 0). Note: AudioSource.loop is set via OnValidate only; no UnityEvent m_Calls defined.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_341662330",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 341662330,
+          "condition": "Advance to next clip and play it; verifies index increment and wrap handling for NextClip with 2 clips.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_341662330",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 341662330,
+          "condition": "Go to previous clip and play it; from index 1 expect index 0. Checks PreviousClip modulo behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_341662330",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 341662330,
+          "condition": "Call PreviousClip again when at index 0; due to --index % Count yielding -1 and Mathf.Abs in PlayClip, expect wrap to last clip (index 1 with 2 clips). Validates edge-case wrap-around.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_341662330",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 341662330,
+          "condition": "Play a random clip; with 2 clips expect either index 0 or 1. Confirms Random.Range(0, Count) int behavior (max exclusive).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_341662330",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 341662330,
+          "condition": "Pause current playing clip; verify AudioSource.Pause() behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_341662330",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 341662330,
+          "condition": "Stop current playing clip; verify AudioSource.Stop() behavior. Note: PlayAtIndex(int) cannot be tested via Trigger (has parameter) and appears to allow index==Count which would be out-of-range on play.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InputActionManager GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 382035876,
+          "condition": "MonoBehaviour id 382035877 uses script guid 017c5e3933235514c9520e1dace2a4b2 (InputActionManager). m_Enabled=1. m_ActionAssets includes guid c348712bda248c246b8c49b3db54643f (InputActionAsset). Manually disable inputs to verify actionAsset.Disable() is applied to all referenced assets.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 382035877,
+                  "method_name": "DisableInput",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InputActionManager GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 382035876,
+          "condition": "After disabling, re-enable inputs to verify actionAsset.Enable() is applied to all referenced assets; ensures both code paths are covered aside from automatic OnEnable/OnDisable.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 382035877,
+                  "method_name": "EnableInput",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button (UnityEngine.UI)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 421878381,
+          "condition": "Press UnityEngine.UI.Button component MonoBehaviour id 421878383 (m_Script guid 4e29b1a8efbd4b44bb3f3716e73f07ff) while m_Enabled=1 and m_Interactable=1. This simulates a left-pointer click that invokes m_OnClick. Expect persistent calls: ShowMessageFromList.NextMessage() on fileID 1521713936 and PlaySoundsFromList.PlayAtIndex(1) on fileID 1026361732.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Image",
+          "source_object_fileID": 421878381,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Image",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 421878381,
+          "condition": "MonoBehaviour id 421878384 (m_Script guid fe87c0e1cc204ed48ad3b37840f39efc) is UnityEngine.UI.Image on GameObject fileID 421878381. Scene config: m_Type=1 (Sliced), m_Sprite fileID 10905, m_FillMethod=4 (Radial360), m_RaycastTarget=1, m_OnCullStateChanged.m_Calls=[]. No automatic interactable events are set; manually invoke SetNativeSize to validate resizing behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 421878384,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Object#531403572",
+          "source_object_fileID": 531403572,
+          "delta_position": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": -0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 90.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object#531403572",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 531403572,
+          "condition": "After object moved away from Start() pose, manually invoke ResetToStartingPosition() on MonoBehaviour 531403574 (script guid 866d134ae31a01841b6156f8d0a87054, m_Script.fileID 11500000) to return to initial position and rotation; no m_Calls provided in scene so this must be triggered explicitly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OnButtonPress Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 692630294,
+          "condition": "OnButtonPress (guid 4a8d337e8bc7ac4498e0df29e7b8bd5e, MonoBehaviour fileID 692630297) listens to XRController secondaryButton. Its OnPress UnityEvent has a PersistentCall to LoadScene.ReloadCurrentScene targeting script fileID 1907113017. Manually trigger the bound m_Calls to validate behavior when XR input cannot be simulated.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_692630294",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 692630294,
+          "condition": "MonoBehaviour 692630299 in scene references script guid 01f69dc1cb084aa42b2f2f8cd87bc770 (UnityEngine.XR.Interaction.Toolkit.TeleportationProvider) with m_System -> 692630300. This component has no public no-arg methods to invoke directly; teleportation only occurs after QueueTeleportRequest(TeleportRequest) is called by another interactable (e.g., TeleportationAnchor/Area) or a scene UnityEvent (m_Calls). Provide the wired m_Calls or an intermediary public no-arg method that enqueues a TeleportRequest to proceed with an actual Trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LocomotionSystem",
+          "triggerring_time": 11.0,
+          "source_object_fileID": 692630294,
+          "condition": "Scene component MonoBehaviour fileID 692630300 (script guid 03a5df2202a8b96488c744be3bd0c33e, type 3) is UnityEngine.XR.Interaction.Toolkit.LocomotionSystem with m_Timeout=10 and m_XROrigin fileID=0 (auto-find in Awake). This script exposes no public no-parameter methods, and the scene meta shows no m_Calls UnityEvents to invoke. To test the timeout path (Update -> ResetExclusivity after timeout), a LocomotionProvider must first acquire exclusivity via RequestExclusiveOperation(provider), which cannot be triggered via this framework as it requires a parameter.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Dump Boxes Text",
+          "source_object_fileID": 760016360,
+          "delta_position": {
+            "x": 0.0,
+            "y": 5.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Dump Boxes Text",
+          "source_object_fileID": 760016360,
+          "delta_position": {
+            "x": 0.0,
+            "y": -5.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRKnob",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4502080887094448763,
+          "condition": "Manually invoke the scene persistent call for m_SelectEntered on MonoBehaviour id 774548518 (guid 65a8500fa86faa04596fb5f9d40efeae). Expected behavior per m_Calls: PlayContinuousSound.Play on script/component fileID 4079354613688537254.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRKnob",
+          "source_object_fileID": 4502080887094448763,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 45,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRKnob",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4502080887094448763,
+          "condition": "Manually invoke the scene persistent call for m_SelectExited on MonoBehaviour id 774548518 (guid 65a8500fa86faa04596fb5f9d40efeae). Expected behavior per m_Calls: PlayContinuousSound.Pause on script/component fileID 4079354613688537254.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Text: Clear Boxes",
+          "source_object_fileID": 839034728,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 100.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI Text: Clear Boxes",
+          "source_object_fileID": 839034728,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -100.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SpawnObject Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": "7863669396577847636",
+          "condition": "Manual trigger required for SpawnObject.Spawn() (MonoBehaviour id=839586645, script guid=a658f19182a575a46b14f720a8e295a7). Serialized config: originalObject guid=97e89670ed7696d489d6ddba4543a01b, spawnPosition fileID=7863669396577847637 (defaults to host transform via OnValidate). Expect Instantiate(originalObject) at spawnPosition.position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": "839586645",
+                  "method_name": "Spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Spawn Position",
+          "source_object_fileID": "7863669396577847637",
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": "839586645",
+                  "method_name": "Spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_898355185",
+          "source_object_fileID": 898355185,
+          "delta_position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_898355185",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 898355185,
+          "condition": "MonoBehaviour id 898355187 uses script guid 866d134ae31a01841b6156f8d0a87054 (fileID 11500000) mapped to TranslateObject. No m_Calls present; manually test public no-arg method to verify reset to Start() position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_988422737",
+          "source_object_fileID": 988422737,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.2,
+            "z": -0.3
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_988422737",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 988422737,
+          "condition": "Manual trigger required to validate reset behavior. MonoBehaviour component fileID 988422739 in scene 'Training_Prototype_Broken.unity' references script guid 866d134ae31a01841b6156f8d0a87054 (fileID 11500000), which is the TranslateObject script. No m_Calls are defined on this component, so an explicit call to its public no-arg method is needed to test. Expect object to return to Start-captured position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1026361730",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1026361730,
+          "condition": "PlaySoundsFromList (guid 76a895b5e674db04d8b4f8110c068852, component fileID 1026361732) on GameObject fileID 1026361730; shouldLoop=0; audioClips configured (2 clips); AudioSource present via RequireComponent.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1026361730",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1026361730,
+          "condition": "Advance to next audio in list to validate cycling with 2 clips and index modulo behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1026361730",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1026361730,
+          "condition": "Pause then resume playback to verify PauseClip and subsequent restart via PlayCurrentClip.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1026361730",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1026361730,
+          "condition": "Jump to a random clip within configured list (2 clips) to validate RandomClip uses valid indices.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1026361730",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1026361730,
+          "condition": "Navigate backward to validate PreviousClip wrap-around behavior with 2 clips.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1026361730",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1026361730,
+          "condition": "Stop current playback to validate StopClip.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject(7863669397899538604)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669397899538604,
+          "condition": "Invoke Spawn() on MonoBehaviour id 1086352045 (script guid a658f19182a575a46b14f720a8e295a7 => SpawnObject.cs). Serialized config: originalObject guid 97e89670ed7696d489d6ddba4543a01b fileID 6150933721197494150; spawnPosition fileID 7863669397899538605 (defaults to this transform if null). Expected: Instantiate originalObject at spawnPosition.position/rotation. No m_Calls listed in scene, so manual trigger required.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1086352045,
+                  "method_name": "Spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1124768095",
+          "source_object_fileID": 1124768095,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.2,
+            "z": -0.3
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1124768095",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1124768095,
+          "condition": "After the object has been moved from its start pose, invoke the TranslateObject reset. Scene MonoBehaviour component id 1124768097 maps to script guid 866d134ae31a01841b6156f8d0a87054. No m_Calls UnityEvents are present in scene data, so manual trigger is required. Expected: transform returns to Start-recorded position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UnknownGameObject",
+          "source_object_fileID": 1147109799,
+          "delta_position": {
+            "x": 1.0,
+            "y": 0.5,
+            "z": -0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownGameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1147109799,
+          "condition": "Manually invoke TranslateObject.ResetToStartingPosition on MonoBehaviour fileID 1147109801 (guid 866d134ae31a01841b6156f8d0a87054) to return the GameObject to the position/rotation captured in Start after it was moved/rotated.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text_Move_Lateral",
+          "source_object_fileID": 1183348333,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Text_Move_Lateral",
+          "source_object_fileID": 1183348333,
+          "delta_position": {
+            "x": -1.0,
+            "y": -1.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.2,
+            "y": 0.2,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Obj_1320904623",
+          "source_object_fileID": 1320904623,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.25
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Obj_1320904623",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1320904623,
+          "condition": "After object has been displaced, manually invoke reset to verify it returns to Start() cached pose. Target MonoBehaviour id 1320904625 on GameObject fileID 1320904623; m_Script guid 866d134ae31a01841b6156f8d0a87054 (fileID 11500000).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1320904625,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRDirectInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1333979359,
+          "condition": "Component matches XRDirectInteractor (script guid: 4253f32900bcc4d499d675566142ded0, MonoBehaviour id: 1333979361, script fileID: 11500000) on GameObject fileID 1333979359 in Training_Prototype_Broken.unity. UnityEvents m_HoverEntered/m_HoverExited/m_SelectEntered/m_SelectExited and m_OnHoverEntered/m_OnHoverExited/m_OnSelectEntered/m_OnSelectExited have empty m_Calls. No public parameterless methods are exposed by this component for manual invocation; reserve manual triggering only if scene adds persistent calls to these events.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1351763417,
+          "condition": "MonoBehaviour 1351763419 is UnityEngine.UI.Image (m_Script fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3). Scene settings: m_Type=0(Simple), m_PreserveAspect=0, m_FillCenter=1, m_FillMethod=4(Radial360), m_FillAmount=1, m_FillClockwise=1, m_FillOrigin=0, m_UseSpriteMesh=0, m_PixelsPerUnitMultiplier=1, m_RaycastTarget=1, m_Sprite=null. m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty (no UnityEvents wired). Manually invoke no-arg public methods to validate behavior under these serialized settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1351763419,
+                  "method_name": "DisableSpriteOptimizations",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1351763419,
+                  "method_name": "CalculateLayoutInputHorizontal",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1351763419,
+                  "method_name": "CalculateLayoutInputVertical",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1351763419,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Magnet Rotate",
+          "source_object_fileID": 1358910986,
+          "delta_position": {
+            "x": 100.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet Rotate",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1358910986,
+          "condition": "Manually mark the UI cull event to be observed when text is moved off-screen. MonoBehaviour component fileID 1358910989 (guid f4688fdb7df04437aeb418b961361dc5) corresponds to the displayed Text (TMP) with m_text='Magnet Rotate'. The scene meta shows m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty, so no persistent listeners exist; this event must be verified under culling conditions rather than via configured calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Toggle (UnityEngine.UI.Toggle)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1519901173,
+          "condition": "Simulate a left-click/submit on UnityEngine.UI.Toggle to flip isOn from true to false. Script GUID: 9085046f02f69544eb97fd06b6048fe2 (fileID 11500000), component id 1519901175. Serialized: m_IsOn=1, toggleTransition=Fade, graphic=1618447875, no ToggleGroup. onValueChanged has 2 persistent calls: (1) GameObject#66628781.SetActive(bool) [dynamic bool from toggle], (2) PlaySoundsFromList#1026361732.PlayAtIndex(int=0). Expect: SetActive(false) on 66628781 and PlayAtIndex(0) invoked, with fade-out effect.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Toggle (UnityEngine.UI.Toggle)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1519901173,
+          "condition": "Simulate a second left-click/submit to flip isOn from false back to true on the same Toggle (component id 1519901175, GUID 9085046f02f69544eb97fd06b6048fe2). Expect onValueChanged to call GameObject#66628781.SetActive(true) and PlaySoundsFromList#1026361732.PlayAtIndex(0), with fade-in effect.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI.Image (GameObject 1618447873)",
+          "source_object_fileID": 1618447873,
+          "delta_position": {
+            "x": 10.0,
+            "y": -5.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.2,
+            "y": 0.2,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI.Image (GameObject 1618447873)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1618447873,
+          "condition": "Invoke Image.SetNativeSize on MonoBehaviour 1618447875 (script GUID fe87c0e1cc204ed48ad3b37840f39efc). Scene config confirms UnityEngine.UI.Image: m_Type=Simple(0), m_PreserveAspect=0, m_FillCenter=1, m_FillMethod=Radial360(4), m_FillAmount=1, m_FillClockwise=1, m_FillOrigin=0, m_RaycastTarget=1, m_Sprite=fileID 10901 (builtin). m_OnCullStateChanged.m_PersistentCalls.m_Calls is empty (no automatic events). Expected: rectTransform resized to sprite dimensions; vertices/material dirtied.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1618447875,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "TeleportationAnchor",
+          "source_object_fileID": 1702822958,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TeleportationAnchor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1702822958,
+          "condition": "MonoBehaviour component 1702822959 uses script guid 7e2f4617667341945b5a7756e14b62d0 (fileID 11500000), which is UnityEngine.XR.Interaction.Toolkit.TeleportationAnchor. m_TeleportTrigger: 0 (OnSelectEntered). m_TeleportAnchorTransform: 1702822960. m_TeleportationProvider: 0 (unset). All interaction UnityEvents (m_OnSelectEntered, m_Teleporting, etc.) have empty m_Calls. Manually trigger selection-equivalent to validate GenerateTeleportRequest uses the anchor transform as destination.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1718703366",
+          "source_object_fileID": 1718703366,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1718703366",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1718703366,
+          "condition": "Manual trigger of TranslateObject.ResetToStartingPosition on MonoBehaviour fileID 1718703368 (script guid 866d134ae31a01841b6156f8d0a87054) after the object has been moved; expects transform to return to Start() saved position and rotation. No m_Calls configured in scene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1718703368,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRInteractorLineVisual GameObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1719633266,
+          "condition": "Manually detach any custom reticle to observe fallback visuals and ensure no lingering reticle. Target MonoBehaviour component fileID=1719633269 (script GUID=e988983f96fe1dd48800bcdfc82f23e9). Scene config: m_OverrideInteractorLineLength=0, m_LineLength=6, m_StopLineAtFirstRaycastHit=1, m_Reticle=null, gradients configured. Expectation: custom reticle flag cleared, no custom reticle active; line renders using valid/invalid/blocked gradients based on hit/selection state; no exceptions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1719633269,
+                  "method_name": "RemoveCustomReticle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#1719633266",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1719633266,
+          "condition": "Manual check on XRRayInteractor (MonoBehaviour fileID: 1719633271, script GUID: 6803edce0201f574f923fd9d10e5b30a). Scene config indicates: m_LineType=StraightLine, m_MaxRaycastDistance=6, m_HitDetectionType=Raycast, m_SphereCastRadius=0, m_RaycastMask.m_Bits=545, m_RaycastTriggerInteraction=Collide, m_HitClosestOnly=false, m_HoverToSelect=false. No persistent UnityEvents (m_Calls) are configured in m_Hover/Select events, so we issue a safe, parameterless query method to validate UI interaction readiness.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1719633271,
+                  "method_name": "IsOverUIGameObject",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ActionBasedController GameObject",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1719633266,
+          "condition": "Scene MonoBehaviour id 1719633272 uses script guid caff514de9b15ad48ab85dcff5508221, which matches XR Interaction Toolkit's ActionBasedController. m_EnableInputTracking=1 and m_EnableInputActions=1. InputActionProperties (Position/Rotation/TrackingState/Select/Activate/UI Press) reference asset guid c348712bda248c246b8c49b3db54643f. This component drives interaction states automatically via the Input System; there are no UnityEvent m_Calls listed and no public no-arg methods to invoke, so no manual triggerable event is available.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1793308539",
+          "source_object_fileID": 1793308539,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.2,
+            "z": -0.3
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1793308539",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1793308539,
+          "condition": "After manually moving/rotating the object, invoke TranslateObject.ResetToStartingPosition on MonoBehaviour component 1793308541 (m_Script guid 866d134ae31a01841b6156f8d0a87054) to restore transform to the Start-captured pose; this component matches the provided script and has no serialized UnityEvents (no m_Calls).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1793308541,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RemoveObjectsWithTag Host",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669397134400380,
+          "condition": "MonoBehaviour id 1824525328 on GameObject fileID 7863669397134400380 uses script guid 67ddb01715fbbc34fb1b56a1a852d398 (RemoveObjectsWithTag). Scene meta shows no UnityEvent m_Calls. The only public method is RemoveObjects(string tag), which requires a parameter; the Trigger action can only invoke parameterless methods. To proceed, we need either a parameterless proxy on this component or a UnityEvent persistent call wired with the desired tag.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OnSceneLoad",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1907113014,
+          "condition": "Manually simulate OnSceneLoad.OnLoad UnityEvent from MonoBehaviour id 1907113015 (script guid e9315cd1bd0bb624886da5b1f92c045e) to test post-load behavior without reloading the scene. The event is configured (m_Calls) to invoke TeleportPlayer.Teleport (target fileID 692630298) and FadeCanvas.StartFadeOut (target fileID 263574720).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 692630298,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown_1907113014",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1907113014,
+          "condition": "MonoBehaviour fileID 1907113017 uses Script GUID 403efda511d335c4a865b0a1f33cc9e0 (LoadScene). Call ReloadCurrentScene() (no params) to reload the active scene via SceneManager.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas (GraphicRaycaster)",
+          "source_object_fileID": 1963046883,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_1963046883",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1963046883,
+          "condition": "MonoBehaviour component fileID 1963046888 on GameObject fileID 1963046883 uses script guid 064216bc04beaca4fab9a6b5d9bca977 (ToggleVisibility). Public method Toggle() has no parameters and toggles Renderer.enabled. No m_Calls configured in scene; invoke manually to validate visibility toggle behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1963046888,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "UI_Image",
+          "source_object_fileID": 2063182039,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.016
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UI_Image",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2063182039,
+          "condition": "MonoBehaviour instance 2063182041 (script guid fe87c0e1cc204ed48ad3b37840f39efc, UnityEngine.UI.Image). Serialized config: m_Sprite.fileID=10905, m_Type=1 (Sliced), m_PreserveAspect=0, m_FillCenter=1, m_FillMethod=4 (Radial360, unused for Sliced), m_FillAmount=1, m_FillClockwise=1, m_FillOrigin=0, m_UseSpriteMesh=0, m_PixelsPerUnitMultiplier=1, m_RaycastTarget=1. After changing RectTransform scale, call SetNativeSize to validate pixel-perfect sizing behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2063182041,
+                  "method_name": "SetNativeSize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas (TrackedDeviceGraphicRaycaster)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2095114517,
+          "condition": "Scene MonoBehaviour id=2095114518 uses script guid=7951c64acb0fa62458bf30a60089fe2d (UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster). Serialized config: m_IgnoreReversedGraphics=0; m_CheckForDOcclusion (2D)=0; m_CheckForDOcclusion (3D)=0; m_BlockingMask bits=2147483647; m_RaycastTriggerInteraction=1. No m_Calls are defined on this component and this script exposes no public no-arg methods; this Trigger is a placeholder to document the mapping and configuration.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas (TrackedDeviceGraphicRaycaster)",
+          "source_object_fileID": 2095114517,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas (GraphicRaycaster)",
+          "source_object_fileID": 2095114517,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas (GraphicRaycaster)",
+          "source_object_fileID": 2095114517,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": -180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 2095114517,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.1
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_8792796093255807276",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 8792796093255807276,
+          "condition": "MonoBehaviour 931956745451022772 (guid 0ab6d3e7b225a7342a0d702b6151692b) PlayContinuousSound on GameObject 8792796093255807276: playOnStart=false prevents auto playback; volume=1; sound=AudioClip guid f3d02eed8de884b8f8e2df103802faf5; OnValidate enforces AudioSource.playOnAwake=false and loop=true. Manually start playback, then pause to validate control methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudioObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "PlaySoundsFromList MonoBehaviour.id=1145393436748058495 (m_Script.guid=76a895b5e674db04d8b4f8110c068852) attached to GameObject.fileID=7541936462315295362; shouldLoop=0; audioClips count=5; requires AudioSource present. Start-of-scene index=0. Intention: boundary test for PreviousClip at index 0.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudioObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Verify playback starts on current index after boundary step; expect audioSource.clip set to audioClips[Mathf.Abs(index)] and audioSource.Play() invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudioObject",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Cycle forward through list; expect index increments with wrap (index = (++index % Count)); clip changes and plays.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudioObject",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Cycle backward; check behavior near boundaries (note: code uses negative modulo then Mathf.Abs(index), potential logic issue). Expect a different clip to play.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudioObject",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Random selection; expect index set with Random.Range(0, Count) and new clip plays.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudioObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Pause current playback; expect audioSource.Pause().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudioObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Stop playback; expect audioSource.Stop().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Origin Transform (MoveWithVelocity)",
+          "source_object_fileID": 354555025,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 90.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "MoveWithVelocity GameObject",
+          "source_object_fileID": 7541936462315295362,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRButton",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669396577847636,
+          "condition": "Manually trigger XRButton.OnPress because physical hover press may not occur in automation. Scene MonoBehaviour id 3016069959630375334 (script GUID acde65f5db6773e49ad668404cf55472), buttonTransform fileID 7863669397814863511, pressDistance 0.05. Expect OnPress UnityEvent m_Calls to execute: TranslateObject.TranslateY(float 0.1) on fileID 1718703368 and PlaySoundsFromList.PlayAtIndex(int 0) on fileID 341662333.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1718703368,
+                  "method_name": "TranslateY",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 341662333,
+                  "method_name": "PlayAtIndex",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRButton",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 7863669397134400380,
+          "condition": "MonoBehaviour id 3016069960143379342 uses script guid acde65f5db6773e49ad668404cf55472 (XRButton). OnPress UnityEvent is configured in scene to invoke multiple TranslateObject.ResetToStartingPosition calls. XRButton is not selectable (IsSelectableBy returns false) and has no colliders assigned (m_Colliders: []), so the OnPress effects may not be triggered automatically by hover/press; manually trigger the OnPress-linked methods. Note: PlaySoundsFromList.PlayAtIndex(int=3) is parameterized and not callable via no-parameter Trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRButton",
+          "source_object_fileID": 7863669398301968894,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRButton",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669398301968894,
+          "condition": "Manually invoke the button press behavior if XR hover/push cannot occur. Target MonoBehaviour id 3016069961412692236 (guid acde65f5db6773e49ad668404cf55472) on GameObject 7863669398301968894 with buttonTransform 7863669397097375293 and pressDistance 0.05. OnPress UnityEvent m_Calls: (1) PlaySoundsFromList.PlayAtIndex(0) on fileID 1145393436748058495; (2) UnityEngine.GameObject.SetActive(bool) on fileID 41552074.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRButton",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7863669397899538604,
+          "condition": "Manually invoke the XRButton's OnPress UnityEvent because automatic press requires a hover interactor. MonoBehaviour component fileID 3016069961546575966 (script GUID acde65f5db6773e49ad668404cf55472) with pressDistance=0.05 and buttonTransform fileID 7863669396962942831. OnPress persistent calls: 1) TranslateObject.TranslateY(-0.1) on target fileID 1718703368; 2) PlaySoundsFromList.PlayAtIndex(1) on target fileID 341662333.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRJoystick",
+          "source_object_fileID": 6324349190692529312,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 25,
+            "y": 0,
+            "z": -25
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRJoystick",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 3386109985780108195,
+          "condition": "Training_Prototype_Broken.unity MonoBehaviour fileID 3386109985780108195 uses m_Script guid 754d27665ba38d44b9c1633441bdd691 (XRJoystick : XRBaseInteractable). Serialized XRBaseInteractable events: m_SelectEntered -> PlayContinuousSound.Play and m_SelectExited -> PlayContinuousSound.Pause (target component fileID 4025780930682781986). Manually trigger as a fallback if selection-based events are not fired during Grab.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRJoystick",
+          "source_object_fileID": 6324349190722330084,
+          "delta_position": {
+            "x": 0.1,
+            "y": 0.0,
+            "z": 0.1
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XRJoystick",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 6324349190722330084,
+          "condition": "Fallback: If XRBaseInteractable.selectEntered is not fired by the Grab (e.g., interactor not overlapping collider 6324349191716621893 or interaction layers mismatch), manually invoke the scene-persisted calls. This joystick MonoBehaviour (id 3386109985877062375, guid 754d27665ba38d44b9c1633441bdd691) has persistent calls wired: m_SelectEntered->PlayContinuousSound.Play and m_SelectExited->PlayContinuousSound.Pause targeting component fileID 931956745451022772.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_1803692743623512621",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1803692743623512621,
+          "condition": "MonoBehaviour id 4025780930682781986 using script guid 0ab6d3e7b225a7342a0d702b6151692b (PlayContinuousSound). Config: sound guid f3d02eed8de884b8f8e2df103802faf5, playOnStart=false, volume=1.0; AudioSource.playOnAwake=false and loop=true via OnValidate. No m_Calls present, so start playback manually to verify continuous sound.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_7727694622217070388",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7727694622217070388,
+          "condition": "PlayContinuousSound (guid 0ab6d3e7b225a7342a0d702b6151692b, component id 4079354613688537254) configured with sound guid f3d02eed8de884b8f8e2df103802faf5, playOnStart=false, volume=1.0; On start no audio plays automatically. Manually invoke Play() to begin continuous looping audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_7727694622217070388",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7727694622217070388,
+          "condition": "After confirming audio is playing from PlayContinuousSound (component id 4079354613688537254), call Pause() to stop playback and clear the clip. Expected: AudioSource.isPlaying=false and clip=null.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Object_7727694622217070388",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7727694622217070388,
+          "condition": "Optional toggle behavior check on PlayContinuousSound (component id 4079354613688537254): invoking TogglePlay() should flip playback state. If previously paused, it should start playing; if playing, it should pause.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRLever GameObject",
+          "source_object_fileID": 9152294701084620516,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XRLever GameObject",
+          "source_object_fileID": 9152294701084620516,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": -180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_7541936460893253787",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 7541936460893253787,
+          "condition": "MonoBehaviour id 7541936460893253790 uses script guid b56684aba41be06468cf3931aa42d7ed (SetInteractionLayer). targetLayer.m_Bits=0. Invoke SetTargetLayer to switch XRBaseInteractor.interactionLayers to target, then revert with SetOriginalLayer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 7541936460893253790,
+                  "method_name": "SetTargetLayer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 7541936460893253790,
+                  "method_name": "SetOriginalLayer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Socket Interactor (MonoBehaviour)",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 8477993898470408151,
+          "condition": "Scene MonoBehaviour (id=8477993898470408151) uses script guid=60523e0647cc6ab43acc73cb266a32a7 (XRSocketInteractor). Settings: m_SocketActive=1, m_RecycleDelayTime=1, m_ShowInteractableHoverMeshes=1, m_AttachTransform=2178058244917842007, m_InteractionManager=1736730001. UnityEvents: m_OnSelectEntered-> PlaySoundsFromList.PlayAtIndex(int=4) on script fileID=1145393436748058495; m_OnSelectExited-> PlaySoundsFromList.PlayAtIndex(int=4) on same target. These events should fire automatically when a compatible XRGrabInteractable is inserted into (SelectEntered) or removed from (SelectExited) the socket.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

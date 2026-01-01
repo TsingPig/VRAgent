@@ -1,0 +1,155 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1094190421,
+          "condition": "MonoBehaviour component id=1094190426 (script guid=9da68a9b408a56a4294168dd4694f0dc) is attached to GameObject 'Canvas' (fileID=1094190421) with serialized field 'canvas' -> 1094190421. Scene data shows no Rigidbody/Collider/EventTrigger on 'Canvas' and no serialized UnityEvent m_Calls; no public no-arg method names are available from the script source. Awaiting child UI elements and script method details to define concrete triggerable events.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1677032915,
+          "condition": "MonoBehaviour (script_fileID: 723926960, guid: e7dcc90c2e60c4011896c7f21fc1f557) appears to be GvrReticlePointer with serialized fields (raycastMode, overridePointerCamera, drawDebugRays, maxReticleDistance, reticleSegments, reticleGrowthSpeed, reticleSortingOrder). No UnityEvent m_Calls found in the scene meta, and the GameObject reports Has_Rigidbody: false with no Collider/EventTrigger listed. To trigger events manually, we need at least one public no-argument method exposed by this MonoBehaviour, or a Collider/EventTrigger to validate interaction pathways.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 543585960,
+          "condition": "PrefabInstance (fileID: 543585960) is a child of 'Models' and has two MonoBehaviours per scene meta: 698430408 (guid: c3441e8102712e94eb08515cc7e18fb8) with fields clip, paperToSpawn -> prefab 'Paper' (fileID: 8817731074829524137), and position (fileID: 1038081565); and 698430411 (guid: 71e616354a0b0cd47a7526ce46ba3eaf) with fields source (fileID: 2093747358) and sound. No Rigidbody is present; ensure a Collider or EventTrigger exists on the instance, or that these public no-arg methods can be invoked directly. This trigger attempts to spawn the 'Paper' prefab and play its associated sound based on the serialized settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "SpawnPaper",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 698430411,
+                  "method_name": "PlaySound",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Paper",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 8817731074829524137,
+          "condition": "Interact with the instantiated 'Paper' prefab (fileID: 8817731074829524137) spawned by MonoBehaviour 698430408. Proceed only if the spawned instance has a Collider or EventTrigger component; this action simulates a user interaction that may invoke callbacks in the spawner script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8817731074829524136,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1054453170,
+          "condition": "PrefabInstance (fileID: 1054453170) under 'Models' maps to MonoBehaviour (id: 759145567, guid: d40707984c8c8654a8e7422e0d85449f). Serialized fields: canvas -> fileID 1480975538, source -> fileID 1768927072, StartSound and EndSound AudioClips. No Rigidbody. Scene meta shows no m_Calls; the attached script likely exposes public no-arg methods to start/end interactions and play sounds. Proceed to manually trigger start sequence/audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "PlayStartSound",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "ShowCanvas",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1054453170,
+          "condition": "Follow-up interaction on the same PrefabInstance to validate end/cleanup behavior using the same MonoBehaviour (id: 759145567). Ensures both StartSound and EndSound pathways are covered and UI state toggles are exercised.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "PlayEndSound",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "HideCanvas",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1873334408,
+          "condition": "PrefabInstance (fileID: 1873334408) is a child of 'Models' and has MonoBehaviour (id: 154554978, guid: d39ba5afdc055594f8b27d3626aef4f5) with serialized field 'canvas' -> fileID 1417754200. No Rigidbody present. Scene meta provided here is the exact settings for the attached script. As no m_Calls are defined, manually invoke public no-arg methods to exercise UI show/start path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ShowCanvas",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1873334408,
+          "condition": "Follow-up on the same MonoBehaviour (id: 154554978) to cover UI hide/end path and validate cleanup. Use explicit manual trigger since no automatic m_Calls are present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "HideCanvas",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
