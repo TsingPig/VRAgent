@@ -19,7 +19,7 @@ This repository demonstrates how to integrate **Large Language Models (LLMs)** w
      Add them **via Git URL** in **Unity Package Manager**:
 
     1. Open **Unity Editor**
-    2. Go to **Window → Package Manager**         <img src="D:\--UnityProject\HenryLabXR\VRAgent\Assets\Package\Docs\4f72b677-b246-4b3e-8b92-e896fea4d7d8.png" alt="image-20251222122744225" style="zoom:33%;" />
+    2. Go to **Window → Package Manager**         <img src="Docs\4f72b677-b246-4b3e-8b92-e896fea4d7d8.png" alt="image-20251222122744225" style="zoom:33%;" />
     3. Click **`+` → Add package from git URL…**<img src="Docs\e1ddbed4-e99d-442e-94ae-f073a25551db.png" alt="image-20251222122744225" style="zoom:33%;" />
     4. Add the following packages:
 
