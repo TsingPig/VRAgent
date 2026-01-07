@@ -42,13 +42,13 @@ namespace HenryLab.VRAgent
 
         public bool useFileID = true;
 
-        private static FileIdManager GetOrCreateManager()
+        private static FileIDContainer GetOrCreateManager()
         {
-            FileIdManager manager = FindObjectOfType<FileIdManager>();
+            FileIDContainer manager = FindObjectOfType<FileIDContainer>();
             if(manager == null)
             {
                 GameObject go = new GameObject("FileIdManager");
-                manager = go.AddComponent<FileIdManager>();
+                manager = go.AddComponent<FileIDContainer>();
                 Debug.Log("Created FileIdManager in scene");
             }
             return manager;
@@ -160,7 +160,7 @@ namespace HenryLab.VRAgent
             TaskList tasklist = GetTaskListFromJson();
             if(tasklist == null) return;
 
-            FileIdManager manager = GetOrCreateManager();
+            FileIDContainer manager = GetOrCreateManager();
             manager.Clear();
 
             // ====== 统计信息 ======
@@ -180,7 +180,7 @@ namespace HenryLab.VRAgent
                     {
                         case "Grab":
                         {
-                            GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
+                            GameObject objA = FileIDResolver.FindGameObject(action.objectA, useFileID);
                             if(objA != null)
                             {
                                 counter.hitObjCount++;
@@ -192,7 +192,7 @@ namespace HenryLab.VRAgent
                             if(grabAction != null && !string.IsNullOrEmpty(grabAction.objectB))
                             {
                                 counter.objCount++;
-                                GameObject objB = FileIdResolver.FindGameObject(grabAction.objectB, useFileID);
+                                GameObject objB = FileIDResolver.FindGameObject(grabAction.objectB, useFileID);
                                 if(objB != null)
                                 {
                                     counter.hitObjCount++;
@@ -205,7 +205,7 @@ namespace HenryLab.VRAgent
 
                         case "Trigger":
                         {
-                            GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
+                            GameObject objA = FileIDResolver.FindGameObject(action.objectA, useFileID);
                             if(objA != null)
                             {
                                 counter.hitObjCount++;
@@ -232,7 +232,7 @@ namespace HenryLab.VRAgent
                         if(!string.IsNullOrEmpty(moveAction.objectB))
                         {
                             counter.objCount++;
-                            GameObject objB = FileIdResolver.FindGameObject(moveAction.objectB, useFileID);
+                            GameObject objB = FileIDResolver.FindGameObject(moveAction.objectB, useFileID);
                             if(objB != null)
                             {
                                 counter.hitObjCount++;
@@ -262,7 +262,7 @@ namespace HenryLab.VRAgent
             }
 
             // 移除场景的 FileIdManager
-            FileIdManager manager = FindObjectOfType<FileIdManager>();
+            FileIDContainer manager = FindObjectOfType<FileIDContainer>();
             if(manager != null)
                 DestroyImmediate(manager.gameObject);
 
@@ -276,7 +276,7 @@ namespace HenryLab.VRAgent
                     if(action.type == "Move") continue;     // 无需操作
 
 
-                    GameObject objA = FileIdResolver.FindGameObject(action.objectA, useFileID);
+                    GameObject objA = FileIDResolver.FindGameObject(action.objectA, useFileID);
                     if(objA == null) continue;
 
                     if(action.type == "Grab")
@@ -434,8 +434,8 @@ namespace HenryLab.VRAgent
                     Debug.Log($"Added XRTriggerable component to {objA.name}");
 
                     if(triggerAction.trigerringTime != null) triggerable.triggeringTime = (float)triggerAction.trigerringTime;
-                    FileIdResolver.BindEventList(triggerAction.triggerringEvents, triggerable.triggerringEvents);
-                    FileIdResolver.BindEventList(triggerAction.triggerredEvents, triggerable.triggerredEvents);
+                    ParameterResolver.BindEventList(triggerAction.triggerringEvents, triggerable.triggerringEvents);
+                    ParameterResolver.BindEventList(triggerAction.triggerredEvents, triggerable.triggerredEvents);
 
                     task.AddRange(TriggerTask(triggerable));
                 }

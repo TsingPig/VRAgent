@@ -1,9 +1,10 @@
 # Changelog
 
 
-## [1.8.10] - 2025-12-11
+## [1.8.12] - 2025-12-11
 ### Updated
 - NavMeshPointChecker editor tool
+- Refactor FileIdManager to FileIDContainer and add ParameterResolver
 
 ## [1.8.6] - 2025-10-22
 

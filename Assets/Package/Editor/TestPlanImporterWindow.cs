@@ -35,7 +35,7 @@ namespace HenryLab.VRAgent
             // 打印GUID按钮
             if(GUILayout.Button("Print Object GUID") && selectedObject != null)
             {
-                string guid = FileIdResolver.GetObjectGuid(selectedObject as GameObject);
+                string guid = FileIDResolver.GetObjectGuid(selectedObject as GameObject);
                 Debug.Log($"GUID for {selectedObject.name}: {guid}");
                 EditorGUIUtility.systemCopyBuffer = guid;  // 复制到剪贴板
                 ShowNotification(new GUIContent($"GUID copied to clipboard: {guid}"));
@@ -45,7 +45,7 @@ namespace HenryLab.VRAgent
             {
                 try
                 {
-                    long fileId = FileIdResolver.GetObjectFileID(selectedObject);
+                    long fileId = FileIDResolver.GetObjectFileID(selectedObject);
                     if(fileId != 0)
                     {
                         Debug.Log($"FileID for {selectedObject.name}: {fileId}");
