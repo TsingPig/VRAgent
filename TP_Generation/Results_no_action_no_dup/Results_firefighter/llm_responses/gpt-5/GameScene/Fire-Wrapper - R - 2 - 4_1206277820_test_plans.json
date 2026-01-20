@@ -1,0 +1,35 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 4",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 1206277820,
+          "condition": "Scene MonoBehaviour (guid: 1729fd01c90a64d5b8037e1eef0d000d) on Fire-Wrapper - R - 2 - 4 matches Fire script settings provided (isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, totalHitTime=5, maxHitInterval=2, neighbors=[]). No UnityEvents (m_Calls) present. To cover the auto-turn-on path: ensure at least two neighbor Fire components within 4 units call NotifyNeighborState(true) on this instance so onNeighbors >= 2 and CheckNeighborState() sets shouldTurnOn=true. Also place at least one neighbor lower by >= minNeighborDownDistance (3) to exercise downMultiplier path. Wait up to max(timeToOnMin,timeToOnMax)=60s + safety. Expected: after timeToOn elapses, isOn toggles true, isTurningOff=false, currentHitTime resets, UpdateFireState(true) is invoked, particle system plays, neighbor notifications fire and FireController.Instance.FireChanged(+1) called.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 4",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1206277820,
+          "condition": "With the fire now On from the previous step, exercise the turn-off logic by repeatedly hitting the fire with water via IWaterInteractable.Fire.WaterHit(Vector3 normal). Call WaterHit once every 0.5–1.0s (i.e., keep currentHitInterval < maxHitInterval=2) for a cumulative duration >= totalHitTime=5s. Expected: isTurningOff remains true across hits, currentHitTime accumulates beyond totalHitTime, then isOn becomes false, shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime resets to 0, UpdateFireState(true) called, particle system stops, neighbors notified, FireController.Instance.FireChanged(-1) called.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 4",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 1206277820,
+          "condition": "Exercise the early-cancel turn-off branch: starting from isTurningOff=true (after at least one WaterHit while fire is On), do not call WaterHit again and allow currentHitInterval to exceed maxHitInterval=2s while currentHitTime < totalHitTime. Expected: isTurningOff becomes false and currentHitTime resets to 0 without turning the fire off.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

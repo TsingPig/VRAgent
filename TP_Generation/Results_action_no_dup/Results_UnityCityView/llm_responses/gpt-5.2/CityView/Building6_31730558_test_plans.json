@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building6",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 31730558,
+          "condition": "EventTrigger (guid: d0b148fe25e99eb48b9724523833bab1) on Building6 has a PersistentCall for eventID=4 (PointerClick) targeting MonoBehaviour id=31730560, script guid=a8e394fec5558d54daa16e3fcb3cc7d3 (Commercial). Calling Commercial.showlabel() should update Player/child[1] TextMeshPro text to the first 20 chars of 'Commercial:Pokemon Shopping Center'. Ensure component Start() has run and GameObject 'Player' with a TextMeshPro on its 2nd child exists.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 31730560,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building6",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 31730558,
+          "condition": "EventTrigger (MonoBehaviour id: 31730566, guid: d0b148fe25e99eb48b9724523833bab1) on Building6 has a PersistentCall for eventID=4 (PointerClick) targeting Commercial (MonoBehaviour id: 31730560, guid: a8e394fec5558d54daa16e3fcb3cc7d3). Calling Commercial.showlabel() should set Player child[1] TextMeshPro text to the first 20 chars of 'Commercial:Pokemon Shopping Center'. Confirms MonoBehaviour settings match attached script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 31730560,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

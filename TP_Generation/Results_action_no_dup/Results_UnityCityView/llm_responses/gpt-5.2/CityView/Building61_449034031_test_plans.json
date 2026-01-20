@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building61",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 449034031,
+          "condition": "EventTrigger (guid d0b148fe25e99eb48b9724523833bab1) on Building61 has m_Delegates eventID=4 (PointerClick) calling Commercial.showlabel() on MonoBehaviour fileID 449034033 (guid a8e394fec5558d54daa16e3fcb3cc7d3). Trigger to ensure the callback executes, updating Player child(1) TextMeshPro to a 20-char label starting with 'Commercial:Kaiseki R'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 449034033,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building61",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 449034031,
+          "condition": "EventTrigger on Building61 (guid d0b148fe25e99eb48b9724523833bab1) has m_Delegates eventID=4 (PointerClick) wired to Commercial.showlabel() on MonoBehaviour fileID 449034033 (guid a8e394fec5558d54daa16e3fcb3cc7d3). Manually invoke showlabel to validate the persistent call updates Player child(1) TextMeshPro with a 20-char label derived from GetLabel() for Building61.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 449034033,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

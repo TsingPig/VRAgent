@@ -1,0 +1,56 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 58609734,
+          "condition": "Start extinguishing: simulate a water impact on the Fire MonoBehaviour (script guid: 1729fd01c90a64d5b8037e1eef0d000d; fields match provided scene MonoBehaviour config). This should invoke IWaterInteractable.WaterHit(Vector3), setting isTurningOff=true and currentHitInterval=0. The object has a BoxCollider (no Rigidbody), so interaction is via collider/trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 58609734,
+          "condition": "Maintain extinguishing within maxHitInterval (2s). Simulate another water hit before 2 seconds elapse to keep turning off active (Fire.currentHitInterval reset to 0).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 58609734,
+          "condition": "Continue water hits under the 2s interval threshold to accumulate currentHitTime towards totalHitTime (5s in scene config).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 58609734,
+          "condition": "Continue water hits; expect Fire.currentHitTime to approach/exceed 3s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 58609734,
+          "condition": "Continue water hits; expect Fire.currentHitTime to approach/exceed 4s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 58609734,
+          "condition": "Continue water hits; expect Fire.currentHitTime to reach/exceed totalHitTime=5s. Fire turns off: isOn=false, shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime=0, UpdateFireState(true) invoked which should Stop particle systems via pSystem.Stop(), NotifyAllNeighbors(), and call FireController.Instance.FireChanged(-1). This validates MonoBehaviour state transitions per provided scene settings (timeToOnMin=40, timeToOnMax=60, totalHitTime=5, maxHitInterval=2, downMultiplier=2, onNeighborsThreshold=2, mainEffectGo fileID=1849464941111748095).",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

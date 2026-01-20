@@ -1,0 +1,709 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the VR-Room-origin App. One game object we want to test in the scene of 'My VR Room.unity' is '--STATIC--'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code attached to this gameobjects below.\n[Extracted JSON format of scene meta file] The scene file of 'My VR Room.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object '--STATIC--' and its script. The 'fileID' of gameobject '--STATIC--' is: 506097984. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '506097985'}]}]}, {'m_Layer': '0'}, {'m_Name': '--STATIC--'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '7250588514170254948'}, {'guid': '0000000000000000d000000000000000'}, {'type': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '506097985', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '506097984'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': [{'fileID': '558989370'}, {'fileID': '108529660'}, {'fileID': '2097412031'}, {'fileID': '631718165'}, {'fileID': '1153019453'}, {'fileID': '1865680031'}, {'fileID': '940851475'}, {'fileID': '1432379229'}, {'fileID': '1282631233'}, {'fileID': '175308587'}, {'fileID': '12413525'}, {'fileID': '1362817873'}, {'fileID': '430321229'}, {'fileID': '1033187080'}, {'fileID': '266438737'}, {'fileID': '873444138'}, {'fileID': '430598148'}, {'fileID': '772053050'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '3'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_position\": {                    // Target world position to which the object should be moved\n    \"x\": \"<float>\",\n    \"y\": \"<float>\",\n    \"z\": \"<float>\"\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['558989369', '108529659', '2097412030', '631718163 stripped', '1153019452', '1865680027 stripped', '940851474', '1432379228', '1282631232', '175308586', '12413524', '1362817872', '430321228', '1033187079', '266438736', '873444137', '430598147', '725697781 stripped'] to help formalize your test plans one by one. You can respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-19T23:26:56.492418",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-19T23:27:26.221122",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Fireplace_Traditional\": {fileID: 631718162}. The direct parent of this gameobject is \"--STATIC--\". We only present the child with attached script. And the Fireplace_Traditional gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing UnityEngine.Events;\nusing UnityEngine.XR.Interaction.Toolkit;\n\npublic class TeleportAnchorWithFade : TeleportationAnchor\n{\n    private FadeCanvas fadeCanvas = null;\n\n    protected override void Awake()\n    {\n        base.Awake();\n        fadeCanvas = FindObjectOfType<FadeCanvas>();\n    }\n\n    protected override void OnSelectEntered(SelectEnterEventArgs args)\n    {\n        base.OnSelectEntered(args);\n\n        if (teleportTrigger == TeleportTrigger.OnSelectEntered)\n            StartCoroutine(FadeSequence(base.OnSelectEntered, args));\n    }\n\n    protected override void OnSelectExited(SelectExitEventArgs args)\n    {\n        if (teleportTrigger == TeleportTrigger.OnSelectExited)\n            StartCoroutine(FadeSequence(base.OnSelectExited, args));\n    }\n\n    protected override void OnActivated(ActivateEventArgs args)\n    {\n        if (teleportTrigger == TeleportTrigger.OnActivated)\n            StartCoroutine(FadeSequence(base.OnActivated, args));\n    }\n\n    protected override void OnDeactivated(DeactivateEventArgs args)\n    {\n        if (teleportTrigger == TeleportTrigger.OnDeactivated)\n            StartCoroutine(FadeSequence(base.OnDeactivated, args));\n    }\n\n    private IEnumerator FadeSequence<T>(UnityAction<T> action, T args)\n        where T : BaseInteractionEventArgs\n    {\n        fadeCanvas.QuickFadeIn();\n\n        yield return fadeCanvas.CurrentRoutine;\n        action.Invoke(args);\n\n        fadeCanvas.QuickFadeOut();\n    }\n}\n\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '4692404513828099453'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '631718162'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '631718162', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '506097985'}]}, {'m_Modifications': [{'target': [{'fileID': '6982308244807511748'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Fireplace_Traditional'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '-1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.921709'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '-1.2762195'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.54908365'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '90'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': [{'targetCorrespondingSourceObject': [{'fileID': '6982308244807511748'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '1133633788'}]}, {'targetCorrespondingSourceObject': [{'fileID': '4692404513828099453'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '631718164'}]}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '631718165 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '7759127071749059710'}, {'guid': 'deb9c7803f41d864c8272ceb6ff2d290'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '631718162'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '631718164', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '631718163'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '474bcb49853aa07438625e644c072ee6'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_Version': '3'}, {'m_UsePipelineSettings': '1'}, {'m_AdditionalLightsShadowResolutionTier': '2'}, {'m_LightLayerMask': '1'}, {'m_RenderingLayers': '1'}, {'m_CustomShadowLayers': '0'}, {'m_ShadowLayerMask': '1'}, {'m_ShadowRenderingLayers': '1'}, {'m_LightCookieSize': [{'x': '1'}, {'y': '1'}]}, {'m_LightCookieOffset': [{'x': '0'}, {'y': '0'}]}, {'m_SoftShadowQuality': '0'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-19T23:27:26.285714",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 1,
+    "child_info": {
+      "child_id": "631718163 stripped",
+      "child_id_replace": "631718162",
+      "child_name": "Fireplace_Traditional",
+      "mono_comp_targets": [
+        {
+          "source": "631718163 stripped",
+          "source_replace": "631718162",
+          "target": "631718164",
+          "target_replace": "631718164",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "631718164",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "631718163"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "474bcb49853aa07438625e644c072ee6"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "m_Version": "3"
+              },
+              {
+                "m_UsePipelineSettings": "1"
+              },
+              {
+                "m_AdditionalLightsShadowResolutionTier": "2"
+              },
+              {
+                "m_LightLayerMask": "1"
+              },
+              {
+                "m_RenderingLayers": "1"
+              },
+              {
+                "m_CustomShadowLayers": "0"
+              },
+              {
+                "m_ShadowLayerMask": "1"
+              },
+              {
+                "m_ShadowRenderingLayers": "1"
+              },
+              {
+                "m_LightCookieSize": [
+                  {
+                    "x": "1"
+                  },
+                  {
+                    "y": "1"
+                  }
+                ]
+              },
+              {
+                "m_LightCookieOffset": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  }
+                ]
+              },
+              {
+                "m_SoftShadowQuality": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "acbdb9f0a1fd00f44bf08cc79a3c9bfb",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Testing\\TeleportAnchorWithFade.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "506097984",
+        "parent_name": "--STATIC--"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-19T23:28:28.105265",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Fireplace_Traditional\": {fileID: 631718162}. The direct parent of this gameobject i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Room_Modern\": {fileID: 1865680026}. The direct parent of this gameobject is \"--STATIC--\". We only present the child with attached script. And the Room_Modern gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\n/// <summary>\n/// Play a simple sounds using Play one shot with volume, and pitch\n/// </summary>\n[RequireComponent(typeof(AudioSource))]\npublic class PlayQuickSound : MonoBehaviour\n{\n    [Tooltip(\"The sound that is played\")]\n    public AudioClip sound = null;\n\n    [Tooltip(\"The volume of the sound\")]\n    public float volume = 1.0f;\n\n    [Tooltip(\"The range of pitch the sound is played at (-pitch, pitch)\")]\n    [Range(0, 1)] public float randomPitchVariance = 0.0f;\n\n    private AudioSource audioSource = null;\n\n    private float defaultPitch = 1.0f;\n\n    private void Awake()\n    {\n        audioSource = GetComponent<AudioSource>();\n    }\n\n    public void Play()\n    {\n        float randomVariance = Random.Range(-randomPitchVariance, randomPitchVariance);\n        randomVariance += defaultPitch;\n\n        audioSource.pitch = randomVariance;\n        audioSource.PlayOneShot(sound, volume);\n        audioSource.pitch = defaultPitch;\n    }\n\n    private void OnValidate()\n    {\n        AudioSource audioSource = GetComponent<AudioSource>();\n        audioSource.playOnAwake = false;\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '3967968204040337907'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1865680026'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1865680026', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '506097985'}]}, {'m_Modifications': [{'target': [{'fileID': '472198468225971865'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Room_Modern'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '-1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-1.921709'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '-1.2762196'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.54908353'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2232141849843864108'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'propertyPath': 'm_IsActive'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': [{'targetCorrespondingSourceObject': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '68189165'}]}]}, {'m_AddedComponents': [{'targetCorrespondingSourceObject': [{'fileID': '6041712068339329030'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '1865680030'}]}, {'targetCorrespondingSourceObject': [{'fileID': '3967968204040337907'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '1865680029'}]}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1865680031 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '992558480225725475'}, {'guid': 'd9470993b9bd0a541a884d6f6704a421'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1865680026'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1865680029', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1865680027'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '474bcb49853aa07438625e644c072ee6'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_Version': '3'}, {'m_UsePipelineSettings': '1'}, {'m_AdditionalLightsShadowResolutionTier': '2'}, {'m_LightLayerMask': '1'}, {'m_RenderingLayers': '1'}, {'m_CustomShadowLayers': '0'}, {'m_ShadowLayerMask': '1'}, {'m_ShadowRenderingLayers': '1'}, {'m_LightCookieSize': [{'x': '1'}, {'y': '1'}]}, {'m_LightCookieOffset': [{'x': '0'}, {'y': '0'}]}, {'m_SoftShadowQuality': '0'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-19T23:28:28.149138",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Fireplace_Traditional\": {fileID: 631718162}. The direct parent of this gameobject i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "1865680027 stripped",
+      "child_id_replace": "1865680026",
+      "child_name": "Room_Modern",
+      "mono_comp_targets": [
+        {
+          "source": "1865680027 stripped",
+          "source_replace": "1865680026",
+          "target": "1865680029",
+          "target_replace": "1865680029",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1865680029",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1865680027"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "474bcb49853aa07438625e644c072ee6"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "m_Version": "3"
+              },
+              {
+                "m_UsePipelineSettings": "1"
+              },
+              {
+                "m_AdditionalLightsShadowResolutionTier": "2"
+              },
+              {
+                "m_LightLayerMask": "1"
+              },
+              {
+                "m_RenderingLayers": "1"
+              },
+              {
+                "m_CustomShadowLayers": "0"
+              },
+              {
+                "m_ShadowLayerMask": "1"
+              },
+              {
+                "m_ShadowRenderingLayers": "1"
+              },
+              {
+                "m_LightCookieSize": [
+                  {
+                    "x": "1"
+                  },
+                  {
+                    "y": "1"
+                  }
+                ]
+              },
+              {
+                "m_LightCookieOffset": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  }
+                ]
+              },
+              {
+                "m_SoftShadowQuality": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "0755a2ba17a31d643b4a27e3034d8a79",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Actions\\PlayQuickSound.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "506097984",
+        "parent_name": "--STATIC--"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Room_Modern\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1865680026,\n          \"condition\": \"Manually invoke PlayQuickSound.Play() to cover audio playback logic. PlayQuickSound is expected to be the added component with script_fileID 1865680030 (listed under PrefabInstance.m_AddedComponents). Preconditions: Room_Modern active, AudioSource component present (as required by [RequireComponent]), and a valid AudioClip assigned to 'sound'. No Collider info provided; using manual Trigger to ensure coverage.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1865680030,\n                  \"method_name\": \"Play\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-19T23:29:32.954618",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Fireplace_Traditional\": {fileID: 631718162}. The direct parent of this gameobject i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Room_Modern\": {fileID: 1865680026}. The direct parent of this gameobject is \"--STAT..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Room_Modern",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1865680026,
+              "condition": "Manually invoke PlayQuickSound.Play() to cover audio playback logic. PlayQuickSound is expected to be the added component with script_fileID 1865680030 (listed under PrefabInstance.m_AddedComponents). Preconditions: Room_Modern active, AudioSource component present (as required by [RequireComponent]), and a valid AudioClip assigned to 'sound'. No Collider info provided; using manual Trigger to ensure coverage.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1865680030,
+                      "method_name": "Play",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"TV_FlatWallMounted\": {fileID: 772053049}. The direct parent of this gameobject is \"--STATIC--\". We only present the child with attached script. And the TV_FlatWallMounted gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System;\n\nnamespace UnityEngine.Rendering.Universal\n{\n    /// <summary>Light Layers.</summary>\n    [Flags]\n    public enum LightLayerEnum\n    {\n        /// <summary>The light will no affect any object.</summary>\n        Nothing = 0,   // Custom name for \"Nothing\" option\n        /// <summary>Light Layer 0.</summary>\n        LightLayerDefault = 1 << 0,\n        /// <summary>Light Layer 1.</summary>\n        LightLayer1 = 1 << 1,\n        /// <summary>Light Layer 2.</summary>\n        LightLayer2 = 1 << 2,\n        /// <summary>Light Layer 3.</summary>\n        LightLayer3 = 1 << 3,\n        /// <summary>Light Layer 4.</summary>\n        LightLayer4 = 1 << 4,\n        /// <summary>Light Layer 5.</summary>\n        LightLayer5 = 1 << 5,\n        /// <summary>Light Layer 6.</summary>\n        LightLayer6 = 1 << 6,\n        /// <summary>Light Layer 7.</summary>\n        LightLayer7 = 1 << 7,\n        /// <summary>Everything.</summary>\n        Everything = 0xFF, // Custom name for \"Everything\" option\n    }\n\n    /// <summary>\n    /// Contains extension methods for Light class.\n    /// </summary>\n    public static class LightExtensions\n    {\n        /// <summary>\n        /// Universal Render Pipeline exposes additional light data in a separate component.\n        /// This method returns the additional data component for the given light or create one if it doesn't exist yet.\n        /// </summary>\n        /// <param name=\"light\"></param>\n        /// <returns>The <c>UniversalAdditionalLightData</c> for this light.</returns>\n        /// <see cref=\"UniversalAdditionalLightData\"/>\n        public static UniversalAdditionalLightData GetUniversalAdditionalLightData(this Light light)\n        {\n            var gameObject = light.gameObject;\n            bool componentExists = gameObject.TryGetComponent<UniversalAdditionalLightData>(out var lightData);\n            if (!componentExists)\n                lightData = gameObject.AddComponent<UniversalAdditionalLightData>();\n\n            return lightData;\n        }\n    }\n\n    /// <summary>\n    /// Class containing various additional light data used by URP.\n    /// </summary>\n    [DisallowMultipleComponent]\n    [RequireComponent(typeof(Light))]\n    [URPHelpURL(\"universal-additional-light-data\")]\n    public class UniversalAdditionalLightData : MonoBehaviour, ISerializationCallbackReceiver, IAdditionalData\n    {\n        // Version 0 means serialized data before the version field.\n        [SerializeField] int m_Version = 3;\n        internal int version\n        {\n            get => m_Version;\n        }\n\n        [Tooltip(\"Controls if light Shadow Bias parameters use pipeline settings.\")]\n        [SerializeField] bool m_UsePipelineSettings = true;\n\n        /// <summary>\n        /// Controls if light Shadow Bias parameters use pipeline settings or not.\n        /// </summary>\n        public bool usePipelineSettings\n        {\n            get { return m_UsePipelineSettings; }\n            set { m_UsePipelineSettings = value; }\n        }\n\n        /// <summary>\n        /// Value used to indicate custom shadow resolution tier for additional lights.\n        /// </summary>\n        public static readonly int AdditionalLightsShadowResolutionTierCustom = -1;\n\n        /// <summary>\n        /// Value used to indicate low shadow resolution tier for additional lights.\n        /// </summary>\n        public static readonly int AdditionalLightsShadowResolutionTierLow = 0;\n\n        /// <summary>\n        /// Value used to indicate medium shadow resolution tier for additional lights.\n        /// </summary>\n        public static readonly int AdditionalLightsShadowResolutionTierMedium = 1;\n\n        /// <summary>\n        /// Value used to indicate high shadow resolution tier for additional lights.\n        /// </summary>\n        public static readonly int AdditionalLightsShadowResolutionTierHigh = 2;\n\n        /// <summary>\n        /// The default shadow resolution tier for additional lights.\n        /// </summary>\n        public static readonly int AdditionalLightsShadowDefaultResolutionTier = AdditionalLightsShadowResolutionTierHigh;\n\n        /// <summary>\n        /// The default custom shadow resolution for additional lights.\n        /// </summary>\n        public static readonly int AdditionalLightsShadowDefaultCustomResolution = 128;\n\n        /// <summary>\n        /// The minimum shadow resolution for additional lights.\n        /// </summary>\n        public static readonly int AdditionalLightsShadowMinimumResolution = 128;\n\n        [Tooltip(\"Controls if light shadow resolution uses pipeline settings.\")]\n        [SerializeField] int m_AdditionalLightsShadowResolutionTier = AdditionalLightsShadowDefaultResolutionTier;\n\n        /// <summary>\n        /// Returns the selected shadow resolution tier.\n        /// </summary>\n        public int additionalLightsShadowResolutionTier\n        {\n            get { return m_AdditionalLightsShadowResolutionTier; }\n        }\n\n        // The layer(s) this light belongs too.\n        [Obsolete(\"This is obsolete, please use m_RenderingLayerMask instead.\", false)]\n        [SerializeField] LightLayerEnum m_LightLayerMask = LightLayerEnum.LightLayerDefault;\n\n        /// <summary>\n        /// The layer(s) this light belongs to.\n        /// </summary>\n        [Obsolete(\"This is obsolete, please use renderingLayerMask instead.\", false)]\n        public LightLayerEnum lightLayerMask\n        {\n            get { return m_LightLayerMask; }\n            set { m_LightLayerMask = value; }\n        }\n\n        [SerializeField] uint m_RenderingLayers = 1;\n\n        /// <summary>\n        /// Specifies which rendering layers this light will affect.\n        /// </summary>\n        public uint renderingLayers\n        {\n            get { return m_RenderingLayers; }\n            set { m_RenderingLayers = value; }\n        }\n\n        [SerializeField] bool m_CustomShadowLayers = false;\n\n        /// <summary>\n        /// Indicates whether shadows need custom layers.\n        /// If not, then it uses the same settings as lightLayerMask.\n        /// </summary>\n        public bool customShadowLayers\n        {\n            get { return m_CustomShadowLayers; }\n            set { m_CustomShadowLayers = value; }\n        }\n\n        // The layer(s) used for shadow casting.\n        [SerializeField] LightLayerEnum m_ShadowLayerMask = LightLayerEnum.LightLayerDefault;\n\n        /// <summary>\n        /// The layer(s) for shadow.\n        /// </summary>\n        [Obsolete(\"This is obsolete, please use shadowRenderingLayerMask instead.\", false)]\n        public LightLayerEnum shadowLayerMask\n        {\n            get { return m_ShadowLayerMask; }\n            set { m_ShadowLayerMask = value; }\n        }\n\n        [SerializeField] uint m_ShadowRenderingLayers = 1;\n        /// <summary>\n        /// Specifies which rendering layers this light shadows will affect.\n        /// </summary>\n        public uint shadowRenderingLayers\n        {\n            get { return m_ShadowRenderingLayers; }\n            set { m_ShadowRenderingLayers = value; }\n        }\n\n        /// <summary>\n        /// Controls the size of the cookie mask currently assigned to the light.\n        /// </summary>\n        [Tooltip(\"Controls the size of the cookie mask currently assigned to the light.\")]\n        public Vector2 lightCookieSize\n        {\n            get => m_LightCookieSize;\n            set => m_LightCookieSize = value;\n        }\n        [SerializeField] Vector2 m_LightCookieSize = Vector2.one;\n\n        /// <summary>\n        /// Controls the offset of the cookie mask currently assigned to the light.\n        /// </summary>\n        [Tooltip(\"Controls the offset of the cookie mask currently assigned to the light.\")]\n        public Vector2 lightCookieOffset\n        {\n            get => m_LightCookieOffset;\n            set => m_LightCookieOffset = value;\n        }\n        [SerializeField] Vector2 m_LightCookieOffset = Vector2.zero;\n\n        /// <summary>\n        /// Light soft shadow filtering quality.\n        /// </summary>\n        [Tooltip(\"Controls the filtering quality of soft shadows. Higher quality has lower performance.\")]\n        public SoftShadowQuality softShadowQuality\n        {\n            get => m_SoftShadowQuality;\n            set => m_SoftShadowQuality = value;\n        }\n        [SerializeField] private SoftShadowQuality m_SoftShadowQuality = SoftShadowQuality.UsePipelineSettings;\n\n        /// <inheritdoc/>\n        public void OnBeforeSerialize()\n        {\n        }\n\n        /// <inheritdoc/>\n        public void OnAfterDeserialize()\n        {\n            if (m_Version < 2)\n            {\n#pragma warning disable 618 // Obsolete warning\n                m_RenderingLayers = (uint)m_LightLayerMask;\n                m_ShadowRenderingLayers = (uint)m_ShadowLayerMask;\n#pragma warning restore 618 // Obsolete warning\n                m_Version = 2;\n            }\n\n            if (m_Version < 3)\n            {\n                // SoftShadowQuality.UsePipelineSettings added at index 0. Bump existing serialized values by 1. e.g. Low(0) -> Low(1).\n                m_SoftShadowQuality = (SoftShadowQuality)(Math.Clamp((int)m_SoftShadowQuality + 1, 0, (int)SoftShadowQuality.High));\n                m_Version = 3;\n            }\n        }\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '7540499388076540230'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '772053049'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '772053049', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '506097985'}]}, {'m_Modifications': [{'target': [{'fileID': '2664650675434728556'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'TV_FlatWallMounted'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '-1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.951709'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.14378035'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.54908353'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '90'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': [{'targetCorrespondingSourceObject': [{'fileID': '7540499388076540230'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '725697787'}]}, {'targetCorrespondingSourceObject': [{'fileID': '7540499388076540230'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '725697786'}]}, {'targetCorrespondingSourceObject': [{'fileID': '7540499388076540230'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '725697792'}]}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '772053050 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '3436647868658284246'}, {'guid': 'a3051c696c83442f8b9a1c115ffa2359'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '772053049'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '725697786', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '725697781'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '3d4642753971e264fbb20044fa231cd5'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'playAtStart': '0'}, {'videoMaterial': [{'fileID': '2100000'}, {'guid': 'fae3ce4ed00d4ed4aa7976b88c6cd658'}, {'type': '2'}]}, {'videoClips': [{'fileID': '32900000'}, {'guid': '8cd99a81a5fad4847b8aa48a15272de0'}, {'type': '3'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-19T23:29:33.041846",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Fireplace_Traditional\": {fileID: 631718162}. The direct parent of this gameobject i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Room_Modern\": {fileID: 1865680026}. The direct parent of this gameobject is \"--STAT..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 3,
+    "child_info": {
+      "child_id": "725697781 stripped",
+      "child_id_replace": "772053049",
+      "child_name": "TV_FlatWallMounted",
+      "mono_comp_targets": [
+        {
+          "source": "725697781 stripped",
+          "source_replace": "772053049",
+          "target": "725697786",
+          "target_replace": "725697786",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "725697786",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "725697781"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "3d4642753971e264fbb20044fa231cd5"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "playAtStart": "0"
+              },
+              {
+                "videoMaterial": [
+                  {
+                    "fileID": "2100000"
+                  },
+                  {
+                    "guid": "fae3ce4ed00d4ed4aa7976b88c6cd658"
+                  },
+                  {
+                    "type": "2"
+                  }
+                ]
+              },
+              {
+                "videoClips": [
+                  {
+                    "fileID": "32900000"
+                  },
+                  {
+                    "guid": "8cd99a81a5fad4847b8aa48a15272de0"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "3d4642753971e264fbb20044fa231cd5",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Actions\\PlayVideo.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "506097984",
+        "parent_name": "--STATIC--"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"TV_FlatWallMounted\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 772053049,\n          \"condition\": \"Manually start TV playback because playAtStart=0. Use the MonoBehaviour (script guid: 3d4642753971e264fbb20044fa231cd5, fileID: 725697786) on TV_FlatWallMounted which references a videoMaterial and a videoClips list. Preconditions: component exposes a public no-arg Play() method; ensure the GameObject is interactable (Collider/EventTrigger) or test harness allows direct method call.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 725697786,\n                  \"method_name\": \"Play\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-19T23:30:52.973258",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Fireplace_Traditional\": {fileID: 631718162}. The direct parent of this gameobject i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Room_Modern\": {fileID: 1865680026}. The direct parent of this gameobject is \"--STAT..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"TV_FlatWallMounted\": {fileID: 772053049}. The direct parent of this gameobject is \"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "TV_FlatWallMounted",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 772053049,
+              "condition": "Manually start TV playback because playAtStart=0. Use the MonoBehaviour (script guid: 3d4642753971e264fbb20044fa231cd5, fileID: 725697786) on TV_FlatWallMounted which references a videoMaterial and a videoClips list. Preconditions: component exposes a public no-arg Play() method; ensure the GameObject is interactable (Collider/EventTrigger) or test harness allows direct method call.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 725697786,
+                      "method_name": "Play",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  }
+]

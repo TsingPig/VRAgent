@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1094190421,
+          "condition": "Auto-timeout path: MonoBehaviour component fileID 1094190426 (script guid 9da68a9b408a56a4294168dd4694f0dc, class Timeout) has serialized field 'canvas' -> fileID 1094190421. Start() invokes StartCoroutine(ExecuteAfterTime(60)) which, after WaitForSeconds(60), calls canvas.SetActive(false). This action waits 60 seconds to allow the coroutine to deactivate the Canvas and cover the timeout path.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1094190421,
+          "condition": "Input-driven path: Timeout.Update() checks Input.GetButtonDown('Fire1'); when true it calls canvas.SetActive(false). Simulate a 'Fire1' press (mapped to VR controller/button per project input settings) to cover the Update branch and verify immediate deactivation. MonoBehaviour component fileID 1094190426 (guid 9da68a9b408a56a4294168dd4694f0dc).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

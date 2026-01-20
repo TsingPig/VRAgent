@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building4",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 297462331,
+          "condition": "UnityEngine.EventSystems.EventTrigger (MonoBehaviour id: 297462335, guid: d0b148fe25e99eb48b9724523833bab1) on Building4 is configured with eventID 4 (PointerClick). Its m_Calls target MonoBehaviour id: 297462333 (guid: 10a92b1b4549024468ecbc96831def68), which is the Residential script attached to Building4. Triggering a PointerClick on Building4 should invoke Residential.showlabel(), updating the Player/Child(1) TextMeshPro label with the first 20 characters of 'Residential:Neko Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 297462333,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building4",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 297462331,
+          "condition": "EventTrigger on Building4 (MonoBehaviour id: 297462335, guid: d0b148fe25e99eb48b9724523833bab1) is configured with eventID 4 (PointerClick) to call Residential.showlabel() on MonoBehaviour id: 297462333 (guid: 10a92b1b4549024468ecbc96831def68). Triggering should update the Player child(1) TextMeshPro text to the first 20 chars of 'Residential:Neko Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 297462333,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

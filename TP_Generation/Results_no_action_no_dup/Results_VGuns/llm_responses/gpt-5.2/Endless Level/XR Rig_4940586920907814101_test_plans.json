@@ -1,0 +1,158 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Manually toggle the pause menu via PauseMenu.PauseMenuCheck on MonoBehaviour (script_fileID: 4460531382388078979, script GUID: 28d50a2d56ade1341ae8d933ebdfbe0c). Initial state started=false (set in Awake), so this call should Show(): Time.timeScale=0, enable ray_Right and ray_Left, disable LocomotionSystem and Teleport managers, enable Pausemenu.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "With PauseMenu.started=true from the previous trigger, call PauseMenu.PauseMenuCheck again (script_fileID: 4460531382388078979, GUID: 28d50a2d56ade1341ae8d933ebdfbe0c) to Hide(): Time.timeScale=1, disable rays, enable LocomotionSystem, and because RightTeleport=true and LeftTeleport=false (per scene serialization), TeleportManagzerRight should be enabled and TeleportManagzerLeft remain disabled. Pausemenu set inactive.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Manually toggle the pause menu via PauseMenu.PauseMenuCheck on MonoBehaviour (script_fileID: 4460531382388078979, script GUID: 28d50a2d56ade1341ae8d933ebdfbe0c). Initial state started=false (set in Awake), so this call should invoke Show(): pause game (Time.timeScale=0), enable ray_Right and ray_Left, disable LocomotionSystem and Teleport managers, enable Pausemenu.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "With PauseMenu.started=true from the previous trigger, call PauseMenu.PauseMenuCheck again (script_fileID: 4460531382388078979, GUID: 28d50a2d56ade1341ae8d933ebdfbe0c) to invoke Hide(): resume game (Time.timeScale=1), disable rays, enable LocomotionSystem; RightTeleport=true and LeftTeleport=false per scene serialization, so TeleportManagzerRight should be enabled and TeleportManagzerLeft remain disabled; Pausemenu set inactive.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Directly invoke PauseMenu.MainMenu (no parameters) to validate scene transition to index 0 (script_fileID: 4460531382388078979, GUID: 28d50a2d56ade1341ae8d933ebdfbe0c). Ensure call works regardless of current pause state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "MainMenu",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Directly invoke PauseMenu.Restart (no parameters) to validate scene transition to index 1 (script_fileID: 4460531382388078979, GUID: 28d50a2d56ade1341ae8d933ebdfbe0c).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 1",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Simulate interaction/contact with an object tagged 'Enemy'. XRTarget.Update (script_fileID: 1221334210, GUID: f8b1dcb6406ea3d439b013ec14fb8388) later uses FindGameObjectsWithTag('Enemy') when health<=0 to disable all enemies and show death UI. This trigger aims to cause enemy behavior that would call XRTarget.Hit(damage) on XR Rig (cannot be invoked directly due to parameter). Requires collider on enemy or collision logic on its scripts.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 2",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Repeat enemy contact to accumulate damage on XRTarget.health towards <=0 to exercise death flow (finding and disabling all 'Enemy' tagged objects, enabling deathScreen, disabling locomotion/teleport, then SceneManager.LoadScene(0)).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 3",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Additional enemy contact to ensure XRTarget Hit flow can be reached if individual enemy damage is small. Ensures CompareTag('Enemy') coverage when death routine executes.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 4",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Additional enemy contact. On XRTarget.health <= 0, Update() should: set rays active, disable LocomotionSystem and TeleportManagerLeft/Right, set deathScreen active, then load scene 0.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Additional enemy contact to complete cumulative damage testing path for XRTarget and its tag-based enemy deactivation.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

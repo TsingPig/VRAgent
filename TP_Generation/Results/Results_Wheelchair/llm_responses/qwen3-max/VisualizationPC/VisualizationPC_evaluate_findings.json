@@ -1,0 +1,42 @@
+{
+  "CER@100AU": 0.0,
+  "CVR@100AU": 200.0,
+  "DR@100AU": 0.0,
+  "gobj_coverage_ratio": 0.3333333333333333,
+  "AU": 2,
+  "consistency_number": 4,
+  "correctness_number": 0,
+  "duplicate_number": 0,
+  "smells": [
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[0]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 821553098848002451 not found in scene index"
+    },
+    {
+      "level": "WARN",
+      "type": "prefab_reference_suggestion",
+      "path": "taskUnits[0]/actionUnits[0]/source_object_fileID",
+      "message": "Use m_PrefabInstance fileID (821553098848002453) for referencing this object instead of 821553099666843527"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[0]/source_object_name",
+      "message": "Name does not match scene index (expected 'Unknown')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    }
+  ]
+}

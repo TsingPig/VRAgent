@@ -1,0 +1,103 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 149,
+          "condition": "MonoBehaviour id=944 uses script guid=6dbca64e524ea44f9b26142ec59aca8a (GvrAudioSource). Serialized config: playOnAwake=0, sourceClip guid=3b1bac9d0cdfad24e9ffb75aa75e4f96 assigned, loop=0, mute=0, volume=1, occlusionEnabled=0, hrtfEnabled=1. No UnityEvent m_Calls defined. Expect InitializeSource() -> AudioSource created/enabled, GvrAudioMixer routing applied, and playback starts.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 149,
+          "condition": "While clip is playing from previous Play() call, pause playback to test pause path and isPaused flag.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 149,
+          "condition": "After Pause(), resume playback to test UnPause path and ensure audio continues.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 149,
+          "condition": "Stop playback to test Stop() and ShutdownSource() path (spatializer Id set to -1, ZeroOutput=1, spatialize=false, source destroyed).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 149,
+          "condition": "After Stop(), call Play() again to validate re-initialization via InitializeSource() and proper playback restart.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

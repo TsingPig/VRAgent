@@ -1,0 +1,1146 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Arguing_Man",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1913892540,
+          "condition": "Manual trigger on Arguing_Man to invoke a public no-parameter method on SteamAudioSource. MonoBehaviour component id=1913892542 (m_Script guid=59c3684b22f00604a97bb68037fcf4cd) matches the provided SteamAudioSource script and its serialized fields (directBinaural=1, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1, reflections=0, etc.). BoxCollider present, no Rigidbody. This call ensures source retrieval after Awake/OnEnable lifecycle events have initialized the audio source.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1913892542,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "FireController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1920635016,
+          "condition": "MonoBehaviour_0 (id: 1920635018) is FireController (guid: 0fd19a8a27a542c45932ea66cb115c58). Start() runs automatically on scene load to initialize fires using initialFireProbability=0.7, sets State values, and references AudienceController (component fileID: 865422729). Manually invoke a public, parameterless API to ensure direct script call coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1920635018,
+                  "method_name": "GetTotalFires",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "FireVisualController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 676587431,
+          "condition": "MonoBehaviour_0 (id: 676587433) is FireVisualsController (guid: f742c92c23cdb4c51bb7d099258cdb4b). Scene meta matches script fields: flickerIntensity=[1.95,2.05], flickerMultiplier=0.25, timeToFlicker=0.025, lights=[1975023121, 778717856], allSmoke=[1556168500,1778919060], etc. InitializeVisuals() is normally invoked automatically by FireController.Start() (guid: 0fd19a8a27a542c45932ea66cb115c58), so to avoid redundancy we manually trigger only the non-automatic visual effect update to cover public API.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 676587433,
+                  "method_name": "FlickerLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "AudienceController",
+          "triggerring_time": 11.5,
+          "source_object_fileID": 865422727,
+          "condition": "MonoBehaviour_0 (id: 865422729) is AudienceController (guid: 568674ad8ac51e348a0d5515b1de19c1). Scene meta matches script fields: puppets=[1658050753,1913892541,392301220], crowdAudioSources=[2107226608,1810874850,815100929], player=1421263847, celebrationAnimator guid=00a66a0ae4c7cdf4b90cbb78134f82f9, celebrationSoundClip guid=c8ad6ccf87d28cd45891fca1eb7bbba4, crowdCelebrationSoundClip guid=fea3296555b18b341ae96c7e4ef53278, fadeController=1989938081. Trigger StartVictory() to cover public API and coroutine path (Celebrate -> 10s wait -> fadeController.FadeOut() -> 1s wait -> SceneController.GoToMenuScene). Celebrate() is invoked by StartVictory(), so no separate manual trigger to avoid redundancy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 865422729,
+                  "method_name": "StartVictory",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 1",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 2066176386,
+          "condition": "Scene mapping confirmation and auto-ignite wait: This GameObject has a BoxCollider (enabled, non-trigger) and no Rigidbody. The attached MonoBehaviour component (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d; fields match: timeToOnMin=40, timeToOnMax=60, totalHitTime=5, mainEffectGo fileID=1849464941111748095, onNeighborsThreshold=2) is the Fire script provided. No m_Calls (UnityEvent) are configured on this object. During this wait, Update() can auto-run and, if onNeighbors >= onNeighborsThreshold is satisfied by scene neighbors, CheckNeighborState() will set shouldTurnOn and the timer will elapse to isOn=true, calling UpdateFireState(true) which plays the particle system and notifies neighbors and FireController.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 1",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 2066176386,
+          "condition": "Extinguish sequence when isOn is true: This step assumes an external water projectile/system will contact this object's BoxCollider and invoke IWaterInteractable.WaterHit(Vector3) repeatedly within maxHitInterval=2s to accumulate currentHitTime >= totalHitTime=5s. That path exercises isTurningOff logic in Update(), transitions fire off, and calls UpdateFireState(true). No m_Calls are defined, and Fire.WaterHit takes a parameter, so we cannot directly invoke it via a no-arg Trigger; collisions must occur via gameplay.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 81815621,
+          "condition": "MonoBehaviour_0 on this GameObject corresponds to Fire.cs (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d). Scene config matches Fire fields: debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, timeToOn=3, timeToOnDelta=0, shouldTurnOn=0, onNeighbors=0, maxNeighborDistance=4, downMultiplier=2, downNeighborDist=0.5, maxHitInterval=2, currentHitInterval=0, totalHitTime=5, currentHitTime=0, neighbors=[], onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo=fileID 1849464941111748095. GameObject has BoxCollider (enabled, not trigger), no Rigidbody, no EventTrigger, and no m_Calls UnityEvents are present. Fire exposes no public parameterless methods, so no direct callable events are available under the Trigger action constraints. This step simulates an interaction window awaiting parameterless events if provided.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 3",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 461528148,
+          "condition": "Verification step only. The scene MonoBehaviour (script guid: 1729fd01c90a64d5b8037e1eef0d000d, component fileID likely 2592690533154406537) matches the Fire class and its serialized settings on this GameObject: BoxCollider present (enabled, non-trigger), no Rigidbody, debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, minNeighborDownDistance=3, mainEffectGo fileID=1849464941111748095. No UnityEvent m_Calls are defined, and Fire exposes no public parameterless methods. Therefore, no manual Trigger callable events exist for this object. Automatic behaviors to cover include: neighbor-driven ignition (CheckNeighborState -> shouldTurnOn -> Update() timeToOn -> UpdateFireState(true) -> NotifyAllNeighbors() -> FireController.Instance.FireChanged), and water-driven extinguish (WaterHit(Vector3) repeatedly within maxHitInterval until currentHitTime >= totalHitTime -> UpdateFireState(true)). To execute these paths we need additional interactable hooks or neighbor/water objects.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 4",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 213075863,
+          "condition": "Scene MonoBehaviour matches Fire (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d). Serialized config on this instance: isOn=0, timeToOnMin=40, timeToOnMax=60, maxNeighborDistance=4 (Prefab override shows 3.5), downMultiplier=2, onNeighborsThreshold=2, minNeighborDownDistance=3, totalHitTime=5, maxHitInterval=2; mainEffectGo fileID=1849464941111748095; BoxCollider present (IsTrigger=0), no Rigidbody. No m_Calls UnityEvents are defined. This Trigger is to cover the auto-ignition path driven by neighbors: CheckNeighborState() sets shouldTurnOn when onNeighbors >= onNeighborsThreshold, which then drives Update() to set isOn=true and UpdateFireState(true). To actually stimulate this, we need either: (a) a neighbor Fire to notify via NotifyNeighborState(true) enough times to exceed threshold, or (b) a no-arg proxy method (e.g., DebugForceNeighborOn()) on this object or its controller to emulate neighbor ignition. Provide PrefabInstance fileID to target per instructions; currently using GameObject fileID=213075863 as fallback.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 4",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 213075863,
+          "condition": "Cover extinguish path: Fire implements IWaterInteractable and exposes WaterHit(Vector3 normal). Hitting the fire repeatedly should set isTurningOff=true and, if hits occur within maxHitInterval (2s) until currentHitTime >= totalHitTime (5s), fire turns off (isOn=false) and UpdateFireState(true) is called. This object has a BoxCollider but no Rigidbody; requires an external water emitter/projectile with Rigidbody to collide and invoke WaterHit. If direct collision is not available, expose a no-arg proxy (e.g., DebugWaterHit()) to invoke WaterHit internally for test purposes. No UnityEvent m_Calls are present to hook directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 5",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 306998884,
+          "condition": "This object has a BoxCollider (enabled=1, isTrigger=0) and no Rigidbody, so it supports Trigger interactions. The attached MonoBehaviour (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d, script_fileID not explicitly provided in-scene listing) corresponds exactly to Fire.cs. However, Fire.cs exposes no public parameterless methods (WaterHit(Vector3), SetIsOn(bool), UpdateFireState(bool) all require parameters), and there are no UnityEvent m_Calls configured. Therefore, no direct method calls can be invoked via Trigger. This action validates collider interaction and lets Awake/Update run under default serialized settings: isOn=0, timeToOnMin=40, timeToOnMax=60, shouldTurnOn=0, onNeighborsThreshold=2, etc. Note: m_PrefabInstance fileID was not provided; using the provided GameObject fileID 306998884.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 6",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1190964736,
+          "condition": "MonoBehaviour (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) attached to this GameObject is Fire.cs. Current serialized settings: isOn=0, timeToOnMin=40, timeToOnMax=60 (Awake randomizes timeToOn between these), maxNeighborDistance≈3.5–4 (Prefab override indicates 3.5), downMultiplier=2, onNeighborsThreshold=2, totalHitTime=5, maxHitInterval=2, neighbors=[] (initialized by inspector). This object has a BoxCollider (no Rigidbody). The Fire script exposes no public parameterless methods, so it cannot be directly invoked via this test Trigger. To exercise its logic, events must come from: (a) water system calling WaterHit(Vector3) repeatedly within maxHitInterval until totalHitTime elapses to turn off, and (b) neighbor fires via NotifyNeighborState(bool)/FindNeighbors(...) to cause shouldTurnOn and eventual ignition after timeToOn. We require additional scene objects or UnityEvents to invoke these paths.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 1472468207,
+          "condition": "MonoBehaviour (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d, class Fire) on this object has the following scene settings: isOn=0, timeToOnMin=40, timeToOnMax=60, downMultiplier=2, onNeighborsThreshold=2, minNeighborDownDistance=3, maxNeighborDistance=4, totalHitTime=5, maxHitInterval=2, mainEffectGo=fileID 1849464941111748095. PrefabInstance exists but m_PrefabInstance fileID not present in extract; using GameObject fileID=1472468207. To trigger auto-ignition: ensure at least 2 neighboring Fire components within 4 units are ON and notify this instance (NotifyNeighborState(true)) so onNeighbors>=2 and at least one neighbor is down by >=3 units in Y to set hasDownNeighbor=true. Then wait until timeToOn (random 40-60s, accelerated by downMultiplier=2 in Update) elapses so shouldTurnOn leads to isOn=true and UpdateFireState(true) is called, which plays particles and notifies neighbors and FireController.Instance.FireChanged(1).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 2.2,
+          "source_object_fileID": 1472468207,
+          "condition": "With the fire currently ON from the previous step, simulate a single water hit via the IWaterInteractable by invoking WaterHit(Vector3) once at t=0, then no further hits for > maxHitInterval (2s). Expected: isTurningOff is set true at hit, currentHitInterval accumulates and exceeds 2s, which resets isTurningOff=false and currentHitTime=0 without turning the fire off.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1472468207,
+          "condition": "From ON state, apply repeated water hits so that WaterHit(Vector3) is called at least every 1.0s (< maxHitInterval=2s) for a cumulative duration >= totalHitTime (5s). Expected: currentHitTime reaches 5s while currentHitInterval stays <2s, causing fire to turn OFF in Update: isOn=false, shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime=0, UpdateFireState(true) which stops all ParticleSystems and notifies neighbors and FireController.Instance.FireChanged(-1).",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 2",
+          "triggerring_time": 45.0,
+          "source_object_fileID": 137550432,
+          "condition": "Ignition via neighbor influence. Target has BoxCollider (IsTrigger=0) and no Rigidbody. Attached MonoBehaviour (script guid=1729fd01c90a64d5b8037e1eef0d000d; component fileID≈2592690533154406537 from prefab) is Fire. Serialized settings in scene match the Fire script: isOn=0, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, minNeighborDownDistance=3, maxHitInterval=2, totalHitTime=5, mainEffectGo=fileID 1849464941111748095. There are no UnityEvents (no m_Calls). To cover ignition code paths, ensure at least two neighbor Fire instances are ON and within 4 units; if one is 3+ units lower on Y, ignition countdown speeds up by downMultiplier. Also ensure neighbors list is populated (Fire.FindNeighbors called by controller) so onNeighbors counts and NotifyNeighborState flows. Expected behavior: shouldTurnOn becomes true, timeToOnDelta accumulates until >= timeToOn (random 40-60), isOn flips to true, UpdateFireState(true) plays particle system and notifies neighbors and FireController.Instance.FireChanged(+1).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 2",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 137550432,
+          "condition": "Extinguishing via water hits. This object implements IWaterInteractable.WaterHit(Vector3) (called externally on water collision). Precondition: the fire must be ON (either from the previous neighbor-ignition step or by an external system calling SetIsOn(true)). During this trigger window, repeatedly hit the collider with the water stream so that each hit occurs within maxHitInterval (2s) to keep isTurningOff true; when cumulative currentHitTime reaches totalHitTime (5s), Fire turns off and UpdateFireState(true) stops the particle system and notifies neighbors and FireController.Instance.FireChanged(-1). Note: There are no no-arg public methods to call directly; interaction must be via physics/water system invoking WaterHit.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1959007255,
+          "condition": "MonoBehaviour fileID 2592690533154406537 (Script GUID 1729fd01c90a64d5b8037e1eef0d000d) is Fire. This scene component matches the provided Fire script fields: isOn=0, timeToOnMin=40, timeToOnMax=60, maxNeighborDistance=4, onNeighborsThreshold=2, downMultiplier=2, minNeighborDownDistance=3, mainEffectGo=fileID 1849464941111748095. BoxCollider is present (no Rigidbody). There are no UnityEvent m_Calls on this object. Goal: validate auto-ignition path via neighbors. Preconditions required: neighbors list must contain at least 2 Fire instances within 4 units, with at least one neighbor located >=3 units below this object to set hasDownNeighbor=true (for faster countdown via downMultiplier). After neighbors are populated (via Fire.FindNeighbors externally or manually assigned), wait up to 60s for shouldTurnOn and timeToOn to elapse so this.isOn becomes true and UpdateFireState(true) plays particle system and notifies neighbors and FireController.Instance.FireChanged(+1).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1959007255,
+          "condition": "With the same Fire MonoBehaviour (fileID 2592690533154406537), test extinguishing while fire is ON (from previous task or externally set). Simulate water hose hits that invoke Fire.WaterHit(Vector3) via the water system (IWaterInteractable). Apply hits at intervals < maxHitInterval (2s), e.g., ~1s, for total accumulated hit time >= totalHitTime (5s). Expect: isTurningOff true, currentHitInterval resets on each hit, currentHitTime accumulates and reaches threshold; then fire turns off, UpdateFireState(true) stops particle system and notifies neighbors and FireController.Instance.FireChanged(-1).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 1959007255,
+          "condition": "Recovery test for extinguish cancellation: ensure fire is ON, then apply a single water hit (invoking WaterHit via external water system), wait > maxHitInterval (e.g., 2.1s) without further hits. Expectation: isTurningOff becomes false and currentHitTime resets to 0 (extinguishing attempt aborted). No state change to OFF should occur.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 509737246,
+          "condition": "Object has BoxCollider (enabled) and no Rigidbody. Attached MonoBehaviour (GUID: 1729fd01c90a64d5b8037e1eef0d000d) is Fire.cs with serialized config: isOn=0, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, maxHitInterval=2, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, minNeighborDownDistance=3, mainEffectGo=fileID 1849464941111748095. There are no UnityEvent m_Calls bound in this component. This trigger simulates a collider interaction to be paired with the external water system calling IWaterInteractable.WaterHit(Vector3). Expected external call: Fire.WaterHit(normal) -> sets isTurningOff=true and resets currentHitInterval.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Precondition: Fire is currently ON (isOn==true). This represents a sustained water contact within maxHitInterval (2s), expecting Fire.Update() to accumulate currentHitTime toward totalHitTime (5s) while keeping currentHitInterval < 2s via repeated external WaterHit(normal) invocations.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continue extinguishing: another water contact within 2s window to keep isTurningOff=true and accumulate currentHitTime (target: reach ~2s total).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 509737246,
+          "condition": "Negative path: Pause water for > maxHitInterval (2s). Expected behavior in Fire.Update(): currentHitInterval >= maxHitInterval causes isTurningOff=false and currentHitTime reset to 0 (extinguish process canceled).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Restart extinguishing after reset: water contact within interval to set isTurningOff=true again (via external WaterHit).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continued water contact within <2s to accumulate currentHitTime toward 5s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continued water contact; expected cumulative currentHitTime ~3s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continued water contact; expected cumulative currentHitTime ~4s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.2,
+          "source_object_fileID": 509737246,
+          "condition": "Final water contact within 2s window to exceed totalHitTime (5s). Expected in Fire.Update(): isOn set to false, shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime reset, UpdateFireState(true) called (pSystem.Stop() and neighbor notifications via NotifyAllNeighbors; FireController.Instance.FireChanged(-1)).",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 5",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 736005887,
+          "condition": "MonoBehaviour_0 on this GameObject uses m_Script guid 1729fd01c90a64d5b8037e1eef0d000d, which matches the provided Fire.cs script. The object has a BoxCollider (no Rigidbody), so only Trigger actions are applicable. Fire.cs exposes no public parameterless methods; the intended interaction is via IWaterInteractable.WaterHit(Vector3) (water jet hits) and neighbor notifications, or via UnityEvent m_Calls if present. Please provide an exposed parameterless wrapper or EventTrigger/UnityEvent (m_Calls) to invoke WaterHit or SetIsOn/UpdateFireState, or the m_PrefabInstance/MonoBehaviour component fileIDs for any such events.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 6",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 52425397,
+          "condition": "MonoBehaviour_0 on this GameObject is the Fire script (m_Script.guid=1729fd01c90a64d5b8037e1eef0d000d) with exact serialized settings shown (component fileID=2592690533154406537). This object has a BoxCollider (IsTrigger=0) and no Rigidbody. No UnityEvent m_Calls are present on this component, and the Fire script exposes no public no-arg methods, so no manual callable events exist. To cover behaviors (turn on via neighbors, WaterHit to turn off, UpdateFireState notifications, FindNeighbors), we need additional scene objects/events or permission to invoke parameterized methods.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 1",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 1849725428,
+          "condition": "MonoBehaviour_0 on this GameObject maps to script Fire (m_Script fileID: 11500000, guid: 1729fd01c90a64d5b8037e1eef0d000d) with serialized fields: isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, neighbors=[], totalHitTime=5, maxHitInterval=2, mainEffectGo fileID 1849464941111748095. BoxCollider enabled (IsTrigger=0); no Rigidbody; no UnityEvent m_Calls present. Fire exposes no public parameterless methods (NotifyNeighborState(bool), UpdateFireState(bool), WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[], int) all require parameters), so no direct triggerable method calls are available. This action is a placeholder to exercise collider-based interaction if a higher-level interaction system is present; otherwise no events will fire automatically.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2118744178,
+          "condition": "MonoBehaviour on this GameObject is Fire (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) with the exact serialized settings shown (isOn=0, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, etc.). The GameObject has a BoxCollider (no Rigidbody, no EventTrigger, no UnityEvent m_Calls). The only conditional event we need to actively trigger for coverage is IWaterInteractable.WaterHit(normal) to drive the 'turning off' path (isTurningOff, currentHitInterval, currentHitTime/totalHitTime). However, Fire exposes only parameterized public methods (WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[],int), UpdateFireState(bool)) and there are no UnityEvents configured, so no callable no-arg methods exist for a Trigger action.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 2118744178,
+          "condition": "Neighbor-driven ignition path. To cover automatic turning on, this Fire requires onNeighbors >= onNeighborsThreshold (2) so that shouldTurnOn becomes true and, after timeToOn elapses (40–60s, downMultiplier=2 if any neighbor is sufficiently below), isOn toggles and UpdateFireState(notify=true) is invoked, notifying neighbors and FireController.Instance.FireChanged(+/-1). This requires external stimuli: neighbors invoking NotifyNeighborState(true) or being set via SetIsOn(true). No UnityEvent m_Calls are available to drive this via a Trigger action.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 3",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 264562092,
+          "condition": "MonoBehaviour_0 in scene points to script guid 1729fd01c90a64d5b8037e1eef0d000d (Fire.cs), matching the provided code. Serialized fields match: isOn=0, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, maxHitInterval=2, downMultiplier=2, onNeighborsThreshold=2, neighbors=[], mainEffectGo=fileID 1849464941111748095. GameObject has a BoxCollider (IsTrigger=0) and no Rigidbody. There are no UnityEvent m_Calls configured and the Fire script has no public parameterless methods. To cover the Fire turning-off path, the object must be isOn=true and must receive repeated IWaterInteractable.WaterHit(Vector3) calls at intervals < maxHitInterval (2s) until currentHitTime >= totalHitTime (5s). To cover the turning-on-by-neighbors path, neighbors must be populated and onNeighbors >= onNeighborsThreshold. Additional information is needed: a parameterless wrapper or an external water emitter that invokes WaterHit, the MonoBehaviour component instance fileID to target, and/or neighbor fire setup. Until then, this Trigger reserves time to simulate such interactions via physics/collision systems.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 4",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1846572117,
+          "condition": "GameObject has BoxCollider (no Rigidbody) and a MonoBehaviour 'Fire' (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d). No UnityEvent m_Calls found in scene meta, and the Fire script exposes no public no-parameter methods. Serialized config for this instance: debug=0, isOn=false, timeToOnMin=40, timeToOnMax=60, timeToOn=3 (runtime overwritten in Awake to Random[40,60]), downMultiplier=2, maxNeighborDistance=4, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, neighbors=[], mainEffectGo fileID=1849464941111748095. Manual trigger here is a placeholder collider interaction; to achieve state changes we must externally trigger Fire.WaterHit(Vector3) repeatedly (interval < maxHitInterval, accumulated >= totalHitTime) or satisfy neighbor ignition via NotifyNeighborState/FindNeighbors.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 5",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 870612912,
+          "condition": "MonoBehaviour_0 in the scene (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) exactly matches Fire.cs attached to this GameObject. Serialized settings confirm: debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, timeToOn=3 (will be overwritten in Awake with Random[40,60]), downMultiplier=2, maxNeighborDistance=4, totalHitTime=5, maxHitInterval=2, onNeighborsThreshold=2, minNeighborDownDistance=3, neighbors=[], mainEffectGo=fileID 1849464941111748095. Object has an enabled BoxCollider and no Rigidbody. No UnityEvent m_Calls are present on this component, and Fire exposes no public no-arg methods (WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[],int) require parameters). This Trigger simulates user interaction with the collider and a brief wait to observe runtime behavior; however, full coverage of Fire.cs (turn-on via neighbors, water extinguish flow, neighbor notifications) requires additional setup not available in current scene data.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 58609734,
+          "condition": "Auto-ignite path. MonoBehaviour matches Fire.cs (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d; serialized config in scene: isOn=false, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, maxHitInterval=2, downMultiplier=2, maxNeighborDistance overridden to 3.5). When at least onNeighbors >= onNeighborsThreshold (2) within maxNeighborDistance, this.shouldTurnOn becomes true and timeToOnDelta accumulates in Update(). After waiting up to timeToOn (40–60s; allowing 61s to cover upper bound), fire should turn on: UpdateFireState(true) should Play particle system, NotifyAllNeighbors, and call FireController.Instance.FireChanged(+1). This covers the shouldTurnOn -> isOn true path and neighbor notification logic.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 58609734,
+          "condition": "Extinguish path via water hits. MonoBehaviour matches Fire.cs (guid 1729fd01c90a64d5b8037e1eef0d000d). With isOn=true, repeatedly apply WaterHit(Vector3) so that currentHitInterval never reaches maxHitInterval (2s) until totalHitTime (5s) accumulates. Expect isTurningOff=true while being hit; when currentHitTime >= totalHitTime, fire turns off, UpdateFireState(true) stops the particle system, notifies neighbors, and FireController.Instance.FireChanged(-1) is called. Note: WaterHit has a Vector3 parameter and cannot be triggered via parameterless method call; needs an external water emitter/caller or Event hookup.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 2.1,
+          "source_object_fileID": 58609734,
+          "condition": "Cancel-turning-off branch. After calling WaterHit once (sets isTurningOff=true and resets currentHitInterval to 0), allow a gap >= maxHitInterval (2s) without additional WaterHit calls. Expect Update() to set isTurningOff=false and currentHitTime reset to 0 (extinguish attempt canceled).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 58609734,
+          "condition": "Neighbor threshold drop branch. Ensure onNeighbors < onNeighborsThreshold (2) (e.g., neighbors turn off or move out of maxNeighborDistance=3.5). Expect CheckNeighborState() to set shouldTurnOn=false and timeToOnDelta=0. This covers the else-branch preventing ignition when insufficient neighbors are on.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1139979190,
+          "condition": "Fire-Wrapper - R - 1 - 1 has a BoxCollider (enabled, non-trigger), allowing Trigger interactions. Attached MonoBehaviour matches Fire.cs (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d). Serialized fields: debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, timeToOn=3 (will be overridden in Awake by Random.Range), timeToOnDelta=0, shouldTurnOn=0, onNeighbors=0, maxNeighborDistance=4, downMultiplier=2, downNeighborDist=0.5, maxHitInterval=2, currentHitInterval=0, totalHitTime=5, currentHitTime=0, neighbors=[], onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo(fileID:1849464941111748095). No UnityEvent m_Calls present, and Fire exposes no public no-parameter methods; thus this manual trigger cannot invoke script methods. Automatic behaviors require neighbors to turn on and WaterHit to turn off, which are not directly invokable via Trigger per constraints.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 2",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 197853773,
+          "condition": "MonoBehaviour component matches Fire.cs (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d; component fileID likely 2592690533154406537). Scene config: isOn=0, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, neighbors=[], maxNeighborDistance=4, minNeighborDownDistance=3, totalHitTime=5, maxHitInterval=2, mainEffectGo=fileID 1849464941111748095. BoxCollider present (no Rigidbody). No UnityEvent m_Calls defined on this object. With neighbors list empty, CheckNeighborState() will keep shouldTurnOn=false, so fire remains off and particle system stays stopped; Update() runs but no state changes occur unless external systems call WaterHit(Vector3) or neighbors are configured and turn on.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 611850321,
+          "condition": "MonoBehaviour Fire (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d; component fileID seen in prefab: 2592690533154406537) on GameObject 'Fire-Wrapper - R - 1 - 3' with BoxCollider and no Rigidbody. Serialized scene settings match the provided script: isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxHitInterval=2, totalHitTime=5, neighbors=[], mainEffectGo fileID 1849464941111748095. This Trigger represents selecting/activating the collider so systems that depend on collider interactions (e.g., Water system calling IWaterInteractable.WaterHit) can respond. Expected behaviors depend on external systems: (A) Neighbor ignition path requires external calls to NotifyNeighborState(bool) or FindNeighbors(Fire[], int); (B) Extinguish path requires external water system to call WaterHit(Vector3) repeatedly within maxHitInterval until totalHitTime is reached.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 3",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 611850321,
+          "condition": "Manual test step to cover the extinguish logic: repeatedly hit the Fire via the water system (which should invoke Fire.WaterHit(Vector3 normal) through IWaterInteractable) with intervals < maxHitInterval (2s) accumulating to > totalHitTime (5s). This should set isTurningOff=true, then after accumulating currentHitTime>=totalHitTime, flip isOn=false and call UpdateFireState(true) which should Stop() all ParticleSystems and notify neighbors and FireController.Instance.FireChanged(-1). Requires an external water sprayer/object to actually invoke WaterHit.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 3",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 611850321,
+          "condition": "Manual test step to cover ignition-by-neighbors: ensure at least onNeighborsThreshold (2) neighbors report fireOn=true via NotifyNeighborState(true), or call FindNeighbors(Fire[] allFires, int fireId) and have >=2 nearby isOn neighbors. This should set shouldTurnOn=true and after timeToOn (random in [40,60], modified by downMultiplier if any down neighbor is present) flip isOn=true and call UpdateFireState(true) which should Play() ParticleSystems and notify neighbors and FireController.Instance.FireChanged(+1). Requires neighbor Fire objects and an external system to call NotifyNeighborState/FindNeighbors.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1201257102,
+          "condition": "MonoBehaviour Fire (script guid: 1729fd01c90a64d5b8037e1eef0d000d, fileID: 11500000) is attached to this GameObject. The scene MonoBehaviour settings match the script fields: isOn=0, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo(fileID:1849464941111748095). BoxCollider present (size 1.5,2.5,0.25), Has_Rigidbody=false, Has_Event_Trigger not specified. No UnityEvents (m_Calls) are defined on this object. The Fire script exposes no public parameterless methods; its interactions require: neighbor notifications (NotifyNeighborState(bool)), water hits (WaterHit(Vector3)), manual state toggles (SetIsOn(bool)), or neighbor discovery (FindNeighbors(Fire[],int)). To achieve code coverage (turn on via neighbors and turn off via repeated WaterHit within maxHitInterval=2 until totalHitTime=5), external systems or additional scene info are required to invoke these methods or to provide neighboring Fire instances and a water system.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 1",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 843012547,
+          "condition": "GameObject has BoxCollider (no Rigidbody), so Trigger is allowed. Attached MonoBehaviour (GUID: 1729fd01c90a64d5b8037e1eef0d000d) matches the provided Fire script and uses exact serialized settings from scene (debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, onNeighborsThreshold=2, mainEffectGo=1849464941111748095, neighbors=[]). However, this Fire script exposes no public parameterless methods (NotifyNeighborState(bool), UpdateFireState(bool), WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[],int) all require parameters), and there are no UnityEvents (m_Calls) listed for this object. This Trigger step interacts with the collider to exercise Awake/Update lifecycles but cannot directly invoke script methods. To achieve full coverage we will need either: (1) a parameterless wrapper method or UnityEvent to call WaterHit/SetIsOn/UpdateFireState, (2) populated neighbors or a controller that calls FindNeighbors/NotifyNeighborState, or (3) details of the water system that invokes IWaterInteractable.WaterHit.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 2",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 1875384961,
+          "condition": "MonoBehaviour_0 maps to Fire (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d) on GameObject 'Fire-Wrapper - R - 2 - 2'. BoxCollider enabled, no Rigidbody. No UnityEvent m_Calls exposed. Serialized: isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, totalHitTime=5. This trigger is a timed wait to allow automatic Update() behavior when the neighbor condition is satisfied (onNeighbors >= 2) so shouldTurnOn becomes true and the fire turns on after timeToOn elapses. Expected behavior upon auto ignition: UpdateFireState(true) => ParticleSystem.Play; NotifyAllNeighbors(); FireController.Instance.FireChanged(+1). Requires: at least two neighbor Fire instances within 4 units and already on; or that FindNeighbors/neighbor wiring be completed externally.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 2",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 1875384961,
+          "condition": "Turn-off path: while isOn==true, repeated WaterHit(Vector3) calls must occur so currentHitInterval < maxHitInterval (2s) until currentHitTime >= totalHitTime (5s), then Update() turns fire off and calls UpdateFireState(true) => ParticleSystem.Stop; NotifyAllNeighbors(); FireController.Instance.FireChanged(-1). Note: Fire has no public parameterless methods and no UnityEvent m_Calls; WaterHit(Vector3) requires a parameter and cannot be invoked via a generic Trigger per constraints. A water system or test hook must invoke Fire.WaterHit(Vector3) repeatedly during this 5.5s window.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Validate Fire MonoBehaviour settings and exercise the sustained-water-hit turn-off path. This GameObject has a BoxCollider (m_IsTrigger=0) and no Rigidbody. The attached MonoBehaviour (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d) matches Fire.cs with serialized values: isOn=false, timeToOnMin=40, timeToOnMax=60, downMultiplier=2, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo fileID=1849464941111748095. Action simulates continuous water impacts that should cause IWaterInteractable.WaterHit(Vector3) to be invoked repeatedly within intervals < maxHitInterval until totalHitTime is reached, at which point Update() turns the fire off (isOn=false), resets turning-off timers, stops particles via UpdateFireState(true), notifies neighbors, and calls FireController.Instance.FireChanged(-1). Note: Fire exposes no public no-parameter methods; thus no direct method calls are specified here.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Exercise the cancellation path of turning off. After at least one WaterHit has set isTurningOff=true, cease hits for >= maxHitInterval (2s). Expected: in Update(), currentHitInterval exceeds maxHitInterval; isTurningOff becomes false and currentHitTime resets to 0, leaving the fire state unchanged (remains whatever it was prior to the pause). No public no-parameter methods exist to call directly.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Exercise neighbor-driven ignition. Preconditions needed: neighbors list populated (via Fire.FindNeighbors or manual serialization) with >=2 neighbors within maxNeighborDistance=4, where at least one neighbor is sufficiently below (transform.y difference > minNeighborDownDistance=3) to allow downMultiplier acceleration. When onNeighbors >= onNeighborsThreshold and this fire is off and not already turning on, CheckNeighborState() should set shouldTurnOn=true and accumulate timeToOnDelta until reaching timeToOn (Random[40,60] scaled by downMultiplier if hasDownNeighbor). On reaching timeToOn, isOn becomes true and UpdateFireState(true) plays particle systems and calls FireController.Instance.FireChanged(1). This step represents the time passage and neighbor state; no direct public no-parameter methods are available to invoke.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 4",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1206277820,
+          "condition": "Object has BoxCollider (enabled) and no Rigidbody; Trigger is allowed. Attached MonoBehaviour (script GUID 1729fd01c90a64d5b8037e1eef0d000d) matches Fire class with fields: debug, isOn, timeToOnMin=40, timeToOnMax=60, maxNeighborDistance=4, downMultiplier=2, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo -> ParticleSystem. There are no public no-arg methods on Fire to invoke via Trigger; behavior changes occur automatically via Update when onNeighbors >= onNeighborsThreshold and over time, or when WaterHit(Vector3) is called externally by a water system. Please provide neighbor Fire instances or a water emitter to drive WaterHit; otherwise this Trigger only exercises collider interaction and waits for any automatic state changes.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - Door",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 676137038,
+          "condition": "GameObject has BoxCollider (no Rigidbody), enabling Trigger interaction. MonoBehaviour_0 (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) matches the provided Fire script; serialized fields confirm exact settings (isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, totalHitTime=5, mainEffectGo set). No UnityEvent m_Calls are present. Fire exposes no public no-parameter methods; WaterHit(Vector3), SetIsOn(bool), UpdateFireState(bool), FindNeighbors(...) all require parameters, so cannot be invoked directly via Trigger. This action simply exercises Awake/Update under current configuration to verify no unintended state changes without neighbor ignition or water hits.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Hose-End",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1921583762,
+          "condition": "Hose-End has a BoxCollider (eligible for Trigger). MonoBehaviour HoseHandleMovement is attached with script GUID f3c735cd07257d448babb6fb31e61089, component id 1917998009, serialized onRotation(-45,0,0), offRotation(-112,0,0), rotationSpeed=220. Awake sets isTurning=false and localRotation to offRotation. No UnityEvent m_Calls are defined in scene meta for this component. Calling getIsTurning() should return false unless ActivateHandleMovement(bool) is invoked elsewhere.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1917998009,
+                  "method_name": "getIsTurning",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1696544506,
+          "condition": "Manual invocation of public no-arg method on attached script to ensure code coverage. MonoBehaviour id=1696544507 (guid=59c3684b22f00604a97bb68037fcf4cd) maps to SteamAudio.SteamAudioSource with scene settings: distanceAttenuation=1 (PhysicsBased), airAbsorption=1, occlusion=1, reflections=0, pathing=0. No m_Calls specified. Expect GetSource() to return a valid SteamAudio.Source after Awake/OnEnable initialization.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1696544507,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1915639391,
+          "condition": "Manual invocation of public no-arg method on attached script to ensure code coverage. MonoBehaviour id=1915639393 (guid=59c3684b22f00604a97bb68037fcf4cd) maps to SteamAudio.SteamAudioSource with scene settings: distanceAttenuation=1 (PhysicsBased), airAbsorption=1, occlusion=1, reflections=0, pathing=0. No m_Calls specified. Expect GetSource() to return a valid SteamAudio.Source after Awake/OnEnable initialization.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1915639393,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1695945194,
+          "condition": "Manual API call on SteamAudioManager (MonoBehaviour fileID: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). No Collider/Rigidbody present; trigger public static no-arg method to query scene type.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetSceneType",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1695945194,
+          "condition": "Manual API call on SteamAudioManager (MonoBehaviour fileID: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). No Collider/Rigidbody present; trigger public static no-arg method to query reflection effect selection.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetReflectionEffectType",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1695945194,
+          "condition": "Manual API call on SteamAudioManager (MonoBehaviour fileID: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). Validate audio engine state accessor.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetAudioEngineState",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1695945194,
+          "condition": "Manual API call on SteamAudioManager (MonoBehaviour fileID: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). Validate listener accessor; may return null if no SteamAudioListener present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetSteamAudioListener",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1695945194,
+          "condition": "Manual API call on SteamAudioManager (MonoBehaviour fileID: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). Exercise reinitialization path including devices and simulation thread.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "Reinitialize",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1695945194,
+          "condition": "Manual API call on SteamAudioManager (MonoBehaviour fileID: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). Exercise shutdown path for simulation thread, devices, HRTFs, and context.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "ShutDown",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Stressed_Guy_No",
+          "triggerring_time": 26.0,
+          "source_object_fileID": 247034838,
+          "condition": "GameObject has a BoxCollider (no Rigidbody). Two MonoBehaviours attached: (1) SteamAudioSource (MonoBehaviour id=112451389, guid=59c3684b22f00604a97bb68037fcf4cd) configured with distanceAttenuation=1 (PhysicsBased), airAbsorption=1 (SimulationDefined), reflections/pathing disabled. (2) FireBasedAudioManager (MonoBehaviour id=112451392, guid=77f9a59041a2de446bf7704b5c31f103) with fireLimit=10, timeInterval=25. Awake() sets audioSource from GetComponent<AudioSource>() and shouldPlay=true. Update() will call audioSource.Play() once lastPlayed >= timeInterval while shouldPlay==true. There are no UnityEvents (m_Calls) and no public parameterless methods to invoke; this Trigger is used to wait long enough to exercise the automatic Update path and cause audio playback.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1933244012,
+          "condition": "Object has BoxCollider (enabled, non-trigger) and no Rigidbody; Allowed to Trigger due to Collider presence. Attached MonoBehaviour is SteamAudioSource (script guid: 59c3684b22f00604a97bb68037fcf4cd, instance fileID: 2107226610). No UnityEvent m_Calls found; manually invoke a public no-arg method to ensure interaction and coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2107226610,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1956825602,
+          "condition": "GameObject 'Unknown' (PrefabInstance m_PrefabInstance fileID=1956825602) has a BoxCollider (id=9191504438935284416) and thus supports Trigger interactions. Attached MonoBehaviour (id=1658050755) uses script GUID 59c3684b22f00604a97bb68037fcf4cd, which corresponds to SteamAudio.SteamAudioSource with the serialized settings shown (e.g., distanceAttenuation=1, airAbsorption=1, reflections=0, etc.). No m_Calls UnityEvent entries are present in the scene metadata, so there are no pre-wired Interactable events to fire automatically. To ensure coverage of public parameterless methods, manually invoke GetSource().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1658050755,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 392301219,
+          "condition": "Trigger PlaySound.PlaySoundShot on GameObject 'Unknown' (PrefabInstance fileID: 392301219). Scene MonoBehaviour component 392301225 (script guid: 7fbbd89654d4642d187f0fa0e4dc316a) has canPlay=1. Object has a Collider (BoxCollider id: 9191504438935284416), so manual Trigger is permitted. SteamAudioSource (MonoBehaviour 392301224, guid: 59c3684b22f00604a97bb68037fcf4cd) is present but exposes no public parameterless methods for triggering.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 392301225,
+                  "method_name": "PlaySoundShot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 709019302,
+          "condition": "GameObject 'Unknown' (PrefabInstance fileID 709019302) has an enabled BoxCollider (id 9191504438935284416) and an attached SteamAudioSource MonoBehaviour (component fileID 1816390236, script GUID 59c3684b22f00604a97bb68037fcf4cd). Component settings match scene meta: directBinaural=1, interpolation=0, distanceAttenuation=1 (PhysicsBased), airAbsorption=1 (SimulationDefined), directivity=0, occlusion=0, transmission=0, reflections=0, pathing=0. No UnityEvent m_Calls are defined. Manually trigger a public, parameterless method to ensure callable API surface is covered.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1816390236,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Buildings",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1589941764,
+          "condition": "MonoBehaviour (id: 1589941766) on GameObject 'Buildings' (fileID: 1589941764) is SteamAudioGeometry (guid: e829c87dc2a2ed2419c5f67848317fe4). Scene config matches script fields: material set, exportAllChildren=false, terrainSimplificationLevel=0. No m_Calls UnityEvents serialized. Manually trigger public parameterless methods to exercise geometry queries.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Ambulance",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1616856287260946002,
+          "condition": "MonoBehaviour (id: 9191504438935284415) on GameObject 'Ambulance' (fileID: 1616856287260946002) is SteamAudioGeometry (guid: e829c87dc2a2ed2419c5f67848317fe4). Scene config matches script fields: material set, exportAllChildren=false, terrainSimplificationLevel=0. Ambulance has a BoxCollider (id: 9191504438935284416), so manual Trigger is allowed. No UnityEvent m_Calls present; directly invoke public parameterless methods to cover geometry queries.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire_Engine",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3206529234001464345,
+          "condition": "MonoBehaviour (id: 5409646016458175008) on GameObject 'Fire_Engine' (fileID: 3206529234001464345) matches script SteamAudioGeometry (guid: e829c87dc2a2ed2419c5f67848317fe4). Scene settings align with script fields: material assigned, exportAllChildren=false, terrainSimplificationLevel=0. Fire_Engine has a BoxCollider (id: 5409646016458175009), enabling manual trigger. No UnityEvent m_Calls are serialized; invoke public parameterless methods to cover geometry queries.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Shouting",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 592733083,
+          "condition": "MonoBehaviour (id: 592733085) on 'Crowd - Shouting' matches script SteamAudioSource (guid: 59c3684b22f00604a97bb68037fcf4cd). Serialized settings confirm: directBinaural=1, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1 (SimulationDefined), reflections=0, pathing=0, etc. To comply with Trigger action rules, confirm component 592733086 is a Collider or an EventTrigger; otherwise, provide a valid collider/event trigger on this GameObject or allow exception since the method is a public parameterless MonoBehaviour API.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 592733085,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 208486863,
+          "condition": "MonoBehaviour (id: 208486865) on GameObject 'Crowd - Talking - 1' (fileID: 208486863) matches script SteamAudioSource (guid: 59c3684b22f00604a97bb68037fcf4cd). Serialized fields in scene match the script's public members (directBinaural=1, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1, reflections=0, pathing=0, etc.). GameObject has no Rigidbody. To satisfy Trigger action prerequisites, confirm component 208486866 is a Collider or an EventTrigger; otherwise provide/attach a Collider/EventTrigger so the manual trigger is valid.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 208486865,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1854226667,
+          "condition": "MonoBehaviour (id: 1854226669) on GameObject 'Crowd - Talking - 2' matches script SteamAudioSource (guid: 59c3684b22f00604a97bb68037fcf4cd). Scene serialization aligns with script fields (directBinaural=1, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1, reflections=0, pathing=0, etc.). Ensure component 1854226670 is a Collider or EventTrigger to satisfy Trigger prerequisites; otherwise attach a Collider/EventTrigger to this object for valid manual triggering.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1854226669,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 389740526,
+          "condition": "MonoBehaviour (id: 389740528) on GameObject 'Crowd - Talking - 3' (fileID: 389740526) matches script SteamAudioSource (guid: 59c3684b22f00604a97bb68037fcf4cd). Serialized fields align with the script (directBinaural=1, distanceAttenuation=1 PhysicsBased, airAbsorption=1, reflections=0, pathing=0, etc.). No UnityEvent m_Calls are serialized. To satisfy Trigger prerequisites, confirm component 389740529 is a Collider or EventTrigger (or attach one), otherwise provide explicit allowance to invoke public parameterless MonoBehaviour methods directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 389740528,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CoughingMan",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 988770326,
+          "condition": "MonoBehaviour id: 988770328 on GameObject 'CoughingMan' (fileID: 988770326) matches script SteamAudioSource (guid: 59c3684b22f00604a97bb68037fcf4cd). Serialized fields confirm: directBinaural=1, distanceAttenuation=1 PhysicsBased, airAbsorption=1 SimulationDefined, reflections=0, pathing=0, etc. A second MonoBehaviour id: 988770330 matches script FireBasedAudioManager (guid: 77f9a59041a2de446bf7704b5c31f103) with fields: audioSource=null (will be auto-fetched in Awake), fireLimit=7, timeInterval=20. No UnityEvent m_Calls serialized. NOTE: This GameObject does not list a Rigidbody, Collider, or EventTrigger. To satisfy Trigger prerequisites, please confirm a Collider/EventTrigger is present (or provide an exception to call parameterless MonoBehaviour methods). If confirmed, trigger the parameterless method below.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988770328,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CoughingMan",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 988770326,
+          "condition": "MonoBehaviour id: 988770328 on 'CoughingMan' matches SteamAudioSource script (guid: 59c3684b22f00604a97bb68037fcf4cd) with serialized fields: directBinaural=1, distanceAttenuation=1 (PhysicsBased), airAbsorption=1 (SimulationDefined), reflections=0, pathing=0. MonoBehaviour id: 988770330 matches FireBasedAudioManager (guid: 77f9a59041a2de446bf7704b5c31f103) with fields: audioSource=null (set in Awake via GetComponent<AudioSource>()), fireLimit=7, timeInterval=20. Scene component list shows no Rigidbody/Collider/EventTrigger; to satisfy Trigger prerequisites, confirm a Collider/EventTrigger exists or allow direct invocation of public parameterless MonoBehaviour methods for testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988770328,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CoughingWoman",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1034990897,
+          "condition": "MonoBehaviour id: 1034990899 on 'CoughingWoman' matches SteamAudioSource script (guid: 59c3684b22f00604a97bb68037fcf4cd) with serialized fields: directBinaural=1, distanceAttenuation=1 (PhysicsBased), airAbsorption=1 (SimulationDefined), reflections=0, pathing=0. MonoBehaviour id: 1034990901 matches FireBasedAudioManager (guid: 77f9a59041a2de446bf7704b5c31f103) with fields: audioSource=null (set in Awake), fireLimit=9, timeInterval=10. Scene component list shows no Rigidbody/Collider/EventTrigger; confirm Collider/EventTrigger or allow direct invocation of public parameterless MonoBehaviour methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1034990899,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "WomanDevastated",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1678975683,
+          "condition": "MonoBehaviour id: 1678975685 on 'WomanDevastated' matches SteamAudioSource (guid: 59c3684b22f00604a97bb68037fcf4cd). Serialized fields align: directBinaural=1, distanceAttenuation=1 (PhysicsBased), airAbsorption=1 (SimulationDefined), reflections=0, pathing=0, etc. Second MonoBehaviour id: 1678975687 matches FireBasedAudioManager (guid: 77f9a59041a2de446bf7704b5c31f103) with fields: audioSource=null (set in Awake), fireLimit=5, timeInterval=30. No Rigidbody/Collider/EventTrigger listed and no UnityEvent m_Calls serialized; to satisfy Trigger constraints, please confirm a Collider/EventTrigger exists or allow direct invocation of public parameterless MonoBehaviour methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1678975685,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1975023119,
+          "condition": "MonoBehaviour id: 1975023122 on 'Point Light - 1' is SteamAudioSource (guid: 59c3684b22f00604a97bb68037fcf4cd). Serialized settings match the script: directBinaural=1, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1 (SimulationDefined), reflections=0, pathing=0, etc. No UnityEvent m_Calls are serialized. GameObject lists no Rigidbody/Collider/EventTrigger; please confirm a Collider or EventTrigger is present (or allow direct invocation of public parameterless methods for testing).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1975023122,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light - 2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 778717854,
+          "condition": "MonoBehaviour id 778717857 on 'Point Light - 2' uses script guid 59c3684b22f00604a97bb68037fcf4cd, which corresponds to SteamAudio.SteamAudioSource. The serialized scene settings match the script fields: directBinaural=1, interpolation=Nearest(0); distanceAttenuation=1 with PhysicsBased(1) input; airAbsorption=1 with SimulationDefined(0), lows/mids/highs=1; directivity=0; occlusion=0 (Raycast, radius=1, samples=16); transmission=0; directMixLevel=1; reflections=0 (Realtime); useDistanceCurveForReflections=0; applyHRTFToReflections=0; reflectionsMixLevel=1; pathing=0 with defaults; applyHRTFToPathing=0; pathingMixLevel=1. No UnityEvent m_Calls are present on this object, so a manual call is required to cover public parameterless API.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 778717857,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

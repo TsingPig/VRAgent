@@ -1,0 +1,16 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 4",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1846572117,
+          "condition": "Object has a BoxCollider so a trigger interaction is allowed. Attached MonoBehaviour (guid: 1729fd01c90a64d5b8037e1eef0d000d, script name: Fire) matches the provided script and is configured as in the scene: isOn=false, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, maxHitInterval=2, onNeighborsThreshold=2, neighbors=[], mainEffectGo=1849464941111748095. The Fire script exposes no public parameterless methods, and no m_Calls UnityEvent entries are configured. Therefore, no direct method calls can be triggered; external stimuli are required: (a) neighbor fires calling NotifyNeighborState(bool) to exceed the threshold and auto-ignite after timeToOn, and/or (b) repeated WaterHit(Vector3) invocations within maxHitInterval to turn the fire off when isOn is true. Expected behaviors when properly stimulated: ParticleSystem on mainEffectGo plays/stops via UpdateFireState, and FireController.Instance.FireChanged is called with +1/-1 on state changes.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

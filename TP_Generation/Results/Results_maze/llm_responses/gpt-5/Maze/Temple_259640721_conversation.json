@@ -1,0 +1,628 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the Maze App. One game object we want to test in the scene of 'Maze.unity' is 'Temple'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code attached to this gameobjects below.\n[Extracted JSON format of scene meta file] The scene file of 'Maze.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Temple' and its script. The 'fileID' of gameobject 'Temple' is: 259640721. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '1000012889864320'}, {'guid': '42435f8a4cac7dc47a38e69459223b8a'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '259640722'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Temple'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '4294967295'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '259640722', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '4000010180709588'}, {'guid': '42435f8a4cac7dc47a38e69459223b8a'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '259640721'}]}, {'m_LocalRotation': [{'x': '-0'}, {'y': '-0'}, {'z': '-0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '-0.5'}, {'z': '24.3'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': [{'fileID': '1851615020'}, {'fileID': '2072930448'}, {'fileID': '1846402873'}, {'fileID': '595963425'}, {'fileID': '594625910'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_position\": {                    // Target world position to which the object should be moved\n    \"x\": \"<float>\",\n    \"y\": \"<float>\",\n    \"z\": \"<float>\"\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['1851615019', '2072930447', '1602679148 stripped', '791898212'] to help formalize your test plans one by one. You can respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-26T12:27:00.990786",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-26T12:27:23.840179",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Unknown\": {fileID: 1781955274}. The direct parent of this gameobject is \"Temple\". We only present the child with attached script. And the Unknown gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class Door : MonoBehaviour \n{\n    private enum State\n    {\n        Closed,\n        Opening,\n        Closing,\n        Opened\n    }\n\n    [Header(\"Sounds\")]\n    public AudioClip open_fail_sound = null;\n    public AudioClip open_success_sound = null;\n\n    private bool locked = true;\n    private State _state = State.Closed;\n    private float _slide_speed = 2.0f;\n    private float _opened_position_offset = 7.0f;\n    private Vector3 _initial_position;\n    private Vector3 _slide_vector = new Vector3(0f, 1f, 0f);\n\n    void Awake() {\n        // save initial door position\n        _initial_position = gameObject.transform.position;\n    }\n\n    void Update() {\n        switch (_state)\n        {\n            case State.Closed:\n                break;\n\n            case State.Opening:\n                if (gameObject.transform.position.y < _initial_position.y + _opened_position_offset)\n                {\n                    // slide the door to open\n                    gameObject.transform.position = gameObject.transform.position + _slide_vector * _slide_speed * Time.deltaTime;\n                } else\n                {\n                    _state = State.Opened;\n                }\n                break;\n\n            case State.Closing:\n                if (gameObject.transform.position.y > _initial_position.y)\n                {\n                    // slide the door to open\n                    gameObject.transform.position = gameObject.transform.position - _slide_vector * _slide_speed * Time.deltaTime;\n                }\n                else\n                {\n                    _state = State.Opened;\n                }\n                break;\n\n            case State.Opened:\n                break;\n        }\n    }\n\n    /**\n     * Method that opens the door\n     */\n    public void Open()\n    {\n        // only affects closed door\n        if (_state == State.Closed && !locked)\n        {\n            // start opening\n            PlaySound(open_success_sound);\n            _state = State.Opening;\n        } else {\n            // cannot open\n            PlaySound(open_fail_sound);\n        }\n    }\n\n    /**\n     * Method that closes the door\n     */\n    public void Close()\n    {\n        // only affects opened or opening door\n        if (_state == State.Opened || _state == State.Opening)\n        {\n            // start closing\n            PlaySound(open_success_sound);\n            _state = State.Closing;\n        }\n    }\n\n    /**\n     * Unlock the door\n     */\n    public void Unlock()\n    {\n        locked = false;\n    }\n\n    /**\n     * Utility method for convenience\n     */\n    protected void PlaySound(AudioClip clip)\n    {\n        AudioSource player = gameObject.GetComponent<AudioSource>();\n        player.clip = clip;\n        player.Play();\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '1000012519150908'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1781955274'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1781955274', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '259640722'}]}, {'m_Modifications': [{'target': [{'fileID': '1000012519150908'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_IsActive'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1000012519150908'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_Layer'}, {'value': '8'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '0.12'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '12'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '23.352894'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '90'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '33000014286673632'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_Mesh'}, {'value': ''}, {'objectReference': [{'fileID': '4300000'}, {'guid': '7e29210ef632b9e4686dc5a2c8ad7b7f'}, {'type': '3'}]}, {'target': [{'fileID': '65000010208209682'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_Size.x'}, {'value': '14'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '65000010208209682'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_Size.y'}, {'value': '10'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '65000010208209682'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'propertyPath': 'm_Size.z'}, {'value': '0.1'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': [{'fileID': '114000011778842636'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1846402873 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '4000010992985868'}, {'guid': 'f9822e67385a4402d9bf680e50d19d58'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1781955274'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1602679153', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1602679148'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '39f8a5a2b11c2426cb2a2bea3e825751'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'open_fail_sound': [{'fileID': '8300000'}, {'guid': 'b6a0517e9a9d14b7b8fd6be65f68f1a5'}, {'type': '3'}]}, {'open_success_sound': [{'fileID': '8300000'}, {'guid': 'e5a423fc890c5445fb9c3b126422891b'}, {'type': '3'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-26T12:27:23.858910",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 1,
+    "child_info": {
+      "child_id": "1602679148 stripped",
+      "child_id_replace": "1781955274",
+      "child_name": "Unknown",
+      "mono_comp_targets": [
+        {
+          "source": "1602679148 stripped",
+          "source_replace": "1781955274",
+          "target": "1602679153",
+          "target_replace": "1602679153",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1602679153",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1602679148"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "39f8a5a2b11c2426cb2a2bea3e825751"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "open_fail_sound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "b6a0517e9a9d14b7b8fd6be65f68f1a5"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "open_success_sound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "e5a423fc890c5445fb9c3b126422891b"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "39f8a5a2b11c2426cb2a2bea3e825751",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\subjects\\unity-vr-maze-master\\unity-vr-maze-master\\Assets\\Maze\\Scripts\\Door.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "259640721",
+        "parent_name": "Temple"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Unknown\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 1781955274,\n          \"condition\": \"Manual call required. MonoBehaviour id 1602679153 on PrefabInstance 1781955274 references script guid 39f8a5a2b11c2426cb2a2bea3e825751 (Door.cs). Scene meta sets open_fail_sound guid b6a0517e9a9d14b7b8fd6be65f68f1a5 and open_success_sound guid e5a423fc890c5445fb9c3b126422891b. Door starts locked=true; calling Open() now should fail and play open_fail_sound via AudioSource on the same GameObject. No m_Calls auto events present.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1602679153,\n                  \"method_name\": \"Open\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Unknown\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1781955274,\n          \"condition\": \"Unlock the Door so that subsequent Open() succeeds. MonoBehaviour id 1602679153 (Door.cs) on PrefabInstance 1781955274.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1602679153,\n                  \"method_name\": \"Unlock\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Unknown\",\n          \"triggerring_time\": 3.6,\n          \"source_object_fileID\": 1781955274,\n          \"condition\": \"With locked=false and state=Closed, calling Open() should play open_success_sound and set state=Opening; wait ~3.6s (speed 2.0, offset 7.0) for Update() to slide to Opened.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1602679153,\n                  \"method_name\": \"Open\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Unknown\",\n          \"triggerring_time\": 3.6,\n          \"source_object_fileID\": 1781955274,\n          \"condition\": \"From Opened (or during Opening), call Close() to start Closing state; plays open_success_sound; wait ~3.6s for Update() to slide back to initial position.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1602679153,\n                  \"method_name\": \"Close\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-26T12:28:28.975577",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 1781955274}. The direct parent of this gameobject is \"Temple\". W..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Unknown",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 1781955274,
+              "condition": "Manual call required. MonoBehaviour id 1602679153 on PrefabInstance 1781955274 references script guid 39f8a5a2b11c2426cb2a2bea3e825751 (Door.cs). Scene meta sets open_fail_sound guid b6a0517e9a9d14b7b8fd6be65f68f1a5 and open_success_sound guid e5a423fc890c5445fb9c3b126422891b. Door starts locked=true; calling Open() now should fail and play open_fail_sound via AudioSource on the same GameObject. No m_Calls auto events present.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1602679153,
+                      "method_name": "Open",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Unknown",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1781955274,
+              "condition": "Unlock the Door so that subsequent Open() succeeds. MonoBehaviour id 1602679153 (Door.cs) on PrefabInstance 1781955274.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1602679153,
+                      "method_name": "Unlock",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Unknown",
+              "triggerring_time": 3.6,
+              "source_object_fileID": 1781955274,
+              "condition": "With locked=false and state=Closed, calling Open() should play open_success_sound and set state=Opening; wait ~3.6s (speed 2.0, offset 7.0) for Update() to slide to Opened.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1602679153,
+                      "method_name": "Open",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Unknown",
+              "triggerring_time": 3.6,
+              "source_object_fileID": 1781955274,
+              "condition": "From Opened (or during Opening), call Close() to start Closing state; plays open_success_sound; wait ~3.6s for Update() to slide back to initial position.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1602679153,
+                      "method_name": "Close",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Crystal\": {fileID: 791898212}. The direct parent of this gameobject is \"Temple\". We only present the child with attached script. And the Crystal gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\nusing System.Collections;\nusing UnityEngine.SceneManagement;\n\npublic class Crystal : MonoBehaviour {\n\n    private Vector3 _rotationVector = Vector3.forward;\n    private float _rotationSpeed = 50f;\n    private float _blinkSpeed = 0.2f;\n    private Color _emissionColor;\n    private AudioSource _audio;\n    private bool _touched = false;\n    private bool _hide_dialog = true;\n    private bool _teleporting = false;\n\n    public GameObject speechBubble;\n\n    [Header(\"Sounds\")]\n    public AudioClip teleport_sound;\n\n    [Header(\"Dialogs\")]\n    public GameObject dialog_hi;\n    public GameObject dialog_teleport;\n    public GameObject dialog_end;\n    public GameObject dialog_fail;\n\n    // Use this for initialization\n    void Start () {\n        // save material emission color\n        _emissionColor = gameObject.GetComponentInChildren<MeshRenderer>().material.GetColor(\"_EmissionColor\");\n        \n        // initially, do not allow to click on crystal\n        // player needs to enter the temple\n        gameObject.GetComponent<MeshCollider>().enabled = false;\n    }\n\t\n\t// Update is called once per frame\n\tvoid Update () {\n        // rotate\n        gameObject.transform.Rotate(_rotationVector * _rotationSpeed * Time.deltaTime);\n\n        // change emission color\n        float emission = Mathf.PingPong(Time.time * _blinkSpeed, 1.0f);\n        gameObject.GetComponentInChildren<MeshRenderer>().material.SetColor(\"_EmissionColor\", _emissionColor * Mathf.LinearToGammaSpace(emission));\n\n        if (_touched) {\n            // size pulsation\n            gameObject.transform.localScale = Vector3.one + 0.2f * Vector3.one * Mathf.Abs(Mathf.Sin(Time.time * 3f));\n        }\n\n        // show dialogs after greetings audio is played\n        if (!_hide_dialog && !_audio.isPlaying) {\n            speechBubble.GetComponent<Canvas>().enabled = true;\n        }\n\n        // show oops dialog after teleport audio is played\n        if (_teleporting && !_audio.isPlaying) {\n            dialog_end.SetActive(true);\n            _teleporting = false;\n        }\n\n        // vibrate while teleporting\n        if (_teleporting)\n        {\n            Handheld.Vibrate();\n        }\n    }\n\n    public void Awake()\n    {\n        speechBubble.GetComponent<Canvas>().enabled = false;\n        _audio = gameObject.GetComponent<AudioSource>();\n\n        // init state values\n        _hide_dialog = true;\n        _touched = false;\n\n        // init dialogs\n        dialog_hi.SetActive(true);\n        dialog_teleport.SetActive(false);\n        dialog_end.SetActive(false);\n        dialog_fail.SetActive(false);\n    }\n\n    public void Touch()\n    {\n        // play sound and then show dialog\n        _audio.Play();\n        _hide_dialog = false;\n        _touched = true;\n    }\n\n    public void TakeCoins()\n    {\n        dialog_hi.SetActive(false);\n        // check if coins collected\n        if (GameObject.FindGameObjectsWithTag(\"Coin\").Length == 0) {\n            // all coins collected\n            dialog_teleport.SetActive(true);\n        } else {\n            dialog_fail.SetActive(true);\n        }\n    }\n\n    public void Teleport()\n    {\n        dialog_teleport.SetActive(false);\n        // play sound and then show end dialog\n        _audio.clip = teleport_sound;\n        _audio.Play();\n        _teleporting = true;\n    }\n\n    public void Restart()\n    {\n        SceneManager.LoadScene(0);\n    }\n\n    // called when player enters temple\n    public void MakeClickable()\n    {\n        gameObject.GetComponent<MeshCollider>().enabled = true;\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '100000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '595963424'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '595963425'}]}, {'component': [{'fileID': '791898218'}]}, {'component': [{'fileID': '791898214'}]}, {'component': [{'fileID': '791898213'}]}, {'component': [{'fileID': '791898215'}]}, {'component': [{'fileID': '791898216'}]}, {'component': [{'fileID': '791898217'}]}]}, {'m_Layer': '8'}, {'m_Name': 'Crystal'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '595963424', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '259640722'}]}, {'m_Modifications': [{'target': [{'fileID': '100000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Crystal'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '100000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_Layer'}, {'value': '8'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-0.02'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '7.602496'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '39.99'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0.7069895'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0.707224'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '3'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '89.981'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2300000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_Materials.Array.data[0]'}, {'value': ''}, {'objectReference': [{'fileID': '2100000'}, {'guid': 'b5e4340fece7caa41acbda0de93c9750'}, {'type': '2'}]}, {'target': [{'fileID': '2300000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_CastShadows'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2300000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'propertyPath': 'm_ReceiveShadows'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}]}}, 'Has_Event_Trigger': True, 'Event_Trigger': {'type': 'Mono_Component', 'properties': {'id': '791898216', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '791898212'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'd0b148fe25e99eb48b9724523833bab1'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_Delegates': [{'eventID': '4'}, {'callback': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '791898217'}]}, {'m_MethodName': 'Touch'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '595963425', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '595963424'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '791898212'}]}, {'m_LocalRotation': [{'x': '0.7069895'}, {'y': '-0'}, {'z': '-0'}, {'w': '0.707224'}]}, {'m_LocalPosition': [{'x': '-0.02'}, {'y': '7.602496'}, {'z': '39.99'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '259640722'}]}, {'m_RootOrder': '3'}, {'m_LocalEulerAnglesHint': [{'x': '89.981'}, {'y': '0'}, {'z': '0'}]}]}}, 'MeshCollider': {'type': 'MeshCollider', 'properties': {'id': '791898213', 'MeshCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '6400000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '595963424'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '791898212'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '4'}, {'m_Convex': '0'}, {'m_CookingOptions': '30'}, {'m_Mesh': [{'fileID': '4300000'}, {'guid': '9422b5fb240b03b4fa7eacc445760ac2'}, {'type': '3'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '791898217', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '791898212'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '7ec1f4a241dbe3243aed64a4afbc8b66'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'speechBubble': [{'fileID': '594625909'}]}, {'teleport_sound': [{'fileID': '8300000'}, {'guid': '5d3186b95a5aaef4b87b7f3d2a4de69a'}, {'type': '3'}]}, {'dialog_hi': [{'fileID': '343541951'}]}, {'dialog_teleport': [{'fileID': '1208720665'}]}, {'dialog_end': [{'fileID': '805090090'}]}, {'dialog_fail': [{'fileID': '2058198330'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-26T12:28:29.001336",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 1781955274}. The direct parent of this gameobject is \"Temple\". W..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "791898212",
+      "child_id_replace": "791898212",
+      "child_name": "Crystal",
+      "mono_comp_targets": [
+        {
+          "source": "791898212",
+          "source_replace": "791898212",
+          "target": "791898217",
+          "target_replace": "791898217",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "791898217",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "791898212"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "7ec1f4a241dbe3243aed64a4afbc8b66"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "speechBubble": [
+                  {
+                    "fileID": "594625909"
+                  }
+                ]
+              },
+              {
+                "teleport_sound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "5d3186b95a5aaef4b87b7f3d2a4de69a"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "dialog_hi": [
+                  {
+                    "fileID": "343541951"
+                  }
+                ]
+              },
+              {
+                "dialog_teleport": [
+                  {
+                    "fileID": "1208720665"
+                  }
+                ]
+              },
+              {
+                "dialog_end": [
+                  {
+                    "fileID": "805090090"
+                  }
+                ]
+              },
+              {
+                "dialog_fail": [
+                  {
+                    "fileID": "2058198330"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "7ec1f4a241dbe3243aed64a4afbc8b66",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\subjects\\unity-vr-maze-master\\unity-vr-maze-master\\Assets\\Maze\\Scripts\\Crystal.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "259640721",
+        "parent_name": "Temple"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Crystal\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 595963424,\n          \"condition\": \"MonoBehaviour id 791898217 on PrefabInstance 595963424 references script guid 7ec1f4a241dbe3243aed64a4afbc8b66 (Crystal.cs). Start() disables MeshCollider; MakeClickable() must be called to enable interaction. MeshCollider id 791898213 present; EventTrigger id 791898216 exists.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 791898217,\n                  \"method_name\": \"MakeClickable\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Crystal\",\n          \"triggerring_time\": 1.0,\n          \"source_object_fileID\": 595963424,\n          \"condition\": \"Trigger the same behavior as EventTrigger (id 791898216) m_Calls: eventID=4 invokes Touch() on MonoBehaviour 791898217. This plays greeting audio and, after it finishes, enables speechBubble Canvas.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 791898217,\n                  \"method_name\": \"Touch\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Crystal\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 595963424,\n          \"condition\": \"Invoke TakeCoins() on MonoBehaviour 791898217 to exercise dialog branching: shows dialog_teleport if no objects with tag 'Coin' exist; otherwise shows dialog_fail.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 791898217,\n                  \"method_name\": \"TakeCoins\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Crystal\",\n          \"triggerring_time\": 3.0,\n          \"source_object_fileID\": 595963424,\n          \"condition\": \"Call Teleport() to set _audio.clip to teleport_sound, play it, set _teleporting=true, vibrate while playing, and after audio completes show dialog_end. MonoBehaviour 791898217, teleport_sound set in scene meta.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 791898217,\n                  \"method_name\": \"Teleport\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Crystal\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 595963424,\n          \"condition\": \"Invoke Restart() on MonoBehaviour 791898217 to cover scene reload via SceneManager.LoadScene(0). Place last because it reloads the scene.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 791898217,\n                  \"method_name\": \"Restart\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-26T12:29:10.929472",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 1781955274}. The direct parent of this gameobject is \"Temple\". W..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Crystal\": {fileID: 791898212}. The direct parent of this gameobject is \"Temple\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Crystal",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 595963424,
+              "condition": "MonoBehaviour id 791898217 on PrefabInstance 595963424 references script guid 7ec1f4a241dbe3243aed64a4afbc8b66 (Crystal.cs). Start() disables MeshCollider; MakeClickable() must be called to enable interaction. MeshCollider id 791898213 present; EventTrigger id 791898216 exists.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 791898217,
+                      "method_name": "MakeClickable",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Crystal",
+              "triggerring_time": 1.0,
+              "source_object_fileID": 595963424,
+              "condition": "Trigger the same behavior as EventTrigger (id 791898216) m_Calls: eventID=4 invokes Touch() on MonoBehaviour 791898217. This plays greeting audio and, after it finishes, enables speechBubble Canvas.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 791898217,
+                      "method_name": "Touch",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Crystal",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 595963424,
+              "condition": "Invoke TakeCoins() on MonoBehaviour 791898217 to exercise dialog branching: shows dialog_teleport if no objects with tag 'Coin' exist; otherwise shows dialog_fail.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 791898217,
+                      "method_name": "TakeCoins",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Crystal",
+              "triggerring_time": 3.0,
+              "source_object_fileID": 595963424,
+              "condition": "Call Teleport() to set _audio.clip to teleport_sound, play it, set _teleporting=true, vibrate while playing, and after audio completes show dialog_end. MonoBehaviour 791898217, teleport_sound set in scene meta.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 791898217,
+                      "method_name": "Teleport",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Crystal",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 595963424,
+              "condition": "Invoke Restart() on MonoBehaviour 791898217 to cover scene reload via SceneManager.LoadScene(0). Place last because it reloads the scene.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 791898217,
+                      "method_name": "Restart",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  }
+]

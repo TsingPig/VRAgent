@@ -1,0 +1,266 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_397541582",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 397541582,
+          "condition": "Validate component mapping: MonoBehaviour.id=397541585 on m_GameObject.fileID=397541582 uses script GUID 077cb2d6a53b18f4ea7d76e72138fc77 (AttachToElevator). Serialized field 'player' is null (fileID=0). No m_Calls events defined.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_397541582",
+          "source_object_fileID": 397541582,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_397541582",
+          "source_object_fileID": 397541582,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator (AttachToElevator)",
+          "source_object_fileID": 666190385,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator (AttachToElevator)",
+          "source_object_fileID": 666190385,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764083141,
+          "condition": "Level4.unity MonoBehaviour component id 764083142 uses script GUID 077cb2d6a53b18f4ea7d76e72138fc77 (AttachToElevator). Serialized field 'player' is unassigned (fileID 0). No UnityEvent m_Calls present. Script exposes only OnTriggerEnter/OnTriggerExit (no public no-arg methods), so no direct method invocation is available; interactions must be driven by collider trigger enter/exit.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 764083141,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 764083141,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.5,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObjectWithWinLose",
+          "triggerring_time": 0.1,
+          "source_object_fileID": -1,
+          "condition": "Manual validation of winning flow: call WinLose.Winlevel() on the GameObject that has the WinLose MonoBehaviour in Level4.unity; expect WinUI to become active (WinUI.SetActive(true)); ensure WinUI reference is assigned.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObjectWithWinLose",
+          "triggerring_time": 0.1,
+          "source_object_fileID": -1,
+          "condition": "Manual validation of losing flow: call WinLose.loselevel() on the GameObject that has the WinLose MonoBehaviour in Level4.unity; expect LoseUI to become active (LoseUI.SetActive(true)); ensure LoseUI reference is assigned.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObjectWithWinLose",
+          "triggerring_time": 0.1,
+          "source_object_fileID": -1,
+          "condition": "Sanity check of exposed API: call WinLose.Restart() (currently empty) to confirm no exceptions and callable via event; restartdelay has no effect here.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 2013310824,
+          "delta_position": {
+            "x": 0,
+            "y": 0.5,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Elevator",
+          "source_object_fileID": 2013310824,
+          "delta_position": {
+            "x": 0,
+            "y": -0.5,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        }
+      ]
+    }
+  ]
+}

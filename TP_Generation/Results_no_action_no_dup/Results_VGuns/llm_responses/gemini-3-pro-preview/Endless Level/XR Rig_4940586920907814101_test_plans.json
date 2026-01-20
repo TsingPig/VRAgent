@@ -1,0 +1,216 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Manual open of pause menu because InputAction.started callbacks may not fire in automation. MonoBehaviour PauseMenu.PauseMenu on XR Rig matches scene meta exactly (script_fileID 4460531382388078979, guid 28d50a2d56ade1341ae8d933ebdfbe0c) with serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, RightTeleport=true, LeftTeleport=false, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538; static started=false on Awake.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Show",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Close the pause menu and restore gameplay state per scene config (RightTeleport=true enables right teleport manager). Same MonoBehaviour settings as above.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Hide",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Toggle via PauseMenuCheck to verify static state flip (started) without relying on InputAction.started. MonoBehaviour matches scene meta (script_fileID 4460531382388078979, guid 28d50a2d56ade1341ae8d933ebdfbe0c).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Simulate selecting Main Menu from the pause menu. Loads scene index 0 as defined in PauseMenu.MainMenu(). MonoBehaviour settings per scene meta (script_fileID 4460531382388078979).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "MainMenu",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Simulate selecting Restart from the pause menu. Loads scene index 1 as defined in PauseMenu.Restart(). MonoBehaviour settings per scene meta (script_fileID 4460531382388078979).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Pause menu open. MonoBehaviour PauseMenu.PauseMenu matches scene meta (script_fileID 4460531382388078979, guid 28d50a2d56ade1341ae8d933ebdfbe0c). Serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, RightTeleport=true, LeftTeleport=false, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Show",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Pause menu close and restore gameplay (RightTeleport=true should re-enable right teleport manager). Same MonoBehaviour settings as above.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Hide",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Toggle using PauseMenuCheck to validate static state flip (started) and Show/Hide sequencing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "PauseMenuCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Simulate selecting Main Menu from pause menu; should load scene index 0 via SceneManager.LoadScene(0).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "MainMenu",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Simulate selecting Restart from pause menu; should load scene index 1 via SceneManager.LoadScene(1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": -6.44,
+            "y": 6.66,
+            "z": 12.07
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        }
+      ]
+    }
+  ]
+}

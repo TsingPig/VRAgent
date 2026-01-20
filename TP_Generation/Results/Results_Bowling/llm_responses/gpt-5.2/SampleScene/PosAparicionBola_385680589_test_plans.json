@@ -1,0 +1,89 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.2,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 385680589,
+          "condition": "Call Mirar.Mira() then Mirar.Para() on the same frame-separated trigger to toggle the Canvas. This component is identified by script GUID 8817b2a8c34ba5d4d941beaf47d0be6f (fields: canvas=3689742487867136667, camaraAMirar=Camera.main assigned in Start).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "Mira",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "Para",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 385680589,
+          "condition": "Invoke BallSoundController.changePeso() to re-apply mass and update the TMP text. Component identified by script GUID 8fcde7f4195eca944bfe1e2addf5338a (fields: peso=0.7, pesoEnKgs=7, textoPeso=4278895081965267523).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": -1,
+                  "method_name": "changePeso",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.1,
+            "z": 10.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 3.0
+        }
+      ]
+    }
+  ]
+}

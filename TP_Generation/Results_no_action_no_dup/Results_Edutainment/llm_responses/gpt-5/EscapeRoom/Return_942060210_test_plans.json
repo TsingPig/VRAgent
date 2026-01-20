@@ -1,0 +1,127 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Return",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 942060210,
+          "condition": "Proceed only if Return or any of its children has a Collider or EventTrigger component, or if there is a MonoBehaviour with UnityEvents (m_Calls) attached to Return hierarchy. The provided scene snippet for Return (fileID: 942060210) contains only a Transform and no MonoBehaviour, Collider, or Rigidbody, so no triggerable events are identifiable yet. Please provide the MonoBehaviour component(s) attached to Return and its children, including their script_fileID/GUID and m_Calls, or confirm Collider/EventTrigger presence on children with fileIDs 349218715, 634275529, 868034451 so we can select the exact event(s) to invoke.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 28697937,
+          "condition": "Enter overlap with Return/Collider (GameObject fileID: 791172510, BoxCollider id: 791172515 set isTrigger=1). This invokes ButtonVR.OnTriggerEnter because the source object has tag 'hand'. MonoBehaviour id 791172512 matches script ButtonVR (guid 7401fcbb2352a5d4aa45b4e4cd766f3f) with fields [button, onPress, onRelease]; onPress.m_Calls targets Restart.RestartGame on fileID 349218716. Expect onPress UnityEvent to invoke RestartGame.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 28697937,
+          "condition": "Exit overlap from Return/Collider (GameObject fileID: 791172510). This invokes ButtonVR.OnTriggerExit, which triggers onRelease UnityEvent (configured with no persistent calls).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 33018423,
+          "condition": "Enter overlap with Return/Collider (GameObject fileID: 791172510, BoxCollider id: 791172515 isTrigger=1). Second hand-path coverage. Tag 'hand' satisfies ButtonVR.CompareTag check, invoking onPress which calls Restart.RestartGame on fileID 349218716.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 33018423,
+          "condition": "Exit overlap from Return/Collider (GameObject fileID: 791172510) to fire ButtonVR.OnTriggerExit and onRelease (no persistent calls configured).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 28697937,
+          "condition": "Enter overlap with Return/Knapp (1)/Collider (GameObject fileID: 732398526; BoxCollider id: 732398531 with isTrigger=1). MonoBehaviour id 732398528 is the scene configuration for script ButtonVR (guid: 7401fcbb2352a5d4aa45b4e4cd766f3f) with fields [button=1390513532, onPress, onRelease]. Because Sphere has tag 'hand', ButtonVR.OnTriggerEnter will call onPress.Invoke(), which has a persistent call to Restart.RestartGame on target fileID 634275531.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 28697937,
+          "condition": "Exit overlap from Return/Knapp (1)/Collider (GameObject fileID: 732398526). This triggers ButtonVR.OnTriggerExit, invoking onRelease UnityEvent (configured with no persistent calls).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 33018423,
+          "condition": "Enter overlap with Return/Knapp (1)/Collider (GameObject fileID: 732398526; BoxCollider id: 732398531 isTrigger=1). MonoBehaviour id 732398528 corresponds to ButtonVR (guid: 7401fcbb2352a5d4aa45b4e4cd766f3f). Tag 'hand' on this Sphere satisfies CompareTag, causing onPress.Invoke() which persistently calls Restart.RestartGame on fileID 634275531.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 33018423,
+          "condition": "Exit overlap from Return/Knapp (1)/Collider (GameObject fileID: 732398526) to execute ButtonVR.OnTriggerExit and onRelease (no persistent calls).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 28697937,
+          "condition": "Directly invoke Restart.RestartGame on Knapp to ensure script coverage. Knapp (GameObject fileID: 349218715) has MonoBehaviour id 349218716 configured from script Restart (guid: ebe465df961443d48804431d04f45f98) with field scene=0. Expect SceneManager.LoadScene(0).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 349218716,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Knapp (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 634275529,
+          "condition": "MonoBehaviour_0 (id: 634275531) on Knapp (1) is configured from script Restart (m_Script: fileID 11500000, guid ebe465df961443d48804431d04f45f98, type 3) with serialized field scene=0. There are no UnityEvent m_Calls on this object; to ensure code coverage, directly invoke the public no-arg method Restart.RestartGame(), which should call SceneManager.LoadScene(0).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 634275531,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

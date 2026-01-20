@@ -1,0 +1,47 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1695945194,
+          "condition": "Invoke public static, parameterless manager lifecycle methods on SteamAudioManager (MonoBehaviour id: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). Scene fields: currentHRTF=0, hrtfNames=[]. Expect Reinitialize to rebuild audio engine and simulation thread, then ShutDown to release devices/threads and clear singleton.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "Reinitialize",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetAudioEngineState",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "ShutDown",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetAudioEngineState",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

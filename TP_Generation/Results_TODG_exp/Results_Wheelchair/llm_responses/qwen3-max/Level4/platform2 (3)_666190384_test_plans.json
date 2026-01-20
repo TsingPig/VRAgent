@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (3)",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 666190384,
+          "condition": "AttachToElevator (MonoBehaviour id 666190386, guid 077cb2d6a53b18f4ea7d76e72138fc77) relies on Unity physics OnTriggerEnter to run. Current BoxCollider (id 666190388) has m_IsTrigger=0 and the GameObject has no Rigidbody, so OnTriggerEnter will not fire. To cover code, set BoxCollider.m_IsTrigger=1 and ensure at least one of the two colliders (this object or the interacting player) has a Rigidbody. Also set the script field 'player' to reference this same GameObject (fileID 666190385) so the condition 'gameObject == player' is true. Then cause a collider with Rigidbody to enter this trigger to execute OnTriggerEnter and call player.transform.SetParent(gameObject.transform, true). No public no-arg methods are exposed, so no direct method calls are available.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (3)",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 666190384,
+          "condition": "To cover OnTriggerExit in AttachToElevator (MonoBehaviour id 666190386), after completing the enter case above, move the interacting collider out of the trigger volume so OnTriggerExit fires. Expect player.transform.parent to be set to null. Preconditions remain: BoxCollider must be set to trigger (m_IsTrigger=1), a Rigidbody must be present on one of the colliders, and the 'player' field must reference this GameObject (fileID 666190385). No public no-arg methods are exposed to invoke directly.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

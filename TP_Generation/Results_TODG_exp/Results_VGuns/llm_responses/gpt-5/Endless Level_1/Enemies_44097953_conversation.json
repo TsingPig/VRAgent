@@ -1,0 +1,1591 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the VGuns App. One game object we want to test in the scene of 'Endless Level.unity' is 'Enemies'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code attached to this gameobjects below.\n[Extracted JSON format of scene meta file] The scene file of 'Endless Level.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Enemies' and its script. The 'fileID' of gameobject 'Enemies' is: 44097953. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component is the Interactable events that need to be triggered manually or automatically. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '44097954'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemies'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '44097954', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '44097953'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': [{'fileID': '875851042'}, {'fileID': '1646766443'}, {'fileID': '614338933'}, {'fileID': '1640000272'}, {'fileID': '1673477536'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '6'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"delta_position\": {                   // Target world position to which the object should be moved\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on m_Calls, you are encouraged to choose 'Trigger' action to trigger the event.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['875851041', '1646766442', '614338932', '1640000271', '1673477535'] to help formalize your test plans one by one. You can respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-10-30T13:06:24.814317",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-10-30T13:06:51.605880",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "response_type": "first_response",
+    "need_more_info": true,
+    "test_plan": null
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemies\". We only present the child with attached script. And the Enemy Type 1 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '875851041', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1888436447'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1888436447'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '285480565'}]}, {'target': [{'fileID': '1888436447'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '875851042 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '875851041'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'CapsuleCollider': {'type': 'CapsuleCollider', 'properties': {'id': '1306247219', 'CapsuleCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'m_Radius': '0.5'}, {'m_Height': '2'}, {'m_Direction': '1'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1888436447', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '10'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '10'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.5'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '8'}, {'attackRange': '6'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}]}\n'''\n\nThe following gameobjects ['6845118643277486568'] have Instantiate() logic detected in the source script of gameobject \"875851041\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"875851041\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"6845118643277486568\" GameObject Name: \"Laser\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '6845118643277486577'}]}, {'component': [{'fileID': '6845118643277486582'}]}, {'component': [{'fileID': '6845118643277486583'}]}, {'component': [{'fileID': '6845118643277486580'}]}, {'component': [{'fileID': '6845118643277486570'}]}, {'component': [{'fileID': '6845118643277486571'}]}]}, {'m_Layer': '13'}, {'m_Name': 'Laser'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-10-30T13:06:51.608576",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "request_type": "gameobject_instantiate_logic_request",
+    "child_info": {
+      "child_id": "875851041",
+      "child_id_replace": "875851041",
+      "child_name": "Enemy Type 1",
+      "mono_comp_targets": [
+        {
+          "source": "875851041",
+          "source_replace": "875851041",
+          "target": "1888436447",
+          "target_replace": "1888436447",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1888436447",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "44097953",
+        "parent_name": "Enemies"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [
+        {
+          "source": "875851041",
+          "source_replace": "875851041",
+          "target": "6845118643277486568",
+          "target_replace": "6845118643277486568",
+          "target_gameobject_name": "Laser",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_instantiate_info": [
+      {
+        "source": "875851041",
+        "source_replace": "875851041",
+        "target": "6845118643277486568",
+        "target_replace": "6845118643277486568",
+        "target_gameobject_name": "Laser",
+        "edge_type": "Instantiate_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using the Transform action. The movement utilizes NavMesh, but I can also directly adjust the enemy's position to put it within attack range. However, for the AttackPlayer method to work, we need the player to be within both the attack and sight ranges. This requires checking physics collisions, and the player must be on the right layer mask. I think more information about the player might be necessary for this to work effectively.**Evaluating laser interaction**\n\nI’m trying to assess how to interact with the instantiated Laser game object. It has a \"Has_Rigidbody\" value of false, and there’s no provided collider information. For any Trigger action, we typically need either a Rigidbody, Collider, or a script that inherits from UnityEngine.Events, which we don't seem to have here. Since the requirements say we should add action units to interact, it may be better to cause the AttackPlayer function to run instead of directly manipulating the Laser. Including Trigger action units doesn't seem viable due to these constraints.**Planning enemy movement and actions**\n\nI’m thinking about how to use the Transform feature on Enemy Type 1 to test different behavior transitions like patrolling, chasing, and attacking. Since Transform only applies to objects with Rigidbody, I need to keep that in mind. I don't need the Grab action because it's not necessary here. I’ll also include the source_object_fileID, which is 875851041 for Enemy Type 1. The parent \"Enemies\" game object isn’t useful since it lacks Rigidbody and scripts, but the child does have an attached script. I’ll prepare an array of taskUnits for Transform actions to test various behaviors effectively.**Finalizing the test plan**\n\nI need to follow the format that requires each taskUnit to have an actionUnits array, which can include multiple sequences. Since I’m uncertain about the player object location and layers, and the Laser collider, I’ll set Need_more_Info to true. Even though they want the test plan finalized based on previous ones, I’ll draft it while noting that further information may be needed.\n\nFor the first taskUnit, I'll suggest transforming Enemy Type 1 with a small delta to simulate its patrol reset. I could move it to a known position relative to its current local position of (3.15, 0.49, 5.83) using a significant offset of Vector3(50, 0, 0) to ensure it’s far from the player.**Constructing enemy transformations**\n\nTo effectively remove the player from ranges, the second taskUnit will transform Enemy Type 1 using a negative offset of -50 to get closer to the player’s position, which I’ll approximate near the \"Camera Offset.\" I’ll include a condition stating \"assuming player at Camera Offset\" for clarity. Additionally, I need to specify a triggering time for this Transform, with a duration of around 2.0 seconds. \n\nFor the third taskUnit, I'll move Enemy Type 1 within the attack range without needing to include Trigger events. I should ensure the Transform fields have empty arrays for triggering_events and triggered_events. Lastly, I’ll reference PrefabInstance fileID 875851041 as the source_object_fileID and put together the JSON structure accordingly.</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 1\",\n          \"source_object_fileID\": 875851041,\n          \"delta_position\": {\n            \"x\": 50.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 1\",\n          \"source_object_fileID\": 875851041,\n          \"delta_position\": {\n            \"x\": -48.5,\n            \"y\": 0.0,\n            \"z\": -5.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.5\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 1\",\n          \"source_object_fileID\": 875851041,\n          \"delta_position\": {\n            \"x\": -1.5,\n            \"y\": 0.0,\n            \"z\": -0.8\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.5\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-10-30T13:07:18.582635",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using th..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using the Transform action. The movement utilizes NavMesh, but I can also directly adjust the enemy's position to put it within attack range. However, for the AttackPlayer method to work, we need the player to be within both the attack and sight ranges. This requires checking physics collisions, and the player must be on the right layer mask. I think more information about the player might be necessary for this to work effectively.**Evaluating laser interaction**\n\nI’m trying to assess how to interact with the instantiated Laser game object. It has a \"Has_Rigidbody\" value of false, and there’s no provided collider information. For any Trigger action, we typically need either a Rigidbody, Collider, or a script that inherits from UnityEngine.Events, which we don't seem to have here. Since the requirements say we should add action units to interact, it may be better to cause the AttackPlayer function to run instead of directly manipulating the Laser. Including Trigger action units doesn't seem viable due to these constraints.**Planning enemy movement and actions**\n\nI’m thinking about how to use the Transform feature on Enemy Type 1 to test different behavior transitions like patrolling, chasing, and attacking. Since Transform only applies to objects with Rigidbody, I need to keep that in mind. I don't need the Grab action because it's not necessary here. I’ll also include the source_object_fileID, which is 875851041 for Enemy Type 1. The parent \"Enemies\" game object isn’t useful since it lacks Rigidbody and scripts, but the child does have an attached script. I’ll prepare an array of taskUnits for Transform actions to test various behaviors effectively.**Finalizing the test plan**\n\nI need to follow the format that requires each taskUnit to have an actionUnits array, which can include multiple sequences. Since I’m uncertain about the player object location and layers, and the Laser collider, I’ll set Need_more_Info to true. Even though they want the test plan finalized based on previous ones, I’ll draft it while noting that further information may be needed.\n\nFor the first taskUnit, I'll suggest transforming Enemy Type 1 with a small delta to simulate its patrol reset. I could move it to a known position relative to its current local position of (3.15, 0.49, 5.83) using a significant offset of Vector3(50, 0, 0) to ensure it’s far from the player.**Constructing enemy transformations**\n\nTo effectively remove the player from ranges, the second taskUnit will transform Enemy Type 1 using a negative offset of -50 to get closer to the player’s position, which I’ll approximate near the \"Camera Offset.\" I’ll include a condition stating \"assuming player at Camera Offset\" for clarity. Additionally, I need to specify a triggering time for this Transform, with a duration of around 2.0 seconds. \n\nFor the third taskUnit, I'll move Enemy Type 1 within the attack range without needing to include Trigger events. I should ensure the Transform fields have empty arrays for triggering_events and triggered_events. Lastly, I’ll reference PrefabInstance fileID 875851041 as the source_object_fileID and put together the JSON structure accordingly.</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 1\",\n          \"source_object_fileID\": 875851041,\n          \"delta_position\": {\n            \"x\": 50.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 1\",\n          \"source_object_fileID\": 875851041,\n          \"delta_position\": {\n            \"x\": -48.5,\n            \"y\": 0.0,\n            \"z\": -5.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.5\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 1\",\n          \"source_object_fileID\": 875851041,\n          \"delta_position\": {\n            \"x\": -1.5,\n            \"y\": 0.0,\n            \"z\": -0.8\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.5\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}"
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Enemy Type 2\": {fileID: 1646766442}. The direct parent of this gameobject is \"Enemies\". We only present the child with attached script. And the Enemy Type 2 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '1646766442', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1646766445'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1646766445'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '1724239766'}]}, {'target': [{'fileID': '1646766445'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1646766443 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1646766442'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'CapsuleCollider': {'type': 'CapsuleCollider', 'properties': {'id': '1306247219', 'CapsuleCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'m_Radius': '0.5'}, {'m_Height': '2'}, {'m_Direction': '1'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1646766445', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '15'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '5'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.75'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '10'}, {'attackRange': '7'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}]}\n'''\n\nThe following gameobjects ['6845118643277486568'] have Instantiate() logic detected in the source script of gameobject \"1646766442\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"1646766442\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"6845118643277486568\" GameObject Name: \"Laser\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '6845118643277486577'}]}, {'component': [{'fileID': '6845118643277486582'}]}, {'component': [{'fileID': '6845118643277486583'}]}, {'component': [{'fileID': '6845118643277486580'}]}, {'component': [{'fileID': '6845118643277486570'}]}, {'component': [{'fileID': '6845118643277486571'}]}]}, {'m_Layer': '13'}, {'m_Name': 'Laser'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-10-30T13:07:18.585197",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using th..."
+      }
+    ],
+    "request_type": "gameobject_instantiate_logic_request",
+    "child_info": {
+      "child_id": "1646766442",
+      "child_id_replace": "1646766442",
+      "child_name": "Enemy Type 2",
+      "mono_comp_targets": [
+        {
+          "source": "1646766442",
+          "source_replace": "1646766442",
+          "target": "1646766445",
+          "target_replace": "1646766445",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1646766445",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "15"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "5"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.75"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "10"
+              },
+              {
+                "attackRange": "7"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "44097953",
+        "parent_name": "Enemies"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [
+        {
+          "source": "1646766442",
+          "source_replace": "1646766442",
+          "target": "6845118643277486568",
+          "target_replace": "6845118643277486568",
+          "target_gameobject_name": "Laser",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_instantiate_info": [
+      {
+        "source": "1646766442",
+        "source_replace": "1646766442",
+        "target": "6845118643277486568",
+        "target_replace": "6845118643277486568",
+        "target_gameobject_name": "Laser",
+        "edge_type": "Instantiate_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "<think>**Analyzing task units for enemy types**\n\nI need to produce JSON with task units, focusing on enemy types. The previous test plan only had Transform actions for Enemy Type 1, but those require a Rigidbody. The prefab instances for both Enemy Types confirm they have Rigidbody. So, Transform is allowed. Collider is present too, enabling possible Trigger actions, but only if there are public methods without parameters. In the EnemyAi script, all public methods either have parameters or are private, meaning no Trigger can happen on the script. Therefore, we should avoid manual Trigger altogether.**Setting enemy attack state**\n\nTo make the enemy instantiate a projectile Laser, I need to ensure it’s in the AttackPlayer state by positioning it relative to the player within the sightRange and attackRange layers. The player is set via Awake to find the \"Camera Offset\" object, which should be in the scene. To trigger AttackPlayer, I can move the enemy closer to the player. Since I only control the enemy's Transform, I can move it within both range limits. Including condition descriptions might improve clarity, along with adding interactions for the instantiated Laser.**Reviewing Laser prefab details**\n\nI’m checking the Laser prefab, which has Has_Rigidbody set to False and lacks collider data. The source prefab components include some items, but the specifics are unclear. According to the Trigger rules, it’s only allowed with a Rigidbody, Collider, EventTrigger, or scripts that use UnityEngine.Events. Since we lack these, I need to add actionUnits to interact with the gameobjects. However, if there are no applicable actions for the Laser after instantiation, we might not need interactions at all. But it seems I need to define which interactions are allowed.**Identifying collider components in Laser**\n\nIt seems the Laser prefab likely has Collider components, but the specific types are not listed, similar to how the CapsuleCollider was explicitly stated for the Enemy. Since we don't know the types for the Laser, I can't add any actions due to these constraints. This means I need more information and to draft a test plan focusing on moving Enemy Type 2 to trigger AttackPlayer and instantiate the Laser. I’ll also remember to use the PrefabInstance fileID as the source object fileID. Furthermore, m_Calls are not present, so there are no trigger events to manage, ensuring we don’t conflict with any redundancy policies. Our plan needs to complement the previous plans by adding more taskUnits for Enemy Type 2 to approach the player in two steps: first move near, wait for a triggering time, then possibly hold position.**Planning enemy movements and actions**\n\nI’m considering testing patrol movements for the enemy while prioritizing the attack instantiation. To do this, I need to set Need_more_Info to true to gather details on the Laser components for interaction planning. For the Transform format, I can create a couple of transform actions: \n\n1. A large delta to move Enemy Type 2 towards the player, possibly using delta values like -10 for x and -10 for z.\n2. A smaller adjustment with delta values of 2 for x and 3 for z.\n\nSince we can't add conditions directly to the transform, I’ll incorporate triggering_time durations instead. I’ll also include a placeholder taskUnit for the Laser, refraining from defining its action until I have enough info. Finally, I'll compile everything into JSON with the taskUnits needed to trigger AttackPlayer and instantiate the Laser.</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 2\",\n          \"source_object_fileID\": 1646766442,\n          \"delta_position\": {\n            \"x\": -12.0,\n            \"y\": 0.0,\n            \"z\": -12.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 2\",\n          \"source_object_fileID\": 1646766442,\n          \"delta_position\": {\n            \"x\": 4.0,\n            \"y\": 0.0,\n            \"z\": 6.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-10-30T13:07:58.305499",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using th..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 2\": {fileID: 1646766442}. The direct parent of this gameobject is \"Enemi..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing task units for enemy types**\n\nI need to produce JSON with task units, focusing on..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": "<think>**Analyzing task units for enemy types**\n\nI need to produce JSON with task units, focusing on enemy types. The previous test plan only had Transform actions for Enemy Type 1, but those require a Rigidbody. The prefab instances for both Enemy Types confirm they have Rigidbody. So, Transform is allowed. Collider is present too, enabling possible Trigger actions, but only if there are public methods without parameters. In the EnemyAi script, all public methods either have parameters or are private, meaning no Trigger can happen on the script. Therefore, we should avoid manual Trigger altogether.**Setting enemy attack state**\n\nTo make the enemy instantiate a projectile Laser, I need to ensure it’s in the AttackPlayer state by positioning it relative to the player within the sightRange and attackRange layers. The player is set via Awake to find the \"Camera Offset\" object, which should be in the scene. To trigger AttackPlayer, I can move the enemy closer to the player. Since I only control the enemy's Transform, I can move it within both range limits. Including condition descriptions might improve clarity, along with adding interactions for the instantiated Laser.**Reviewing Laser prefab details**\n\nI’m checking the Laser prefab, which has Has_Rigidbody set to False and lacks collider data. The source prefab components include some items, but the specifics are unclear. According to the Trigger rules, it’s only allowed with a Rigidbody, Collider, EventTrigger, or scripts that use UnityEngine.Events. Since we lack these, I need to add actionUnits to interact with the gameobjects. However, if there are no applicable actions for the Laser after instantiation, we might not need interactions at all. But it seems I need to define which interactions are allowed.**Identifying collider components in Laser**\n\nIt seems the Laser prefab likely has Collider components, but the specific types are not listed, similar to how the CapsuleCollider was explicitly stated for the Enemy. Since we don't know the types for the Laser, I can't add any actions due to these constraints. This means I need more information and to draft a test plan focusing on moving Enemy Type 2 to trigger AttackPlayer and instantiate the Laser. I’ll also remember to use the PrefabInstance fileID as the source object fileID. Furthermore, m_Calls are not present, so there are no trigger events to manage, ensuring we don’t conflict with any redundancy policies. Our plan needs to complement the previous plans by adding more taskUnits for Enemy Type 2 to approach the player in two steps: first move near, wait for a triggering time, then possibly hold position.**Planning enemy movements and actions**\n\nI’m considering testing patrol movements for the enemy while prioritizing the attack instantiation. To do this, I need to set Need_more_Info to true to gather details on the Laser components for interaction planning. For the Transform format, I can create a couple of transform actions: \n\n1. A large delta to move Enemy Type 2 towards the player, possibly using delta values like -10 for x and -10 for z.\n2. A smaller adjustment with delta values of 2 for x and 3 for z.\n\nSince we can't add conditions directly to the transform, I’ll incorporate triggering_time durations instead. I’ll also include a placeholder taskUnit for the Laser, refraining from defining its action until I have enough info. Finally, I'll compile everything into JSON with the taskUnits needed to trigger AttackPlayer and instantiate the Laser.</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 2\",\n          \"source_object_fileID\": 1646766442,\n          \"delta_position\": {\n            \"x\": -12.0,\n            \"y\": 0.0,\n            \"z\": -12.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 2\",\n          \"source_object_fileID\": 1646766442,\n          \"delta_position\": {\n            \"x\": 4.0,\n            \"y\": 0.0,\n            \"z\": 6.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}"
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Enemy Type 3\": {fileID: 614338932}. The direct parent of this gameobject is \"Enemies\". We only present the child with attached script. And the Enemy Type 3 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '614338932', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '614338935'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '614338935'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '1907783186'}]}, {'target': [{'fileID': '614338935'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 3'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '614338933 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '614338932'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'CapsuleCollider': {'type': 'CapsuleCollider', 'properties': {'id': '1306247219', 'CapsuleCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'m_Radius': '0.5'}, {'m_Height': '2'}, {'m_Direction': '1'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '614338935', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '10'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '10'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.5'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '8'}, {'attackRange': '6'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}]}\n'''\n\nThe following gameobjects ['6845118643277486568'] have Instantiate() logic detected in the source script of gameobject \"614338932\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"614338932\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"6845118643277486568\" GameObject Name: \"Laser\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '6845118643277486577'}]}, {'component': [{'fileID': '6845118643277486582'}]}, {'component': [{'fileID': '6845118643277486583'}]}, {'component': [{'fileID': '6845118643277486580'}]}, {'component': [{'fileID': '6845118643277486570'}]}, {'component': [{'fileID': '6845118643277486571'}]}]}, {'m_Layer': '13'}, {'m_Name': 'Laser'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-10-30T13:07:58.308406",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using th..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 2\": {fileID: 1646766442}. The direct parent of this gameobject is \"Enemi..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing task units for enemy types**\n\nI need to produce JSON with task units, focusing on..."
+      }
+    ],
+    "request_type": "gameobject_instantiate_logic_request",
+    "child_info": {
+      "child_id": "614338932",
+      "child_id_replace": "614338932",
+      "child_name": "Enemy Type 3",
+      "mono_comp_targets": [
+        {
+          "source": "614338932",
+          "source_replace": "614338932",
+          "target": "614338935",
+          "target_replace": "614338935",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "614338935",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "44097953",
+        "parent_name": "Enemies"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [
+        {
+          "source": "614338932",
+          "source_replace": "614338932",
+          "target": "6845118643277486568",
+          "target_replace": "6845118643277486568",
+          "target_gameobject_name": "Laser",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_instantiate_info": [
+      {
+        "source": "614338932",
+        "source_replace": "614338932",
+        "target": "6845118643277486568",
+        "target_replace": "6845118643277486568",
+        "target_gameobject_name": "Laser",
+        "edge_type": "Instantiate_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 3\",\n          \"source_object_fileID\": 614338932,\n          \"delta_position\": {\n            \"x\": 40.0,\n            \"y\": 0.0,\n            \"z\": 40.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 3\",\n          \"source_object_fileID\": 614338932,\n          \"delta_position\": {\n            \"x\": -44.0,\n            \"y\": 0.0,\n            \"z\": -44.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.25\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 3\",\n          \"source_object_fileID\": 614338932,\n          \"delta_position\": {\n            \"x\": 2.0,\n            \"y\": 0.0,\n            \"z\": 1.5\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.75\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-10-30T13:08:38.046798",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using th..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 2\": {fileID: 1646766442}. The direct parent of this gameobject is \"Enemi..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing task units for enemy types**\n\nI need to produce JSON with task units, focusing on..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 3\": {fileID: 614338932}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 3",
+              "source_object_fileID": 614338932,
+              "delta_position": {
+                "x": 40.0,
+                "y": 0.0,
+                "z": 40.0
+              },
+              "target_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "target_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 1.0
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 3",
+              "source_object_fileID": 614338932,
+              "delta_position": {
+                "x": -44.0,
+                "y": 0.0,
+                "z": -44.0
+              },
+              "target_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "target_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 1.25
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 3",
+              "source_object_fileID": 614338932,
+              "delta_position": {
+                "x": 2.0,
+                "y": 0.0,
+                "z": 1.5
+              },
+              "target_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "target_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.75
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Enemy Type 4\": {fileID: 1640000271}. The direct parent of this gameobject is \"Enemies\". We only present the child with attached script. And the Enemy Type 4 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '1640000271', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1640000274'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1640000274'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '285480565'}]}, {'target': [{'fileID': '1640000274'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 4'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '3'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1640000272 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1640000271'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'CapsuleCollider': {'type': 'CapsuleCollider', 'properties': {'id': '1306247219', 'CapsuleCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'m_Radius': '0.5'}, {'m_Height': '2'}, {'m_Direction': '1'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1640000274', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '15'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '5'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.75'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '10'}, {'attackRange': '7'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}]}\n'''\n\nThe following gameobjects ['6845118643277486568'] have Instantiate() logic detected in the source script of gameobject \"1640000271\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"1640000271\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"6845118643277486568\" GameObject Name: \"Laser\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '6845118643277486577'}]}, {'component': [{'fileID': '6845118643277486582'}]}, {'component': [{'fileID': '6845118643277486583'}]}, {'component': [{'fileID': '6845118643277486580'}]}, {'component': [{'fileID': '6845118643277486570'}]}, {'component': [{'fileID': '6845118643277486571'}]}]}, {'m_Layer': '13'}, {'m_Name': 'Laser'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-10-30T13:08:38.049346",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using th..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 2\": {fileID: 1646766442}. The direct parent of this gameobject is \"Enemi..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing task units for enemy types**\n\nI need to produce JSON with task units, focusing on..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 3\": {fileID: 614338932}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "request_type": "gameobject_instantiate_logic_request",
+    "child_info": {
+      "child_id": "1640000271",
+      "child_id_replace": "1640000271",
+      "child_name": "Enemy Type 4",
+      "mono_comp_targets": [
+        {
+          "source": "1640000271",
+          "source_replace": "1640000271",
+          "target": "1640000274",
+          "target_replace": "1640000274",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1640000274",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "15"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "5"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.75"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "10"
+              },
+              {
+                "attackRange": "7"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "44097953",
+        "parent_name": "Enemies"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [
+        {
+          "source": "1640000271",
+          "source_replace": "1640000271",
+          "target": "6845118643277486568",
+          "target_replace": "6845118643277486568",
+          "target_gameobject_name": "Laser",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_instantiate_info": [
+      {
+        "source": "1640000271",
+        "source_replace": "1640000271",
+        "target": "6845118643277486568",
+        "target_replace": "6845118643277486568",
+        "target_gameobject_name": "Laser",
+        "edge_type": "Instantiate_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "<think>**Creating JSON test plan**\n\nI need to produce a JSON test plan with an action list that includes Grab, Trigger, and Transform. There are constraints since Grab and Transform are only allowed on objects with Rigidbody. The enemy prefabs do have 'Has_Rigidbody' set to True, allowing Transform.\n\nFor Trigger, it’s only applicable if there’s a collider or event system inheriting from UnityEngine.Events. However, since there are no public methods with no parameters in the EnemyAi, I’ll skip Trigger. I'll also focus on covering the Instantiate of Laser as needed.**Planning action units for interactions**\n\nI need to add actionUnits to interact with the game objects and invoke their methods. However, the Laser has 'Has_Rigidbody' set to False, which means neither Transform nor Grab can be used. Trigger could work if it has a Collider or EventTrigger, but I don’t have details on the Laser components yet. It's likely that a projectile does have a collider, but I should ask for more information and set 'Need_more_Info' to true. \n\nAlso, we need to ensure code coverage, as Enemy Type 4 uses the same EnemyAi with different parameters. I think creating Transform steps to bring the player into attack range is needed, but the script checks for the player in the context of the enemy!**Strategizing enemy interactions**\n\nTo move the enemy near the player's transform for an attack, I must consider that I don’t know the player's position. Previous plans used arbitrary transforms and didn’t incorporate Trigger. For consistency, I plan to transform the enemy to initiate AttackPlayer, which instantiates the projectile Laser and fulfills the interaction requirement. However, I need to add an action unit for Laser interaction. \n\nI can add a Trigger on the Laser if it has a Collider, but details are lacking. Since it has 'Has_Rigidbody' set to False, it's likely it has a collider, although that's not guaranteed. We also need to use m_PrefabInstance fileID as the source_object_fileID, specifically using 1640000271 for Enemy Type 4. \n\nI’m thinking we might have to include condition descriptions for Trigger actions, but it seems we’ll probably go without them. I must remember to provide everything in JSON format and use ASCII.**Crafting action plans**\n\nI'm working on crafting actions for Enemy Type 4 by planning small movements that could help it enter the player's sight, leading to a Chase and Attack scenario. I want to choose a delta to move toward the player, even though I don’t know the coordinates yet. This should work as a plan, so I’ll provide 2-3 transforms to simulate a patrol before the approach.\n\nThe instructions mention finalizing the test plan based on previous ones for code coverage, without including any perfect plans. I need to add tasks specific to this child plan. \n\nI also need to ensure that the MonoBehaviour component corresponds to the script within the test plan JSON, but it's not necessary to include it in free text. Since they previously asked for specification, I might add it to the condition field, but only for Trigger actions. \n\nI’ll set 'Need_more_Info' to true due to missing details on Laser interaction and include a draft plan with the transforms and a placeholder for Trigger.**Drafting Transform actions**\n\nI've been advised to avoid manual Trigger actions until I have more information from the children. For the scene meta settings regarding m_Calls, I'm encouraged to choose Trigger, but since there’s none available, I'll focus on creating a draft plan with Transform actions while setting 'Need_more_Info' to true. \n\nI’ll prepare 2-3 transform steps using the source_object_name \"Enemy Type 4\" with the fileID 1640000271, providing generic delta positions to move toward the assumed player and keeping target_scale set to zeros. This should work for now!</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 4\",\n          \"source_object_fileID\": 1640000271,\n          \"delta_position\": {\n            \"x\": 5.0,\n            \"y\": 0.0,\n            \"z\": 5.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.75\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 4\",\n          \"source_object_fileID\": 1640000271,\n          \"delta_position\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": -8.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 45.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 4\",\n          \"source_object_fileID\": 1640000271,\n          \"delta_position\": {\n            \"x\": -3.0,\n            \"y\": 0.0,\n            \"z\": 2.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": -45.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.75\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-10-30T13:09:11.519573",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 1\": {fileID: 875851041}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing enemy movement**\n\nI’m exploring how to move the enemy towards the player using th..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 2\": {fileID: 1646766442}. The direct parent of this gameobject is \"Enemi..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Analyzing task units for enemy types**\n\nI need to produce JSON with task units, focusing on..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 3\": {fileID: 614338932}. The direct parent of this gameobject is \"Enemie..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 4\": {fileID: 1640000271}. The direct parent of this gameobject is \"Enemi..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Creating JSON test plan**\n\nI need to produce a JSON test plan with an action list that incl..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": "<think>**Creating JSON test plan**\n\nI need to produce a JSON test plan with an action list that includes Grab, Trigger, and Transform. There are constraints since Grab and Transform are only allowed on objects with Rigidbody. The enemy prefabs do have 'Has_Rigidbody' set to True, allowing Transform.\n\nFor Trigger, it’s only applicable if there’s a collider or event system inheriting from UnityEngine.Events. However, since there are no public methods with no parameters in the EnemyAi, I’ll skip Trigger. I'll also focus on covering the Instantiate of Laser as needed.**Planning action units for interactions**\n\nI need to add actionUnits to interact with the game objects and invoke their methods. However, the Laser has 'Has_Rigidbody' set to False, which means neither Transform nor Grab can be used. Trigger could work if it has a Collider or EventTrigger, but I don’t have details on the Laser components yet. It's likely that a projectile does have a collider, but I should ask for more information and set 'Need_more_Info' to true. \n\nAlso, we need to ensure code coverage, as Enemy Type 4 uses the same EnemyAi with different parameters. I think creating Transform steps to bring the player into attack range is needed, but the script checks for the player in the context of the enemy!**Strategizing enemy interactions**\n\nTo move the enemy near the player's transform for an attack, I must consider that I don’t know the player's position. Previous plans used arbitrary transforms and didn’t incorporate Trigger. For consistency, I plan to transform the enemy to initiate AttackPlayer, which instantiates the projectile Laser and fulfills the interaction requirement. However, I need to add an action unit for Laser interaction. \n\nI can add a Trigger on the Laser if it has a Collider, but details are lacking. Since it has 'Has_Rigidbody' set to False, it's likely it has a collider, although that's not guaranteed. We also need to use m_PrefabInstance fileID as the source_object_fileID, specifically using 1640000271 for Enemy Type 4. \n\nI’m thinking we might have to include condition descriptions for Trigger actions, but it seems we’ll probably go without them. I must remember to provide everything in JSON format and use ASCII.**Crafting action plans**\n\nI'm working on crafting actions for Enemy Type 4 by planning small movements that could help it enter the player's sight, leading to a Chase and Attack scenario. I want to choose a delta to move toward the player, even though I don’t know the coordinates yet. This should work as a plan, so I’ll provide 2-3 transforms to simulate a patrol before the approach.\n\nThe instructions mention finalizing the test plan based on previous ones for code coverage, without including any perfect plans. I need to add tasks specific to this child plan. \n\nI also need to ensure that the MonoBehaviour component corresponds to the script within the test plan JSON, but it's not necessary to include it in free text. Since they previously asked for specification, I might add it to the condition field, but only for Trigger actions. \n\nI’ll set 'Need_more_Info' to true due to missing details on Laser interaction and include a draft plan with the transforms and a placeholder for Trigger.**Drafting Transform actions**\n\nI've been advised to avoid manual Trigger actions until I have more information from the children. For the scene meta settings regarding m_Calls, I'm encouraged to choose Trigger, but since there’s none available, I'll focus on creating a draft plan with Transform actions while setting 'Need_more_Info' to true. \n\nI’ll prepare 2-3 transform steps using the source_object_name \"Enemy Type 4\" with the fileID 1640000271, providing generic delta positions to move toward the assumed player and keeping target_scale set to zeros. This should work for now!</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 4\",\n          \"source_object_fileID\": 1640000271,\n          \"delta_position\": {\n            \"x\": 5.0,\n            \"y\": 0.0,\n            \"z\": 5.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.75\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 4\",\n          \"source_object_fileID\": 1640000271,\n          \"delta_position\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": -8.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 45.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 4\",\n          \"source_object_fileID\": 1640000271,\n          \"delta_position\": {\n            \"x\": -3.0,\n            \"y\": 0.0,\n            \"z\": 2.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": -45.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.75\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}"
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Enemy Type 5\": {fileID: 1673477535}. The direct parent of this gameobject is \"Enemies\". We only present the child with attached script. And the Enemy Type 5 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '1673477535', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1673477538'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1673477538'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '2103721648'}]}, {'target': [{'fileID': '1673477538'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 5'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '4'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1673477536 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1673477535'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'CapsuleCollider': {'type': 'CapsuleCollider', 'properties': {'id': '966081188', 'CapsuleCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'m_Radius': '0.5'}, {'m_Height': '2'}, {'m_Direction': '1'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1673477538', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '10'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '10'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.5'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '8'}, {'attackRange': '6'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}]}\n'''\n\nThe following gameobjects ['6845118643277486568'] have Instantiate() logic detected in the source script of gameobject \"1673477535\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"1673477535\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"6845118643277486568\" GameObject Name: \"Laser\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '6845118643277486577'}]}, {'component': [{'fileID': '6845118643277486582'}]}, {'component': [{'fileID': '6845118643277486583'}]}, {'component': [{'fileID': '6845118643277486580'}]}, {'component': [{'fileID': '6845118643277486570'}]}, {'component': [{'fileID': '6845118643277486571'}]}]}, {'m_Layer': '13'}, {'m_Name': 'Laser'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-10-30T13:09:11.522109",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Creating JSON test plan**\n\nI need to produce a JSON test plan with an action list that incl..."
+      }
+    ],
+    "request_type": "gameobject_instantiate_logic_request",
+    "child_info": {
+      "child_id": "1673477535",
+      "child_id_replace": "1673477535",
+      "child_name": "Enemy Type 5",
+      "mono_comp_targets": [
+        {
+          "source": "1673477535",
+          "source_replace": "1673477535",
+          "target": "1673477538",
+          "target_replace": "1673477538",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1673477538",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "44097953",
+        "parent_name": "Enemies"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [
+        {
+          "source": "1673477535",
+          "source_replace": "1673477535",
+          "target": "6845118643277486568",
+          "target_replace": "6845118643277486568",
+          "target_gameobject_name": "Laser",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_instantiate_info": [
+      {
+        "source": "1673477535",
+        "source_replace": "1673477535",
+        "target": "6845118643277486568",
+        "target_replace": "6845118643277486568",
+        "target_gameobject_name": "Laser",
+        "edge_type": "Instantiate_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "<think>**Planning enemy movement**\n\nI’m thinking about how to test the enemy's movement. The idea is to direct it towards the \"Camera Offset\" direction, but I'm not sure what that means exactly. Instead of using a rotation, I might perform a Transform with zero rotation. To trigger an attack, we need to stay within 6 units. I can draft a plan using deltas without positional info, which seems reasonable. Also, I'll clarify that the MonoBehaviour component in the scene file matches the script. We have to make sure the output is just JSON, avoiding unnecessary triggers and focusing on the essentials.**Finalizing the new test plan**\n\nI’m aiming to finalize the new test plan based on previous tests, focusing on Enemy Type 5. The user requested that I don't include anything that's already perfect, but those plans aren't perfect yet.\n\nI plan to transform Enemy Type 5 to search for the player by moving through a series of deltas, and rotating towards the player, even though I don’t know their exact direction. After these movements, I expect to instantiate a Laser and I'll need more info on its components for interactions. I'll indicate that the `source_object_fileID` should be `1673477535`, and we can set times for three Transform actions. I’ll skip the grab since it might not be needed.</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 1673477535,\n          \"delta_position\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": -4.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 1673477535,\n          \"delta_position\": {\n            \"x\": 2.0,\n            \"y\": 0.0,\n            \"z\": -2.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 30.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 1673477535,\n          \"delta_position\": {\n            \"x\": -1.5,\n            \"y\": 0.0,\n            \"z\": -1.5\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": -30.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-10-30T13:09:43.366519",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Creating JSON test plan**\n\nI need to produce a JSON test plan with an action list that incl..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Enemy Type 5\": {fileID: 1673477535}. The direct parent of this gameobject is \"Enemi..."
+      },
+      {
+        "role": "assistant",
+        "content": "<think>**Planning enemy movement**\n\nI’m thinking about how to test the enemy's movement. The idea is..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": "<think>**Planning enemy movement**\n\nI’m thinking about how to test the enemy's movement. The idea is to direct it towards the \"Camera Offset\" direction, but I'm not sure what that means exactly. Instead of using a rotation, I might perform a Transform with zero rotation. To trigger an attack, we need to stay within 6 units. I can draft a plan using deltas without positional info, which seems reasonable. Also, I'll clarify that the MonoBehaviour component in the scene file matches the script. We have to make sure the output is just JSON, avoiding unnecessary triggers and focusing on the essentials.**Finalizing the new test plan**\n\nI’m aiming to finalize the new test plan based on previous tests, focusing on Enemy Type 5. The user requested that I don't include anything that's already perfect, but those plans aren't perfect yet.\n\nI plan to transform Enemy Type 5 to search for the player by moving through a series of deltas, and rotating towards the player, even though I don’t know their exact direction. After these movements, I expect to instantiate a Laser and I'll need more info on its components for interactions. I'll indicate that the `source_object_fileID` should be `1673477535`, and we can set times for three Transform actions. I’ll skip the grab since it might not be needed.</think>\n\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 1673477535,\n          \"delta_position\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": -4.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 1673477535,\n          \"delta_position\": {\n            \"x\": 2.0,\n            \"y\": 0.0,\n            \"z\": -2.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 30.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 1673477535,\n          \"delta_position\": {\n            \"x\": -1.5,\n            \"y\": 0.0,\n            \"z\": -1.5\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": -30.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}"
+  }
+]

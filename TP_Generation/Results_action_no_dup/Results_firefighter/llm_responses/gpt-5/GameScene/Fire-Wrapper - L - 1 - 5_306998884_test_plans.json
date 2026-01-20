@@ -1,0 +1,17 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 5",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 306998884,
+          "condition": "MonoBehaviour_0 in scene is Fire (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) attached to Fire-Wrapper - L - 1 - 5. Serialized config matches Fire.cs fields: debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, maxNeighborDistance=4, downMultiplier=2, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo fileID 1849464941111748095. Object has BoxCollider (Trigger-eligible) and no Rigidbody. Fire implements IWaterInteractable and exposes WaterHit(Vector3) which must be invoked repeatedly while the fire is burning (isOn=true) so that currentHitInterval stays < maxHitInterval (2s) and currentHitTime >= totalHitTime (5s). Expected: fire turns off (isOn=false), particle stops via UpdateFireState(true), neighbors notified, FireController.Instance.FireChanged(-1) called. Note: Fire has no public parameterless methods to call via Trigger; WaterHit requires a parameter and must be invoked by the water system or a bound UnityEvent (m_Calls) — none are present in this scene data.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

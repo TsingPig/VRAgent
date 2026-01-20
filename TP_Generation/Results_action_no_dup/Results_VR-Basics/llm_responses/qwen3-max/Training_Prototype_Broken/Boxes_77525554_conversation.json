@@ -1,0 +1,2602 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the VR-Basics App. One game object we want to test in the scene of 'Training_Prototype_Broken.unity' is 'Boxes'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code attached to this gameobjects below.\n[Extracted JSON format of scene meta file] The scene file of 'Training_Prototype_Broken.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Boxes' and its script. The 'fileID' of gameobject 'Boxes' is: 77525554. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '77525555'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Boxes'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '77525555', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '77525554'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': [{'fileID': '1933574828'}, {'fileID': '203819838'}, {'fileID': '531403573'}, {'fileID': '898355186'}, {'fileID': '1147109800'}, {'fileID': '1248989242'}, {'fileID': '1124768096'}, {'fileID': '988422738'}, {'fileID': '1793308540'}, {'fileID': '1320904624'}, {'fileID': '41552075'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '13'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"delta_position\": {                    // position delta (offset)\n    \"x\": \"<float>\",\n    \"y\": \"<float>\",\n    \"z\": \"<float>\"\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['3569975690511002028', '203819837 stripped', '531403572 stripped', '898355185 stripped', '1147109799 stripped', '49734231', '1124768095 stripped', '988422737 stripped', '1793308539 stripped', '1320904623 stripped', '41552074'] to help formalize your test plans one by one. You can respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-17T16:18:30.602804",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:19:03.208706",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (0)\": {fileID: 3569975690511002028}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (0) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System;\nusing UnityEngine;\nusing UnityEngine.Events;\n\n/// <summary>\n/// Calls functionality when a collision occurs\n/// </summary>\npublic class OnCollision : MonoBehaviour\n{\n    [Serializable] public class CollisionEvent : UnityEvent<Collision> { }\n\n    // When the object enters a collision\n    public CollisionEvent OnEnter = new CollisionEvent();\n\n    // When the object exits a collision\n    public CollisionEvent OnExit = new CollisionEvent();\n\n    private void OnCollisionEnter(Collision collision)\n    {\n        OnEnter.Invoke(collision);\n    }\n\n    private void OnCollisionExit(Collision collision)\n    {\n        OnExit.Invoke(collision);\n    }\n\n    private void OnValidate()\n    {\n        if (TryGetComponent(out Collider collider))\n            collider.isTrigger = false;\n    }\n}\n\n'''\n[Source code of 1th script files attached]\n'''\nusing UnityEngine;\n\n/// <summary>\n/// Play a simple sounds using Play one shot with volume, and pitch\n/// </summary>\n[RequireComponent(typeof(AudioSource))]\npublic class PlayQuickSound : MonoBehaviour\n{\n    [Tooltip(\"The sound that is played\")]\n    public AudioClip sound = null;\n\n    [Tooltip(\"The volume of the sound\")]\n    public float volume = 1.0f;\n\n    [Tooltip(\"The range of pitch the sound is played at (-pitch, pitch)\")]\n    [Range(0, 1)] public float randomPitchVariance = 0.0f;\n\n    private AudioSource audioSource = null;\n\n    private float defaultPitch = 1.0f;\n\n    private void Awake()\n    {\n        audioSource = GetComponent<AudioSource>();\n    }\n\n    public void Play()\n    {\n        float randomVariance = Random.Range(-randomPitchVariance, randomPitchVariance);\n        randomVariance += defaultPitch;\n\n        audioSource.pitch = randomVariance;\n        audioSource.PlayOneShot(sound, volume);\n        audioSource.pitch = defaultPitch;\n    }\n\n    private void OnValidate()\n    {\n        AudioSource audioSource = GetComponent<AudioSource>();\n        audioSource.playOnAwake = false;\n    }\n}\n\n'''\n[Source code of 2th script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Source code of 3th script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '3569975690511002028', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '8.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (0)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '2361221234566090267'}]}, {'component': [{'fileID': '7749302421296283910'}]}, {'component': [{'fileID': '1963712224256040888'}]}, {'component': [{'fileID': '3174054499936259574'}]}, {'component': [{'fileID': '3008242438792676447'}]}, {'component': [{'fileID': '158908366590145052'}]}, {'component': [{'fileID': '7040005640398465217'}]}, {'component': [{'fileID': '8312855220770769008'}]}, {'component': [{'fileID': '2085702217920827848'}]}, {'component': [{'fileID': '74831552'}]}, {'component': [{'fileID': '1248989243'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Box'}, {'m_TagString': 'Box'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1933574828 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '3569975690511002028'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '3174054499936259574', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '7040005640398465217', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '6bf7bf2b5cedc0b4fb673b10c7900629'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'OnEnter': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '2085702217920827848'}]}, {'m_TargetAssemblyTypeName': 'PlayQuickSound, Assembly-CSharp'}, {'m_MethodName': 'Play'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'OnExit': [{'m_PersistentCalls': [{'m_Calls': []}]}]}]}}, {'MonoBehaviour_1': {'id': '2085702217920827848', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '0755a2ba17a31d643b4a27e3034d8a79'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'sound': [{'fileID': '8300000'}, {'guid': '406c52bfda3df4113b0b3e1299061d97'}, {'type': '3'}]}, {'volume': '3'}, {'randomPitchVariance': '0.25'}]}}, {'MonoBehaviour_2': {'id': '74831552', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}, {'MonoBehaviour_3': {'id': '1248989243', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:19:03.308957",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 1,
+    "child_info": {
+      "child_id": "3569975690511002028",
+      "child_id_replace": "3569975690511002028",
+      "child_name": "Box (0)",
+      "mono_comp_targets": [
+        {
+          "source": "3569975690511002028",
+          "source_replace": "3569975690511002028",
+          "target": "7040005640398465217",
+          "target_replace": "7040005640398465217",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "7040005640398465217",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "6bf7bf2b5cedc0b4fb673b10c7900629"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "OnEnter": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "2085702217920827848"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "PlayQuickSound, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "Play"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "OnExit": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "6bf7bf2b5cedc0b4fb673b10c7900629",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Conditions\\OnCollision.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "3569975690511002028",
+          "source_replace": "3569975690511002028",
+          "target": "2085702217920827848",
+          "target_replace": "2085702217920827848",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "2085702217920827848",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "0755a2ba17a31d643b4a27e3034d8a79"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "sound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "406c52bfda3df4113b0b3e1299061d97"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "volume": "3"
+              },
+              {
+                "randomPitchVariance": "0.25"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "0755a2ba17a31d643b4a27e3034d8a79",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\PlayQuickSound.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "3569975690511002028",
+          "source_replace": "3569975690511002028",
+          "target": "74831552",
+          "target_replace": "74831552",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "74831552",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "3569975690511002028",
+          "source_replace": "3569975690511002028",
+          "target": "1248989243",
+          "target_replace": "1248989243",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1248989243",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (0)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 3569975690511002028,\n          \"condition\": \"Manual API calls on Box (0) to ensure coverage when collisions may not be reliably produced yet. Scene meta shows: MonoBehaviour_0 (id: 7040005640398465217, guid: 6bf7bf2b5cedc0b4fb673b10c7900629, class OnCollision) has OnEnter.m_PersistentCalls.m_Calls -> target MonoBehaviour_1 (id: 2085702217920827848, guid: 0755a2ba17a31d643b4a27e3034d8a79, class PlayQuickSound) method 'Play'. PlayQuickSound is configured with sound guid 406c52bfda3df4113b0b3e1299061d97, volume=3, randomPitchVariance=0.25. BoxCollider (id: 3174054499936259574) has m_IsTrigger=0 and object has Rigidbody (Has_Rigidbody: True). Additionally, two TranslateObject components are present (MonoBehaviour_2 id: 74831552 and MonoBehaviour_3 id: 1248989243, both guid: 866d134ae31a01841b6156f8d0a87054) exposing a no-arg method ResetToStartingPosition that should be exercised.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 2085702217920827848,\n                  \"method_name\": \"Play\",\n                  \"parameter_fileID\": []\n                },\n                {\n                  \"script_fileID\": 74831552,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                },\n                {\n                  \"script_fileID\": 1248989243,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:21:24.004783",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (0)\": {fileID: 3569975690511002028}. The direct parent of this gameobject is \"B..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (0)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 3569975690511002028,
+              "condition": "Manual API calls on Box (0) to ensure coverage when collisions may not be reliably produced yet. Scene meta shows: MonoBehaviour_0 (id: 7040005640398465217, guid: 6bf7bf2b5cedc0b4fb673b10c7900629, class OnCollision) has OnEnter.m_PersistentCalls.m_Calls -> target MonoBehaviour_1 (id: 2085702217920827848, guid: 0755a2ba17a31d643b4a27e3034d8a79, class PlayQuickSound) method 'Play'. PlayQuickSound is configured with sound guid 406c52bfda3df4113b0b3e1299061d97, volume=3, randomPitchVariance=0.25. BoxCollider (id: 3174054499936259574) has m_IsTrigger=0 and object has Rigidbody (Has_Rigidbody: True). Additionally, two TranslateObject components are present (MonoBehaviour_2 id: 74831552 and MonoBehaviour_3 id: 1248989243, both guid: 866d134ae31a01841b6156f8d0a87054) exposing a no-arg method ResetToStartingPosition that should be exercised.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 2085702217920827848,
+                      "method_name": "Play",
+                      "parameter_fileID": []
+                    },
+                    {
+                      "script_fileID": 74831552,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    },
+                    {
+                      "script_fileID": 1248989243,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (1)\": {fileID: 730385652}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (1) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '730385652'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '730385652', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '9.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (1)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '203819838 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '730385652'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '203819839', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '203819837'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:21:24.006207",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (0)\": {fileID: 3569975690511002028}. The direct parent of this gameobject is \"B..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "203819837 stripped",
+      "child_id_replace": "730385652",
+      "child_name": "Box (1)",
+      "mono_comp_targets": [
+        {
+          "source": "203819837 stripped",
+          "source_replace": "730385652",
+          "target": "203819839",
+          "target_replace": "203819839",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "203819839",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "203819837"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (1)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 730385652,\n          \"condition\": \"Manually invoke no-arg API to ensure coverage for TranslateObject on Box (1). Scene meta: MonoBehaviour_0 (id: 203819839, guid: 866d134ae31a01841b6156f8d0a87054, class TranslateObject) is attached to PrefabInstance id 730385652 and exposes ResetToStartingPosition(). Box (1) reports Has_Rigidbody: False, so no Grab/Transform actions are allowed. No UnityEvent m_Calls present for automatic invocation.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 203819839,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:21:56.348257",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (0)\": {fileID: 3569975690511002028}. The direct parent of this gameobject is \"B..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (1)\": {fileID: 730385652}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (1)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 730385652,
+              "condition": "Manually invoke no-arg API to ensure coverage for TranslateObject on Box (1). Scene meta: MonoBehaviour_0 (id: 203819839, guid: 866d134ae31a01841b6156f8d0a87054, class TranslateObject) is attached to PrefabInstance id 730385652 and exposes ResetToStartingPosition(). Box (1) reports Has_Rigidbody: False, so no Grab/Transform actions are allowed. No UnityEvent m_Calls present for automatic invocation.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 203819839,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (2)\": {fileID: 331566651}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (2) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '331566651'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '331566651', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '10.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (2)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '531403573 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '331566651'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '531403574', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '531403572'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:21:56.349827",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (0)\": {fileID: 3569975690511002028}. The direct parent of this gameobject is \"B..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (1)\": {fileID: 730385652}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 3,
+    "child_info": {
+      "child_id": "531403572 stripped",
+      "child_id_replace": "331566651",
+      "child_name": "Box (2)",
+      "mono_comp_targets": [
+        {
+          "source": "531403572 stripped",
+          "source_replace": "331566651",
+          "target": "531403574",
+          "target_replace": "531403574",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "531403574",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "531403572"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (2)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 331566651,\n          \"condition\": \"Manual call to no-arg API on Box (2) to ensure coverage. Scene meta: MonoBehaviour_0 (id: 531403574, guid: 866d134ae31a01841b6156f8d0a87054) maps to TranslateObject script and exposes ResetToStartingPosition(). Box (2) reports Has_Rigidbody: False, so Grab/Transform are not allowed; no UnityEvent m_Calls are defined for automatic invocation.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 531403574,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:22:41.693437",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (0)\": {fileID: 3569975690511002028}. The direct parent of this gameobject is \"B..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (1)\": {fileID: 730385652}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (2)\": {fileID: 331566651}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (2)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 331566651,
+              "condition": "Manual call to no-arg API on Box (2) to ensure coverage. Scene meta: MonoBehaviour_0 (id: 531403574, guid: 866d134ae31a01841b6156f8d0a87054) maps to TranslateObject script and exposes ResetToStartingPosition(). Box (2) reports Has_Rigidbody: False, so Grab/Transform are not allowed; no UnityEvent m_Calls are defined for automatic invocation.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 531403574,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (3) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1736349558'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1736349558', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '3'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '11.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (3)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '898355186 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1736349558'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '898355187', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '898355185'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:22:41.694820",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 4,
+    "child_info": {
+      "child_id": "898355185 stripped",
+      "child_id_replace": "1736349558",
+      "child_name": "Box (3)",
+      "mono_comp_targets": [
+        {
+          "source": "898355185 stripped",
+          "source_replace": "1736349558",
+          "target": "898355187",
+          "target_replace": "898355187",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "898355187",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "898355185"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (3)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1736349558,\n          \"condition\": \"Manual invocation to cover the only public no-arg API on TranslateObject. Scene MonoBehaviour_0 (component id: 898355187) has m_Script guid 866d134ae31a01841b6156f8d0a87054 which matches the provided TranslateObject script. No UnityEvent m_Calls are present for automatic invocation; Has_Rigidbody: False, so Grab/Transform are disallowed. This Trigger explicitly calls ResetToStartingPosition() for coverage.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 898355187,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:23:40.997287",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (3)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1736349558,
+              "condition": "Manual invocation to cover the only public no-arg API on TranslateObject. Scene MonoBehaviour_0 (component id: 898355187) has m_Script guid 866d134ae31a01841b6156f8d0a87054 which matches the provided TranslateObject script. No UnityEvent m_Calls are present for automatic invocation; Has_Rigidbody: False, so Grab/Transform are disallowed. This Trigger explicitly calls ResetToStartingPosition() for coverage.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 898355187,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (4)\": {fileID: 1058824938}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (4) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1058824938'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1058824938', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '4'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '12.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (4)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1147109800 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1058824938'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1147109801', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1147109799'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:23:40.999335",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 5,
+    "child_info": {
+      "child_id": "1147109799 stripped",
+      "child_id_replace": "1058824938",
+      "child_name": "Box (4)",
+      "mono_comp_targets": [
+        {
+          "source": "1147109799 stripped",
+          "source_replace": "1058824938",
+          "target": "1147109801",
+          "target_replace": "1147109801",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1147109801",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1147109799"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (4)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1058824938,\n          \"condition\": \"Manually invoke the only public no-arg method on TranslateObject to ensure coverage. Scene MonoBehaviour_0 (component id: 1147109801) has m_Script guid 866d134ae31a01841b6156f8d0a87054, matching the provided TranslateObject script. The object is a PrefabInstance (m_PrefabInstance: 1058824938) under parent 'Boxes'. Has_Rigidbody: False, so Grab/Transform are disallowed; no UnityEvent m_Calls are present for automatic invocation.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1147109801,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:24:06.072880",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (4)\": {fileID: 1058824938}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (4)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1058824938,
+              "condition": "Manually invoke the only public no-arg method on TranslateObject to ensure coverage. Scene MonoBehaviour_0 (component id: 1147109801) has m_Script guid 866d134ae31a01841b6156f8d0a87054, matching the provided TranslateObject script. The object is a PrefabInstance (m_PrefabInstance: 1058824938) under parent 'Boxes'. Has_Rigidbody: False, so Grab/Transform are disallowed; no UnityEvent m_Calls are present for automatic invocation.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1147109801,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (5)\": {fileID: 49734231}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (5) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System;\nusing UnityEngine;\nusing UnityEngine.Events;\n\n/// <summary>\n/// Calls functionality when a collision occurs\n/// </summary>\npublic class OnCollision : MonoBehaviour\n{\n    [Serializable] public class CollisionEvent : UnityEvent<Collision> { }\n\n    // When the object enters a collision\n    public CollisionEvent OnEnter = new CollisionEvent();\n\n    // When the object exits a collision\n    public CollisionEvent OnExit = new CollisionEvent();\n\n    private void OnCollisionEnter(Collision collision)\n    {\n        OnEnter.Invoke(collision);\n    }\n\n    private void OnCollisionExit(Collision collision)\n    {\n        OnExit.Invoke(collision);\n    }\n\n    private void OnValidate()\n    {\n        if (TryGetComponent(out Collider collider))\n            collider.isTrigger = false;\n    }\n}\n\n'''\n[Source code of 1th script files attached]\n'''\nusing UnityEngine;\n\n/// <summary>\n/// Play a simple sounds using Play one shot with volume, and pitch\n/// </summary>\n[RequireComponent(typeof(AudioSource))]\npublic class PlayQuickSound : MonoBehaviour\n{\n    [Tooltip(\"The sound that is played\")]\n    public AudioClip sound = null;\n\n    [Tooltip(\"The volume of the sound\")]\n    public float volume = 1.0f;\n\n    [Tooltip(\"The range of pitch the sound is played at (-pitch, pitch)\")]\n    [Range(0, 1)] public float randomPitchVariance = 0.0f;\n\n    private AudioSource audioSource = null;\n\n    private float defaultPitch = 1.0f;\n\n    private void Awake()\n    {\n        audioSource = GetComponent<AudioSource>();\n    }\n\n    public void Play()\n    {\n        float randomVariance = Random.Range(-randomPitchVariance, randomPitchVariance);\n        randomVariance += defaultPitch;\n\n        audioSource.pitch = randomVariance;\n        audioSource.PlayOneShot(sound, volume);\n        audioSource.pitch = defaultPitch;\n    }\n\n    private void OnValidate()\n    {\n        AudioSource audioSource = GetComponent<AudioSource>();\n        audioSource.playOnAwake = false;\n    }\n}\n\n'''\n[Source code of 2th script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Source code of 3th script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '49734231', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '5'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '13.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (5)'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8312855220770769008'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'rolloffCustomCurve.m_Curve.Array.size'}, {'value': '6'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8312855220770769008'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'rolloffCustomCurve.m_Curve.Array.data[0].time'}, {'value': '0.045454547'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8312855220770769008'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'rolloffCustomCurve.m_Curve.Array.data[1].time'}, {'value': '0.09090909'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8312855220770769008'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'rolloffCustomCurve.m_Curve.Array.data[2].time'}, {'value': '0.18181819'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8312855220770769008'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'rolloffCustomCurve.m_Curve.Array.data[3].time'}, {'value': '0.36363637'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8312855220770769008'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'rolloffCustomCurve.m_Curve.Array.data[4].time'}, {'value': '0.72727275'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8312855220770769008'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'rolloffCustomCurve.m_Curve.Array.data[5].time'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}]}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '2361221234566090267'}]}, {'component': [{'fileID': '7749302421296283910'}]}, {'component': [{'fileID': '1963712224256040888'}]}, {'component': [{'fileID': '3174054499936259574'}]}, {'component': [{'fileID': '3008242438792676447'}]}, {'component': [{'fileID': '158908366590145052'}]}, {'component': [{'fileID': '7040005640398465217'}]}, {'component': [{'fileID': '8312855220770769008'}]}, {'component': [{'fileID': '2085702217920827848'}]}, {'component': [{'fileID': '74831552'}]}, {'component': [{'fileID': '1248989243'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Box'}, {'m_TagString': 'Box'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1248989242 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '49734231'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '3174054499936259574', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '7040005640398465217', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '6bf7bf2b5cedc0b4fb673b10c7900629'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'OnEnter': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '2085702217920827848'}]}, {'m_TargetAssemblyTypeName': 'PlayQuickSound, Assembly-CSharp'}, {'m_MethodName': 'Play'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'OnExit': [{'m_PersistentCalls': [{'m_Calls': []}]}]}]}}, {'MonoBehaviour_1': {'id': '2085702217920827848', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '0755a2ba17a31d643b4a27e3034d8a79'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'sound': [{'fileID': '8300000'}, {'guid': '406c52bfda3df4113b0b3e1299061d97'}, {'type': '3'}]}, {'volume': '3'}, {'randomPitchVariance': '0.25'}]}}, {'MonoBehaviour_2': {'id': '74831552', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}, {'MonoBehaviour_3': {'id': '1248989243', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6150933721197494150'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:24:06.076928",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (4)\": {fileID: 1058824938}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 6,
+    "child_info": {
+      "child_id": "49734231",
+      "child_id_replace": "49734231",
+      "child_name": "Box (5)",
+      "mono_comp_targets": [
+        {
+          "source": "49734231",
+          "source_replace": "49734231",
+          "target": "7040005640398465217",
+          "target_replace": "7040005640398465217",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "7040005640398465217",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "6bf7bf2b5cedc0b4fb673b10c7900629"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "OnEnter": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "2085702217920827848"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "PlayQuickSound, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "Play"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "OnExit": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "6bf7bf2b5cedc0b4fb673b10c7900629",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Conditions\\OnCollision.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "49734231",
+          "source_replace": "49734231",
+          "target": "2085702217920827848",
+          "target_replace": "2085702217920827848",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "2085702217920827848",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "0755a2ba17a31d643b4a27e3034d8a79"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "sound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "406c52bfda3df4113b0b3e1299061d97"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "volume": "3"
+              },
+              {
+                "randomPitchVariance": "0.25"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "0755a2ba17a31d643b4a27e3034d8a79",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\PlayQuickSound.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "49734231",
+          "source_replace": "49734231",
+          "target": "74831552",
+          "target_replace": "74831552",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "74831552",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "49734231",
+          "source_replace": "49734231",
+          "target": "1248989243",
+          "target_replace": "1248989243",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1248989243",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6150933721197494150"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Box (5)\",\n          \"source_object_fileID\": 49734231,\n          \"delta_position\": {\n            \"x\": 0,\n            \"y\": -15.0,\n            \"z\": 0\n          },\n          \"target_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"target_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.5\n        },\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Box (5)\",\n          \"source_object_fileID\": 49734231,\n          \"delta_position\": {\n            \"x\": 0,\n            \"y\": 15.0,\n            \"z\": 0\n          },\n          \"target_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"target_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.5\n        },\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (5)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 49734231,\n          \"condition\": \"Scene MonoBehaviours on Box (5): OnCollision (id: 7040005640398465217, guid: 6bf7bf2b5cedc0b4fb673b10c7900629) has UnityEvents OnEnter/OnExit. OnEnter.m_Calls targets PlayQuickSound.Play on component id: 2085702217920827848 (guid: 0755a2ba17a31d643b4a27e3034d8a79). BoxCollider (id: 3174054499936259574) m_IsTrigger=0 and Has_Rigidbody=True, so moving the object will automatically trigger OnCollisionEnter/Exit and thus PlayQuickSound.Play. Two TranslateObject components (ids: 74831552 and 1248989243) map to script guid 866d134ae31a01841b6156f8d0a87054 and expose the only no-arg API ResetToStartingPosition(); we manually call these to ensure coverage.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 74831552,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                },\n                {\n                  \"script_fileID\": 1248989243,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-17T16:26:06.109307",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (4)\": {fileID: 1058824938}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (5)\": {fileID: 49734231}. The direct parent of this gameobject is \"Boxes\". We o..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Box (5)",
+              "source_object_fileID": 49734231,
+              "delta_position": {
+                "x": 0,
+                "y": -15.0,
+                "z": 0
+              },
+              "target_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "target_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.5
+            },
+            {
+              "type": "Transform",
+              "source_object_name": "Box (5)",
+              "source_object_fileID": 49734231,
+              "delta_position": {
+                "x": 0,
+                "y": 15.0,
+                "z": 0
+              },
+              "target_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "target_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.5
+            },
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (5)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 49734231,
+              "condition": "Scene MonoBehaviours on Box (5): OnCollision (id: 7040005640398465217, guid: 6bf7bf2b5cedc0b4fb673b10c7900629) has UnityEvents OnEnter/OnExit. OnEnter.m_Calls targets PlayQuickSound.Play on component id: 2085702217920827848 (guid: 0755a2ba17a31d643b4a27e3034d8a79). BoxCollider (id: 3174054499936259574) m_IsTrigger=0 and Has_Rigidbody=True, so moving the object will automatically trigger OnCollisionEnter/Exit and thus PlayQuickSound.Play. Two TranslateObject components (ids: 74831552 and 1248989243) map to script guid 866d134ae31a01841b6156f8d0a87054 and expose the only no-arg API ResetToStartingPosition(); we manually call these to ensure coverage.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 74831552,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    },
+                    {
+                      "script_fileID": 1248989243,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (6)\": {fileID: 1843663307}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (6) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1843663307'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1843663307', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '6'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '14.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (6)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1124768096 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1843663307'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1124768097', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1124768095'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:26:06.110630",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (4)\": {fileID: 1058824938}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (5)\": {fileID: 49734231}. The direct parent of this gameobject is \"Boxes\". We o..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 7,
+    "child_info": {
+      "child_id": "1124768095 stripped",
+      "child_id_replace": "1843663307",
+      "child_name": "Box (6)",
+      "mono_comp_targets": [
+        {
+          "source": "1124768095 stripped",
+          "source_replace": "1843663307",
+          "target": "1124768097",
+          "target_replace": "1124768097",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1124768097",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1124768095"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (6)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1843663307,\n          \"condition\": \"Manual invocation of the only public no-arg method on TranslateObject. Scene MonoBehaviour_0 (component id: 1124768097) has m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. Has_Rigidbody: False, so Grab/Transform are disallowed; no UnityEvent m_Calls are present for automatic invocation.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1124768097,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:26:45.100294",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (3)\": {fileID: 1736349558}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (4)\": {fileID: 1058824938}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (5)\": {fileID: 49734231}. The direct parent of this gameobject is \"Boxes\". We o..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (6)\": {fileID: 1843663307}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (6)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1843663307,
+              "condition": "Manual invocation of the only public no-arg method on TranslateObject. Scene MonoBehaviour_0 (component id: 1124768097) has m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. Has_Rigidbody: False, so Grab/Transform are disallowed; no UnityEvent m_Calls are present for automatic invocation.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1124768097,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (7)\": {fileID: 930118958}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (7) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '930118958'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '930118958', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '7'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '15.69'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (7)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '988422738 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '930118958'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '988422739', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '988422737'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:26:45.103042",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 8,
+    "child_info": {
+      "child_id": "988422737 stripped",
+      "child_id_replace": "930118958",
+      "child_name": "Box (7)",
+      "mono_comp_targets": [
+        {
+          "source": "988422737 stripped",
+          "source_replace": "930118958",
+          "target": "988422739",
+          "target_replace": "988422739",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "988422739",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "988422737"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (7)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 930118958,\n          \"condition\": \"MonoBehaviour_0 (id: 988422739) on Box (7) references m_Script guid 866d134ae31a01841b6156f8d0a87054, which is exactly the provided TranslateObject script. No UnityEvent m_Calls are defined in the scene meta, and Has_Rigidbody is False, so a manual trigger is required to cover the only public no-arg method.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 988422739,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:28:01.151615",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (7)\": {fileID: 930118958}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (7)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 930118958,
+              "condition": "MonoBehaviour_0 (id: 988422739) on Box (7) references m_Script guid 866d134ae31a01841b6156f8d0a87054, which is exactly the provided TranslateObject script. No UnityEvent m_Calls are defined in the scene meta, and Has_Rigidbody is False, so a manual trigger is required to cover the only public no-arg method.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 988422739,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (8)\": {fileID: 176049113}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (8) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '176049113'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '176049113', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '8'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '16.689999'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (8)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1793308540 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '176049113'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1793308541', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1793308539'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:28:01.154527",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (7)\": {fileID: 930118958}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 9,
+    "child_info": {
+      "child_id": "1793308539 stripped",
+      "child_id_replace": "176049113",
+      "child_name": "Box (8)",
+      "mono_comp_targets": [
+        {
+          "source": "1793308539 stripped",
+          "source_replace": "176049113",
+          "target": "1793308541",
+          "target_replace": "1793308541",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1793308541",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1793308539"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (8)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 176049113,\n          \"condition\": \"MonoBehaviour_0 (id: 1793308541) on Box (8) references m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. No UnityEvent m_Calls are defined and Has_Rigidbody is False, so manually invoke the only public no-arg method to ensure coverage.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1793308541,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:28:42.952340",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (7)\": {fileID: 930118958}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (8)\": {fileID: 176049113}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (8)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 176049113,
+              "condition": "MonoBehaviour_0 (id: 1793308541) on Box (8) references m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. No UnityEvent m_Calls are defined and Has_Rigidbody is False, so manually invoke the only public no-arg method to ensure coverage.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1793308541,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box (9)\": {fileID: 1025029724}. The direct parent of this gameobject is \"Boxes\". We only present the child with attached script. And the Box (9) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\npublic class TranslateObject : MonoBehaviour\n{\n    private Vector3 startPos;\n    private Quaternion startRot;\n\n    private void Start()\n    {\n        startPos = transform.position;\n        startRot = transform.rotation;\n\n    }\n\n    public void TranslateX(float amount)\n    {\n        transform.position += transform.right * amount;\n    }\n\n    public void TranslateY(float amount)\n    {\n        transform.position += transform.up * amount;\n    }\n\n    public void TranslateZ(float amount)\n    {\n        transform.position += transform.forward * amount;\n    }\n\n    public void SetLocalXPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(newPosition, transform.localPosition.y, transform.localPosition.z);\n    }\n\n    public void SetLocalYPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, newPosition, transform.localPosition.z);\n    }\n\n    public void SetLocalZPosition(float newPosition)\n    {\n        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPosition);\n    }\n\n    public void ResetToStartingPosition()\n    {\n        transform.SetPositionAndRotation(startPos, startRot);\n\n;\n    }\n\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1025029724'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1025029724', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '77525555'}]}, {'m_Modifications': [{'target': [{'fileID': '158908366590145052'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_InteractionManager'}, {'value': ''}, {'objectReference': [{'fileID': '1736730001'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '9'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.98'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '16.689999'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '13.39'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6150933721197494150'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box (9)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1320904624 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2361221234566090267'}, {'guid': '97e89670ed7696d489d6ddba4543a01b'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1025029724'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1320904625', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1320904623'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '866d134ae31a01841b6156f8d0a87054'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-17T16:28:42.953783",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (7)\": {fileID: 930118958}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (8)\": {fileID: 176049113}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 10,
+    "child_info": {
+      "child_id": "1320904623 stripped",
+      "child_id_replace": "1025029724",
+      "child_name": "Box (9)",
+      "mono_comp_targets": [
+        {
+          "source": "1320904623 stripped",
+          "source_replace": "1025029724",
+          "target": "1320904625",
+          "target_replace": "1320904625",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1320904625",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1320904623"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "866d134ae31a01841b6156f8d0a87054"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "866d134ae31a01841b6156f8d0a87054",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Basics-main\\VR-Basics-main\\Assets\\_Course Library\\Scripts\\Actions\\TranslateObject.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "77525554",
+        "parent_name": "Boxes"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box (9)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1025029724,\n          \"condition\": \"MonoBehaviour_0 (id: 1320904625) on Box (9) uses m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. Has_Rigidbody: False; no UnityEvent m_Calls specified, so manually invoke the only public no-arg method for coverage.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1320904625,\n                  \"method_name\": \"ResetToStartingPosition\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-17T16:29:02.243329",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (7)\": {fileID: 930118958}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (8)\": {fileID: 176049113}. The direct parent of this gameobject is \"Boxes\". We ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box (9)\": {fileID: 1025029724}. The direct parent of this gameobject is \"Boxes\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box (9)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1025029724,
+              "condition": "MonoBehaviour_0 (id: 1320904625) on Box (9) uses m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. Has_Rigidbody: False; no UnityEvent m_Calls specified, so manually invoke the only public no-arg method for coverage.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1320904625,
+                      "method_name": "ResetToStartingPosition",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  }
+]

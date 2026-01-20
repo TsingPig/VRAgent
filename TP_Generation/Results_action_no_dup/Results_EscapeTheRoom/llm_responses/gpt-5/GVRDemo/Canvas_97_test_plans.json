@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 97,
+          "condition": "Invoke public, parameterless method on MonoBehaviour (id: 927, guid: 739800cd36aba44e9b04ce977e5784bd) attached to Canvas. This component is GvrPointerGraphicRaycaster with serialization: raycastMode=0 (Camera), ignoreReversedGraphics=1, blockingObjects=0 (None), blockingMask.m_Bits=4294967295. Expectation: Without a configured GvrPointerManager.Pointer this will report pointer availability = false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 927,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 97,
+          "condition": "Call another public, parameterless method on the same MonoBehaviour (id: 927) to exercise safe access to last computed ray. With no prior successful raycast and potentially no GvrPointer available, GetLastRay should return the default Ray set by previous internal calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 927,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

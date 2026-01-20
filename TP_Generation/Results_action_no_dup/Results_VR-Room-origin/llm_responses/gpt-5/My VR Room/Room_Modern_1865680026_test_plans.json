@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1865680026,
+          "condition": "Target GameObject 'Room_Modern' (PrefabInstance fileID: 1865680026). Assumed MonoBehaviour fileID 1865680030 is PlayQuickSound (from provided source). Ensure an AudioSource component exists (RequireComponent) and has a valid AudioClip assigned to 'sound'. OnValidate sets AudioSource.playOnAwake = false. Triggering Play() should: set audioSource.pitch to 1.0 +/- randomPitchVariance, call PlayOneShot(sound, volume), then restore pitch to 1.0. Note: The other MonoBehaviour (fileID 1865680029, guid 474bcb49853aa07438625e644c072ee6) is not PlayQuickSound and is not invoked. Also ensure Room_Modern has a Collider or EventTrigger (or provide allowance to bypass collider requirement) to satisfy Trigger action prerequisites.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

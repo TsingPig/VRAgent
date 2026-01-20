@@ -1,0 +1,876 @@
+{
+  "CER@100AU": 0.0,
+  "CVR@100AU": 250.98039215686273,
+  "DR@100AU": 7.8431372549019605,
+  "gobj_coverage_ratio": 0.9032258064516129,
+  "AU": 51,
+  "consistency_number": 128,
+  "correctness_number": 0,
+  "duplicate_number": 4,
+  "smells": [
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/1/actionUnits/0",
+      "message": "Schema validation: {'type': 'Transform', 'source_object_name': 'Box (0)', 'source_object_fileID': 3569975690511002028, 'delta_position': {'x': 0.5, 'y': 0.0, 'z': 0.0}, 'target_rotation': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'target_scale': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'triggerring_events': [], 'triggerred_events': [], 'triggerring_time': 0.2} is not valid under any of the given schemas"
+    },
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/1/actionUnits/1",
+      "message": "Schema validation: {'type': 'Transform', 'source_object_name': 'Box (0)', 'source_object_fileID': 3569975690511002028, 'delta_position': {'x': -0.5, 'y': 0.0, 'z': 0.0}, 'target_rotation': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'target_scale': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'triggerring_events': [], 'triggerred_events': [], 'triggerring_time': 0.2} is not valid under any of the given schemas"
+    },
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/1/actionUnits/7",
+      "message": "Schema validation: {'type': 'Transform', 'source_object_name': 'Box (5)', 'source_object_fileID': 49734231, 'delta_position': {'x': 0.0, 'y': -1.2, 'z': 0.0}, 'target_rotation': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'target_scale': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'triggerring_events': [], 'triggerred_events': [], 'triggerring_time': 0.3} is not valid under any of the given schemas"
+    },
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/1/actionUnits/8",
+      "message": "Schema validation: {'type': 'Transform', 'source_object_name': 'Box (5)', 'source_object_fileID': 49734231, 'delta_position': {'x': 0.0, 'y': 1.2, 'z': 0.0}, 'target_rotation': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'target_scale': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'triggerring_events': [], 'triggerred_events': [], 'triggerring_time': 0.3} is not valid under any of the given schemas"
+    },
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/4/actionUnits/2",
+      "message": "Schema validation: {'type': 'Transform', 'source_object_name': 'Box', 'source_object_fileID': 6150933721197494150, 'delta_position': {'x': 0.5, 'y': -0.3, 'z': 0.0}, 'target_rotation': {'x': 0.0, 'y': 15.0, 'z': 0.0}, 'target_scale': {'x': 1.0, 'y': 1.0, 'z': 1.0}, 'triggerring_events': [], 'triggerred_events': [], 'triggerring_time': 0.5} is not valid under any of the given schemas"
+    },
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/5/actionUnits/4",
+      "message": "Schema validation: {'type': 'Transform', 'source_object_name': 'Magnet', 'source_object_fileID': 7541936462315295362, 'delta_position': {'x': 0.0, 'y': 1.5, 'z': 0.0}, 'target_rotation': {'x': 0.0, 'y': -90.0, 'z': 0.0}, 'target_scale': {'x': 1.0, 'y': 1.0123, 'z': 1.0}, 'triggerring_events': [], 'triggerred_events': [], 'triggerring_time': 0.3} is not valid under any of the given schemas"
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[0]/actionUnits[2]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 1026361730. This action is identical to the one at taskUnits[0]/actionUnits[1]. Consider removing the duplicate action."
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[0]/actionUnits[3]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 1026361730. This action is identical to the one at taskUnits[0]/actionUnits[1]. Consider removing the duplicate action."
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[2]/actionUnits[4]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 263574719. This action is identical to the one at taskUnits[2]/actionUnits[1]. Consider removing the duplicate action."
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[5]/actionUnits[3]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 7541936462315295362. This action is identical to the one at taskUnits[5]/actionUnits[1]. Consider removing the duplicate action."
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[0]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[1]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[1]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[2]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[2]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[3]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[3]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[4]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[4]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[5]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[5]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[6]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[6]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[7]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[7]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "WARN",
+      "type": "prefab_reference_suggestion",
+      "path": "taskUnits[1]/actionUnits[0]/source_object_fileID",
+      "message": "Use m_PrefabInstance fileID (6150933721197494150) for referencing this object instead of 3569975690511002028"
+    },
+    {
+      "level": "WARN",
+      "type": "prefab_reference_suggestion",
+      "path": "taskUnits[1]/actionUnits[1]/source_object_fileID",
+      "message": "Use m_PrefabInstance fileID (6150933721197494150) for referencing this object instead of 3569975690511002028"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[2]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 74831552 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[2]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 1248989243 not found in scene index"
+    },
+    {
+      "level": "WARN",
+      "type": "prefab_reference_suggestion",
+      "path": "taskUnits[1]/actionUnits[2]/source_object_fileID",
+      "message": "Use m_PrefabInstance fileID (6150933721197494150) for referencing this object instead of 3569975690511002028"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[3]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[3]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 203819839 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[4]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[4]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 531403574 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[5]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[5]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 898355187 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[6]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[6]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1147109801 not found in scene index"
+    },
+    {
+      "level": "WARN",
+      "type": "prefab_reference_suggestion",
+      "path": "taskUnits[1]/actionUnits[7]/source_object_fileID",
+      "message": "Use m_PrefabInstance fileID (6150933721197494150) for referencing this object instead of 49734231"
+    },
+    {
+      "level": "WARN",
+      "type": "prefab_reference_suggestion",
+      "path": "taskUnits[1]/actionUnits[8]/source_object_fileID",
+      "message": "Use m_PrefabInstance fileID (6150933721197494150) for referencing this object instead of 49734231"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[9]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 74831552 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[9]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 1248989243 not found in scene index"
+    },
+    {
+      "level": "WARN",
+      "type": "prefab_reference_suggestion",
+      "path": "taskUnits[1]/actionUnits[9]/source_object_fileID",
+      "message": "Use m_PrefabInstance fileID (6150933721197494150) for referencing this object instead of 49734231"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[10]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[10]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1124768097 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[11]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[11]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 988422739 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[12]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[12]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1793308541 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[1]/actionUnits[13]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[1]/actionUnits[13]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1320904625 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[2]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[2]/actionUnits[0]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[2]/actionUnits[1]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[2]/actionUnits[1]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[2]/actionUnits[2]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[2]/actionUnits[2]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[2]/actionUnits[3]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[2]/actionUnits[3]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[2]/actionUnits[4]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[2]/actionUnits[4]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[3]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[3]/actionUnits[0]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1963046888 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[3]/actionUnits[0]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1963046888 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[0]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 131723510 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[1]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 2085702217920827848 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[3]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[3]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1086352045 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[4]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[4]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 839586645 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[5]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[5]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1718703368 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[6]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 74831552 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 203819839 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[2]/script_fileID",
+      "message": "Script fileID 531403574 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[3]/script_fileID",
+      "message": "Script fileID 898355187 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[4]/script_fileID",
+      "message": "Script fileID 1147109801 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[5]/script_fileID",
+      "message": "Script fileID 1248989243 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[6]/script_fileID",
+      "message": "Script fileID 1124768097 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[6]/triggerring_events[0]/methodCallUnits[7]/script_fileID",
+      "message": "Script fileID 988422739 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[7]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[7]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 7541936460893253790 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[8]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[8]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[8]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[9]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[9]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[9]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[10]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[10]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[10]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[4]/actionUnits[11]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[11]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[11]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[11]/triggerring_events[0]/methodCallUnits[2]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[11]/triggerring_events[0]/methodCallUnits[3]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[11]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[4]/actionUnits[11]/triggerred_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[5]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[1]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[1]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[1]/triggerring_events[0]/methodCallUnits[2]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[1]/triggerring_events[0]/methodCallUnits[3]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[1]/triggerring_events[0]/methodCallUnits[4]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[1]/triggerring_events[0]/methodCallUnits[5]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[1]/triggerring_events[0]/methodCallUnits[6]/script_fileID",
+      "message": "Script fileID 14 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[5]/actionUnits[2]/target_object_fileID",
+      "message": "Grab target must have a Rigidbody component"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[3]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[3]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[3]/triggerring_events[0]/methodCallUnits[2]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[3]/triggerring_events[0]/methodCallUnits[3]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[3]/triggerring_events[0]/methodCallUnits[4]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[3]/triggerring_events[0]/methodCallUnits[5]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[3]/triggerring_events[0]/methodCallUnits[6]/script_fileID",
+      "message": "Script fileID 14 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 14 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[2]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[3]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[4]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[5]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[6]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[7]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[8]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[9]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[5]/triggerring_events[0]/methodCallUnits[10]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[5]/actionUnits[6]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[6]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[6]/triggerring_events[1]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[6]/triggerring_events[2]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[6]/triggerring_events[3]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[5]/actionUnits[7]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[7]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[7]/triggerring_events[1]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[7]/triggerring_events[2]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[5]/actionUnits[7]/triggerring_events[3]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[6]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[6]/actionUnits[0]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1907113017 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[7]/actionUnits[0]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[7]/actionUnits[0]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1907113017 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[7]/actionUnits[1]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[7]/actionUnits[1]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 692630298 not found in scene index"
+    }
+  ]
+}

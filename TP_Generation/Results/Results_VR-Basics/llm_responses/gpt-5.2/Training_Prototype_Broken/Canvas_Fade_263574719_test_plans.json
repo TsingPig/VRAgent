@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 263574719,
+          "condition": "Manual call to start fade-in. Scene: Training_Prototype_Broken.unity. GameObject Canvas_Fade (fileID 263574719) has MonoBehaviour FadeCanvas (component id 263574720, script guid 969b8e08cffa4e44681eb600a8dfc099) with defaultDuration=1.0. No UnityEvent m_Calls present, so trigger manually. This short duration ensures the next call interrupts, covering StopAllCoroutines.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 263574719,
+          "condition": "Interrupt ongoing fade and perform a full default-duration fade-out to completion. Verifies StopAllCoroutines and FadeOut coroutine behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Quick fade-in using quickFadeDuration (0.25s) to verify accelerated FadeIn path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Quick fade-out using quickFadeDuration (0.25s) to verify accelerated FadeOut path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

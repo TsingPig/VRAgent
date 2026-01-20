@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "TabSimple",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 36,
+          "condition": "Manually open the tab to ensure page instantiation and fade-in transition. TabSimple has MonoBehaviour (fileID: 904, guid: c2bcf79fd38b2441fa17fde42cfce34d) = Tab with pagePrefab (guid: e749a5bf695bb464390eb1ffd27aba4f, fileID: 1905160441634000) and cachePage = false. UIFadeTransition is present (MonoBehaviour fileID: 903, guid: a4ab599ee1dbcea41b165ae5170d9f03) with durationSeconds = 0.25, transitionInDelaySeconds = 0.1875, transitionOutDelaySeconds = 0.0. This trigger ensures Tab.Open() runs SetOpen(true) -> EnablePage() -> IUITransition.TransitionIn(Page).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 904,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

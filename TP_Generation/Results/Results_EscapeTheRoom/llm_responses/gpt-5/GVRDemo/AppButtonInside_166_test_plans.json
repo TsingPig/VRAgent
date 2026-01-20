@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "AppButtonInside",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 166,
+          "condition": "GvrTooltip (script fileID 950, GUID 7c52851ea0de74a228fa29a84de008ba) is configured with location=3 (AppButtonInside), text=fileID 1015, alwaysVisible=false. We want to validate runtime behavior when the controller handedness and arm model update occur (GvrArmModel.Instance.OnArmModelUpdate) so the tooltip flips sides, updates rotation/alignment, and alpha follows tooltipAlphaValue. Since there is no Collider/Rigidbody/EventTrigger on this GameObject and no UnityEvents (m_Calls) are defined, we directly invoke available public no-parameter methods to exercise logic and retrieve state needed for assertions. Expected: IsTooltipInside() returns true for location=AppButtonInside; IsTooltipOnLeft() returns true when handedness is Right (inside) and false when handedness is Left (outside), and UI elements have rotations/alignment adjusted accordingly after OnArmModelUpdate.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

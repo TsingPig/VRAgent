@@ -1,0 +1,76 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade must be attached to Fireplace_Traditional and its teleportTrigger set to OnSelectEntered. Simulate XR Select Entered on the anchor (requires a Collider/XR Interactable present). Expected: FadeCanvas.QuickFadeIn() → wait for fadeCanvas.CurrentRoutine → base.OnSelectEntered(args) (teleport) → FadeCanvas.QuickFadeOut(). The MonoBehaviour component fileID for TeleportAnchorWithFade is needed to directly call public no-arg methods (none exposed in code) and to list any m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade.teleportTrigger set to OnSelectExited. Simulate XR Select Exited on the anchor (requires Collider/XR Interactable). Expected: FadeCanvas.QuickFadeIn() → wait → base.OnSelectExited(args) → FadeCanvas.QuickFadeOut(). Need TeleportAnchorWithFade MonoBehaviour fileID and any configured m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade.teleportTrigger set to OnActivated. Simulate XR Activated on the anchor (e.g., activation input while hovered/selected). Expected: FadeCanvas.QuickFadeIn() → wait → base.OnActivated(args) → FadeCanvas.QuickFadeOut(). Need TeleportAnchorWithFade MonoBehaviour fileID and any configured m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade.teleportTrigger set to OnDeactivated. Simulate XR Deactivated on the anchor. Expected: FadeCanvas.QuickFadeIn() → wait → base.OnDeactivated(args) → FadeCanvas.QuickFadeOut(). Need TeleportAnchorWithFade MonoBehaviour fileID and any configured m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1865680026,
+          "condition": "Objective: invoke PlayQuickSound.Play() to exercise randomized pitch and AudioSource.PlayOneShot path. Preconditions required by action policy: target must have a Collider or Rigidbody or EventTrigger, or the attached script inherits from UnityEngine.Events. Scene notes: Room_Modern is currently inactive (m_IsActive=0) and must be active to hear audio; an AudioSource with a valid AudioClip must exist (PlayQuickSound has [RequireComponent(typeof(AudioSource))]); OnValidate config (playOnAwake=false) is editor-time. Scene meta shows MonoBehaviour id 1865680029 (guid 474bcb49853aa07438625e644c072ee6) which corresponds to a URP data component (not PlayQuickSound). Another added component id 1865680030 exists in the prefab instance and is likely PlayQuickSound but its serialized block is not provided; please confirm. Expected behavior: PlayQuickSound.Play() sets audioSource.pitch to defaultPitch±randomPitchVariance, calls PlayOneShot(sound, volume), then restores pitch.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TV_FlatWallMounted",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 772053049,
+          "condition": "Goal: start video playback via the attached video controller. The scene shows MonoBehaviour id 725697786 on TV_FlatWallMounted with script guid 3d4642753971e264fbb20044fa231cd5 and fields {playAtStart: false, videoMaterial: (set), videoClips: (set)}. This MonoBehaviour block is the serialized settings for that script. Preconditions: the GameObject must have a Collider or EventTrigger (or explicit allowance) to satisfy Trigger action policy; object must be active; the assigned Material and VideoClip must be valid. Note: The provided source code snippet (URP UniversalAdditionalLightData) does not match this MonoBehaviour; please confirm method surface of guid 3d464275... (expected public no-arg method: Play). Expected: invoking Play begins playback on the assigned material using the first clip; if audio is present, it plays as well.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 725697786,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

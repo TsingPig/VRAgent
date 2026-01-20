@@ -1,0 +1,47 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1447047946,
+          "condition": "No MonoBehaviour, Collider, or EventTrigger components were provided for GameObject 'Room 1' (fileID: 1447047946). Has_Rigidbody is False, so Grab/Transform are not applicable. To define concrete triggerable events, please provide the attached MonoBehaviour components (including any m_Calls), Collider/EventTrigger details, and the exact child objects/components. Note: there is a mismatch between listed children ([393288642, 1132528187, 1075516727]) and those offered for follow-up ([393288641, 816818218, 1190662592]); please confirm which to use.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 86838640,
+          "condition": "DoorOpenScript (MonoBehaviour id: 8870310304005890639, script GUID: 5f8d06fe579502c4496842932d0afead) is attached to PrefabInstance 'collider_porte' (fileID: 86838640). Scene meta settings match the script: BoxCollider isTrigger=1 (id: 6650539076773276978); openTrigger=true; myDoor is assigned via prefab modification to Animator (fileID: 1075516723). To cover OnTriggerEnter, a colliding object tagged 'Objet1' with a Rigidbody and a SnapToTrigger component must enter this trigger (since collider_porte has no Rigidbody). Expected behavior on trigger: SnapToTrigger.Snap(transform.position) is called on the other object, myDoor.Play('DoorOpen', 0, 0.0f) executes, collider_porte is set inactive, and openTrigger becomes false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle1",
+          "source_object_fileID": 816818218,
+          "delta_position": {
+            "x": -3.2058982,
+            "y": 4.62070258,
+            "z": -20.76899
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        }
+      ]
+    }
+  ]
+}

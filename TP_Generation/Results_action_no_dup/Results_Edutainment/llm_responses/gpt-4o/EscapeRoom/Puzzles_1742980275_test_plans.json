@@ -1,0 +1,2223 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -5.829,
+            "y": 3.177,
+            "z": 0.265
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 5.829,
+            "y": -3.177,
+            "z": -0.265
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -5.829,
+            "y": 3.177,
+            "z": 0.265
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 5.829,
+            "y": -3.177,
+            "z": -0.265
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collider",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 948828962,
+          "condition": "Verify UnityEvent wiring and fallback invocation: MonoBehaviour id 948828964 (script guid 7401fcbb2352a5d4aa45b4e4cd766f3f, class ButtonVR) is enabled on GameObject 948828962 with BoxCollider id 948828967 set m_IsTrigger=1 and Rigidbody present. ButtonVR.OnTriggerEnter invokes onPress when other.CompareTag('hand'). Scene meta shows onPress.m_PersistentCalls.m_Calls -> m_Target fileID 1250790196 (LoopManager, Assembly-CSharp), m_MethodName 'ButtonPressed'. This manual trigger ensures LoopManager.ButtonPressed is covered even if the collision-based onPress is not fired.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 169359321,
+          "condition": "MonoBehaviour id 169359324 (m_Script guid d84ff1f9c82018d42a92710dbf9695df, class FinalDoor) is enabled on GameObject Door 1 (fileID 169359321). BoxCollider id 169359323 isTrigger=1. Calling public method openFinalDoor() sets canOpen=true, enabling OnTriggerEnter to open the door via Animator.SetTrigger('DoorTrigger').",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 169359324,
+                  "method_name": "openFinalDoor",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -4.5808276,
+            "y": 1.2729114,
+            "z": 10.341747
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 4.5808276,
+            "y": -1.2729114,
+            "z": -10.341747
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -4.5698276,
+            "y": 1.2569114,
+            "z": 10.407747
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 4.5698276,
+            "y": -1.2569114,
+            "z": -10.407747
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1650952629,
+          "condition": "MonoBehaviour id 1650952632 (m_Script guid d84ff1f9c82018d42a92710dbf9695df, class FinalDoor) is enabled on GameObject Door 2 (fileID 1650952629). BoxCollider id 1650952631 isTrigger=1. Calling public method openFinalDoor() sets canOpen=true, enabling OnTriggerEnter to open the door via Animator.SetTrigger('DoorTrigger'). This matches the provided script settings and scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1650952632,
+                  "method_name": "openFinalDoor",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "inRoomTrigger",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 479130725,
+          "condition": "MonoBehaviour id 479130727 (m_Script guid f62a7ab4f006a5c4f8ff5342c43c441f, class inFinalRoom) is attached to GameObject inRoomTrigger (fileID 479130725). This component matches the provided script and has serialized refs finalDoor1=169359324 and finalDoor2=1650952632. BoxCollider id 479130728 on inRoomTrigger is enabled and set as trigger (m_IsTrigger=1). To invoke OnTriggerEnter(Collider), at least one overlapping collider must also have a Rigidbody. When another Rigidbody-equipped collider enters this trigger volume (center [-4.4896994, 1.2569114, 4.5767226], size [8.121811, 2.3221962, 8.575563] in local space), inFinalRoom.OnTriggerEnter should call FinalDoor.inside() on both referenced doors to achieve code coverage.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyPlacement",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 2046914205,
+          "condition": "MonoBehaviour id 2046914207 (m_Script guid f6ab5a15a9b2ab74b87810ad765cd14e, class keyMainScript) is attached to GameObject KeyPlacement (fileID 2046914205). This matches the provided script and scene meta: numKeys=0, numKeysWin=3, finalDoor1=169359324, finalDoor2=1650952632. Call IncrementKeys() once to cover increment path (<3).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyPlacement",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 2046914205,
+          "condition": "Second IncrementKeys() call to advance numKeys toward win threshold without reaching it yet, ensuring repeated path coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyPlacement",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 2046914205,
+          "condition": "Third IncrementKeys() call where numKeys >= 3. keyMainScript will invoke finalDoor1.openFinalDoor() and finalDoor2.openFinalDoor() via serialized refs (169359324, 1650952632). No need to manually trigger FinalDoor methods per redundancy policy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyPlacement",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 2046914205,
+          "condition": "Call DecrementKeys() to cover its code path (numKeys--). This method is public and parameterless on MonoBehaviour id 2046914207.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "inRoomTrigger",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 479130725,
+          "condition": "MonoBehaviour id 479130727 (m_Script guid f62a7ab4f006a5c4f8ff5342c43c441f, class inFinalRoom) is attached to GameObject inRoomTrigger (fileID 479130725). BoxCollider id 479130728 is enabled and set as trigger (isTrigger=1). OnTriggerEnter(Collider) should fire when any Rigidbody-equipped collider enters the trigger (center [-4.4896994,1.2569114,4.5767226], size [8.121811,2.3221962,8.575563]). When fired, it calls FinalDoor.inside() on finalDoor1=169359324 and finalDoor2=1650952632. Provide a Rigidbody collider (e.g., Player or a test proxy object) that overlaps this trigger to execute the event.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "MonoBehaviour id 761734090 (m_Script guid 60523e0647cc6ab43acc73cb266a32a7, XRSocketInteractor from XR Interaction Toolkit) is attached to GameObject KeyInteractor (fileID 761734088). This matches the scene meta settings including UnityEvent m_Calls. BoxCollider id 761734091 is enabled and set as trigger (isTrigger=1). To invoke Hover Enter, move a compatible XRGrabInteractable with a Rigidbody into the socket's trigger volume (local center [-0.0022576652, 0.0080369115, 0.057963055], size [0.1733942, 0.115717135, 0.14006805], scaled by Transform scale [3,3,3]). Expected m_HoverEntered UnityEvent calls: Renderer (fileID 649733117) set_material(Material guid ad064d44f785e514aaa0d1e986941ea2).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "With the XRGrabInteractable hovered, allow the socket to select it (Select Enter). This typically occurs when the interactable is released within the socket or auto-selected per XRSocketInteractor settings. Expected m_SelectEntered UnityEvent calls: Renderer (fileID 649733117) set_enabled(false) and keyMainScript.IncrementKeys() on MonoBehaviour id 2046914207 (KeyPlacement.keyMainScript; guid f6ab5a15a9b2ab74b87810ad765cd14e).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "Detach/remove the XRGrabInteractable from the socket to fire Select Exit (e.g., grab and pull it out). Expected m_SelectExited UnityEvent calls: Renderer (fileID 649733117) set_enabled(true) and keyMainScript.DecrementKeys() on MonoBehaviour id 2046914207.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "Fully move the XRGrabInteractable out of the socket trigger volume to invoke Hover Exit. Expected m_HoverExited UnityEvent calls: Renderer (fileID 649733117) set_material(Material guid 0e4f7656c164b9a41a9f6badd0bb76ca).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "MonoBehaviour id 2124835096 (m_Script guid 60523e0647cc6ab43acc73cb266a32a7, XRSocketInteractor from XR Interaction Toolkit) is attached to GameObject KeyInteractor (fileID 2124835094). This MonoBehaviour component matches the provided script note and is the exact settings in the scene meta. BoxCollider id 2124835097 is enabled and set as trigger (isTrigger=1). Trigger Hover Enter to invoke m_HoverEntered UnityEvent: Renderer (fileID 2103973645) set_material(Material guid ad064d44f785e514aaa0d1e986941ea2).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Trigger Select Enter event. According to scene meta, m_SelectEntered UnityEvent will call keyMainScript.IncrementKeys() on MonoBehaviour id 2046914207 (KeyPlacement.keyMainScript; m_Script guid f6ab5a15a9b2ab74b87810ad765cd14e) and Renderer (fileID 2103973645) set_enabled(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Repeat Select Enter to increment key count a second time via m_SelectEntered.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Third Select Enter to reach numKeys >= 3 in keyMainScript. As per the script and scene meta, this will internally invoke finalDoor1.openFinalDoor() (finalDoor1 fileID 169359324) and finalDoor2.openFinalDoor() (finalDoor2 fileID 1650952632).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Trigger Select Exit event. According to scene meta, m_SelectExited UnityEvent will call keyMainScript.DecrementKeys() on MonoBehaviour id 2046914207 and Renderer (fileID 2103973645) set_enabled(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Trigger Hover Exit to invoke m_HoverExited UnityEvent: Renderer (fileID 2103973645) set_material(Material guid 0e4f7656c164b9a41a9f6badd0bb76ca).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Validate and trigger Hover Enter on KeyInteractor (1). MonoBehaviour id 1243741904 (m_Script guid 60523e0647cc6ab43acc73cb266a32a7, XRSocketInteractor from XR Interaction Toolkit) is attached and matches the provided script meta; BoxCollider id 1243741905 is enabled and set as trigger. Scene meta m_HoverEntered UnityEvent will set Renderer (fileID 1134185475) material to guid ad064d44f785e514aaa0d1e986941ea2.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Trigger Select Enter on XRSocketInteractor (MonoBehaviour id 1243741904) to execute scene meta m_SelectEntered calls: Renderer (fileID 1134185475) set_enabled(false) and keyMainScript.IncrementKeys() on MonoBehaviour id 2046914207.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Trigger Select Exit on XRSocketInteractor (MonoBehaviour id 1243741904) to execute scene meta m_SelectExited calls: Renderer (fileID 1134185475) set_enabled(true) and keyMainScript.DecrementKeys() on MonoBehaviour id 2046914207.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Trigger Hover Exit on XRSocketInteractor (MonoBehaviour id 1243741904). Scene meta m_HoverExited UnityEvent will set Renderer (fileID 1134185475) material to guid 0e4f7656c164b9a41a9f6badd0bb76ca.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Exit Door",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 790247593,
+          "condition": "MonoBehaviour id 790247597 (m_Script guid 8b8ed8ba81bb325499339acba43c4747) matches the attached ExitDoor script on GameObject 'Exit Door'. This is the exact scene meta configuration for the script. BoxCollider id 790247595 is enabled and set as trigger (isTrigger=1), which allows collision-based events. Animator component (id 790247596) is present to receive 'DoorTrigger'. Manually call public method onFinish() to simulate puzzle completion and opening the door.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 790247597,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1844490001,
+          "condition": "MonoBehaviour id 1844490004 (m_Script guid a8a2c5194e4c1f1458096e7bee47220e) is the DoorAnimationEvent script attached to GameObject 'Door 1', matching the provided source code exactly. BoxCollider id 1844490003 is enabled and set as trigger (isTrigger=1). Animator component (id 1844490005) is present and will receive 'DoorTrigger'. To cover OnTriggerEnter -> openDoors(), move any Rigidbody-equipped collider into BoxCollider id 1844490003; expected: isOpened set true and Animator.SetTrigger('DoorTrigger').",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 1844490001,
+          "condition": "To cover OnTriggerExit -> Invoke('closeDoors', 0.5f) -> closeDoors(), move the same Rigidbody-equipped collider out of BoxCollider id 1844490003. Wait at least 0.5s for Invoke to fire. Expected: isOpened set false and Animator.SetTrigger('DoorTrigger') called again.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 749547995,
+          "condition": "MonoBehaviour id 749547997 (m_Script guid a8a2c5194e4c1f1458096e7bee47220e) is the DoorAnimationEvent script attached to GameObject 'Door 2' and matches the provided source code exactly. BoxCollider id 749547998 is enabled and set as trigger (isTrigger=1). Animator component (id 749547999) is present and will receive 'DoorTrigger'. To cover OnTriggerEnter -> openDoors(), move any Rigidbody-equipped collider into BoxCollider id 749547998; expected: isOpened set true and Animator.SetTrigger('DoorTrigger').",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 749547995,
+          "condition": "To cover OnTriggerExit -> Invoke('closeDoors', 0.5f) -> closeDoors(), move the same Rigidbody-equipped collider out of BoxCollider id 749547998. Wait at least 0.5s for Invoke to fire. Expected: isOpened set false and Animator.SetTrigger('DoorTrigger') called again.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Radio",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2098976992,
+          "condition": "Verification of scene-script mapping for coverage: MonoBehaviour id 5290013577585494280 uses script guid e7743a497fa10b243a30e955751b606f, which matches the provided Radio.cs (fields MusicSource=3511615826534819241, NoiseSource=8021206353088041301, MusicClips=[d51aefc06b28742469e421eef9a847f0, 5995d3fe9ccbef142ac8bae30f7ab246]). MonoBehaviour id 7841938074521669581 uses script guid 35ffe483d6934704b884767450fd49e5, matching XROffsetGrabbable.cs, with m_Colliders=[2938126190016180723] and typical XR grab settings. MonoBehaviour id 1445194649364556585 uses script guid 08be3c7158520c745b9ae61545518908, matching IndestructableObj.cs. BoxCollider id 2938126190016180723 is enabled (isTrigger=0). PrefabInstance id 2098976992 places Radio under OfficeProps. Has_Rigidbody=True on Radio. Note: Radio.Start() -> Tune() will execute automatically on scene load; the public methods VolumeChanged(DialInteractable) and TuningChanged(DialInteractable) require DialInteractable-driven events to be invoked for full coverage.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Radio",
+          "source_object_fileID": 2098976992,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.3,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Radio",
+          "source_object_fileID": 2098976992,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.2
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Radio",
+          "source_object_fileID": 2098976992,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.3,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1331476500,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 1331476503 uses script guid a8a2c5194e4c1f1458096e7bee47220e, matching DoorAnimationEvent.cs exactly (Start->Anim=GetComponent<Animator>(); OnTriggerEnter->openDoors(); OnTriggerExit->Invoke('closeDoors', 0.5f)). BoxCollider id 1331476502 is enabled and set as trigger (isTrigger=1). To cover OnTriggerEnter -> openDoors(), move any Rigidbody-equipped collider into the BoxCollider (id 1331476502) volume. Expected: isOpened set true and Animator.SetTrigger('DoorTrigger') called.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 1331476500,
+          "condition": "To cover OnTriggerExit -> Invoke('closeDoors', 0.5f) -> closeDoors(), move the same Rigidbody-equipped collider out of the BoxCollider (id 1331476502) volume. Wait at least 0.5s for Invoke to fire. Expected: isOpened set false and Animator.SetTrigger('DoorTrigger') called again.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1638207398,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 1638207401 uses script guid a8a2c5194e4c1f1458096e7bee47220e, matching DoorAnimationEvent.cs exactly (Start->Anim=GetComponent<Animator>(); OnTriggerEnter->openDoors(); OnTriggerExit->Invoke('closeDoors', 0.5f); closeDoors/openDoors toggle isOpened and call Animator.SetTrigger('DoorTrigger')). BoxCollider id 1638207400 is enabled and set as trigger (isTrigger=1). Animator component is present (component id 1638207402 in m_Component list). There are no UnityEvent m_Calls to fire automatically. To cover OnTriggerEnter -> openDoors(), move any Rigidbody-equipped collider into the BoxCollider (id 1638207400) volume. Expected: isOpened set true and Animator.SetTrigger('DoorTrigger') called.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 1638207398,
+          "condition": "To cover OnTriggerExit -> Invoke('closeDoors', 0.5f) -> closeDoors(), move the same Rigidbody-equipped collider out of the BoxCollider (id 1638207400) volume. Wait at least 0.5s for Invoke to fire. Expected: isOpened set false and Animator.SetTrigger('DoorTrigger') called again.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Final Puzzle",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1293205244,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 1293205246 uses script guid 4af55bd30b428f54db0aa458dc2cdfd9, matching finalPuzzle.cs exactly (fields firstPartText=960740010, secondPartText=546580977, code=832259078, pictures=420352728, blocks1=809540741, blocks2=538247018, blocks3=1974232861). Start() and Update() execute automatically at runtime. This GameObject has no Rigidbody/Collider/EventTrigger; the public interaction points are internal methods invoked by other puzzle pieces. Manual method invocation below simulates those child interactions to achieve code coverage across state changes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1293205246,
+                  "method_name": "incrementFirstPart",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1293205246,
+                  "method_name": "decrementFirstPart",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1293205246,
+                  "method_name": "incrementSecondPart",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1293205246,
+                  "method_name": "incrementSecondPart",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1293205246,
+                  "method_name": "incrementSecondPart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1293205246,
+                  "method_name": "decrementSecondPart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Keypad (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1315446518,
+          "condition": "MonoBehaviour id 1315446520 is KeyPadControll (m_Script guid 695ad83b06c34684fac24f392ff03680) attached to GameObject 'Keypad (1)'. Scene settings: correctCombination=1212, accessGranted=false. UnityEvent onCorrectCode has a persistent call targeting MonoBehaviour fileID 1489944610 of type 'Victory, Assembly-CSharp', invoking method 'onWin' with m_Mode=1 (void, no parameters), m_CallState=2 (Runtime). Start() and Update() run automatically; Update invokes onCorrectCode when accessGranted==true. Since CheckIfCorrect(int) requires a parameter and is not triggerable per action rules, we manually invoke the wired UnityEvent target to ensure event coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 195114625,
+          "condition": "MonoBehaviour id 195114628 maps to KeyFeedback (m_Script guid ffd4469d3349eb647afb29c196c0a1d4) attached to GameObject 'Button(1)'. Scene settings confirm: keySound=null, keyHit=false. BoxCollider id 195114629 isTrigger=true and Has_Rigidbody=true. KeyFeedback Start() and Update() execute automatically; Update requires keyHit==true to play audio and change color to green, then reset to original after colorReturnTime=0.1s. This trigger unit is included to explicitly document the scene-script mapping; no manual method invocations are possible because KeyFeedback exposes no public parameterless methods.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Button(1)",
+          "source_object_fileID": 195114625,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(1)",
+          "source_object_fileID": 195114625,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.1,
+            "y": 0.5,
+            "z": 0.15
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1362274088,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 1362274091 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(2)'. Settings: keySound=null, keyHit=false. Components present: Has_Rigidbody=true and BoxCollider id 1362274092 (isTrigger=true). KeyFeedback exposes no public parameterless methods; Start() and Update() run automatically.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Button(2)",
+          "source_object_fileID": 1362274088,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(2)",
+          "source_object_fileID": 1362274088,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.1,
+            "y": 0.5,
+            "z": 0.15
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 294570348,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 294570351 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(3)'. Settings: keySound=null, keyHit=false. Components present: Has_Rigidbody=true and BoxCollider id 294570352 (isTrigger=true). KeyFeedback exposes no public parameterless methods; Start() and Update() run automatically.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Button(3)",
+          "source_object_fileID": 294570348,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(3)",
+          "source_object_fileID": 294570348,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.1,
+            "y": 0.5,
+            "z": 0.15
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 691591083,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 691591086 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(4)'. Settings match: keySound=null, keyHit=false. Components present: Has_Rigidbody=true and BoxCollider id 691591087 (isTrigger=true). This component has no UnityEvent m_Calls; Start() and Update() run automatically. Manual method triggering is not available because KeyFeedback exposes no public parameterless methods.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Button(4)",
+          "source_object_fileID": 691591083,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(4)",
+          "source_object_fileID": 691591083,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 851985417,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 851985420 uses script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(5)'. Settings: keySound=null, keyHit=false. Components present: Has_Rigidbody=true and BoxCollider id 851985421 (isTrigger=true). No UnityEvent m_Calls found; KeyFeedback exposes no public parameterless methods. Lifecycle Start/Update will run automatically.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Button(5)",
+          "source_object_fileID": 851985417,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(5)",
+          "source_object_fileID": 851985417,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(6)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2087223067,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 2087223070 is the exact settings instance for script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(6)'. Settings: keySound=null, keyHit=false. Components present: Has_Rigidbody=true and BoxCollider id 2087223071 (isTrigger=true). No UnityEvent m_Calls listed for this GameObject; KeyFeedback exposes no public parameterless methods. Start() and Update() will execute automatically.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Button(6)",
+          "source_object_fileID": 2087223067,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(6)",
+          "source_object_fileID": 2087223067,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(7)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2122760608,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 2122760611 is the exact settings instance for script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(7)'. Fields: keySound=fileID 0 (null), keyHit=false. Components: Has_Rigidbody=true, BoxCollider id 2122760612 (isTrigger=true). No UnityEvent m_Calls present on this GameObject; KeyFeedback exposes no public parameterless methods to trigger manually. Lifecycle methods Start() and Update() will execute automatically.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Button(7)",
+          "source_object_fileID": 2122760608,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(7)",
+          "source_object_fileID": 2122760608,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(8)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1249007308,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 1249007311 is the exact settings instance for script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(8)'. Fields: keySound=fileID 0 (null), keyHit=false. Components: Has_Rigidbody=true (component id 1249007310), BoxCollider id 1249007312 (isTrigger=true). No UnityEvent m_Calls present on this GameObject; KeyFeedback exposes no public parameterless methods to trigger manually. Lifecycle methods Start() and Update() execute automatically. To exercise Update branches fully, keyHit must be set true by another component (e.g., an interaction script on parent 'Base' or an EventTrigger) upon press.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(8)",
+          "source_object_fileID": 1249007308,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(8)",
+          "source_object_fileID": 1249007308,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(9)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 571652021,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 571652024 is the exact settings instance for script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(9)'. Fields: keySound=fileID 0 (null), keyHit=false. Components: Has_Rigidbody=true (component id 571652023), BoxCollider id 571652025 (isTrigger=true). KeyFeedback exposes no public parameterless methods; its Start/Update run automatically. To cover Update branches, keyHit must be set true by another component during press.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 571652021,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 571652021,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtoConfirm",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1619357597,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 1619357600 is the exact settings instance for script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'ButtoConfirm'. Fields: keySound=fileID 0 (null), keyHit=false. Components present: Rigidbody (component id 1619357599) and BoxCollider id 1619357601 (isTrigger=true). No UnityEvent m_Calls on this GameObject; KeyFeedback exposes no public parameterless methods to call. Start() and Update() run automatically; keyHit must be toggled by another interaction script to exercise Update branches.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1619357597,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1619357597,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(0)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 354067704,
+          "condition": "Scene-script mapping verification: MonoBehaviour id 354067707 is the exact settings instance for script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'Button(0)'. Fields: keySound=fileID 0 (null), keyHit=false. Components: Has_Rigidbody=true (component id 354067706), BoxCollider id 354067708 (isTrigger=true). KeyFeedback declares no public parameterless methods; Start() and Update() execute automatically. To fully cover Update branches (color change and reset), keyHit must be set true by another interaction script or event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 354067704,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 354067704,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonBack",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 951466313,
+          "condition": "Verification of scene-script mapping: MonoBehaviour id 951466316 is the exact instance of script guid ffd4469d3349eb647afb29c196c0a1d4 (KeyFeedback) attached to GameObject 'ButtonBack'. Serialized fields: keySound=fileID 0 (null), keyHit=false. Components present: Has_Rigidbody=true, BoxCollider id 951466317 with m_IsTrigger=true. KeyFeedback exposes no public parameterless methods; Start() and Update() run automatically. There are no UnityEvent m_Calls configured on this object. To cover the Update branch where audio plays and color turns green, another script must set keyHit=true at runtime.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 951466313,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.05
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 951466313,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.05
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1389924501,
+          "condition": "Scene-script mapping: MonoBehaviour id 1389924503 is XRSocketInteractor (guid 60523e0647cc6ab43acc73cb266a32a7) with SphereCollider id 1389924504 (isTrigger=1). It defines Interactable Events (m_Calls): m_SelectEntered -> target GameObject fileID 771622881 SetActive(false), and m_SelectExited -> target GameObject fileID 771622881 SetActive(true). MonoBehaviour id 1389924508 is finalPuzzleSockets (guid f85184c8ae0d47b4c853fe653d267e42) with linkedPuzzleManager=fileID 1293205246 and secondPartCorrect=fileID 2065480344; it subscribes to socket.selectEntered/selectExited in OnEnable. This action manually triggers the m_SelectEntered persistent calls to ensure they execute (even if m_StartingSelectedInteractable=1031835462 would auto-fire on load). Expected: child GameObject (771622881) is deactivated and finalPuzzleSockets receives the SelectEnter event, calling linkedPuzzleManager.incrementFirstPart() and, if the snapped object's name equals secondPartCorrect.name, incrementSecondPart().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1389924501,
+          "condition": "Manually trigger the m_SelectExited persistent calls on XRSocketInteractor (id 1389924503). Expected: child GameObject (fileID 771622881) SetActive(true). finalPuzzleSockets (id 1389924508) receives the SelectExit event and calls linkedPuzzleManager.decrementFirstPart(); if the removed object's name equals secondPartCorrect.name, decrementSecondPart() is also called.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 112350687,
+          "condition": "Scene-script mapping: MonoBehaviour id 112350689 is XRSocketInteractor (guid 60523e0647cc6ab43acc73cb266a32a7) attached to GameObject 'SocketInteractor Puzzle (1)' with SphereCollider id 112350690 (isTrigger=1). It defines Interactable Events (m_Calls): m_SelectEntered -> target GameObject fileID 470087499 SetActive(false). MonoBehaviour id 112350693 is finalPuzzleSockets (guid f85184c8ae0d47b4c853fe653d267e42) with linkedPuzzleManager=fileID 1293205246 and secondPartCorrect=fileID 395096718; it subscribes to socket.selectEntered/selectExited in OnEnable. This manual trigger ensures the m_SelectEntered persistent call executes even if m_StartingSelectedInteractable=1956010345 would auto-select on load; expected: GameObject 470087499 becomes inactive and finalPuzzleSockets.ObjectSnapped runs, calling linkedPuzzleManager.incrementFirstPart(); if the snapped interactable's transform.name equals secondPartCorrect.name, linkedPuzzleManager.incrementSecondPart() also runs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 112350687,
+          "condition": "Manually trigger XRSocketInteractor (id 112350689) m_SelectExited persistent calls to cover exit branch. Expected: target GameObject fileID 470087499 SetActive(true). finalPuzzleSockets.ObjectRemoved runs, calling linkedPuzzleManager.decrementFirstPart(); if the removed interactable's transform.name equals secondPartCorrect.name, linkedPuzzleManager.decrementSecondPart() also runs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1308749550,
+          "condition": "Scene-script mapping: MonoBehaviour id 1308749552 is XRSocketInteractor (guid 60523e0647cc6ab43acc73cb266a32a7) attached to GameObject 'SocketInteractor Puzzle (2)' with SphereCollider id 1308749553 (isTrigger=1). It defines Interactable Events (m_Calls): m_SelectEntered -> target GameObject fileID 1158155568 SetActive(false). MonoBehaviour id 1308749556 is finalPuzzleSockets (guid f85184c8ae0d47b4c853fe653d267e42) attached to the same GameObject with linkedPuzzleManager=fileID 1293205246 and secondPartCorrect=fileID 304295; it subscribes to socket.selectEntered/selectExited in OnEnable. This manual trigger ensures the m_SelectEntered persistent call executes (even if m_StartingSelectedInteractable=1557924605 would auto-select on load). Expected: GameObject 1158155568 becomes inactive and finalPuzzleSockets.ObjectSnapped runs, calling linkedPuzzleManager.incrementFirstPart(); if the snapped interactable's transform.name equals secondPartCorrect.name, linkedPuzzleManager.incrementSecondPart() also runs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1308749550,
+          "condition": "Manually trigger XRSocketInteractor (id 1308749552) m_SelectExited persistent calls to cover exit events. Expected: target GameObject fileID 1158155568 SetActive(true). finalPuzzleSockets.ObjectRemoved runs, calling linkedPuzzleManager.decrementFirstPart(); if the removed interactable's transform.name equals secondPartCorrect.name, linkedPuzzleManager.decrementSecondPart() also runs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LoopTask (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1250790195,
+          "condition": "Script-to-scene mapping: MonoBehaviour id 1250790196 uses m_Script guid db10f7dcf4a9fa34393c045abf6dc5e4, which corresponds to class LoopManager (public MonoBehaviour). Serialized references: key -> GameObject fileID 1552249130; spotlight -> GameObject fileID 1073180116. Default serialized states: outsideState=0, insideState=0. Start() deactivates key and spotlight. Triggering ButtonPressed() (public, no parameters) is supported and should keep key and spotlight inactive when both states are 0. This verifies the baseline path when no outside/inside states are set.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LoopTask (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1250790195,
+          "condition": "Scene-script mapping: MonoBehaviour id 1250790196 (m_Script guid db10f7dcf4a9fa34393c045abf6dc5e4) corresponds to LoopManager attached to GameObject 'LoopTask (1)'. Serialized refs: key -> fileID 1552249130, spotlight -> fileID 1073180116. Defaults: outsideState=0, insideState=0. Start() disables key and spotlight. Trigger ButtonPressed() to cover baseline branch (outsideState==0). Note: OutsideInteractor (MonoBehaviour id 284814594, guid 7189e63893dfee949ac2c5b5586b96f6, script OutsidePiece) is linked via linkedLoopManager=fileID 1250790196 and will set LoopManager.outsideState via XRSocketInteractor selectEntered/selectExited events, but those require interactable pieces whilePiece (fileID 1647075877), ifTruePiece (fileID 298341144), ifFalsePiece (fileID 2044387484) and the XRSocketInteractor component details to simulate snapping.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 284814592,
+          "condition": "Scene-script mapping: MonoBehaviour id 284814594 (guid 7189e63893dfee949ac2c5b5586b96f6) corresponds to script OutsidePiece on GameObject 'OutsideInteractor' (fileID 284814592). Serialized refs: linkedLoopManager -> MonoBehaviour 1250790196 (LoopManager), whilePiece -> Transform 1647075877, ifTruePiece -> Transform 298341144, ifFalsePiece -> Transform 2044387484. BoxCollider id 284814595 (isTrigger=1). Simulate XRSocketInteractor.selectEntered with snapped object name == whilePiece.name to execute linkedLoopManager.outsideWhile().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1255358095,
+          "condition": "Scene-script mapping: MonoBehaviour id 1255358097 (guid 09e1d40b94abab04491e2d8d5f63c2e4) corresponds to script InsidePiece on GameObject 'InsideInteractor' (fileID 1255358095) with linkedLoopManager -> 1250790196 (LoopManager), keyPiece -> Transform 938973848, lightPiece -> Transform 799863783, nothingPiece -> Transform 1338170482. XRSocketInteractor MonoBehaviour id 1255358099 (guid 60523e0647cc6ab43acc73cb266a32a7) defines m_SelectEntered persistent call toggling Renderer 1477313655 enabled=false. Simulate XRSocketInteractor.selectEntered with snapped object name == keyPiece.name to execute linkedLoopManager.insideKey() and fire m_SelectEntered.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LoopTask (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1250790195,
+          "condition": "MonoBehaviour id 1250790196 (guid db10f7dcf4a9fa34393c045abf6dc5e4) corresponds to LoopManager on 'LoopTask (1)'. With outsideState set to 1 (outsideWhile) and insideState set to 1 (insideKey) via prior triggers, pressing ButtonPressed() should SetActive(true) on 'key' (fileID 1552249130) and keep 'spotlight' (fileID 1073180116) false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate XRSocketInteractor.selectExited to trigger InsidePiece.ObjectRemoved -> linkedLoopManager.insideRemoved(). Also fires XRSocketInteractor m_SelectExited persistent call setting Renderer 1477313655 enabled=true.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 284814592,
+          "condition": "Simulate XRSocketInteractor.selectEntered with snapped object name == ifTruePiece.name to execute linkedLoopManager.outsideIf() (outsideState=2).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate XRSocketInteractor.selectEntered with snapped object name == lightPiece.name to execute linkedLoopManager.insideLight() (insideState=2). Also fires XRSocketInteractor m_SelectEntered persistent call setting Renderer 1477313655 enabled=false.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LoopTask (1)",
+          "triggerring_time": 1.2,
+          "source_object_fileID": 1250790195,
+          "condition": "With outsideState=2 (outsideIf) and insideState=2 (insideLight), ButtonPressed() should SetActive(true) on spotlight (fileID 1073180116) briefly and then auto-disable after ~1s via Update() (showShort timer). Key remains inactive.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 284814592,
+          "condition": "Simulate XRSocketInteractor.selectExited to trigger OutsidePiece.ObjectRemoved -> linkedLoopManager.outsideRemoved() (outsideState=0).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1255358095,
+          "condition": "Trigger XRSocketInteractor m_HoverEntered persistent call on InsideInteractor (id 1255358099): GameObject fileID 1477313653 SetActive(false). Validates hover-enter event wiring.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1255358095,
+          "condition": "Trigger XRSocketInteractor m_HoverExited persistent call on InsideInteractor (id 1255358099): GameObject fileID 1477313653 SetActive(true). Validates hover-exit event wiring.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 684269935,
+          "condition": "Trigger XRSocketInteractor HoverEntered on MonoBehaviour_1 (id: 684269939, guid: 60523e0647cc6ab43acc73cb266a32a7) attached to GameObject OutsideInteractor (fileID: 684269935). This component is the exact scene settings for XRSocketInteractor. BoxCollider (id: 684269938, m_IsTrigger: 1) allows interaction. Expect m_HoverEntered.m_PersistentCalls.m_Calls to invoke GameObject(fileID: 1928956107).SetActive(false). Also confirm IfPuzzle MonoBehaviour_0 (id: 684269937, guid: a4fe0afa74eee4b4d9b3c22a64e1dc6b) is configured with correctPiece(fileID: 2134952222) and linkedIfManager(fileID: 1643180049) as per scene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 684269935,
+          "condition": "Trigger XRSocketInteractor HoverExited on MonoBehaviour_1 (id: 684269939, guid: 60523e0647cc6ab43acc73cb266a32a7). Expect m_HoverExited.m_PersistentCalls.m_Calls to invoke GameObject(fileID: 1928956107).SetActive(true). Scene MonoBehaviour components match the attached scripts and serialized settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 684269935,
+          "condition": "Trigger XRSocketInteractor SelectEntered on MonoBehaviour_1 (id: 684269939). This should simulate snapping an interactable into the socket. If the snapped interactableObject.transform.name equals correctPiece(name of Transform fileID: 2134952222 from IfPuzzle MonoBehaviour_0 id: 684269937), then IfPuzzle.ObjectSnapped will cause linkedIfManager(fileID: 1643180049) to run correctPiece(). Independently, m_SelectEntered.m_PersistentCalls.m_Calls will invoke GameObject(fileID: 1928956107).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 684269935,
+          "condition": "Trigger XRSocketInteractor SelectExited on MonoBehaviour_1 (id: 684269939). This should simulate removing the interactable from the socket. IfPuzzle.ObjectRemoved will cause linkedIfManager(fileID: 1643180049) to run removedPiece(). Independently, m_SelectExited.m_PersistentCalls.m_Calls will invoke GameObject(fileID: 1928956107).SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Keypad",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1060933183,
+          "condition": "Manually trigger the serialized UnityEvent onCorrectCode defined in MonoBehaviour_0 (id: 1060933185, guid: 695ad83b06c34684fac24f392ff03680) on GameObject Keypad (fileID: 1060933183). This MonoBehaviour is the exact scene settings for script KeyPadControll. Since CheckIfCorrect(int) cannot be called via Trigger (requires parameter) and there is no Rigidbody/Collider-driven automatic path, invoke the onCorrectCode persistent calls to validate that GameObject(fileID: 822093423).SetActive(true) is executed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(1)",
+          "source_object_fileID": 899989818,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(1)",
+          "source_object_fileID": 899989818,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 899989818,
+          "condition": "Confirm scene MonoBehaviour_0 (id: 899989824, guid: ffd4469d3349eb647afb29c196c0a1d4) is the exact settings for the attached KeyFeedback script on GameObject Button(1) (fileID: 899989818). BoxCollider (id: 899989820, m_IsTrigger: 1) present, Rigidbody present. No UnityEvent m_Calls are serialized on this object; KeyFeedback relies on the keyHit flag to drive audio/color in Update.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(2)",
+          "source_object_fileID": 439296336,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(2)",
+          "source_object_fileID": 439296336,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 439296336,
+          "condition": "Confirm MonoBehaviour_0 (id: 439296342, guid: ffd4469d3349eb647afb29c196c0a1d4) on GameObject Button(2) is the exact scene settings for script KeyFeedback. Rigidbody present (Has_Rigidbody: True) and BoxCollider (id: 439296338, m_IsTrigger: 1) enable interaction. No UnityEvent m_Calls exist on this object; KeyFeedback behavior is driven by the keyHit flag in Update, which must be set by another script when the button is pressed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(3)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 847153210,
+          "condition": "Verification step only: MonoBehaviour_0 (id: 847153216) on GameObject Button(3) references script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. BoxCollider (id: 847153212) m_IsTrigger=1, and Has_Rigidbody=True, enabling physical interaction. No UnityEvent m_Calls present on this component; KeyFeedback exposes no public no-arg methods to call directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(3)",
+          "source_object_fileID": 847153210,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(3)",
+          "source_object_fileID": 847153210,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(4)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 2087223367,
+          "condition": "Verification: MonoBehaviour_0 (id: 2087223373) on GameObject Button(4) is configured for script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider setup: BoxCollider (id: 2087223369) m_IsTrigger=1; Has_Rigidbody=True. No UnityEvent m_Calls listed; KeyFeedback exposes no public no-arg methods, so direct method triggering is not applicable.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(4)",
+          "source_object_fileID": 2087223367,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(4)",
+          "source_object_fileID": 2087223367,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(5)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 1866858432,
+          "condition": "Verification: MonoBehaviour_0 (id: 1866858438) on GameObject Button(5) is configured for script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider setup: BoxCollider (id: 1866858434) m_IsTrigger=1; Has_Rigidbody=True. No UnityEvent m_Calls listed; KeyFeedback exposes no public no-arg methods, so direct method triggering is not applicable. Code coverage for KeyFeedback requires an external interaction to set keyHit=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(5)",
+          "source_object_fileID": 1866858432,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(5)",
+          "source_object_fileID": 1866858432,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(6)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 618725198,
+          "condition": "Verification: MonoBehaviour_0 (id: 618725204) on GameObject Button(6) is the exact scene setting for script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider setup: BoxCollider (id: 618725200) m_IsTrigger=1; Has_Rigidbody=True. No UnityEvent m_Calls listed and KeyFeedback exposes no public no-arg methods, so direct method triggering is not applicable; external logic must set keyHit=true to exercise audio/color feedback in Update.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(6)",
+          "source_object_fileID": 618725198,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(6)",
+          "source_object_fileID": 618725198,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(7)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 1462677196,
+          "condition": "Verification only: MonoBehaviour_0 (id: 1462677202) on GameObject 'Button(7)' corresponds to script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider present: BoxCollider id 1462677198 with m_IsTrigger=1. Has_Rigidbody=True. No UnityEvent m_Calls defined on this object. KeyFeedback exposes no public no-arg methods, so no direct Triggerable method.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(7)",
+          "source_object_fileID": 1462677196,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(7)",
+          "source_object_fileID": 1462677196,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(8)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 112515761,
+          "condition": "Verification: MonoBehaviour_0 (id: 112515767) on GameObject 'Button(8)' corresponds to script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider present: BoxCollider id 112515763 with m_IsTrigger=1; Has_Rigidbody=True. No UnityEvent m_Calls defined on this object. KeyFeedback exposes no public no-arg methods, so state changes must occur via external logic setting keyHit=true to exercise audio/color feedback in Update.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(8)",
+          "source_object_fileID": 112515761,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(8)",
+          "source_object_fileID": 112515761,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(9)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 543214147,
+          "condition": "Verification: MonoBehaviour_0 (id: 543214153) on GameObject 'Button(9)' matches script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields equal script expectations: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider present: BoxCollider id 543214149 with m_IsTrigger=1; Has_Rigidbody=True. KeyFeedback has no public no-arg methods; Start/Update run automatically. No UnityEvent m_Calls specified on this object.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 543214147,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 543214147,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtoConfirm",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 1312058130,
+          "condition": "Verification: MonoBehaviour_0 (id: 1312058133) on GameObject 'ButtoConfirm' corresponds to script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider present: BoxCollider id 1312058134 with m_IsTrigger=1; Has_Rigidbody=True. KeyFeedback exposes no public no-arg methods; Start/Update run automatically. No UnityEvent m_Calls specified on this object. To fully exercise Update branch that plays sound and turns green, some external logic must set keyHit=true.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1312058130,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1312058130,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(0)",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 61338475,
+          "condition": "Verification and mapping only: MonoBehaviour_0 (id: 61338478) on GameObject 'Button(0)' corresponds to script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID:0), public bool keyHit=false. Collider present: BoxCollider id 61338479 with m_IsTrigger=1; Has_Rigidbody=True. KeyFeedback exposes no public no-arg methods; Start/Update run automatically. No UnityEvent m_Calls specified on this object. Therefore, we rely on physics trigger/collision or external keypad logic to set keyHit=true during a press.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 61338475,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 61338475,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonBack",
+          "triggerring_time": 0.01,
+          "source_object_fileID": 291533635,
+          "condition": "Mapping verification: MonoBehaviour_0 (id: 291533638) on GameObject 'ButtonBack' corresponds to script guid ffd4469d3349eb647afb29c196c0a1d4 (class KeyFeedback). Scene fields match script: public AudioClip keySound (fileID: 0), public bool keyHit = false. Collider present: BoxCollider id 291533639 with m_IsTrigger = 1; Has_Rigidbody = True. KeyFeedback exposes no public no-arg methods; Start/Update execute automatically. No UnityEvent m_Calls specified; thus no manual event method invocations available on this object.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 291533635,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 291533635,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,583 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 30.0,
+            "y": 0.0,
+            "z": 30.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": -0.5,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": -1.5,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Confirm Attack state and attack cooldown. After the previous Transform places Enemy Type 5 within both sightRange and attackRange, EnemyAi.Update should auto-enter AttackPlayer(), set alreadyAttacked=true, play 'Gun Fire', instantiate projectile, and then Invoke ResetAttack() after timeBetweenAttacks (0.5s or 0.75s depending on attached component). This GameObject has multiple EnemyAi MonoBehaviours bound to the same script (GUID 16000b3396174ab49b4983590de64f34) with scene component IDs [614338935, 1888436447, 1640000274, 1646766445, 1673477538], which are the exact settings of the attached script in this scene.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": -3.15,
+            "y": -0.49,
+            "z": -5.83
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 8.0,
+            "y": 0.0,
+            "z": 8.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Verification note: Enemy Type 5 has five EnemyAi MonoBehaviours in-scene (component IDs: 614338935, 1888436447, 1640000274, 1646766445, 1673477538), all referencing the same script (GUID 16000b3396174ab49b4983590de64f34). These are the exact settings of the attached EnemyAi script per the provided scene meta. EnemyAi.Awake uses GameObject.Find(\"Camera Offset\") to set 'player' (object ID 4940586919770313183). We positioned the enemy near Camera Offset to satisfy sight/attack range checks if a player collider exists on layer 8 (whatIsPlayer = 256).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 10.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.75
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": -9.5,
+            "y": 0.0,
+            "z": -0.5
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Scene meta confirms five EnemyAi MonoBehaviours on this GameObject (IDs: 614338935, 1888436447, 1640000274, 1646766445, 1673477538) referencing script GUID 16000b3396174ab49b4983590de64f34 — these are the exact settings of the attached EnemyAi script. EnemyAi.Awake will Find(\"Camera Offset\") (GameObject ID 4940586919770313183) to set 'player'. Update will CheckSphere using whatIsPlayer=256 (Layer 8). When within sightRange/attackRange, AttackPlayer() should auto-execute, play 'Gun Fire', and Instantiate the projectile 'Laser' prefab (ID 6845118643277486568) at Attackpoint (fileID 2913934810850566424).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Reset Plane",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1648876974,
+          "condition": "MonoBehaviour (fileID 1648876975, guid 22172de818174a8b99ab08c2d6c3f0b2) is the Reset script attached to Reset Plane, configured with StartLocation (9.47, -6.6, -5.84). It handles OnCollisionEnter(Collision) and resets colliding object's position when the colliding GameObject tag is 'XRRig'. MeshCollider (fileID 1648876976) on Reset Plane is convex and m_IsTrigger=1. To actually invoke OnCollisionEnter, a non-trigger collision is required with at least one Rigidbody in the pair. Ensure a Rigidbody object tagged 'XRRig' collides with Reset Plane, or temporarily disable isTrigger on the MeshCollider for the test. Expected: coll.transform.position is set to StartLocation.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Reset Plane",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1648876974,
+          "condition": "MonoBehaviour (fileID 1648876975, guid 22172de818174a8b99ab08c2d6c3f0b2) is the Reset script attached to Reset Plane, configured with StartLocation (9.47, -6.6, -5.84). It handles OnCollisionEnter(Collision) and resets colliding object's position when the colliding GameObject tag is 'Weapon'. MeshCollider (fileID 1648876976) on Reset Plane is convex and m_IsTrigger=1. To actually invoke OnCollisionEnter, a non-trigger collision is required with at least one Rigidbody in the pair. Ensure a Rigidbody object tagged 'Weapon' collides with Reset Plane, or temporarily disable isTrigger on the MeshCollider for the test. Expected: coll.transform.position is set to StartLocation.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Gun",
+          "source_object_fileID": 299703487714392757,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.25,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (MonoBehaviour id: 1135932914521357561, guid: 0ad34abafad169848a38072baa96cdb2) m_Activated has persistent calls to Gun.TriggerPulled(args) and Gun.Shoot(). To simulate controller activation without XR input, directly invoke Gun.Shoot() (MonoBehaviour id: 8183513503680063775, guid: d01186f01818ef24ead588d87fd2fea5). Expect a round to spawn at GunPov, AudioManager.Play('Gun Fire'), remainingAmmunition to decrement, and fire rate gating (1.5/s).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Force test of reload path regardless of ammo state. Gun.Reload() is public and parameterless. Expect text.SetText('Reloading'), AudioManager.Play('Reload'), and after reloadTime=2.5s remainingAmmunition resets to ammunition=10 and ShootState returns to Ready. After waiting, attempt to Shoot once to verify reload success.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (MonoBehaviour id: 1135932914521357561, guid: 0ad34abafad169848a38072baa96cdb2) m_Activated has persistent calls to Gun.TriggerPulled(args) and Gun.Shoot(). To simulate controller activation without XR input, directly invoke Gun.Shoot() (MonoBehaviour id: 8183513503680063775, guid: d01186f01818ef24ead588d87fd2fea5). On success, prefab 'Laser' (prefab id: 6845118643277486568) is instantiated at GunPov with forward velocity roundSpeed=100, AudioManager.Play('Gun Fire') is called, remainingAmmunition decrements, and ShootState transitions to Shooting with nextShootTime=Time.time + 1/fireRate.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.75,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Validate fire-rate gating (fireRate=1.5 => ~0.667s between shots). After waiting >=0.667s, another Gun.Shoot() should succeed, instantiating another 'Laser' (prefab id: 6845118643277486568) and further decrementing remainingAmmunition.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Force test of reload path regardless of ammo state. Gun.Reload() is public and parameterless on MonoBehaviour id: 8183513503680063775. Expect text.SetText('Reloading') and AudioManager.Play('Reload'), then after reloadTime=2.5s remainingAmmunition resets to ammunition=10 and ShootState becomes Ready. After waiting, call Shoot once to verify reload success and instantiate 'Laser' (prefab id: 6845118643277486568).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Pause menu open test. MonoBehaviour component id 4460531382388078979 matches PauseMenu.PauseMenu (script guid 28d50a2d56ade1341ae8d933ebdfbe0c) on XR Rig. Serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538, RightTeleport=true, LeftTeleport=false. Expect Time.timeScale=0, rays ON, locomotion OFF, teleports OFF, Pausemenu active.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Show",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Pause menu close test. Same component (4460531382388078979). With RightTeleport=true and LeftTeleport=false, expect Time.timeScale=1, rays OFF, locomotion ON, TeleportManagzerRight ON, TeleportManagzerLeft OFF, Pausemenu inactive.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Hide",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Navigate to Main Menu. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(0) to be invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "MainMenu",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Restart current endless level. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(1) to be invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": -6.44,
+            "y": 6.66,
+            "z": 12.07
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": -0.5,
+            "y": 0.0,
+            "z": 1.5
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.4
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        }
+      ]
+    }
+  ]
+}

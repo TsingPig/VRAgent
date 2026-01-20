@@ -1,0 +1,20 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 6",
+          "triggerring_time": 12.0,
+          "source_object_fileID": 52425397,
+          "condition": "MonoBehaviour_0 (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) matches the provided Fire script exactly (fields: debug, isOn, timeToOnMin/Max, timeToOn, timeToOnDelta, shouldTurnOn, onNeighbors, maxNeighborDistance, downMultiplier, downNeighborDist, maxHitInterval, currentHitInterval, totalHitTime, currentHitTime, neighbors, onNeighborsThreshold, minNeighborDownDistance, mainEffectGo). This GameObject has a BoxCollider (no Rigidbody), so only Trigger actions are allowed. There are no UnityEvent m_Calls exposed and the Fire script exposes no public parameterless methods to invoke directly. To achieve coverage, we need external interactions: (A) Ignite path: ensure onNeighbors >= onNeighborsThreshold (2) via at least two neighbor Fire instances within maxNeighborDistance (4) and preferably one below this object by >= minNeighborDownDistance (3) to exercise downMultiplier (2). When shouldTurnOn becomes true, wait until timeToOn (Awake randomizes between timeToOnMin=40 and timeToOnMax=60; note the prefab override hints debug=1 and maxNeighborDistance=3.5 in PrefabInstance.m_Modifications, but the scene MonoBehaviour block shows debug=0 and maxNeighborDistance=4; please confirm which overrides apply). (B) Extinguish path: once isOn is true, repeatedly call Fire.WaterHit(Vector3 normal) from a water tool so that each hit occurs before maxHitInterval (2s) and total hit duration exceeds totalHitTime (5s) to force isOn=false and UpdateFireState(true). (C) Neighbor notify path: verify NotifyAllNeighbors/NotifyNeighborState propagate when this fire turns on/off. (D) Particle system path: mainEffectGo (fileID: 1849464941111748095) should Play when isOn=true and Stop when isOn=false. Note: m_PrefabInstance fileID for this object is not provided; using the GameObject fileID 52425397 as source_object_fileID as a fallback.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

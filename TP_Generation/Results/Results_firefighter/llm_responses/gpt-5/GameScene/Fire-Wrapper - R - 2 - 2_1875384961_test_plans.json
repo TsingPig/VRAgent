@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 2",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 1875384961,
+          "condition": "Automatic neighbor-driven ignition. MonoBehaviour_0 (script guid 1729fd01c90a64d5b8037e1eef0d000d, Fire) has isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2. Awake randomizes timeToOn in [40,60]. Update will set shouldTurnOn when onNeighbors >= 2 (via NotifyNeighborState/FindNeighbors from external controller). Expect UpdateFireState(true) to Play particles and notify neighbors when isOn flips to true within ~40-60s.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 2",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1875384961,
+          "condition": "Automatic water-driven extinguish. Fire implements IWaterInteractable.WaterHit(Vector3). With maxHitInterval=2 and totalHitTime=5, repeated WaterHit hits (interval < 2s) should accumulate currentHitTime until >=5 to turn fire off in Update, then UpdateFireState(true) should Stop particles and notify neighbors. Requires an external water system to call WaterHit each <2s; BoxCollider present for physical interaction.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

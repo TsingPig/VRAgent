@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 606197083,
+          "condition": "Invoke OnTriggerEnter on platform2 (2)'s BoxCollider (id: 606197088, isTrigger: true) by moving the Player (serialized reference fileID: 7425022) with a Collider (and preferably a Rigidbody) into the trigger volume. This tests AttachToElevator (MonoBehaviour id: 606197086) from script guid 077cb2d6a53b18f4ea7d76e72138fc77. Note: Script compares `gameObject == player`, so no parenting will occur unless the Player reference equals the platform itself; still, OnTriggerEnter should be invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 606197083,
+          "condition": "Invoke OnTriggerExit on platform2 (2)'s BoxCollider by moving the same Player (fileID: 7425022) collider out of the trigger volume after having entered. This tests the second path of AttachToElevator (MonoBehaviour id: 606197086). As above, due to the equality check `gameObject == player`, no unparenting will occur in practice unless misconfigured, but the callback should still run.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

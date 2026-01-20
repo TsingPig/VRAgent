@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1269087272,
+          "condition": "Simulate Player entering Elevator (1)'s trigger to invoke AttachToElevator.OnTriggerEnter. Scene binding: MonoBehaviour id=265568265 uses script guid=077cb2d6a53b18f4ea7d76e72138fc77 (AttachToElevator), player field fileID=7425022. Elevator (1) has BoxCollider id=265568267 with m_IsTrigger=1 and no Rigidbody (Has_Rigidbody=false); at least one of the colliders (likely Player) must have a Rigidbody for trigger callbacks to fire. Expected behavior: OnTriggerEnter is called; inside, code will only set parent if (gameObject == player), which likely fails unless the player reference points to the elevator itself.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1269087272,
+          "condition": "Simulate Player exiting Elevator (1)'s trigger to invoke AttachToElevator.OnTriggerExit. Same binding as above (MonoBehaviour id=265568265, script guid=077cb2d6a53b18f4ea7d76e72138fc77, player fileID=7425022). Elevator's BoxCollider id=265568267 is trigger; ensure one of the colliders has Rigidbody (likely Player). Expected behavior: OnTriggerExit is called; inside, code will only clear parent if (gameObject == player), which likely fails due to the same comparison issue.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

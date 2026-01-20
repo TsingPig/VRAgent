@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Stressed_Guy_No",
+          "triggerring_time": 26.0,
+          "source_object_fileID": 247034838,
+          "condition": "Object has BoxCollider (IsTrigger=0) so Trigger is allowed. Scene attaches two MonoBehaviours: SteamAudioSource (MonoBehaviour_0 id=112451389, guid=59c3684b22f00604a97bb68037fcf4cd) configured with distanceAttenuation=1 (PhysicsBased), airAbsorption=1; and FireBasedAudioManager (MonoBehaviour_1 id=112451392, guid=77f9a59041a2de446bf7704b5c31f103) with fireLimit=10 and timeInterval=25. FireBasedAudioManager sets shouldPlay=true on Awake, so its Update will auto-play AudioSource every 25s. This Trigger includes a no-arg public call on SteamAudioSource and waits >25s to allow automatic playback to occur.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 112451389,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,842 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the UnityVR App. One game object we want to test in the scene of 'scene.unity' is 'Models'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code attached to this gameobjects below.\n[Extracted JSON format of scene meta file] The scene file of 'scene.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Models' and its script. The 'fileID' of gameobject 'Models' is: 1472401654. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '1472401655'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Models'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '4294967295'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1472401655', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1472401654'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '-2.965833'}, {'y': '0.7302927'}, {'z': '-0.2810371'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': [{'fileID': '543585961'}, {'fileID': '1054453171'}, {'fileID': '906863101'}, {'fileID': '1897152828'}, {'fileID': '314358728'}, {'fileID': '1338054898'}, {'fileID': '496179851'}, {'fileID': '2021644563'}, {'fileID': '420433532'}, {'fileID': '776367065'}, {'fileID': '931862988'}, {'fileID': '366255994'}, {'fileID': '1873334409'}, {'fileID': '1367983642'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '3'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n          \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n          \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n          \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n          \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n          \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n          \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n            // 0 or more event units\n            {\n              \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                {\n                  \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n                  \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                  \"parameter_fileID\": []         // No need to fill. Must be empty.\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n              // 0 or more event units\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"<string>\",        // Target object name\n          \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n          \"delta_position\": {                     // Position delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_rotation\": {                     // Rotation delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_scale\": {                        // Scale delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n                // 0 or more event units\n                {\n                  \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                    {\n                      \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n                      \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                      \"parameter_fileID\": []         // No need to fill. Must be empty.\n                    }\n                  ]\n                }\n              ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n                    // 0 or more event units\n              ],\n          \"triggerring_time\": <float>                  // Duration of the action\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\nOR\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"<string>\",       // Name of the source object\n          \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n          \"target_position\": {                    // Target world position to which the object should be moved\n            \"x\": \"<float>\",\n            \"y\": \"<float>\",\n            \"z\": \"<float>\"\n          }\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n          \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n          \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n          \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n            // 0 or more event units\n            {\n              \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                {\n                  \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n                  \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                  \"parameter_fileID\": []         // No need to fill. Must be empty.\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n              // 0 or more event units\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"<string>\",        // Target object name\n          \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n          \"delta_position\": {                     // Position delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_rotation\": {                     // Rotation delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_scale\": {                        // Scale delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n                // 0 or more event units\n                {\n                  \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                    {\n                      \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n                      \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                      \"parameter_fileID\": []         // No need to fill. Must be empty.\n                    }\n                  ]\n                }\n              ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n                    // 0 or more event units\n              ],\n          \"triggerring_time\": <float>                  // Duration of the action\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['698430406 stripped', '759145566 stripped', '154554977 stripped', '1368283706'] to help formalize your test plans one by one. You can respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-23T16:45:22.943274",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-23T16:45:41.978113",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Unknown\": {fileID: 543585960}. The direct parent of this gameobject is \"Models\". We only present the child with attached script. And the Unknown gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class SpawnPaper : MonoBehaviour\n{\n    [SerializeField]\n    private AudioClip clip;\n\n    [SerializeField]\n    private GameObject paperToSpawn;\n\n    [SerializeField]\n    private GameObject position;\n\n    public void spawn()\n    {\n        StartCoroutine(ExecuteAfterTime(clip.length));\n    }\n\n    public IEnumerator ExecuteAfterTime(float time)\n    {\n        yield return new WaitForSeconds(time);\n        Instantiate(paperToSpawn, position.transform.position, position.transform.rotation);\n    }\n}\n \n'''\n[Source code of 1th script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class SoundPlayer : MonoBehaviour\n{\n    public AudioSource source;\n    public AudioClip sound;\n\n   public void PlaySound()\n    {\n        source.clip = sound;\n        source.Play();\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '100000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '543585960'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '543585960', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '1472401655'}]}, {'m_Modifications': [{'target': [{'fileID': '100000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_StaticEditorFlags'}, {'value': '4294967295'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '1.68'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '1.1157073'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '12.431'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '90'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '1.2641426'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '0.65395397'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '1.1947298'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': [{'fileID': '9500000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '543585961 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '400000'}, {'guid': 'd734e0f1e8152164f912667b484f1bb9'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '543585960'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '698430408', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '698430406'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'c3441e8102712e94eb08515cc7e18fb8'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'clip': [{'fileID': '8300000'}, {'guid': '5bf50410f355a654e91279204bd96587'}, {'type': '3'}]}, {'paperToSpawn': [{'fileID': '8817731074829524137'}, {'guid': 'feeb82124c9dec8439ba4b39352de7a2'}, {'type': '3'}]}, {'position': [{'fileID': '1038081565'}]}]}}, {'MonoBehaviour_1': {'id': '698430411', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '698430406'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '71e616354a0b0cd47a7526ce46ba3eaf'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'source': [{'fileID': '2093747358'}]}, {'sound': [{'fileID': '8300000'}, {'guid': '5bf50410f355a654e91279204bd96587'}, {'type': '3'}]}]}}]}\n'''\n\nThe following gameobjects ['8817731074829524137'] have Instantiate() logic detected in the source script of gameobject \"543585960\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"543585960\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"8817731074829524137\" GameObject Name: \"Paper\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '8817731074829524148'}]}, {'component': [{'fileID': '8817731074829524149'}]}, {'component': [{'fileID': '8817731074829524150'}]}, {'component': [{'fileID': '8817731074829524136'}]}, {'component': [{'fileID': '8817731074829524151'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Paper'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-23T16:45:42.014352",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "request_type": "gameobject_instantiate_logic_request",
+    "child_info": {
+      "child_id": "698430406 stripped",
+      "child_id_replace": "543585960",
+      "child_name": "Unknown",
+      "mono_comp_targets": [
+        {
+          "source": "698430406 stripped",
+          "source_replace": "543585960",
+          "target": "698430408",
+          "target_replace": "698430408",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "698430408",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "698430406"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "c3441e8102712e94eb08515cc7e18fb8"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "clip": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "5bf50410f355a654e91279204bd96587"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "paperToSpawn": [
+                  {
+                    "fileID": "8817731074829524137"
+                  },
+                  {
+                    "guid": "feeb82124c9dec8439ba4b39352de7a2"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "position": [
+                  {
+                    "fileID": "1038081565"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "c3441e8102712e94eb08515cc7e18fb8",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\subjects\\UnityVR-master\\UnityVR-master\\Assets\\Scripts\\SpawnPaper.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "698430406 stripped",
+          "source_replace": "543585960",
+          "target": "698430411",
+          "target_replace": "698430411",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "698430411",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "698430406"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "71e616354a0b0cd47a7526ce46ba3eaf"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "source": [
+                  {
+                    "fileID": "2093747358"
+                  }
+                ]
+              },
+              {
+                "sound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "5bf50410f355a654e91279204bd96587"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "71e616354a0b0cd47a7526ce46ba3eaf",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\subjects\\UnityVR-master\\UnityVR-master\\Assets\\Scripts\\SoundPlayer.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "1472401654",
+        "parent_name": "Models"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [
+        {
+          "source": "698430406 stripped",
+          "source_replace": "543585960",
+          "target": "8817731074829524137",
+          "target_replace": "8817731074829524137",
+          "target_gameobject_name": "Paper",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_instantiate_info": [
+      {
+        "source": "698430406 stripped",
+        "source_replace": "543585960",
+        "target": "8817731074829524137",
+        "target_replace": "8817731074829524137",
+        "target_gameobject_name": "Paper",
+        "edge_type": "Instantiate_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Unknown\",\n          \"triggerring_time\": 3.0,\n          \"source_object_fileID\": 543585960,\n          \"condition\": \"Invoke SoundPlayer.PlaySound then SpawnPaper.spawn on prefab instance (m_PrefabInstance fileID 543585960) under parent 'Models' to cover both scripts. MonoBehaviour_1 (id: 698430411) matches SoundPlayer{ source: fileID 2093747358, sound: guid 5bf50410f355a654e91279204bd96587 }. MonoBehaviour_0 (id: 698430408) matches SpawnPaper{ clip: guid 5bf50410f355a654e91279204bd96587, paperToSpawn: fileID 8817731074829524137 (prefab 'Paper'), position: fileID 1038081565 }. No UnityEvent m_Calls are defined in scene; methods must be called directly. Wait at least AudioClip.length before verifying instantiation.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 698430411,\n                  \"method_name\": \"PlaySound\",\n                  \"parameter_fileID\": []\n                },\n                {\n                  \"script_fileID\": 698430408,\n                  \"method_name\": \"spawn\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Paper\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 8817731074829524137,\n          \"condition\": \"Interact with the instantiated 'Paper' prefab (fileID 8817731074829524137) after it spawns to validate presence/activation and any Collider/EventTrigger-driven reactions. Requires that 'Paper' has a Collider or EventTrigger in the prefab to satisfy Trigger preconditions.\",\n          \"triggerring_events\": [],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-23T16:46:45.611945",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 543585960}. The direct parent of this gameobject is \"Models\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Unknown",
+              "triggerring_time": 3.0,
+              "source_object_fileID": 543585960,
+              "condition": "Invoke SoundPlayer.PlaySound then SpawnPaper.spawn on prefab instance (m_PrefabInstance fileID 543585960) under parent 'Models' to cover both scripts. MonoBehaviour_1 (id: 698430411) matches SoundPlayer{ source: fileID 2093747358, sound: guid 5bf50410f355a654e91279204bd96587 }. MonoBehaviour_0 (id: 698430408) matches SpawnPaper{ clip: guid 5bf50410f355a654e91279204bd96587, paperToSpawn: fileID 8817731074829524137 (prefab 'Paper'), position: fileID 1038081565 }. No UnityEvent m_Calls are defined in scene; methods must be called directly. Wait at least AudioClip.length before verifying instantiation.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 698430411,
+                      "method_name": "PlaySound",
+                      "parameter_fileID": []
+                    },
+                    {
+                      "script_fileID": 698430408,
+                      "method_name": "spawn",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Paper",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 8817731074829524137,
+              "condition": "Interact with the instantiated 'Paper' prefab (fileID 8817731074829524137) after it spawns to validate presence/activation and any Collider/EventTrigger-driven reactions. Requires that 'Paper' has a Collider or EventTrigger in the prefab to satisfy Trigger preconditions.",
+              "triggerring_events": [],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Unknown\": {fileID: 1054453170}. The direct parent of this gameobject is \"Models\". We only present the child with attached script. And the Unknown gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.UI;\n\npublic class RunPC : MonoBehaviour\n{\n    public GameObject canvas;\n    private bool Isvisible = false;\n\n    public AudioSource source;\n    [SerializeField]\n    private AudioClip StartSound;\n    [SerializeField]\n    private AudioClip EndSound;\n\n    public void TogglePC()\n    {\n        if (!Isvisible)\n        {\n            StartPC();\n        }\n        else\n        {\n            ShutDownPC();\n        }\n    }\n\n    private void StartPC()\n    {\n        canvas.SetActive(true);\n        source.clip = StartSound;\n        source.Play();\n        Isvisible = true;\n    }\n\n    private void ShutDownPC()\n    {\n        canvas.SetActive(false);\n        source.clip = EndSound;\n        source.Play();\n        Isvisible = false;\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '100000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1054453170'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1054453170', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '1472401655'}]}, {'m_Modifications': [{'target': [{'fileID': '100000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_StaticEditorFlags'}, {'value': '4294967295'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '5.61'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '1.6967074'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '12.941'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '180'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '1.3794155'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '1.3794153'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '1.3794153'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': [{'fileID': '9500000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1054453171 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '400000'}, {'guid': '92f18712826840f4bb15ca76d3f7d765'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1054453170'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '759145567', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '759145566'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'd40707984c8c8654a8e7422e0d85449f'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'canvas': [{'fileID': '1480975538'}]}, {'source': [{'fileID': '1768927072'}]}, {'StartSound': [{'fileID': '8300000'}, {'guid': 'c7ed05b156a403a42b5d91316854e42d'}, {'type': '3'}]}, {'EndSound': [{'fileID': '8300000'}, {'guid': '33e37c2c5603b534a84188086a3b9147'}, {'type': '3'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-23T16:46:45.639594",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 543585960}. The direct parent of this gameobject is \"Models\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "759145566 stripped",
+      "child_id_replace": "1054453170",
+      "child_name": "Unknown",
+      "mono_comp_targets": [
+        {
+          "source": "759145566 stripped",
+          "source_replace": "1054453170",
+          "target": "759145567",
+          "target_replace": "759145567",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "759145567",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "759145566"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "d40707984c8c8654a8e7422e0d85449f"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "canvas": [
+                  {
+                    "fileID": "1480975538"
+                  }
+                ]
+              },
+              {
+                "source": [
+                  {
+                    "fileID": "1768927072"
+                  }
+                ]
+              },
+              {
+                "StartSound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "c7ed05b156a403a42b5d91316854e42d"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "EndSound": [
+                  {
+                    "fileID": "8300000"
+                  },
+                  {
+                    "guid": "33e37c2c5603b534a84188086a3b9147"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "d40707984c8c8654a8e7422e0d85449f",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\subjects\\UnityVR-master\\UnityVR-master\\Assets\\Scripts\\RunPC.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "1472401654",
+        "parent_name": "Models"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Unknown\",\n          \"triggerring_time\": 1.5,\n          \"source_object_fileID\": 1054453170,\n          \"condition\": \"Call RunPC.TogglePC twice to cover both StartPC() and ShutDownPC() branches. MonoBehaviour_0 (id: 759145567) in scene maps to script RunPC with fields: canvas=fileID 1480975538, source=fileID 1768927072, StartSound=guid c7ed05b156a403a42b5d91316854e42d, EndSound=guid 33e37c2c5603b534a84188086a3b9147. No UnityEvent m_Calls present; invoke public methods directly on prefab instance (m_PrefabInstance fileID 1054453170) under parent 'Models'. Wait to allow audio state to update before toggling off.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 759145567,\n                  \"method_name\": \"TogglePC\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 759145567,\n                  \"method_name\": \"TogglePC\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-23T16:47:10.906978",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 543585960}. The direct parent of this gameobject is \"Models\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 1054453170}. The direct parent of this gameobject is \"Models\". W..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Unknown",
+              "triggerring_time": 1.5,
+              "source_object_fileID": 1054453170,
+              "condition": "Call RunPC.TogglePC twice to cover both StartPC() and ShutDownPC() branches. MonoBehaviour_0 (id: 759145567) in scene maps to script RunPC with fields: canvas=fileID 1480975538, source=fileID 1768927072, StartSound=guid c7ed05b156a403a42b5d91316854e42d, EndSound=guid 33e37c2c5603b534a84188086a3b9147. No UnityEvent m_Calls present; invoke public methods directly on prefab instance (m_PrefabInstance fileID 1054453170) under parent 'Models'. Wait to allow audio state to update before toggling off.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 759145567,
+                      "method_name": "TogglePC",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 759145567,
+                      "method_name": "TogglePC",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Unknown\": {fileID: 1873334408}. The direct parent of this gameobject is \"Models\". We only present the child with attached script. And the Unknown gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class PlayTV : MonoBehaviour\n{\n    public GameObject canvas;\n    private bool Isvisible = false;\n\n    public void ToggleVisibility()\n    {\n        Isvisible = !Isvisible;\n        canvas.SetActive(Isvisible);\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '100000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1873334408'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1873334408', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '1472401655'}]}, {'m_Modifications': [{'target': [{'fileID': '100000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_StaticEditorFlags'}, {'value': '4294967295'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-12.157'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '4.18'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '4.36'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0.7071068'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '12'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '90'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '4.135892'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '4.1358905'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '4.1358924'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': [{'fileID': '9500000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1873334409 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '400000'}, {'guid': '23e5f126029186c47a301cb4c506b280'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1873334408'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '154554978', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '154554977'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'd39ba5afdc055594f8b27d3626aef4f5'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'canvas': [{'fileID': '1417754200'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-23T16:47:10.916440",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 543585960}. The direct parent of this gameobject is \"Models\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 1054453170}. The direct parent of this gameobject is \"Models\". W..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 3,
+    "child_info": {
+      "child_id": "154554977 stripped",
+      "child_id_replace": "1873334408",
+      "child_name": "Unknown",
+      "mono_comp_targets": [
+        {
+          "source": "154554977 stripped",
+          "source_replace": "1873334408",
+          "target": "154554978",
+          "target_replace": "154554978",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "154554978",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "154554977"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "d39ba5afdc055594f8b27d3626aef4f5"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "canvas": [
+                  {
+                    "fileID": "1417754200"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "d39ba5afdc055594f8b27d3626aef4f5",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\subjects\\UnityVR-master\\UnityVR-master\\Assets\\Scripts\\PlayTV.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "1472401654",
+        "parent_name": "Models"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Unknown\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 1873334408,\n          \"condition\": \"Call PlayTV.ToggleVisibility twice to cover both visibility states (true then false). MonoBehaviour_0 (id: 154554978) in scene matches script PlayTV with field mapping: canvas=fileID 1417754200. This MonoBehaviour is attached to the prefab instance (m_PrefabInstance fileID 1873334408) under parent 'Models'. No UnityEvent m_Calls are defined; invoke the public method directly.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 154554978,\n                  \"method_name\": \"ToggleVisibility\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 154554978,\n                  \"method_name\": \"ToggleVisibility\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-23T16:47:27.094408",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 543585960}. The direct parent of this gameobject is \"Models\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 1054453170}. The direct parent of this gameobject is \"Models\". W..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Unknown\": {fileID: 1873334408}. The direct parent of this gameobject is \"Models\". W..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Unknown",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 1873334408,
+              "condition": "Call PlayTV.ToggleVisibility twice to cover both visibility states (true then false). MonoBehaviour_0 (id: 154554978) in scene matches script PlayTV with field mapping: canvas=fileID 1417754200. This MonoBehaviour is attached to the prefab instance (m_PrefabInstance fileID 1873334408) under parent 'Models'. No UnityEvent m_Calls are defined; invoke the public method directly.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 154554978,
+                      "method_name": "ToggleVisibility",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 154554978,
+                      "method_name": "ToggleVisibility",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  }
+]

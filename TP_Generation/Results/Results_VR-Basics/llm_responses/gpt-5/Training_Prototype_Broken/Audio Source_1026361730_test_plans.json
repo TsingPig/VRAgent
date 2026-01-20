@@ -1,0 +1,160 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Manual method trigger on MonoBehaviour (fileID: 1026361732, guid: 76a895b5e674db04d8b4f8110c068852). Object has no Rigidbody and no explicit Collider/EventTrigger in provided meta; test harness invokes public no-arg methods directly. Scene config: shouldLoop=false; audioClips count=2 (guids: 3c7b3ef689cc94af0bd824489050effd, 39eeabf0f489f4e46a024aa733bf1b4b). Goal: exercise negative index path via PreviousClip.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Advance to next clip after negative index to validate modulo from -1 -> 0 behavior.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Move forward again to index=1.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Wrap-around test: from index=1, NextClip should wrap to index=0 due to modulo.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Random selection path coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Pause current clip playback.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Resume playback of the current clip after pause.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Stop playback and ensure AudioSource stops cleanly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

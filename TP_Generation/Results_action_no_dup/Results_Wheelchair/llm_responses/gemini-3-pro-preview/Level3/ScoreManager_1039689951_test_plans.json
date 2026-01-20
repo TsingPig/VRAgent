@@ -1,0 +1,17 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1039689951,
+          "condition": "Validate that the scene's MonoBehaviour component matches the attached script settings for Scoremanager (m_Script guid=f7de224e5fee443418417f9f2bfa2998). PrefabInstance overrides bind: ScoreText(fileID=2028567966), AmountUI(fileID=1730453064), Timer(fileID=365561373), winlosescript(fileID=1176795496), winAmount=4. On Start, AmountUI.text should initialize to 'Star Amount: 4'. Update should continuously set Timer.text = Time.time.ToString(\"0.0\"). The actionable event to be triggered under conditions is Scoremanager.changescore(int StarValue) until score == winAmount, which should then call winlosescript.Winlevel(). Because changescore requires a parameter and the ScoreManager object has no Collider/Rigidbody/EventTrigger, we will need the calling collectibles (e.g., 'Star' pickups) or any other invoker to exercise this path.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

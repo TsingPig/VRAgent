@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building10",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 565466289,
+          "condition": "MonoBehaviour component id 565466291 (script guid b78288e601dcaac41ae0297908e55692 -> Bank) is attached to Building10. EventTrigger component id 565466293 (guid d0b148fe25e99eb48b9724523833bab1) has m_Delegates with eventID 4 (PointerClick) configured to call Bank.showlabel on component 565466291. Expectation: clicking Building10 (or invoking showlabel) will set Player child[1] TextMeshPro text to first 20 chars of 'Bank:Eevee Global Bank'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 565466291,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building10",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 565466289,
+          "condition": "MonoBehaviour component id 565466291 (script guid b78288e601dcaac41ae0297908e55692 -> Bank) is attached to Building10 prefab instance 565466289. EventTrigger component id 565466293 (guid d0b148fe25e99eb48b9724523833bab1) has m_Delegates with eventID 4 (PointerClick) configured to call Bank.showlabel on component 565466291. Expectation: calling showlabel sets Player child[1]'s TextMeshPro text to first 20 chars of 'Bank:Eevee Global Bank'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 565466291,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

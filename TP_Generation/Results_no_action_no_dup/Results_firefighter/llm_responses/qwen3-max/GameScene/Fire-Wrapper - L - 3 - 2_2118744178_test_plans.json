@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2118744178,
+          "condition": "MonoBehaviour on this GameObject is Fire (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) with the exact serialized settings shown (isOn=0, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, etc.). The GameObject has a BoxCollider (no Rigidbody, no EventTrigger, no UnityEvent m_Calls). The only conditional event we need to actively trigger for coverage is IWaterInteractable.WaterHit(normal) to drive the 'turning off' path (isTurningOff, currentHitInterval, currentHitTime/totalHitTime). However, Fire exposes only parameterized public methods (WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[],int), UpdateFireState(bool)) and there are no UnityEvents configured, so no callable no-arg methods exist for a Trigger action.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 2118744178,
+          "condition": "Neighbor-driven ignition path. To cover automatic turning on, this Fire requires onNeighbors >= onNeighborsThreshold (2) so that shouldTurnOn becomes true and, after timeToOn elapses (40–60s, downMultiplier=2 if any neighbor is sufficiently below), isOn toggles and UpdateFireState(notify=true) is invoked, notifying neighbors and FireController.Instance.FireChanged(+/-1). This requires external stimuli: neighbors invoking NotifyNeighborState(true) or being set via SetIsOn(true). No UnityEvent m_Calls are available to drive this via a Trigger action.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

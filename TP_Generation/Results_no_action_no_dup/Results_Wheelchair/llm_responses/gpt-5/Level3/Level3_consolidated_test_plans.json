@@ -1,0 +1,153 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1269087272,
+          "condition": "Enter the Elevator (1)'s BoxCollider (id: 265568267, isTrigger=1) with the Player object (player ref fileID: 7425022) to invoke AttachToElevator.OnTriggerEnter. MonoBehaviour id: 265568265, Script guid: 077cb2d6a53b18f4ea7d76e72138fc77, field 'player' -> 7425022. Expected: method is invoked; due to code comparing gameObject == player (Elevator != Player), no parenting occurs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1269087272,
+          "condition": "Exit the Elevator (1)'s BoxCollider trigger with the same Player object (fileID: 7425022) to invoke AttachToElevator.OnTriggerExit. MonoBehaviour id: 265568265, Script guid: 077cb2d6a53b18f4ea7d76e72138fc77. Expected: method is invoked; due to code comparing gameObject == player, no un-parenting occurs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 15099978,
+          "condition": "Level3.unity: Elevator (PrefabInstance fileID 15099978) has BoxCollider (id 1067963289, isTrigger=1) and MonoBehaviour AttachToElevator (id 1067963293; script guid 077cb2d6a53b18f4ea7d76e72138fc77) with player reference fileID 7425022. Simulate the Player entering Elevator's trigger to invoke OnTriggerEnter on AttachToElevator. Note: No UnityEvent m_Calls configured on this MonoBehaviour.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 15099978,
+          "condition": "Simulate the Player (fileID 7425022) exiting the Elevator's trigger to invoke OnTriggerExit on AttachToElevator (id 1067963293; script guid 077cb2d6a53b18f4ea7d76e72138fc77). Note: The BoxCollider (id 1067963289) is set as trigger; Elevator has no Rigidbody; assumes the other collider (Player) provides required physics component.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1176795495,
+          "condition": "Trigger public methods on MonoBehaviour WinLose (script guid d8624f87f98aa484bb7925103f5d458e) attached to GameCondition. Component fileID: 4225679855366766214. Scene config restartdelay=2. Ensure PrefabInstance overrides assign WinUI -> fileID 365561371 and LoseUI -> fileID 365561372 (non-null), otherwise SetActive will throw. Expected: Winlevel() sets WinUI active; loselevel() sets LoseUI active; Restart() is no-op.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 606197083,
+          "condition": "Invoke OnTriggerEnter on platform2 (2)'s BoxCollider (id: 606197088, isTrigger: true) by moving the Player (serialized reference fileID: 7425022) with a Collider (and preferably a Rigidbody) into the trigger volume. This tests AttachToElevator (MonoBehaviour id: 606197086) from script guid 077cb2d6a53b18f4ea7d76e72138fc77. Note: Script compares `gameObject == player`, so no parenting will occur unless the Player reference equals the platform itself; still, OnTriggerEnter should be invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 606197083,
+          "condition": "Invoke OnTriggerExit on platform2 (2)'s BoxCollider by moving the same Player (fileID: 7425022) collider out of the trigger volume after having entered. This tests the second path of AttachToElevator (MonoBehaviour id: 606197086). As above, due to the equality check `gameObject == player`, no unparenting will occur in practice unless misconfigured, but the callback should still run.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1039689951,
+          "condition": "MonoBehaviour (m_Script guid=f7de224e5fee443418417f9f2bfa2998) matches the provided Scoremanager class. Start() and Update() run automatically. To cover the conditional branch in changescore(int) and verify win flow, we must invoke Scoremanager.changescore with a positive value until score == winAmount. Prefab instance overrides winAmount to 4 (via PrefabInstance m_Modification), so call changescore 4 times with +1 to reach the threshold and expect winlosescript.Winlevel() to be invoked. Note: The ScoreManager GameObject has no Rigidbody/Collider/EventTrigger; there are no UnityEvent m_Calls exposed in the scene meta. The only public triggerable function on Scoremanager requires an int parameter. We therefore need either: (a) an external event (e.g., a star pickup collider) to call changescore(+1) four times, or (b) permission to directly invoke changescore with an int parameter from the test harness. The referenced WinLose component (fileID=1176795496) should expose Winlevel() with no parameters for verification if needed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

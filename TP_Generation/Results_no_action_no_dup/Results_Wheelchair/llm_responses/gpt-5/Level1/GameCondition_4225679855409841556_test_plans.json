@@ -1,0 +1,56 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "MonoBehaviour WinLose (m_Script guid d8624f87f98aa484bb7925103f5d458e) attached to GameCondition. Component fileID (MonoBehaviour) 4225679855366766214. Prefab overrides bind WinUI fileID 852022849 and LoseUI fileID 215505909. Note: GameCondition has no Rigidbody/Collider/EventTrigger; harness must allow direct method invocation to test.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Invoke lose flow on the same WinLose MonoBehaviour (fileID 4225679855366766214). Expect LoseUI (fileID 215505909) to SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

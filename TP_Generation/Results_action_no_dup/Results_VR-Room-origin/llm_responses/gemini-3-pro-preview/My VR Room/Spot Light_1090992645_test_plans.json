@@ -1,0 +1,62 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "MonoBehaviour fileID=1090992649 uses script guid=376688c5b82056e4da4c2b159887a7dc (ToggleLight). Serialized isOn=false in scene, so Start() disables the Light. Manually call TurnOn() to enable it.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "After TurnOn() has set isOn=true and enabled the Light, call Flip() to toggle the state (expected: isOn becomes false; Light disabled). MonoBehaviour fileID=1090992649, guid=376688c5b82056e4da4c2b159887a7dc.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "Flip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "With isOn=false, call TurnOff() to verify idempotent off behavior (Light remains disabled). MonoBehaviour fileID=1090992649, guid=376688c5b82056e4da4c2b159887a7dc.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOff",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

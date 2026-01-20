@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1865680026,
+          "condition": "Manually invoke PlayQuickSound.Play() on Room_Modern to verify AudioSource.PlayOneShot is called with randomized pitch around defaultPitch. Scene notes: Has_Rigidbody=false; no explicit Collider/EventTrigger provided; no m_Calls UnityEvents listed. The scene shows two added components: MonoBehaviour fileID 1865680029 (guid 474bcb49853aa07438625e644c072ee6; appears unrelated to PlayQuickSound) and another added component with fileID 1865680030, which is presumed to be the PlayQuickSound MonoBehaviour attached to Room_Modern (required by script via [RequireComponent(typeof(AudioSource))]). Awake should cache AudioSource, OnValidate sets playOnAwake=false. Ensure an AudioClip is assigned to 'sound' or expect a warning if null.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

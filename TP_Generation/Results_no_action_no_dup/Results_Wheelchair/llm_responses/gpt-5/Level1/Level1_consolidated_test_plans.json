@@ -1,0 +1,91 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "MonoBehaviour WinLose (m_Script guid d8624f87f98aa484bb7925103f5d458e) attached to GameCondition. Component fileID (MonoBehaviour) 4225679855366766214. Prefab overrides bind WinUI fileID 852022849 and LoseUI fileID 215505909. Note: GameCondition has no Rigidbody/Collider/EventTrigger; harness must allow direct method invocation to test.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "Invoke lose flow on the same WinLose MonoBehaviour (fileID 4225679855366766214). Expect LoseUI (fileID 215505909) to SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mesh_TrafficLight",
+          "triggerring_time": 66.0,
+          "source_object_fileID": 1221980191,
+          "condition": "MonoBehaviour_0 (fileID 123183794) on Mesh_TrafficLight references script guid 50410efda0128f248aadbf8266a903cb, matching the provided TrafficLights class. Serialized fields map to Light components: Red fileID 8569639267829841366 (prefab guid 743b330bb9f325948b9118bc7695a4c1), Green fileID 2097357867, Yellow fileID 888664352. No UnityEvent m_Calls are present. The Start() coroutine (auto-invoked on enable) cycles lights: initially Yellow=false; Green=true and Red=false for 30s; Debug.Log(\"on\"); Yellow=true and Green=false for 5s; Debug.Log(\"on\"); Red=true and Yellow=false for 30s; loops. Wait through ≥65s to cover all state transitions and both Debug.Log calls.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 738895512495048047,
+          "condition": "Scene Level1.unity loaded. MonoBehaviour (guid: f7de224e5fee443418417f9f2bfa2998; class: Scoremanager) is active. Serialized config indicates: StarValue = 1, winAmount = 2, UI refs wired (ScoreText fileID 174987324, AmountUI fileID 395448813, Timer fileID 388437890), winlosescript wired (fileID 93502226). Start() should already have run (AmountUI.text == 'Star Amount: 2'). Manually trigger a single star collection by invoking Scoremanager.changescore(Scoremanager.StarValue) once. Expectation during trigger: internal 'score' increments to 1, ScoreText updates to 'Stars: 1', Timer continues updating via Update().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 738895512495048047,
+          "condition": "With current score at 1, invoke Scoremanager.changescore(Scoremanager.StarValue) a second time to reach the win condition (score == winAmount == 2). Expectation during trigger: ScoreText updates to 'Stars: 2'. After the increment, winlosescript.Winlevel() should be invoked by Scoremanager when score == winAmount.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

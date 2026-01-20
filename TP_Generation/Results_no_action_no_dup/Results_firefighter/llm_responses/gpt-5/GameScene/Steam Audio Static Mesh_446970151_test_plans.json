@@ -1,0 +1,17 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Static Mesh",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 446970151,
+          "condition": "Validation of attached script and serialized settings: MonoBehaviour id 446970152 on GameObject fileID 446970151 has m_Script guid 8173b2a8dbe2d2d48995bb2ba9a49ff1 matching SteamAudio.SteamAudioStaticMesh. Serialized fields: asset guid 48b3d1d93d8cd495884ef80daae159b7 (non-null), sceneNameWhenExported='GameScene', m_Enabled=1. Test objective: Cover Start (no warning expected because asset != null) and Update branch where mStaticMesh == null and asset != null, which should instantiate StaticMesh with SteamAudioManager.Context and SteamAudioManager.CurrentScene, and immediately AddToScene because the component is enabled. Note: No Collider, Rigidbody, or EventTrigger present; no UnityEvent m_Calls defined.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

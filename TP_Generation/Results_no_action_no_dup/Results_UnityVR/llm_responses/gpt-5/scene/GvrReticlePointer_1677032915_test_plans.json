@@ -1,0 +1,47 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1677032915,
+          "condition": "GvrReticlePointer (MonoBehaviour fileID 723926960, script guid e7dcc90c2e60c4011896c7f21fc1f557) is active and enabled. Start() already executed so MaterialComp is initialized from an attached Renderer and mesh created. Default serialized settings from scene: raycastMode=0 (Hybrid), maxReticleDistance=20, reticleSegments=20, reticleGrowthSpeed=8, reticleSortingOrder=32767. This trigger simulates a click press and release on the pointer to cover click handlers and material update.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickDown",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickUp",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

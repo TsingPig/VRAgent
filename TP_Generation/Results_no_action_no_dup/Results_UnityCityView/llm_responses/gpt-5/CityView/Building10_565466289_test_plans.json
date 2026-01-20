@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building10",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 565466289,
+          "condition": "On PointerClick (EventTrigger MonoBehaviour id 565466293, eventID=4) the persistent call invokes Bank.showlabel on component id 565466291 (script guid b78288e601dcaac41ae0297908e55692). Expected: showlabel sets Player child(1) TextMeshPro.text to first 20 chars of 'Bank:Eevee Global Bank'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 565466291,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building10",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 565466289,
+          "condition": "EventTrigger (MonoBehaviour id 565466293, eventID=4 PointerClick) has a persistent call to Bank.showlabel on component id 565466291 (script guid b78288e601dcaac41ae0297908e55692). Expect TextMeshPro on Player child(1) to be set to the first 20 chars of 'Bank:Eevee Global Bank' => 'Bank:Eevee Global Ba'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 565466291,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

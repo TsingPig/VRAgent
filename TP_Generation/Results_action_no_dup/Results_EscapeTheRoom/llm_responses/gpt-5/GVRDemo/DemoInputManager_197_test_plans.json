@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "DemoInputManager",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 197,
+          "condition": "Invoke DemoInputManager.playerSettingsHasDaydream() (MonoBehaviour fileID: 972, Script GUID: ddd25f1308577456cbaa207901961126). Expect true when UnityEngine.VR.VRSettings.supportedDevices contains 'daydream'. Scene config: gvrEmulatedPlatformType=0 (Daydream), controllerMain=163, controllerPointer=25, reticlePointer=95.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 972,
+                  "method_name": "playerSettingsHasDaydream",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DemoInputManager",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 197,
+          "condition": "Invoke DemoInputManager.playerSettingsHasCardboard() (MonoBehaviour fileID: 972, Script GUID: ddd25f1308577456cbaa207901961126). Expect true when UnityEngine.VR.VRSettings.supportedDevices contains 'cardboard'. Scene config: gvrEmulatedPlatformType=0 (Daydream), controllerMain=163, controllerPointer=25, reticlePointer=95.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 972,
+                  "method_name": "playerSettingsHasCardboard",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

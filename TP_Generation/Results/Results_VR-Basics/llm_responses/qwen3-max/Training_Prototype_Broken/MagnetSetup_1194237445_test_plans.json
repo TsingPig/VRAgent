@@ -1,0 +1,271 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Manual trigger to cover all no-parameter public methods on attached scripts because they are not invoked by default gameplay. Target object has Rigidbody (eligible for Trigger). Scripts: MatchRotation (script_fileID: 14, guid: ae83748d921a24c479bbf9e63dd4ea89, matchY=true, targetTransform fileID: 4502080888245813405) and PlaySoundsFromList (script_fileID: 1145393436748058495, guid: 76a895b5e674db04d8b4f8110c068852, shouldLoop=false, audioClips populated). MoveWithVelocity (script_fileID: 2093529275998283900, guid: 082c3f8b71935c2468a296c7e6146e9b) runs via FixedUpdate and exposes only parameterized setters; no manual Trigger needed per policy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Manually invoke all zero-parameter public methods on attached scripts to ensure coverage. Target has Rigidbody (eligible for Trigger). Scripts and scene bindings: MatchRotation (script_fileID: 14, guid: ae83748d921a24c479bbf9e63dd4ea89; matchY=true; targetTransform fileID: 4502080888245813405) and PlaySoundsFromList (script_fileID: 1145393436748058495, guid: 76a895b5e674db04d8b4f8110c068852; shouldLoop=false; audioClips populated). MoveWithVelocity (script_fileID: 2093529275998283900, guid: 082c3f8b71935c2468a296c7e6146e9b) runs via FixedUpdate and exposes only parameterized setters; no manual Trigger per policy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Socket",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7541936460893253787,
+          "condition": "Simulate XR Socket selection cycle to fire UnityEvents defined in scene meta (m_Calls). Socket has BoxCollider (isTrigger=true) and XRSocketInteractor (script_fileID: 8477993898470408151, guid: 60523e0647cc6ab43acc73cb266a32a7). Expect m_OnSelectEntered and m_OnSelectExited to invoke PlaySoundsFromList.PlayAtIndex(int=4) on Magnet's component (script_fileID: 1145393436748058495). Using Trigger to simulate select and release since these are configured UnityEvents with parameters which cannot be invoked directly via methodCallUnits.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.75,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Manually invoke all zero-parameter public methods on attached scripts to ensure coverage. Source has Rigidbody (eligible for Trigger). Target scripts and scene bindings: MatchRotation (script_fileID: 14, guid: ae83748d921a24c479bbf9e63dd4ea89; matchY=true; targetTransform fileID: 4502080888245813405); PlaySoundsFromList (script_fileID: 1145393436748058495, guid: 76a895b5e674db04d8b4f8110c068852; shouldLoop=false; audioClips populated); PlayContinuousSound on child 'Audio Source Move' (script_fileID: 931956745451022772, guid: 0ab6d3e7b225a7342a0d702b6151692b; playOnStart=false; volume=1; AudioClip set). MoveWithVelocity (script_fileID: 2093529275998283900) runs via FixedUpdate and only exposes parameterized setters; no manual trigger per policy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Socket",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7541936460893253787,
+          "condition": "Simulate XR Socket select and release to fire UnityEvents configured in scene meta (m_Calls). Socket has BoxCollider (isTrigger=true) and XRSocketInteractor (script_fileID: 8477993898470408151, guid: 60523e0647cc6ab43acc73cb266a32a7). Expect m_OnSelectEntered and m_OnSelectExited to each invoke PlaySoundsFromList.PlayAtIndex(int=4) on Magnet's component (script_fileID: 1145393436748058495).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source Raise",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1803692743623512621,
+          "condition": "Manual trigger of zero-parameter public methods on PlayContinuousSound to ensure coverage. Scene MonoBehaviour (fileID: 4025780930682781986) uses script guid 0ab6d3e7b225a7342a0d702b6151692b with settings from scene: sound guid f3d02eed8de884b8f8e2df103802faf5, playOnStart=false, volume=1. GameObject has no Rigidbody/Collider/EventTrigger; methods are invoked directly per Trigger policy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source Rotate",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7727694622217070388,
+          "condition": "Invoke zero-parameter public methods on PlayContinuousSound to ensure coverage. Scene MonoBehaviour (fileID: 4079354613688537254) is PlayContinuousSound (script guid: 0ab6d3e7b225a7342a0d702b6151692b) with settings: sound guid f3d02eed8de884b8f8e2df103802faf5, playOnStart=false, volume=1. GameObject has no Rigidbody/Collider/EventTrigger; methods are invoked directly per Trigger policy. Lifecycle methods (Awake/Start/OnValidate) run automatically; Start will not auto-play because playOnStart is false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

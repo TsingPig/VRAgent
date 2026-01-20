@@ -1,0 +1,16 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 6",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 52425397,
+          "condition": "MonoBehaviour_0 on this object corresponds to Fire.cs (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d, fileID=11500000). Serialized settings in-scene (exact for this instance): debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, timeToOn=3 (will be randomized in Awake between min/max), timeToOnDelta=0, shouldTurnOn=0, onNeighbors=0, maxNeighborDistance=4, downMultiplier=2, downNeighborDist=0.5, maxHitInterval=2, currentHitInterval=0, totalHitTime=5, currentHitTime=0, neighbors=[], onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo=fileID 1849464941111748095. Components present: BoxCollider (enabled), no Rigidbody, no EventTrigger, no UnityEvent m_Calls. Fire.cs exposes no public parameterless methods (NotifyNeighborState(bool), UpdateFireState(bool), WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[], int) all require parameters), so no direct callable Trigger events are available. To exercise behavior, external systems must: (1) call IWaterInteractable.WaterHit(Vector3) via a water emitter to start turning off logic; (2) manipulate neighbor fires to call NotifyNeighborState(bool) so CheckNeighborState() sets shouldTurnOn and Update() eventually turns the fire on. Expected effects when interactions occur: particle system start/stop via UpdateFireState(), and FireController.Instance.FireChanged(±1).",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

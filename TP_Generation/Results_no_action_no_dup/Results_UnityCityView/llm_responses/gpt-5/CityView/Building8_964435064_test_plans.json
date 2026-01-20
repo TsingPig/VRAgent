@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building8",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 964435064,
+          "condition": "On PointerClick (EventTrigger eventID=4; script guid d0b148fe25e99eb48b9724523833bab1) for Building8, invoke Government.showlabel on MonoBehaviour fileID 964435066 (script guid ed3b45ff7bbab2146bc55b624801e08e). Precondition: a GameObject named 'Player' exists and its child at index 1 has a TextMeshPro component, as Government.Start() caches this label.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 964435066,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building8",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 964435064,
+          "condition": "On PointerClick (EventTrigger eventID=4; EventTrigger script guid d0b148fe25e99eb48b9724523833bab1; component id 964435068) on Building8 should invoke Government.showlabel on MonoBehaviour id 964435066 (script guid ed3b45ff7bbab2146bc55b624801e08e). Precondition: 'Player' exists and its child at index 1 has a TextMeshPro component for label updates.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 964435066,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

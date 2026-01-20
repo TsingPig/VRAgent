@@ -1,0 +1,67 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 86838640,
+          "condition": "Manual collision simulation for negative path: Fire OnTriggerEnter on collider_porte (BoxCollider id: 6650539076773276978, isTrigger=1) with any Collider whose tag != 'Objet1'. This validates no animation plays and no deactivation occurs when tag does not match. MonoBehaviour (fileID: 8870310304005890639; script GUID: 5f8d06fe579502c4496842932d0afead) is DoorOpenScript with serialized state openTrigger=true and myDoor bound to Animator fileID 1075516723. No UnityEvent m_Calls present in scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 86838640,
+          "condition": "Manual collision simulation for positive path: Fire OnTriggerEnter on collider_porte (BoxCollider id: 6650539076773276978) with a Collider tagged 'Objet1' that has component SnapToTrigger. Expected: DoorOpenScript (MonoBehaviour fileID: 8870310304005890639) calls SnapToTrigger.Snap(transform.position), plays Animator (fileID: 1075516723) state 'DoorOpen' at layer 0, time 0, then disables collider_porte and sets openTrigger=false. No UnityEvent m_Calls present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle1",
+          "source_object_fileID": 816818218,
+          "delta_position": {
+            "x": -3.2,
+            "y": 4.7,
+            "z": -20.8
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle1",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 816818218,
+          "condition": "Mapping confirmation only (no manual call): MonoBehaviour (fileID: 5374773463603666079; script GUID: 2723dba42bd113044ad231906b498006) is SnapToTrigger attached to Cube_salle1 (Has_Rigidbody=true; BoxCollider id: 1659405682678754060). The door trigger object collider_porte (PrefabInstance id: 86838640) has BoxCollider (id: 6650539076773276978, isTrigger=1) and MonoBehaviour DoorOpenScript (fileID: 8870310304005890639; script GUID: 5f8d06fe579502c4496842932d0afead) with openTrigger=true and myDoor bound to Animator fileID 1075516723. Driving the cube into collider_porte via the Transform step above should automatically fire OnTriggerEnter, which invokes SnapToTrigger.Snap() and plays the door animation; no direct public no-arg methods exist to call manually.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

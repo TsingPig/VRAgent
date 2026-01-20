@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "Call GvrAudioSource.Play() on MonoBehaviour component id 944 (script GUID 6dbca64e524ea44f9b26142ec59aca8a). Scene config: playOnAwake=false, clip assigned (guid 3b1bac9d0cdfad24e9ffb75aa75e4f96), loop=false, volume=1.0. Note: GameObject has no Rigidbody/Collider/EventTrigger; framework may need explicit permission to invoke methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "After playback has started, pause the GvrAudioSource to cover Pause() branch and isPaused flag.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "Resume after pause to exercise UnPause() and related state transitions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "Stop playback to hit Stop() path including ShutdownSource().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

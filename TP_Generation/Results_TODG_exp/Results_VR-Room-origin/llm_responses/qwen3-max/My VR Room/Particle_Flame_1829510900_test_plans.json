@@ -1,0 +1,75 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1829510900,
+          "condition": "Scene object has no Rigidbody/Collider/EventTrigger. Directly invoke MonoBehaviour methods for coverage. Target script: ToggleParticle (MonoBehaviour fileID 5377429380903153772, m_Script guid ad0a2892d8b703341afc39a5cf89bef8). ParticleSystem.playOnAwake=false per prefab and OnValidate. Goal: Play then Stop to validate start/stop paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1829510900,
+          "condition": "Toggle from stopped state to playing to cover else-branch in ToggleParticleSystem().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "ToggleParticleSystem",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1829510900,
+          "condition": "Toggle from playing state to stopped to cover if-branch in ToggleParticleSystem().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "ToggleParticleSystem",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

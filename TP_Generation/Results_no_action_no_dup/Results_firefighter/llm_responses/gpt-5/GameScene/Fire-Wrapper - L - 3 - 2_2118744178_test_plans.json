@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2118744178,
+          "condition": "Scene GameObject 'Fire-Wrapper - L - 3 - 2' (fileID: 2118744178) has a BoxCollider (IsTrigger=0) and no Rigidbody. It has a MonoBehaviour using script guid 1729fd01c90a64d5b8037e1eef0d000d, which matches the provided Fire script. Serialized settings in scene: debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, timeToOn=3 (runtime randomized between min/max in Awake), timeToOnDelta=0, shouldTurnOn=0, onNeighbors=0, maxNeighborDistance=4, downMultiplier=2, downNeighborDist=0.5, maxHitInterval=2, currentHitInterval=0, totalHitTime=5, currentHitTime=0, neighbors=[], onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo -> fileID 1849464941111748095. Precondition for subsequent tests: set the fire to ON at the start of runtime so off-path logic can be exercised. Do this via inspector or an external helper by calling Fire.SetIsOn(true) once in Play Mode. Expected immediate effect: UpdateFireState(false) causes main ParticleSystem to Play; no neighbor notifications.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2118744178,
+          "condition": "With fire currently ON, simulate a single water contact to invoke IWaterInteractable.WaterHit(normal) once (any Vector3 normal is acceptable). This requires driving a water system or collision on the BoxCollider of this object. Expected: isTurningOff becomes true, currentHitInterval resets to 0. No immediate turn-off because totalHitTime not yet accumulated.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 2.2,
+          "source_object_fileID": 2118744178,
+          "condition": "No additional water hits during this period (i.e., let more than maxHitInterval=2s elapse). Expected: in Update, currentHitInterval reaches >= maxHitInterval, so isTurningOff resets to false and currentHitTime resets to 0 while the fire remains ON.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 2",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 2118744178,
+          "condition": "Sustained water spray phase. While the fire is ON, repeatedly apply water hits to the BoxCollider often enough that time between hits is always < maxHitInterval (2s). For example, simulate a WaterHit roughly every 0.5–1.0s for at least totalHitTime (5s). Expected: Update accumulates currentHitTime until it reaches totalHitTime; then fire turns OFF, shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime=0, and UpdateFireState(true) stops the ParticleSystem and notifies neighbors (if any) and FireController.Instance.FireChanged(-1).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "TouchPadOutside",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2,
+          "condition": "Call public no-arg query methods on GvrTooltip to cover logic paths based on serialized config. MonoBehaviour id=892 (GUID 7c52851ea0de74a228fa29a84de008ba). Scene config: location=TouchPadOutside (0), text=fileID 975, alwaysVisible=false. Automatic lifecycle (Awake/Start/OnDestroy/OnValidate) occurs naturally; OnArmModelUpdate requires GvrArmModel.Instance during play.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

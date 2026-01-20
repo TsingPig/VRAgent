@@ -1,0 +1,584 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 254571543,
+          "condition": "MonoBehaviour id=254571545 on GameObject id=254571543 uses script guid=3bc2acd74545a4f1aa9eba6d8f72a530 (CheckElements). numberOfElements=3. First call to AddElementInSocket increments numberOfElementsInSocket to 1; no UnityEvents should fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 254571543,
+          "condition": "Second call to AddElementInSocket increments numberOfElementsInSocket to 2; still below threshold numberOfElements=3; no UnityEvents should fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 254571543,
+          "condition": "Third call to AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), which should Invoke UnityEvents: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false). These m_Calls are configured on MonoBehaviour id=254571545.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 36331052,
+          "condition": "Simulate XR Socket Interactor SelectEntered on Box_02. MonoBehaviour id=680431495 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). After first call, numberOfElementsInSocket=1 < numberOfElements=3; no UnityEvents fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 36331052,
+          "condition": "Simulate XR Socket Interactor SelectExited on Box_02. MonoBehaviour id=680431495 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. After second call, numberOfElementsInSocket=2 < 3; no UnityEvents fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 36331052,
+          "condition": "Simulate another SelectEntered on Box_02 to reach required elements. This third AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), invoking UnityEvents configured on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1379860601,
+          "condition": "Simulate XR Socket Interactor SelectEntered on Box_02 (3). MonoBehaviour id=1379860606 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). First call: numberOfElementsInSocket=1 < numberOfElements=3; no UnityEvents should fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1379860601,
+          "condition": "Simulate XR Socket Interactor SelectExited on Box_02 (3). MonoBehaviour id=1379860606 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. Second call: numberOfElementsInSocket=2 < 3; no UnityEvents should fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1379860601,
+          "condition": "Simulate another SelectEntered on Box_02 (3). Third AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), invoking UnityEvents on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1940504553,
+          "condition": "Simulate XR Socket Interactor SelectEntered on Box_02 (4). MonoBehaviour id=1940504558 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). First call increments count; no UnityEvents should fire yet if numberOfElementsInSocket < 3.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1940504553,
+          "condition": "Simulate XR Socket Interactor SelectExited on Box_02 (4). MonoBehaviour id=1940504558 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. Second call increments count; still below threshold if starting from 0.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1940504553,
+          "condition": "Simulate another SelectEntered on Box_02 (4). The third AddElementInSocket should make numberOfElementsInSocket == numberOfElements (3), invoking configured UnityEvents on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1163394800,
+          "condition": "XRGrabInteractable (MonoBehaviour id: 200193837, guid: 0ad34abafad169848a38072baa96cdb2) has m_LastSelectExited.m_PersistentCalls.m_Calls configured to invoke LaunchObjects.PlayClip on MonoBehaviour id 200193840. To ensure coverage when automatic XR events may not fire, manually invoke the no-arg method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 200193840,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1970168575,
+          "condition": "MonoBehaviour id 861999996 (XRGrabInteractable, guid: 0ad34abafad169848a38072baa96cdb2) on this child prefab has m_SelectExited.m_PersistentCalls configured to call LaunchObjects.PlayClip on MonoBehaviour id 861999999. To ensure coverage of this Interactable event without relying on XR controller interactions, manually invoke the no-argument method on the attached script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 861999999,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 111434455,
+          "condition": "XRGrabInteractable (MonoBehaviour id: 77560873, guid: 0ad34abafad169848a38072baa96cdb2) attached to this prefab has m_SelectExited.m_PersistentCalls configured to invoke LaunchObjects.PlayClip on MonoBehaviour id 77560876. To ensure coverage of this Interactable event without requiring XR controller input, directly invoke the mapped no-arg method. This MonoBehaviour mapping corresponds to the provided LaunchObjects script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 77560876,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 54758833,
+          "condition": "PrefabInstance (id: 54758833) under parent '6- Gems' has Rigidbody (Has_Rigidbody: true) and SphereCollider (id: 1502968062). XRGrabInteractable (MonoBehaviour id: 1502968060, script guid: 0ad34abafad169848a38072baa96cdb2) is attached and its m_SelectExited.m_PersistentCalls.m_Calls targets LaunchObjects (MonoBehaviour id: 1502968063, script guid: 4876215a0c4824e96a1e27b21578fc27) with method PlayClip(). To ensure coverage of the Interactable event without XR controller selection flow, directly invoke the mapped no-arg method. The provided MonoBehaviour components match the attached scripts in the scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1502968063,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 370463673,
+          "condition": "PrefabInstance (id: 370463673) under parent '6- Gems' has Rigidbody (Has_Rigidbody: true) and SphereCollider (id: 1298054462). XRGrabInteractable (MonoBehaviour id: 1298054460, script guid: 0ad34abafad169848a38072baa96cdb2) is attached and its m_SelectExited.m_PersistentCalls.m_Calls targets LaunchObjects (MonoBehaviour id: 1298054463, script guid: 4876215a0c4824e96a1e27b21578fc27) with method PlayClip(). The provided MonoBehaviour components match the attached scripts (XRGrabInteractable meta and LaunchObjects code). To ensure coverage of the Interactable event without XR selection flow, directly invoke the mapped no-arg method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1298054463,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 800309365,
+          "condition": "PrefabInstance (id: 800309365) under parent '6- Gems' has Rigidbody (Has_Rigidbody: true) and SphereCollider (id: 1207834349). MonoBehaviour id 1207834347 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable meta), and MonoBehaviour id 1207834350 uses script guid 4876215a0c4824e96a1e27b21578fc27 (LaunchObjects code). XRGrabInteractable.m_SelectExited.m_PersistentCalls invokes LaunchObjects.PlayClip() on MonoBehaviour id 1207834350. To ensure coverage of this Interactable event without XR selection flow, directly invoke the mapped no-arg method per the scene meta settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1207834350,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 655690086,
+          "condition": "PrefabInstance (id: 655690086) under parent '6- Gems' has Rigidbody (Has_Rigidbody: true) and SphereCollider (id: 1775665200). MonoBehaviour id 1775665198 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable meta), and MonoBehaviour id 1775665201 uses script guid 4876215a0c4824e96a1e27b21578fc27 (LaunchObjects code). In the scene meta, XRGrabInteractable.m_SelectExited.m_PersistentCalls invokes LaunchObjects.PlayClip() on MonoBehaviour id 1775665201. The provided MonoBehaviour component settings correspond exactly to the attached scripts. To ensure coverage of this Interactable event without XR selection flow, directly invoke the mapped no-arg method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1775665201,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 997347481,
+          "condition": "Child prefab under parent '6- Gems' (PrefabInstance id: 997347481) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 918831983). MonoBehaviour id 918831981 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable) and has m_SelectExited.m_PersistentCalls configured to invoke LaunchObjects.PlayClip() on MonoBehaviour id 918831984. MonoBehaviour id 918831984 uses script guid 4876215a0c4824e96a1e27b21578fc27 (LaunchObjects) with public no-arg method PlayClip(). The provided MonoBehaviour components in the scene meta exactly correspond to the attached scripts; therefore we directly trigger the configured Interactable event call to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 918831984,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 796603394,
+          "condition": "Child prefab under parent '6- Gems' (PrefabInstance id: 796603394) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 933736878). MonoBehaviour id 933736876 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable), and MonoBehaviour id 933736879 uses script guid 4876215a0c4824e96a1e27b21578fc27 (LaunchObjects) with public no-arg method PlayClip(). Scene meta config shows XRGrabInteractable.m_SelectExited.m_PersistentCalls invokes LaunchObjects.PlayClip() targeting MonoBehaviour id 933736879. The provided MonoBehaviour components in the scene meta exactly correspond to the attached scripts; trigger the configured Interactable event directly to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 933736879,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 888255712,
+          "condition": "Child prefab under parent '6- Gems' (PrefabInstance id: 888255712) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 1089330543). MonoBehaviour id 1089330541 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable), and MonoBehaviour id 1089330544 uses script guid 4876215a0c4824e96a1e27b21578fc27 (LaunchObjects). Scene meta shows XRGrabInteractable.m_SelectExited.m_PersistentCalls configured to invoke LaunchObjects.PlayClip() (no-arg) and LaunchObjects.OnSelectExit(XRBaseInteractor). Per guidance, we only need to trigger Interactable Events (m_Calls) that are no-arg for testing; thus we directly invoke PlayClip() to ensure coverage. The provided MonoBehaviour components in the scene meta correspond exactly to the attached scripts.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1089330544,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 561056245,
+          "condition": "Child prefab under parent '6- Gems' (PrefabInstance id: 561056245) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 927793176). MonoBehaviour id 927793174 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable), and its m_SelectExited.m_PersistentCalls calls LaunchObjects.PlayClip() on MonoBehaviour id 927793177. MonoBehaviour id 927793177 uses script guid 4876215a0c4824e96a1e27b21578fc27 (LaunchObjects) which exposes a public no-arg method PlayClip(). The MonoBehaviour components in the scene meta exactly correspond to the attached scripts. Manually trigger the configured Interactable event to ensure coverage without relying on XR selection flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 927793177,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 973355952,
+          "condition": "Child 'Unknown' (PrefabInstance id: 973355952) under parent '6- Gems' (fileID: 1093482494) has Rigidbody and SphereCollider, and two MonoBehaviours whose scene meta exactly matches the attached scripts: MonoBehaviour id 513011267 uses script guid 0ad34abafad169848a38072baa96cdb2 (XRGrabInteractable). Its m_SelectExited.m_PersistentCalls contains one call to LaunchObjects.PlayClip targeting MonoBehaviour id 513011270. MonoBehaviour id 513011270 uses script guid 4876215a0c4824e96a1e27b21578fc27 (LaunchObjects) with public no-arg method PlayClip() and configured audioClip/audioSource. Manually trigger the configured Interactable event (m_SelectExited -> PlayClip) to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 513011270,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 913784680,
+          "condition": "Child 'Unknown' (PrefabInstance id: 913784680) under parent '6- Gems' (fileID: 1093482494) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 1538621714). Two MonoBehaviours in scene meta exactly match attached scripts: MonoBehaviour id 1538621712 uses XRGrabInteractable (guid 0ad34abafad169848a38072baa96cdb2). Its m_SelectExited.m_PersistentCalls contains a call to LaunchObjects.PlayClip targeting MonoBehaviour id 1538621715. MonoBehaviour id 1538621715 uses LaunchObjects (guid 4876215a0c4824e96a1e27b21578fc27) exposing public no-arg method PlayClip(). Manually trigger the configured Interactable event (m_SelectExited -> PlayClip) to ensure coverage without relying on XR selection flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1538621715,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1429857302,
+          "condition": "Child 'Unknown' (PrefabInstance id: 1429857302) under parent '6- Gems' (fileID: 1093482494) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 1756621987). The scene meta MonoBehaviours correspond exactly to the attached scripts: MonoBehaviour id 1756621985 uses XRGrabInteractable (guid 0ad34abafad169848a38072baa96cdb2) from XR Interaction Toolkit, and its m_SelectExited.m_PersistentCalls invokes LaunchObjects.PlayClip on MonoBehaviour id 1756621988. MonoBehaviour id 1756621988 uses LaunchObjects (guid 4876215a0c4824e96a1e27b21578fc27), which exposes a public no-arg method PlayClip(). Manually trigger the configured Interactable event to ensure coverage of the m_Calls without relying on XR selection flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1756621988,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 984890190,
+          "condition": "Child 'Unknown' (PrefabInstance id: 984890190) under parent '6- Gems' (fileID: 1093482494) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 673200875). The scene meta MonoBehaviours correspond exactly to the attached scripts: MonoBehaviour id 673200873 uses XRGrabInteractable (guid 0ad34abafad169848a38072baa96cdb2). Its m_FirstSelectEntered.m_PersistentCalls contains one call targeting MonoBehaviour id 673200876 (LaunchObjects) with method PlayClip. MonoBehaviour id 673200876 uses LaunchObjects (guid 4876215a0c4824e96a1e27b21578fc27) exposing a public no-arg method PlayClip(), with audioClip (guid 251bae7fae8b77140bb59870a45811e0) and audioSource (fileID: 673200877). Manually invoke the configured Interactable event to ensure the m_Calls are executed without relying on XR selection flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 673200876,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 701805947,
+          "condition": "Child 'Unknown' (PrefabInstance fileID: 701805947) under parent '6- Gems' (fileID: 1093482494) has Rigidbody (Has_Rigidbody: True) and SphereCollider (id: 211369806), so it supports Trigger actions. MonoBehaviour_0 (id: 211369804) maps to XR Interaction Toolkit's XRGrabInteractable (guid: 0ad34abafad169848a38072baa96cdb2). Its m_FirstSelectEntered.m_PersistentCalls contains one call targeting MonoBehaviour_1 (id: 211369807) with method PlayClip. MonoBehaviour_1 (id: 211369807) maps exactly to the attached script LaunchObjects (guid: 4876215a0c4824e96a1e27b21578fc27) with public no-arg method PlayClip(). Trigger this configured Interactable event call manually to ensure the m_Calls are executed without relying on XR selection flow.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 211369807,
+                  "method_name": "PlayClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Board",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1566218460,
+          "condition": "Manually invoke PlatformMovement.getFiftyPoints() on Board to validate UI enabling without collision. MonoBehaviour_0 (id: 1566218463) in scene has m_Script guid '7e860543c4b7344fba986977af52cbaf' which matches the attached PlatformMovement script. This object has a BoxCollider (id: 1566218464), so triggering is allowed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1566218463,
+                  "method_name": "getFiftyPoints",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Unknown",
+          "source_object_fileID": 111434455,
+          "target_object_name": "Board",
+          "target_object_fileID": 1566218460
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Unknown",
+          "source_object_fileID": 1163394800,
+          "target_object_name": "Board",
+          "target_object_fileID": 1566218460
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Unknown",
+          "source_object_fileID": 701805947,
+          "target_object_name": "Board",
+          "target_object_fileID": 1566218460
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Unknown",
+          "source_object_fileID": 973355952,
+          "target_object_name": "Board",
+          "target_object_fileID": 1566218460
+        }
+      ]
+    }
+  ]
+}

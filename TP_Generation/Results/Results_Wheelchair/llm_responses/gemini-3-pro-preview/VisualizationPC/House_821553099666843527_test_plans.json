@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Directly invoke HouseController.changeLights() on MonoBehaviour component (script guid: 340adb04e4e259e4b9c3e716ea2e6ced, component fileID: 821553098848002451). Expected behavior: iterate windowGlassObjects, set each Renderer.material _EmissionColor to lightsOnEmissionColor when currentLightStatus==true, otherwise lightsOffEmissionColor, and enable _EMISSION keyword. Note: Start() already calls changeLights() automatically at scene load; this manual trigger ensures the public method path is covered explicitly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

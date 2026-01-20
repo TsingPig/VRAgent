@@ -1,0 +1,36 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 821553099666843527,
+          "condition": "HouseController (MonoBehaviour fileID 821553098848002451, script GUID 340adb04e4e259e4b9c3e716ea2e6ced) is attached to GameObject 'House'. Serialized config: windowGlassObjects=[821553098795559414, 821553099003664447, 821553098404871707, 821553099487161785], lightsOnEmissionColor=(27.53272,7.6399693,0,0), lightsOffEmissionColor=(0.26855642,0.5613641,0.6698113,0), lightStatus=false, switchSound=AudioSource(fileID 821553098848002450). Precondition: Allow direct invocation of public method with no parameters. Expected: changeLights sets each windowGlassObjects[*].Renderer.material._EmissionColor to lightsOffEmissionColor and enables _EMISSION.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 821553099666843527,
+          "condition": "To cover Update() branch and AudioSource.Play: At runtime, toggle HouseController.lightStatus from false to true via test harness/inspector or an exposed UnityEvent (if available). No direct method exists to toggle this in the script. Expected: In the next Update() frame, script detects the change (currentLightStatus != lightStatus), updates currentLightStatus, calls changeLights (which sets emission to lightsOnEmissionColor), and plays switchSound (AudioSource fileID 821553098848002450).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

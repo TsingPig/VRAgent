@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ResetScenePanel",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 943515638,
+          "condition": "GameObject 'ResetScenePanel' (fileID: 943515638) contains MonoBehaviour id 943515640 with m_Script guid 403efda511d335c4a865b0a1f33cc9e0, which matches the provided LoadScene script. The GameObject is inactive (m_IsActive: 0), but the component is enabled (m_Enabled: 1). No UnityEvent m_Calls are configured in the scene meta. Trigger the no-parameter public method to validate scene reload behavior: SceneManager.LoadScene(SceneManager.GetActiveScene().name).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943515640,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

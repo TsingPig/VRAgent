@@ -1,0 +1,35 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 509737246,
+          "condition": "Verify MonoBehaviour_0 on this GameObject is the Fire script (m_Script guid 1729fd01c90a64d5b8037e1eef0d000d) and its serialized fields match: isOn=false, timeToOnMin=40, timeToOnMax=60, timeToOn=3 (will be randomized in Awake), onNeighborsThreshold=2, maxNeighborDistance=4, minNeighborDownDistance=3, totalHitTime=5, maxHitInterval=2, mainEffectGo=fileID 1849464941111748095. This object has a BoxCollider (triggerable) and no Rigidbody. Goal of this trigger: arrange neighbor fires so onNeighbors >= 2 and at least one neighbor is below by >3 units to set shouldTurnOn=true and accelerate timeToOn with downMultiplier. Let Update run until it turns fire on (calls UpdateFireState(true) and plays ParticleSystem).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 509737246,
+          "condition": "With the fire now ON from the previous step, simulate repeated water hits that call Fire.WaterHit(normal) at intervals < maxHitInterval (e.g., every 1.5s) for a total duration exceeding totalHitTime (5s). Expected: isTurningOff stays true, currentHitTime accumulates past totalHitTime, causing the fire to turn OFF (isOn=false, shouldTurnOn=false, UpdateFireState(true) stops ParticleSystem and notifies neighbors).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 2.5,
+          "source_object_fileID": 509737246,
+          "condition": "From a state where the fire is ON again (re-enable via neighbors or externally), simulate a single water hit (Fire.WaterHit(normal)) and then wait longer than maxHitInterval (2s) without further hits. Expected: isTurningOff becomes false due to currentHitInterval >= maxHitInterval, and the fire remains ON (abort turn-off path). This covers the branch where turning off is cancelled.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

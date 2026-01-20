@@ -1,0 +1,37 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1887208562,
+          "condition": "Manual trigger via test harness is required because 'Spot Light' (fileID: 1887208562) is initially inactive (m_IsActive: 0) and has no Rigidbody/Collider/EventTrigger components. The attached MonoBehaviour (id: 1887208566) maps to script GUID b61f5fbd6df31704b851371ab42625b2 (class ToggleOnOff) exposing public void Toggle(). Call Toggle once to activate, then call again after the trigger duration to revert, covering both on/off states.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1887208566,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1887208566,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

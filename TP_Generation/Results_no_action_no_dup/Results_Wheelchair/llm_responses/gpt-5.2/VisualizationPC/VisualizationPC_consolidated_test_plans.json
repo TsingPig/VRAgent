@@ -1,0 +1,39 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Invoke HouseController.changeLights() on House (MonoBehaviour component fileID: 821553098848002451, m_Script guid: 340adb04e4e259e4b9c3e716ea2e6ced). Initial scene config: lightStatus=false; Start() already calls changeLights once. This manual call validates emission color update on windowGlassObjects to lightsOffEmissionColor with _EMISSION enabled. Note: House has no Rigidbody/Collider/EventTrigger; direct method invocation is required pending interaction setup. AudioSource 'switchSound' should NOT play unless lightStatus toggles via Update.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Moon",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 227156923,
+          "condition": "MonoBehaviour_0 (fileID: 227156925, guid: 243873248f8e3f6468b009a9e2d86557) is MoonController attached to Moon, with 'player' bound to Player Transform (fileID: 1121179986) per scene meta. Moon has no Rigidbody/Collider but attached script runs Start/Update automatically. Waiting allows Update() to execute and set transform.rotation = LookRotation(player.position - transform.position), validating the serialized reference and rotation behavior.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

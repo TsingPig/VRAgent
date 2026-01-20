@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1094190421,
+          "condition": "Auto path coverage: On scene load, Timeout.Start() on MonoBehaviour fileID 1094190426 (GUID 9da68a9b408a56a4294168dd4694f0dc) starts ExecuteAfterTime(60). Wait 60s, then canvas.SetActive(false) should execute for GameObject fileID 1094190421. Note: No m_Calls in scene meta, no Collider/Rigidbody/EventTrigger on Canvas.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1094190421,
+          "condition": "Manual path (needs input simulation): Trigger the Update() branch by simulating Input.GetButtonDown(\"Fire1\") to immediately execute canvas.SetActive(false) on MonoBehaviour fileID 1094190426 (GUID 9da68a9b408a56a4294168dd4694f0dc). Current scene lacks a Collider/Rigidbody/EventTrigger and exposes no public no-arg method to call; requires either input injection (mapping for 'Fire1') or adding a public no-arg method (e.g., HideNow()) or an EventTrigger hook.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

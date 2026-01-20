@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "MonoBehaviour fileID 1908371634 uses script GUID f43df138c8422d842a109f05ee02b96e (class MainMenu). Scene meta shows no Collider/Rigidbody/EventTrigger or m_Calls for GameObject 1908371632; manual trigger added to ensure code coverage. Expected behavior: PlayGame() calls SceneManager.LoadScene(GetActiveScene().buildIndex + 1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "MonoBehaviour fileID 1908371634 uses script GUID f43df138c8422d842a109f05ee02b96e (class MainMenu). Scene meta shows no Collider/Rigidbody/EventTrigger or m_Calls for GameObject 1908371632; manual trigger added to ensure code coverage. Expected behavior: Quite() calls Application.Quit().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

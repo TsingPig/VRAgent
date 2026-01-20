@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 5",
+          "triggerring_time": 5.2,
+          "source_object_fileID": 870612912,
+          "condition": "MonoBehaviour (script guid: 1729fd01c90a64d5b8037e1eef0d000d, fileID: 11500000) matches Fire.cs. Object has BoxCollider, no Rigidbody. Fire implements IWaterInteractable.WaterHit(Vector3) to begin turning off. Scene meta shows no UnityEvent m_Calls, and Fire exposes no public parameterless methods, so we cannot directly invoke WaterHit via a Trigger call. To cover the extinguish path: repeatedly hit this Fire with water so that (a) currentHitInterval is reset (< maxHitInterval=2) each hit and (b) total accumulated currentHitTime reaches totalHitTime=5, causing isOn to turn false and UpdateFireState(true) to run. Needs an external water-emitter (e.g., hose/nozzle) to dispatch IWaterInteractable.WaterHit(Vector3) to this object’s collider (fileID 870612912).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 5",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 870612912,
+          "condition": "MonoBehaviour (script guid: 1729fd01c90a64d5b8037e1eef0d000d) state-based ignition requires onNeighbors >= onNeighborsThreshold (2). Scene config: maxNeighborDistance=4, onNeighborsThreshold=2, timeToOnMin=40, timeToOnMax=60, downMultiplier=2, minNeighborDownDistance=3. To cover the ignition path: ensure at least two neighbor Fire instances are ON within 4 units of this object; if any are lower by >3 on Y, downMultiplier accelerates timeToOnDelta. After timeToOn elapses (random 40–60 on Awake), this Fire should set isOn=true and call UpdateFireState(true), which notifies neighbors and FireController.Instance.FireChanged(+1). Requires neighbor Fire object identities and their initial isOn states so we can set them ON and within range. No callable parameterless methods exist on Fire to drive this directly.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

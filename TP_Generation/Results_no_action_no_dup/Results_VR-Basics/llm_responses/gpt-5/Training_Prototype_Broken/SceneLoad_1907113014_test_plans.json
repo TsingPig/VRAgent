@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "SceneLoad",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1907113014,
+          "condition": "MonoBehaviour_0 (fileID: 1907113015, guid: e9315cd1bd0bb624886da5b1f92c045e) matches OnSceneLoad. It subscribes to SceneManager.sceneLoaded in Awake and invokes OnLoad. OnLoad has 2 persistent calls: (1) TeleportPlayer.Teleport targeting fileID 692630298 and (2) FadeCanvas.StartFadeOut targeting fileID 263574720. MonoBehaviour_1 (fileID: 1907113017, guid: 403efda511d335c4a865b0a1f33cc9e0) matches LoadScene and exposes ReloadCurrentScene(). Triggering ReloadCurrentScene will reload the active scene, fire SceneManager.sceneLoaded, and thus invoke OnLoad to execute both persistent calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

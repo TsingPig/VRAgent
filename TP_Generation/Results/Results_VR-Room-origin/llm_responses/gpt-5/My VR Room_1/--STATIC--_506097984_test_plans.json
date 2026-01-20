@@ -1,0 +1,76 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Simulate XR Select Enter on TeleportationAnchor (TeleportAnchorWithFade). This path runs when teleportTrigger == OnSelectEntered, invoking FadeCanvas.QuickFadeIn -> TeleportationAnchor.OnSelectEntered -> FadeCanvas.QuickFadeOut. Requires the TeleportAnchorWithFade MonoBehaviour component fileID and confirmation of Collider/EventTrigger presence.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Simulate XR Select Exit on TeleportationAnchor (TeleportAnchorWithFade). This path runs when teleportTrigger == OnSelectExited, invoking FadeCanvas.QuickFadeIn -> TeleportationAnchor.OnSelectExited -> FadeCanvas.QuickFadeOut. Requires the TeleportAnchorWithFade MonoBehaviour component fileID and confirmation of Collider/EventTrigger presence.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Simulate XR Activation on TeleportationAnchor (TeleportAnchorWithFade). This path runs when teleportTrigger == OnActivated, invoking FadeCanvas.QuickFadeIn -> TeleportationAnchor.OnActivated -> FadeCanvas.QuickFadeOut. Requires the TeleportAnchorWithFade MonoBehaviour component fileID and confirmation of Collider/EventTrigger presence.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Simulate XR Deactivation on TeleportationAnchor (TeleportAnchorWithFade). This path runs when teleportTrigger == OnDeactivated, invoking FadeCanvas.QuickFadeIn -> TeleportationAnchor.OnDeactivated -> FadeCanvas.QuickFadeOut. Requires the TeleportAnchorWithFade MonoBehaviour component fileID and confirmation of Collider/EventTrigger presence.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1865680026,
+          "condition": "Directly invoke Play() on PlayQuickSound MonoBehaviour to cover audio playback path (requires AudioSource due to [RequireComponent], and object should be active). Confirm the component fileID for PlayQuickSound (likely 1865680030 from m_AddedComponents) and presence of a Collider/EventTrigger or allowance for direct method invocation by the test harness.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TV_FlatWallMounted",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 772053049,
+          "condition": "Invoke the playback start on the Video controller MonoBehaviour attached to TV_FlatWallMounted (script guid 3d4642753971e264fbb20044fa231cd5). Serialized fields: playAtStart=false, videoMaterial set, videoClips assigned. This covers the primary playback path when triggered manually.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 725697786,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

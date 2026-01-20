@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building91",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 954951891,
+          "condition": "EventTrigger (MonoBehaviour fileID 954951897, script guid d0b148fe25e99eb48b9724523833bab1) has m_Delegates eventID=4 (PointerClick) with PersistentCall to target MonoBehaviour fileID 954951893 (script guid ed3b45ff7bbab2146bc55b624801e08e, class Government) invoking public method showlabel(). Expected behavior: updates Player->child[1] TextMeshPro text to substring(0,20) of 'Government:Financial Department'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 954951893,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building91",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 954951891,
+          "condition": "EventTrigger (MonoBehaviour fileID 954951897, script guid d0b148fe25e99eb48b9724523833bab1) defines m_Delegates eventID=4 (PointerClick) with PersistentCall to MonoBehaviour fileID 954951893 (script guid ed3b45ff7bbab2146bc55b624801e08e, class Government) invoking public method showlabel(). Expected: Player.transform.GetChild(1).GetComponent(TextMeshPro).text set to GetLabel().Substring(0,20) => 'Government:Financial'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 954951893,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

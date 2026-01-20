@@ -1,0 +1,34 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Outside Area",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 543965080,
+          "condition": "No Collider, EventTrigger, or MonoBehaviour (m_Calls) were provided for 'Outside Area'. To select a specific event to trigger, please provide the attached MonoBehaviour components (including their public no-arg methods and any m_Calls) for 'Outside Area' and its children. Note: the Transform lists children fileIDs 1907241307 and 1909180082, while the prompt mentions 1907241302 and 1909180081; please confirm which children to use.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1489944608,
+          "condition": "MonoBehaviour(id:1489944610) on 'Cube' uses m_Script guid=4776ee613acabb5469b6e008e6cb6b12 (class Victory) and is the exact scene settings for the provided Victory script. Serialized refs: clock=fileID 314576056, timer=fileID 1269740007, exitDoor=fileID 790247597. BoxCollider(id:1489944611) isTrigger=1, enabling interaction; object has no Rigidbody so Grab/Transform are not applicable. Ensure timer.outOfTime == false to exercise the success path where Victory.onWin() invokes Clock.onFinish(), Timer.onWin(), and ExitDoor.onFinish(). No m_Calls were provided, so a manual Trigger is required to cover Victory.onWin().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

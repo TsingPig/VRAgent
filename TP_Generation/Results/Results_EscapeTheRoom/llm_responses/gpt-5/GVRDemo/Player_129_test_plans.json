@@ -1,0 +1,70 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 95,
+          "condition": "Player (fileID:129) has no Rigidbody/Collider/EventTrigger, so no Grab/Transform on Player. Main Camera (fileID:135) MonoBehaviours map to provided scripts: id 940 -> GvrAudioListener (guid:b1156c073149742478887bb24456f32d) with globalGainDb=0, occlusionMask.m_Bits=4294967295 (-1), quality=2 (High); id 941 -> GvrPointerPhysicsRaycaster (guid:eb5dd43baba2d4dc1bab789615567e3d) with raycastMode=0 (Camera), raycasterEventMask.m_Bits=4294967295 (-1). GvrReticlePointer (fileID:95) MonoBehaviour id 926 -> GvrReticlePointer (guid:e7dcc90c2e60c4011896c7f21fc1f557) with reticleSegments=20, reticleGrowthSpeed=8. Lifecycle methods Awake/Start/OnEnable/Update on these components will run automatically. Manually call SetAsMainPointer() to ensure GvrPointerManager.Pointer is initialized, enabling GvrPointerPhysicsRaycaster.IsPointerAvailable() to return true for subsequent automatic raycasts.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 926,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 95,
+          "condition": "Player (fileID:129) has no Rigidbody and must not be Grabbed/Transformed. Main Camera (fileID:135) MonoBehaviours map to provided scripts: id 940 -> GvrAudioListener (guid:b1156c073149742478887bb24456f32d) with globalGainDb=0, occlusionMask=-1, quality=2; id 941 -> GvrPointerPhysicsRaycaster (guid:eb5dd43baba2d4dc1bab789615567e3d) with raycastMode=0 (Camera), event mask=-1. GvrReticlePointer (fileID:95) MonoBehaviour id 926 -> GvrReticlePointer (guid:e7dcc90c2e60c4011896c7f21fc1f557) with reticleSegments=20, reticleGrowthSpeed=8. Lifecycle methods (Awake/Start/OnEnable/Update) are automatic. Manually call SetAsMainPointer() to initialize GvrPointerManager.Pointer so raycaster paths can execute.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 926,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 68,
+          "condition": "MonoBehaviour id 915 on ddcontroller maps to script guid aa952cbcc0eb13d4ca558b6da550ff55 (GvrControllerVisual). Scene settings match script fields: touchPoint(fileID:109), material_idle(3b4f6031d569a624ba87b631c93a788a), material_app(3fe59d3fe0697b84196c28c184197906), material_system(6c9fcd230d4724c40af9e27326dc25f1), material_touchpad(a89bc9f2db5f60743a95275d0336b6c2), touchTransparent(089662c06964d614db131b6b344431e4), touchOpaque(7bc1b31ae424a1448b1be6be3707ad31). GvrControllerVisual exposes no public no-arg methods; its coverage relies on automatic lifecycle (Awake/Start/OnDestroy) and the external event GvrArmModel.Instance.OnArmModelUpdate invoking private OnArmModelUpdate(). To achieve full coverage we need a public no-arg method on the parent Controller's GvrArmModel (fileID unknown, parent Transform fileID:527) to force an arm update, plus a way to simulate GvrController states: ClickButton, AppButton, Recentering, IsTouching, TouchPos and adjust GvrControllerVisual.AlphaValue.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 83,
+          "condition": "MonoBehaviour id 921 on Laser maps to script guid 51b65678ccdd949e9a58874d2880c0ef (GvrLaserPointer). Scene settings match script fields: laserColor(r=1,g=1,b=1,a=0.2509804), maxLaserDistance=0.75, maxReticleDistance=2.5, reticle(fileID:176), reticleSortingOrder=32767. This script exposes a public no-arg method SetAsMainPointer() which must be manually triggered to register the pointer (not called automatically in Start). The other attached script MonoBehaviour id 922 maps to guid 4c173f7c6a736fe469d4acc5b108d6d5 (GvrArmModelOffsets) with joint=Pointer(0) and depends on GvrArmModel.Instance.OnArmModelUpdate; additional info is needed to force that event.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 921,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

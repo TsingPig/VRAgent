@@ -1,0 +1,242 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Buildings",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1589941764,
+          "condition": "Invoke SteamAudioGeometry (component id 1589941766; script GUID e829c87dc2a2ed2419c5f67848317fe4) attached to Buildings (fileID 1589941764). Scene settings match script fields: material (guid a086f686223eed942816c70be67841b0), exportAllChildren=false, terrainSimplificationLevel=0. Manually call public no-arg methods to exercise geometry query logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Ambulance",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1616856287260946002,
+          "condition": "Ambulance has BoxCollider (id 9191504438935284416) enabling Trigger interactions. Invoke SteamAudioGeometry on Ambulance (component id 9191504438935284415; script GUID e829c87dc2a2ed2419c5f67848317fe4). Scene settings match script fields: material (guid a086f686223eed942816c70be67841b0), exportAllChildren=false, terrainSimplificationLevel=0. Manually call public no-arg methods to exercise geometry query logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire_Engine",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3206529234001464345,
+          "condition": "Fire_Engine has BoxCollider (id 5409646016458175009), enabling Trigger interactions. Invoke SteamAudioGeometry on Fire_Engine (component id 5409646016458175008; script GUID e829c87dc2a2ed2419c5f67848317fe4). Scene meta matches script fields: material (guid a086f686223eed942816c70be67841b0), exportAllChildren=false, terrainSimplificationLevel=0. Manually call public no-arg methods to exercise geometry query logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Shouting",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 592733083,
+          "condition": "MonoBehaviour component id 592733085 matches script SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd) with the provided scene settings (directBinaural=1, interpolation=Nearest, distanceAttenuation=true with PhysicsBased input, airAbsorption=true, occlusion=false, reflections=false, pathing=false, etc.). Lifecycle events (Awake/OnEnable/Start/Update/OnDisable/OnDestroy) occur automatically; to ensure explicit method coverage, manually invoke the public no-arg method GetSource() on component 592733085.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 592733085,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 208486863,
+          "condition": "MonoBehaviour component id 208486865 corresponds to script SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd) and the scene meta lists its serialized settings (e.g., directBinaural=1, interpolation=Nearest, distanceAttenuation=true with PhysicsBased input, airAbsorption=true, reflections=false, pathing=false). Unity lifecycle events (Awake/OnEnable/Start/Update/OnDisable/OnDestroy) occur automatically; to ensure explicit public no-arg method coverage, invoke GetSource() on component 208486865.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 208486865,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1854226667,
+          "condition": "MonoBehaviour component id 1854226669 corresponds to script SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd). Scene meta matches the script's serialized fields (directBinaural=1, interpolation=Nearest, distanceAttenuation=true with PhysicsBased input, airAbsorption=true, occlusion=false, reflections=false, pathing=false, etc.). Unity lifecycle events run automatically; to explicitly cover public no-arg API, invoke GetSource() on component 1854226669.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1854226669,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 389740526,
+          "condition": "MonoBehaviour component id 389740528 corresponds to script SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd). The scene meta lists its serialized settings (e.g., directBinaural=1, interpolation=Nearest, distanceAttenuation=true with PhysicsBased input, airAbsorption=true, occlusion=false, reflections=false, pathing=false). Unity lifecycle events (Awake/OnEnable/Start/Update/OnDisable/OnDestroy) run automatically; to explicitly cover public no-arg API, invoke GetSource() on component 389740528.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 389740528,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CoughingMan",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 988770326,
+          "condition": "MonoBehaviour_0 (id 988770328) in scene maps to SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd). Its serialized settings match the script fields (e.g., directBinaural=1, distanceAttenuation=1 with PhysicsBased input, airAbsorption=1, reflections=0, pathing=0). Unity lifecycle methods (Awake/OnEnable/Start/Update/OnDisable/OnDestroy) will run automatically; to explicitly cover a public no-arg API call, invoke GetSource() on component 988770328. Also present: MonoBehaviour_1 (id 988770330) maps to FireBasedAudioManager (script GUID 77f9a59041a2de446bf7704b5c31f103) with fields audioSource=null (will be set in Awake via GetComponent), fireLimit=7, timeInterval=20; it has no public no-arg methods and no UnityEvent m_Calls in the scene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988770328,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CoughingWoman",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1034990897,
+          "condition": "MonoBehaviour_0 (id 1034990899) in scene corresponds to SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd). Its serialized fields match the script: directBinaural=1, interpolation=Nearest (0), distanceAttenuation=1 with PhysicsBased input (1), airAbsorption=1 with SimulationDefined (0), reflections=0, pathing=0, etc. MonoBehaviour_1 (id 1034990901) corresponds to FireBasedAudioManager (script GUID 77f9a59041a2de446bf7704b5c31f103) with audioSource=null (set in Awake via GetComponent), fireLimit=9, timeInterval=10. No UnityEvent m_Calls present. Unity lifecycle methods (Awake/OnEnable/Start/Update/OnDisable/OnDestroy) occur automatically; to explicitly cover a public no-arg API, invoke GetSource() on SteamAudioSource component 1034990899.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1034990899,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "WomanDevastated",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1678975683,
+          "condition": "MonoBehaviour_0 (id 1678975685) in scene corresponds to SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd). Its serialized fields match the script: directBinaural=1, interpolation=Nearest(0), distanceAttenuation=1 with PhysicsBased input(1), airAbsorption=1 with SimulationDefined(0), reflections=0, pathing=0, etc. MonoBehaviour_1 (id 1678975687) corresponds to FireBasedAudioManager (script GUID 77f9a59041a2de446bf7704b5c31f103) with audioSource set in Awake via GetComponent, fireLimit=5, timeInterval=30. No UnityEvent m_Calls are present. Unity lifecycle methods (Awake/OnEnable/Start/Update/OnDisable/OnDestroy) run automatically; to explicitly cover a public no-arg API, invoke GetSource() on SteamAudioSource component 1678975685.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1678975685,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1975023119,
+          "condition": "MonoBehaviour_0 (id 1975023122) on GameObject 'Point Light - 1' maps to SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd). Serialized fields match the script (e.g., directBinaural=1, interpolation=Nearest(0), distanceAttenuation=1 with PhysicsBased(1), airAbsorption=1 with SimulationDefined(0), reflections=0, pathing=0). No UnityEvent m_Calls listed. Unity lifecycle methods run automatically; to explicitly cover a public no-arg API, invoke GetSource() on component 1975023122.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1975023122,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 778717854,
+          "condition": "MonoBehaviour_0 (id 778717857) on 'Point Light - 2' maps to SteamAudio.SteamAudioSource (script GUID 59c3684b22f00604a97bb68037fcf4cd). The serialized fields match the script defaults/settings shown (e.g., directBinaural=1, interpolation=Nearest(0), distanceAttenuation=1 with PhysicsBased(1), airAbsorption=1 with SimulationDefined(0), directivity=0, occlusion=0, transmission=0, reflections=0, pathing=0). No UnityEvent m_Calls listed in the scene meta; lifecycle methods fire automatically. To explicitly cover a public no-arg API, invoke GetSource() on component 778717857.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 778717857,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

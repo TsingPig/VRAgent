@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 509737246,
+          "condition": "MonoBehaviour (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) corresponds to Fire.cs on this GameObject. Scene config for this instance: isOn=false, shouldTurnOn=false, onNeighborsThreshold=2, maxNeighborDistance=4, minNeighborDownDistance=3, downMultiplier=2, timeToOnMin=40, timeToOnMax=60 (Awake randomizes timeToOn). BoxCollider enabled (IsTrigger=0), no Rigidbody. This step waits to allow any external neighbor notifications (NotifyNeighborState) to raise onNeighbors>=2 and naturally set shouldTurnOn=true so Update() can auto-ignite (isOn becomes true) and UpdateFireState(true) plays particles and notifies neighbors. No parameterless public methods exist on Fire, so no direct method calls are possible here. Ensure an external system (e.g., FireController) calls FindNeighbors and issues NotifyNeighborState changes.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 509737246,
+          "condition": "Extinguish scenario: requires external water system to invoke IWaterInteractable.WaterHit(Vector3) repeatedly. Fire.cs turns off only if isTurningOff stays true with currentHitInterval < maxHitInterval (2s) across hits and accumulated currentHitTime >= totalHitTime (5s). During this 5.5s window, WaterHit must be called at intervals < 2s to reach totalHitTime. Upon success, Update() sets isOn=false and calls UpdateFireState(true) to stop particles and notify neighbors. No parameterless public methods exist on Fire to invoke directly; relies on Collider-based water interaction.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

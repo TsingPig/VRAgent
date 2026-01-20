@@ -1,0 +1,166 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manual call to WinLose.loselevel() to emulate PlayerTriggers.OnTriggerEnter with tag 'Cars'. Mapping: MonoBehaviour WinLose (scene MonoBehaviour_1, script GUID d8624f87f98aa484bb7925103f5d458e) is attached to VRWC_WheelchairRig (Prefab GUID 147761150dc62d64899a69769156bb31; GameObject fileID 1134884820). Component fileID for WinLose is 8900446968063909830 (as referenced by PrefabInstance property modifications). Serialized fields: restartdelay=2; WinUI and LoseUI are set via PrefabInstance mods (WinUI→fileID 1345324351, LoseUI→fileID 1999610191). PlayerTriggers (script GUID a0edd121473972448b844c1958f760ce; scene MonoBehaviour_0) would normally invoke winlosescript.loselevel() on collision with objects tagged 'Cars'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manual call to WinLose.Winlevel() and WinLose.Restart() to validate win UI activation and cover Restart(). WinLose component (script GUID d8624f87f98aa484bb7925103f5d458e) on VRWC_WheelchairRig has component fileID 8900446968063909830. PrefabInstance modifications set WinUI (fileID 1345324351) and LoseUI (fileID 1999610191). PlayerTriggers would normally reach this path via OnTriggerEnter with objects tagged 'WinBox' (also invokes Scoremanager.instance.changescore(StarValue) with StarValue=2 per scene).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -7.95,
+            "y": -0.17,
+            "z": -4.08
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -3.39,
+            "y": -0.17,
+            "z": -34.33
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 29.25,
+            "y": 0.0,
+            "z": -19.97
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manual coverage for WinLose methods not invoked by OnTriggerEnter. Component: WinLose (script GUID d8624f87f98aa484bb7925103f5d458e) attached to VRWC_WheelchairRig; component fileID 8900446968063909830. Serialized fields: restartdelay=2; WinUI fileID 1345324351; LoseUI fileID 1999610191.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

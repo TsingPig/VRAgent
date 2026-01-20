@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 2.5,
+          "source_object_fileID": 314576052,
+          "condition": "MonoBehaviour id 314576056 (script GUID 27b31662383b39d4a9c98eb14ed39152) on GameObject 'ClockText' matches the provided Clock script settings (time=0, clockText=fileID 314576054, BestTime=fileID 1936206876, finished=false). Allow Update to run for 2.5s to increment time and update TextMeshPro, then invoke Clock.onFinish() to set finished=true and call BestTime.checkTime(time).",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 314576052,
+          "condition": "After completing the finish path, also cover the timeout path by invoking the other public no-arg event. This uses the same MonoBehaviour id 314576056 (Clock). Expected: finished remains true; no further time updates occur.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onTimeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

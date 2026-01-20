@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 227892003,
+          "condition": "Simulate EventTrigger PointerClick (eventID=4; EventTrigger MonoBehaviour id=227892007, script guid=d0b148fe25e99eb48b9724523833bab1) on Building5 PrefabInstance (fileID=227892003). This invokes Hotel.showlabel() on MonoBehaviour fileID=227892005 (script guid=f713beac870e2bd45bed25f1cda3a140). Expected behavior per code: showlabel() sets Player->child[1] TextMeshPro.text to GetLabel().Substring(0,20), where GetLabel() returns 'Hotel:Udon Hotel' for gameObject.name=='Building5'. Note: This string length (17) may cause ArgumentOutOfRangeException due to Substring(0,20) if not guarded; also requires a GameObject named 'Player' with a second child holding a TextMeshPro component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 227892003,
+          "condition": "Simulate EventTrigger PointerClick (eventID=4) on Building5 PrefabInstance (fileID=227892003). EventTrigger MonoBehaviour id=227892007 (script guid=d0b148fe25e99eb48b9724523833bab1) has a persistent call to Hotel.showlabel() on MonoBehaviour id=227892005 (script guid=f713beac870e2bd45bed25f1cda3a140). Expected: showlabel() sets Player->child[1] TextMeshPro.text = GetLabel().Substring(0,20). For Building5, GetLabel() returns 'Hotel:Udon Hotel'. Note: May raise ArgumentOutOfRangeException if the string length is < 20 or NullReferenceException if Player child[1] lacks TextMeshPro.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

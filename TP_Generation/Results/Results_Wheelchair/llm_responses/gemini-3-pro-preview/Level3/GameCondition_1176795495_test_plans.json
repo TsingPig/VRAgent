@@ -1,0 +1,65 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1176795495,
+          "condition": "Invoke WinLose.Winlevel() on GameCondition. MonoBehaviour guid=d8624f87f98aa484bb7925103f5d458e, restartdelay=2. PrefabInstance modifications indicate WinUI -> fileID 365561371. Expected: WinUI.SetActive(true). Note: No Rigidbody/Collider/EventTrigger on GameCondition; direct public method invocation used.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1176795495,
+          "condition": "Invoke WinLose.loselevel() on GameCondition. MonoBehaviour guid=d8624f87f98aa484bb7925103f5d458e, restartdelay=2. PrefabInstance modifications indicate LoseUI -> fileID 365561372. Expected: LoseUI.SetActive(true). Note: No Rigidbody/Collider/EventTrigger on GameCondition; direct public method invocation used.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1176795495,
+          "condition": "Invoke WinLose.Restart() on GameCondition. MonoBehaviour guid=d8624f87f98aa484bb7925103f5d458e, restartdelay=2. Expected: no-op (method body empty). Note: Used direct public method invocation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

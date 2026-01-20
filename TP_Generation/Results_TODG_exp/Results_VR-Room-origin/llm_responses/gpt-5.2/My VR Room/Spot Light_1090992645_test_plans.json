@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "Initial state isOn=0 per scene (MonoBehaviour id=1090992649, script GUID=376688c5b82056e4da4c2b159887a7dc). Validate Start() initialized Light.enabled=false, then manually enable via TurnOn() to set isOn=true and Light.enabled=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "With isOn=true after TurnOn(), flip to false to test Flip() path true->false and Light.enabled sync.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "Flip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "Ensure TurnOff() correctly sets isOn=false and disables Light when already false (idempotency check).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOff",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "From isOn=false, call Flip() to test false->true transition and Light.enabled sync.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "Flip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

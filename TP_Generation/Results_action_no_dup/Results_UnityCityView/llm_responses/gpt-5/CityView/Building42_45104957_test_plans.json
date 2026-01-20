@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building42",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 45104957,
+          "condition": "On EventTrigger eventID=4 (PointerClick) for Building42, the EventTrigger (guid d0b148fe25e99eb48b9724523833bab1, id 45104963) invokes Residential.showlabel on MonoBehaviour id 45104959 (guid 10a92b1b4549024468ecbc96831def68). Ensure Start() has run (scene loaded, object active) and a GameObject named 'Player' exists with a child at index 1 having a TextMeshPro component. Expected: label text becomes first 20 chars of 'Residential:Tora Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 45104959,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building42",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 45104957,
+          "condition": "EventTrigger on Building42 (id 45104963, guid d0b148fe25e99eb48b9724523833bab1) has eventID=4 (PointerClick) with a persistent call to Residential.showlabel on MonoBehaviour id 45104959 (guid 10a92b1b4549024468ecbc96831def68). After Start() runs and Player child[1] has a TextMeshPro component, invoking showlabel should set the label text to the first 20 chars of 'Residential:Tora Apartment' => 'Residential:Tora Apa'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 45104959,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

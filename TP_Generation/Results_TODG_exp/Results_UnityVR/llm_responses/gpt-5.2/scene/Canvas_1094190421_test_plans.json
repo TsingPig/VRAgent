@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 1094190421,
+          "condition": "Automatic timeout path. MonoBehaviour component id:1094190426 (script guid:9da68a9b408a56a4294168dd4694f0dc) attached to GameObject fileID:1094190421 matches Timeout script and has serialized field 'canvas' -> fileID:1094190421. On Start(), it calls StartCoroutine(ExecuteAfterTime(60)); after 60s canvas.SetActive(false) should occur. This action waits long enough to observe the auto-deactivation. No manual method calls are required and none are available with zero parameters.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1094190421,
+          "condition": "Manual input path. To cover Timeout.Update(), simulate Input.GetButtonDown('Fire1') so canvas.SetActive(false) executes immediately. Requires a valid input source or a UI/EventTrigger/Collider target to legally fire input in VR per action rules. MonoBehaviour component id:1094190426 (script guid:9da68a9b408a56a4294168dd4694f0dc). Provide details of a controller/event source or a child UI element with EventTrigger/Collider to bind this action.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

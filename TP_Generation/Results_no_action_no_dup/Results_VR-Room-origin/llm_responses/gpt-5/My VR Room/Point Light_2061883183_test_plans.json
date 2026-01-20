@@ -1,0 +1,37 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 2061883183,
+          "condition": "Scene 'My VR Room.unity': GameObject 'Point Light' (fileID 2061883183) includes MonoBehaviour (fileID 2061883187) whose m_Script guid 'b61f5fbd6df31704b851371ab42625b2' matches the provided ToggleOnOff script. Initial m_IsActive is '0' (inactive). No m_Calls (UnityEvent) entries were provided for this component. We will directly invoke the public method Toggle() to toggle the GameObject active state on, then off, to ensure code coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2061883187,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2061883187,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

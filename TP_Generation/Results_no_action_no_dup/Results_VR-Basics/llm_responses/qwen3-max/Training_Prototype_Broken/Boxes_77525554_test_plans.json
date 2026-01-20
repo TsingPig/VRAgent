@@ -1,0 +1,256 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (0)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3569975690511002028,
+          "condition": "Manual API calls on Box (0) to ensure coverage when collisions may not be reliably produced yet. Scene meta shows: MonoBehaviour_0 (id: 7040005640398465217, guid: 6bf7bf2b5cedc0b4fb673b10c7900629, class OnCollision) has OnEnter.m_PersistentCalls.m_Calls -> target MonoBehaviour_1 (id: 2085702217920827848, guid: 0755a2ba17a31d643b4a27e3034d8a79, class PlayQuickSound) method 'Play'. PlayQuickSound is configured with sound guid 406c52bfda3df4113b0b3e1299061d97, volume=3, randomPitchVariance=0.25. BoxCollider (id: 3174054499936259574) has m_IsTrigger=0 and object has Rigidbody (Has_Rigidbody: True). Additionally, two TranslateObject components are present (MonoBehaviour_2 id: 74831552 and MonoBehaviour_3 id: 1248989243, both guid: 866d134ae31a01841b6156f8d0a87054) exposing a no-arg method ResetToStartingPosition that should be exercised.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2085702217920827848,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 730385652,
+          "condition": "Manually invoke no-arg API to ensure coverage for TranslateObject on Box (1). Scene meta: MonoBehaviour_0 (id: 203819839, guid: 866d134ae31a01841b6156f8d0a87054, class TranslateObject) is attached to PrefabInstance id 730385652 and exposes ResetToStartingPosition(). Box (1) reports Has_Rigidbody: False, so no Grab/Transform actions are allowed. No UnityEvent m_Calls present for automatic invocation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 331566651,
+          "condition": "Manual call to no-arg API on Box (2) to ensure coverage. Scene meta: MonoBehaviour_0 (id: 531403574, guid: 866d134ae31a01841b6156f8d0a87054) maps to TranslateObject script and exposes ResetToStartingPosition(). Box (2) reports Has_Rigidbody: False, so Grab/Transform are not allowed; no UnityEvent m_Calls are defined for automatic invocation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1736349558,
+          "condition": "Manual invocation to cover the only public no-arg API on TranslateObject. Scene MonoBehaviour_0 (component id: 898355187) has m_Script guid 866d134ae31a01841b6156f8d0a87054 which matches the provided TranslateObject script. No UnityEvent m_Calls are present for automatic invocation; Has_Rigidbody: False, so Grab/Transform are disallowed. This Trigger explicitly calls ResetToStartingPosition() for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1058824938,
+          "condition": "Manually invoke the only public no-arg method on TranslateObject to ensure coverage. Scene MonoBehaviour_0 (component id: 1147109801) has m_Script guid 866d134ae31a01841b6156f8d0a87054, matching the provided TranslateObject script. The object is a PrefabInstance (m_PrefabInstance: 1058824938) under parent 'Boxes'. Has_Rigidbody: False, so Grab/Transform are disallowed; no UnityEvent m_Calls are present for automatic invocation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0,
+            "y": -15.0,
+            "z": 0
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0,
+            "y": 15.0,
+            "z": 0
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 49734231,
+          "condition": "Scene MonoBehaviours on Box (5): OnCollision (id: 7040005640398465217, guid: 6bf7bf2b5cedc0b4fb673b10c7900629) has UnityEvents OnEnter/OnExit. OnEnter.m_Calls targets PlayQuickSound.Play on component id: 2085702217920827848 (guid: 0755a2ba17a31d643b4a27e3034d8a79). BoxCollider (id: 3174054499936259574) m_IsTrigger=0 and Has_Rigidbody=True, so moving the object will automatically trigger OnCollisionEnter/Exit and thus PlayQuickSound.Play. Two TranslateObject components (ids: 74831552 and 1248989243) map to script guid 866d134ae31a01841b6156f8d0a87054 and expose the only no-arg API ResetToStartingPosition(); we manually call these to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (6)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1843663307,
+          "condition": "Manual invocation of the only public no-arg method on TranslateObject. Scene MonoBehaviour_0 (component id: 1124768097) has m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. Has_Rigidbody: False, so Grab/Transform are disallowed; no UnityEvent m_Calls are present for automatic invocation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (7)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 930118958,
+          "condition": "MonoBehaviour_0 (id: 988422739) on Box (7) references m_Script guid 866d134ae31a01841b6156f8d0a87054, which is exactly the provided TranslateObject script. No UnityEvent m_Calls are defined in the scene meta, and Has_Rigidbody is False, so a manual trigger is required to cover the only public no-arg method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (8)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 176049113,
+          "condition": "MonoBehaviour_0 (id: 1793308541) on Box (8) references m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. No UnityEvent m_Calls are defined and Has_Rigidbody is False, so manually invoke the only public no-arg method to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1793308541,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (9)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1025029724,
+          "condition": "MonoBehaviour_0 (id: 1320904625) on Box (9) uses m_Script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject script. Has_Rigidbody: False; no UnityEvent m_Calls specified, so manually invoke the only public no-arg method for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1320904625,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 5",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 736005887,
+          "condition": "Object has BoxCollider (IsTrigger=false) and no Rigidbody. MonoBehaviour_0 on this object uses script guid 1729fd01c90a64d5b8037e1eef0d000d, which matches the provided Fire class (fields: debug, isOn, timeToOnMin/Max, neighbors, mainEffectGo, etc.). There are no UnityEvents (m_Calls) exposed in the scene meta and the Fire script exposes no public parameterless methods (NotifyNeighborState(bool), UpdateFireState(bool), WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[], int) all require parameters). Therefore, no direct parameterless method can be triggered via this action. To fully test conditional events (auto turn-on via neighbors and turn-off via WaterHit), external setup is required: provide neighbor Fire references (neighbors list or FindNeighbors invocation) and a water interaction that calls WaterHit(normal) within maxHitInterval.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building101",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 137028025,
+          "condition": "EventTrigger (MonoBehaviour fileID 137028029; script guid d0b148fe25e99eb48b9724523833bab1) on Building101 registers eventID=4 (PointerClick) with a persistent call to MonoBehaviour fileID 137028027 (script guid b78288e601dcaac41ae0297908e55692, class Bank). Calling Bank.showlabel() should set Player->child[1]'s TextMeshPro text to the Building101 label, truncated to 20 chars.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 137028027,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building101",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 137028025,
+          "condition": "EventTrigger (MonoBehaviour fileID 137028029; script guid d0b148fe25e99eb48b9724523833bab1) on Building101 registers eventID=4 (PointerClick) with a persistent call to MonoBehaviour fileID 137028027 (guid b78288e601dcaac41ae0297908e55692, class Bank). Expect Player->child[1] TextMeshPro text to be set to GetLabel().Substring(0,20) => \"Bank:Lucario's Bank \"",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 137028027,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

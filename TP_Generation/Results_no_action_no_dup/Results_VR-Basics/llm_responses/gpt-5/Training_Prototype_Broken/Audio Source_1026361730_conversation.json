@@ -1,0 +1,192 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the VR-Basics App. One game object we want to test in the scene of 'Training_Prototype_Broken.unity' is 'Audio Source'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code of the script attached to this gameobjects below. There may be more than one script attached to one gameobject. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of script files attached]\n'''\nusing System.Collections.Generic;\nusing UnityEngine;\n\n/// <summary>\n/// Play from a list of sounds using next, previous, and random\n/// </summary>\n[RequireComponent(typeof(AudioSource))]\npublic class PlaySoundsFromList : MonoBehaviour\n{\n    [Tooltip(\"Loop the currently playing sound\")]\n    public bool shouldLoop = false;\n\n    [Tooltip(\"The list of audio clips to play from\")]\n    public List<AudioClip> audioClips = new List<AudioClip>();\n\n    private AudioSource audioSource = null;\n    private int index = 0;\n\n    private void Awake()\n    {\n        audioSource = GetComponent<AudioSource>();\n    }\n\n    public void NextClip()\n    {\n        index = ++index % audioClips.Count;\n        PlayClip();\n    }\n\n    public void PreviousClip()\n    {\n        index = --index % audioClips.Count;\n        PlayClip();\n    }\n\n    public void RandomClip()\n    {\n        index = Random.Range(0, audioClips.Count);\n        PlayClip();\n    }\n\n    public void PlayAtIndex(int value)\n    {\n        index = Mathf.Clamp(value, 0, audioClips.Count);\n        PlayClip();\n    }\n\n    public void PauseClip()\n    {\n        audioSource.Pause();\n    }\n\n    public void StopClip()\n    {\n        audioSource.Stop();\n    }\n\n    public void PlayCurrentClip()\n    {\n        PlayClip();\n    }\n\n    private void PlayClip()\n    {\n        audioSource.clip = audioClips[Mathf.Abs(index)];\n        audioSource.Play();\n    }\n\n    private void OnValidate()\n    {\n        AudioSource audioSource = GetComponent<AudioSource>();\n        audioSource.loop = shouldLoop;\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file] The scene file of 'Training_Prototype_Broken.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Audio Source' and its script. The 'fileID' of gameobject 'Audio Source' is: 1026361730. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '1026361731'}]}, {'component': [{'fileID': '1026361733'}]}, {'component': [{'fileID': '1026361732'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Audio Source'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'RectTransform', 'properties': {'id': '1026361731', 'RectTransform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1026361730'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': []}, {'m_Father': [{'fileID': '2095114522'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_AnchorMin': [{'x': '0.5'}, {'y': '0.5'}]}, {'m_AnchorMax': [{'x': '0.5'}, {'y': '0.5'}]}, {'m_AnchoredPosition': [{'x': '0'}, {'y': '0'}]}, {'m_SizeDelta': [{'x': '100'}, {'y': '100'}]}, {'m_Pivot': [{'x': '0.5'}, {'y': '0.5'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1026361732', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1026361730'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '76a895b5e674db04d8b4f8110c068852'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'shouldLoop': '0'}, {'audioClips': [{'fileID': '8300000'}, {'guid': '3c7b3ef689cc94af0bd824489050effd'}, {'type': '3'}, {'fileID': '8300000'}, {'guid': '39eeabf0f489f4e46a024aa733bf1b4b'}, {'type': '3'}]}]}}]}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n          \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n          \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n          \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n          \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n          \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n          \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n            // 0 or more event units\n            {\n              \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                {\n                  \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n                  \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                  \"parameter_fileID\": []         // No need to fill. Must be empty.\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n              // 0 or more event units\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"<string>\",        // Target object name\n          \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n          \"delta_position\": {                     // Position delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_rotation\": {                     // Rotation delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_scale\": {                        // Scale delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n                // 0 or more event units\n                {\n                  \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                    {\n                      \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n                      \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                      \"parameter_fileID\": []         // No need to fill. Must be empty.\n                    }\n                  ]\n                }\n              ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n                    // 0 or more event units\n              ],\n          \"triggerring_time\": <float>                  // Duration of the action\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\nOR\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"<string>\",       // Name of the source object\n          \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n          \"target_position\": {                    // Target world position to which the object should be moved\n            \"x\": \"<float>\",\n            \"y\": \"<float>\",\n            \"z\": \"<float>\"\n          }\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n          \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n          \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n          \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n            // 0 or more event units\n            {\n              \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                {\n                  \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n                  \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                  \"parameter_fileID\": []         // No need to fill. Must be empty.\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n              // 0 or more event units\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"<string>\",        // Target object name\n          \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n          \"delta_position\": {                     // Position delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_rotation\": {                     // Rotation delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"delta_scale\": {                        // Scale delta (offset)\n            \"x\": <float>,\n            \"y\": <float>,\n            \"z\": <float>\n          },\n          \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n                // 0 or more event units\n                {\n                  \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n                    {\n                      \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n                      \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n                      \"parameter_fileID\": []         // No need to fill. Must be empty.\n                    }\n                  ]\n                }\n              ],\n          \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n                    // 0 or more event units\n              ],\n          \"triggerring_time\": <float>                  // Duration of the action\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n\nPlease give me one test plan based on the information I provided to trigger all the events to ensure code coverage. If you need other information to finalize this test plan, Please also respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-23T21:25:17.597743",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Audio Source\",\n          \"triggerring_time\": 1.0,\n          \"source_object_fileID\": 1026361730,\n          \"condition\": \"Manual invocation of PlaySoundsFromList methods on GameObject 'Audio Source' (fileID: 1026361730). MonoBehaviour script_fileID: 1026361732, m_Script guid: 76a895b5e674db04d8b4f8110c068852 (PlaySoundsFromList). Scene config: shouldLoop=false; audioClips contains 2 clips (guids: 3c7b3ef689cc94af0bd824489050effd, 39eeabf0f489f4e46a024aa733bf1b4b). No m_Calls defined; events must be triggered manually.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1026361732,\n                  \"method_name\": \"PlayCurrentClip\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Audio Source\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 1026361730,\n          \"condition\": \"Advance to next clip to verify index increment and wrap-around logic.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1026361732,\n                  \"method_name\": \"NextClip\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Audio Source\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 1026361730,\n          \"condition\": \"Go to previous clip to exercise negative modulo and Mathf.Abs(index) access.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1026361732,\n                  \"method_name\": \"PreviousClip\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Audio Source\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 1026361730,\n          \"condition\": \"Pick a random clip to validate Random.Range index selection and playback.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1026361732,\n                  \"method_name\": \"RandomClip\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Audio Source\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 1026361730,\n          \"condition\": \"Pause currently playing clip.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1026361732,\n                  \"method_name\": \"PauseClip\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Audio Source\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 1026361730,\n          \"condition\": \"Resume playback of the current clip.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1026361732,\n                  \"method_name\": \"PlayCurrentClip\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Audio Source\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1026361730,\n          \"condition\": \"Stop playback of the current clip.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1026361732,\n                  \"method_name\": \"StopClip\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-23T21:25:58.079464",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Audio Source",
+              "triggerring_time": 1.0,
+              "source_object_fileID": 1026361730,
+              "condition": "Manual invocation of PlaySoundsFromList methods on GameObject 'Audio Source' (fileID: 1026361730). MonoBehaviour script_fileID: 1026361732, m_Script guid: 76a895b5e674db04d8b4f8110c068852 (PlaySoundsFromList). Scene config: shouldLoop=false; audioClips contains 2 clips (guids: 3c7b3ef689cc94af0bd824489050effd, 39eeabf0f489f4e46a024aa733bf1b4b). No m_Calls defined; events must be triggered manually.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1026361732,
+                      "method_name": "PlayCurrentClip",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Audio Source",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 1026361730,
+              "condition": "Advance to next clip to verify index increment and wrap-around logic.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1026361732,
+                      "method_name": "NextClip",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Audio Source",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 1026361730,
+              "condition": "Go to previous clip to exercise negative modulo and Mathf.Abs(index) access.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1026361732,
+                      "method_name": "PreviousClip",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Audio Source",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 1026361730,
+              "condition": "Pick a random clip to validate Random.Range index selection and playback.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1026361732,
+                      "method_name": "RandomClip",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Audio Source",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 1026361730,
+              "condition": "Pause currently playing clip.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1026361732,
+                      "method_name": "PauseClip",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Audio Source",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 1026361730,
+              "condition": "Resume playback of the current clip.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1026361732,
+                      "method_name": "PlayCurrentClip",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Audio Source",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1026361730,
+              "condition": "Stop playback of the current clip.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1026361732,
+                      "method_name": "StopClip",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  }
+]

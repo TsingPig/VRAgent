@@ -1,0 +1,34 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Cause any other Collider with a Rigidbody to ENTER the Elevator's BoxCollider (IsTrigger=1) so Unity physics invokes AttachToElevator.OnTriggerEnter on Elevator. Script: AttachToElevator (MonoBehaviour fileID=4942415221793979109, m_Script guid=077cb2d6a53b18f4ea7d76e72138fc77). Note: Scene shows 'player' field is null; and the code checks if (gameObject == player), so the SetParent branch will not execute unless the 'player' reference equals this Elevator.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Cause the same Rigidbody collider to EXIT the Elevator's BoxCollider so Unity physics invokes AttachToElevator.OnTriggerExit on Elevator. Script: AttachToElevator (MonoBehaviour fileID=4942415221793979109). Note: Due to the same (gameObject == player) check and null 'player' reference, the 'player.transform.parent = null' branch will not execute unless the 'player' reference equals this Elevator.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

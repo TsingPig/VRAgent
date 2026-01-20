@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Level2.unity -> GameObject 'Elevator' has a BoxCollider (isTrigger=1) and no Rigidbody. It has MonoBehaviour (component fileID 4942415221793979109) using script guid 077cb2d6a53b18f4ea7d76e72138fc77 (AttachToElevator). The 'player' field is null in scene. To cover OnTriggerEnter, simulate a collider (intended player) entering the Elevator's trigger. Note: script compares gameObject == player instead of other.gameObject == player, so even with a correct player reference, parenting will not occur. No m_Calls events are defined.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "To cover OnTriggerExit, move the same collider (intended player) out of the Elevator's BoxCollider to invoke the exit callback in AttachToElevator (component fileID 4942415221793979109, script guid 077cb2d6a53b18f4ea7d76e72138fc77). Due to the same equality check and null 'player' reference, no de-parenting will occur, but the event path will execute.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

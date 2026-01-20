@@ -1,0 +1,80 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 509737246,
+          "condition": "Object has BoxCollider (enabled) and no Rigidbody. Attached MonoBehaviour (GUID: 1729fd01c90a64d5b8037e1eef0d000d) is Fire.cs with serialized config: isOn=0, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, maxHitInterval=2, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, minNeighborDownDistance=3, mainEffectGo=fileID 1849464941111748095. There are no UnityEvent m_Calls bound in this component. This trigger simulates a collider interaction to be paired with the external water system calling IWaterInteractable.WaterHit(Vector3). Expected external call: Fire.WaterHit(normal) -> sets isTurningOff=true and resets currentHitInterval.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Precondition: Fire is currently ON (isOn==true). This represents a sustained water contact within maxHitInterval (2s), expecting Fire.Update() to accumulate currentHitTime toward totalHitTime (5s) while keeping currentHitInterval < 2s via repeated external WaterHit(normal) invocations.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continue extinguishing: another water contact within 2s window to keep isTurningOff=true and accumulate currentHitTime (target: reach ~2s total).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 509737246,
+          "condition": "Negative path: Pause water for > maxHitInterval (2s). Expected behavior in Fire.Update(): currentHitInterval >= maxHitInterval causes isTurningOff=false and currentHitTime reset to 0 (extinguish process canceled).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Restart extinguishing after reset: water contact within interval to set isTurningOff=true again (via external WaterHit).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continued water contact within <2s to accumulate currentHitTime toward 5s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continued water contact; expected cumulative currentHitTime ~3s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 509737246,
+          "condition": "Continued water contact; expected cumulative currentHitTime ~4s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 4",
+          "triggerring_time": 1.2,
+          "source_object_fileID": 509737246,
+          "condition": "Final water contact within 2s window to exceed totalHitTime (5s). Expected in Fire.Update(): isOn set to false, shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime reset, UpdateFireState(true) called (pSystem.Stop() and neighbor notifications via NotifyAllNeighbors; FireController.Instance.FireChanged(-1)).",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

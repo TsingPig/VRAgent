@@ -1,0 +1,2789 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 2.5,
+          "source_object_fileID": 314576052,
+          "condition": "MonoBehaviour id 314576056 (script GUID 27b31662383b39d4a9c98eb14ed39152) on GameObject 'ClockText' matches the provided Clock script settings (time=0, clockText=fileID 314576054, BestTime=fileID 1936206876, finished=false). Allow Update to run for 2.5s to increment time and update TextMeshPro, then invoke Clock.onFinish() to set finished=true and call BestTime.checkTime(time).",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 314576052,
+          "condition": "After completing the finish path, also cover the timeout path by invoking the other public no-arg event. This uses the same MonoBehaviour id 314576056 (Clock). Expected: finished remains true; no further time updates occur.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onTimeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Floor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 515040906,
+          "condition": "Simulate XRSocketInteractor.selectEntered on Floor's XRSocketInteractor (component fileID: 515040908) so that IfPuzzle (MonoBehaviour fileID: 515040909, guid: a4fe0afa74eee4b4d9b3c22a64e1dc6b) receives ObjectSnapped. Current scene config shows correctPiece: {fileID: 0} and linkedIfManager: {fileID: 0}, so assignments are needed. Expected behavior: when an interactable whose transform.name equals correctPiece.name is snapped, IfPuzzle calls linkedIfManager.correctPiece().",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Floor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 515040906,
+          "condition": "Simulate XRSocketInteractor.selectExited on Floor's XRSocketInteractor (component fileID: 515040908) so that IfPuzzle (MonoBehaviour fileID: 515040909, guid: a4fe0afa74eee4b4d9b3c22a64e1dc6b) receives ObjectRemoved. Expected behavior: IfPuzzle calls linkedIfManager.removedPiece(). Note: linkedIfManager is currently unassigned in scene.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1489944608,
+          "condition": "MonoBehaviour component 1489944610 in scene (m_Script guid=4776ee613acabb5469b6e008e6cb6b12, class Victory) is attached to GameObject 'Cube' (1489944608) under 'Outside Area'. BoxCollider 1489944611 is enabled and set as trigger; no UnityEvent m_Calls are configured, so manual invocation is required. Calling Victory.onWin() (public, no parameters) should, when timer.outOfTime == false, invoke clock.onFinish(), timer.onWin(), and exitDoor.onFinish().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -5.85,
+            "y": 3.2,
+            "z": 0.35
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 5.85,
+            "y": -3.2,
+            "z": -0.35
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.4
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -5.85,
+            "y": 3.2,
+            "z": 0.35
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 5.85,
+            "y": -3.2,
+            "z": -0.35
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.4
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -5.783,
+            "y": 3.1785,
+            "z": 0.27
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 5.783,
+            "y": -3.1785,
+            "z": -0.27
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.4
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 169359321,
+          "condition": "Call FinalDoor.openFinalDoor() on Door 1 (MonoBehaviour fileID 169359324, guid d84ff1f9c82018d42a92710dbf9695df) to set canOpen = true so that subsequent OnTriggerEnter will open the door (Animator DoorTrigger). This MonoBehaviour component matches the provided script settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 169359324,
+                  "method_name": "openFinalDoor",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -4.57,
+            "y": 1.26,
+            "z": 10.41
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 4.57,
+            "y": -1.26,
+            "z": -10.41
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1650952629,
+          "condition": "Invoke FinalDoor.openFinalDoor() on Door 2 to set canOpen = true so that the next trigger entry will open the door. MonoBehaviour (fileID 1650952632, guid d84ff1f9c82018d42a92710dbf9695df) matches the provided script settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1650952632,
+                  "method_name": "openFinalDoor",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -4.57,
+            "y": 1.26,
+            "z": 10.41
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 4.57,
+            "y": -1.26,
+            "z": -10.41
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "inRoomTrigger",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 479130725,
+          "condition": "Simulate a collider with Rigidbody entering the BoxCollider (m_IsTrigger=1) of inRoomTrigger to invoke OnTriggerEnter. MonoBehaviour (fileID 479130727, m_Script guid f62a7ab4f006a5c4f8ff5342c43c441f) corresponds to the inFinalRoom script and is correctly serialized with finalDoor1 -> fileID 169359324 and finalDoor2 -> fileID 1650952632. OnTriggerEnter() will call finalDoor1.inside() and finalDoor2.inside() automatically.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyPlacement",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 2046914205,
+          "condition": "MonoBehaviour (fileID 2046914207, m_Script guid f6ab5a15a9b2ab74b87810ad765cd14e) matches keyMainScript and is serialized with numKeys=0, numKeysWin=3, finalDoor1 -> fileID 169359324, finalDoor2 -> fileID 1650952632. Trigger IncrementKeys() three times to reach the threshold and internally invoke finalDoor1.openFinalDoor() and finalDoor2.openFinalDoor(). Then call DecrementKeys() once to cover the decrement path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "Simulate HoverEntered on XRSocketInteractor. MonoBehaviour (fileID 761734090, m_Script guid 60523e0647cc6ab43acc73cb266a32a7) is the XR Interaction Toolkit socket and matches the scene settings. BoxCollider (fileID 761734091, m_IsTrigger=1) allows trigger interactions. On HoverEntered, m_Calls invoke Renderer (fileID 649733117).set_material to material guid ad064d44f785e514aaa0d1e986941ea2.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 761734088,
+          "condition": "Simulate HoverExited on XRSocketInteractor (MonoBehaviour fileID 761734090). On HoverExited, m_Calls invoke Renderer (fileID 649733117).set_material to material guid 0e4f7656c164b9a41a9f6badd0bb76ca.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 761734088,
+          "condition": "Simulate SelectEntered (placing a compatible key into the socket). MonoBehaviour (fileID 761734090) m_Calls: Renderer (fileID 649733117).set_enabled(false) and keyMainScript.IncrementKeys() on KeyPlacement (script fileID 2046914207, guid f6ab5a15a9b2ab74b87810ad765cd14e). This covers the select-enter path and the serialized event linkage.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 761734088,
+          "condition": "Simulate SelectExited (removing the key from the socket). MonoBehaviour (fileID 761734090) m_Calls: Renderer (fileID 649733117).set_enabled(true) and keyMainScript.DecrementKeys() on KeyPlacement (script fileID 2046914207). This covers the select-exit path and decrements key count.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Simulate HoverEntered on XRSocketInteractor. MonoBehaviour (fileID 2124835096, m_Script guid 60523e0647cc6ab43acc73cb266a32a7) is the XR Interaction Toolkit socket and exactly matches the attached script settings for this GameObject. BoxCollider (fileID 2124835097, m_IsTrigger=1) enables trigger interactions. On HoverEntered, m_Calls invoke Renderer (fileID 2103973645).set_material to material guid ad064d44f785e514aaa0d1e986941ea2.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2124835094,
+          "condition": "Simulate HoverExited on the same XRSocketInteractor (MonoBehaviour fileID 2124835096). On HoverExited, m_Calls invoke Renderer (fileID 2103973645).set_material to material guid 0e4f7656c164b9a41a9f6badd0bb76ca.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 2124835094,
+          "condition": "Simulate SelectEntered (placing a compatible key into the socket). MonoBehaviour (fileID 2124835096) m_Calls: Renderer (fileID 2103973645).set_enabled(false) and keyMainScript.IncrementKeys() on KeyPlacement (script fileID 2046914207, guid f6ab5a15a9b2ab74b87810ad765cd14e). This confirms the scene meta settings correspond to the attached scripts.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 2124835094,
+          "condition": "Simulate SelectExited (removing the key from the socket). MonoBehaviour (fileID 2124835096) m_Calls: Renderer (fileID 2103973645).set_enabled(true) and keyMainScript.DecrementKeys() on KeyPlacement (script fileID 2046914207). This covers the select-exit path and decrements the key count.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Simulate XRSocketInteractor HoverEntered on KeyInteractor (1). MonoBehaviour fileID 1243741904 (m_Script guid 60523e0647cc6ab43acc73cb266a32a7) is the XR Interaction Toolkit socket and matches the attached script. BoxCollider fileID 1243741905 (m_IsTrigger=1) allows interaction. Scene meta m_HoverEntered.m_PersistentCalls will invoke Renderer (fileID 1134185475).set_material to material guid ad064d44f785e514aaa0d1e986941ea2.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1243741902,
+          "condition": "Simulate XRSocketInteractor HoverExited on KeyInteractor (1). MonoBehaviour fileID 1243741904 (guid 60523e0647cc6ab43acc73cb266a32a7) matches the attached XR script. Scene meta m_HoverExited.m_PersistentCalls will invoke Renderer (fileID 1134185475).set_material to material guid 0e4f7656c164b9a41a9f6badd0bb76ca.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 1243741902,
+          "condition": "Simulate XRSocketInteractor SelectEntered (placing a key) on KeyInteractor (1). MonoBehaviour fileID 1243741904 (guid 60523e0647cc6ab43acc73cb266a32a7) is the exact script settings. Scene meta m_SelectEntered.m_PersistentCalls will: (1) Renderer (fileID 1134185475).set_enabled(false); (2) call keyMainScript.IncrementKeys() on script fileID 2046914207.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "IncrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "KeyInteractor (1)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 1243741902,
+          "condition": "Simulate XRSocketInteractor SelectExited (removing the key) on KeyInteractor (1). MonoBehaviour fileID 1243741904 (guid 60523e0647cc6ab43acc73cb266a32a7) is the exact script settings. Scene meta m_SelectExited.m_PersistentCalls will: (1) Renderer (fileID 1134185475).set_enabled(true); (2) call keyMainScript.DecrementKeys() on script fileID 2046914207.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2046914207,
+                  "method_name": "DecrementKeys",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Exit Door",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 790247593,
+          "condition": "Call ExitDoor.onFinish() to open the door. MonoBehaviour fileID 790247597 (m_Script guid 8b8ed8ba81bb325499339acba43c4747) exactly matches the provided ExitDoor script settings on this GameObject. BoxCollider fileID 790247595 has m_IsTrigger=1 for later trigger entry testing. Start() initializes Animator via GetComponent, and onFinish() is a public, parameterless method suitable for manual Trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 790247597,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Exit Door",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 790247593,
+          "condition": "Invoke ExitDoor.onFinish() a second time to cover the guarded branch where isOpened is already true (no additional Animator trigger). Confirms MonoBehaviour fileID 790247597 corresponds to the ExitDoor script instance.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 790247597,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1844490001,
+          "condition": "Simulate entering the BoxCollider trigger to fire OnTriggerEnter on Door 1. MonoBehaviour fileID 1844490004 (m_Script guid a8a2c5194e4c1f1458096e7bee47220e) exactly matches the DoorAnimationEvent script attached to this GameObject. BoxCollider fileID 1844490003 has m_IsTrigger=1. Expected: since isOpened == false, openDoors() runs and Animator.SetTrigger(\"DoorTrigger\") is called.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 1844490001,
+          "condition": "Simulate exiting the BoxCollider trigger to fire OnTriggerExit on Door 1. MonoBehaviour fileID 1844490004 (DoorAnimationEvent) schedules closeDoors() via Invoke after 0.5s when isOpened == true. This action duration allows the 0.5s delay to elapse so closeDoors() executes and Animator.SetTrigger(\"DoorTrigger\") is called.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 749547995,
+          "condition": "Simulate entering the BoxCollider trigger to fire OnTriggerEnter on Door 2. MonoBehaviour fileID 749547997 (m_Script guid a8a2c5194e4c1f1458096e7bee47220e) exactly matches the DoorAnimationEvent script attached to this GameObject. BoxCollider fileID 749547998 has m_IsTrigger=1. Expected: since isOpened == false, openDoors() runs and Animator.SetTrigger(\"DoorTrigger\") is called.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 749547995,
+          "condition": "Simulate exiting the BoxCollider trigger to fire OnTriggerExit on Door 2. MonoBehaviour fileID 749547997 (DoorAnimationEvent) schedules closeDoors() via Invoke after 0.5s when isOpened == true. This action duration allows the 0.5s delay to elapse so closeDoors() executes and Animator.SetTrigger(\"DoorTrigger\") is called.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Radio",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 2098976992,
+          "condition": "Validation of component-to-script mapping and trigger eligibility. MonoBehaviour id 5290013577585494280 uses m_Script guid e7743a497fa10b243a30e955751b606f, which exactly matches the provided Radio script (fields MusicSource=3511615826534819241, NoiseSource=8021206353088041301, MusicClips guids d51aefc06b28742469e421eef9a847f0 and 5995d3fe9ccbef142ac8bae30f7ab246). MonoBehaviour id 7841938074521669581 uses m_Script guid 35ffe483d6934704b884767450fd49e5, which matches XROffsetGrabbable (XRGrabInteractable-derived; events m_Calls are empty). MonoBehaviour id 1445194649364556585 uses m_Script guid 08be3c7158520c745b9ae61545518908, which matches IndestructableObj. BoxCollider id 2938126190016180723 exists with m_IsTrigger=0. The object has Rigidbody (Has_Rigidbody=True). Note: Radio public methods VolumeChanged(DialInteractable) and TuningChanged(DialInteractable) have parameters and cannot be invoked via Trigger; they require interacting DialInteractable senders.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Radio",
+          "source_object_fileID": 2098976992,
+          "delta_position": {
+            "x": 0.05,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1331476500,
+          "condition": "MonoBehaviour id 1331476503 has m_Script guid a8a2c5194e4c1f1458096e7bee47220e, which exactly matches the provided DoorAnimationEvent script. BoxCollider id 1331476502 exists with m_IsTrigger=1, enabling trigger events without a Rigidbody. Component fileID 1331476504 corresponds to the Animator used by Start() (Anim = GetComponent<Animator>()). Simulate entering the trigger to invoke OnTriggerEnter, which when isOpened==false calls openDoors() -> Anim.SetTrigger(\"DoorTrigger\"). There are no UnityEvent m_Calls to trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 1331476500,
+          "condition": "Simulate exiting the trigger to invoke OnTriggerExit. When isOpened==true, Invoke(\"closeDoors\", 0.5f) is scheduled; after 0.5s closeDoors() sets isOpened=false and calls Anim.SetTrigger(\"DoorTrigger\"). Duration allows the delayed invocation to execute, covering both open and close paths.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1638207398,
+          "condition": "MonoBehaviour id 1638207401 has m_Script guid a8a2c5194e4c1f1458096e7bee47220e, which exactly matches the provided DoorAnimationEvent script attached to this GameObject. BoxCollider id 1638207400 has m_IsTrigger=1, so entering the collider invokes OnTriggerEnter. Expected: when isOpened == false, openDoors() sets isOpened=true and Animator.SetTrigger(\"DoorTrigger\") is called (Animator component is the other listed component, id 1638207402).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 1638207398,
+          "condition": "Simulate exiting the trigger to invoke OnTriggerExit on MonoBehaviour id 1638207401 (DoorAnimationEvent). When isOpened == true, it schedules Invoke(\"closeDoors\", 0.5f). After 0.5s, closeDoors() sets isOpened=false and Animator.SetTrigger(\"DoorTrigger\") is called. The 0.6s duration allows the delayed call to complete.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Keypad (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1315446518,
+          "condition": "MonoBehaviour(id:1315446520, guid:695ad83b06c34684fac24f392ff03680) is KeyPadControll attached to Keypad (1) with correctCombination=1212 and UnityEvent onCorrectCode. onCorrectCode.m_Calls targets Victory.onWin on object/component fileID 1489944610. Normally onCorrectCode is invoked when accessGranted becomes true via CheckIfCorrect(int). Since there is no public, parameterless API to set accessGranted, manually invoke the persistent call to validate event wiring.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(1)",
+          "source_object_fileID": 195114625,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(1)",
+          "source_object_fileID": 195114625,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(2)",
+          "source_object_fileID": 1362274088,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(2)",
+          "source_object_fileID": 1362274088,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(3)",
+          "source_object_fileID": 294570348,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(3)",
+          "source_object_fileID": 294570348,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(4)",
+          "source_object_fileID": 691591083,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(4)",
+          "source_object_fileID": 691591083,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(5)",
+          "source_object_fileID": 851985417,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(5)",
+          "source_object_fileID": 851985417,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(6)",
+          "source_object_fileID": 2087223067,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(6)",
+          "source_object_fileID": 2087223067,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(7)",
+          "source_object_fileID": 2122760608,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(7)",
+          "source_object_fileID": 2122760608,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(8)",
+          "source_object_fileID": 1249007308,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(8)",
+          "source_object_fileID": 1249007308,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 571652021,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 571652021,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 571652021,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.25
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1619357597,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1619357597,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1619357597,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 354067704,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 354067704,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 354067704,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 951466313,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 951466313,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 951466313,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.03,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1389924501,
+          "condition": "Simulate XRSocketInteractor.selectExited to fire Interactable Events (m_Calls). Scene MonoBehaviour_0 (id: 1389924503, guid: 60523e0647cc6ab43acc73cb266a32a7) has m_SelectExited.m_PersistentCalls -> GameObject(fileID: 771622881).SetActive(true). This also exercises finalPuzzleSockets (MonoBehaviour_1 id: 1389924508, guid: f85184c8ae0d47b4c853fe653d267e42) OnDisable/OnEnable-bound listeners: ObjectRemoved will call linkedPuzzleManager.decrementFirstPart() and, if the removed object's name equals secondPartCorrect (fileID: 2065480344), decrementSecondPart(). Collider present (SphereCollider id: 1389924504, isTrigger=1) permits Trigger action. Note: m_StartingSelectedInteractable (fileID: 1031835462) may have auto-fired selectEntered on start; this manual step ensures selectExited is covered.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1389924501,
+          "condition": "Simulate XRSocketInteractor.selectEntered to fire Interactable Events (m_Calls). Scene MonoBehaviour_0 (id: 1389924503, guid: 60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered.m_PersistentCalls -> GameObject(fileID: 771622881).SetActive(false). This also exercises finalPuzzleSockets (MonoBehaviour_1 id: 1389924508, guid: f85184c8ae0d47b4c853fe653d267e42) listener ObjectSnapped which calls linkedPuzzleManager.incrementFirstPart() and, if the snapped object's name equals secondPartCorrect (fileID: 2065480344), incrementSecondPart().",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 112350687,
+          "condition": "Simulate XRSocketInteractor.selectExited to fire Interactable Events (m_Calls). Scene MonoBehaviour_0 (id: 112350689, guid: 60523e0647cc6ab43acc73cb266a32a7) has m_SelectExited.m_PersistentCalls -> GameObject(fileID: 470087499).SetActive(true). This will also invoke finalPuzzleSockets (MonoBehaviour_1 id: 112350693, guid: f85184c8ae0d47b4c853fe653d267e42) listener ObjectRemoved, calling linkedPuzzleManager.decrementFirstPart() and, if the removed object's name equals secondPartCorrect (fileID: 395096718), decrementSecondPart(). Allowed because a SphereCollider (id: 112350690, isTrigger=1) is present.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 112350687,
+          "condition": "Simulate XRSocketInteractor.selectEntered to fire Interactable Events (m_Calls). Scene MonoBehaviour_0 (id: 112350689, guid: 60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered.m_PersistentCalls -> GameObject(fileID: 470087499).SetActive(false). This will also invoke finalPuzzleSockets (MonoBehaviour_1 id: 112350693, guid: f85184c8ae0d47b4c853fe653d267e42) listener ObjectSnapped, calling linkedPuzzleManager.incrementFirstPart() and, if the snapped object's name equals secondPartCorrect (fileID: 395096718), incrementSecondPart(). Note: m_StartingSelectedInteractable (fileID: 1956010345) may auto-fire selectEntered on scene start; this manual step ensures explicit coverage.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1308749550,
+          "condition": "Simulate XRSocketInteractor.selectExited to fire Interactable Events (m_Calls). Scene MonoBehaviour_0 (id: 1308749552, guid: 60523e0647cc6ab43acc73cb266a32a7) has m_SelectExited.m_PersistentCalls -> GameObject(fileID: 1158155568).SetActive(true). This also invokes finalPuzzleSockets (MonoBehaviour_1 id: 1308749556, guid: f85184c8ae0d47b4c853fe653d267e42) listener ObjectRemoved, calling linkedPuzzleManager.decrementFirstPart() and, if the removed object's name equals secondPartCorrect (fileID: 304295), decrementSecondPart(). Allowed because a SphereCollider (id: 1308749553, isTrigger=1) is present. Note: m_StartingSelectedInteractable (fileID: 1557924605) may auto-fire selectEntered on scene start; this manual step ensures selectExited coverage.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "SocketInteractor Puzzle (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1308749550,
+          "condition": "Simulate XRSocketInteractor.selectEntered to fire Interactable Events (m_Calls). Scene MonoBehaviour_0 (id: 1308749552, guid: 60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered.m_PersistentCalls -> GameObject(fileID: 1158155568).SetActive(false). This also invokes finalPuzzleSockets (MonoBehaviour_1 id: 1308749556, guid: f85184c8ae0d47b4c853fe653d267e42) listener ObjectSnapped, calling linkedPuzzleManager.incrementFirstPart() and, if the snapped object's name equals secondPartCorrect (fileID: 304295), incrementSecondPart().",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LoopTask (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1250790195,
+          "condition": "MonoBehaviour_0 (id: 1250790196) on LoopTask (1) uses script guid db10f7dcf4a9fa34393c045abf6dc5e4 (class LoopManager). No UnityEvent m_Calls are serialized on this component. Manually invoke the only public no-arg API ButtonPressed() to cover Start/Update baseline path. Expected: with outsideState=0 and insideState=0, both key (fileID: 1552249130) and spotlight (fileID: 1073180116) remain/set inactive; showShort remains false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LoopTask (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1250790195,
+          "condition": "LoopTask (1) has MonoBehaviour_0 id:1250790196 using script guid db10f7dcf4a9fa34393c045abf6dc5e4 (class LoopManager). This is the exact scene setting of the provided LoopManager script (key -> fileID:1552249130, spotlight -> fileID:1073180116). No UnityEvent m_Calls are serialized here, so manually invoke its only public no-arg API to cover Start/Update base path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1250790196,
+                  "method_name": "ButtonPressed",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Validate component bindings. MonoBehaviour_0 id:1255358097 uses script guid 09e1d40b94abab04491e2d8d5f63c2e4 (class InsidePiece) with linkedLoopManager -> MonoBehaviour id:1250790196 (LoopManager). MonoBehaviour_1 id:1255358099 uses script guid 60523e0647cc6ab43acc73cb266a32a7 (XRSocketInteractor) and has m_Calls on Hover/Select events. BoxCollider id:1255358098 isTrigger=1, so manual event triggering is allowed.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate XRSocketInteractor Hover Enter to invoke m_HoverEntered.m_PersistentCalls. Expected: GameObject(fileID:1477313653).SetActive(false).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate XRSocketInteractor Hover Exit to invoke m_HoverExited.m_PersistentCalls. Expected: GameObject(fileID:1477313653).SetActive(true).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate Select Enter with interactable whose transform == keyPiece (fileID:938973848). InsidePiece.ObjectSnapped path -> linkedLoopManager.insideKey(). Also fires m_SelectEntered: Renderer(fileID:1477313655).enabled=false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate Select Exit after keyPiece removal. InsidePiece.ObjectRemoved -> linkedLoopManager.insideRemoved(). Also fires m_SelectExited: Renderer(fileID:1477313655).enabled=true.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate Select Enter with interactable whose transform == lightPiece (fileID:799863783). InsidePiece.ObjectSnapped path -> linkedLoopManager.insideLight(). Also fires m_SelectEntered: Renderer(fileID:1477313655).enabled=false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate Select Exit after lightPiece removal. InsidePiece.ObjectRemoved -> linkedLoopManager.insideRemoved(). Also fires m_SelectExited: Renderer(fileID:1477313655).enabled=true.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Optional else-path coverage: Simulate Select Enter with interactable whose transform == nothingPiece (fileID:1338170482). InsidePiece.ObjectSnapped does not match key/light, so no linkedLoopManager call. m_SelectEntered still fires: Renderer(fileID:1477313655).enabled=false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InsideInteractor",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1255358095,
+          "condition": "Simulate Select Exit after nothingPiece removal. InsidePiece.ObjectRemoved -> linkedLoopManager.insideRemoved(). m_SelectExited fires: Renderer(fileID:1477313655).enabled=true.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 684269935,
+          "condition": "Simulate XRSocketInteractor m_HoverEntered on OutsideInteractor. MonoBehaviour (script guid: 60523e0647cc6ab43acc73cb266a32a7) at component id 684269939 has m_HoverEntered.m_PersistentCalls.m_Calls targeting GameObject(fileID: 1928956107). Expected: GameObject.SetActive(false). Note: OutsideInteractor has BoxCollider (id 684269938, isTrigger=1) so hover can be triggered.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 684269935,
+          "condition": "Simulate XRSocketInteractor m_HoverExited on OutsideInteractor. MonoBehaviour (id 684269939, guid: 60523e0647cc6ab43acc73cb266a32a7) has m_HoverExited.m_PersistentCalls.m_Calls targeting GameObject(fileID: 1928956107). Expected: GameObject.SetActive(true).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 684269935,
+          "condition": "Simulate XRSocketInteractor m_SelectEntered with an incorrect interactable (NOT the correctPiece). This should fire IfPuzzle.ObjectSnapped via socket.selectEntered but not call linkedIfManager.correctPiece() because arg0.interactableObject.transform.name != correctPiece.name. Also triggers XRSocketInteractor m_SelectEntered persistent call to SetActive(false) on GameObject(fileID: 1928956107). IfPuzzle MonoBehaviour (id 684269937, guid: a4fe0afa74eee4b4d9b3c22a64e1dc6b) is configured with correctPiece(fileID: 2134952222) and linkedIfManager(fileID: 1643180049).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 684269935,
+          "condition": "Simulate XRSocketInteractor m_SelectExited by removing the incorrect interactable from the socket. This should fire IfPuzzle.ObjectRemoved and call linkedIfManager.removedPiece(). Also triggers XRSocketInteractor m_SelectExited persistent call to SetActive(true) on GameObject(fileID: 1928956107).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 684269935,
+          "condition": "Simulate XRSocketInteractor m_SelectEntered with the correct interactable: correctPiece Transform(fileID: 2134952222). This should fire IfPuzzle.ObjectSnapped and, since names match, call linkedIfManager.correctPiece(). Also triggers XRSocketInteractor m_SelectEntered persistent call to SetActive(false) on GameObject(fileID: 1928956107).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OutsideInteractor",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 684269935,
+          "condition": "Simulate XRSocketInteractor m_SelectExited by removing the correctPiece (fileID: 2134952222) from the socket. This should fire IfPuzzle.ObjectRemoved and call linkedIfManager.removedPiece(). Also triggers XRSocketInteractor m_SelectExited persistent call to SetActive(true) on GameObject(fileID: 1928956107).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Keypad",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1060933183,
+          "condition": "MonoBehaviour(id: 1060933185, script guid: 695ad83b06c34684fac24f392ff03680) is KeyPadControll attached to Keypad. It exposes public bool CheckIfCorrect(int combination) and a UnityEvent onCorrectCode configured in scene meta with m_PersistentCalls -> GameObject(fileID: 822093423).SetActive(true). First, simulate an incorrect code entry (e.g., call CheckIfCorrect with a value != 4826) through the keypad UI/buttons so that accessGranted remains false and onCorrectCode is NOT invoked.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Keypad",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1060933183,
+          "condition": "Now simulate entering the correct combination 4826 by invoking KeyPadControll.CheckIfCorrect(4826) via the keypad input flow (buttons/child scripts). This sets accessGranted = true, and on the next Update() the script calls onCorrectCode.Invoke(), which triggers the configured persistent call: GameObject(fileID: 822093423).SetActive(true). After invocation, Update() resets accessGranted = false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(1)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 899989818,
+          "condition": "MonoBehaviour(id: 899989824, script guid: ffd4469d3349eb647afb29c196c0a1d4) is KeyFeedback attached to Button(1). Scene meta shows BoxCollider(id: 899989820, isTrigger=1) and Rigidbody present, but no UnityEvent m_Calls are configured on this object. To cover KeyFeedback.Update branch that plays audio and flashes color, simulate a key press by setting KeyFeedback.keyHit = true at the start of this trigger window. Expected: Start() has already added AudioSource and captured Renderer/material color; Update() detects keyHit, calls audioSource.PlayOneShot(keySound), sets returnColor = Time.time + 0.1, renderer.material.color = Color.green, and resets keyHit = false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 899989818,
+          "condition": "Wait beyond colorReturnTime (0.1s) so that KeyFeedback.Update covers the second branch which restores the material color: if renderer.material.color != originalColor and returnColor < Time.time, set renderer.material.color back to originalColor. No scene m_Calls exist to auto-invoke this; it occurs in Update after the first trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(2)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 439296336,
+          "condition": "MonoBehaviour(id: 439296342, script guid: ffd4469d3349eb647afb29c196c0a1d4) is KeyFeedback attached to Button(2). Scene meta shows BoxCollider(id: 439296338, isTrigger=1) and Rigidbody present. To cover KeyFeedback.Update branch that plays audio and flashes color, simulate a key press by setting KeyFeedback.keyHit = true at the start of this trigger window. Expected: Start() has added an AudioSource and captured Renderer/material color; Update() detects keyHit, calls audioSource.PlayOneShot(keySound), sets returnColor = Time.time + 0.1, renderer.material.color = Color.green, and resets keyHit = false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 439296336,
+          "condition": "Wait beyond colorReturnTime (0.1s) so that KeyFeedback.Update covers the second branch and restores the material color: if renderer.material.color != originalColor and returnColor < Time.time, set renderer.material.color back to originalColor. No UnityEvent m_Calls exist on this object; this behavior occurs in Update after the first trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(3)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 847153210,
+          "condition": "MonoBehaviour(id: 847153216, m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4) matches script KeyFeedback (fields: public AudioClip keySound, public bool keyHit). Scene meta confirms Has_Rigidbody: true and BoxCollider(id: 847153212, m_IsTrigger=1), so this object supports Trigger interactions. To cover KeyFeedback.Update first branch, the test harness must set KeyFeedback.keyHit = true before or during this trigger window (no public method exposed; change via the driving keypad script or inspector). Expected: on next Update when keyHit == true and returnColor < Time.time, audioSource.PlayOneShot(keySound) fires, renderer.material.color = Color.green, returnColor = Time.time + 0.1, keyHit resets false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(3)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 847153210,
+          "condition": "Wait beyond colorReturnTime (0.1s) so KeyFeedback.Update second branch executes. Expected: if renderer.material.color != originalColor and returnColor < Time.time, restore renderer.material.color to originalColor. Note: no UnityEvent m_Calls exist on this GameObject; behavior is driven by Update after keyHit is toggled.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(4)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 2087223367,
+          "condition": "MonoBehaviour(id: 2087223373, m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4) corresponds to KeyFeedback script attached to Button(4). Scene meta confirms Has_Rigidbody: true and BoxCollider(id: 2087223369, m_IsTrigger=1), so Trigger interaction is supported. To cover KeyFeedback.Update first branch, set KeyFeedback.keyHit = true just before this trigger window. Expected: On next Update when keyHit == true and returnColor < Time.time, audioSource.PlayOneShot(keySound) is called, returnColor = Time.time + 0.1, renderer.material.color = Color.green, then keyHit resets to false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(4)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2087223367,
+          "condition": "Wait beyond colorReturnTime (0.1s) to cover the second branch in KeyFeedback.Update. Expected: if renderer.material.color != originalColor and returnColor < Time.time, restore renderer.material.color to originalColor. No m_Calls UnityEvents are present on this GameObject; behavior is driven by Update after keyHit is toggled.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(5)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 1866858432,
+          "condition": "MonoBehaviour(id: 1866858438, m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4) corresponds to KeyFeedback attached to Button(5). Scene meta confirms Has_Rigidbody: true and BoxCollider(id: 1866858434, m_IsTrigger=1), so Trigger interaction is valid. To cover KeyFeedback.Update first branch, set KeyFeedback.keyHit = true immediately before this trigger window. Expected: Update detects keyHit and returnColor < Time.time, calls audioSource.PlayOneShot(keySound), sets returnColor = Time.time + 0.1, sets renderer.material.color = Color.green, and resets keyHit = false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(5)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1866858432,
+          "condition": "Wait beyond colorReturnTime (0.1s) so KeyFeedback.Update second branch executes. Expected: if renderer.material.color != originalColor and returnColor < Time.time, restore renderer.material.color to originalColor. No UnityEvent m_Calls exist for this object; the behavior is driven by Update after keyHit is toggled.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(6)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 618725198,
+          "condition": "MonoBehaviour(id: 618725204, m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4) matches KeyFeedback attached to Button(6). Scene meta confirms Has_Rigidbody: true and BoxCollider(id: 618725200, m_IsTrigger=1). To cover KeyFeedback.Update first branch, set KeyFeedback.keyHit = true immediately before this trigger window (no public method exposed; set via test harness or linked keypad logic). Expected: Update detects keyHit, calls audioSource.PlayOneShot(keySound), sets returnColor = Time.time + 0.1, changes renderer.material.color to Color.green, then resets keyHit = false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(6)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 618725198,
+          "condition": "Wait beyond colorReturnTime (0.1s) so KeyFeedback.Update second branch executes. Expected: if renderer.material.color != originalColor and returnColor < Time.time, restore renderer.material.color to originalColor. No UnityEvent m_Calls are defined on this object; behavior is driven by Update after keyHit is toggled.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(7)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1462677196,
+          "condition": "Scene meta MonoBehaviour_0 (id: 1462677202) has m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4, which matches the attached KeyFeedback script. Fields match scene: keySound: {fileID: 0}, keyHit: false. Button(7) also has BoxCollider(id: 1462677198, m_IsTrigger=1) and Has_Rigidbody: true, so physical trigger is valid. During this trigger, set KeyFeedback.keyHit = true (via test harness or simulated keypad press) to cover KeyFeedback.Update first branch. Expected behavior: Start has created an AudioSource and cached Renderer/originalColor; Update detects keyHit, calls audioSource.PlayOneShot(keySound), sets returnColor = Time.time + 0.1, sets renderer.material.color = Color.green, and resets keyHit = false.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(7)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1462677196,
+          "condition": "Wait beyond colorReturnTime (0.1s) so KeyFeedback.Update second branch executes. Expected behavior: if renderer.material.color != originalColor and returnColor < Time.time, restore renderer.material.color to originalColor. This confirms the color reset path is covered.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(8)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 112515761,
+          "condition": "MonoBehaviour_0 (id: 112515767) on Button(8) has m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4, matching the attached KeyFeedback script; serialized fields match (keySound: {fileID: 0}, keyHit: false). Button(8) also has BoxCollider (id: 112515763, m_IsTrigger=1) and Has_Rigidbody: true, so a Trigger action is valid. During this 0.2s window, at t=0 set KeyFeedback.keyHit = true via the test harness/simulated keypad press to execute Update's first branch (plays keySound, sets returnColor = Time.time + 0.1, sets renderer.material.color = Color.green, resets keyHit=false). Continuing within the same window (t > 0.1s), Update's second branch should fire to restore renderer.material.color to originalColor.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(9)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 543214147,
+          "condition": "MonoBehaviour_0 (id: 543214153) on Button(9) has m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4, matching the attached KeyFeedback script; serialized fields match (keySound: {fileID: 0}, keyHit: false). Button(9) also has BoxCollider (id: 543214149, m_IsTrigger=1) and Has_Rigidbody: true, so a Trigger action is valid. During this 0.2s window, at t=0 set KeyFeedback.keyHit = true via the test harness/simulated keypad press to execute Update's first branch (plays keySound, sets returnColor = Time.time + 0.1, sets renderer.material.color = Color.green, resets keyHit=false). Continuing within the same window (t > 0.1s), Update's second branch should fire to restore renderer.material.color to originalColor.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtoConfirm",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1312058130,
+          "condition": "MonoBehaviour_0 (id: 1312058133) on ButtoConfirm has m_Script.guid: ffd4469d3349eb647afb29c196c0a1d4, matching the attached KeyFeedback script. Scene fields match: keySound: {fileID: 0}, keyHit: false. Collider present (BoxCollider id: 1312058134, m_IsTrigger=1) and Has_Rigidbody: true, so Trigger is valid. During this 0.2s window, at t=0 set KeyFeedback.keyHit = true via the test harness to execute Update's first branch (PlayOneShot, set returnColor = Time.time + 0.1, set renderer.material.color = Color.green, then keyHit = false). Continuing within the same window (t > 0.1s), Update's second branch should execute to restore renderer.material.color to originalColor.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Button(0)",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 61338475,
+          "condition": "MonoBehaviour_0 (id: 61338478) on Button(0) has m_Script.guid ffd4469d3349eb647afb29c196c0a1d4, which matches the provided KeyFeedback script. Scene fields match: keySound: {fileID: 0}, keyHit: false. Collider present (BoxCollider id: 61338479, m_IsTrigger=1) and Has_Rigidbody: true, so manual Trigger is valid. Test harness actions: at t=0 set KeyFeedback.keyHit = true to exercise Update’s first branch (AudioSource.PlayOneShot(keySound), set returnColor = Time.time + 0.1, set renderer.material.color = Color.green, then keyHit = false). At t=0.05 set keyHit = true again to verify the guard prevents re-trigger while returnColor > Time.time (no PlayOneShot, no color change). By t>=0.1, Update’s second branch should restore renderer.material.color to originalColor, providing coverage of both branches and Start’s initialization (AudioSource added, spatialBlend=1, volume=0.1, renderer and originalColor captured).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonBack",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 291533635,
+          "condition": "MonoBehaviour_0 (id: 291533638) on ButtonBack has m_Script.guid ffd4469d3349eb647afb29c196c0a1d4, which matches the provided KeyFeedback script. Scene fields map to script fields: keySound: {fileID: 0}, keyHit: false. Collider present (BoxCollider id: 291533639, m_IsTrigger=1) and Has_Rigidbody: true, so manual Trigger is valid. Test harness steps for coverage: at t=0 set KeyFeedback.keyHit = true to exercise Update’s first branch (PlayOneShot(keySound), returnColor = Time.time + 0.1, renderer.material.color = Color.green, keyHit = false). At t=0.05 set keyHit = true again to verify the guard while returnColor > Time.time prevents retrigger (no PlayOneShot, no additional color change). By t>=0.1, Update’s second branch should restore renderer.material.color to originalColor, covering both branches and Start initialization.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -7.5,
+            "y": -4.25,
+            "z": -21.4
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -7.5,
+            "y": -4.25,
+            "z": -21.4
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -13.253,
+            "y": -1.3024,
+            "z": -20.9998
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.6,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.6,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -13.253,
+            "y": -1.3024,
+            "z": -20.9998
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.6,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.6,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -13.25,
+            "y": 23.95,
+            "z": -23.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Knapp (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 634275529,
+          "condition": "MonoBehaviour id 634275531 on Knapp (1) matches script Restart (guid: ebe465df961443d48804431d04f45f98, fileID: 11500000) with serialized field scene=0. Manually trigger its public no-arg method RestartGame() to validate it calls SceneManager.LoadScene(scene) and loads scene index 0.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 634275531,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 180.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 5.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 5.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 90.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": -4.7,
+            "y": 0.0,
+            "z": 10.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -12.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 8.5
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": -1.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.4
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -11.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Timer Countdown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1269740005,
+          "condition": "Timer MonoBehaviour (script_fileID=1269740007, GUID=f3d6f6fd8aa8da74282c3996ca9da30e) attached to GameObject 'Timer Countdown' (fileID=1269740005). BoxCollider (fileID=1269740010, isTrigger=1) present, no Rigidbody on this GameObject. No UnityEvent m_Calls configured. Manually trigger public no-arg method to simulate a win condition and stop the timer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1269740007,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Button(1)",
+          "source_object_fileID": 195114625,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(2)",
+          "source_object_fileID": 1362274088,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(3)",
+          "source_object_fileID": 294570348,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(4)",
+          "source_object_fileID": 691591083,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(5)",
+          "source_object_fileID": 851985417,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(6)",
+          "source_object_fileID": 2087223067,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(7)",
+          "source_object_fileID": 2122760608,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(8)",
+          "source_object_fileID": 1249007308,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(9)",
+          "source_object_fileID": 571652021,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Button(0)",
+          "source_object_fileID": 354067704,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtonBack",
+          "source_object_fileID": 951466313,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "ButtoConfirm",
+          "source_object_fileID": 1619357597,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.4,
+            "z": -0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -0.165,
+            "y": 0.417,
+            "z": -0.361
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -0.035,
+            "y": 0.0,
+            "z": 0.3
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": -0.3
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.3
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.3
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.15
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.0,
+            "z": 0.6
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 900660954,
+          "condition": "RightHand MonoBehaviour_0 (id=900660956, guid=b095db2c7e1fcd24ea55dcbfd4c44ef4) is TeleportController. Its onTeleportActivate UnityEvent has m_Calls including Sphere.swapTeleportMode (target script fileID=33018430). Manually invoke the no-arg target to validate the event pipeline in absence of input.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 33018430,
+                  "method_name": "swapTeleportMode",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 900660954,
+          "condition": "RightHand MonoBehaviour_1 (id=900660957, guid=474205c7e80edfc4384b329a9ec35a65) is gripActivate. Its onGripActivate UnityEvent has m_Calls including Sphere.disableSphere (target script fileID=33018430). Trigger to cover gripPerformed path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 33018430,
+                  "method_name": "disableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 900660954,
+          "condition": "RightHand MonoBehaviour_1 (id=900660957, guid=474205c7e80edfc4384b329a9ec35a65) onGripCancel UnityEvent has m_Calls including Sphere.enableSphere (target script fileID=33018430). Trigger to cover gripCancel path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 33018430,
+                  "method_name": "enableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 79813985,
+          "condition": "LeftHand MonoBehaviour_1 (id=79813988, guid=474205c7e80edfc4384b329a9ec35a65) is gripActivate. Its onGripActivate UnityEvent has m_Calls targeting Sphere (script component fileID=28697940) method disableSphere(). Manually trigger to cover gripPerformed path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 28697940,
+                  "method_name": "disableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 79813985,
+          "condition": "LeftHand MonoBehaviour_1 (id=79813988, guid=474205c7e80edfc4384b329a9ec35a65) is gripActivate. Its onGripCancel UnityEvent has m_Calls targeting Sphere (script component fileID=28697940) method enableSphere(). Manually trigger to cover gripCancel path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 28697940,
+                  "method_name": "enableSphere",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BaseController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1887085101,
+          "condition": "Trigger XRDirectInteractor SelectEntered to execute Interactable Events. MonoBehaviour_0 (id=1887085104, guid=4253f32900bcc4d499d675566142ded0) corresponds to XR Interaction Toolkit XRDirectInteractor. Scene meta m_SelectEntered.m_PersistentCalls toggles Renderer (fileID 314576055) set_enabled(false). SphereCollider (id=1887085103) isTrigger=1 allows event simulation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BaseController",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1887085101,
+          "condition": "Trigger XRDirectInteractor SelectExited to execute Interactable Events. MonoBehaviour_0 (id=1887085104, guid=4253f32900bcc4d499d675566142ded0) m_SelectExited.m_PersistentCalls toggles Renderer (fileID 314576055) set_enabled(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BestTime",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1936206875,
+          "condition": "BestTime MonoBehaviour_0 (id=1936206876, guid=2664046b114218c42bfef99a90e8522c) has no UnityEvent m_Calls and no public no-arg methods. Start() auto-executes on scene load and calls TimeDisplay(bestTime) only if active scene name == 'Hub'. To fully cover behavior, bestTimeText must be assigned and checkTime(float) must be invoked by another system; provide references or a no-arg wrapper to invoke.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BodyCollider",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 822151143,
+          "condition": "BodyCollider MonoBehaviour_0 (id=822151145, guid=349b1e6dd63d78147bcda3eab8cc058e) matches the provided script. Serialized refs: MainCamera={fileID:1241724591}, feet={fileID:1054322465}. CapsuleCollider (id=822151146) is enabled, allowing Trigger eligibility; however, BodyCollider exposes no public no-arg methods (only Start/Update). Its behavior (position follow) runs automatically in Update. To validate coverage we need to move MainCamera and/or feet during runtime; please provide those child objects’ scene meta (and whether they have Rigidbody/Collider/EventTrigger) so we can legally apply Transform/Trigger per rules.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

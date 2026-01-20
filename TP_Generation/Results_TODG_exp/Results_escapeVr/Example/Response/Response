@@ -1,0 +1,33 @@
+{
+  "taskUnit": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Cube_salle1",
+          "source_object_fileID": 816818218,
+          "target_object_name": "trigger_porte_salle_1",
+          "target_object_fileID": 393288641
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "trigger_porte_salle_1",
+          "method": "OnTriggerEnter",
+          "condition": "Triggered once, using Cube_salle1 (tagged Objet1) as collider, with openTrigger = true"
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle1",
+          "method": "Snap",
+          "condition": "Called once with trigger_porte_salle_1 position after door trigger"
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle1",
+          "target_name": "new position at trigger plus 0.4 on Y, and rotation set to (0,0,0,0) quaternion"
+        }
+      ]
+    }
+  ],
+  "Need_more_Info": true
+}

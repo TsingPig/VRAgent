@@ -1,0 +1,35 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - Door",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 676137038,
+          "condition": "Sanity interaction check. Target has BoxCollider enabled and is a PrefabInstance of Fire-Wrapper. Attached MonoBehaviour matches script Fire (guid: 1729fd01c90a64d5b8037e1eef0d000d) with serialized fields: isOn=0, timeToOnMin=40, timeToOnMax=60 (Awake randomizes timeToOn), onNeighborsThreshold=2, maxNeighborDistance overridden to 6, downMultiplier=2, totalHitTime=5, maxHitInterval=2, minNeighborDownDistance=3, mainEffectGo fileID 1849464941111748095. Using scene object fileID (676137038) due to missing explicit m_PrefabInstance fileID in provided meta. No public parameterless methods are available on Fire, so this trigger only validates collider-driven interaction readiness.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - Door",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 676137038,
+          "condition": "Water suppression cycle. Requires external water system to invoke Fire.WaterHit(Vector3 normal) repeatedly while isOn is true. Hits must arrive with intervals < maxHitInterval (2s) and accumulate currentHitTime >= totalHitTime (5s) to turn fire off. Expected behavior: isTurningOff toggles true on first hit, currentHitInterval resets each hit, once currentHitTime >= 5s the fire stops (pSystem.Stop) and UpdateFireState(true) notifies neighbors and FireController.Instance.FireChanged(-1).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - Door",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 676137038,
+          "condition": "Re-ignition via neighbor influence. Requires neighbors list to be populated (Fire.FindNeighbors or manual wiring) and at least two neighbors to notify state on (NotifyNeighborState(true)) so onNeighbors >= onNeighborsThreshold (2). If fire is off and shouldTurnOn is false, CheckNeighborState sets shouldTurnOn = true, timeToOnDelta starts accumulating in Update. If any neighbor is at least minNeighborDownDistance (3) below this fire, hasDownNeighbor=true and downMultiplier (2) accelerates the countdown. After timeToOnDelta >= timeToOn (random in [40,60] from Awake), fire turns on (pSystem.Play) and UpdateFireState(true) notifies neighbors and FireController.Instance.FireChanged(1).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1959007255,
+          "condition": "Scene MonoBehaviour_0 (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) matches Fire.cs. Serialized config: debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, downMultiplier=2, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, maxNeighborDistance=4, mainEffectGo=fileID 1849464941111748095. This GameObject has a BoxCollider and implements IWaterInteractable. Precondition for this test: temporarily set Fire.isOn=true (e.g., via harness or pre-scene setup) so extinguish flow can be exercised. During the 6s trigger window, simulate water sprays that call IWaterInteractable.WaterHit(normal) once per second (i.e., hit cadence < maxHitInterval=2s) to keep currentHitInterval reset to 0 while currentHitTime accumulates past totalHitTime=5s. Expected result by end of window: fire turns off (isOn=false), shouldTurnOn=false, timeToOnDelta=0, UpdateFireState(true) invoked which stops all ParticleSystems and notifies neighbors and FireController.Instance.FireChanged(-1).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 2.2,
+          "source_object_fileID": 1959007255,
+          "condition": "Reset to a known state with Fire.isOn=true and Fire.isTurningOff=false. At t=0s, simulate a single water contact that calls IWaterInteractable.WaterHit(normal), then no further hits for > maxHitInterval=2s. Expected result after 2.2s: extinguish attempt cancels (isTurningOff=false) and currentHitTime reset to 0 without changing isOn (remains true). This covers the maxHitInterval branch in Update().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 45.0,
+          "source_object_fileID": 1959007255,
+          "condition": "Neighbor ignition path. Configure at least two neighbor Fire instances within maxNeighborDistance=4 of this object, with both neighbors isOn=true. Ensure at least one qualifying neighbor is positioned minNeighborDownDistance=3 units lower in Y to set hasDownNeighbor=true, which applies downMultiplier=2 to the countdown. Start with this fire isOn=false and not turning off. On notification of neighbors being on (via neighbor NotifyNeighborState or a harness that populates the neighbors list and calls CheckNeighborState/FindNeighbors), shouldTurnOn becomes true and timeToOnDelta accumulates until >= timeToOn (Random in [40,60] at Awake). With hasDownNeighbor=true, countdown accelerates. Expected within ~45s (accounting for randomness and multiplier): this fire turns on (isOn=true), UpdateFireState(true) runs, ParticleSystems play, neighbors notified, and FireController.Instance.FireChanged(1) called.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

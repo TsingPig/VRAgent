@@ -1,0 +1,122 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 149,
+          "condition": "MonoBehaviour id=944 uses script guid=6dbca64e524ea44f9b26142ec59aca8a (GvrAudioSource). Config: playOnAwake=0, sourceClip guid=3b1bac9d0cdfad24e9ffb75aa75e4f96 assigned, loop=0, mute=0, volume=1, rolloff=Logarithmic, hrtfEnabled=1, occlusionEnabled=0. No Collider/Rigidbody/EventTrigger present; manual method trigger needed to begin playback and exercise InitializeSource/Update paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 149,
+          "condition": "While clip is playing, pause to set isPaused=true and audioSource.Pause(); verify Update handles paused state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 149,
+          "condition": "Resume from paused state to cover UnPause() branch and resume Update with playing state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 149,
+          "condition": "Stop playback to exercise Stop() and ShutdownSource() paths (ZeroOutput, spatialize=false, DestroyAudioSource).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 149,
+          "condition": "Restart playback after Stop() to validate re-initialization via InitializeSource() and re-binding spatializer parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonHoverSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 149,
+          "condition": "Final Stop to ensure clean shutdown state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 944,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MainMenu script (MonoBehaviour fileID 2050000444, guid f43df138c8422d842a109f05ee02b96e) is attached to GameObject 'LevelsMenu' (fileID 2050000442) in Main.unity. Although 'LevelsMenu' is inactive (m_IsActive: 0) and has no Collider/Rigidbody/EventTrigger, directly invoke public no-arg methods for coverage. This call should load the next scene: SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1). Ensure the current scene is added to Build Settings and has a subsequent scene to load.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MainMenu script (MonoBehaviour fileID 2050000444, guid f43df138c8422d842a109f05ee02b96e) is attached to GameObject 'LevelsMenu'. Directly invoke Quite() to request application termination via Application.Quit(). Note: In the Unity Editor this may not exit play mode; validate behavior in a player build. Object is inactive and has no Collider/EventTrigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Floor Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 213,
+          "condition": "Target MonoBehaviour (fileID: 976, GUID: 739800cd36aba44e9b04ce977e5784bd) is GvrPointerGraphicRaycaster on Floor Canvas. Serialized config: raycastMode=Camera(0), ignoreReversedGraphics=true(1), blockingObjects=None(0), blockingMask=0xFFFFFFFF. Preconditions needed for full runtime path: (1) Canvas.renderMode must be WorldSpace; (2) A GvrPointerManager.Pointer with a valid PointerTransform must exist; (3) Camera.main must be available. These allow EventSystem to call Raycast automatically. We will manually invoke safe public methods to validate pointer availability and last computed ray.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 976,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 976,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

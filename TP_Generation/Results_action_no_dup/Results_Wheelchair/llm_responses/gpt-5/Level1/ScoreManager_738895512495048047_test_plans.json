@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 738895512495048047,
+          "condition": "MonoBehaviour_0 with m_Script guid f7de224e5fee443418417f9f2bfa2998 (type:3) corresponds to class Scoremanager attached to GameObject 'ScoreManager'. Scene config: winAmount=2; StarValue overridden to 1 in PrefabInstance; ScoreText/AmountUI/Timer are wired via Prefab modifications; winlosescript ref fileID=93502226. Scoremanager.changescore(int) triggers winlosescript.Winlevel() when score == winAmount, but changescore requires an int parameter and there is no Collider/EventTrigger on this object. To validate the win path despite lack of a public parameterless API, directly invoke WinLose.Winlevel() on the referenced component to simulate the condition of having collected enough stars.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 93502226,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

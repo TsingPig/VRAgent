@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "Invoke MainMenu.PlayGame() on inactive GameObject (m_IsActive=0). Component fileID=2050000444, script GUID=f43df138c8422d842a109f05ee02b96e. No m_Calls present; manual trigger required for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "Invoke MainMenu.Quite() on inactive GameObject (m_IsActive=0). Component fileID=2050000444, script GUID=f43df138c8422d842a109f05ee02b96e. No m_Calls present; manual trigger required for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Directly invoke MainMenu.PlayGame (MonoBehaviour fileID 1908371634, guid f43df138c8422d842a109f05ee02b96e) to simulate UI OnClick. Expected: SceneManager.LoadScene(GetActiveScene().buildIndex + 1). No Collider/EventTrigger present on Mainmenu; this is a harness-level call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Directly invoke MainMenu.Quite (MonoBehaviour fileID 1908371634, guid f43df138c8422d842a109f05ee02b96e) to simulate UI OnClick. Expected: Application.Quit(). Note: quitting may be ignored in editor.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

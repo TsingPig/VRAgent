@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Manual trigger of HouseController.changeLights to validate emission color update on windowGlassObjects. Start() will already invoke changeLights on scene load; to cover Update path and AudioSource.switchSound.Play(), the public field 'lightStatus' must be toggled via an external UI/Event (not provided). Script component fileID: 821553098848002451, Script GUID: 340adb04e4e259e4b9c3e716ea2e6ced.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

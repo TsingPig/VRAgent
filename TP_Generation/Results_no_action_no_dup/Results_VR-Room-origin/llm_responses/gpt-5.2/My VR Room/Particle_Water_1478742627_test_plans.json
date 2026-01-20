@@ -1,0 +1,37 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Water",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1478742627,
+          "condition": "MonoBehaviour(id: 1478742632, guid: 0ab6d3e7b225a7342a0d702b6151692b) on Particle_Water has fields: sound(AudioClip guid: 2750d8f1e9746416a82993326371d29f), playOnStart=false, volume=1.0. No Rigidbody present; ParticleSystem Force/Collision modules disabled. Because playOnStart is false, manually trigger audio playback via public no-arg methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1478742632,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1478742632,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

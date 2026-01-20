@@ -1,0 +1,298 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Box (0)",
+          "source_object_fileID": 3569975690511002028,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (0)",
+          "source_object_fileID": 3569975690511002028,
+          "delta_position": {
+            "x": -0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (0)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3569975690511002028,
+          "condition": "Mapping confirmation and no-param method coverage: MonoBehaviour id=7040005640398465217 (guid=6bf7bf2b5cedc0b4fb673b10c7900629) is OnCollision with OnEnter->m_Calls targeting MonoBehaviour id=2085702217920827848 (guid=0755a2ba17a31d643b4a27e3034d8a79) PlayQuickSound.Play(). BoxCollider id=3174054499936259574 has m_IsTrigger=0. Two TranslateObject components (guid=866d134ae31a01841b6156f8d0a87054) are present with component ids 74831552 and 1248989243; invoke their no-parameter ResetToStartingPosition to cover start-state reset.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 730385652,
+          "condition": "MonoBehaviour id=203819839 on Box (1) maps to script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). Invoke its no-parameter method ResetToStartingPosition for coverage. Prefab is expected to include a BoxCollider from the source prefab (guid=97e89670ed7696d489d6ddba4543a01b), satisfying Trigger prerequisites (Collider present, Rigidbody absent).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 331566651,
+          "condition": "MonoBehaviour id=531403574 on Box (2) maps to script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). Invoke its only no-parameter public method ResetToStartingPosition for coverage. PrefabInstance (guid=97e89670ed7696d489d6ddba4543a01b) has no removed components, so the BoxCollider from the source prefab remains, satisfying Trigger prerequisites (Collider present, Rigidbody absent).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1736349558,
+          "condition": "MonoBehaviour id=898355187 on Box (3) maps to script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). This scene meta confirms the MonoBehaviour component is the exact settings of the attached script. Has_Rigidbody=false, so Grab/Transform are invalid. Trigger is used to invoke the only no-parameter public method ResetToStartingPosition to ensure coverage after Start captured startPos/startRot. PrefabInstance indicates no components were removed; if a Collider exists on the source prefab, Trigger prerequisites are satisfied.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1058824938,
+          "condition": "MonoBehaviour id=1147109801 on Box (4) maps to script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). This scene meta confirms the MonoBehaviour component is the exact settings of the attached script. Has_Rigidbody=false, so Grab/Transform are invalid. Trigger is used to invoke the only no-parameter public method ResetToStartingPosition to ensure coverage after Start captured startPos/startRot. PrefabInstance indicates no components were removed; if a Collider exists on the source prefab, Trigger prerequisites are satisfied. If not, provide Collider/EventTrigger info.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1.2,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 49734231,
+          "condition": "Invoke public no-parameter methods on TranslateObject to ensure direct method coverage after motion. MonoBehaviour id=74831552 and id=1248989243 both map to script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). Start() already cached startPos/startRot; ResetToStartingPosition should restore them.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (6)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1843663307,
+          "condition": "MonoBehaviour id=1124768097 on Box (6) maps to script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). This scene meta confirms the MonoBehaviour component is the exact settings of the attached script. Has_Rigidbody=false, so Grab/Transform are invalid. The PrefabInstance for Box (6) references the same source prefab (guid=97e89670ed7696d489d6ddba4543a01b) with m_RemovedComponents=[], so the source prefab's Collider remains, satisfying Trigger prerequisites. Invoke the only public no-parameter method ResetToStartingPosition to ensure coverage after Start cached startPos/startRot.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (7)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 930118958,
+          "condition": "PrefabInstance id=930118958 named 'Box (7)' is a child of 'Boxes'. MonoBehaviour id=988422739 on this GameObject references script guid=866d134ae31a01841b (TranslateObject), matching the provided source code and having no serialized fields, so the scene MonoBehaviour is exactly the script’s settings. Has_Rigidbody=false and no m_Calls are defined; invoke the only public no-parameter API to cover behavior after Start caches startPos/startRot.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (8)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 176049113,
+          "condition": "PrefabInstance id=176049113 named 'Box (8)' is a child of 'Boxes'. MonoBehaviour id=1793308541 on this GameObject references script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). The scene MonoBehaviour component has no serialized fields and matches the provided script, confirming it is exactly the script’s settings. Has_Rigidbody=false and no m_Calls are defined; to ensure coverage after Start caches startPos/startRot, invoke the only public no-parameter method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1793308541,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (9)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1025029724,
+          "condition": "PrefabInstance id=1025029724 named 'Box (9)' is a child of 'Boxes' (Transform parent fileID=77525555). MonoBehaviour id=1320904625 on this GameObject references script guid=866d134ae31a01841b6156f8d0a87054 (TranslateObject). The scene MonoBehaviour component has no serialized fields, matching the provided script exactly. Has_Rigidbody=false; prefab shows m_RemovedComponents=[] so default Collider from the source prefab remains, satisfying Trigger prerequisites. Call the only public no-parameter method to validate behavior after Start caches startPos/startRot.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1320904625,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

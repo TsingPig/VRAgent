@@ -1,0 +1,17 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 2013310823,
+          "condition": "MonoBehaviour id 2013310826 (guid 077cb2d6a53b18f4ea7d76e72138fc77) matches script AttachToElevator. Serialized field 'player' is null (fileID 0). BoxCollider id 2013310828 exists with m_IsTrigger=0; GameObject has no Rigidbody. Script only reacts on OnTriggerEnter/OnTriggerExit, but logic checks if (gameObject == player), which will be false (player is null) and collider is not a trigger; thus callbacks will not execute as-is. To cover the code, we need: (a) assign 'player' to this GameObject or correct the comparison to 'other.gameObject', and (b) ensure a trigger collider and at least one Rigidbody on one of the interacting objects. No m_Calls/EventTrigger present in scene config.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

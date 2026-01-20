@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building6",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 31730558,
+          "condition": "MonoBehaviour (fileID 31730560, guid a8e394fec5558d54daa16e3fcb3cc7d3) matches script 'Commercial' attached to Building6. EventTrigger (fileID 31730566) has m_Delegates eventID=4 (PointerClick) with a persistent call to Commercial.showlabel. Expected: label on Player->child(1) TextMeshPro updated to first 20 characters of 'Commercial:Pokemon Shopping Center'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 31730560,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building6",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 31730558,
+          "condition": "MonoBehaviour (fileID 31730560, guid a8e394fec5558d54daa16e3fcb3cc7d3) is script 'Commercial' attached to Building6. EventTrigger (fileID 31730566, eventID=4 PointerClick) has a persistent call to Commercial.showlabel. Expected: Player child index 1 TextMeshPro gets text = GetLabel().Substring(0,20) => first 20 chars of 'Commercial:Pokemon Shopping Center'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 31730560,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

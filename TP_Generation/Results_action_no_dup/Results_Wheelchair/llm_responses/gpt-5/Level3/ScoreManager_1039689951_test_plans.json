@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1039689951,
+          "condition": "Simulate reaching the win condition by invoking WinLose.Winlevel() referenced by Scoremanager.winlosescript. Note: Scoremanager (script guid: f7de224e5fee443418417f9f2bfa2998, component fileID: 738895513262049452) exposes only a parameterized public method changescore(int), so it cannot be directly triggered by the provided Trigger action format. The prefab modifications set winAmount=4 and reference winlosescript (component fileID: 1176795496), while the raw MonoBehaviour block shows winAmount=2; please confirm which value is active at runtime.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1176795496,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

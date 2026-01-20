@@ -1,0 +1,147 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "--XR--",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1115321958,
+          "condition": "XR Origin (GameObject fileID 505562319) has MonoBehaviour OnButtonPress (component fileID 505562327, script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e) configured with InputAction <XRController>/secondaryButton. Its UnityEvent OnPress has m_Calls to: GameObject(fileID 943515638).SetActive(true), GameObject(fileID 1440930911).SetActive(false), and TeleportPlayer(fileID 505562328).Teleport(). To ensure coverage when input events may not fire automatically, manually invoke TeleportPlayer.Teleport(). TeleportPlayer (component fileID 505562328, script guid 9469e5ef7ce252d48a689ad38d7b5695) is configured with anchor(fileID 628911205) and provider(fileID 505562326).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 505562328,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "--XR--",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 1115321958,
+          "condition": "XR Origin (fileID 505562319) has OnButtonPress (component fileID 505562327, script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e) bound to <XRController>/secondaryButton with OnPress calls: GameObject(fileID 943515638).SetActive(true), GameObject(fileID 1440930911).SetActive(false), and TeleportPlayer(fileID 505562328).Teleport(). TeleportPlayer (fileID 505562328, script guid 9469e5ef7ce252d48a689ad38d7b5695) is configured with anchor(fileID 628911205) and provider(fileID 505562326). LeftHand Controller (fileID 235308782) has OnButtonPress (component fileID 235308790, script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e) bound to <XRController>{LeftHand}/primaryButton with OnPress calling ToggleRay(fileID 172617727).ActivateRay() and OnRelease calling ToggleRay(fileID 172617727).DeactivateRay(). To ensure coverage without relying on runtime input, manually invoke the event targets.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 505562328,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "--XR--",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 1115321958,
+          "condition": "RightHand Controller (GameObject fileID 474225658) has MonoBehaviour OnButtonPress (component fileID 474225666, script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e) bound to <XRController>{RightHand}/primaryButton. Scene meta shows its UnityEvent wiring: OnPress -> ToggleRay(fileID 1287520551).ActivateRay(); OnRelease -> ToggleRay(fileID 1287520551).DeactivateRay(). To ensure coverage without relying on runtime input, manually invoke the no-arg public methods on the ToggleRay component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Ray Controller",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 172617721,
+          "condition": "MonoBehaviour(id: 172617727) on GameObject 'LeftHand Ray Controller' uses script guid cf14522d53cc1594991c164e785780dc, which matches the provided ToggleRay MonoBehaviour (RequireComponent XRRayInteractor). Scene serialization confirms settings: forceToggle = false, directInteractor = {fileID: 235308789}. No m_Calls are defined for this component, so to cover the public no-arg API we manually invoke ToggleRay.ActivateRay() then ToggleRay.DeactivateRay(). Expected: ActivateRay switches to ray if directInteractor is not touching any targets; DeactivateRay switches back if previously switched.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Ray Controller",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1287520545,
+          "condition": "MonoBehaviour(id: 1287520551) on GameObject 'RightHand Ray Controller' uses script guid cf14522d53cc1594991c164e785780dc, which corresponds to the provided ToggleRay MonoBehaviour. Scene serialization confirms settings: forceToggle = false, directInteractor = {fileID: 474225665}. No m_Calls (UnityEvent) are defined for this component. The object has no Rigidbody, so we avoid Grab/Transform and manually invoke the public no-arg API to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

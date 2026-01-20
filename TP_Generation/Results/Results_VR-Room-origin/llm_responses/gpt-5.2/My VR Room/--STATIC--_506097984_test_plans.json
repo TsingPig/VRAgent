@@ -1,0 +1,53 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Fireplace_Traditional is a PrefabInstance under --STATIC-- and is intended to host TeleportAnchorWithFade (inherits TeleportationAnchor). The scene meta shows an added component with fileID 1133633788 (details not provided) and a MonoBehaviour with id 631718164 (guid 474bcb49853aa07438625e644c072ee6) which corresponds to a URP light data component, not TeleportAnchorWithFade. To ensure code coverage of TeleportAnchorWithFade, we must exercise its fade-wrapped handlers based on the TeleportationAnchor.teleportTrigger: OnSelectEntered, OnSelectExited, OnActivated, OnDeactivated. Please confirm the MonoBehaviour component entry for TeleportAnchorWithFade (its script guid/fileID, serialized fields including teleportTrigger, and any UnityEvent m_Calls on XRBaseInteractable such as selectEntered/activated), and confirm a Collider is present. This Trigger step simulates the XR interaction on the anchor to invoke the appropriate handler and run the fade sequence.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1865680026,
+          "condition": "Room_Modern is a PrefabInstance under --STATIC-- with m_IsActive set to 0 in the scene modifications, so it must be set active before invoking any methods. The script provided is PlayQuickSound (public void Play()). In the scene meta, two components were added: MonoBehaviour id 1865680029 (guid 474bcb49853aa07438625e644c072ee6, URP Additional Light Data) and an added component id 1865680030 (details not shown). We assume 1865680030 is PlayQuickSound attached to Room_Modern as per the provided script. Ensure an AudioSource is present on the same GameObject (PlayQuickSound has [RequireComponent(typeof(AudioSource))]) and that a valid AudioClip is assigned to 'sound'. If no Collider/EventTrigger is present on Room_Modern, directly invoking Play() is required to cover the script; Awake runs automatically on load.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TV_FlatWallMounted",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 772053049,
+          "condition": "TV_FlatWallMounted is a PrefabInstance under --STATIC--. Its shown MonoBehaviour (id: 725697786, script guid: 3d4642753971e264fbb20044fa231cd5) has serialized fields: playAtStart=0, videoMaterial (fae3ce4e...), and videoClips ([8cd99a81...]). There is no Rigidbody on the object, and no Collider/EventTrigger are shown. The provided script source in this step is UniversalAdditionalLightData (guid 474bcb49...), which is NOT the script attached here according to the scene meta. To cover the attached video controller script (guid 3d464275...), we need to invoke a public no-arg method that starts playback (commonly Play). Please confirm the public methods on this component and whether a Collider/EventTrigger exists; otherwise, allow direct method invocation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 725697786,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 665489382,
+          "condition": "Scene init and auto-updates. The Scoremanager MonoBehaviour (m_Script guid=f7de224e5fee443418417f9f2bfa2998) on GameObject 'ScoreManager' sets AmountUI.text and instance in Start(), and updates Timer.text each frame in Update(). In this Level2 instance, Prefab modifications set: winAmount=4, ScoreText->fileID 1410783274, AmountUI->fileID 101471811, Timer->fileID 1937840742, winlosescript->fileID 283832888. Expect after Start(): AmountUI.text == 'Star Amount: 4'. During this trigger window, Update() should repeatedly set Timer.text to Time.time formatted '0.0'. Note: No UnityEvent m_Calls are defined on this component in the scene meta.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 665489382,
+          "condition": "Exercise Scoremanager.changescore(int) to cover score increment and equality check path. Required: invoke changescore with parameters to simulate star pickups until score == winAmount (4 in this scene) so that winlosescript.Winlevel() would be called. The Scoremanager MonoBehaviour component fileID is not provided in the meta; please supply it or expose a parameterless wrapper (e.g., AddOneStar()) to enable methodCallUnits. Also, ScoreManager has no Rigidbody/Collider/EventTrigger; there are no m_Calls, so this must be invoked by the test harness.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 665489382,
+          "condition": "Force win flow via referenced WinLose to validate integration event pathway even if changescore(int) cannot be invoked directly in this plan. Assumes WinLose.Winlevel() is public and parameterless (as called from Scoremanager.changescore when score == winAmount). Target component reference from scene: fileID 283832888.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

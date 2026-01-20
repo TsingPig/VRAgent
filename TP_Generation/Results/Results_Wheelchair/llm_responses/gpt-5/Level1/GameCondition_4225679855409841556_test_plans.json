@@ -1,0 +1,42 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "MonoBehaviour component (fileID: 4225679855366766214) on GameCondition uses script guid d8624f87f98aa484bb7925103f5d458e (WinLose.cs, fileID: 11500000). Serialized fields: restartdelay=2. PrefabInstance modifications indicate WinUI objectReference fileID=852022849 and LoseUI objectReference fileID=215505909. Expected behavior: Winlevel() sets WinUI active; loselevel() sets LoseUI active; Restart() currently does nothing. Has_Rigidbody=false; no Collider/EventTrigger listed, so events are manually triggered for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

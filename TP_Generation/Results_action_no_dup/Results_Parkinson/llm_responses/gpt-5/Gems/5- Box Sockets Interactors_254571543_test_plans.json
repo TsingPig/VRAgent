@@ -1,0 +1,187 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 254571543,
+          "condition": "MonoBehaviour fileID 254571545 on GameObject '5- Box Sockets Interactors' matches script CheckElements (guid: 3bc2acd74545a4f1aa9eba6d8f72a530) with numberOfElements=3. Calling AddElementInSocket three times should make numberOfElementsInSocket == numberOfElements, which will Invoke UnityEvents: hideTaskDescription -> GameObject(1945735948).SetActive(false), showNextLevelUI -> GameObject(208823133).SetActive(true), unlock -> GameObject(157114427).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 36331052,
+          "condition": "PrefabInstance id 36331052 (Box_02) contains MonoBehaviour fileID 680431495 (XRSocketInteractor; guid: 60523e0647cc6ab43acc73cb266a32a7). Interactable Events (m_Calls) are configured: m_HoverEntered -> Renderer(fileID: 680431493).enabled = false; m_SelectEntered -> CheckElements.AddElementInSocket on parent MonoBehaviour fileID 254571545; m_SelectExited -> CheckElements.AddElementInSocket on parent MonoBehaviour fileID 254571545. Box_02 also has a BoxCollider (id: 680431496), so it is valid for Trigger actions. This action simulates HoverEntered, then SelectEntered and SelectExited to increment element count twice via the wired events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 254571543,
+          "condition": "MonoBehaviour fileID 254571545 on GameObject '5- Box Sockets Interactors' matches script CheckElements (guid: 3bc2acd74545a4f1aa9eba6d8f72a530) with numberOfElements=3. After two increments from Box_02 Select events, a third direct call to AddElementInSocket will meet the threshold and invoke UnityEvents configured in the scene meta: hideTaskDescription -> GameObject(fileID: 1945735948).SetActive(false), showNextLevelUI -> GameObject(fileID: 208823133).SetActive(true), unlock -> GameObject(fileID: 157114427).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 1379860601,
+          "condition": "PrefabInstance id 1379860601 (Box_02 (3)) has MonoBehaviour fileID 1379860606 (XRSocketInteractor; guid: 60523e0647cc6ab43acc73cb266a32a7) and BoxCollider id 1379860607 (isTrigger=1). Interactable Events (m_Calls): m_HoverEntered -> Renderer(fileID: 1379860609).enabled = false; m_SelectEntered -> CheckElements.AddElementInSocket on parent MonoBehaviour fileID 254571545; m_SelectExited -> CheckElements.AddElementInSocket on parent MonoBehaviour fileID 254571545. This action simulates HoverEntered, then SelectEntered and SelectExited to increment element count twice via the wired events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 254571543,
+          "condition": "MonoBehaviour fileID 254571545 on GameObject '5- Box Sockets Interactors' is CheckElements (guid: 3bc2acd74545a4f1aa9eba6d8f72a530) with numberOfElements=3. After two increments from Box_02 (3) Select events, a third direct call to AddElementInSocket will meet the threshold and internally invoke UnityEvents configured in scene meta: hideTaskDescription -> GameObject(fileID: 1945735948).SetActive(false), showNextLevelUI -> GameObject(fileID: 208823133).SetActive(true), unlock -> GameObject(fileID: 157114427).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 1940504553,
+          "condition": "PrefabInstance id 1940504553 (Box_02 (4)) has MonoBehaviour fileID 1940504558 (XRSocketInteractor; guid: 60523e0647cc6ab43acc73cb266a32a7) and BoxCollider id 1940504559 (isTrigger=1). Interactable Events (m_Calls): m_HoverEntered -> Renderer(fileID: 1940504561).enabled = false; m_SelectEntered -> CheckElements.AddElementInSocket on parent MonoBehaviour fileID 254571545; m_SelectExited -> CheckElements.AddElementInSocket on parent MonoBehaviour fileID 254571545. This action simulates HoverEntered, then SelectEntered and SelectExited to increment the element count twice.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 254571543,
+          "condition": "GameObject '5- Box Sockets Interactors' has MonoBehaviour fileID 254571545 using CheckElements (guid: 3bc2acd74545a4f1aa9eba6d8f72a530) with numberOfElements=3. After two increments from Box_02 (4), a third direct call to AddElementInSocket meets the threshold and internally invokes UnityEvents: hideTaskDescription -> GameObject(fileID: 1945735948).SetActive(false), showNextLevelUI -> GameObject(fileID: 208823133).SetActive(true), unlock -> GameObject(fileID: 157114427).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

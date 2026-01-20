@@ -1,0 +1,35 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 2",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 1875384961,
+          "condition": "Neighbor-driven auto-ignition path. The MonoBehaviour component on this GameObject is Fire (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d, fileID=11500000). Scene settings match the script’s serialized fields (debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, timeToOn will be randomized in Awake, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, minNeighborDownDistance=3, maxHitInterval=2, totalHitTime=5, mainEffectGo fileID=1849464941111748095, BoxCollider enabled). To trigger this path: neighbors list must contain at least 2 Fire neighbors within maxNeighborDistance, and they must notify as fireOn to reach onNeighbors >= onNeighborsThreshold. If any neighbor is lower by > minNeighborDownDistance, downMultiplier speeds up countdown. Expected: shouldTurnOn becomes true, timeToOnDelta accumulates for 40–60s (faster if hasDownNeighbor), then isOn flips to true, isTurningOff=false, timers reset, UpdateFireState(true) plays particles (pSystem.Play) and notifies neighbors; FireController.Instance.FireChanged(+1). Manual trigger requirement: an external system must call FindNeighbors/NotifyNeighborState to seed neighbors.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 2",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1875384961,
+          "condition": "Suppression path (turning off via water). Precondition: fire is currently ON (e.g., after previous trigger). Apply repeated IWaterInteractable.WaterHit(Vector3 normal) calls so that currentHitInterval never reaches maxHitInterval (2s) until totalHitTime (5s) accumulates. Expected: while hits are within 2s of each other, isTurningOff remains true and currentHitTime accumulates; at >=5s total, fire turns off (isOn=false), shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime=0; UpdateFireState(true) stops particles (pSystem.Stop) and calls FireController.Instance.FireChanged(-1). Manual trigger requirement: an external water system must repeatedly call WaterHit(), as this method requires a Vector3 parameter and cannot be invoked by a parameterless event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 2",
+          "triggerring_time": 2.1,
+          "source_object_fileID": 1875384961,
+          "condition": "Cooling/abort path. Precondition: fire is ON and a single WaterHit has been applied so isTurningOff=true and currentHitInterval reset to 0. Do not apply any further WaterHit for >= maxHitInterval (2s). Expected: when currentHitInterval >= 2s, isTurningOff resets to false and currentHitTime resets to 0, while isOn remains true. This ensures the branch that cancels suppression when hits are too infrequent is covered.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

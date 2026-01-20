@@ -1,0 +1,80 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Ray Controller",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 172617721,
+          "condition": "MonoBehaviour_0 on LeftHand Ray Controller (id: 172617727) has m_Script {fileID:11500000, guid:cf14522d53cc1594991c164e785780dc, type:3}, which is ToggleRay. Serialized fields: forceToggle=0, directInteractor fileID=235308789. Awake() already invoked at enable (SwitchInteractors(false)). To cover ActivateRay(), simulate user enabling the ray when directInteractor is not touching any objects. If directInteractor has no valid targets, ActivateRay will SwitchInteractors(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Ray Controller",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 172617721,
+          "condition": "After ActivateRay sets isSwitched=true, call DeactivateRay() to cover the path that switches back (SwitchInteractors(false)). This validates toggling back when ray was previously activated.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Ray Controller",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1287520545,
+          "condition": "MonoBehaviour_0 on RightHand Ray Controller (id: 1287520551) uses script ToggleRay {fileID:11500000, guid:cf14522d53cc1594991c164e785780dc, type:3}. Serialized fields: forceToggle=0, directInteractor fileID=474225665. Awake() auto-executes SwitchInteractors(false) on enable. To cover ActivateRay() path, ensure the directInteractor is not touching any objects (TouchingObject()==false), then call ActivateRay() to switch to ray (isSwitched=true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Ray Controller",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1287520545,
+          "condition": "After ActivateRay() sets isSwitched=true, call DeactivateRay() to cover the switch back path (SwitchInteractors(false)).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

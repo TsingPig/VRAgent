@@ -1,0 +1,233 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 176.905,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manual trigger to simulate OnTriggerEnter with tag 'Cars' that would call WinLose.loselevel(). MonoBehaviour mapping: MonoBehaviour_1 uses script GUID d8624f87f98aa484bb7925103f5d458e (WinLose), component fileID 8900446968063909830, with LoseUI fileID 1999610191 and WinUI fileID 1345324351 bound via PrefabInstance modifications. PlayerTriggers (GUID a0edd121473972448b844c1958f760ce) is attached with StarValue=2 and has private OnTriggerEnter that would normally invoke loselevel() on collision with 'Cars'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Manual trigger to simulate reaching a 'WinBox' that would call Scoremanager.instance.changescore(StarValue) then Destroy(WinBox) via PlayerTriggers.OnTriggerEnter, and separately validate WinLose.Winlevel() toggling Win UI. MonoBehaviour mapping: WinLose GUID d8624f87f98aa484bb7925103f5d458e, component fileID 8900446968063909830; PlayerTriggers GUID a0edd121473972448b844c1958f760ce with StarValue=2.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Directly exercise public no-arg method WinLose.Restart() on component fileID 8900446968063909830 (GUID d8624f87f98aa484bb7925103f5d458e) to cover the method even though its body is empty.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -7.95,
+            "y": -0.17,
+            "z": -4.08
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -3.39,
+            "y": -0.17,
+            "z": -34.33
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 29.25,
+            "y": 0.0,
+            "z": -19.97
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Simulate OnTriggerEnter with Cars-tagged object id 1898795243 (LoseBox (1)) to cover PlayerTriggers.OnTriggerEnter branch when physical transform coordinates are unavailable. PlayerTriggers (Script GUID a0edd121473972448b844c1958f760ce, MonoBehaviour_0) references WinLose; WinLose component (Script GUID d8624f87f98aa484bb7925103f5d458e, MonoBehaviour fileID 8900446968063909830) will have loselevel() invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Simulate OnTriggerEnter with Cars-tagged object id 2038487824 (LoseBox (1)) to cover additional Cars collision case due to missing parent transform info. Uses WinLose component (fileID 8900446968063909830, GUID d8624f87f98aa484bb7925103f5d458e).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Direct coverage of public method WinLose.Winlevel() (MonoBehaviour fileID 8900446968063909830, Script GUID d8624f87f98aa484bb7925103f5d458e). This is not invoked by PlayerTriggers and must be triggered manually to validate WinUI activation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1134884820,
+          "condition": "Direct coverage of public method WinLose.Restart() (MonoBehaviour fileID 8900446968063909830, Script GUID d8624f87f98aa484bb7925103f5d458e). Empty body but included for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

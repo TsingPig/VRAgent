@@ -1,0 +1,122 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Manual invocation of public no-arg methods on MonoBehaviour_0 (id: 1026361732, guid: 76a895b5e674db04d8b4f8110c068852). Scene config: shouldLoop=0; audioClips count=2 (guids: 3c7b3ef689cc94af0bd824489050effd, 39eeabf0f489f4e46a024aa733bf1b4b). Note: GameObject has no Rigidbody/Collider/EventTrigger and no m_Calls configured; these triggers are required to exercise Play/Next/Prev/Random/Pause/Stop.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Advance to next clip to validate indexing and playback; same MonoBehaviour (id: 1026361732, guid: 76a895b5e674db04d8b4f8110c068852).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Go to previous clip to validate negative modulo and Mathf.Abs path; MonoBehaviour id: 1026361732.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Random selection path coverage; audioClips count=2; MonoBehaviour id: 1026361732.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Pause the currently playing AudioSource to verify PauseClip(); MonoBehaviour id: 1026361732.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1026361730,
+          "condition": "Stop playback to verify StopClip(); MonoBehaviour id: 1026361732.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1026361732,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

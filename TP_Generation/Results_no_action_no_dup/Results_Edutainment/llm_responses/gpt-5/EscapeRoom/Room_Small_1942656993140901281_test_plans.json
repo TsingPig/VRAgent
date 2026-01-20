@@ -1,0 +1,117 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Small",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1942656993140901281,
+          "condition": "Room_Small currently shows only a Transform component (fileID 2799994661978644995) with Has_Rigidbody: False and no visible MonoBehaviour/Collider/EventTrigger in the provided snippet. To proceed, we will trigger UnityEvent-based interactions defined on any MonoBehaviour(s) attached to Room_Small or its children once their exact scene-serialized settings (including m_Calls) are provided. Please supply the MonoBehaviour components (script fileIDs, method names, and m_Calls) and any Collider/EventTrigger presence for Room_Small and its listed children so we can target specific events. Note: The MonoBehaviour entries in the scene file will be treated as the exact script settings for test execution.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hourglass",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1993477995,
+          "condition": "MonoBehaviour_0 (fileID 1053131476719109107, guid 064a8dd92b340ea44b0dfedc7cf8e7b8) is the Hourglass script and MonoBehaviour_1 (fileID 3259508153452503771, guid 35ffe483d6934704b884767450fd49e5) is XROffsetGrabbable. These MonoBehaviour components are the exact serialized settings of their scripts. XROffsetGrabbable UnityEvents (m_OnSelectEnter, m_OnSelectExit, etc.) have empty m_Calls, so there are no persistent UnityEvent callbacks to trigger directly. To cover XROffsetGrabbable OnSelectEntered/OnSelectExited paths, we need the XR Interactor GameObject(s) fileID(s) (e.g., XRDirectInteractor) to perform a Grab and Release on Hourglass.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 180.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 3.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 90.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1635398362,
+          "condition": "DoorAnimationEvent is serialized as MonoBehaviour_0 (fileID 1635398365, guid a8a2c5194e4c1f1458096e7bee47220e) on Door 1 and this scene meta is the exact settings of the attached script. BoxCollider (fileID 1635398364) has m_IsTrigger=1, so OnTriggerEnter will be raised when a valid Collider enters. Simulate a Collider entering Door 1's trigger to execute OnTriggerEnter, which calls openDoors() and Animator.SetTrigger('DoorTrigger').",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 1635398362,
+          "condition": "With the same serialized settings, simulate a Collider exiting Door 1's trigger to execute OnTriggerExit. The script invokes closeDoors() after 0.5 seconds, which triggers Animator.SetTrigger('DoorTrigger') again to close. Allow at least 0.5s for the Invoke to fire.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 353440278,
+          "condition": "MonoBehaviour_0 (fileID 353440281, guid a8a2c5194e4c1f1458096e7bee47220e) is DoorAnimationEvent and MonoBehaviour_1 (fileID 353440283, guid 3dc13bc17e982d54e848fac3441c08c4) is AudioTrigger. These MonoBehaviour components are the exact serialized settings of their scripts on Door 2. BoxCollider (fileID 353440280) has m_IsTrigger=1. Simulate a Collider entering the trigger to execute: DoorAnimationEvent.OnTriggerEnter -> openDoors() -> Animator.SetTrigger('DoorTrigger'); and AudioTrigger.OnTriggerEnter -> audioSource.Play() once due to oneTimeEvent=1.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 353440278,
+          "condition": "Simulate a Collider exiting the BoxCollider (trigger) to execute DoorAnimationEvent.OnTriggerExit while isOpened=true; this schedules Invoke('closeDoors', 0.5f). Wait at least 0.5s to allow closeDoors() to run and trigger Animator.SetTrigger('DoorTrigger') to close.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 353440278,
+          "condition": "To cover AudioTrigger.Update branch (stopping audio when keysPlaced.numKeys == 3), set keyMainScript (fileID 2046914207) numKeys to 3 before Update runs, then let one frame elapse so AudioTrigger.Update calls audioSource.Stop() on AudioSource (fileID 1941851346). Please provide how to set or simulate keysPlaced.numKeys=3 (public method/event or scene override).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

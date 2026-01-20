@@ -1,0 +1,170 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 235308782,
+          "condition": "LeftHand Controller has MonoBehaviour_0 (fileID: 235308790) mapped to script OnButtonPress (guid: 4a8d337e8bc7ac4498e0df29e7b8bd5e). Its InputAction is bound to <XRController>{LeftHand}/primaryButton. OnPress.m_PersistentCalls invokes ToggleRay(fileID: 172617727).ActivateRay() with no parameters. Since controller input may not be available in automation, manually invoke ActivateRay to cover the OnPress UnityEvent target.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 235308782,
+          "condition": "LeftHand Controller OnButtonPress (fileID: 235308790) OnRelease.m_PersistentCalls invokes ToggleRay(fileID: 172617727).DeactivateRay() with no parameters. Manually invoke to simulate button release and cover the OnRelease UnityEvent target.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 235308782,
+          "condition": "XR Origin has MonoBehaviour_0 (fileID: 505562327) mapped to OnButtonPress (guid: 4a8d337e8bc7ac4498e0df29e7b8bd5e) bound to <XRController>/secondaryButton. Its OnPress.m_PersistentCalls include TeleportPlayer(fileID: 505562328).Teleport(). TeleportPlayer (guid: 9469e5ef7ce252d48a689ad38d7b5695) has anchor(fileID: 628911205) and provider(fileID: 505562326) set in the scene. To ensure coverage without relying on controller input, manually invoke Teleport().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 505562328,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 474225658,
+          "condition": "RightHand Controller MonoBehaviour_0 (fileID: 474225666) matches script OnButtonPress (guid: 4a8d337e8bc7ac4498e0df29e7b8bd5e) with InputAction bound to <XRController>{RightHand}/primaryButton. OnPress.m_PersistentCalls invokes ToggleRay(fileID: 1287520551).ActivateRay() (no parameters). To ensure coverage without hardware input, manually invoke ActivateRay.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 474225658,
+          "condition": "RightHand Controller OnButtonPress (fileID: 474225666) OnRelease.m_PersistentCalls invokes ToggleRay(fileID: 1287520551).DeactivateRay() (no parameters). Manually invoke to simulate button release and cover the OnRelease UnityEvent target.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Ray Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 172617721,
+          "condition": "MonoBehaviour_0 (fileID: 172617727) is ToggleRay (guid: cf14522d53cc1594991c164e785780dc) attached to LeftHand Ray Controller with serialized settings forceToggle=false and directInteractor=fileID 235308789. Per Awake(), SwitchInteractors(false) has already run automatically. Manually invoke ActivateRay() to cover the public method path; it will switch if directInteractor is not touching any XRBaseInteractable (targets.Count == 0) or if forceToggle were true (it is false here). Expected effect on success: rayInteractor.enabled=true, directInteractor.enabled=false, isSwitched=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Ray Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 172617721,
+          "condition": "After ActivateRay() sets isSwitched=true, invoke DeactivateRay() on MonoBehaviour_0 (fileID: 172617727) to cover the public method path that switches back when isSwitched is true. Expected effect: rayInteractor.enabled=false, directInteractor.enabled=true, isSwitched=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Ray Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1287520545,
+          "condition": "MonoBehaviour_0 (fileID: 1287520551) matches script ToggleRay (guid: cf14522d53cc1594991c164e785780dc) attached to RightHand Ray Controller with serialized settings forceToggle=false and directInteractor=fileID 474225665. Awake() already ran and called SwitchInteractors(false). Ensure the direct interactor is not touching any XRBaseInteractable (GetValidTargets returns count==0) so ActivateRay() will toggle to ray mode. Expected: rayInteractor.enabled=true, directInteractor.enabled=false, isSwitched=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Ray Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1287520545,
+          "condition": "After ActivateRay() sets isSwitched=true, invoke DeactivateRay() on MonoBehaviour_0 (fileID: 1287520551) to switch back to direct interactor. Expected: rayInteractor.enabled=false, directInteractor.enabled=true, isSwitched=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 50.0,
+          "source_object_fileID": 1472468207,
+          "condition": "Scene MonoBehaviour_0 on this GameObject is the Fire script (m_Script fileID: 11500000, GUID: 1729fd01c90a64d5b8037e1eef0d000d) with the exact serialized settings provided: isOn=0, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, totalHitTime=5, maxHitInterval=2, neighbors=[]. To trigger auto-ignition, ensure at least 2 neighbor Fire instances are within 4 units, with at least one sufficiently below by > minNeighborDownDistance=3 to exercise downMultiplier. Then wait until timeToOn elapses (random within 40-60, accelerated by downMultiplier when applicable). Expected behavior: shouldTurnOn becomes true and counts up; when threshold reached fire turns on (isOn=1), UpdateFireState(true) plays ParticleSystem on mainEffectGo (fileID 1849464941111748095), notifies neighbors via NotifyNeighborState(true), and calls FireController.Instance.FireChanged(+1).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1472468207,
+          "condition": "Precondition: fire is currently on (isOn=1) after prior trigger. Simulate repeated water impacts by invoking Fire.WaterHit(normal) repeatedly with intervals < maxHitInterval=2 seconds until accumulated currentHitTime >= totalHitTime=5 seconds. Expected: isTurningOff remains true, timers accumulate, and once currentHitTime >= totalHitTime the fire turns off (isOn=0), UpdateFireState(true) stops ParticleSystem, notifies neighbors via NotifyNeighborState(false), and calls FireController.Instance.FireChanged(-1). Note: WaterHit has a Vector3 parameter; a parameterless wrapper or external water system is required to drive this.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 1472468207,
+          "condition": "Edge case: test turn-off cancellation. From isOn=1 state, call WaterHit once to set isTurningOff=true and start timers, then do not hit again and wait for currentHitInterval to exceed maxHitInterval=2 seconds. Expected: isTurningOff resets to false and currentHitTime resets to 0 without changing isOn (remains 1). Requires a way to invoke WaterHit(normal).",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

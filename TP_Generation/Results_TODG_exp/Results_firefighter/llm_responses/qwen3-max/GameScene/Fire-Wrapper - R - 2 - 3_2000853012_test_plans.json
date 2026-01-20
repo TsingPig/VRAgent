@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Validate Fire MonoBehaviour settings and exercise the sustained-water-hit turn-off path. This GameObject has a BoxCollider (m_IsTrigger=0) and no Rigidbody. The attached MonoBehaviour (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d) matches Fire.cs with serialized values: isOn=false, timeToOnMin=40, timeToOnMax=60, downMultiplier=2, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo fileID=1849464941111748095. Action simulates continuous water impacts that should cause IWaterInteractable.WaterHit(Vector3) to be invoked repeatedly within intervals < maxHitInterval until totalHitTime is reached, at which point Update() turns the fire off (isOn=false), resets turning-off timers, stops particles via UpdateFireState(true), notifies neighbors, and calls FireController.Instance.FireChanged(-1). Note: Fire exposes no public no-parameter methods; thus no direct method calls are specified here.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Exercise the cancellation path of turning off. After at least one WaterHit has set isTurningOff=true, cease hits for >= maxHitInterval (2s). Expected: in Update(), currentHitInterval exceeds maxHitInterval; isTurningOff becomes false and currentHitTime resets to 0, leaving the fire state unchanged (remains whatever it was prior to the pause). No public no-parameter methods exist to call directly.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Exercise neighbor-driven ignition. Preconditions needed: neighbors list populated (via Fire.FindNeighbors or manual serialization) with >=2 neighbors within maxNeighborDistance=4, where at least one neighbor is sufficiently below (transform.y difference > minNeighborDownDistance=3) to allow downMultiplier acceleration. When onNeighbors >= onNeighborsThreshold and this fire is off and not already turning on, CheckNeighborState() should set shouldTurnOn=true and accumulate timeToOnDelta until reaching timeToOn (Random[40,60] scaled by downMultiplier if hasDownNeighbor). On reaching timeToOn, isOn becomes true and UpdateFireState(true) plays particle systems and calls FireController.Instance.FireChanged(1). This step represents the time passage and neighbor state; no direct public no-parameter methods are available to invoke.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

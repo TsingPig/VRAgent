@@ -1,0 +1,72 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 95,
+          "condition": "MonoBehaviour id 926 maps to script GUID e7dcc90c2e60c4011896c7f21fc1f557 (GvrReticlePointer). Ensure it is enabled, then call its public no-arg API to register as the main pointer so downstream raycasters can detect the pointer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 926,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 95,
+          "condition": "MonoBehaviour id 926 in scene maps to script GUID e7dcc90c2e60c4011896c7f21fc1f557 (GvrReticlePointer). Ensure the component is enabled, then set this as the active Gvr pointer so downstream raycasters can function.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 926,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ddcontroller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 68,
+          "condition": "MonoBehaviour id 915 on ddcontroller maps to script GUID aa952cbcc0eb13d4ca558b6da550ff55 (class GvrControllerVisual) exactly matching the provided source code. Its serialized fields (touchPoint fileID 109; material_idle/app/system/touchpad; touchTransparent/touchOpaque) align with the scene meta. This component has no UnityEvents (m_Calls) and exposes no public no-arg methods; its logic runs via GvrArmModel.Instance.OnArmModelUpdate and Unity lifecycle (Awake/Start/OnDestroy) under UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR). ddcontroller has no Rigidbody/Collider/EventTrigger, so there are no manual Trigger-able events from the scene side. To achieve code coverage we need the GameObject/script providing GvrArmModel.Instance and a way to simulate GvrController state (ClickButton, AppButton, Recentering, IsTouching, TouchPos).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 83,
+          "condition": "MonoBehaviour id 921 on Laser maps to script GUID 51b65678ccdd949e9a58874d2880c0ef (class GvrLaserPointer) exactly matching the provided source. Its serialized fields (laserColor RGBA=1,1,1,0.2509804; maxLaserDistance=0.75; maxReticleDistance=2.5; reticle=fileID 176; reticleSortingOrder=32767) align with the scene meta. MonoBehaviour id 922 maps to GUID 4c173f7c6a736fe469d4acc5b108d6d5 (class GvrArmModelOffsets) with joint=Pointer and no public no-arg methods. To cover manual triggerable API, invoke SetAsMainPointer on id 921; other behaviors run via Unity lifecycle and GvrArmModel.Instance.OnArmModelUpdate.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 921,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

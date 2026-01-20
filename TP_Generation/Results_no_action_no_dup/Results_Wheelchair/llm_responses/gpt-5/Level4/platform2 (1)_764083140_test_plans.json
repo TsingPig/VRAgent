@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 764083140,
+          "condition": "Simulate OnTriggerEnter for AttachToElevator (MonoBehaviour id 764083142, script guid 077cb2d6a53b18f4ea7d76e72138fc77). Preconditions required for this to work: (1) BoxCollider id 764083144 must be set to IsTrigger = true OR test framework must simulate a trigger overlap; (2) Assign the script's 'player' reference to this same GameObject (platform2 (1) GameObject fileID 764083141), because the script checks 'if (gameObject == player)'; (3) Ensure a valid opposing Collider enters to generate the trigger event. Expected behavior: player.transform.SetParent(platform2 (1).transform, true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 764083140,
+          "condition": "Simulate OnTriggerExit for AttachToElevator (MonoBehaviour id 764083142, script guid 077cb2d6a53b18f4ea7d76e72138fc77). Use the same setup as the OnTriggerEnter step: BoxCollider id 764083144 acts as a trigger (or simulation), and the script's 'player' is assigned to this GameObject (fileID 764083141). An opposing Collider must exit to generate the event. Expected behavior: player.transform.parent = null.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

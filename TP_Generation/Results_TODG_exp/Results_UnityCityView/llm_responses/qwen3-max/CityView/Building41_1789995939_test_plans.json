@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building41",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1789995939,
+          "condition": "EventTrigger (guid d0b148fe25e99eb48b9724523833bab1) on Building41 is configured with eventID 4 (PointerClick) to call Residential.showlabel on MonoBehaviour id 1789995941 (script guid 10a92b1b4549024468ecbc96831def68). Expected behavior: set Player->child[1] TextMeshPro.text to the first 20 chars of 'Residential:Inu Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1789995941,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building41",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1789995939,
+          "condition": "EventTrigger (script guid d0b148fe25e99eb48b9724523833bab1) on Building41 has m_Calls bound to Residential.showlabel (MonoBehaviour id 1789995941, script guid 10a92b1b4549024468ecbc96831def68) for eventID 4 (PointerClick). Expected: TextMeshPro on Player->child[1] becomes first 20 chars of \"Residential:Inu Apartment\".",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1789995941,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

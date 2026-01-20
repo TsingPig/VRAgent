@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1865680026,
+          "condition": "Manually invoke PlayQuickSound.Play() on Room_Modern prefab instance (m_PrefabInstance fileID=1865680026). Assumptions: (a) Added MonoBehaviour with fileID=1865680030 on Room_Modern is PlayQuickSound (per m_AddedComponents), (b) an AudioSource component exists due to [RequireComponent], and (c) the 'sound' AudioClip is assigned so AudioSource.PlayOneShot will actually play. OnValidate in PlayQuickSound ensures AudioSource.playOnAwake=false. No Rigidbody is present (Has_Rigidbody=false) and no m_Calls/Collider/EventTrigger are provided in the scene meta, so this manual trigger is required for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

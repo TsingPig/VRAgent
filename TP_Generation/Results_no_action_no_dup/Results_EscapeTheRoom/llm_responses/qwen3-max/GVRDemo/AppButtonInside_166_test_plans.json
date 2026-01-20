@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "AppButtonInside",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 166,
+          "condition": "Invoke public no-arg methods on GvrTooltip to verify configuration when location=3 (AppButtonInside). Scene MonoBehaviour id=950, script guid=7c52851ea0de74a228fa29a84de008ba, text ref fileID=1015, alwaysVisible=false. No Rigidbody/Collider/EventTrigger present; OnArmModelUpdate is private and relies on GvrArmModel.Instance, so we manually trigger accessible public methods to achieve coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

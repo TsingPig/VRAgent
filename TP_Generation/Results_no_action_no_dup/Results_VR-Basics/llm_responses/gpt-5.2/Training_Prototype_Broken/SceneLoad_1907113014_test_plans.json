@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "SceneLoad",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1907113014,
+          "condition": "Manually reload the current scene via LoadScene (MonoBehaviour_1, id=1907113017, guid=403efda511d335c4a865b0a1f33cc9e0) to ensure OnSceneLoad.OnLoad (MonoBehaviour_0, id=1907113015, guid=e9315cd1bd0bb624886da5b1f92c045e) UnityEvent is invoked. The OnLoad UnityEvent has persistent calls (m_Calls) to TeleportPlayer.Teleport (target fileID=692630298) and FadeCanvas.StartFadeOut (target fileID=263574720), which should execute upon sceneLoaded. This validates OnSceneLoad.Awake subscription, PlayEvent invocation, and UnityEvent wiring.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

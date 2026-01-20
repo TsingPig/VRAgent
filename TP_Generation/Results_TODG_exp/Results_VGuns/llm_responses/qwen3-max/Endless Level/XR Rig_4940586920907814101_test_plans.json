@@ -1,0 +1,199 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Pause menu open test. MonoBehaviour component id 4460531382388078979 matches PauseMenu.PauseMenu (script guid 28d50a2d56ade1341ae8d933ebdfbe0c) on XR Rig. Serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538, RightTeleport=true, LeftTeleport=false. Expect Time.timeScale=0, rays ON, locomotion OFF, teleports OFF, Pausemenu active.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Show",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Pause menu close test. Same component (4460531382388078979). With RightTeleport=true and LeftTeleport=false, expect Time.timeScale=1, rays OFF, locomotion ON, TeleportManagzerRight ON, TeleportManagzerLeft OFF, Pausemenu inactive.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Hide",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Navigate to Main Menu. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(0) to be invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "MainMenu",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4940586920907814101,
+          "condition": "Restart current endless level. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(1) to be invoked.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4460531382388078979,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": -6.44,
+            "y": 6.66,
+            "z": 12.07
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": -1.0
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": -0.5,
+            "y": 0.0,
+            "z": 1.5
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.4
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "XR Rig",
+          "source_object_fileID": 4940586920907814101,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -2.0
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.6
+        }
+      ]
+    }
+  ]
+}

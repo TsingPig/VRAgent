@@ -1,0 +1,53 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 2",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 137550432,
+          "condition": "MonoBehaviour_0 on this object maps to script GUID 1729fd01c90a64d5b8037e1eef0d000d (Fire). Serialized config in scene: isOn=0, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, minNeighborDownDistance=3, downMultiplier=2. Goal: Cover neighbor-driven ignition path. Precondition: At least two neighboring Fire instances within 4 units must report fireOn=true via NotifyNeighborState(true). At least one neighbor should be positioned lower than this fire by >3 units to exercise downMultiplier=2. Expectation: CheckNeighborState sets shouldTurnOn=true; over 40-60s (accelerated if hasDownNeighbor) timeToOnDelta reaches timeToOn and isOn becomes true; UpdateFireState(notify=true) plays particles and notifies neighbors and FireController.Instance.FireChanged(+1). Collider present so Trigger is valid.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 2",
+          "triggerring_time": 2.1,
+          "source_object_fileID": 137550432,
+          "condition": "Covers aborting an extinguish attempt due to exceeding maxHitInterval. Precondition: this fire is currently on (from previous step). External water system calls WaterHit(Vector3) once to set isTurningOff=true and reset currentHitInterval=0. Then no additional hits occur for > maxHitInterval (2s). Expectation: In Update, currentHitInterval >= 2 triggers abort: isTurningOff=false and currentHitTime reset to 0, and the fire remains on.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 2",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 137550432,
+          "condition": "Covers full extinguish path via cumulative hits within maxHitInterval. Precondition: fire is on. During this 5s window, external system repeatedly invokes WaterHit(Vector3) such that each hit occurs <2s apart (maxHitInterval), allowing currentHitTime to accumulate to totalHitTime=5. Expectation: Update turns fire off (isOn=false), clears shouldTurnOn and timers, sets isTurningOff=false, and UpdateFireState(notify=true) stops particles, notifies neighbors, and calls FireController.Instance.FireChanged(-1).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 137550432,
+          "condition": "Covers direct state update without neighbor notification. Test harness should directly invoke SetIsOn(true) then SetIsOn(false) on MonoBehaviour_0 (script GUID 1729fd01c90a64d5b8037e1eef0d000d). Expectation: UpdateFireState(false) is executed both times, which only starts/stops particles without notifying neighbors or FireController.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 137550432,
+          "condition": "Covers neighbor counter changes and CheckNeighborState() both branches. Precondition: neighbors list is populated (via FindNeighbors(allFires, fireId)) or manually assigned in scene. External neighbors should call NotifyNeighborState(true) twice (to cross threshold) then NotifyNeighborState(false) once (to drop below threshold). Expectation: On crossing threshold while fire is off, shouldTurnOn=true and timers reset; when going back below threshold, shouldTurnOn=false and timeToOnDelta reset to 0.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1094190421,
+          "condition": "Allow Timeout.Start() on MonoBehaviour (fileID: 1094190426, guid: 9da68a9b408a56a4294168dd4694f0dc) to start coroutine ExecuteAfterTime(60). After WaitForSeconds(60), it should call canvas.SetActive(false). No m_Calls (UnityEvents) are defined on this object. This covers the coroutine path.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1094190421,
+          "condition": "Simulate the input condition Input.GetButtonDown('Fire1') while Canvas is active so that Timeout.Update() (MonoBehaviour fileID: 1094190426) executes and calls canvas.SetActive(false). Note: Canvas has no Rigidbody/Collider/EventTrigger and the script has no public parameterless methods to invoke directly; this action represents an input simulation. If the previous task already deactivated the Canvas, a scene reset or reactivation is required before running this.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

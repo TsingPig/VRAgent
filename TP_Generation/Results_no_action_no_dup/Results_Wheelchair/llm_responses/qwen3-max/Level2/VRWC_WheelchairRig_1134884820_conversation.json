@@ -1,0 +1,566 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the Wheelchair App. One game object we want to test in the scene of 'Level2.unity' is 'VRWC_WheelchairRig'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code of the script attached to this gameobjects below. There may be more than one script attached to one gameobject. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class PlayerTriggers : MonoBehaviour\n{\n    public WinLose winlosescript;\n    public int StarValue = 1;\n\n \n    private void OnTriggerEnter(Collider other)\n    {\n        if (other.gameObject.CompareTag(\"Cars\"))\n        {\n            Debug.Log(\"HIt\");\n            winlosescript.loselevel();\n\n\n        }\n\n        else if (other.gameObject.CompareTag(\"WinBox\"))\n        {\n            Scoremanager.instance.changescore(StarValue);\n            Destroy(other.gameObject);\n        }\n\n    }\n\n  \n \n}\n\n'''\n[Source code of 1th script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class WinLose : MonoBehaviour\n{\n    //bool gameended = false;\n    public float restartdelay = 2f;\n\n    public GameObject LoseUI;\n    public GameObject WinUI;\n\n    public void Winlevel()\n    {\n        WinUI.SetActive(true);\n    }\n    public void loselevel()\n    {\n        LoseUI.SetActive(true);\n    }\n    //public void Winlevel()\n    //{\n    //    if (gameended == false)\n    //    {\n    //        LoseUI.SetActive(true);\n    //        gameended = true;\n    //        Debug.Log(\"You lost\");\n    //        Invoke(\"Restart\", restartdelay);\n    //    }\n        \n    //}\n    public void Restart()\n    {\n\n    }    \n}\n\n'''\n[Extracted JSON format of scene meta file] The scene file of 'Level2.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'VRWC_WheelchairRig' and its script. The 'fileID' of gameobject 'VRWC_WheelchairRig' is: 1134884820. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '0'}]}, {'m_Modifications': [{'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '30'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.34'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.51'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '4.73'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '0.027005788'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0.99963534'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '176.905'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523470'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8671505739208523474'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'VRWC_WheelchairRig'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8900446968063909830'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'WinUI'}, {'value': ''}, {'objectReference': [{'fileID': '1345324351'}]}, {'target': [{'fileID': '8900446968063909830'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}, {'propertyPath': 'LoseUI'}, {'value': ''}, {'objectReference': [{'fileID': '1999610191'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '147761150dc62d64899a69769156bb31'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '8671505739208523470'}]}, {'component': [{'fileID': '8671505739208523469'}]}, {'component': [{'fileID': '8671505739208523468'}]}, {'component': [{'fileID': '275807934312013355'}]}, {'component': [{'fileID': '8900446968063909830'}]}, {'component': [{'fileID': '8671505739152852672'}]}]}, {'m_Layer': '0'}, {'m_Name': 'VRWC_WheelchairRig'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '8671505739208523470', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '8671505739208523474'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0.99963534'}, {'z': '0'}, {'w': '0.027005788'}]}, {'m_LocalPosition': [{'x': '3.34'}, {'y': '1.458'}, {'z': '4.73'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': [{'fileID': '8671505738583084442'}, {'fileID': '8671505740096659342'}, {'fileID': '8671505738995976628'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '176.905'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '8671505739208523474'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'a0edd121473972448b844c1958f760ce'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'winlosescript': [{'fileID': '797104802770736055'}, {'guid': '488b41997f18ae14bb51ff5f35ecdbd4'}, {'type': '3'}]}, {'StarValue': '2'}]}, {'MonoBehaviour_1': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '8671505739208523474'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'd8624f87f98aa484bb7925103f5d458e'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'restartdelay': '2'}, {'LoseUI': [{'fileID': '0'}]}, {'WinUI': [{'fileID': '0'}]}]}]}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_position\": {                    // Target world position to which the object should be moved\n    \"x\": \"<float>\",\n    \"y\": \"<float>\",\n    \"z\": \"<float>\"\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nPlease give me one test plan based on the information I provided to trigger all the events to ensure code coverage. If you need other information to finalize this test plan, Please also respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-18T02:43:47.672511",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"VRWC_WheelchairRig\",\n          \"source_object_fileID\": 1134884820,\n          \"delta_position\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 1.0\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"VRWC_WheelchairRig\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1134884820,\n          \"condition\": \"Manual call to WinLose.loselevel() to emulate PlayerTriggers.OnTriggerEnter with tag 'Cars'. Mapping: MonoBehaviour WinLose (scene MonoBehaviour_1, script GUID d8624f87f98aa484bb7925103f5d458e) is attached to VRWC_WheelchairRig (Prefab GUID 147761150dc62d64899a69769156bb31; GameObject fileID 1134884820). Component fileID for WinLose is 8900446968063909830 (as referenced by PrefabInstance property modifications). Serialized fields: restartdelay=2; WinUI and LoseUI are set via PrefabInstance mods (WinUI→fileID 1345324351, LoseUI→fileID 1999610191). PlayerTriggers (script GUID a0edd121473972448b844c1958f760ce; scene MonoBehaviour_0) would normally invoke winlosescript.loselevel() on collision with objects tagged 'Cars'.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 8900446968063909830,\n                  \"method_name\": \"loselevel\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"VRWC_WheelchairRig\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1134884820,\n          \"condition\": \"Manual call to WinLose.Winlevel() and WinLose.Restart() to validate win UI activation and cover Restart(). WinLose component (script GUID d8624f87f98aa484bb7925103f5d458e) on VRWC_WheelchairRig has component fileID 8900446968063909830. PrefabInstance modifications set WinUI (fileID 1345324351) and LoseUI (fileID 1999610191). PlayerTriggers would normally reach this path via OnTriggerEnter with objects tagged 'WinBox' (also invokes Scoremanager.instance.changescore(StarValue) with StarValue=2 per scene).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 8900446968063909830,\n                  \"method_name\": \"Winlevel\",\n                  \"parameter_fileID\": []\n                },\n                {\n                  \"script_fileID\": 8900446968063909830,\n                  \"method_name\": \"Restart\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-18T02:45:08.905039",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "VRWC_WheelchairRig",
+              "source_object_fileID": 1134884820,
+              "delta_position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "target_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "target_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 1.0
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "VRWC_WheelchairRig",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1134884820,
+              "condition": "Manual call to WinLose.loselevel() to emulate PlayerTriggers.OnTriggerEnter with tag 'Cars'. Mapping: MonoBehaviour WinLose (scene MonoBehaviour_1, script GUID d8624f87f98aa484bb7925103f5d458e) is attached to VRWC_WheelchairRig (Prefab GUID 147761150dc62d64899a69769156bb31; GameObject fileID 1134884820). Component fileID for WinLose is 8900446968063909830 (as referenced by PrefabInstance property modifications). Serialized fields: restartdelay=2; WinUI and LoseUI are set via PrefabInstance mods (WinUI→fileID 1345324351, LoseUI→fileID 1999610191). PlayerTriggers (script GUID a0edd121473972448b844c1958f760ce; scene MonoBehaviour_0) would normally invoke winlosescript.loselevel() on collision with objects tagged 'Cars'.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 8900446968063909830,
+                      "method_name": "loselevel",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "VRWC_WheelchairRig",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1134884820,
+              "condition": "Manual call to WinLose.Winlevel() and WinLose.Restart() to validate win UI activation and cover Restart(). WinLose component (script GUID d8624f87f98aa484bb7925103f5d458e) on VRWC_WheelchairRig has component fileID 8900446968063909830. PrefabInstance modifications set WinUI (fileID 1345324351) and LoseUI (fileID 1999610191). PlayerTriggers would normally reach this path via OnTriggerEnter with objects tagged 'WinBox' (also invokes Scoremanager.instance.changescore(StarValue) with StarValue=2 per scene).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 8900446968063909830,
+                      "method_name": "Winlevel",
+                      "parameter_fileID": []
+                    },
+                    {
+                      "script_fileID": 8900446968063909830,
+                      "method_name": "Restart",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The gameobject is \"VRWC_WheelchairRig\": {fileID: 1134884820}. Please use the source code of the scripts attached to the gameobject and the extracted JSON format of scene meta file we provided in the last conversation to finalize the test plan.\n\nThe following gameobjects ['911157404', '1133466943', '1898795243', '2038487824', '1730765177'] have matching tags with .CompareTag() logic detected in the source script of gameobject \"1134884820\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"1134884820\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"911157404\" GameObject Name: \"LoseBox\" Tag: \"Cars\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '0'}]}, {'m_Modifications': [{'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '3.4833243'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '57.84745'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-8'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.17'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '-33.68'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820254'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'LoseBox'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '4365883169654820240'}]}, {'component': [{'fileID': '4365883169654820241'}]}]}, {'m_Layer': '3'}, {'m_Name': 'LoseBox'}, {'m_TagString': 'Cars'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '4365883169654820240', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '-1.75'}, {'y': '1.4'}, {'z': '16.91'}]}, {'m_LocalScale': [{'x': '2.4645'}, {'y': '1'}, {'z': '28.76784'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}\n'''\n\n\nGameObject ID: \"1133466943\" GameObject Name: \"LoseBox (1)\" Tag: \"Cars\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '0'}]}, {'m_Modifications': [{'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '20'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '3.4833243'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '57.84745'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '21.25'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.16999999'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '-53.65'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820254'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'LoseBox (1)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '4365883169654820240'}]}, {'component': [{'fileID': '4365883169654820241'}]}]}, {'m_Layer': '3'}, {'m_Name': 'LoseBox'}, {'m_TagString': 'Cars'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '4365883169654820240', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '-1.75'}, {'y': '1.4'}, {'z': '16.91'}]}, {'m_LocalScale': [{'x': '2.4645'}, {'y': '1'}, {'z': '28.76784'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}\n'''\n\n\nGameObject ID: \"1898795243\" GameObject Name: \"LoseBox (1)\" Tag: \"Cars\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '790777701'}]}, {'m_Modifications': [{'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '1.0627953'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820254'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'LoseBox (1)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '4365883169654820240'}]}, {'component': [{'fileID': '4365883169654820241'}]}]}, {'m_Layer': '3'}, {'m_Name': 'LoseBox'}, {'m_TagString': 'Cars'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '4365883169654820240', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '-1.75'}, {'y': '1.4'}, {'z': '16.91'}]}, {'m_LocalScale': [{'x': '2.4645'}, {'y': '1'}, {'z': '28.76784'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}\n'''\n\n\nGameObject ID: \"2038487824\" GameObject Name: \"LoseBox (1)\" Tag: \"Cars\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '1682245487'}]}, {'m_Modifications': [{'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '1.0627953'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820240'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4365883169654820254'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'LoseBox (1)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '9b2d633b030bae6409e27f6f41ad5ab4'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '4365883169654820240'}]}, {'component': [{'fileID': '4365883169654820241'}]}]}, {'m_Layer': '3'}, {'m_Name': 'LoseBox'}, {'m_TagString': 'Cars'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '4365883169654820240', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '-1.75'}, {'y': '1.4'}, {'z': '16.91'}]}, {'m_LocalScale': [{'x': '2.4645'}, {'y': '1'}, {'z': '28.76784'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4365883169654820254'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}\n'''\n\n\nGameObject ID: \"1730765177\" GameObject Name: \"WinBox\" Tag: \"WinBox\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '0'}]}, {'m_Modifications': [{'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '16'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.61'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.34'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.65'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847138'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7392209619679847140'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'WinBox'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '92c58a7d157f27e44a2c3c98735bebe3'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7392209619679847138'}]}, {'component': [{'fileID': '7392209619679847141'}]}]}, {'m_Layer': '6'}, {'m_Name': 'WinBox'}, {'m_TagString': 'WinBox'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '7392209619679847138', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7392209619679847140'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '-2.16'}, {'y': '1.44'}, {'z': '0.65'}]}, {'m_LocalScale': [{'x': '3.1646'}, {'y': '1'}, {'z': '3.675933'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7392209619679847140'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-18T02:45:08.912755",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "request_type": "main_sorted_target_logic_request",
+    "gobj_info": {
+      "gameobject_id": "1134884820",
+      "gameobject_id_replace": "1134884820",
+      "gameobject_type": "PrefabInstance",
+      "gameobject_name": "VRWC_WheelchairRig",
+      "mono_comp_relations": [
+        {
+          "source": "1134884820",
+          "source_replace": "1134884820",
+          "target": "275807934312013355",
+          "target_replace": "275807934312013355",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": [
+            {
+              "m_ObjectHideFlags": "0"
+            },
+            {
+              "m_CorrespondingSourceObject": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            },
+            {
+              "m_PrefabInstance": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            },
+            {
+              "m_PrefabAsset": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            },
+            {
+              "m_GameObject": [
+                {
+                  "fileID": "8671505739208523474"
+                }
+              ]
+            },
+            {
+              "m_Enabled": "1"
+            },
+            {
+              "m_EditorHideFlags": "0"
+            },
+            {
+              "m_Script": [
+                {
+                  "fileID": "11500000"
+                },
+                {
+                  "guid": "a0edd121473972448b844c1958f760ce"
+                },
+                {
+                  "type": "3"
+                }
+              ]
+            },
+            {
+              "m_Name": ""
+            },
+            {
+              "m_EditorClassIdentifier": ""
+            },
+            {
+              "winlosescript": [
+                {
+                  "fileID": "797104802770736055"
+                },
+                {
+                  "guid": "488b41997f18ae14bb51ff5f35ecdbd4"
+                },
+                {
+                  "type": "3"
+                }
+              ]
+            },
+            {
+              "StarValue": "2"
+            }
+          ],
+          "valid_source_code_files": [
+            {
+              "script_id": "a0edd121473972448b844c1958f760ce",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\wheelchair-sim-main\\wheelchair-sim-main\\Assets\\PlayerTriggers.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "1134884820",
+          "source_replace": "1134884820",
+          "target": "8900446968063909830",
+          "target_replace": "8900446968063909830",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": [
+            {
+              "m_ObjectHideFlags": "0"
+            },
+            {
+              "m_CorrespondingSourceObject": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            },
+            {
+              "m_PrefabInstance": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            },
+            {
+              "m_PrefabAsset": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            },
+            {
+              "m_GameObject": [
+                {
+                  "fileID": "8671505739208523474"
+                }
+              ]
+            },
+            {
+              "m_Enabled": "1"
+            },
+            {
+              "m_EditorHideFlags": "0"
+            },
+            {
+              "m_Script": [
+                {
+                  "fileID": "11500000"
+                },
+                {
+                  "guid": "d8624f87f98aa484bb7925103f5d458e"
+                },
+                {
+                  "type": "3"
+                }
+              ]
+            },
+            {
+              "m_Name": ""
+            },
+            {
+              "m_EditorClassIdentifier": ""
+            },
+            {
+              "restartdelay": "2"
+            },
+            {
+              "LoseUI": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            },
+            {
+              "WinUI": [
+                {
+                  "fileID": "0"
+                }
+              ]
+            }
+          ],
+          "valid_source_code_files": [
+            {
+              "script_id": "d8624f87f98aa484bb7925103f5d458e",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\wheelchair-sim-main\\wheelchair-sim-main\\Assets\\Scripts\\WinLose.cs.meta"
+            }
+          ]
+        }
+      ],
+      "child_relations": [],
+      "child_mono_comp_info": [],
+      "parent_id": null,
+      "depth": 0,
+      "tag_logic_info": [
+        {
+          "id": "911157404",
+          "id_replace": "911157404",
+          "gameobject_name": "LoseBox",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "1133466943",
+          "id_replace": "1133466943",
+          "gameobject_name": "LoseBox (1)",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "1898795243",
+          "id_replace": "1898795243",
+          "gameobject_name": "LoseBox (1)",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "2038487824",
+          "id_replace": "2038487824",
+          "gameobject_name": "LoseBox (1)",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "1730765177",
+          "id_replace": "1730765177",
+          "gameobject_name": "WinBox",
+          "tag_name": "WinBox"
+        }
+      ],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [
+        {
+          "id": "911157404",
+          "id_replace": "911157404",
+          "gameobject_name": "LoseBox",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "1133466943",
+          "id_replace": "1133466943",
+          "gameobject_name": "LoseBox (1)",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "1898795243",
+          "id_replace": "1898795243",
+          "gameobject_name": "LoseBox (1)",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "2038487824",
+          "id_replace": "2038487824",
+          "gameobject_name": "LoseBox (1)",
+          "tag_name": "Cars"
+        },
+        {
+          "id": "1730765177",
+          "id_replace": "1730765177",
+          "gameobject_name": "WinBox",
+          "tag_name": "WinBox"
+        }
+      ],
+      "sorted_layer_logic_info": []
+    },
+    "sorted_target_logic_info": [
+      {
+        "id": "911157404",
+        "id_replace": "911157404",
+        "gameobject_name": "LoseBox",
+        "tag_name": "Cars"
+      },
+      {
+        "id": "1133466943",
+        "id_replace": "1133466943",
+        "gameobject_name": "LoseBox (1)",
+        "tag_name": "Cars"
+      },
+      {
+        "id": "1898795243",
+        "id_replace": "1898795243",
+        "gameobject_name": "LoseBox (1)",
+        "tag_name": "Cars"
+      },
+      {
+        "id": "2038487824",
+        "id_replace": "2038487824",
+        "gameobject_name": "LoseBox (1)",
+        "tag_name": "Cars"
+      },
+      {
+        "id": "1730765177",
+        "id_replace": "1730765177",
+        "gameobject_name": "WinBox",
+        "tag_name": "WinBox"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"VRWC_WheelchairRig\",\n          \"source_object_fileID\": 1134884820,\n          \"delta_position\": {\n            \"x\": -7.95,\n            \"y\": -0.17,\n            \"z\": -4.08\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"VRWC_WheelchairRig\",\n          \"source_object_fileID\": 1134884820,\n          \"delta_position\": {\n            \"x\": -3.39,\n            \"y\": -0.17,\n            \"z\": -34.33\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.2\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"VRWC_WheelchairRig\",\n          \"source_object_fileID\": 1134884820,\n          \"delta_position\": {\n            \"x\": 29.25,\n            \"y\": 0.0,\n            \"z\": -19.97\n          },\n          \"target_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"target_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.5\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"VRWC_WheelchairRig\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1134884820,\n          \"condition\": \"Manual coverage for WinLose methods not invoked by OnTriggerEnter. Component: WinLose (script GUID d8624f87f98aa484bb7925103f5d458e) attached to VRWC_WheelchairRig; component fileID 8900446968063909830. Serialized fields: restartdelay=2; WinUI fileID 1345324351; LoseUI fileID 1999610191.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 8900446968063909830,\n                  \"method_name\": \"Winlevel\",\n                  \"parameter_fileID\": []\n                },\n                {\n                  \"script_fileID\": 8900446968063909830,\n                  \"method_name\": \"Restart\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-18T02:46:38.534277",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "The gameobject is \"VRWC_WheelchairRig\": {fileID: 1134884820}. Please use the source code of the scri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "VRWC_WheelchairRig",
+              "source_object_fileID": 1134884820,
+              "delta_position": {
+                "x": -7.95,
+                "y": -0.17,
+                "z": -4.08
+              },
+              "target_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "target_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 1.0
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "VRWC_WheelchairRig",
+              "source_object_fileID": 1134884820,
+              "delta_position": {
+                "x": -3.39,
+                "y": -0.17,
+                "z": -34.33
+              },
+              "target_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "target_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 1.2
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "VRWC_WheelchairRig",
+              "source_object_fileID": 1134884820,
+              "delta_position": {
+                "x": 29.25,
+                "y": 0.0,
+                "z": -19.97
+              },
+              "target_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "target_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 1.5
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "VRWC_WheelchairRig",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1134884820,
+              "condition": "Manual coverage for WinLose methods not invoked by OnTriggerEnter. Component: WinLose (script GUID d8624f87f98aa484bb7925103f5d458e) attached to VRWC_WheelchairRig; component fileID 8900446968063909830. Serialized fields: restartdelay=2; WinUI fileID 1345324351; LoseUI fileID 1999610191.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 8900446968063909830,
+                      "method_name": "Winlevel",
+                      "parameter_fileID": []
+                    },
+                    {
+                      "script_fileID": 8900446968063909830,
+                      "method_name": "Restart",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  }
+]

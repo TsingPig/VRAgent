@@ -1,0 +1,1668 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the VR-Room-origin App. One game object we want to test in the scene of 'My VR Room.unity' is '--XR--'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code attached to this gameobjects below.\n[Extracted JSON format of scene meta file] The scene file of 'My VR Room.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object '--XR--' and its script. The 'fileID' of gameobject '--XR--' is: 1115321958. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component is the Interactable events that need to be triggered manually or automatically. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '1115321959'}]}]}, {'m_Layer': '0'}, {'m_Name': '--XR--'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '-1412012063857583412'}, {'guid': '0000000000000000d000000000000000'}, {'type': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1115321959', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1115321958'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': [{'fileID': '505562321'}, {'fileID': '1579370455'}, {'fileID': '1487704659'}, {'fileID': '817830252'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object\nGrab action format:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on m_Calls, you are encouraged to choose 'Trigger' action to trigger the event.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['505562319', '1579370453', '1487704657', '817830251'] to help formalize your test plans one by one. You can respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-11-07T19:28:47.442340",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-11-07T19:29:53.378303",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"XR Origin\": {fileID: 505562319}. The direct parent of this gameobject is \"--XR--\". We only present the child with attached script. And the XR Origin gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\nusing UnityEngine.Events;\nusing UnityEngine.InputSystem;\n\n/// <summary>\n/// Checks for button input on an input action\n/// </summary>\npublic class OnButtonPress : MonoBehaviour\n{\n    [Tooltip(\"Actions to check\")]\n    public InputAction action = null;\n\n    // When the button is pressed\n    public UnityEvent OnPress = new UnityEvent();\n\n    // When the button is released\n    public UnityEvent OnRelease = new UnityEvent();\n\n    private void Awake()\n    {\n        action.started += Pressed;\n        action.canceled += Released;\n    }\n\n    private void OnDestroy()\n    {\n        action.started -= Pressed;\n        action.canceled -= Released;\n    }\n\n    private void OnEnable()\n    {\n        action.Enable();\n    }\n\n    private void OnDisable()\n    {\n        action.Disable();\n    }\n\n    private void Pressed(InputAction.CallbackContext context)\n    {\n        OnPress.Invoke();\n    }\n\n    private void Released(InputAction.CallbackContext context)\n    {\n        OnRelease.Invoke();\n    }\n}\n\n'''\n[Source code of 1th script files attached]\n'''\nusing UnityEngine;\nusing UnityEngine.XR.Interaction.Toolkit;\n\n/// <summary>\n/// Manually teleport the player to a specific anchor\n/// </summary>\npublic class TeleportPlayer : MonoBehaviour\n{\n    [Tooltip(\"The anchor the player is teleported to\")]\n    public TeleportationAnchor anchor = null;\n\n    [Tooltip(\"The provider used to request the teleportation\")]\n    public TeleportationProvider provider = null;\n\n    public void Teleport()\n    {\n        if(anchor && provider)\n        {\n            TeleportRequest request = CreateRequest();\n            provider.QueueTeleportRequest(request);\n        }\n    }\n\n    private TeleportRequest CreateRequest()\n    {\n        Transform anchorTransform = anchor.teleportAnchorTransform;\n\n        TeleportRequest request = new TeleportRequest()\n        {\n            requestTime = Time.time,\n            matchOrientation = anchor.matchOrientation,\n\n            destinationPosition = anchorTransform.position,\n            destinationRotation = anchorTransform.rotation\n        };\n\n        return request;\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '505562321'}]}, {'component': [{'fileID': '505562322'}]}, {'component': [{'fileID': '505562324'}]}, {'component': [{'fileID': '505562325'}]}, {'component': [{'fileID': '505562326'}]}, {'component': [{'fileID': '505562327'}]}, {'component': [{'fileID': '505562328'}]}]}, {'m_Layer': '0'}, {'m_Name': 'XR Origin'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '505562321', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '505562319'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0.39394197'}, {'z': '0'}, {'w': '0.91913533'}]}, {'m_LocalPosition': [{'x': '-1.97'}, {'y': '0'}, {'z': '-1'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': [{'fileID': '321104943'}]}, {'m_Father': [{'fileID': '1115321959'}]}, {'m_RootOrder': '-1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '46.4'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '505562327', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '505562319'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '4a8d337e8bc7ac4498e0df29e7b8bd5e'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'action': [{'m_Name': 'Action'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': '7b0b9215-cfb4-4aa2-8826-9c783676512f'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': [{'m_Name': ''}, {'m_Id': '69d3aa27-adfd-4716-ba3b-cc41e8ecefd5'}, {'m_Path': '<XRController>/secondaryButton'}, {'m_Interactions': ''}, {'m_Processors': ''}, {'m_Groups': ''}, {'m_Action': 'Action'}, {'m_Flags': '0'}]}, {'m_Flags': '0'}]}, {'OnPress': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '943515638'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.GameObject, UnityEngine'}, {'m_MethodName': 'SetActive'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '1'}]}, {'m_CallState': '2'}, {'m_Target': [{'fileID': '1440930911'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.GameObject, UnityEngine'}, {'m_MethodName': 'SetActive'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}, {'m_Target': [{'fileID': '505562328'}]}, {'m_TargetAssemblyTypeName': 'TeleportPlayer, Assembly-CSharp'}, {'m_MethodName': 'Teleport'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'OnRelease': [{'m_PersistentCalls': [{'m_Calls': []}]}]}]}}, {'MonoBehaviour_1': {'id': '505562328', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '505562319'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '9469e5ef7ce252d48a689ad38d7b5695'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'anchor': [{'fileID': '628911205'}]}, {'provider': [{'fileID': '505562326'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-11-07T19:29:53.389781",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 1,
+    "child_info": {
+      "child_id": "505562319",
+      "child_id_replace": "505562319",
+      "child_name": "XR Origin",
+      "mono_comp_targets": [
+        {
+          "source": "505562319",
+          "source_replace": "505562319",
+          "target": "505562327",
+          "target_replace": "505562327",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "505562327",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "505562319"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "4a8d337e8bc7ac4498e0df29e7b8bd5e"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "action": [
+                  {
+                    "m_Name": "Action"
+                  },
+                  {
+                    "m_Type": "0"
+                  },
+                  {
+                    "m_ExpectedControlType": ""
+                  },
+                  {
+                    "m_Id": "7b0b9215-cfb4-4aa2-8826-9c783676512f"
+                  },
+                  {
+                    "m_Processors": ""
+                  },
+                  {
+                    "m_Interactions": ""
+                  },
+                  {
+                    "m_SingletonActionBindings": [
+                      {
+                        "m_Name": ""
+                      },
+                      {
+                        "m_Id": "69d3aa27-adfd-4716-ba3b-cc41e8ecefd5"
+                      },
+                      {
+                        "m_Path": "<XRController>/secondaryButton"
+                      },
+                      {
+                        "m_Interactions": ""
+                      },
+                      {
+                        "m_Processors": ""
+                      },
+                      {
+                        "m_Groups": ""
+                      },
+                      {
+                        "m_Action": "Action"
+                      },
+                      {
+                        "m_Flags": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "m_Flags": "0"
+                  }
+                ]
+              },
+              {
+                "OnPress": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "943515638"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "UnityEngine.GameObject, UnityEngine"
+                          },
+                          {
+                            "m_MethodName": "SetActive"
+                          },
+                          {
+                            "m_Mode": "6"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "1"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          },
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "1440930911"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "UnityEngine.GameObject, UnityEngine"
+                          },
+                          {
+                            "m_MethodName": "SetActive"
+                          },
+                          {
+                            "m_Mode": "6"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          },
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "505562328"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "TeleportPlayer, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "Teleport"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "OnRelease": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "4a8d337e8bc7ac4498e0df29e7b8bd5e",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Conditions\\OnButtonPress.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "505562319",
+          "source_replace": "505562319",
+          "target": "505562328",
+          "target_replace": "505562328",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "505562328",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "505562319"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "9469e5ef7ce252d48a689ad38d7b5695"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "anchor": [
+                  {
+                    "fileID": "628911205"
+                  }
+                ]
+              },
+              {
+                "provider": [
+                  {
+                    "fileID": "505562326"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "9469e5ef7ce252d48a689ad38d7b5695",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Actions\\TeleportPlayer.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "1115321958",
+        "parent_name": "--XR--"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"XR Origin\",\n          \"triggerring_time\": 0.25,\n          \"source_object_fileID\": 505562319,\n          \"condition\": \"XR Origin has MonoBehaviour (fileID 505562327) configured from script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress). Its action is bound to <XRController>/secondaryButton. OnPress UnityEvent m_Calls are configured to: (1) GameObject(fileID 943515638).SetActive(true), (2) GameObject(fileID 1440930911).SetActive(false), and (3) TeleportPlayer(fileID 505562328).Teleport(). TeleportPlayer (guid 9469e5ef7ce252d48a689ad38d7b5695) is configured with anchor(fileID 628911205) and provider(fileID 505562326). Triggering Teleport covers the MonoBehaviour no-arg public method tied to the OnPress event.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 505562328,\n                  \"method_name\": \"Teleport\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-11-07T19:31:44.012996",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"XR Origin\": {fileID: 505562319}. The direct parent of this gameobject is \"--XR--\". ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "XR Origin",
+              "triggerring_time": 0.25,
+              "source_object_fileID": 505562319,
+              "condition": "XR Origin has MonoBehaviour (fileID 505562327) configured from script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress). Its action is bound to <XRController>/secondaryButton. OnPress UnityEvent m_Calls are configured to: (1) GameObject(fileID 943515638).SetActive(true), (2) GameObject(fileID 1440930911).SetActive(false), and (3) TeleportPlayer(fileID 505562328).Teleport(). TeleportPlayer (guid 9469e5ef7ce252d48a689ad38d7b5695) is configured with anchor(fileID 628911205) and provider(fileID 505562326). Triggering Teleport covers the MonoBehaviour no-arg public method tied to the OnPress event.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 505562328,
+                      "method_name": "Teleport",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"LeftHand Controller\": {fileID: 235308782}. The direct parent of this gameobject is \"Camera Offset\". We only present the child with attached script. And the LeftHand Controller gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\nusing UnityEngine.Events;\nusing UnityEngine.InputSystem;\n\n/// <summary>\n/// Checks for button input on an input action\n/// </summary>\npublic class OnButtonPress : MonoBehaviour\n{\n    [Tooltip(\"Actions to check\")]\n    public InputAction action = null;\n\n    // When the button is pressed\n    public UnityEvent OnPress = new UnityEvent();\n\n    // When the button is released\n    public UnityEvent OnRelease = new UnityEvent();\n\n    private void Awake()\n    {\n        action.started += Pressed;\n        action.canceled += Released;\n    }\n\n    private void OnDestroy()\n    {\n        action.started -= Pressed;\n        action.canceled -= Released;\n    }\n\n    private void OnEnable()\n    {\n        action.Enable();\n    }\n\n    private void OnDisable()\n    {\n        action.Disable();\n    }\n\n    private void Pressed(InputAction.CallbackContext context)\n    {\n        OnPress.Invoke();\n    }\n\n    private void Released(InputAction.CallbackContext context)\n    {\n        OnRelease.Invoke();\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '235308783'}]}, {'component': [{'fileID': '235308787'}]}, {'component': [{'fileID': '235308789'}]}, {'component': [{'fileID': '235308788'}]}, {'component': [{'fileID': '235308790'}]}]}, {'m_Layer': '0'}, {'m_Name': 'LeftHand Controller'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'SphereCollider': {'type': 'SphereCollider', 'properties': {'id': '235308788', 'SphereCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '235308782'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IncludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_ExcludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_LayerOverridePriority': '0'}, {'m_IsTrigger': '1'}, {'m_ProvidesContacts': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '3'}, {'m_Radius': '0.15'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '235308783', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '235308782'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': []}, {'m_Father': [{'fileID': '321104943'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '235308790', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '235308782'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '4a8d337e8bc7ac4498e0df29e7b8bd5e'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'action': [{'m_Name': 'Action'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'd11e9441-5730-4a54-b103-1cedc81f77aa'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': [{'m_Name': ''}, {'m_Id': 'b3fb489f-88bc-4bbc-a904-01910c703a8d'}, {'m_Path': [{'value': '<XRController>{LeftHand}/primaryButton'}]}, {'m_Interactions': ''}, {'m_Processors': ''}, {'m_Groups': ''}, {'m_Action': 'Action'}, {'m_Flags': '0'}]}, {'m_Flags': '0'}]}, {'OnPress': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '172617727'}]}, {'m_TargetAssemblyTypeName': 'ToggleRay, Assembly-CSharp'}, {'m_MethodName': 'ActivateRay'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'OnRelease': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '172617727'}]}, {'m_TargetAssemblyTypeName': 'ToggleRay, Assembly-CSharp'}, {'m_MethodName': 'DeactivateRay'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-11-07T19:31:44.014323",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"XR Origin\": {fileID: 505562319}. The direct parent of this gameobject is \"--XR--\". ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "235308782",
+      "child_id_replace": "235308782",
+      "child_name": "LeftHand Controller",
+      "mono_comp_targets": [
+        {
+          "source": "235308782",
+          "source_replace": "235308782",
+          "target": "235308790",
+          "target_replace": "235308790",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "235308790",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "235308782"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "4a8d337e8bc7ac4498e0df29e7b8bd5e"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "action": [
+                  {
+                    "m_Name": "Action"
+                  },
+                  {
+                    "m_Type": "0"
+                  },
+                  {
+                    "m_ExpectedControlType": ""
+                  },
+                  {
+                    "m_Id": "d11e9441-5730-4a54-b103-1cedc81f77aa"
+                  },
+                  {
+                    "m_Processors": ""
+                  },
+                  {
+                    "m_Interactions": ""
+                  },
+                  {
+                    "m_SingletonActionBindings": [
+                      {
+                        "m_Name": ""
+                      },
+                      {
+                        "m_Id": "b3fb489f-88bc-4bbc-a904-01910c703a8d"
+                      },
+                      {
+                        "m_Path": [
+                          {
+                            "value": "<XRController>{LeftHand}/primaryButton"
+                          }
+                        ]
+                      },
+                      {
+                        "m_Interactions": ""
+                      },
+                      {
+                        "m_Processors": ""
+                      },
+                      {
+                        "m_Groups": ""
+                      },
+                      {
+                        "m_Action": "Action"
+                      },
+                      {
+                        "m_Flags": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "m_Flags": "0"
+                  }
+                ]
+              },
+              {
+                "OnPress": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "172617727"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "ToggleRay, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "ActivateRay"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "OnRelease": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "172617727"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "ToggleRay, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "DeactivateRay"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "4a8d337e8bc7ac4498e0df29e7b8bd5e",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Conditions\\OnButtonPress.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 3,
+      "parent_info": {
+        "parent_id": "321104942",
+        "parent_name": "Camera Offset"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"LeftHand Controller\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 235308782,\n          \"condition\": \"LeftHand Controller has SphereCollider (fileID 235308788, isTrigger=1) and MonoBehaviour (fileID 235308790) configured from script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress). InputAction is bound to <XRController>{LeftHand}/primaryButton. Scene meta m_Calls: OnPress -> ToggleRay(fileID 172617727).ActivateRay(); OnRelease -> ToggleRay(fileID 172617727).DeactivateRay(). Trigger these no-arg MonoBehaviour methods to simulate press and release to cover both UnityEvent paths.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 172617727,\n                  \"method_name\": \"ActivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 172617727,\n                  \"method_name\": \"DeactivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-11-07T19:33:10.191351",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"XR Origin\": {fileID: 505562319}. The direct parent of this gameobject is \"--XR--\". ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LeftHand Controller\": {fileID: 235308782}. The direct parent of this gameobject is ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "LeftHand Controller",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 235308782,
+              "condition": "LeftHand Controller has SphereCollider (fileID 235308788, isTrigger=1) and MonoBehaviour (fileID 235308790) configured from script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress). InputAction is bound to <XRController>{LeftHand}/primaryButton. Scene meta m_Calls: OnPress -> ToggleRay(fileID 172617727).ActivateRay(); OnRelease -> ToggleRay(fileID 172617727).DeactivateRay(). Trigger these no-arg MonoBehaviour methods to simulate press and release to cover both UnityEvent paths.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 172617727,
+                      "method_name": "ActivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 172617727,
+                      "method_name": "DeactivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"RightHand Controller\": {fileID: 474225658}. The direct parent of this gameobject is \"Camera Offset\". We only present the child with attached script. And the RightHand Controller gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\nusing UnityEngine.Events;\nusing UnityEngine.InputSystem;\n\n/// <summary>\n/// Checks for button input on an input action\n/// </summary>\npublic class OnButtonPress : MonoBehaviour\n{\n    [Tooltip(\"Actions to check\")]\n    public InputAction action = null;\n\n    // When the button is pressed\n    public UnityEvent OnPress = new UnityEvent();\n\n    // When the button is released\n    public UnityEvent OnRelease = new UnityEvent();\n\n    private void Awake()\n    {\n        action.started += Pressed;\n        action.canceled += Released;\n    }\n\n    private void OnDestroy()\n    {\n        action.started -= Pressed;\n        action.canceled -= Released;\n    }\n\n    private void OnEnable()\n    {\n        action.Enable();\n    }\n\n    private void OnDisable()\n    {\n        action.Disable();\n    }\n\n    private void Pressed(InputAction.CallbackContext context)\n    {\n        OnPress.Invoke();\n    }\n\n    private void Released(InputAction.CallbackContext context)\n    {\n        OnRelease.Invoke();\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '474225659'}]}, {'component': [{'fileID': '474225663'}]}, {'component': [{'fileID': '474225665'}]}, {'component': [{'fileID': '474225664'}]}, {'component': [{'fileID': '474225666'}]}]}, {'m_Layer': '0'}, {'m_Name': 'RightHand Controller'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'SphereCollider': {'type': 'SphereCollider', 'properties': {'id': '474225664', 'SphereCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '474225658'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IncludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_ExcludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_LayerOverridePriority': '0'}, {'m_IsTrigger': '1'}, {'m_ProvidesContacts': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '3'}, {'m_Radius': '0.15'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '474225659', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '474225658'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': []}, {'m_Father': [{'fileID': '321104943'}]}, {'m_RootOrder': '2'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '474225666', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '474225658'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '4a8d337e8bc7ac4498e0df29e7b8bd5e'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'action': [{'m_Name': 'Action'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'd11e9441-5730-4a54-b103-1cedc81f77aa'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': [{'m_Name': ''}, {'m_Id': 'b3fb489f-88bc-4bbc-a904-01910c703a8d'}, {'m_Path': [{'value': '<XRController>{RightHand}/primaryButton'}]}, {'m_Interactions': ''}, {'m_Processors': ''}, {'m_Groups': ''}, {'m_Action': 'Action'}, {'m_Flags': '0'}]}, {'m_Flags': '0'}]}, {'OnPress': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '1287520551'}]}, {'m_TargetAssemblyTypeName': 'ToggleRay, Assembly-CSharp'}, {'m_MethodName': 'ActivateRay'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'OnRelease': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '1287520551'}]}, {'m_TargetAssemblyTypeName': 'ToggleRay, Assembly-CSharp'}, {'m_MethodName': 'DeactivateRay'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-11-07T19:33:10.192944",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"XR Origin\": {fileID: 505562319}. The direct parent of this gameobject is \"--XR--\". ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LeftHand Controller\": {fileID: 235308782}. The direct parent of this gameobject is ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 3,
+    "child_info": {
+      "child_id": "474225658",
+      "child_id_replace": "474225658",
+      "child_name": "RightHand Controller",
+      "mono_comp_targets": [
+        {
+          "source": "474225658",
+          "source_replace": "474225658",
+          "target": "474225666",
+          "target_replace": "474225666",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "474225666",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "474225658"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "4a8d337e8bc7ac4498e0df29e7b8bd5e"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "action": [
+                  {
+                    "m_Name": "Action"
+                  },
+                  {
+                    "m_Type": "0"
+                  },
+                  {
+                    "m_ExpectedControlType": ""
+                  },
+                  {
+                    "m_Id": "d11e9441-5730-4a54-b103-1cedc81f77aa"
+                  },
+                  {
+                    "m_Processors": ""
+                  },
+                  {
+                    "m_Interactions": ""
+                  },
+                  {
+                    "m_SingletonActionBindings": [
+                      {
+                        "m_Name": ""
+                      },
+                      {
+                        "m_Id": "b3fb489f-88bc-4bbc-a904-01910c703a8d"
+                      },
+                      {
+                        "m_Path": [
+                          {
+                            "value": "<XRController>{RightHand}/primaryButton"
+                          }
+                        ]
+                      },
+                      {
+                        "m_Interactions": ""
+                      },
+                      {
+                        "m_Processors": ""
+                      },
+                      {
+                        "m_Groups": ""
+                      },
+                      {
+                        "m_Action": "Action"
+                      },
+                      {
+                        "m_Flags": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "m_Flags": "0"
+                  }
+                ]
+              },
+              {
+                "OnPress": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "1287520551"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "ToggleRay, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "ActivateRay"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "OnRelease": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "1287520551"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "ToggleRay, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "DeactivateRay"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "4a8d337e8bc7ac4498e0df29e7b8bd5e",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Conditions\\OnButtonPress.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 3,
+      "parent_info": {
+        "parent_id": "321104942",
+        "parent_name": "Camera Offset"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"RightHand Controller\",\n          \"triggerring_time\": 0.5,\n          \"source_object_fileID\": 474225658,\n          \"condition\": \"RightHand Controller has SphereCollider (fileID 474225664, isTrigger=1) and MonoBehaviour (fileID 474225666) configured from script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress). InputAction bound to <XRController>{RightHand}/primaryButton. Scene meta m_Calls: OnPress -> ToggleRay(fileID 1287520551).ActivateRay(); OnRelease -> ToggleRay(fileID 1287520551).DeactivateRay(). Manually triggering these no-arg methods covers both UnityEvent paths.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1287520551,\n                  \"method_name\": \"ActivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1287520551,\n                  \"method_name\": \"DeactivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-11-07T19:33:53.341017",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "user",
+        "content": "The children is \"XR Origin\": {fileID: 505562319}. The direct parent of this gameobject is \"--XR--\". ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LeftHand Controller\": {fileID: 235308782}. The direct parent of this gameobject is ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"RightHand Controller\": {fileID: 474225658}. The direct parent of this gameobject is..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "RightHand Controller",
+              "triggerring_time": 0.5,
+              "source_object_fileID": 474225658,
+              "condition": "RightHand Controller has SphereCollider (fileID 474225664, isTrigger=1) and MonoBehaviour (fileID 474225666) configured from script guid 4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress). InputAction bound to <XRController>{RightHand}/primaryButton. Scene meta m_Calls: OnPress -> ToggleRay(fileID 1287520551).ActivateRay(); OnRelease -> ToggleRay(fileID 1287520551).DeactivateRay(). Manually triggering these no-arg methods covers both UnityEvent paths.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1287520551,
+                      "method_name": "ActivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1287520551,
+                      "method_name": "DeactivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"LeftHand Ray Controller\": {fileID: 172617721}. The direct parent of this gameobject is \"Camera Offset\". We only present the child with attached script. And the LeftHand Ray Controller gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.XR.Interaction.Toolkit;\n\n/// <summary>\n/// Toggle between the direct and ray interactor if the direct interactor isn't touching any objects\n/// Should be placed on a ray interactor\n/// </summary>\n[RequireComponent(typeof(XRRayInteractor))]\npublic class ToggleRay : MonoBehaviour\n{\n    [Tooltip(\"Switch even if an object is selected\")]\n    public bool forceToggle = false;\n\n    [Tooltip(\"The direct interactor that's switched to\")]\n    public XRDirectInteractor directInteractor = null;\n\n    private XRRayInteractor rayInteractor = null;\n    private bool isSwitched = false;\n\n    private void Awake()\n    {\n        rayInteractor = GetComponent<XRRayInteractor>();\n        SwitchInteractors(false); // moved to here\n    }\n\n    private void Start()\n    {\n        //SwitchInteractors(false);\n    }\n\n    public void ActivateRay()\n    {\n        if (!TouchingObject() || forceToggle)\n            SwitchInteractors(true);\n    }\n\n    public void DeactivateRay()\n    {\n        if (isSwitched)\n            SwitchInteractors(false);\n    }\n\n    private bool TouchingObject()\n    {\n        List<XRBaseInteractable> targets = new List<XRBaseInteractable>();\n        directInteractor.GetValidTargets(targets);\n        return (targets.Count > 0);\n    }\n\n    private void SwitchInteractors(bool value)\n    {\n        isSwitched = value;\n        rayInteractor.enabled = value;\n        directInteractor.enabled = !value;\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '172617722'}]}, {'component': [{'fileID': '172617726'}]}, {'component': [{'fileID': '172617725'}]}, {'component': [{'fileID': '172617724'}]}, {'component': [{'fileID': '172617723'}]}, {'component': [{'fileID': '172617727'}]}]}, {'m_Layer': '0'}, {'m_Name': 'LeftHand Ray Controller'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '172617722', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '172617721'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': []}, {'m_Father': [{'fileID': '321104943'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '172617727', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '172617721'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'cf14522d53cc1594991c164e785780dc'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'forceToggle': '0'}, {'directInteractor': [{'fileID': '235308789'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-11-07T19:33:53.343211",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 4,
+    "child_info": {
+      "child_id": "172617721",
+      "child_id_replace": "172617721",
+      "child_name": "LeftHand Ray Controller",
+      "mono_comp_targets": [
+        {
+          "source": "172617721",
+          "source_replace": "172617721",
+          "target": "172617727",
+          "target_replace": "172617727",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "172617727",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "172617721"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "cf14522d53cc1594991c164e785780dc"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "forceToggle": "0"
+              },
+              {
+                "directInteractor": [
+                  {
+                    "fileID": "235308789"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "cf14522d53cc1594991c164e785780dc",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Actions\\ToggleRay.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 3,
+      "parent_info": {
+        "parent_id": "321104942",
+        "parent_name": "Camera Offset"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"LeftHand Ray Controller\",\n          \"triggerring_time\": 0.25,\n          \"source_object_fileID\": 172617721,\n          \"condition\": \"MonoBehaviour component (fileID 172617727) is the serialized settings of the attached script ToggleRay (m_Script fileID 11500000, guid cf14522d53cc1594991c164e785780dc) on LeftHand Ray Controller. Serialized fields: forceToggle=0, directInteractor=fileID 235308789. To ensure ActivateRay toggles, the directInteractor must have no valid targets (TouchingObject() == false). This test manually triggers the public no-parameter methods ActivateRay and DeactivateRay to cover the switching logic (rayInteractor.enabled and directInteractor.enabled).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 172617727,\n                  \"method_name\": \"ActivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 172617727,\n                  \"method_name\": \"DeactivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-11-07T19:34:49.180463",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LeftHand Ray Controller\": {fileID: 172617721}. The direct parent of this gameobject..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "LeftHand Ray Controller",
+              "triggerring_time": 0.25,
+              "source_object_fileID": 172617721,
+              "condition": "MonoBehaviour component (fileID 172617727) is the serialized settings of the attached script ToggleRay (m_Script fileID 11500000, guid cf14522d53cc1594991c164e785780dc) on LeftHand Ray Controller. Serialized fields: forceToggle=0, directInteractor=fileID 235308789. To ensure ActivateRay toggles, the directInteractor must have no valid targets (TouchingObject() == false). This test manually triggers the public no-parameter methods ActivateRay and DeactivateRay to cover the switching logic (rayInteractor.enabled and directInteractor.enabled).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 172617727,
+                      "method_name": "ActivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 172617727,
+                      "method_name": "DeactivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"RightHand Ray Controller\": {fileID: 1287520545}. The direct parent of this gameobject is \"Camera Offset\". We only present the child with attached script. And the RightHand Ray Controller gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.XR.Interaction.Toolkit;\n\n/// <summary>\n/// Toggle between the direct and ray interactor if the direct interactor isn't touching any objects\n/// Should be placed on a ray interactor\n/// </summary>\n[RequireComponent(typeof(XRRayInteractor))]\npublic class ToggleRay : MonoBehaviour\n{\n    [Tooltip(\"Switch even if an object is selected\")]\n    public bool forceToggle = false;\n\n    [Tooltip(\"The direct interactor that's switched to\")]\n    public XRDirectInteractor directInteractor = null;\n\n    private XRRayInteractor rayInteractor = null;\n    private bool isSwitched = false;\n\n    private void Awake()\n    {\n        rayInteractor = GetComponent<XRRayInteractor>();\n        SwitchInteractors(false); // moved to here\n    }\n\n    private void Start()\n    {\n        //SwitchInteractors(false);\n    }\n\n    public void ActivateRay()\n    {\n        if (!TouchingObject() || forceToggle)\n            SwitchInteractors(true);\n    }\n\n    public void DeactivateRay()\n    {\n        if (isSwitched)\n            SwitchInteractors(false);\n    }\n\n    private bool TouchingObject()\n    {\n        List<XRBaseInteractable> targets = new List<XRBaseInteractable>();\n        directInteractor.GetValidTargets(targets);\n        return (targets.Count > 0);\n    }\n\n    private void SwitchInteractors(bool value)\n    {\n        isSwitched = value;\n        rayInteractor.enabled = value;\n        directInteractor.enabled = !value;\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '1287520546'}]}, {'component': [{'fileID': '1287520550'}]}, {'component': [{'fileID': '1287520549'}]}, {'component': [{'fileID': '1287520548'}]}, {'component': [{'fileID': '1287520547'}]}, {'component': [{'fileID': '1287520551'}]}]}, {'m_Layer': '0'}, {'m_Name': 'RightHand Ray Controller'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1287520546', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1287520545'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': []}, {'m_Father': [{'fileID': '321104943'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1287520551', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1287520545'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'cf14522d53cc1594991c164e785780dc'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'forceToggle': '0'}, {'directInteractor': [{'fileID': '474225665'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-11-07T19:34:49.182151",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LeftHand Ray Controller\": {fileID: 172617721}. The direct parent of this gameobject..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 5,
+    "child_info": {
+      "child_id": "1287520545",
+      "child_id_replace": "1287520545",
+      "child_name": "RightHand Ray Controller",
+      "mono_comp_targets": [
+        {
+          "source": "1287520545",
+          "source_replace": "1287520545",
+          "target": "1287520551",
+          "target_replace": "1287520551",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1287520551",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1287520545"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "cf14522d53cc1594991c164e785780dc"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "forceToggle": "0"
+              },
+              {
+                "directInteractor": [
+                  {
+                    "fileID": "474225665"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "cf14522d53cc1594991c164e785780dc",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VR-Room-origin\\VR-Room-origin\\Assets\\_Course Library\\Scripts\\Actions\\ToggleRay.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 3,
+      "parent_info": {
+        "parent_id": "321104942",
+        "parent_name": "Camera Offset"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"RightHand Ray Controller\",\n          \"triggerring_time\": 0.25,\n          \"source_object_fileID\": 1287520545,\n          \"condition\": \"MonoBehaviour component (fileID 1287520551) is the serialized settings of the attached script ToggleRay (m_Script fileID 11500000, guid cf14522d53cc1594991c164e785780dc) on RightHand Ray Controller. Serialized fields: forceToggle=0, directInteractor=fileID 474225665. Awake() already executed at runtime to set rayInteractor.enabled=false via SwitchInteractors(false). Ensure XRDirectInteractor (fileID 474225665) has no valid targets at trigger time so ActivateRay toggles on (TouchingObject()==false).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1287520551,\n                  \"method_name\": \"ActivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 1287520551,\n                  \"method_name\": \"DeactivateRay\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-11-07T19:36:01.620366",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [],\n  \"Need_more_Info\": true\n}"
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LeftHand Ray Controller\": {fileID: 172617721}. The direct parent of this gameobject..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"RightHand Ray Controller\": {fileID: 1287520545}. The direct parent of this gameobje..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "RightHand Ray Controller",
+              "triggerring_time": 0.25,
+              "source_object_fileID": 1287520545,
+              "condition": "MonoBehaviour component (fileID 1287520551) is the serialized settings of the attached script ToggleRay (m_Script fileID 11500000, guid cf14522d53cc1594991c164e785780dc) on RightHand Ray Controller. Serialized fields: forceToggle=0, directInteractor=fileID 474225665. Awake() already executed at runtime to set rayInteractor.enabled=false via SwitchInteractors(false). Ensure XRDirectInteractor (fileID 474225665) has no valid targets at trigger time so ActivateRay toggles on (TouchingObject()==false).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1287520551,
+                      "method_name": "ActivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 1287520551,
+                      "method_name": "DeactivateRay",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  }
+]

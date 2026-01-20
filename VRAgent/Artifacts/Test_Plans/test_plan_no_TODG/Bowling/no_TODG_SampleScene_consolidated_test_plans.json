@@ -1,0 +1,178 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Ball",
+          "source_object_fileID": 424594858964415916,
+          "delta_position": {
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BowlingGameManager",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1548251157,
+          "condition": "Manual trigger of MonoBehaviour event bound to script GUID 172515602e62fb746b5d573b38a5fe58 with m_IsGlobal=1 for scene-wide game state changes. Event configured via scene meta settings, not dependent on automatic game state execution.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1548251157,
+                  "method_name": "OnGameStart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "OtherLaneController",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1620417931,
+          "condition": "Manually simulate OnTriggerEnter event with a Collider tagged 'Ball' to execute delayed destruction and regeneration logic in OtherLaneController (Script GUID: 9cde80f2fe6fe6e47b57eb962721c06f). Scene serialized config specifies aparicionBola and bolaPrefab references.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1620417931,
+                  "method_name": "OnTriggerEnter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BowlingInteractionObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1644657051,
+          "condition": "Manual trigger of interaction-related events for MonoBehaviour component with script GUID 38f6bf3d943ac7945842268c9ef1dca6. Scene meta shows no automatic 'm_Calls' configured, meaning interaction events such as m_OnActivate, m_OnSelectEntered, etc. require manual invocation to test linked scripts.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1644657051,
+                  "method_name": "OnActivate",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "POINTS_UI_Text",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1702574231,
+          "condition": "Manual trigger intended to invoke public methods on the MonoBehaviour (GUID: f4688fdb7df04437aeb418b961361dc5) attached to the 'POINTS: ' UI text object to update score display. No 'm_Calls' events found in m_OnCullStateChanged, meaning UI interaction updates must be tested manually.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1702574231,
+                  "method_name": "UpdatePointsDisplay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BowlingLight",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1815318735,
+          "condition": "Manually trigger an event on the MonoBehaviour component (script GUID: 474bcb49853aa07438625e644c072ee6, script_fileID: 11500000) attached to the BowlingLight GameObject. This trigger simulates activating or interacting with the light, which has serialized pipeline and light layer settings in the scene meta file. No method names or m_Calls events are explicitly defined, so the trigger will call a default public no-parameter method intended for interaction testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "OnLightTriggered",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "BowlingLightController",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1845000296,
+          "condition": "Manual trigger of a MonoBehaviour (script GUID: 474bcb49853aa07438625e644c072ee6, fileID: 11500000) attached to a GameObject in SampleScene to test bowling app logic, ensure light/shadow settings respond correctly. No automatic 'm_Calls' events detected so manual execution required.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1845000298,
+                  "method_name": "TestLightController",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "UnknownGameObject",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 2124305196,
+          "condition": "MonoBehaviour component (script GUID: dc42784cf147c0c48a680349fa168899, fileID:11500000) attached to GameObject with fileID 2124305194 has interactable events (m_Calls) that need to be triggered manually for testing as no automatic triggers are defined. Script source unavailable; expected behavior unknown, so trigger public no-parameter methods exposed by this script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2124305196,
+                  "method_name": "OnInteract",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown_UI_Canvas",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 2124305197,
+          "condition": "MonoBehaviour component (script GUID: 0cd44c1031e13a943bb63640046fad76, script_fileID: 11500000) is attached to a GameObject (fileID: 2124305194). This appears to be a Unity UI Canvas with potential event hookups in 'm_Calls' that may need explicit triggering in VR testing to simulate UI event activation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "OnClick",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

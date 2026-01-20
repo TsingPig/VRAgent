@@ -1,0 +1,37 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Inventory",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 94,
+          "condition": "Call Inventory.ToggleVisibility() on MonoBehaviour fileID 985 (script GUID 3652d147b24254c618ce4989e3b9003c). This simulates GvrController.AppButtonUp to toggle the CanvasGroup (alpha and blocksRaycasts) and flip isVisible. Note: The Inventory object currently shows no Rigidbody/Collider/EventTrigger in scene meta; if required by the harness, add a temporary Collider/EventTrigger to allow manual triggering.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 985,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 985,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

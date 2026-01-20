@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 15099978,
+          "condition": "Cause the Player (serialized in AttachToElevator MonoBehaviour_0 with field 'player' fileID=7425022) to enter the Elevator's BoxCollider (id=1067963289, isTrigger=1). This should invoke Unity's built-in OnTriggerEnter on AttachToElevator (MonoBehaviour id=1067963293, m_Script guid=077cb2d6a53b18f4ea7d76e72138fc77, which matches the provided AttachToElevator script). Note: due to the script's condition `if (gameObject == player)`, the parenting will not occur unless 'player' references this Elevator object; thus expected result is no parent change, but OnTriggerEnter is executed for coverage.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 15099978,
+          "condition": "Cause the Player (fileID=7425022) to exit the Elevator's BoxCollider (id=1067963289, isTrigger=1). This should invoke Unity's built-in OnTriggerExit on AttachToElevator (MonoBehaviour id=1067963293, m_Script guid=077cb2d6a53b18f4ea7d76e72138fc77). Note: due to the script's condition `if (gameObject == player)`, `player.transform.parent = null;` will not run unless 'player' is the Elevator; expected result is no parent change, but OnTriggerExit is executed for coverage.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

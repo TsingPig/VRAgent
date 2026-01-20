@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Initialization coverage: MonoBehaviour_0 (m_Script guid 1729fd01c90a64d5b8037e1eef0d000d) is the Fire script. On Awake, it assigns pSystem from mainEffectGo (fileID 1849464941111748095) and sets timeToOn = Random.Range(timeToOnMin=40, timeToOnMax=60). BoxCollider present (enabled=1, isTrigger=0, size 1.5x2.5x0.25). This step allows Awake/first Update to run with current serialized state: isOn=0, shouldTurnOn=0, neighbors=[], onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, totalHitTime=5, maxHitInterval=2.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Turn-on propagation path: Provide at least 2 neighboring Fire components within maxNeighborDistance (4) so onNeighbors >= onNeighborsThreshold (2). Neighbors must call NotifyNeighborState(true) on this instance (happens automatically when they turn on and notify). With shouldTurnOn=true, Update accumulates timeToOnDelta until >= timeToOn (random 40-60). If any neighbor is below this fire by > minNeighborDownDistance=3 on Y, downMultiplier=2 speeds accumulation. Expected outcome: this.isOn becomes true and UpdateFireState(true) runs, playing particles and notifying neighbors; FireController.Instance.FireChanged(1) is invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 2000853012,
+          "condition": "Manual trigger we want to test: WaterHit to turn fire off. Preconditions: fire is currently ON (from previous step). During this window, ensure IWaterInteractable.WaterHit(Vector3 normal) is invoked on this component repeatedly with intervals < maxHitInterval (2s) so currentHitInterval never exceeds 2s until currentHitTime reaches totalHitTime (5s). Expected outcome: fire turns off (isOn=false), shouldTurnOn=false, timeToOnDelta=0, isTurningOff resets, UpdateFireState(true) runs stopping all particles and notifies neighbors; FireController.Instance.FireChanged(-1) is invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 2 - 3",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 2000853012,
+          "condition": "Edge case: cancel turning-off if hits are too sparse. Preconditions: fire is ON. Call WaterHit once to set isTurningOff=true, then do not call WaterHit again for >= maxHitInterval (2s). Expected outcome: after currentHitInterval >= 2s, Update cancels turning-off (isTurningOff=false, currentHitTime=0) and fire remains ON.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

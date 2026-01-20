@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 95,
+          "condition": "MonoBehaviour_0 (id: 926) on GvrReticlePointer uses script guid e7dcc90c2e60c4011896c7f21fc1f557 (GvrReticlePointer) with settings reticleSegments=20, reticleGrowthSpeed=8. Calling SetAsMainPointer assigns GvrPointerManager.Pointer to this reticle implementation so downstream raycasters have a valid pointer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 926,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 83,
+          "condition": "MonoBehaviour_0 (id: 921) on Laser is the scene configuration for script guid 51b65678ccdd949e9a58874d2880c0ef (class: GvrLaserPointer). Scene settings match the script fields: laserColor=(1,1,1,0.2509804), maxLaserDistance=0.75, maxReticleDistance=2.5, reticle=fileID 176, reticleSortingOrder=32767. Public no-arg method SetAsMainPointer sets GvrPointerManager.Pointer to this Laser's implementation. Also present: MonoBehaviour_1 (id: 922) using script guid 4c173f7c6a736fe469d4acc5b108d6d5 (class: GvrArmModelOffsets) with joint=Pointer; its OnArmModelUpdate is driven by GvrArmModel and runs automatically when that event fires.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 921,
+                  "method_name": "SetAsMainPointer",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

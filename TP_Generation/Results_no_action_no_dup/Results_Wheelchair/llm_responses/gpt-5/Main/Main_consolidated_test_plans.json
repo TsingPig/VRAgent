@@ -1,0 +1,88 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MainMenu script (MonoBehaviour fileID 2050000444, guid f43df138c8422d842a109f05ee02b96e) is attached to GameObject 'LevelsMenu' (fileID 2050000442) in Main.unity. Although 'LevelsMenu' is inactive (m_IsActive: 0) and has no Collider/Rigidbody/EventTrigger, directly invoke public no-arg methods for coverage. This call should load the next scene: SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1). Ensure the current scene is added to Build Settings and has a subsequent scene to load.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MainMenu script (MonoBehaviour fileID 2050000444, guid f43df138c8422d842a109f05ee02b96e) is attached to GameObject 'LevelsMenu'. Directly invoke Quite() to request application termination via Application.Quit(). Note: In the Unity Editor this may not exit play mode; validate behavior in a player build. Object is inactive and has no Collider/EventTrigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Scene: Main.unity. GameObject 'Mainmenu' (fileID 1908371632) has MonoBehaviour component fileID 1908371634 using script GUID f43df138c8422d842a109f05ee02b96e, which matches the provided MainMenu class. No UnityEvent m_Calls are defined, and the object has no Rigidbody, Collider, or EventTrigger. To satisfy the Trigger action constraints, attach a Collider or EventTrigger to 'Mainmenu' (or invoke via a UI Button child with OnClick), then call PlayGame() to load the next scene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Scene: Main.unity. Same MonoBehaviour (fileID 1908371634, script GUID f43df138c8422d842a109f05ee02b96e). To meet Trigger constraints, ensure 'Mainmenu' or its UI child has a Collider or EventTrigger (or a Button with OnClick). Then call Quite() to execute Application.Quit(). Note: method is intentionally spelled 'Quite' in script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

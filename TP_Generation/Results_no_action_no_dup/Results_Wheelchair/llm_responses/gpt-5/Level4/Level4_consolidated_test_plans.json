@@ -1,0 +1,166 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1943288798,
+          "condition": "MonoBehaviour WinLose (m_Script guid=d8624f87f98aa484bb7925103f5d458e) attached to GameCondition. Scene settings: restartdelay=2; PrefabInstance modifications indicate WinUI -> fileID 109963297 and LoseUI -> fileID 109963299 (these may appear as 0 in the flattened MonoBehaviour block but are set via PrefabInstance). Expectation: Winlevel() activates WinUI, loselevel() activates LoseUI. Note: GameCondition has no Rigidbody/Collider/EventTrigger; direct method invocation is required to test coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 764083140,
+          "condition": "Simulate OnTriggerEnter for AttachToElevator (MonoBehaviour id 764083142, script guid 077cb2d6a53b18f4ea7d76e72138fc77). Preconditions required for this to work: (1) BoxCollider id 764083144 must be set to IsTrigger = true OR test framework must simulate a trigger overlap; (2) Assign the script's 'player' reference to this same GameObject (platform2 (1) GameObject fileID 764083141), because the script checks 'if (gameObject == player)'; (3) Ensure a valid opposing Collider enters to generate the trigger event. Expected behavior: player.transform.SetParent(platform2 (1).transform, true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 764083140,
+          "condition": "Simulate OnTriggerExit for AttachToElevator (MonoBehaviour id 764083142, script guid 077cb2d6a53b18f4ea7d76e72138fc77). Use the same setup as the OnTriggerEnter step: BoxCollider id 764083144 acts as a trigger (or simulation), and the script's 'player' is assigned to this GameObject (fileID 764083141). An opposing Collider must exit to generate the event. Expected behavior: player.transform.parent = null.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 2013310823,
+          "condition": "Exercise AttachToElevator (MonoBehaviour id: 2013310826; script guid: 077cb2d6a53b18f4ea7d76e72138fc77) OnTriggerEnter and OnTriggerExit on 'platform2 (2)'. Current scene config: BoxCollider id 2013310828 with m_IsTrigger=0; Has_Rigidbody=False; MonoBehaviour.player=null. Note: For OnTriggerEnter/Exit to fire in Unity 3D physics, one collider must be marked IsTrigger and at least one of the two interacting objects must have a Rigidbody. Also the script compares 'gameObject == player', which only becomes true if the platform object itself is assigned to 'player' (currently null). With current config, even if triggers fire, the if-branch will not execute any parenting logic. This Trigger action attempts to enter and then exit the collider volume to cover OnTriggerEnter and OnTriggerExit message handlers.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 666190384,
+          "condition": "Simulate OnTriggerEnter on GameObject 'platform2 (3)' (PrefabInstance fileID 666190384) to exercise AttachToElevator.OnTriggerEnter (MonoBehaviour id 666190386, script guid 077cb2d6a53b18f4ea7d76e72138fc77, serialized field 'player' currently null). Note: BoxCollider id 666190388 has m_IsTrigger=0, so this manual Trigger simulates the enter event; with player == null, the condition (gameObject == player) evaluates false and no parenting occurs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 666190384,
+          "condition": "Simulate OnTriggerExit on GameObject 'platform2 (3)' (PrefabInstance fileID 666190384) to exercise AttachToElevator.OnTriggerExit (MonoBehaviour id 666190386, script guid 077cb2d6a53b18f4ea7d76e72138fc77). With BoxCollider id 666190388 m_IsTrigger=0 this is a manual simulation; with 'player' null, the condition (gameObject == player) evaluates false and no unparenting occurs.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 397541581,
+          "condition": "Simulate OnTriggerEnter for AttachToElevator (MonoBehaviour id 397541585, script GUID 077cb2d6a53b18f4ea7d76e72138fc77) by causing an overlapping entry with another object that has a Rigidbody and a Trigger collider (e.g., the Player). Note: platform2 has a BoxCollider (id 397541586) with m_IsTrigger=0 and no Rigidbody; at least one of the colliders must be a trigger and one involved object must have a Rigidbody for trigger callbacks. The serialized field 'player' is currently null, so the if(gameObject == player) check will be false and no parenting will occur; this covers the false branch of OnTriggerEnter.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 397541581,
+          "condition": "Simulate OnTriggerExit by moving the same Rigidbody+Trigger collider object out of overlap with platform2 to invoke AttachToElevator.OnTriggerExit (MonoBehaviour id 397541585). With 'player' still null, the if(gameObject == player) check will be false; no unparenting occurs; this covers the false branch of OnTriggerExit.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 397541581,
+          "condition": "Positive-branch coverage for OnTriggerEnter: Preconfigure the scene so AttachToElevator.player references platform2's GameObject (fileID 397541582). Then simulate an overlap entry (as in step 1). Expect player.transform.SetParent(gameObject.transform, true) to execute (self-parenting) when OnTriggerEnter fires.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 397541581,
+          "condition": "Positive-branch coverage for OnTriggerExit: With AttachToElevator.player still set to platform2's GameObject (fileID 397541582), simulate overlap exit. Expect player.transform.parent = null to execute when OnTriggerExit fires.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1468535024,
+          "condition": "MonoBehaviour (guid f7de224e5fee443418417f9f2bfa2998) is the Scoremanager script attached to the 'ScoreManager' GameObject. In this Level4 scene instance (PrefabInstance overrides), fields are assigned as: ScoreText(fileID=109963300), AmountUI(fileID=109963301), Timer(fileID=109963298), StarValue=1, winAmount=6, winlosescript(component fileID=1943288799). To cover the branch in Scoremanager.changescore that calls winlosescript.Winlevel() when score == winAmount, we will directly invoke WinLose.Winlevel() on the referenced component because changescore(int) is not a parameterless callable event and no collider/EventTrigger is present on ScoreManager in the provided scene data.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1943288799,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1468535024,
+          "condition": "Validate automatic behaviors of Scoremanager: Start() sets AmountUI.text to 'Star Amount: 6' (per PrefabInstance winAmount override), and Update() continuously updates Timer.text = Time.time.ToString('0.0'). This action passively waits to allow Update() to execute and Timer UI to change.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

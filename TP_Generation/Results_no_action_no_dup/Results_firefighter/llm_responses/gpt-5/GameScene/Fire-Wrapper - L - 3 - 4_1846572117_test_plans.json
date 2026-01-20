@@ -1,0 +1,35 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 4",
+          "triggerring_time": 25.0,
+          "source_object_fileID": 1846572117,
+          "condition": "Scene MonoBehaviour_0 (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) matches Fire.cs with serialized values: isOn=0, timeToOnMin=40, timeToOnMax=60 (Awake overrides timeToOn to Random[40,60]), onNeighborsThreshold=2, maxNeighborDistance=4, minNeighborDownDistance=3, downMultiplier=2, totalHitTime=5, mainEffectGo=fileID 1849464941111748095. BoxCollider present, no Rigidbody. There are no UnityEvent m_Calls on this object. Goal: cover the automatic ignition path via neighbors. Preconditions needed: at least two neighboring Fire instances must be recognized as neighbors (within 4 units), and at least one of them should be >=3 units lower in y so hasDownNeighbor=true, and those neighbors must notify this instance as on (NotifyNeighborState(true)) such that onNeighbors >= 2. This sets shouldTurnOn=true and timeToOnDelta increases each frame at 2x (downMultiplier) until timeToOn is reached, then isOn becomes true and UpdateFireState(notify:true) plays particle system and notifies neighbors. Wait 25 seconds to allow ignition when downMultiplier applies (effective ~timeToOn/2).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 4",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1846572117,
+          "condition": "Cover the turning-off path via repeated water hits. After task 1, ensure isOn==true. Repeatedly call Fire.WaterHit(Vector3 normal) such that successive calls are spaced less than maxHitInterval=2s, and continue until cumulative currentHitTime >= totalHitTime=5s. Expected: isTurningOff true during sequence; when currentHitTime >= 5s, fire turns off (isOn=false), shouldTurnOn=false, timeToOnDelta=0, currentHitTime=0, UpdateFireState(notify:true) stops particle systems and notifies neighbors and FireController.Instance.FireChanged(-1). Note: WaterHit requires a Vector3 parameter; a test harness or water system must invoke it since there is no parameterless public method to call directly in this component.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 4",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 1846572117,
+          "condition": "Cover the hit-interval timeout branch that cancels turning-off. With isOn==true, call a single WaterHit(normal) to set isTurningOff=true and start timers. Then wait without any further WaterHit for longer than maxHitInterval=2s. Expected: in Update, when currentHitInterval >= maxHitInterval, isTurningOff resets to false and currentHitTime resets to 0f; the fire remains on. This ensures the branch that aborts the extinguish process is executed.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

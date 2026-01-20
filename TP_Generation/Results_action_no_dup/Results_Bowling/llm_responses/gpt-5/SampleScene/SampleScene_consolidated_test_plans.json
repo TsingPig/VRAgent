@@ -1,0 +1,114 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (1)",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 127885129,
+          "condition": "Physics trigger entry required: Move a GameObject with tag 'Ball' that has a Rigidbody and Collider, and includes a BallSoundController component (with fields 'peso' and 'pesoEnKgs' and method 'changePeso()'), into Plane (1)'s MeshCollider (isTrigger=1, id=127885132). This must invoke OtherLaneController.OnTriggerEnter(Collider other) [MonoBehaviour fileID=127885130, Script GUID=9cde80f2fe6fe6e47b57eb962721c06f]. Expected behavior: after WaitForSeconds(5), if other.tag == 'Ball', the incoming ball is Destroyed; then GeneraBola(bolaPrefab, pesoEnKgs, peso) runs, setting the BallSoundController values on bolaPrefab, calling changePeso(), Instantiating at 'aparicionBola' (Transform id=165335085), and adding Force (Impulse 1.5 along +X). Ensure the entering Ball has the correct tag and component to avoid NullReferenceExceptions and to cover the tag check branch.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1620417930,
+          "condition": "Verify physics trigger path for OtherLaneController (MonoBehaviour id=1620417931, script GUID=9cde80f2fe6fe6e47b57eb962721c06f) on Plane (2). Plane (2) has a MeshCollider (id=1620417933) with isTrigger=1 and no Rigidbody. To invoke OnTriggerEnter(Collider), move another object that has a Rigidbody and Collider, is tagged 'Ball', and has BallSoundController into the trigger volume. The coroutine waits 5s, then if tag=='Ball' it reads BallSoundController.peso and pesoEnKgs, destroys the incoming ball, and instantiates 'bolaPrefab' at 'aparicionBola' with an impulse on X. No UnityEvent m_Calls are defined in the scene file, so no direct method triggers are available.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 385680589,
+          "condition": "Call Mirar.Mira() on PosAparicionBola to enable the assigned Canvas. MonoBehaviour maps to script guid=8817b2a8c34ba5d4d941beaf47d0be6f (class Mirar). Scene binding: canvas fileID=3689742487867136667, camaraAMirar will be set to Camera.main in Start.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "Mira",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 385680589,
+          "condition": "Call Mirar.Para() on PosAparicionBola to disable the assigned Canvas. Same MonoBehaviour as above (guid=8817b2a8c34ba5d4d941beaf47d0be6f). Expected: canvas.enabled=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "Para",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 385680589,
+          "condition": "Call BallSoundController.changePeso() on PosAparicionBola. MonoBehaviour maps to script guid=8fcde7f4195eca944bfe1e2addf5338a (class BallSoundController). Scene bindings: peso=0.7, pesoEnKgs=7, textoPeso fileID=4278895081965267523. Expected: Rigidbody.mass set to 0.7 and TMP text displays '7KG'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 11500000,
+                  "method_name": "changePeso",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.1,
+            "z": -0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1865680026,
+          "condition": "MonoBehaviour (fileID 1865680029) on Room_Modern is treated as the exact component instance of the provided PlayQuickSound script (RequireComponent AudioSource). No m_Calls are present for automatic invocation. Manually invoke the public no-arg Play() to cover behavior: set randomized pitch within [-randomPitchVariance, +randomPitchVariance] around defaultPitch, play assigned AudioClip via AudioSource.PlayOneShot at 'volume', then reset pitch to default. OnValidate enforces audioSource.playOnAwake=false in editor.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680029,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

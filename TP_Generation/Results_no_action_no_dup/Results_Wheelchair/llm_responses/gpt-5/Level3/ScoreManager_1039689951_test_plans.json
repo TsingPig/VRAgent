@@ -1,0 +1,54 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1039689951,
+          "condition": "MonoBehaviour (m_Script guid=f7de224e5fee443418417f9f2bfa2998) matches the provided Scoremanager class. Start() and Update() run automatically. To cover the conditional branch in changescore(int) and verify win flow, we must invoke Scoremanager.changescore with a positive value until score == winAmount. Prefab instance overrides winAmount to 4 (via PrefabInstance m_Modification), so call changescore 4 times with +1 to reach the threshold and expect winlosescript.Winlevel() to be invoked. Note: The ScoreManager GameObject has no Rigidbody/Collider/EventTrigger; there are no UnityEvent m_Calls exposed in the scene meta. The only public triggerable function on Scoremanager requires an int parameter. We therefore need either: (a) an external event (e.g., a star pickup collider) to call changescore(+1) four times, or (b) permission to directly invoke changescore with an int parameter from the test harness. The referenced WinLose component (fileID=1176795496) should expose Winlevel() with no parameters for verification if needed.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 738895513262049452,
+                  "method_name": "changescore",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

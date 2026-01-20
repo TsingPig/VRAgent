@@ -1,0 +1,62 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1943288798,
+          "condition": "Manually invoke WinLose.Winlevel() on GameCondition to display WinUI (MonoBehaviour guid d8624f87f98aa484bb7925103f5d458e). No Collider/Rigidbody/EventTrigger found; no m_Calls in scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1943288798,
+          "condition": "Manually invoke WinLose.loselevel() on GameCondition to display LoseUI (MonoBehaviour guid d8624f87f98aa484bb7925103f5d458e). No Collider/Rigidbody/EventTrigger found; no m_Calls in scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1943288798,
+          "condition": "Optionally invoke WinLose.Restart() (no-op) for coverage (MonoBehaviour guid d8624f87f98aa484bb7925103f5d458e).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

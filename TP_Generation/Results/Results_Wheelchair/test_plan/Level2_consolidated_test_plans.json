@@ -1,0 +1,271 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "AttachToElevator (GUID: 077cb2d6a53b18f4ea7d76e72138fc77) is attached to Elevator with BoxCollider (isTrigger=1). OnTriggerEnter is automatically fired when a Rigidbody-equipped collider enters the trigger. However, the scene MonoBehaviour settings show 'player' is null (fileID: 0), and the script checks 'if (gameObject == player)' instead of 'if (other.gameObject == player)', so no attach logic will execute unless 'player' equals the Elevator GameObject itself. This action represents entering the Elevator trigger volume to cover OnTriggerEnter.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "AttachToElevator (GUID: 077cb2d6a53b18f4ea7d76e72138fc77) OnTriggerExit is automatically fired when the Rigidbody-equipped collider exits the Elevator's BoxCollider trigger. Given 'player' is null in scene and the script uses 'if (gameObject == player)', detach logic will not run. This action represents exiting the Elevator trigger volume to cover OnTriggerExit.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 283832887,
+          "condition": "MonoBehaviour_0 (id: 283832888) on GameCondition uses script guid d8624f87f98aa484bb7925103f5d458e (fileID:11500000, type:3), which matches the provided WinLose MonoBehaviour. Serialized config: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. No m_Calls present in scene meta; thus events must be triggered manually. GameObject has no Rigidbody/Collider/EventTrigger, but Trigger is valid for public MonoBehaviour methods with no parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 283832887,
+          "condition": "MonoBehaviour_0 (id: 283832888, guid d8624f87f98aa484bb7925103f5d458e). Expected behavior: LoseUI.SetActive(true) when loselevel() is called.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 283832887,
+          "condition": "MonoBehaviour_0 (id: 283832888, guid d8624f87f98aa484bb7925103f5d458e). Restart() is a public no-arg method; currently empty, but should be invoked for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 665489382,
+          "condition": "Manual validation of the win condition path for Scoremanager (MonoBehaviour GUID f7de224e5fee443418417f9f2bfa2998; scene overrides set winAmount=4 via PrefabInstance; MonoBehaviour component fileID likely 738895513262049452). Since Scoremanager.changescore(int) cannot be invoked by the Trigger action (parametered method), directly trigger the referenced WinLose.Winlevel when score would equal winAmount. This covers the event path that Scoremanager would call automatically when score == winAmount.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1134884820,
+          "condition": "VRWC_WheelchairRig has Rigidbody: True. Attached MonoBehaviour_0 (script GUID a0edd121473972448b844c1958f760ce) matches PlayerTriggers with StarValue=2 and field 'winlosescript' referencing the WinLose component. Attached MonoBehaviour_1 (script GUID d8624f87f98aa484bb7925103f5d458e) matches WinLose with restartdelay=2. PrefabInstance modifications set WinUI (fileID 1345324351) and LoseUI (fileID 1999610191) on WinLose (component fileID 8900446968063909830). PlayerTriggers.OnTriggerEnter would call winlosescript.loselevel() when colliding with tag 'Cars'. To ensure coverage regardless of collisions, manually invoke WinLose.loselevel() to validate LoseUI activation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1134884820,
+          "condition": "VRWC_WheelchairRig MonoBehaviour_1 (WinLose, script GUID d8624f87f98aa484bb7925103f5d458e, component fileID 8900446968063909830) has WinUI (fileID 1345324351) configured via PrefabInstance modifications. PlayerTriggers does not call WinLose.Winlevel(); to cover WinLose’s success path, manually invoke WinLose.Winlevel() and validate WinUI activation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -11.34,
+            "y": -1.288,
+            "z": -38.41
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": 17.91,
+            "y": -1.288,
+            "z": -58.38
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -7.95,
+            "y": -1.118,
+            "z": -4.08
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "VRWC_WheelchairRig",
+          "source_object_fileID": 1134884820,
+          "delta_position": {
+            "x": -5.09,
+            "y": -0.058,
+            "z": 12.18
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "VRWC_WheelchairRig",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1134884820,
+          "condition": "VRWC_WheelchairRig has Rigidbody=True and two attached scripts: PlayerTriggers (GUID a0edd121473972448b844c1958f760ce, StarValue=2) and WinLose (GUID d8624f87f98aa484bb7925103f5d458e). Collisions with objects tagged 'Cars' trigger PlayerTriggers.OnTriggerEnter -> winlosescript.loselevel(). Collisions with 'WinBox' trigger PlayerTriggers.OnTriggerEnter -> Scoremanager.instance.changescore(2) and Destroy(WinBox). To cover WinLose success path (not invoked by PlayerTriggers), manually invoke WinLose.Winlevel() to activate WinUI.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8900446968063909830,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

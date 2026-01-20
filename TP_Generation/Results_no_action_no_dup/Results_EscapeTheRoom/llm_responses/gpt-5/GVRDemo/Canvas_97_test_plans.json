@@ -1,0 +1,47 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 97,
+          "condition": "MonoBehaviour_0 (id: 927) on GameObject 'Canvas' uses script guid 739800cd36aba44e9b04ce977e5784bd, which corresponds to GvrPointerGraphicRaycaster. Scene settings on this component: raycastMode=Camera(0), ignoreReversedGraphics=true(1), blockingObjects=None(0), blockingMask=All bits (4294967295). Note: No 'm_Calls' UnityEvents are configured on this GameObject, and there is no Collider/EventTrigger listed. To fully exercise GvrPointerGraphicRaycaster.Raycast, Canvas.renderMode must be WorldSpace and a GvrPointerManager.Pointer with a valid PointerTransform (and Camera.main) must exist at runtime. In this plan we directly invoke public no-arg methods on the attached raycaster to verify availability and ray state; additional environment details are needed to execute the full raycast path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 927,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 927,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 927,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 927,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

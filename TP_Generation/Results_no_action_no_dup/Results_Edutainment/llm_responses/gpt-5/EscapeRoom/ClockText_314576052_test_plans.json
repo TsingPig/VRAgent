@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 314576052,
+          "condition": "Let the Clock run for over one minute to exercise Update() and TimeDisplay() formatting, then finish the timer. MonoBehaviour (script_fileID=314576056) matches GUID=27b31662383b39d4a9c98eb14ed39152 attached to GameObject fileID=314576052. No UnityEvent m_Calls present; method invoked programmatically.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 314576052,
+          "condition": "After finishing, also test timeout path to set finished=true via onTimeOut(). MonoBehaviour (script_fileID=314576056, GUID=27b31662383b39d4a9c98eb14ed39152).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onTimeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

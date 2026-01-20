@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building41",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1789995939,
+          "condition": "EventTrigger component (fileID 1789995943) configured with eventID=4 (PointerClick) has a persistent call to MonoBehaviour (fileID 1789995941) with Script GUID 10a92b1b4549024468ecbc96831def68 (Residential.cs). On click, call showlabel(). Start() must have run to cache Player->child[1] TextMeshPro. Expected: label shows first 20 chars of 'Residential:Inu Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1789995941,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building41",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1789995939,
+          "condition": "EventTrigger component (fileID 1789995943) configured with eventID=4 (PointerClick) has a persistent call to MonoBehaviour (fileID 1789995941) with Script GUID 10a92b1b4549024468ecbc96831def68 (Residential.cs). On click, call showlabel(). Dependency: Residential.Start() must have run and GameObject.Find(\"Player\") must resolve to an active object with at least two children, where child[1] has a TextMeshPro component. Expected: label shows first 20 characters of 'Residential:Inu Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1789995941,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

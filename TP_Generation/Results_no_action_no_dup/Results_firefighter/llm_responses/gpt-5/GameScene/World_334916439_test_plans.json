@@ -1,0 +1,260 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "World",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 334916439,
+          "condition": "MonoBehaviour (id: 334916441) is attached to 'World' with script reference {fileID: 11500000, guid: dd68f027e715c44aa8d097000d4cccfb, type: 3}. This is the exact scene instance configuration; no additional serialized properties or UnityEvent m_Calls are present. 'World' has no Rigidbody, Collider, or EventTrigger components, and no UnityEvent bindings are configured in-scene, so there are no interactable callbacks to invoke without knowing public no-arg methods on the attached script. Provide the script API or child object details to proceed with actionable triggers.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Buildings",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 1589941764,
+          "condition": "MonoBehaviour (id: 1589941766) on 'Buildings' is exactly the in-scene instance of SteamAudio.SteamAudioGeometry with script reference {fileID: 11500000, guid: e829c87dc2a2ed2419c5f67848317fe4, type: 3}. Serialized fields in scene match the script: material -> {fileID: 11400000, guid: a086f686223eed942816c70be67841b0, type: 2}, exportAllChildren: false, terrainSimplificationLevel: 0. No UnityEvent m_Calls are defined. Trigger the public no-arg APIs to exercise geometry stat retrieval.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1589941766,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Ambulance",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1616856287260946002,
+          "condition": "MonoBehaviour (id: 9191504438935284415) on 'Ambulance' is exactly the in-scene instance of SteamAudio.SteamAudioGeometry with script reference {fileID: 11500000, guid: e829c87dc2a2ed2419c5f67848317fe4, type: 3}. Serialized fields match: material -> {fileID: 11400000, guid: a086f686223eed942816c70be67841b0, type: 2}, exportAllChildren: false, terrainSimplificationLevel: 0. 'Ambulance' also has an enabled BoxCollider (id: 9191504438935284416), which permits Trigger interactions. No UnityEvent m_Calls are configured. Call the script's public no-arg APIs to exercise geometry metrics retrieval.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 9191504438935284415,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire_Engine",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 3206529234001464345,
+          "condition": "MonoBehaviour (id: 5409646016458175008) on 'Fire_Engine' exactly matches the attached script SteamAudio.SteamAudioGeometry {fileID: 11500000, guid: e829c87dc2a2ed2419c5f67848317fe4, type: 3}. Scene-serialized fields match the script: material -> {fileID: 11400000, guid: a086f686223eed942816c70be67841b0, type: 2}, exportAllChildren: false (0), terrainSimplificationLevel: 0. 'Fire_Engine' also has an enabled BoxCollider (id: 5409646016458175009), which permits Trigger interactions. No UnityEvent m_Calls are present; invoke the script's public no-arg methods to exercise geometry queries.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumVertices",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 5409646016458175008,
+                  "method_name": "GetNumTriangles",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Shouting",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 592733083,
+          "condition": "MonoBehaviour (id: 592733085) on 'Crowd - Shouting' is SteamAudio.SteamAudioSource with script reference {fileID: 11500000, guid: 59c3684b22f00604a97bb68037fcf4cd, type: 3}. The scene instance settings match the script fields: directBinaural:1, interpolation:0, distanceAttenuation:1 (PhysicsBased), distanceAttenuationValue:1, airAbsorption:1 (SimulationDefined), airAbsorptionLow/Mid/High:1, directivity:0, occlusion:0, transmission:0, directMixLevel:1, reflections:0 (Realtime), useDistanceCurveForReflections:0, currentBakedSource:null, applyHRTFToReflections:0, reflectionsMixLevel:1, pathing:0, pathingProbeBatch:null, pathValidation:1, findAlternatePaths:1, pathingEQ:[1,1,1], pathingSH:16 elems, applyHRTFToPathing:0, pathingMixLevel:1. No Rigidbody/Collider/EventTrigger and no UnityEvent m_Calls present. Invoke available public no-arg API to exercise accessible code paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 592733085,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 208486863,
+          "condition": "MonoBehaviour (id: 208486865) on 'Crowd - Talking - 1' is SteamAudio.SteamAudioSource with script reference {fileID: 11500000, guid: 59c3684b22f00604a97bb68037fcf4cd, type: 3}. This MonoBehaviour's serialized fields in-scene exactly match the script's exposed settings: directBinaural:1, interpolation:0, distanceAttenuation:1 with distanceAttenuationInput:PhysicsBased(1), distanceAttenuationValue:1, airAbsorption:1 with airAbsorptionInput:SimulationDefined(0), airAbsorptionLow/Mid/High:1, directivity:0, dipoleWeight:0, dipolePower:0, directivityValue:1, occlusion:0 (type Raycast, radius 1, samples 16, value 1), transmission:0, directMixLevel:1, reflections:0 (type Realtime, useDistanceCurveForReflections:0, currentBakedSource:null, applyHRTFToReflections:0, reflectionsMixLevel:1), pathing:0 (probe batch null, pathValidation:1, findAlternatePaths:1, pathingEQ [1,1,1], pathingSH length 16, applyHRTFToPathing:0, pathingMixLevel:1). No Rigidbody/Collider/EventTrigger components and no UnityEvent m_Calls are present on this object. Manually invoke available public no-arg methods to exercise accessible code paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 208486865,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1854226667,
+          "condition": "MonoBehaviour (id: 1854226669) on 'Crowd - Talking - 2' is SteamAudio.SteamAudioSource with script reference {fileID: 11500000, guid: 59c3684b22f00604a97bb68037fcf4cd, type: 3}. The scene instance exactly matches the script's serialized fields: directBinaural:1, interpolation:0, distanceAttenuation:1 with distanceAttenuationInput:PhysicsBased(1), distanceAttenuationValue:1, airAbsorption:1 with airAbsorptionInput:SimulationDefined(0), airAbsorptionLow/Mid/High:1, directivity:0 (dipoleWeight:0, dipolePower:0, directivityValue:1), occlusion:0 (type Raycast, radius 1, samples 16, value 1), transmission:0 (type FrequencyIndependent, inputs SimulationDefined), directMixLevel:1, reflections:0 (type Realtime, useDistanceCurveForReflections:0, currentBakedSource:null, applyHRTFToReflections:0, reflectionsMixLevel:1), pathing:0 (probe batch null, pathValidation:1, findAlternatePaths:1, pathingEQ [1,1,1], pathingSH length 16, applyHRTFToPathing:0, pathingMixLevel:1). No Rigidbody, Collider, or EventTrigger components are present and no UnityEvent m_Calls are configured; invoke public no-arg API to exercise accessible logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1854226669,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Crowd - Talking - 3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 389740526,
+          "condition": "MonoBehaviour (id: 389740528) on 'Crowd - Talking - 3' is SteamAudio.SteamAudioSource with script reference {fileID: 11500000, guid: 59c3684b22f00604a97bb68037fcf4cd, type: 3}. The scene instance settings match the script's serialized fields: directBinaural:1, interpolation:0, distanceAttenuation:1 with distanceAttenuationInput:PhysicsBased(1), distanceAttenuationValue:1, airAbsorption:1 with airAbsorptionInput:SimulationDefined(0), airAbsorptionLow/Mid/High:1, directivity:0 (dipoleWeight:0, dipolePower:0, directivityValue:1), occlusion:0 (type Raycast, radius 1, samples 16, value 1), transmission:0, directMixLevel:1, reflections:0 (type Realtime, useDistanceCurveForReflections:0, currentBakedSource:null, applyHRTFToReflections:0, reflectionsMixLevel:1), pathing:0 (probe batch null, pathValidation:1, findAlternatePaths:1, pathingEQ [1,1,1], pathingSH length 16, applyHRTFToPathing:0, pathingMixLevel:1). No Rigidbody/Collider/EventTrigger and no UnityEvent m_Calls are present; invoke available public no-arg API to exercise accessible paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 389740528,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CoughingMan",
+          "triggerring_time": 21.0,
+          "source_object_fileID": 988770326,
+          "condition": "MonoBehaviour id: 988770328 on 'CoughingMan' matches SteamAudio.SteamAudioSource (script {fileID:11500000, guid:59c3684b22f00604a97bb68037fcf4cd, type:3}). Scene settings align with script fields: directBinaural=1; interpolation=0(Nearest); distanceAttenuation=1 with distanceAttenuationInput=1(PhysicsBased) and distanceAttenuationValue=1; airAbsorption=1 with airAbsorptionInput=0(SimulationDefined) and Low/Mid/High=1; directivity=0; occlusion=0 (type Raycast, radius=1, samples=16, value=1); transmission=0; directMixLevel=1; reflections=0 (type Realtime, useDistanceCurveForReflections=0, applyHRTFToReflections=0, reflectionsMixLevel=1); pathing=0 (validation=1, findAlternatePaths=1, pathingEQ=[1,1,1], pathingSH length=16, applyHRTFToPathing=0, pathingMixLevel=1). MonoBehaviour id: 988770330 matches FireBasedAudioManager (script {fileID:11500000, guid:77f9a59041a2de446bf7704b5c31f103, type:3}) with scene fields: audioSource: null (resolved at runtime in Awake via GetComponent<AudioSource>), fireLimit=7, timeInterval=20. No UnityEvent m_Calls are defined for this object. During this 21s trigger window, FireBasedAudioManager.Update should call audioSource.Play() once (Awake sets shouldPlay=true and timeInterval=20).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988770328,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CoughingWoman",
+          "triggerring_time": 21.0,
+          "source_object_fileID": 1034990897,
+          "condition": "MonoBehaviour id: 1034990899 on 'CoughingWoman' is SteamAudio.SteamAudioSource (script {fileID:11500000, guid:59c3684b22f00604a97bb68037fcf4cd, type:3}). Scene settings match script fields: directBinaural=1; interpolation=0(Nearest); distanceAttenuation=1 with distanceAttenuationInput=1(PhysicsBased) and distanceAttenuationValue=1; airAbsorption=1 with airAbsorptionInput=0(SimulationDefined) and Low/Mid/High=1; directivity=0; occlusion=0 (Raycast, radius=1, samples=16, value=1); transmission=0; directMixLevel=1; reflections=0 (Realtime; useDistanceCurveForReflections=0; applyHRTFToReflections=0; reflectionsMixLevel=1); pathing=0 (validation=1; findAlternatePaths=1; pathingEQ=[1,1,1]; pathingSH length=16; applyHRTFToPathing=0; pathingMixLevel=1). MonoBehaviour id: 1034990901 is FireBasedAudioManager (script {fileID:11500000, guid:77f9a59041a2de446bf7704b5c31f103, type:3}) with scene fields: audioSource:null (resolved at Awake via GetComponent<AudioSource>), fireLimit=9, timeInterval=10. This is the exact scene instance configuration; no UnityEvent m_Calls are defined. During the 21s window, FireBasedAudioManager.Awake sets shouldPlay=true, and Update should call audioSource.Play() at ~10s and ~20s, covering the timed playback path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1034990899,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "WomanDevastated",
+          "triggerring_time": 31.0,
+          "source_object_fileID": 1678975683,
+          "condition": "MonoBehaviour id: 1678975685 on 'WomanDevastated' is SteamAudio.SteamAudioSource (script {fileID:11500000, guid:59c3684b22f00604a97bb68037fcf4cd, type:3}); scene instance settings match the script fields (directBinaural=1, interpolation=0, distanceAttenuation=1 with PhysicsBased, airAbsorption=1 with SimulationDefined, directivity=0, occlusion=0 Raycast, transmission=0, reflections=0 Realtime, pathing=0). MonoBehaviour id: 1678975687 is FireBasedAudioManager (script {fileID:11500000, guid:77f9a59041a2de446bf7704b5c31f103, type:3}) with fields: audioSource:null in scene (resolved in Awake via GetComponent<AudioSource>), fireLimit=5, timeInterval=30. No UnityEvent m_Calls are defined. Holding this trigger for >30s covers FireBasedAudioManager.Update timed playback path (audioSource.Play() once at ~30s).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1678975685,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light - 1",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1975023119,
+          "condition": "MonoBehaviour id: 1975023122 on 'Point Light - 1' is SteamAudio.SteamAudioSource (script {fileID:11500000, guid:59c3684b22f00604a97bb68037fcf4cd, type:3}). Scene instance settings match the script fields: directBinaural=1; interpolation=0(Nearest); distanceAttenuation=1 with distanceAttenuationInput=1(PhysicsBased) and distanceAttenuationValue=1; airAbsorption=1 with airAbsorptionInput=0(SimulationDefined) and Low/Mid/High=1; directivity=0; occlusion=0 (Raycast, radius=1, samples=16, value=1); transmission=0; directMixLevel=1; reflections=0 (Realtime; useDistanceCurveForReflections=0; applyHRTFToReflections=0; reflectionsMixLevel=1); pathing=0 (validation=1; findAlternatePaths=1; pathingEQ=[1,1,1]; pathingSH length=16; applyHRTFToPathing=0; pathingMixLevel=1). No UnityEvent m_Calls specified on this object. This setup will exercise Awake/Start/OnEnable/Update implicitly; invoking a no-arg public API ensures script method coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1975023122,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light - 2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 778717854,
+          "condition": "Scene instance 'Point Light - 2' has MonoBehaviour id: 778717857 referencing SteamAudio.SteamAudioSource ({fileID:11500000, guid:59c3684b22f00604a97bb68037fcf4cd, type:3}). The serialized fields in the scene match the script’s public fields: directBinaural=1; interpolation=0(Nearest); distanceAttenuation=1 with distanceAttenuationInput=1(PhysicsBased), distanceAttenuationValue=1; airAbsorption=1 with airAbsorptionInput=0(SimulationDefined) and Low/Mid/High=1; directivity=0; occlusion=0 (Raycast, radius=1, samples=16, value=1); transmission=0; directMixLevel=1; reflections=0 (Realtime; useDistanceCurveForReflections=0; applyHRTFToReflections=0; reflectionsMixLevel=1); pathing=0 (validation=1; findAlternatePaths=1; pathingEQ=[1,1,1]; pathingSH length=16; applyHRTFToPathing=0; pathingMixLevel=1). No UnityEvent m_Calls are configured on this component. The object has no Rigidbody; other components (ids: 778717856, 778717858, 778717859) are present but no Collider/EventTrigger is confirmed in the provided data. Lifecycle methods (Awake, Start, OnEnable, Update) will be exercised automatically on scene load/enable. To manually exercise the public no-arg API for coverage, invoke GetSource on the SteamAudioSource component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 778717857,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

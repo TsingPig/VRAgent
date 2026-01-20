@@ -1,0 +1,88 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2050000442,
+          "condition": "MonoBehaviour (fileID 2050000444, GUID f43df138c8422d842a109f05ee02b96e, script=MainMenu) is enabled (m_Enabled=1). Note: GameObject 'LevelsMenu' is inactive (m_IsActive=0); activate it or allow the harness to invoke the method despite inactive state. Expected behavior: SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2050000442,
+          "condition": "Run in an isolated session (PlayGame above loads a new scene). MonoBehaviour (fileID 2050000444) enabled. Expected behavior: Application.Quit().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Manual trigger of public no-arg method on MonoBehaviour id 1908371634 (guid f43df138c8422d842a109f05ee02b96e) attached to GameObject 1908371632 for code coverage. Note: GameObject lacks Rigidbody/Collider/EventTrigger per provided meta; requires a UI Button OnClick or equivalent hookup in children to invoke.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Manual trigger of public no-arg method on MonoBehaviour id 1908371634 (guid f43df138c8422d842a109f05ee02b96e) attached to GameObject 1908371632 for code coverage. Note: GameObject lacks Rigidbody/Collider/EventTrigger per provided meta; requires a UI Button OnClick or equivalent hookup in children to invoke. The method levelSelection(string) cannot be invoked by Trigger due to its string parameter; need a serialized UI event with argument or additional instructions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

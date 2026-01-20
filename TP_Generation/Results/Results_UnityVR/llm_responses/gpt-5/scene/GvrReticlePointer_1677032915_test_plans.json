@@ -1,0 +1,55 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1677032915,
+          "condition": "Manual invocation to cover public no-arg API on GvrReticlePointer (MonoBehaviour fileID 723926960, guid e7dcc90c2e60c4011896c7f21fc1f557). Serialized config: raycastMode=Camera(0), maxReticleDistance=20, reticleSegments=20, reticleGrowthSpeed=8, reticleSortingOrder=32767. Ensure Start() has run so MaterialComp is initialized before calling UpdateDiameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1677032915,
+          "condition": "Simulate a click cycle on GvrReticlePointer to cover pointer click hooks. These methods are public, no-arg overrides in GvrReticlePointer. Expect no side effects (empty implementations) but ensures coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickDown",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickUp",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

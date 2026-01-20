@@ -1,0 +1,1712 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "--INTERACTABLE--",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1782057475,
+          "condition": "Scene excerpt indicates Has_Rigidbody=false for --INTERACTABLE-- (fileID 1782057475). No Collider or EventTrigger components, and no MonoBehaviour components beyond Transform (fileID 1782057476), were provided. Therefore, no callable public no-arg methods or UnityEvent m_Calls are known yet. Please provide the MonoBehaviour components attached to --INTERACTABLE-- (script component fileIDs/GUIDs), their public no-parameter methods, and any UnityEvent m_Calls configured on this object so we can bind concrete triggerring_events. We will treat the MonoBehaviour settings in the scene file as the exact configuration of the attached scripts.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Launcher_DartGun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 763022183,
+          "condition": "MonoBehaviour 763022187 (XRGrabInteractable from XR Interaction Toolkit) has m_Activated UnityEvent with m_Calls configured in the scene. When Activated, it calls LaunchProjectile.Fire on MonoBehaviour 763022186 (LaunchProjectile) and Play on MonoBehaviour 763022189 (PlayQuickSound). These MonoBehaviour settings in the scene file are the exact configuration of the attached scripts. Trigger this to validate projectile instantiation and sound playback.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 763022186,
+                  "method_name": "Fire",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 763022189,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Projectile_Dart",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 9093831001618171185,
+          "condition": "Projectile_Dart is instantiated by LaunchProjectile.Fire. Scene meta shows Has_Rigidbody=false and provides no MonoBehaviour script details for callable public no-arg methods. Trigger action requires a Collider/EventTrigger/Rigidbody or a script with public no-arg methods to call. Please provide the instantiated Projectile_Dart components (Collider/Rigidbody presence) and any attached scripts with public no-parameter methods or UnityEvents (m_Calls). Also confirm the runtime instance mapping/fileID if needed.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Lighter",
+          "source_object_fileID": 1940743904,
+          "target_object_name": "Candle",
+          "target_object_fileID": 882648419
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Candle",
+          "source_object_fileID": 882648419,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.8,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Candle",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 882648419,
+          "condition": "Candle has Rigidbody (Has_Rigidbody=true). Scene meta shows MonoBehaviour 1713785677 is OnVelocity (disabled) with configured UnityEvents: OnBegin stops ParticleSystem 2038875 when speed > 1.25, and OnEnd when speed < 0.25. Regardless of enabled state, Reset() is a public no-arg MonoBehaviour method and is callable. These MonoBehaviour settings in the scene file are the exact configuration of the attached scripts.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1713785677,
+                  "method_name": "Reset",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Projectile_Dart",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 9093831001618171185,
+          "condition": "Projectile_Dart is instantiated by LaunchProjectile.Fire. Provided meta lists Has_Rigidbody=false and no callable MonoBehaviour methods or UnityEvents (m_Calls). Trigger actions require a Collider/EventTrigger/Rigidbody or a script with public no-arg methods. Please provide the instantiated Projectile_Dart components (Collider/Rigidbody presence) and any attached scripts with public no-parameter methods or UnityEvents. These scene meta settings will be treated as the exact configuration.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Lighter",
+          "source_object_fileID": 1940743904,
+          "target_object_name": "Speaker_Modern",
+          "target_object_fileID": 1734837738
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Speaker_Modern",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1734837738,
+          "condition": "Speaker_Modern has MonoBehaviour 1734837741 (PlaySoundsFromList, guid 76a895b5e674db04d8b4f8110c068852) with shouldLoop=true and 3 audio clips. It also has an XR interactable (MonoBehaviour 1734837746) with UnityEvent m_Calls on hover. The MonoBehaviour settings in the scene file are the exact configuration of the attached scripts. Trigger the public no-arg audio control methods to validate playback state transitions and list navigation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PlayPause",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Light_Switch",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1768355677,
+          "condition": "MonoBehaviour 1768355684 (XR Interaction Toolkit, m_Script guid 8a35f6cfbfba9b548aaa00d52cfe8a50) on Light_Switch is configured via the scene meta as the exact settings of the attached script. Its m_HoverEntered.m_PersistentCalls.m_Calls contains: target GameObject fileID 377328966, method GameObject.SetActive(true). Triggering Hover Enter should invoke this UnityEvent automatically.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Light_Switch",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1768355677,
+          "condition": "MonoBehaviour 1768355684 (guid 8a35f6cfbfba9b548aaa00d52cfe8a50) m_SelectEntered.m_PersistentCalls.m_Calls contains: ToggleOnOff.Toggle() on script components fileID 1887208566 and 2061883187 (no parameters), and GameObject.SetActive(false) on fileID 377328966. The scene meta is the exact configuration of the script. Trigger Select Enter to invoke the Toggle() methods and the SetActive(false) UnityEvent.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1887208566,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 2061883187,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Light_Switch",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1768355677,
+          "condition": "MonoBehaviour 1768355684 (guid 8a35f6cfbfba9b548aaa00d52cfe8a50) m_HoverExited.m_PersistentCalls.m_Calls contains: target GameObject fileID 377328966, method GameObject.SetActive(false). Triggering Hover Exit should invoke this UnityEvent automatically. Other XR events (First/Last Hover/Select) are present with empty call lists in the scene meta.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "XR Interaction Toolkit MonoBehaviour 981300584 (m_Script guid 0ad34abafad169848a38072baa96cdb2) on Hat_Cap is configured via the scene meta as the exact settings of the attached script. m_FirstHoverEntered has an empty call list; trigger to cover event path.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_HoverEntered.m_PersistentCalls.m_Calls contains: target GameObject fileID 1116454875, method GameObject.SetActive(true). Trigger Hover Enter should invoke this UnityEvent automatically. The scene meta is the exact configuration of the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_HoverExited.m_PersistentCalls.m_Calls contains: target GameObject fileID 1116454875, method GameObject.SetActive(false). Trigger Hover Exit should invoke this UnityEvent automatically. The scene meta is the exact configuration of the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_LastHoverExited has an empty call list; trigger to cover event path. The scene meta reflects the exact script settings.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_FirstSelectEntered has an empty call list; trigger to cover event path. The scene meta reflects the exact script settings.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_SelectEntered.m_PersistentCalls.m_Calls contains: target GameObject fileID 1116454875, method GameObject.SetActive(false). Trigger Select Enter should invoke this UnityEvent automatically. The scene meta is the exact configuration of the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_SelectExited has an empty call list; trigger to cover event path. The scene meta reflects the exact script settings.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_LastSelectExited.m_PersistentCalls.m_Calls contains: target GameObject fileID 1116454875, method GameObject.SetActive(false). Trigger Last Select Exit should invoke this UnityEvent automatically. The scene meta is the exact configuration of the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Cap",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 981300582,
+          "condition": "MonoBehaviour 981300584 m_Activated has an empty call list; trigger to cover event path. The scene meta reflects the exact script settings.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "XR Interaction Toolkit MonoBehaviour 962451735 (m_Script guid 0ad34abafad169848a38072baa96cdb2) on Hat_Straw is configured via the scene meta as the exact settings of the attached script. m_FirstHoverEntered has an empty call list; trigger to cover this path.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_HoverEntered.m_PersistentCalls.m_Calls: target GameObject fileID 1116454875, method GameObject.SetActive(true). Trigger Hover Enter to invoke this UnityEvent (scene meta is the exact script configuration).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_HoverExited.m_PersistentCalls.m_Calls: target GameObject fileID 1116454875, method GameObject.SetActive(false). Trigger Hover Exit to invoke this UnityEvent (scene meta is the exact script configuration).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_LastHoverExited has an empty call list; trigger to cover this path (scene meta equals script settings).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_FirstSelectEntered has an empty call list; trigger to cover this path (scene meta equals script settings).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_SelectEntered.m_PersistentCalls.m_Calls: target GameObject fileID 1116454875, method GameObject.SetActive(false). Trigger Select Enter to invoke this UnityEvent (scene meta is the exact script configuration).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_SelectExited has an empty call list; trigger to cover this path (scene meta equals script settings).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_LastSelectExited.m_PersistentCalls.m_Calls: target GameObject fileID 1116454875, method GameObject.SetActive(false). Trigger Last Select Exit to invoke this UnityEvent (scene meta is the exact script configuration).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hat_Straw",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 962451733,
+          "condition": "MonoBehaviour 962451735 m_Activated has an empty call list; trigger to cover this path (scene meta equals script settings).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Tennis_Ball_BlueRed",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 573368890,
+          "condition": "MonoBehaviour 573368895 (m_Script guid 645fd53ad1252d14b9530cffccf6816b) is attached to Tennis_Ball_BlueRed, and the scene meta is the exact configuration of this script. It references collisionSound (AudioClip guid 8d9a841535eb965468c6cfdde385ac6f). No XR Interactable UnityEvent m_Calls are present for this object, so to cover code paths we must induce a physics collision to invoke the script’s collision handler.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Tennis_Ball_BlueRed",
+          "source_object_fileID": 573368890,
+          "target_object_name": "Hat_Cap",
+          "target_object_fileID": 981300582
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Notebook_Stripes",
+          "source_object_fileID": 2005587420,
+          "target_position": {
+            "x": -1.9,
+            "y": -0.75,
+            "z": 1.2
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Lighter",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1940743904,
+          "condition": "Simulate XRGrabInteractable hover enter on Lighter. MonoBehaviour id 1344135002 (m_Script guid 0ad34abafad169848a38072baa96cdb2) in the scene meta is the exact configuration of the attached XR Interaction Toolkit script. Its m_HoverEntered.m_PersistentCalls.m_Calls includes: GameObject(fileID 21032896).SetActive(true). This action aims to invoke that UnityEvent path.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Lighter",
+          "source_object_fileID": 1940743904,
+          "target_position": {
+            "x": -4.6,
+            "y": -0.1,
+            "z": 0.75
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Lighter",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1940743904,
+          "condition": "Simulate hover exit after release to execute XRGrabInteractable events configured in the scene meta for MonoBehaviour 1344135002: m_SelectEntered already activated GameObject(fileID 1386421492) and deactivated fileID 21032896; m_LastSelectExited deactivates GameObject(fileID 21032896); m_HoverExited deactivates GameObject(fileID 21032896). These UnityEvent m_Calls are the exact settings defined in the scene meta for the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Art_Painting_Desert",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1796498872,
+          "condition": "Simulate XRGrabInteractable Hover Enter on Art_Painting_Desert. MonoBehaviour id 1796498875 (m_Script guid 0ad34abafad169848a38072baa96cdb2) in the scene meta is the exact configuration of the attached XR Interaction Toolkit script. Its m_HoverEntered has a UnityEvent call: GameObject(fileID 1662261132).SetActive(true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Art_Painting_Desert",
+          "source_object_fileID": 1796498872,
+          "target_position": {
+            "x": 1.2,
+            "y": 0.1,
+            "z": 1.1
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Art_Painting_Desert",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1796498872,
+          "condition": "Simulate XRGrabInteractable Hover Exit after release to invoke configured UnityEvents on MonoBehaviour 1796498875: m_HoverExited -> GameObject(fileID 1662261132).SetActive(false) and m_LastHoverExited -> GameObject(fileID 1662261132).SetActive(false). The prior Grab action causes selection/deselection so m_LastSelectExited -> GameObject(fileID 1662261132).SetActive(false) is also exercised. The MonoBehaviour component in the scene file is the exact settings of the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Art_Painting_Birds",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2036126889,
+          "condition": "Simulate XRSimpleInteractable Hover Enter on Art_Painting_Birds. MonoBehaviour id 2036126892 (m_Script guid 0ad34abafad169848a38072baa96cdb2) in the scene meta is the exact configuration of the attached XR Interaction Toolkit script. Its m_HoverEntered has a UnityEvent call: GameObject(fileID 1662261132).SetActive(true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Art_Painting_Birds",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2036126889,
+          "condition": "Simulate XRSimpleInteractable Select and Release followed by Hover Exit to invoke all configured UnityEvents on MonoBehaviour 2036126892 (exact settings from scene meta). This covers: m_LastSelectExited -> GameObject(fileID 1662261132).SetActive(false), m_HoverExited -> SetActive(false), and m_LastHoverExited -> SetActive(false).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1741150832,
+          "condition": "MonoBehaviour fileID 1741150834 (m_Script guid 60523e0647cc6ab43acc73cb266a32a7) on Hook is XRSocketInteractor; the scene meta component is the exact settings of the attached script. The Hook has a BoxCollider (fileID 1741150835, isTrigger=1). Because m_StartingSelectedInteractable is set to fileID 2036126892, simulate removing it from the socket to invoke SelectExited (m_SelectExited has no persistent m_Calls but must be exercised).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1741150832,
+          "condition": "Simulate HoverEntered on XRSocketInteractor (MonoBehaviour fileID 1741150834) by moving a valid interactable into the Hook's trigger volume. This invokes UnityEvent m_HoverEntered whose m_Calls toggle GameObject(fileID 1662261132).SetActive(true). The scene meta settings are the exact configuration of the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1741150832,
+          "condition": "Simulate HoverExited on XRSocketInteractor (MonoBehaviour fileID 1741150834) by moving the interactable out of the Hook's trigger volume. This invokes UnityEvent m_HoverExited whose m_Calls toggle GameObject(fileID 1662261132).SetActive(false).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1741150832,
+          "condition": "Simulate SelectEntered on XRSocketInteractor (MonoBehaviour fileID 1741150834) by inserting an interactable (e.g., fileID 2036126892) into the socket after hover. m_SelectEntered has no persistent m_Calls but should be fired for coverage. The scene meta MonoBehaviour component is the exact settings of the script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2011599622,
+          "condition": "Hook (1) has BoxCollider (fileID 2011599625, isTrigger=1) and an XRSocketInteractor MonoBehaviour (fileID 2011599624, m_Script guid 60523e0647cc6ab43acc73cb266a32a7). The scene meta MonoBehaviour component is the exact settings of the attached script. m_StartingSelectedInteractable is set to fileID 1796498875. Simulate removing this starting object from the socket to fire SelectExited (m_SelectExited has no persistent m_Calls but must be exercised for coverage).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2011599622,
+          "condition": "Simulate XRSocketInteractor HoverEntered on MonoBehaviour fileID 2011599624 by moving a valid interactable into Hook (1)'s trigger volume. This should invoke m_HoverEntered UnityEvent which calls GameObject(fileID 1662261132).SetActive(true). The scene meta settings are the exact configuration of the script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2011599622,
+          "condition": "Simulate XRSocketInteractor HoverExited on MonoBehaviour fileID 2011599624 by moving the interactable out of Hook (1)'s trigger volume. This should invoke m_HoverExited UnityEvent which calls GameObject(fileID 1662261132).SetActive(false).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2011599622,
+          "condition": "After hover, simulate XRSocketInteractor SelectEntered on MonoBehaviour fileID 2011599624 by inserting a valid interactable into the socket (e.g., the one previously removed). m_SelectEntered has no persistent m_Calls but should be invoked for code coverage. The scene meta MonoBehaviour component is the exact settings of the script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1373602016,
+          "condition": "Hook (2) has a BoxCollider (fileID 1373602019, isTrigger=1) and an XRSocketInteractor MonoBehaviour (fileID 1373602018, m_Script guid 60523e0647cc6ab43acc73cb266a32a7). The scene meta MonoBehaviour component is the exact settings of the attached script. Simulate XRSocketInteractor HoverEntered to invoke its UnityEvent m_HoverEntered which calls GameObject(fileID 1662261132).SetActive(true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1373602016,
+          "condition": "Simulate XRSocketInteractor HoverExited on the same MonoBehaviour (fileID 1373602018). This invokes UnityEvent m_HoverExited which calls GameObject(fileID 1662261132).SetActive(false). No m_Calls are configured on Select events and m_StartingSelectedInteractable is null, so only Hover events need to be triggered for coverage per scene meta.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1360479736,
+          "condition": "Hook (3) has a BoxCollider (fileID 1360479739, isTrigger=1) and an XRSocketInteractor MonoBehaviour (fileID 1360479738, m_Script guid 60523e0647cc6ab43acc73cb266a32a7). The scene meta MonoBehaviour component is the exact settings of the attached script. Simulate XRSocketInteractor HoverEntered to invoke its UnityEvent m_HoverEntered which calls GameObject(fileID 1662261132).SetActive(true).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hook (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1360479736,
+          "condition": "Simulate XRSocketInteractor HoverExited on MonoBehaviour fileID 1360479738. This invokes UnityEvent m_HoverExited which calls GameObject(fileID 1662261132).SetActive(false). m_SelectEntered/m_SelectExited have no m_Calls and m_StartingSelectedInteractable is null, so only Hover events require manual triggering.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_B_BrownRed",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764779871,
+          "condition": "Book_B_BrownRed is a PrefabInstance (m_PrefabInstance fileID 764779871) under --INTERACTABLE-- and Has_Rigidbody=true. MonoBehaviour component fileID 764779876 (m_Script guid 0ad34abafad169848a38072baa96cdb2) is attached on this object and its scene meta settings are the exact settings of the attached script. Its UnityEvent m_HoverEntered has a PersistentCall to GameObject(fileID 727552880).SetActive(true). Manually simulate HoverEntered to verify the event is invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_B_BrownRed",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764779871,
+          "condition": "MonoBehaviour fileID 764779876 UnityEvent m_HoverExited PersistentCall toggles GameObject(fileID 727552880).SetActive(false). Manually simulate HoverExited to verify the event is invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_B_BrownRed",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764779871,
+          "condition": "MonoBehaviour fileID 764779876 UnityEvent m_LastHoverExited PersistentCall toggles GameObject(fileID 727552880).SetActive(false). Simulate the final hover exit (no remaining interactors) to verify this event is invoked.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_B_BrownRed",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764779871,
+          "condition": "MonoBehaviour fileID 764779876 UnityEvent m_LastSelectExited PersistentCall toggles GameObject(fileID 727552880).SetActive(false). Simulate a full grab-and-release cycle so that the last select exit fires.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_B_BrownRed",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764779871,
+          "condition": "PlayQuickSound (provided source code) is attached to Book_B_BrownRed and exposes a public no-arg method Play() that should be triggered to cover audio playback code paths (pitch variance and PlayOneShot). Please provide the MonoBehaviour component fileID (and confirm the AudioSource component presence) so we can directly invoke PlayQuickSound.Play() via methodCallUnits.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Gray",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1748878103,
+          "condition": "Book_C_Gray is a PrefabInstance (m_PrefabInstance fileID 1748878103) under --INTERACTABLE-- with Has_Rigidbody=true. MonoBehaviour component fileID 1748878108 (m_Script guid 0ad34abafad169848a38072baa96cdb2 from XR Interaction Toolkit) is attached to this object, and the scene meta MonoBehaviour settings are the exact configuration of the attached script. UnityEvent m_HoverEntered has a PersistentCall to GameObject(fileID 727552880).SetActive(true). Simulate HoverEntered to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Gray",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1748878103,
+          "condition": "MonoBehaviour fileID 1748878108 UnityEvent m_HoverExited has a PersistentCall to GameObject(fileID 727552880).SetActive(false). Simulate HoverExited to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Gray",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1748878103,
+          "condition": "MonoBehaviour fileID 1748878108 UnityEvent m_LastHoverExited has a PersistentCall to GameObject(fileID 727552880).SetActive(false). Simulate the final hover exit (no remaining interactors) to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Gray",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1748878103,
+          "condition": "MonoBehaviour fileID 1748878108 UnityEvent m_LastSelectExited has a PersistentCall to GameObject(fileID 727552880).SetActive(false). Simulate a complete select cycle ending with the last select exit to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Green",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 120854636,
+          "condition": "Book_C_Green is a PrefabInstance (m_PrefabInstance fileID 120854636) under --INTERACTABLE-- with Has_Rigidbody=true. MonoBehaviour component fileID 1369631698 (m_Script guid 0ad34abafad169848a38072baa96cdb2 from XR Interaction Toolkit) is attached and its scene meta settings are the exact configuration of the attached script. UnityEvent m_HoverEntered has a PersistentCall to GameObject(fileID 727552880).SetActive(true). Simulate HoverEntered to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Green",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 120854636,
+          "condition": "MonoBehaviour fileID 1369631698 UnityEvent m_HoverExited has a PersistentCall to GameObject(fileID 727552880).SetActive(false). Simulate HoverExited to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Green",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 120854636,
+          "condition": "MonoBehaviour fileID 1369631698 UnityEvent m_LastHoverExited has a PersistentCall to GameObject(fileID 727552880).SetActive(false). Simulate the final hover exit (no remaining interactors) to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Book_C_Green",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 120854636,
+          "condition": "MonoBehaviour fileID 1369631698 UnityEvent m_LastSelectExited has a PersistentCall to GameObject(fileID 727552880).SetActive(false). Simulate a complete select (grab) cycle ending with the last select exit to invoke this Interactable event.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Remote",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1860081453,
+          "condition": "Remote is a PrefabInstance (m_PrefabInstance fileID 1860081453) under --INTERACTABLE-- with Has_Rigidbody=true. MonoBehaviour fileID 1860081456 (m_Script guid 0ad34abafad169848a38072baa96cdb2 from XR Interaction Toolkit) is attached and its scene meta settings are the exact configuration of the attached script. Interactable UnityEvent m_Activated has PersistentCalls: PlayQuickSound.Play on MonoBehaviour fileID 1860081458; Renderer(fileID 501597163).set_material to Material(guid 0c589e185d0c76a48ac19e74ae0665c2); PlayVideo.TogglePlayPause on MonoBehaviour fileID 725697786. Simulate the XR 'Activate' to invoke all m_Activated calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1860081458,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 725697786,
+                  "method_name": "TogglePlayPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Remote",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1860081453,
+          "condition": "MonoBehaviour fileID 1860081456 Interactable UnityEvent m_Deactivated has a PersistentCall: Renderer(fileID 501597163).set_material to Material(guid 8313b7f851584554aa895abc637c721f). Simulate the XR 'Deactivate' to invoke this m_Deactivated call and revert material. The MonoBehaviour settings in the scene file are the exact configuration of the attached script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Phone_Blue",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1633495854,
+          "condition": "Phone_Blue is a PrefabInstance (m_PrefabInstance fileID 1633495854) under --INTERACTABLE-- with Has_Rigidbody=true. MonoBehaviour fileID 1633495857 is XRGrabInteractable (m_Script guid 0ad34abafad169848a38072baa96cdb2). The scene MonoBehaviour component provided is the exact settings of the attached script. Interactable UnityEvent m_Activated has a PersistentCall to AudioSource (fileID 1663860623) method Play(). Other Interactable events are empty. Trigger the Activate to invoke the configured m_Calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1663860623,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Phone_White",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1663860617,
+          "condition": "Phone_White is a PrefabInstance (m_PrefabInstance fileID 1663860617) under --INTERACTABLE-- with Has_Rigidbody=true. MonoBehaviour fileID 1663860620 is XRGrabInteractable (m_Script guid 0ad34abafad169848a38072baa96cdb2), and the provided scene MonoBehaviour component is the exact settings of the attached script. Its Interactable UnityEvent m_Activated has one PersistentCall targeting AudioSource (fileID 1633495860) method Play(). Other Interactable events contain no m_Calls. Trigger XR 'Activate' to invoke the configured call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1633495860,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Lightsource_Flashlight_Yellow",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1356593842,
+          "condition": "Lightsource_Flashlight_Yellow is a PrefabInstance (m_PrefabInstance fileID 1356593842) under --INTERACTABLE-- with Has_Rigidbody=true. MonoBehaviour fileID 1356593848 is XRGrabInteractable (m_Script guid 0ad34abafad169848a38072baa96cdb2), and the provided scene MonoBehaviour component is the exact settings of the attached script. Its Interactable UnityEvent m_Activated has two PersistentCalls: PlayQuickSound (MonoBehaviour fileID 1356593853) method Play(); ToggleLight (MonoBehaviour fileID 1090992649) method Flip(). Other Interactable events contain no m_Calls. Trigger XR 'Activate' to invoke both configured calls and validate sound playback and light toggle.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1356593853,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "Flip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Container_WateringCan_Blue",
+          "source_object_fileID": 817806710,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 180,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Container_WateringCan_Blue",
+          "source_object_fileID": 817806710,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": -180,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Container_WateringCan_Blue",
+          "source_object_fileID": 817806710,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 3.0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.05
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Container_WateringCan_Blue",
+          "source_object_fileID": 817806710,
+          "delta_position": {
+            "x": 0.01,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "StartingPoint",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 628911204,
+          "condition": "MonoBehaviour (fileID 628911205; guid acbdb9f0a1fd00f44bf08cc79a3c9bfb) on StartingPoint is TeleportAnchorWithFade, and this scene MonoBehaviour component is its exact configuration. It inherits TeleportationAnchor and overrides OnSelectEntered/Exited/Activated/Deactivated to run a fade sequence when teleportTrigger matches. Current scene setting shows m_TeleportTrigger = 0 (OnSelectEntered), m_TeleportAnchorTransform = 628911206, and m_InteractionManager = 1487704658. To cover TeleportAnchorWithFade, we need to simulate an XR selection entering this anchor so that FadeSequence runs (calls FadeCanvas.QuickFadeIn -> waits -> base.OnSelectEntered -> FadeCanvas.QuickFadeOut). Requires a FadeCanvas instance in scene and an XRBaseInteractor to drive SelectEntered.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "StartingPoint",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 628911204,
+          "condition": "To cover the OnSelectExited branch in TeleportAnchorWithFade, set m_TeleportTrigger to OnSelectExited (enum value 1) for the same MonoBehaviour (fileID 628911205) or provide another StartingPoint variant configured with value 1. Then simulate XR selection exit to invoke FadeSequence(base.OnSelectExited, args).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "StartingPoint",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 628911204,
+          "condition": "To cover the OnActivated branch in TeleportAnchorWithFade, set m_TeleportTrigger to OnActivated (enum value 2) on MonoBehaviour fileID 628911205 (or supply another instance with that value). Then simulate XR activation to invoke FadeSequence(base.OnActivated, args).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "StartingPoint",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 628911204,
+          "condition": "To cover the OnDeactivated branch in TeleportAnchorWithFade, set m_TeleportTrigger to OnDeactivated (enum value 3) on MonoBehaviour fileID 628911205 (or supply another instance with that value). Then simulate XR deactivation to invoke FadeSequence(base.OnDeactivated, args).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade must be attached to Fireplace_Traditional and its teleportTrigger set to OnSelectEntered. Simulate XR Select Entered on the anchor (requires a Collider/XR Interactable present). Expected: FadeCanvas.QuickFadeIn() → wait for fadeCanvas.CurrentRoutine → base.OnSelectEntered(args) (teleport) → FadeCanvas.QuickFadeOut(). The MonoBehaviour component fileID for TeleportAnchorWithFade is needed to directly call public no-arg methods (none exposed in code) and to list any m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade.teleportTrigger set to OnSelectExited. Simulate XR Select Exited on the anchor (requires Collider/XR Interactable). Expected: FadeCanvas.QuickFadeIn() → wait → base.OnSelectExited(args) → FadeCanvas.QuickFadeOut(). Need TeleportAnchorWithFade MonoBehaviour fileID and any configured m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade.teleportTrigger set to OnActivated. Simulate XR Activated on the anchor (e.g., activation input while hovered/selected). Expected: FadeCanvas.QuickFadeIn() → wait → base.OnActivated(args) → FadeCanvas.QuickFadeOut(). Need TeleportAnchorWithFade MonoBehaviour fileID and any configured m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "TeleportAnchorWithFade.teleportTrigger set to OnDeactivated. Simulate XR Deactivated on the anchor. Expected: FadeCanvas.QuickFadeIn() → wait → base.OnDeactivated(args) → FadeCanvas.QuickFadeOut(). Need TeleportAnchorWithFade MonoBehaviour fileID and any configured m_Calls.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1865680026,
+          "condition": "Objective: invoke PlayQuickSound.Play() to exercise randomized pitch and AudioSource.PlayOneShot path. Preconditions required by action policy: target must have a Collider or Rigidbody or EventTrigger, or the attached script inherits from UnityEngine.Events. Scene notes: Room_Modern is currently inactive (m_IsActive=0) and must be active to hear audio; an AudioSource with a valid AudioClip must exist (PlayQuickSound has [RequireComponent(typeof(AudioSource))]); OnValidate config (playOnAwake=false) is editor-time. Scene meta shows MonoBehaviour id 1865680029 (guid 474bcb49853aa07438625e644c072ee6) which corresponds to a URP data component (not PlayQuickSound). Another added component id 1865680030 exists in the prefab instance and is likely PlayQuickSound but its serialized block is not provided; please confirm. Expected behavior: PlayQuickSound.Play() sets audioSource.pitch to defaultPitch±randomPitchVariance, calls PlayOneShot(sound, volume), then restores pitch.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TV_FlatWallMounted",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 772053049,
+          "condition": "Goal: start video playback via the attached video controller. The scene shows MonoBehaviour id 725697786 on TV_FlatWallMounted with script guid 3d4642753971e264fbb20044fa231cd5 and fields {playAtStart: false, videoMaterial: (set), videoClips: (set)}. This MonoBehaviour block is the serialized settings for that script. Preconditions: the GameObject must have a Collider or EventTrigger (or explicit allowance) to satisfy Trigger action policy; object must be active; the assigned Material and VideoClip must be valid. Note: The provided source code snippet (URP UniversalAdditionalLightData) does not match this MonoBehaviour; please confirm method surface of guid 3d464275... (expected public no-arg method: Play). Expected: invoking Play begins playback on the assigned material using the first clip; if audio is present, it plays as well.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 725697786,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "--XR--",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1115321958,
+          "condition": "Pending component/script details. To create a valid manual trigger, --XR-- must have either: (a) a Collider or EventTrigger component, or (b) an attached MonoBehaviour exposing public no-arg methods and/or UnityEvent m_Calls (class inheriting from UnityEngine.Events). The provided scene extract shows only a Transform and Has_Rigidbody=false, so Grab/Transform are not allowed and a Trigger requires confirmation of Collider/EventTrigger or MonoBehaviour with UnityEvent methods. Please supply the MonoBehaviour component block (m_Script fileID/guid, public methods, and UnityEvent m_Calls) for --XR--, or details of its child objects (fileIDs 505562321, 1579370455, 1487704659, 817830252) if interactions are defined there.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Controller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 235308782,
+          "condition": "LeftHand Controller (fileID: 235308782) has a SphereCollider (isTrigger=1), enabling Trigger interactions. Its MonoBehaviour_0 id=235308790 is configured with script guid=4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress), binding action '<XRController>{LeftHand}/primaryButton'. The scene meta UnityEvent m_Calls map to ToggleRay methods: OnPress -> ToggleRay.ActivateRay on script fileID 172617727; OnRelease -> ToggleRay.DeactivateRay on script fileID 172617727. To cover these events without physical input, invoke the referenced public no-arg methods directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Controller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 235308782,
+          "condition": "Simulate release phase of OnButtonPress to invoke the configured OnRelease UnityEvent call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Controller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 474225658,
+          "condition": "RightHand Controller (fileID: 474225658) includes a SphereCollider (isTrigger=1), enabling Trigger interactions. MonoBehaviour_0 id=474225666 is configured with script guid=4a8d337e8bc7ac4498e0df29e7b8bd5e (OnButtonPress), binding action '<XRController>{RightHand}/primaryButton'. Scene meta UnityEvent m_Calls: OnPress -> ToggleRay(fileID=1287520551).ActivateRay(); OnRelease -> ToggleRay(fileID=1287520551).DeactivateRay(). This MonoBehaviour component matches the provided OnButtonPress script, and the serialized UnityEvents correspond to those methods. Trigger ActivateRay to simulate button press.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Controller",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 474225658,
+          "condition": "Simulate release phase of OnButtonPress to invoke the configured OnRelease UnityEvent call on the same ToggleRay component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LeftHand Ray Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 172617721,
+          "condition": "MonoBehaviour_0 (id: 172617727) on LeftHand Ray Controller uses script guid=cf14522d53cc1594991c164e785780dc (class ToggleRay). Serialized fields match the script: forceToggle=0, directInteractor fileID=235308789. This is the exact scene settings of the attached ToggleRay script. No UnityEvent m_Calls are present on this component. Preconditions for ActivateRay: directInteractor has no valid targets (TouchingObject()==false) OR forceToggle is set true in a separate run. Expected behavior: ActivateRay -> SwitchInteractors(true): rayInteractor.enabled=true, directInteractor.enabled=false; then DeactivateRay -> SwitchInteractors(false): rayInteractor.enabled=false, directInteractor.enabled=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 172617727,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "RightHand Ray Controller",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1287520545,
+          "condition": "MonoBehaviour_0 (id: 1287520551) on RightHand Ray Controller is configured with script guid=cf14522d53cc1594991c164e785780dc (class ToggleRay). Serialized fields match the script: forceToggle=0, directInteractor fileID=474225665. This confirms the scene MonoBehaviour settings correspond exactly to the provided ToggleRay script. Preconditions to cover both branches: Ensure directInteractor currently has no valid targets (TouchingObject()==false) so ActivateRay will switch on the ray (isSwitched=true, rayInteractor.enabled=true, directInteractor.enabled=false); then DeactivateRay will revert (isSwitched=false, rayInteractor.enabled=false, directInteractor.enabled=true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "ActivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1287520551,
+                  "method_name": "DeactivateRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor select enters TeleportationAnchor (TeleportAnchorWithFade) when teleportTrigger == OnSelectEntered. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnSelectEntered(args) -> FadeCanvas.QuickFadeOut. NOTE: Scene lists MonoBehaviour id 631718164 (guid 474bcb49853aa07438625e644c072ee6), which appears to be a render/light data component, not TeleportAnchorWithFade. Need the component/fileID of TeleportAnchorWithFade attached to Fireplace_Traditional (if any), and confirmation of a Collider/EventTrigger to legally trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor select exits TeleportationAnchor when teleportTrigger == OnSelectExited. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnSelectExited(args) -> FadeCanvas.QuickFadeOut. Requires TeleportAnchorWithFade component on Fireplace_Traditional and proper XR Interaction setup.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor activates TeleportationAnchor when teleportTrigger == OnActivated. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnActivated(args) -> FadeCanvas.QuickFadeOut.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor deactivates TeleportationAnchor when teleportTrigger == OnDeactivated. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnDeactivated(args) -> FadeCanvas.QuickFadeOut.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Next",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2014845324,
+          "condition": "XR Interaction Toolkit XRSimpleInteractable (MonoBehaviour id 2014845326, guid 8a35f6cfbfba9b548aaa00d52cfe8a50) on GameObject 'Next' has BoxCollider and defines m_SelectEntered.m_PersistentCalls.m_Calls to invoke PlaySoundsFromList.NextClip on component fileID 1734837741. Trigger the SelectEntered event path to execute this call.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Notebook_Stripes",
+          "source_object_fileID": 2005587420,
+          "target_position": {
+            "x": -1.9677,
+            "y": -0.75,
+            "z": 1.25
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Notebook_Stripes",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2005587420,
+          "condition": "MonoBehaviour id 2005587425 (guid 0ad34abafad169848a38072baa96cdb2) on Notebook_Stripes is an XR Interaction Toolkit Interactable configured exactly as in the scene meta. Its m_SelectEntered UnityEvent has one persistent call to RotateCover.StartRotation (no parameters). Grabbing/selecting the object should invoke m_SelectEntered and thus call RotateCover.StartRotation. Note: m_Target fileID is 0 in the scene meta, implying the RotateCover component is expected on the same GameObject instance.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1829510900,
+          "condition": "MonoBehaviour ToggleParticle attached (MonoBehaviour fileID 5377429380903153772, guid ad0a2892d8b703341afc39a5cf89bef8) on GameObject 'Particle_Flame' (PrefabInstance fileID 1829510900). ParticleSystem.playOnAwake=false per scene meta. Begin by forcing Stop to ensure a known initial state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1829510900,
+          "condition": "Toggle the particle system from Stopped -> Playing to cover ToggleParticleSystem branch when not playing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "ToggleParticleSystem",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1829510900,
+          "condition": "Explicitly call Play while already playing to exercise Play() path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1829510900,
+          "condition": "Toggle the particle system from Playing -> Stopped to cover ToggleParticleSystem branch when playing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "ToggleParticleSystem",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1856374999,
+          "condition": "Scene object 1856374999 (Particle_Flame) uses MonoBehaviour fileID 5377429380903153772 (guid ad0a2892d8b703341afc39a5cf89bef8) implementing ToggleParticle. ParticleSystem (fileID 5377429380903153774) has playOnAwake=false (also enforced by OnValidate). Start playback explicitly to establish 'isPlaying=true' state.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1856374999,
+          "condition": "With isPlaying=true, ToggleParticle.ToggleParticleSystem() should take the Stop branch to stop the particle system.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "ToggleParticleSystem",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1856374999,
+          "condition": "With isPlaying=false after previous step, ToggleParticle.ToggleParticleSystem() should take the Play branch to start the particle system.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "ToggleParticleSystem",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Flame",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1856374999,
+          "condition": "Explicitly call Stop() to verify direct stop path of ToggleParticle.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 5377429380903153772,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Water",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1478742627,
+          "condition": "MonoBehaviour component id=1478742632 (script guid=0ab6d3e7b225a7342a0d702b6151692b) has fields: sound(AudioClip guid=2750d8f1e9746416a82993326371d29f), playOnStart=false, volume=1. Since playOnStart is false, manually trigger playback. Note: Provided source code is UnityEngine.UI.Image and does not match this component; exact public no-arg methods are unknown.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1478742632,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Particle_Water",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1478742627,
+          "condition": "After initiating playback, stop it to cover stop-path behavior. Assumes a public no-arg Stop method on the same MonoBehaviour. No Rigidbody present; relying on direct method trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1478742632,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Phone_Blue",
+          "source_object_fileID": 1633495854,
+          "target_position": {
+            "x": -3.0,
+            "y": -0.5,
+            "z": 2.5
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Phone_Blue",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1633495854,
+          "condition": "MonoBehaviour component fileID 1633495861 on Phone_Blue uses script guid 036aa4c6ab8e55144a03e8aefc6e9cca (PhoneRingScreen) with serialized field calling_material set to guid 8669b00696550574cb2f5a0480bbc344. This script toggles the Renderer material based on AudioSource.isPlaying in Update. To cover the 'ringing' branch (material = calling_material), the attached AudioSource must be playing (e.g., playOnAwake enabled or an external event starts it). To cover the 'idle' branch (material = original_material), the AudioSource must not be playing. No public no-arg methods are exposed by PhoneRingScreen; thus no direct method calls are available.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Phone_Blue",
+          "source_object_fileID": 1633495854,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.0
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Phone_White",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1663860617,
+          "condition": "Activate the XR Interactable (MonoBehaviour id 1663860620, guid 0ad34abafad169848a38072baa96cdb2) to invoke its m_Activated UnityEvent. Expect the persistent call to play the attached AudioSource (fileID 1633495860).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1633495860,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Play/Pause",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 863850739,
+          "condition": "Invoke XR Interaction Toolkit XRSimpleInteractable (MonoBehaviour fileID 863850741, guid 8a35f6cfbfba9b548aaa00d52cfe8a50) m_SelectEntered event. This object has an enabled BoxCollider (fileID 863850742). The persistent call on m_SelectEntered targets PlaySoundsFromList.PlayPause (component fileID 1734837741) with no parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PlayPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Play/Pause",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 863850739,
+          "condition": "Repeat selection to validate toggle behavior and idempotency: trigger the same XRSimpleInteractable m_SelectEntered persistent call to PlaySoundsFromList.PlayPause (component fileID 1734837741).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PlayPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2061883183,
+          "condition": "Invoke ToggleOnOff.Toggle on MonoBehaviour id 2061883187 (script guid b61f5fbd6df31704b851371ab42625b2) attached to GameObject fileID 2061883183. Initial state m_IsActive=0; expect SetActive(true). No m_Calls (UnityEvents) are configured for this component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2061883187,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Point Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2061883183,
+          "condition": "Second invocation to verify state toggles back. After previous step, GameObject is active; calling Toggle should SetActive(false). Component: MonoBehaviour id 2061883187, script guid b61f5fbd6df31704b851371ab42625b2 (ToggleOnOff).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2061883187,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ResetScenePanel",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 943515638,
+          "condition": "GameObject 'ResetScenePanel' (fileID: 943515638) contains MonoBehaviour id 943515640 with m_Script guid 403efda511d335c4a865b0a1f33cc9e0, which matches the provided LoadScene script. The GameObject is inactive (m_IsActive: 0), but the component is enabled (m_Enabled: 1). No UnityEvent m_Calls are configured in the scene meta. Trigger the no-parameter public method to validate scene reload behavior: SceneManager.LoadScene(SceneManager.GetActiveScene().name).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943515640,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1865680026,
+          "condition": "Target GameObject 'Room_Modern' (PrefabInstance fileID: 1865680026). Assumed MonoBehaviour fileID 1865680030 is PlayQuickSound (from provided source). Ensure an AudioSource component exists (RequireComponent) and has a valid AudioClip assigned to 'sound'. OnValidate sets AudioSource.playOnAwake = false. Triggering Play() should: set audioSource.pitch to 1.0 +/- randomPitchVariance, call PlayOneShot(sound, volume), then restore pitch to 1.0. Note: The other MonoBehaviour (fileID 1865680029, guid 474bcb49853aa07438625e644c072ee6) is not PlayQuickSound and is not invoked. Also ensure Room_Modern has a Collider or EventTrigger (or provide allowance to bypass collider requirement) to satisfy Trigger action prerequisites.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "Scene: My VR Room.unity. GameObject 'Spot Light' (fileID: 1090992645) has MonoBehaviour (fileID: 1090992649) mapped to script GUID 376688c5b82056e4da4c2b159887a7dc (ToggleLight). Serialized isOn=0, so at Start the Light component should be disabled. Trigger TurnOn() to enable the Light and set isOn=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "After TurnOn(), Light should be enabled and isOn=true. Trigger TurnOff() to verify it disables the Light and sets isOn=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOff",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1090992645,
+          "condition": "With isOn currently false after TurnOff(), trigger Flip() to toggle the state back to true and enable the Light. This covers the Flip() branch.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "Flip",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1887208562,
+          "condition": "MonoBehaviour id 1887208566 in scene (m_Script guid b61f5fbd6df31704b851371ab42625b2 -> ToggleOnOff) is attached to GameObject 'Spot Light' (fileID 1887208562). The GameObject starts inactive (m_IsActive: 0). No UnityEvent m_Calls are defined. Triggering Toggle() should set activeSelf to true (activate the GameObject).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1887208566,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1887208562,
+          "condition": "Call Toggle() again on the same MonoBehaviour (id 1887208566) to verify it toggles back to inactive (activeSelf false). Confirms idempotent toggle behavior and full coverage of the public no-arg method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1887208566,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 127885129,
+          "condition": "Plane (1) has MeshCollider(id=127885132) set as isTrigger=1 and MonoBehaviour OtherLaneController(id=127885130, guid=9cde80f2fe6fe6e47b57eb962721c06f) with serialized fields aparicionBola(fileID:165335085) and bolaPrefab(guid:1be75124d3e50ad4997a90e0d8d1fe74, fileID:424594858964415916). OnTriggerEnter(Collider) is implemented as IEnumerator (waits 5s), then if other.tag=='Ball' and other has BallSoundController with fields peso(float) and pesoEnKgs(int), it destroys the entering ball and instantiates bolaPrefab at aparicionBola, sets peso/pesoEnKgs via BallSoundController.changePeso(), and applies Rigidbody.AddForce. This physics event should trigger automatically when the Ball enters the trigger due to the Transform action.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 1620417930,
+          "condition": "Physics trigger enter with a Rigidbody collider tagged 'Ball' entering Plane (2)'s MeshCollider trigger (id 1620417933, isTrigger=1, convex=1). This exercises OtherLaneController (MonoBehaviour id 1620417931, script guid 9cde80f2fe6fe6e47b57eb962721c06f) which waits 5s, reads BallSoundController.peso and pesoEnKgs from the incoming ball, destroys that ball, then instantiates bolaPrefab (guid 1be75124d3e50ad4997a90e0d8d1fe74, fileID 424594858964415916) at aparicionBola (Transform fileID 165335085), calls BallSoundController.changePeso() on the prefab instance, and applies an impulse via Rigidbody.AddForce. Note: Plane (2) has no Rigidbody so the incoming object must have a Rigidbody. This MonoBehaviour component matches the provided script settings and fields in the scene.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 1620417930,
+          "condition": "Physics trigger enter with a Rigidbody collider NOT tagged 'Ball' (e.g., 'Untagged') entering Plane (2)'s MeshCollider trigger (id 1620417933). This should still invoke OtherLaneController.OnTriggerEnter but, after the 5s wait, the tag check fails so no destruction/instantiation occurs. Verifies non-Ball path and that no calls to GeneraBola, BallSoundController.changePeso, or Rigidbody.AddForce are made.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 385680589,
+          "condition": "Enable the on-ball Canvas to face the main camera by invoking Mirar.Mira() (MonoBehaviour guid: 8817b2a8c34ba5d4d941beaf47d0be6f). Expected: canvas.enabled = true; LateUpdate continues to face Camera.main.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1390747723538045059,
+                  "method_name": "Mira",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "PosAparicionBola",
+          "source_object_fileID": 385680589,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -3.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 385680589,
+          "condition": "Re-apply weight and label update by invoking BallSoundController.changePeso() (MonoBehaviour guid: 8fcde7f4195eca944bfe1e2addf5338a). Expected: Rigidbody.mass = peso (0.7) and textoPeso shows '7KG'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1570587691112136627,
+                  "method_name": "changePeso",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "PosAparicionBola",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 385680589,
+          "condition": "Disable the on-ball Canvas by invoking Mirar.Para() (MonoBehaviour guid: 8817b2a8c34ba5d4d941beaf47d0be6f). Expected: canvas.enabled = false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1390747723538045059,
+                  "method_name": "Para",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

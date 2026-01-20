@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 1472468207,
+          "condition": "MonoBehaviour_0 on this object matches Fire.cs (script guid 1729fd01c90a64d5b8037e1eef0d000d; component fileID 2592690533154406537). No UnityEvent m_Calls found and no public parameterless methods are exposed. To cover ignition code path: require >= onNeighborsThreshold (2) neighbors within maxNeighborDistance (4 in scene, prefab override shows 3.5) to be ON so this fire sets shouldTurnOn=true and begins timeToOn (currently 3 in scene, min/max 40/60). Note: Collider present, no Rigidbody; using GameObject fileID because PrefabInstance fileID was not provided.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1472468207,
+          "condition": "To cover suppression code path: repeatedly hit Fire.IWaterInteractable.WaterHit(Vector3) within maxHitInterval (2s) until accumulated currentHitTime >= totalHitTime (5s) to force isOn=false and UpdateFireState(true). No public parameterless method exists to call; this usually occurs via a water projectile collision. Ensure FireController.Instance exists to receive FireChanged callbacks. BoxCollider present, no EventTrigger, no UnityEvents.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

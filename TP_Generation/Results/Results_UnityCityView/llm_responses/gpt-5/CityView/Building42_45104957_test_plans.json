@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building42",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 45104957,
+          "condition": "EventTrigger (MonoBehaviour id: 45104963, script guid: d0b148fe25e99eb48b9724523833bab1) has a PersistentCall on eventID 4 (PointerClick) targeting MonoBehaviour id 45104959 (script guid: 10a92b1b4549024468ecbc96831def68, class Residential). On click, it invokes Residential.showlabel(), which updates Player/child[1] TextMeshPro to the first 20 chars of GetLabel() for Building42 ('Residential:Tora Apartment').",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 45104959,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building42",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 45104957,
+          "condition": "EventTrigger (MonoBehaviour id: 45104963, script guid: d0b148fe25e99eb48b9724523833bab1) has a PersistentCall on eventID 4 (PointerClick). Its m_Calls target MonoBehaviour id 45104959 (script guid: 10a92b1b4549024468ecbc96831def68, class Residential) and call showlabel(). Residential.Start() uses GameObject.Find(\"Player\") to cache Player.transform.GetChild(1) as label, so the Player (fileID: 94196998) must be active in scene. On click, showlabel() sets the Player child[1] TextMeshPro text to GetLabel().Substring(0,20) for Building42, i.e., the first 20 chars of \"Residential:Tora Apartment\".",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 45104959,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

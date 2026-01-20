@@ -1,0 +1,274 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 254571543,
+          "condition": "Increment socket count to 1 (below required numberOfElements=3). No UnityEvents should fire yet. Script: CheckElements (MonoBehaviour fileID=254571545, guid=3bc2acd74545a4f1aa9eba6d8f72a530).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 254571543,
+          "condition": "Increment socket count to 2 (still below required numberOfElements=3). No UnityEvents should fire yet. Script: CheckElements (MonoBehaviour fileID=254571545, guid=3bc2acd74545a4f1aa9eba6d8f72a530).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 254571543,
+          "condition": "Increment socket count to 3 which equals serialized numberOfElements=3. Expected: hideTaskDescription.Invoke() -> GameObject(fileID=1945735948).SetActive(false); showNextLevelUI.Invoke() -> GameObject(fileID=208823133).SetActive(true); unlock.Invoke() -> GameObject(fileID=157114427).SetActive(false). Script: CheckElements (MonoBehaviour fileID=254571545, guid=3bc2acd74545a4f1aa9eba6d8f72a530).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 36331052,
+          "condition": "Simulate XRSocketInteractor SelectEntered (MonoBehaviour fileID=680431495 on Box_02 prefab instance) which is configured in scene meta to call CheckElements.AddElementInSocket on parent object (fileID=254571545). This increments numberOfElementsInSocket from 0 to 1 (< required numberOfElements=3), so no UnityEvents should fire yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 36331052,
+          "condition": "Simulate XRSocketInteractor SelectExited (MonoBehaviour fileID=680431495 on Box_02 prefab instance) which is configured in scene meta to call CheckElements.AddElementInSocket on parent object (fileID=254571545). This increments numberOfElementsInSocket from 1 to 2 (< required 3), so no UnityEvents should fire yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 36331052,
+          "condition": "Simulate a second selection cycle on Box_02 to reach the required count. Calling CheckElements.AddElementInSocket (fileID=254571545) increments numberOfElementsInSocket from 2 to 3 which equals serialized numberOfElements=3. Expected as per scene meta on parent CheckElements: hideTaskDescription.Invoke() -> GameObject(fileID=1945735948).SetActive(false); showNextLevelUI.Invoke() -> GameObject(fileID=208823133).SetActive(true); unlock.Invoke() -> GameObject(fileID=157114427).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 1379860601,
+          "condition": "Simulate XRSocketInteractor HoverEntered on Box_02 (3) (MonoBehaviour fileID=1379860606, guid=60523e0647cc6ab43acc73cb266a32a7). Scene meta m_Calls: set Renderer.enabled=false on renderer fileID=1379860609.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1379860609,
+                  "method_name": "set_enabled",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1379860601,
+          "condition": "Simulate XRSocketInteractor SelectEntered on Box_02 (3) (MonoBehaviour fileID=1379860606). Scene meta m_Calls: invoke CheckElements.AddElementInSocket on parent object (fileID=254571545, guid=3bc2acd74545a4f1aa9eba6d8f72a530). This increments numberOfElementsInSocket from 0 to 1 (< required numberOfElements=3); no UnityEvents should fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1379860601,
+          "condition": "Simulate XRSocketInteractor SelectExited on Box_02 (3) (MonoBehaviour fileID=1379860606). Scene meta m_Calls: invoke CheckElements.AddElementInSocket on parent (fileID=254571545). This increments numberOfElementsInSocket from 1 to 2 (< 3); no UnityEvents should fire.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 1379860601,
+          "condition": "Simulate a second selection cycle (e.g., SelectEntered) on Box_02 (3) to reach threshold. Calls CheckElements.AddElementInSocket (fileID=254571545), incrementing numberOfElementsInSocket from 2 to 3 == numberOfElements. Expected: parent CheckElements invokes UnityEvents configured in scene meta: hideTaskDescription -> GameObject(fileID=1945735948).SetActive(false); showNextLevelUI -> GameObject(fileID=208823133).SetActive(true); unlock -> GameObject(fileID=157114427).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.15,
+          "source_object_fileID": 1940504553,
+          "condition": "XRSocketInteractor HoverEntered on Box_02 (4). MonoBehaviour fileID=1940504558 (guid=60523e0647cc6ab43acc73cb266a32a7). Scene meta m_Calls sets Renderer.enabled=false on fileID=1940504561.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1940504561,
+                  "method_name": "set_enabled",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1940504553,
+          "condition": "XRSocketInteractor SelectEntered on Box_02 (4). Scene meta m_Calls invokes CheckElements.AddElementInSocket on parent (MonoBehaviour fileID=254571545, guid=3bc2acd74545a4f1aa9eba6d8f72a530). This increments numberOfElementsInSocket from 0 to 1 (< numberOfElements=3).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1940504553,
+          "condition": "XRSocketInteractor SelectExited on Box_02 (4). Scene meta m_Calls invokes CheckElements.AddElementInSocket on parent (fileID=254571545). This increments numberOfElementsInSocket from 1 to 2 (< 3).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 1940504553,
+          "condition": "Second selection cycle to reach threshold: invoke CheckElements.AddElementInSocket (fileID=254571545) again, moving numberOfElementsInSocket from 2 to 3 == serialized numberOfElements. Expected automatic UnityEvents on parent: hideTaskDescription -> GameObject(fileID=1945735948).SetActive(false); showNextLevelUI -> GameObject(fileID=208823133).SetActive(true); unlock -> GameObject(fileID=157114427).SetActive(false).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

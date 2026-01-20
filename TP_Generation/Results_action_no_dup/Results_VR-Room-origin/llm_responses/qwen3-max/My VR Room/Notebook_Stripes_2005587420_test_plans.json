@@ -1,0 +1,49 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Notebook_Stripes",
+          "source_object_fileID": 2005587420,
+          "target_position": {
+            "x": -2.0677,
+            "y": -0.6,
+            "z": 1.15
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Notebook_Stripes",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2005587420,
+          "condition": "This action ensures the XR Interaction Toolkit Interactable Event (m_SelectEntered) on MonoBehaviour id 2005587425 (script guid 0ad34abafad169848a38072baa96cdb2; XRGrabInteractable) can be considered triggered even if the automatic SelectEnter from the Grab does not fire in a test harness. Scene meta shows m_SelectEntered.m_PersistentCalls contains a call to RotateCover.StartRotation (RotateCover, Assembly-CSharp), but m_Target has fileID 0 in the scene data; we need the actual MonoBehaviour fileID of the RotateCover component to directly invoke it if required. The provided MonoBehaviour component (id 2005587425) is the exact XRGrabInteractable settings attached to game object 'Notebook_Stripes' (PrefabInstance fileID 2005587420).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Notebook_Stripes",
+          "source_object_fileID": 2005587420,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        }
+      ]
+    }
+  ]
+}

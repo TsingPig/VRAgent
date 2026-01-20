@@ -1,0 +1,157 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Gun",
+          "source_object_fileID": 299703487714392757,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.3
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.7,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Simulate XRGrabInteractable.m_Activated (MonoBehaviour id 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2) which has m_Calls to Gun.TriggerPulled (param) and Gun.Shoot (no param). Manually invoke Gun.Shoot on Gun MonoBehaviour (id 8183513503680063775, guid d01186f01818ef24ead588d87fd2fea5). After ~1/fireRate (≈0.667s), when shootState returns to Ready, invoke Gun.Reload to test reloading path (text shows 'Reloading', AudioManager.Play('Reload')).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Validate that after reloadTime (2.5s), Gun returns to Ready with ammunition reset (ammunition=10 per scene config). Then shoot again to confirm readiness. This mirrors XRGrabInteractable.m_Activated.m_Calls to Gun.Shoot.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Gun",
+          "source_object_fileID": 299703487714392757,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.3
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Gun",
+          "source_object_fileID": 299703487714392757,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.7,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Wait >= 1/fireRate (~0.667s) so Shoot can be called again after Shooting state returns to Ready. This simulates XRGrabInteractable.m_Activated (MonoBehaviour id 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2) which calls Gun.Shoot. Each Shoot instantiates 'Laser' prefab (GameObject id 6845118643277486568) at GunPov and sets its Rigidbody velocity.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Manually invoke Reload while Ready to test Reloading state (text shows 'Reloading', AudioManager.Play('Reload')). After reloadTime=2.5s, remainingAmmunition resets to scene config (10) and state returns to Ready, then Shoot once to validate.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

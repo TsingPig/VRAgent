@@ -1,0 +1,65 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 283832887,
+          "condition": "MonoBehaviour_0 (id: 283832888) on GameCondition uses script guid d8624f87f98aa484bb7925103f5d458e (fileID:11500000, type:3), which matches the provided WinLose MonoBehaviour. Serialized config: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. No m_Calls present in scene meta; thus events must be triggered manually. GameObject has no Rigidbody/Collider/EventTrigger, but Trigger is valid for public MonoBehaviour methods with no parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 283832887,
+          "condition": "MonoBehaviour_0 (id: 283832888, guid d8624f87f98aa484bb7925103f5d458e). Expected behavior: LoseUI.SetActive(true) when loselevel() is called.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 283832887,
+          "condition": "MonoBehaviour_0 (id: 283832888, guid d8624f87f98aa484bb7925103f5d458e). Restart() is a public no-arg method; currently empty, but should be invoked for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building61",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 449034031,
+          "condition": "Trigger EventTrigger (MonoBehaviour guid d0b148fe25e99eb48b9724523833bab1, id 449034035) eventID=4 (PointerClick) on Building61 PrefabInstance 449034031. Persistent call invokes Commercial.showlabel on MonoBehaviour id 449034033 (script guid a8e394fec5558d54daa16e3fcb3cc7d3). Expected effect: 'Player' -> child[1] TextMeshPro.text set to 'Commercial:Kaiseki R' (first 20 chars of 'Commercial:Kaiseki Restaurant'). Dependencies: A GameObject named 'Player' must exist with a child at index 1 having a TextMeshPro component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 449034033,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building61",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 449034031,
+          "condition": "Simulate PointerClick (EventTrigger guid d0b148fe25e99eb48b9724523833bab1, id 449034035, eventID=4) on Building61 to invoke Commercial.showlabel on MonoBehaviour id 449034033 (script guid a8e394fec5558d54daa16e3fcb3cc7d3). Expected: Player child[1] TextMeshPro.text set to first 20 chars of 'Commercial:Kaiseki Restaurant' => 'Commercial:Kaiseki R'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 449034033,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

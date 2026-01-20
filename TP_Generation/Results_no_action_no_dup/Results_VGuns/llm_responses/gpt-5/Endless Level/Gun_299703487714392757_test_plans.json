@@ -1,0 +1,170 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (MonoBehaviour fileID 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2) m_Activated event is configured to call Gun.TriggerPulled(ActivateEventArgs) then Gun.Shoot() on MonoBehaviour fileID 8183513503680063775 (guid d01186f01818ef24ead588d87fd2fea5). Fire rate is 1.5 shots/sec so cooldown is ~0.667s.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Second shot to validate fire-rate gating. XRGrabInteractable m_Activated persistent calls remain the same; ensure Time.time > nextShootTime before this trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (fileID 1135932914521357561) m_Deactivated event is configured to call Gun.TriggerReleased(DeactivateEventArgs) on fileID 8183513503680063775.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Manually invoke reload to test state change and UI/audio. Gun.reloadTime = 2.5 seconds. Should set text to 'Reloading', play 'Reload', and after duration reset remainingAmmunition to ammunition.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (fileID 1135932914521357561) m_SelectExited event is configured to call Gun.DroppedGun(SelectExitEventArgs) on fileID 8183513503680063775.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Gun",
+          "source_object_fileID": 299703487714392757,
+          "delta_position": {
+            "x": 0.2,
+            "y": 0.1,
+            "z": -0.15
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Trigger XRGrabInteractable m_Activated (MonoBehaviour fileID 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2). Scene persistent calls invoke Gun.TriggerPulled(ActivateEventArgs) and then Gun.Shoot() on MonoBehaviour fileID 8183513503680063775 (guid d01186f01818ef24ead588d87fd2fea5). Fire rate 1.5 shots/sec (~0.667s cooldown). This should also instantiate 'Laser' (prefab fileID 6845118643277486568) and set its Rigidbody velocity.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Second activation to validate fire-rate gating and multiple instantiations of 'Laser'. Relies on XRGrabInteractable m_Activated persistent calls as above; ensure Time.time > nextShootTime before this trigger.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Trigger XRGrabInteractable m_Deactivated (fileID 1135932914521357561) which is wired to call Gun.TriggerReleased(DeactivateEventArgs) on fileID 8183513503680063775.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Manually invoke reload to test state transition and UI/audio when gun is Ready. Gun.reloadTime = 2.5s; expect text 'Reloading', AudioManager.Play('Reload'), and after duration remainingAmmunition resets to ammunition.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Trigger XRGrabInteractable m_SelectExited (fileID 1135932914521357561) which is wired to call Gun.DroppedGun(SelectExitEventArgs) on fileID 8183513503680063775, resetting trigger state if dropped mid-use.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 6845118643277486568,
+          "condition": "Interact with the instantiated projectile prefab 'Laser' after Gun.Shoot to validate projectile lifecycle/collision. Note: Code expects a Rigidbody on 'Laser' (rb = GetComponent<Rigidbody>(); rb.velocity = ...), but provided prefab metadata lists Has_Rigidbody: False. Please confirm if 'Laser' has a Rigidbody and/or Collider so we can target appropriate interactions or simulate collisions.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

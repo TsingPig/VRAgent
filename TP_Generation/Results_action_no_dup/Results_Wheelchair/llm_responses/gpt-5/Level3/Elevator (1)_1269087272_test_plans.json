@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1269087272,
+          "condition": "Enter trigger: Simulate the Player (referenced by MonoBehaviour_0 'player' = fileID 7425022) moving into the Elevator (1) BoxCollider (id 265568267, m_IsTrigger=1) to invoke AttachToElevator.OnTriggerEnter. Scene MonoBehaviour id 265568265 uses script guid 077cb2d6a53b18f4ea7d76e72138fc77 (AttachToElevator) with the exact serialized field mapping. Note: Current code checks 'if (gameObject == player)' instead of 'if (other.gameObject == player)', so no parenting is expected to occur even when the player enters.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1269087272,
+          "condition": "Exit trigger: Simulate the Player (fileID 7425022) leaving the Elevator (1) BoxCollider (id 265568267) to invoke AttachToElevator.OnTriggerExit. Scene MonoBehaviour id 265568265 (script guid 077cb2d6a53b18f4ea7d76e72138fc77) is the exact component instance attached to Elevator (1). Note: Due to 'if (gameObject == player)' the unparenting will also not execute; expected no change in hierarchy.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

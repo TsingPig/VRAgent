@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building6",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 31730558,
+          "condition": "EventTrigger (fileID: 31730566, script guid d0b148fe25e99eb48b9724523833bab1) has m_Delegates[eventID=4 PointerClick] with m_Calls targeting MonoBehaviour fileID 31730560. MonoBehaviour fileID 31730560 uses script guid a8e394fec5558d54daa16e3fcb3cc7d3, which is the 'Commercial' script attached to Building6. Triggering this should invoke Commercial.showlabel(), updating Player/child[1] TextMeshPro with the first 20 chars of 'Commercial:Pokemon Shopping Center'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 31730560,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building6",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 31730558,
+          "condition": "Building6 has EventTrigger (Mono id 31730566, script guid d0b148fe25e99eb48b9724523833bab1) configured with m_Delegates[eventID=4 PointerClick] calling Commercial.showlabel() on MonoBehaviour id 31730560 (script guid a8e394fec5558d54daa16e3fcb3cc7d3). Commercial.Start() uses GameObject.Find(\"Player\") to cache Player's child[1] as label; Player (fileID 94196998) exists and is active with two children, so Start runs automatically and label will be valid. Triggering will set the label TextMeshPro text to the first 20 chars of \"Commercial:Pokemon Shopping Center\" -> \"Commercial:Pokemon S\".",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 31730560,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

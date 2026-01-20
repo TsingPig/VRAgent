@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1269087272,
+          "condition": "Physics trigger enter on BoxCollider (id: 265568267, isTrigger: true) of Elevator (1). Ensure a Rigidbody object assigned to 'player' (fileID: 7425022) intersects the trigger so Unity invokes AttachToElevator.OnTriggerEnter on MonoBehaviour id: 265568265 (Script GUID: 077cb2d6a53b18f4ea7d76e72138fc77). Note: The scene’s MonoBehaviour settings match the provided script (player = fileID 7425022). Given the code checks (gameObject == player), and 'player' is not Elevator (1), expect no SetParent to occur.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator (1)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1269087272,
+          "condition": "Physics trigger exit on BoxCollider (id: 265568267). Ensure the same Rigidbody 'player' (fileID: 7425022) exits the trigger so Unity invokes AttachToElevator.OnTriggerExit on MonoBehaviour id: 265568265 (Script GUID: 077cb2d6a53b18f4ea7d76e72138fc77). Due to (gameObject == player) check, expect no unparenting to occur.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

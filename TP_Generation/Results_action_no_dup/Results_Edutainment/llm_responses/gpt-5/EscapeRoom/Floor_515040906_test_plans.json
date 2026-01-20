@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Floor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 515040906,
+          "condition": "Simulate XRSocketInteractor.selectEntered on Floor to test IfPuzzle.ObjectSnapped. MonoBehaviour (fileID: 515040909, guid: a4fe0afa74eee4b4d9b3c22a64e1dc6b) is IfPuzzle with fields correctPiece: {fileID: 0} and linkedIfManager: {fileID: 0} (both currently unassigned). Precondition: Floor must have an XRSocketInteractor component (likely component fileID: 515040908) and both fields must be assigned. When an XRGrabInteractable whose transform.name equals correctPiece.name is snapped into the socket, IfPuzzle should invoke linkedIfManager.correctPiece().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Floor",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 515040906,
+          "condition": "Simulate XRSocketInteractor.selectExited on Floor to test IfPuzzle.ObjectRemoved. Precondition: Floor has XRSocketInteractor and linkedIfManager assigned in IfPuzzle (fileID: 515040909). When the previously snapped object is removed from the socket, IfPuzzle should invoke linkedIfManager.removedPiece().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

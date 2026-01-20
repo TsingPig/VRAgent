@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "AppButtonInside",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 166,
+          "condition": "Trigger public no-arg methods on GvrTooltip (MonoBehaviour id=950, script guid=7c52851ea0de74a228fa29a84de008ba) attached to GameObject 'AppButtonInside'. Serialized config: location=3 (AppButtonInside), text=fileID=1015, alwaysVisible=false. Automatic lifecycle events (Awake/Start) and GvrArmModel.Instance.OnArmModelUpdate may occur during play; this trigger explicitly calls public methods to verify logic paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 950,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

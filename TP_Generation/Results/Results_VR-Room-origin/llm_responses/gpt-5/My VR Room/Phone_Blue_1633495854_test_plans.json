@@ -1,0 +1,49 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Phone_Blue",
+          "source_object_fileID": 1633495854,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.1,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 30.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Phone_Blue",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1633495854,
+          "condition": "Scene mapping confirmation and ringing condition: The MonoBehaviour (id: 1633495861) on Phone_Blue uses m_Script guid 036aa4c6ab8e55144a03e8aefc6e9cca, which matches the provided PhoneRingScreen script. Serialized field calling_material references guid 8669b00696550574cb2f5a0480bbc344. PhoneRingScreen switches Renderer.material to calling_material while AudioSource.isPlaying is true, otherwise reverts to the original material. No UnityEvent m_Calls were found in the provided scene data for Phone_Blue, and PhoneRingScreen exposes no public no-arg methods, so there is no direct triggerable method here. To cover the 'isPlaying == true' branch, we need an external event (e.g., an AudioSource.Play invocation via another MonoBehaviour's public no-arg method or a UnityEvent wiring) or confirmation that the AudioSource has Play On Awake enabled.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Phone_Blue",
+          "source_object_fileID": 1633495854,
+          "target_position": {
+            "x": -3.3772945,
+            "y": 0.5,
+            "z": 2.0746963
+          }
+        }
+      ]
+    }
+  ]
+}

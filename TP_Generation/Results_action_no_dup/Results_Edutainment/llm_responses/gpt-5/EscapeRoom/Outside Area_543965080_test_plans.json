@@ -1,0 +1,36 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Outside Area",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 543965080,
+          "condition": "Insufficient data to validate interactability. The provided scene excerpt shows only a Transform component (fileID 543965081) on 'Outside Area' with no Collider, EventTrigger, Rigidbody, or MonoBehaviour listed. To select and invoke a valid event, please provide the MonoBehaviour components attached to 'Outside Area' (including their script fileIDs, GUIDs, and any UnityEvent m_Calls), or confirm presence of a Collider/EventTrigger. If events are defined on child objects, please share full component blocks for children with fileIDs 1907241307 and 1909180082 (or 1907241302 and 1909180081 as referenced).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1489944608,
+          "condition": "MonoBehaviour_0 (id: 1489944610) on 'Cube' uses script guid 4776ee613acabb5469b6e008e6cb6b12 (class Victory). BoxCollider (id: 1489944611) has m_IsTrigger=1, allowing Trigger interaction. Serialized refs: clock->{fileID:314576056}, timer->{fileID:1269740007}, exitDoor->{fileID:790247597}. Precondition: Timer.outOfTime == false to execute victory flow; expected behavior: calls Clock.onFinish(), Timer.onWin(), and ExitDoor.onFinish(). Note: 'Cube' is a child of 'Outside Area' (fileID: 543965080), and this MonoBehaviour component in the scene is the exact settings of the provided Victory script.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1489944610,
+                  "method_name": "onWin",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 1472468207,
+          "condition": "GameObject has BoxCollider (isTrigger: false) and no Rigidbody. MonoBehaviour Fire attached (m_Script fileID: 11500000, guid: 1729fd01c90a64d5b8037e1eef0d000d) with serialized values exactly matching Fire.cs: debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, timeToOn=3 (runtime randomized in Awake), downMultiplier=2, totalHitTime=5, onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo fileID 1849464941111748095. Fire.cs exposes no public parameterless methods (NotifyNeighborState(bool), UpdateFireState(bool), WaterHit(Vector3), SetIsOn(bool), FindNeighbors(Fire[], int) all have parameters), and there are no UnityEvents (m_Calls) defined in the scene extract. Therefore, no callable event can be invoked via Trigger according to constraints. To achieve code coverage for turn-on/turn-off logic, we need either: (1) neighbor Fire instances and a call site for NotifyNeighborState/FindNeighbors to exceed onNeighborsThreshold and set shouldTurnOn, and/or (2) a water system or Event to invoke IWaterInteractable.WaterHit(Vector3) repeatedly within maxHitInterval until totalHitTime is reached to turn the fire off.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

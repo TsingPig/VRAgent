@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 227892003,
+          "condition": "Scene CityView.unity: GameObject 'Building5' (PrefabInstance m_PrefabInstance fileID=227892003) has EventTrigger (MonoBehaviour id=227892007, script guid=d0b148fe25e99eb48b9724523833bab1). EventTrigger m_Delegates eventID=4 (PointerClick) has m_PersistentCalls.m_Calls targeting MonoBehaviour id=227892005 (script guid=f713beac870e2bd45bed25f1cda3a140, class Hotel) invoking public void showlabel(). Preconditions: a GameObject named 'Player' exists with a child at index 1 having a TextMeshPro component; note that Hotel.showlabel() sets label text to GetLabel().Substring(0,20). For Building5, GetLabel() returns 'Hotel:Udon Hotel' (length 17), which may cause ArgumentOutOfRangeException due to Substring(0,20). Verify behavior or exception in logs.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 227892003,
+          "condition": "Scene CityView.unity: GameObject 'Building5' (PrefabInstance fileID=227892003) has EventTrigger (MonoBehaviour id=227892007, script guid=d0b148fe25e99eb48b9724523833bab1). EventTrigger delegates eventID=4 (PointerClick) calls MonoBehaviour id=227892005 (script guid=f713beac870e2bd45bed25f1cda3a140, class Hotel). This invokes public void showlabel(). Hotel.Start() expects a GameObject named 'Player' with a child at index 1 containing a TextMeshPro component; showlabel assigns label.text = GetLabel().Substring(0,20). For Building5, GetLabel() returns 'Hotel:Udon Hotel' (length 17), which may trigger ArgumentOutOfRangeException at Substring(0,20) if not handled. Validate that the event is invoked and capture any exceptions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

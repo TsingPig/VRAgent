@@ -1,0 +1,37 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1176795495,
+          "condition": "Trigger public methods on MonoBehaviour WinLose (script guid d8624f87f98aa484bb7925103f5d458e) attached to GameCondition. Component fileID: 4225679855366766214. Scene config restartdelay=2. Ensure PrefabInstance overrides assign WinUI -> fileID 365561371 and LoseUI -> fileID 365561372 (non-null), otherwise SetActive will throw. Expected: Winlevel() sets WinUI active; loselevel() sets LoseUI active; Restart() is no-op.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

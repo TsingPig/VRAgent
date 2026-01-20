@@ -1,0 +1,34 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "jolomoju",
+          "triggerring_time": 4.3,
+          "source_object_fileID": 1035906841,
+          "condition": "Automatic path: MonoBehaviour id=1035906843 (guid=c1ceb0bd42f671d408c3d38e45a789af) matches logoScript with serialized fields nextSceneName='VisualizationPC' and timeDuration=4.25. On Start(), it invokes StartGame after timeDuration, which calls SceneManager.LoadScene(nextSceneName). Expect scene change to 'VisualizationPC' after ~4.25s.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "jolomoju",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1035906841,
+          "condition": "Manual override path (conditional): If a UnityEvent binding (m_Calls) or a public wrapper method is available on MonoBehaviour id=1035906843 to trigger scene transition, invoke it to force-load the next scene immediately. Note: StartGame() in logoScript is not public in the provided source, and no m_Calls were found in the scene meta; this call requires StartGame to be exposed as public or via UnityEvent.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1035906843,
+                  "method_name": "StartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

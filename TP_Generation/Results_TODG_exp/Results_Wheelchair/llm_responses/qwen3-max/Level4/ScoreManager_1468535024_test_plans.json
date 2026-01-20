@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1468535024,
+          "condition": "MonoBehaviour on ScoreManager matches script Scoremanager (m_Script guid: f7de224e5fee443418417f9f2bfa2998). PrefabInstance overrides bind: ScoreText->fileID 109963300, AmountUI->fileID 109963301, Timer->fileID 109963298, StarValue=1, winAmount=6, winlosescript->fileID 1943288799. Object has no Rigidbody/Collider/EventTrigger and no UnityEvent m_Calls in scene data. Start() and Update() are auto-invoked by Unity. To cover the win condition path that Scoremanager would call when score == winAmount, manually invoke the referenced WinLose.Winlevel() on fileID 1943288799.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1943288799,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

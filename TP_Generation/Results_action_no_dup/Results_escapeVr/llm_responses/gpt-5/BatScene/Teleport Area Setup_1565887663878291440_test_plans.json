@@ -1,0 +1,70 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Teleport Area Setup",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1565887663878291440,
+          "condition": "Trigger only if 'Teleport Area Setup' (fileID 1565887663878291440) or its children have a Collider or EventTrigger, or an attached MonoBehaviour that exposes UnityEvent callbacks (m_Calls) and at least one public no-arg method. The provided scene extract shows only a Transform component and Has_Rigidbody: False; no MonoBehaviour, Collider, or EventTrigger were included, so we cannot identify a callable method. Please provide the MonoBehaviour component block(s) (script fileID, GUID, serialized fields and m_Calls) and any Collider/EventTrigger components for this object or its children (scene listed children: 1565887664197881479 and 756086973; alternatively you mentioned 1565887664197881481 and 1071784861). This will allow us to specify the exact public no-arg method(s) to call and confirm that the scene’s MonoBehaviour settings match the attached script.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Teleport Anchor",
+          "triggerring_time": 0.4,
+          "source_object_fileID": 1071784861,
+          "condition": "MonoBehaviour_0 (fileID 3953368309659336407) on PrefabInstance 'Teleport Anchor' (id 1071784861) is Unity.VRTemplate.AnchorVisuals (m_Script.guid=b2dd7fabdb14fca498bd9e0def11ab19). Scene settings match the script fields: m_FadeAnimation (fileID 8970193181346821320), m_Arrow (fileID 8134302612814971439), m_TargetArrowHeight=1, m_ArrowAnimationDuration=0.375, and a serialized m_AnimationCurve (3 keys, Pre/PostInfinity=2). No UnityEvent m_Calls present. Trigger allowed because the attached script inherits MonoBehaviour and exposes public no-arg methods. This action simulates the teleport interactor entering the anchor selection.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "OnAnchorEnter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Teleport Anchor",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1071784861,
+          "condition": "After allowing the enter animation to play (>= m_ArrowAnimationDuration), simulate the teleport interactor exiting the anchor selection. Same MonoBehaviour_0 (fileID 3953368309659336407) configuration as above.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "OnAnchorExit",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Teleport Anchor",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1071784861,
+          "condition": "Simulate the teleport action occurring while the anchor is in use. This should hide the arrow visual immediately by scaling it to zero. Same MonoBehaviour_0 (fileID 3953368309659336407) configuration as above.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "HideArrowOnTeleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

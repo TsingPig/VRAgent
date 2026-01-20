@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 58609734,
+          "condition": "Automatic neighbor-based ignition path. MonoBehaviour (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) on this object matches the provided Fire script. Scene settings: isOn=0, timeToOnMin=40, timeToOnMax=60 (Awake will override timeToOn to 40–60s), maxNeighborDistance=4 (overridden by PrefabInstance to 3.5), downMultiplier=2, onNeighborsThreshold=2, minNeighborDownDistance=3, mainEffectGo=fileID 1849464941111748095. Preconditions to trigger auto turn-on: ensure at least 2 neighboring Fire components are within 3.5 units and ON (ideally at lower Y to apply downMultiplier for faster ignition). Expected automatic behavior: CheckNeighborState sets shouldTurnOn=true; after timeToOn elapses, Update() sets isOn=true and UpdateFireState(true) plays ParticleSystem and notifies neighbors; FireController.Instance.FireChanged(1) is called.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 58609734,
+          "condition": "Extinguish path via IWaterInteractable. Use a water tool/system to repeatedly hit this object's BoxCollider so the water system invokes Fire.WaterHit(Vector3 normal) on this component at intervals < maxHitInterval (2s), accumulating currentHitTime to totalHitTime (5s from scene). Expected automatic behavior in Update(): isTurningOff=true, currentHitInterval resets to 0 on each hit; after >=5s cumulative hit time, fire turns off (isOn=false), UpdateFireState(true) stops ParticleSystem, notifies neighbors, and calls FireController.Instance.FireChanged(-1).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 6",
+          "triggerring_time": 2.5,
+          "source_object_fileID": 58609734,
+          "condition": "Hit-interval reset path. After a previous WaterHit has set isTurningOff=true, do NOT apply any further water hits for a duration > maxHitInterval (2s). Expected automatic behavior: Update() detects currentHitInterval >= maxHitInterval and resets isTurningOff=false and currentHitTime=0 without changing isOn state.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

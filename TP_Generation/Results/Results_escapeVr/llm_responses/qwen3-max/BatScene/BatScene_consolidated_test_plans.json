@@ -1,0 +1,642 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 86838640,
+          "condition": "Simulate OnTriggerEnter on PrefabInstance collider_porte (BoxCollider.isTrigger=1). Attached MonoBehaviour (id: 8870310304005890639) is DoorOpenScript (guid: 5f8d06fe579502c4496842932d0afead) with myDoor bound to Animator fileID 1075516723 and openTrigger=true. To execute the open path, an entering Collider must have tag 'Objet1' and component SnapToTrigger; expected behavior: SnapToTrigger.Snap(position of collider_porte) is called, Animator.Play('DoorOpen', 0, 0.0f) is invoked, collider_porte GameObject is set inactive, and openTrigger becomes false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle1",
+          "source_object_fileID": 816818218,
+          "delta_position": {
+            "x": -3.206,
+            "y": 4.621,
+            "z": -20.769
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.0
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 697146253,
+          "condition": "Room 2 MonoBehaviour (fileID: 697146254, guid: 82aa235159f620648803cf53217af1e5) matches script 'room2'. Field 'doorAnim' is assigned (Animator fileID: 521131961). When SphereChecked, CubeChecked, and PyramidChecked are all true and doorOpen is false, Update() sets doorOpen true and plays doorAnim 'DoorOpen'. No Collider/EventTrigger on Room 2, so directly invoke public no-arg methods to simulate puzzle completion.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetSphereCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetCubeCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetPyramidCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1631101808,
+          "condition": "Source is PrefabInstance child 'collider_porte' (m_PrefabInstance fileID: 1631101808) with a Collider and MonoBehaviour (fileID: 1813076697, guid: f90cc8c0ee6cc9746bf3259c5e5bf2bc) matching script 'room2_trigger' configured checkCube=true, roomDatas->697146254. Target script to invoke is Room 2 MonoBehaviour (fileID: 697146254, guid: 82aa235159f620648803cf53217af1e5) matching script 'room2' with doorAnim bound (Animator fileID: 521131961). Manually set all checks to true via public no-arg methods to satisfy Update() condition (SphereChecked && CubeChecked && PyramidChecked && !doorOpen) and play doorAnim 'DoorOpen'. Collision-based path (OnTriggerEnter) requires a tagged 'Cube' object with SnapToTrigger, which is not available in provided data.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetSphereCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetCubeCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetPyramidCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1339877303,
+          "condition": "PrefabInstance child 'collider_porte' (m_PrefabInstance fileID: 1339877303) under parent 'trigger_pyramide' has a Collider and MonoBehaviour (fileID: 1339877307, guid: f90cc8c0ee6cc9746bf3259c5e5bf2bc) matching script 'room2_trigger' configured with checkPyramid=true, checkSphere=false, checkCube=false, roomDatas -> 697146254. Target Room 2 MonoBehaviour (fileID: 697146254, guid: 82aa235159f620648803cf53217af1e5) matches script 'room2' with doorAnim bound (Animator fileID: 521131961). Since collision path (OnTriggerEnter requires a tagged 'Pyramid' with SnapToTrigger) is not available, manually invoke room2 public no-arg methods to satisfy Update() condition and play doorAnim 'DoorOpen'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetSphereCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetCubeCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetPyramidCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1137377008,
+          "condition": "PrefabInstance child 'collider_porte' (m_PrefabInstance fileID: 1137377008) under parent 'trigger_sphere' has a Collider and MonoBehaviour (fileID: 1137377012, guid: f90cc8c0ee6cc9746bf3259c5e5bf2bc) matching script 'room2_trigger' configured with checkSphere=true, checkCube=false, checkPyramid=false, roomDatas -> 697146254. Target Room 2 MonoBehaviour (fileID: 697146254, guid: 82aa235159f620648803cf53217af1e5) matches script 'room2' with doorAnim bound (Animator fileID: 521131961). Since collision path (OnTriggerEnter requires a tagged 'Sphere' with SnapToTrigger) is not available, manually invoke room2 public no-arg methods to satisfy Update() condition and play doorAnim 'DoorOpen'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetSphereCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetCubeCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetPyramidCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 194480315,
+          "condition": "Source object has Rigidbody/Collider, allowing Trigger. Child 'Cube_salle2' PrefabInstance (fileID: 194480315) includes MonoBehaviour (fileID: 5374773463603666079, guid: 2723dba42bd113044ad231906b498006) which matches the attached script 'SnapToTrigger'. Parent 'Room 2' (GameObject fileID: 697146253) has MonoBehaviour (fileID: 697146254, guid: 82aa235159f620648803cf53217af1e5) matching the script 'room2' with doorAnim bound to Animator (fileID: 521131961). Since SnapToTrigger.Snap(Vector3) requires a parameter and no m_Calls are provided to invoke it automatically, we manually invoke the public no-arg methods on 'room2' to simulate puzzle completion; Update() should then set doorOpen and play 'DoorOpen' on the Animator.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetSphereCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetCubeCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetPyramidCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sphere_salle2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 284893529,
+          "condition": "Sphere_salle2 is a PrefabInstance (fileID: 284893529) with Rigidbody and SphereCollider, allowing Trigger. Its MonoBehaviour (fileID: 4388408440092428616, guid: 2723dba42bd113044ad231906b498006) matches the attached script 'SnapToTrigger'. Parent 'Room 2' (GameObject fileID: 697146253) has MonoBehaviour (fileID: 697146254, guid: 82aa235159f620648803cf53217af1e5) matching script 'room2' with 'doorAnim' bound (Animator fileID: 521131961). Since SnapToTrigger.Snap(Vector3) requires a parameter and no m_Calls/EventTrigger are provided to invoke it automatically, manually invoke room2's public no-arg methods to satisfy Update() condition and play 'DoorOpen' on the Animator.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetSphereCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetCubeCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetPyramidCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Pyramid_salle2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 863577851,
+          "condition": "Pyramid_salle2 PrefabInstance (fileID: 863577851) has Rigidbody and MeshCollider (id: 5405113805029009407), allowing Trigger. It includes MonoBehaviour (fileID: 1838634263601427067, guid: 2723dba42bd113044ad231906b498006) which matches the attached script 'SnapToTrigger' (Start/Update auto-run; Snap(Vector3) requires parameters and cannot be invoked by Trigger). Parent 'Room 2' (GameObject fileID: 697146253) has MonoBehaviour (fileID: 697146254, guid: 82aa235159f620648803cf53217af1e5) matching script 'room2' with doorAnim bound (Animator fileID: 521131961). Manually invoke the public no-arg methods on 'room2' to satisfy Update() condition so doorAnim plays 'DoorOpen'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetSphereCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetCubeCheck",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 697146254,
+                  "method_name": "SetPyramidCheck",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 829909756,
+          "condition": "Initialize known state for room3 (GUID: 1b862119da8709d4e9055a3c441a7bb4). MonoBehaviour_0 (script_fileID: 829909757) maps to script 'room3' with fields wired per scene: doorAnim -> 1865011923 (Animator on child), winton -> 829909759 (AudioSource on Room 3). No m_Calls provided; object has no Rigidbody/Collider/EventTrigger, so we manually invoke public no-arg methods. Expected: laser1 becomes false; door remains closed; no animation or audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 3",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 829909756,
+          "condition": "Single-laser active path. Using MonoBehaviour_0 (room3, GUID: 1b862119da8709d4e9055a3c441a7bb4). Expected: after one SetLaser() call, laser1 = true, laser2 = false; Update() should not open the door; Animator(1865011923) should not play; AudioSource(829909759) should not play.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 3",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 829909756,
+          "condition": "Both lasers active path to trigger door open. MonoBehaviour_0 (room3, GUID: 1b862119da8709d4e9055a3c441a7bb4). Expected: after two SetLaser() calls within the same frame, laser1 && laser2 == true; in Update(), doorOpen toggles true, doorAnim.Play(\"DoorOpen\",0,0) on Animator fileID 1865011923, and winton.Play() on AudioSource fileID 829909759.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 3",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 829909756,
+          "condition": "Post-open regression: calling DesactivateLaser() after door opened should not close the door (no code path to close). Expected: doorOpen remains true; no reverse animation; no additional audio calls.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1538632858,
+          "condition": "Reset Room 3 state. MonoBehaviour_0 on Room 3 (script_fileID: 829909757, GUID: 1b862119da8709d4e9055a3c441a7bb4, class: room3) has doorAnim -> 1865011923 (Animator on child) and winton -> 829909759 (AudioSource). Sender has BoxCollider (id: 1375581698089229451) so it can initiate Trigger calls. Expected: ensure laser1 is false; door stays closed; no animation/audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Activate first laser. Using Room 3 MonoBehaviour_0 (room3). Expected after one SetLaser(): laser1 = true, laser2 = false; Update() should not open the door; Animator(1865011923) should not play; AudioSource(829909759) should not play.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1538632858,
+          "condition": "Activate second laser to open door. Using Room 3 MonoBehaviour_0 (room3). Expected: after second SetLaser(), laser1 && laser2 == true; on next Update(), doorOpen flips true, doorAnim.Play(\"DoorOpen\",0,0) on Animator fileID 1865011923 and winton.Play() on AudioSource fileID 829909759.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Post-open regression. Using Room 3 MonoBehaviour_0 (room3). Expected: DesactivateLaser() after door opened should not close the door (no closing path in code); doorOpen remains true; no reverse animation; no additional audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1538632858,
+          "condition": "Invoke Quit flow on Room 3. MonoBehaviour_1 on Room 3 (script_fileID: 829909760, GUID: e9bec2616c6206946b1a15b3faa151c2, class: QuitGame). Expected: Application.Quit() is called (no-op in editor).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909760,
+                  "method_name": "ExitGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1538632858,
+          "condition": "Confirm scene bindings and reset state. Room 3 MonoBehaviour_0 (id: 829909757) maps to script 'room3' (GUID: 1b862119da8709d4e9055a3c441a7bb4) with doorAnim -> 1865011923 and winton -> 829909759. Sender is a PrefabInstance (id: 1538632858) of LaserBeamSender (GUID: fe963bb06f1c63d4fa78e077220a709b) with BoxCollider, roomData bound to 829909757. Expected: laser1 false, door closed; no animation/audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Activate first laser via Room 3 MonoBehaviour_0 (room3). Expected: after one SetLaser(), laser1 = true, laser2 = false; Update should not open door; Animator(1865011923) and AudioSource(829909759) remain idle.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender (1)",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 807270095,
+          "condition": "Activate second laser via the second sender. Sender (1) PrefabInstance (id: 807270095) is LaserBeamSender (GUID: fe963bb06f1c63d4fa78e077220a709b) with BoxCollider; roomData bound to Room 3 MonoBehaviour_0 (829909757). Expected: second SetLaser() sets laser2 = true; in next Update(), doorOpen becomes true, Animator(1865011923) plays 'DoorOpen', and AudioSource(829909759) plays.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 807270095,
+          "condition": "Post-open regression on Room 3 MonoBehaviour_0 (room3). Expected: DesactivateLaser() after door opened does not close the door; doorOpen remains true; no reverse animation; no additional audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 807270095,
+          "condition": "Quit flow coverage. Room 3 MonoBehaviour_1 (id: 829909760) maps to script 'QuitGame' (GUID: e9bec2616c6206946b1a15b3faa151c2). Expected: Application.Quit() is invoked (no-op in editor).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909760,
+                  "method_name": "ExitGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (1)",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 1131040470,
+          "condition": "Verification of scene bindings only. PrefabInstance 1131040470 ('Cube_salle3 (1)') has Rigidbody and BoxCollider (id: 1659405682678754060). It contains MonoBehaviour_0 id: 5374773463603666079 mapped to script 'SnapToTrigger' (GUID: 2723dba42bd113044ad231906b498006). This script relies on XRGrabInteractable/XRGeneralGrabTransformer and exposes public method Snap(Vector3), which requires a parameter and thus cannot be invoked via Trigger. Start() and Update() execute automatically when enabled; to cover Snap(Vector3) and the isSnapped branch we need the pedestal/trigger object or an event that calls Snap with a target Vector3.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Cube_salle3 (1)",
+          "source_object_fileID": 1131040470,
+          "target_position": {
+            "x": 34.2,
+            "y": 10.6,
+            "z": 16.1
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle3 (1)",
+          "source_object_fileID": 1131040470,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 90.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1448143134,
+          "condition": "Use Cube_salle3 (2) as the triggering source (Has Rigidbody/BoxCollider id: 1659405682678754060). Target script to test is 'room3' on parent 'Room 3' — MonoBehaviour_0 id: 829909757 (GUID: 1b862119da8709d4e9055a3c441a7bb4), with fields wired per scene: doorAnim -> 1865011923 (Animator on child), winton -> 829909759 (AudioSource on Room 3). This step ensures a known baseline by deactivating the first laser if it was set.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1448143134,
+          "condition": "Single-laser active path on 'room3' (MonoBehaviour_0 id: 829909757, GUID: 1b862119da8709d4e9055a3c441a7bb4). After this call, laser1 = true, laser2 = false; Update should not open the door; Animator(1865011923) and AudioSource(829909759) should remain idle.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (2)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1448143134,
+          "condition": "Both lasers active path to trigger door open on 'room3' (MonoBehaviour_0 id: 829909757, GUID: 1b862119da8709d4e9055a3c441a7bb4). Expected: with laser1 already true, this second SetLaser sets laser2 = true; in the next Update frame, doorOpen becomes true, doorAnim.Play(\"DoorOpen\",0,0) on Animator fileID 1865011923, and winton.Play() on AudioSource fileID 829909759.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Teleport Anchor",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1071784861,
+          "condition": "PrefabInstance 1071784861 ('Teleport Anchor') under parent 'Teleport Area Setup' (fileID 1565887663878291440). MonoBehaviour fileID 3953368309659336407 is AnchorVisuals (script guid b2dd7fabdb14fca498bd9e0def11ab19). Scene meta matches script fields: m_FadeAnimation, m_Arrow, m_TargetArrowHeight=1, m_ArrowAnimationDuration=0.375, m_AnimationCurve modified via PrefabInstance. Trigger OnAnchorEnter to play fade/raise arrow; after 0.5s trigger HideArrowOnTeleport (simulate teleport) and OnAnchorExit (play reverse fade/lower arrow).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "OnAnchorEnter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "HideArrowOnTeleport",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "OnAnchorExit",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

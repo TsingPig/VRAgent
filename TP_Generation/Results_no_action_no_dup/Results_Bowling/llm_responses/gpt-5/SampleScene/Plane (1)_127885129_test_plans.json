@@ -1,0 +1,17 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (1)",
+          "triggerring_time": 5.2,
+          "source_object_fileID": 127885129,
+          "condition": "Invoke OnTriggerEnter on Plane (1) by having a Collider tagged 'Ball' enter its MeshCollider (isTrigger=1, convex=1). The attached MonoBehaviour (fileID 127885130, script GUID 9cde80f2fe6fe6e47b57eb962721c06f, class OtherLaneController) will run as a coroutine: yield 5 seconds, then if other.tag == 'Ball', read BallSoundController.peso (float) and pesoEnKgs (int) from the entering object, Destroy it, and call private GeneraBola() to set those values on bolaPrefab (prefab guid 1be75124d3e50ad4997a90e0d8d1fe74, sub-fileID 424594858964415916), call changePeso(), Instantiate at aparicionBola (Transform fileID 165335085), and AddForce to its Rigidbody. Preconditions: the entering collider must have component BallSoundController and tag 'Ball'; bolaPrefab must include BallSoundController and a Rigidbody.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "TabSimple",
+          "triggerring_time": 0.6,
+          "source_object_fileID": 36,
+          "condition": "Call Tab.Open() (MonoBehaviour id=904, script guid=c2bcf79fd38b2441fa17fde42cfce34d) to force this tab to open. Expected: pagePrefab (guid=e749a5bf695bb464390eb1ffd27aba4f, fileID=1905160441634000) is instantiated/activated under TabGroup.TabPageParent; UIFadeTransition (MonoBehaviour id=903, guid=a4ab599ee1dbcea41b165ae5170d9f03) runs TransitionIn with transitionInDelaySeconds=0.1875 and durationSeconds=0.25. Note: To also verify TransitionOut and non-cached page destruction (cachePage=0), another action must close this tab (e.g., selecting another tab in the same ToggleGroup).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 904,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

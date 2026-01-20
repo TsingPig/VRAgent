@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "TouchPadOutside",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 2,
+          "condition": "MonoBehaviour (fileID: 892, guid: 7c52851ea0de74a228fa29a84de008ba, class: GvrTooltip) attached to GameObject 'TouchPadOutside' (fileID: 2). Serialized config: location=0 (Location.TouchPadOutside), text.fileID=975, alwaysVisible=false. No Collider/Rigidbody/EventTrigger on this object; direct public no-arg MonoBehaviour method calls used to validate tooltip side logic. During play, additional automatic events (Awake/Start/OnArmModelUpdate) may occur if GvrArmModel is present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 892,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

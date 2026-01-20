@@ -1,0 +1,71 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1695945194,
+          "condition": "Manual method invocation on SteamAudioManager MonoBehaviour (fileID: 1695945195, script GUID: b11066ff95bbf3344b868394742f7002). Object has no Collider/Rigidbody/EventTrigger. Ensure play mode has started so the singleton is created via AutoInitialize and sSingleton != null.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "Reinitialize",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetSceneType",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetReflectionEffectType",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetSceneType",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "GetReflectionEffectType",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Steam Audio Manager",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1695945194,
+          "condition": "Validate cleanup lifecycle. Call ShutDown to stop simulation thread, destroy audio engine state, release devices and context.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1695945195,
+                  "method_name": "ShutDown",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

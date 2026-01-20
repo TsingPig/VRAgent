@@ -1,0 +1,58 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Manual invocation to validate the attached MonoBehaviour (script guid: 340adb04e4e259e4b9c3e716ea2e6ced) is configured as shown and to re-apply emission to windowGlassObjects. No m_Calls (UnityEvent) are configured in the scene meta for this object.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Before this trigger, set HouseController.lightStatus from false to true (e.g., via inspector or a test hook) to exercise Update() branch where currentLightStatus != lightStatus. Expected: changeLights() runs automatically from Update and switchSound.Play() is called once.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Before this trigger, set HouseController.lightStatus from true back to false to exercise the opposite transition in Update(). Expected: changeLights() runs automatically from Update and switchSound.Play() is called again.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Island",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1300569560,
+          "condition": "Island has no Rigidbody. Trigger is valid only if Island has a Collider or EventTrigger, or if its attached MonoBehaviour exposes UnityEvents. The component with fileID 1300569562 is the MonoBehaviour on Island in this scene file and represents the exact serialized settings of the attached script. Its UnityEvent m_Calls (if present) are the Interactable events we want to trigger under test conditions (e.g., user interaction or proximity). Please provide the details of component 1300569562 (including m_Calls) and whether Island has a Collider or EventTrigger so we can bind concrete method calls.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

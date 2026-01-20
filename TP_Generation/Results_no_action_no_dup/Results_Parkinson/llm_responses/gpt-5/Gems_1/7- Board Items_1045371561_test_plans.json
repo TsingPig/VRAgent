@@ -1,0 +1,98 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Board",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1566218460,
+          "condition": "MonoBehaviour_0 (id: 1566218463, script GUID: 7e860543c4b7344fba986977af52cbaf) attached to Board is PlatformMovement. It handles OnCollisionEnter and CompareTag('Gems'). Since physics collision may not occur (no Rigidbody on Board or Gems), manually invoke getFiftyPoints to simulate a collision from Gems PrefabInstance id 111434455. BoxCollider (id: 1566218464) is present on Board, enabling Trigger interaction. Expected: gemsChildUI enabled; gemsValueUI shows 'Score:10'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1566218463,
+                  "method_name": "getFiftyPoints",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Board",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1566218460,
+          "condition": "Simulate second Gems collision from PrefabInstance id 1163394800 (Tag 'Gems') to cover CompareTag path. Expected: gemsChildUI enabled; gemsValueUI shows 'Score:20'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1566218463,
+                  "method_name": "getFiftyPoints",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Board",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1566218460,
+          "condition": "Simulate third Gems collision from PrefabInstance id 701805947 (Tag 'Gems'). Expected: gemsChildUI enabled; gemsValueUI shows 'Score:30'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1566218463,
+                  "method_name": "getFiftyPoints",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Board",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1566218460,
+          "condition": "Simulate fourth Gems collision from PrefabInstance id 973355952 (Tag 'Gems'). Expected: gemsChildUI enabled; gemsValueUI shows 'Score:40'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1566218463,
+                  "method_name": "getFiftyPoints",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Board",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1566218460,
+          "condition": "Simulate fifth Gems collision from PrefabInstance id 984890190 (Tag 'Gems') to reach the threshold. Expected: gemsChildUI enabled; gemsValueUI shows 'Score:50' and congratulationsUI enabled.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1566218463,
+                  "method_name": "getFiftyPoints",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

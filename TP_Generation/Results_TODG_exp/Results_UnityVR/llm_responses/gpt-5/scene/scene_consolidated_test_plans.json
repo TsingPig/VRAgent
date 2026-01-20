@@ -1,0 +1,444 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_154554977",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 154554977,
+          "condition": "MonoBehaviour(id=154554978) uses script guid=d39ba5afdc055594f8b27d3626aef4f5 (PlayTV). Public no-arg method ToggleVisibility() toggles a referenced canvas (canvas fileID=1417754200) via canvas.SetActive(state). No m_Calls configured, so manual trigger required to validate visibility toggle.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 154554977,
+          "condition": "MonoBehaviour id 154554979 is UnityEngine.EventSystems.EventTrigger (m_Script guid f70555f144d8491a825f0804e09c671c). It declares m_Delegates eventID=4 (PointerClick) with a persistent call to m_Target fileID 154554978, m_MethodName=ToggleVisibility, m_CallState=2 (Runtime Only). Manually trigger PointerClick to verify ToggleVisibility executes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text (Hint)",
+          "source_object_fileID": 650596018,
+          "delta_position": {
+            "x": 0,
+            "y": -10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Text (Hint)",
+          "source_object_fileID": 650596018,
+          "delta_position": {
+            "x": 0,
+            "y": 10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "EventTriggerObject",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 698430406,
+          "condition": "MonoBehaviour id=698430407 is UnityEngine.EventSystems.EventTrigger (m_Script guid f70555f144d8491a825f0804e09c671c, fileID -1862395651). It has m_Delegates.eventID=4 (PointerClick). On click, m_PersistentCalls.m_Calls are enabled (m_CallState=2, m_Mode=1 no args) to invoke PlaySound on component fileID 698430411 and spawn on component fileID 698430408.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430411,
+                  "method_name": "PlaySound",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_698430406",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 698430406,
+          "condition": "Call public no-arg method to start spawn. MonoBehaviour fileID 698430408 on GameObject 698430406; Script guid c3441e8102712e94eb08515cc7e18fb8 (SpawnPaper). Serialized fields: clip guid 5bf50410f355a654e91279204bd96587, paperToSpawn fileID 8817731074829524137 guid feeb82124c9dec8439ba4b39352de7a2, position fileID 1038081565. Expected: after WaitForSeconds(clip.length), Instantiate(paperToSpawn) at position.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "position",
+          "source_object_fileID": 1038081565,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.5
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown(GameObject_698430406)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 698430406,
+          "condition": "Manual test of SoundPlayer.PlaySound on MonoBehaviour id 698430411 (script guid 71e616354a0b0cd47a7526ce46ba3eaf). Serialized refs: source->AudioSource fileID 2093747358, sound->AudioClip guid 5bf50410f355a654e91279204bd96587. No m_Calls present in scene meta; invoke method directly. Expect AudioSource to play the assigned clip.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430411,
+                  "method_name": "PlaySound",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#759145566",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 759145566,
+          "condition": "Call RunPC.TogglePC on MonoBehaviour fileID 759145567 (script guid d40707984c8c8654a8e7422e0d85449f). Serialized refs: canvas fileID 1480975538, AudioSource fileID 1768927072, StartSound guid c7ed05b156a403a42b5d91316854e42d, EndSound guid 33e37c2c5603b534a84188086a3b9147. No m_Calls registered in scene; manual trigger required. Initial Isvisible expected false: StartPC should run (canvas.SetActive(true), source.clip=StartSound, source.Play()).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject#759145566",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 759145566,
+          "condition": "Second press to validate shutdown path. Precondition: Isvisible true after prior TogglePC. Expect ShutDownPC effects (canvas.SetActive(false), source.clip=EndSound, source.Play()). Same MonoBehaviour fileID 759145567 (guid d40707984c8c8654a8e7422e0d85449f).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_759145566",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 759145566,
+          "condition": "MonoBehaviour 759145568 is UnityEngine.EventSystems.EventTrigger (m_Script fileID -1862395651, guid f70555f144d8491a825f0804e09c671c). It defines m_Delegates with eventID=4 (PointerClick) and a persistent call (m_Mode=1 Void, m_CallState=2 Enabled) to method TogglePC on component fileID 759145567.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1094190421",
+          "source_object_fileID": 1094190421,
+          "delta_position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1094190421,
+          "condition": "MonoBehaviour id=1094190423 on GameObject fileID=1094190421 uses m_Script fileID=1980459831 guid=f70555f144d8491a825f0804e09c671c (UnityEngine.UI.CanvasScaler). Properties: m_UiScaleMode=0, m_ReferencePixelsPerUnit=100, m_ScaleFactor=1, m_ReferenceResolution=(800,600), m_ScreenMatchMode=0, m_MatchWidthOrHeight=0, m_PhysicalUnit=3, m_FallbackScreenDPI=96, m_DefaultSpriteDPI=96, m_DynamicPixelsPerUnit=1. No m_Calls UnityEvents present; no public no-arg methods to trigger manually.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Canvas",
+          "source_object_fileID": 1094190421,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.2
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1094190421,
+          "condition": "Simulate Input.GetButtonDown('Fire1') to dismiss the canvas via Timeout.Update() on MonoBehaviour id 1094190426 (script guid 9da68a9b408a56a4294168dd4694f0dc). No m_Calls UnityEvents configured in scene; auto fallback dismissal occurs after 60s via Start->ExecuteAfterTime(60).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1480975538",
+          "source_object_fileID": 1480975538,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "GameObject_1480975538",
+          "source_object_fileID": 1480975538,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": -180.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "CanvasScalerOwner",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1480975538,
+          "condition": "MonoBehaviour component fileID 1480975541 on GameObject fileID 1480975538 references m_Script fileID 1980459831 (guid f70555f144d8491a825f0804e09c671c, type 3), which corresponds to UnityEngine.UI.CanvasScaler. This confirms the exact settings of the script attached to the target GameObject. No m_Calls (UnityEvents) are present and CanvasScaler exposes no public no-arg methods; therefore, no invocable Trigger events exist for this component.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "RawImage (UnityEngine.UI.RawImage, guid f70555f144d8491a825f0804e09c671c)",
+          "source_object_fileID": 1725444064,
+          "delta_position": {
+            "x": 0,
+            "y": -10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": -1,
+            "y": -1,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "RawImage (UnityEngine.UI.RawImage, guid f70555f144d8491a825f0804e09c671c)",
+          "source_object_fileID": 1725444064,
+          "delta_position": {
+            "x": 0,
+            "y": 10000,
+            "z": 0
+          },
+          "delta_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "delta_scale": {
+            "x": 1,
+            "y": 1,
+            "z": 0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_3235475432507631312",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 3235475432507631312,
+          "condition": "MonoBehaviour component id=3235475432507631313 on GameObject fileID=3235475432507631312 references script fileID=11500000 guid=65cd0c95cdafa91418692e37c35b8c3d (type=3). No m_Calls/UnityEvent entries present in scene meta; manually trigger any public no-arg MonoBehaviour methods (if they exist) to validate behavior since no automatic events are configured.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameObject_3235475432507631312",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 3235475432507631312,
+          "condition": "MonoBehaviour id 3235475432507631314 is UnityEngine.EventSystems.EventTrigger (m_Script fileID -1862395651, guid f70555f144d8491a825f0804e09c671c). It defines m_Delegates eventID 4 (PointerClick) with m_Calls -> m_Target fileID 3235475432507631313 calling public void ExitScene() with no parameters; m_CallState=2 (enabled), m_Mode=1 (no args). Trigger this PointerClick to invoke ExitScene on the target component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3235475432507631313,
+                  "method_name": "ExitScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

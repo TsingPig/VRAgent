@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1959007255,
+          "condition": "Automatic neighbor-based ignition path. MonoBehaviour on this GameObject matches Fire script (m_Script guid 1729fd01c90a64d5b8037e1eef0d000d) with serialized settings: isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, minNeighborDownDistance=3, downMultiplier=2, mainEffectGo=fileID 1849464941111748095. When >=2 neighbors within 4 units are on, CheckNeighborState() sets shouldTurnOn=true and Update() will, after up to 60s (faster if a down neighbor exists), set isOn=true and call UpdateFireState(true) which plays the ParticleSystem and notifies neighbors and FireController.Instance.FireChanged(+1). This wait allows natural Update-driven state transition. No manual UnityEvent m_Calls found on this object.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 3",
+          "triggerring_time": 10.0,
+          "source_object_fileID": 1959007255,
+          "condition": "Sustained water extinguish path. Requires an external water system to invoke IWaterInteractable.WaterHit(Vector3) repeatedly such that currentHitInterval < maxHitInterval (2s) between hits, and accumulated currentHitTime >= totalHitTime (5s). Then Update() sets isOn=false and UpdateFireState(true) stops ParticleSystem, notifies neighbors via NotifyNeighborState(false), and calls FireController.Instance.FireChanged(-1). This GameObject has a BoxCollider and no Rigidbody; no public no-arg methods exist to trigger manually.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

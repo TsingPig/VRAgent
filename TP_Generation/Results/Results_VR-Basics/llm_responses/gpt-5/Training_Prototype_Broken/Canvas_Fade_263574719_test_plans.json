@@ -1,0 +1,103 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 263574719,
+          "condition": "Call FadeCanvas.StartFadeIn on Canvas_Fade (MonoBehaviour fileID 263574720, guid 969b8e08cffa4e44681eb600a8dfc099). defaultDuration=1s; verify full fade to opaque and coroutine completes.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 263574719,
+          "condition": "Preemption test: begin FadeCanvas.StartFadeOut (1s default) then interrupt with a quick fade in next step. Expect StopAllCoroutines to cancel the running fade.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Interrupt prior fade with FadeCanvas.QuickFadeIn (0.25s) to test StopAllCoroutines and quick fade path to near-opaque.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Run FadeCanvas.QuickFadeOut (0.25s) to exercise quick fade-out coroutine to completion.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 263574719,
+          "condition": "Run FadeCanvas.StartFadeOut (1s default) to completion to cover full-duration fade-out loop termination.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

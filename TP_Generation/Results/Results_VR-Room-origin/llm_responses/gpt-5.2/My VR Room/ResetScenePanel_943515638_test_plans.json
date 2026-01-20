@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ResetScenePanel",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 943515638,
+          "condition": "MonoBehaviour_0 (fileID: 943515640) on GameObject 'ResetScenePanel' (fileID: 943515638) references script guid 403efda511d335c4a865b0a1f33cc9e0, which matches the provided LoadScene MonoBehaviour. The GameObject is inactive (m_IsActive: 0) and has no Rigidbody/Collider/EventTrigger; invoking the no-parameter public method is required for code coverage. Expected behavior: SceneManager.LoadScene(SceneManager.GetActiveScene().name) is called to reload the current scene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943515640,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

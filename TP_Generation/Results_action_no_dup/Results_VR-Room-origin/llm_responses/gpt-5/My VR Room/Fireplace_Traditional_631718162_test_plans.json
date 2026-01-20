@@ -1,0 +1,40 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor select enters TeleportationAnchor (TeleportAnchorWithFade) when teleportTrigger == OnSelectEntered. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnSelectEntered(args) -> FadeCanvas.QuickFadeOut. NOTE: Scene lists MonoBehaviour id 631718164 (guid 474bcb49853aa07438625e644c072ee6), which appears to be a render/light data component, not TeleportAnchorWithFade. Need the component/fileID of TeleportAnchorWithFade attached to Fireplace_Traditional (if any), and confirmation of a Collider/EventTrigger to legally trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor select exits TeleportationAnchor when teleportTrigger == OnSelectExited. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnSelectExited(args) -> FadeCanvas.QuickFadeOut. Requires TeleportAnchorWithFade component on Fireplace_Traditional and proper XR Interaction setup.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor activates TeleportationAnchor when teleportTrigger == OnActivated. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnActivated(args) -> FadeCanvas.QuickFadeOut.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 631718162,
+          "condition": "XR Interactor deactivates TeleportationAnchor when teleportTrigger == OnDeactivated. Expect FadeCanvas.QuickFadeIn -> wait -> base.OnDeactivated(args) -> FadeCanvas.QuickFadeOut.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

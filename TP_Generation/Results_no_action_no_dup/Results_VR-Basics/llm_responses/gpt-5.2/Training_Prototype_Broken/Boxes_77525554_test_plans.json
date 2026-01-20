@@ -1,0 +1,290 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Box (0)",
+          "source_object_fileID": 3569975690511002028,
+          "delta_position": {
+            "x": 0.0,
+            "y": -0.25,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerring_time": 1.0
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (0)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3569975690511002028,
+          "condition": "Manual trigger of PlayQuickSound.Play to cover the OnCollision.OnEnter m_Calls in case no collision occurs. OnCollision (script id 7040005640398465217, guid 6bf7bf2b5cedc0b4fb673b10c7900629) has OnEnter -> PlayQuickSound.Play (script id 2085702217920827848, guid 0755a2ba17a31d643b4a27e3034d8a79). BoxCollider enabled (isTrigger=false) and Rigidbody present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2085702217920827848,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 730385652,
+          "condition": "Box (1) is a PrefabInstance (guid 97e89670ed7696d489d6ddba4543a01b) under 'Boxes'. MonoBehaviour id 203819839 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject). The prefab includes a BoxCollider (no removed components), so Trigger is permitted. Manually invoke the parameterless method to cover TranslateObject.ResetToStartingPosition().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 331566651,
+          "condition": "PrefabInstance id 331566651 (guid 97e89670ed7696d489d6ddba4543a01b) under 'Boxes'. MonoBehaviour id 531403574 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject). The prefab retains its collider (m_RemovedComponents=[]), allowing Trigger per rules. Manually invoke the only parameterless public method to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1736349558,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1736349558 (guid 97e89670ed7696d489d6ddba4543a01b). MonoBehaviour id 898355187 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject). No m_Calls listed; prefab keeps default components (m_RemovedComponents=[]), so its Collider from the prefab remains, allowing manual Trigger of parameterless public methods for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1058824938,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1058824938 (guid 97e89670ed7696d489d6ddba4543a01b). MonoBehaviour id 1147109801 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this scene MonoBehaviour is the exact settings of the attached script. No m_Calls listed; prefab keeps default components (m_RemovedComponents=[]), implying its Collider remains, enabling a manual Trigger of parameterless public methods.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": -1.2,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1.2,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 49734231,
+          "condition": "PrefabInstance id 49734231 (child of 'Boxes'). MonoBehaviour id 7040005640398465217 uses script guid 6bf7bf2b5cedc0b4fb673b10c7900629 (OnCollision). Its OnEnter.m_PersistentCalls.m_Calls targets MonoBehaviour id 2085702217920827848 (PlayQuickSound, guid 0755a2ba17a31d643b4a27e3034d8a79) calling Play(). BoxCollider (id 3174054499936259574) has m_IsTrigger=0, and Has_Rigidbody=True, so collisions from the Transform actions above automatically invoke OnEnter/OnExit. Additionally, Box (5) has two TranslateObject components (guid 866d134ae31a01841b6156f8d0a87054) with ids 74831552 and 1248989243; the following manual triggers call their parameterless method for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 49734231,
+          "condition": "Second TranslateObject instance on Box (5): MonoBehaviour id 1248989243 uses script guid 866d134ae31a01841b6156f8d0a87054. Manual call ensures both attached instances execute their parameterless public method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (6)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1843663307,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1843663307 (guid 97e89670ed7696d489d6ddba4543a01b). MonoBehaviour id 1124768097 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this scene MonoBehaviour is the exact settings of the attached script. Object has no Rigidbody (Has_Rigidbody=False), but the prefab keeps default components (m_RemovedComponents=[]), so its Collider from the base 'Box' prefab remains, permitting manual Trigger per rules. No m_Calls events are defined, so invoke the parameterless public method directly for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (7)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 930118958,
+          "condition": "Child of 'Boxes' via PrefabInstance id 930118958. Scene MonoBehaviour id 988422739 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this MonoBehaviour component is the exact settings of the attached script. Has_Rigidbody=False; prefab kept default components (m_RemovedComponents=[]), so collider from the base prefab is expected to remain, satisfying Trigger prerequisites. Expect ResetToStartingPosition() to set transform back to Start-captured pose.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (8)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 176049113,
+          "condition": "Child of 'Boxes' via PrefabInstance id 176049113. Scene MonoBehaviour id 1793308541 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this MonoBehaviour component is the exact settings of the attached script on this GameObject. Has_Rigidbody=False; prefab kept default components (m_RemovedComponents=[]), so its collider from the base prefab is expected to remain, satisfying Trigger prerequisites. Start() caches starting pose automatically; manually invoke the only public parameterless method to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1793308541,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (9)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1025029724,
+          "condition": "Child of 'Boxes' via PrefabInstance id 1025029724. Scene MonoBehaviour id 1320904625 uses script guid 866d134ae31a01841b6156f8d0a87054 (TranslateObject); this MonoBehaviour component is the exact settings of the attached script on this GameObject. Has_Rigidbody=False; prefab kept default components (m_RemovedComponents=[]), so its collider from the base prefab is expected to remain, satisfying Trigger prerequisites. Start() caches starting pose automatically; manually invoke the only public parameterless method to ensure coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1320904625,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building3",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1554268808,
+          "condition": "EventTrigger (id 1554268812) on Building3 is configured with eventID=4 (PointerClick) to invoke Residential.showlabel() on MonoBehaviour id 1554268810 (script guid 10a92b1b4549024468ecbc96831def68). This MonoBehaviour component matches the provided Residential script. Expected effect: Player->transform.GetChild(1) TextMeshPro text set to first 20 characters of 'Residential:Kumo Apartment' (i.e., 'Residential:Kumo Apa').",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1554268810,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building3",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1554268808,
+          "condition": "EventTrigger (MonoBehaviour id 1554268812, script guid d0b148fe25e99eb48b9724523833bab1) on Building3 is configured with eventID=4 (PointerClick) and has a PersistentCall to invoke Residential.showlabel() on MonoBehaviour id 1554268810 (script guid 10a92b1b4549024468ecbc96831def68), which matches the provided Residential script. Expected effect: set Player->transform.GetChild(1) TextMeshPro text to first 20 chars of 'Residential:Kumo Apartment' => 'Residential:Kumo Apa'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1554268810,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

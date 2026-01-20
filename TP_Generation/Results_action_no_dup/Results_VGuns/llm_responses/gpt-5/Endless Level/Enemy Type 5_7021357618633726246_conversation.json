@@ -1,0 +1,2599 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the VGuns App. One game object we want to test in the scene of 'Endless Level.unity' is 'Enemy Type 5'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code of the script attached to this gameobjects below. There may be more than one script attached to one gameobject. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Source code of 1th script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Source code of 2th script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Source code of 3th script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Source code of 4th script files attached]\n'''\nusing TMPro;\nusing UnityEngine;\nusing UnityEngine.AI;\n\npublic class EnemyAi : MonoBehaviour\n{\n    public NavMeshAgent agent;\n\n    public Transform player;\n\n    public LayerMask whatIsGround, whatIsPlayer;\n\n    public float forceup;\n    public float forceforward;\n\n    public Transform Attackpoint;\n    \n    public float health;\n\n    public AudioManager AudioManager;\n\n    public GameObject self;\n    public Transform startpoint;\n    public TextMeshPro TextMeshPro;\n    \n    //Patroling\n    public Vector3 walkPoint;\n    bool walkPointSet;\n    public float walkPointRange;\n\n    //Attacking\n    public float timeBetweenAttacks;\n    bool alreadyAttacked;\n    public GameObject projectile;\n\n    //States\n    public float sightRange, attackRange;\n    public bool playerInSightRange, playerInAttackRange;\n        \n    void Start () {\n        UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();\n\n        self.transform.position = startpoint.position;\n       \n    }\n    private void Awake()\n    {\n        AudioManager = FindObjectOfType<AudioManager>();\n        player = GameObject.Find(\"Camera Offset\").transform;\n        agent = GetComponent<NavMeshAgent>();\n        alreadyAttacked = false;\n    }\n\n    private void Update()\n    {\n        TextMeshPro.text = \"Health: \" + (health);\n        \n        //Check for sight and attack range\n        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);\n        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);\n        \n        if(agent.velocity.magnitude < 0.1f && !playerInAttackRange && !playerInAttackRange) SearchWalkPoint();\n\n        if (!playerInSightRange && !playerInAttackRange) Patroling();\n        if (playerInSightRange && !playerInAttackRange) ChasePlayer();\n        if (playerInAttackRange && playerInSightRange) AttackPlayer();\n    }\n\n    private void Patroling()\n    {\n        if (!walkPointSet) SearchWalkPoint();\n\n        if (walkPointSet)\n            agent.SetDestination(walkPoint);\n\n        Vector3 distanceToWalkPoint = transform.position - walkPoint;\n\n        //Walkpoint reached\n        if (distanceToWalkPoint.magnitude < 1f)\n            walkPointSet = false;\n    }\n    private void SearchWalkPoint()\n    {\n        //Calculate random point in range\n        float randomZ = Random.Range(-walkPointRange, walkPointRange);\n        float randomX = Random.Range(-walkPointRange, walkPointRange);\n\n        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);\n\n        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))\n            walkPointSet = true;\n    }\n\n    private void ChasePlayer()\n    {\n        agent.SetDestination(player.position);\n        \n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n    }\n\n    private void AttackPlayer()\n    {\n                    \n        //Make sure enemy doesn't move\n        agent.SetDestination(this.agent.transform.position);\n\n        agent.acceleration = 0f;\n\n        transform.LookAt(player, Vector3.up);\n        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x*0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z*0);\n       \n        \n        if (!alreadyAttacked)\n        {\n            AudioManager.Play(\"Gun Fire\");\n            \n           ///Attack code here\n            Rigidbody rb = Instantiate(projectile, Attackpoint.position, Quaternion.identity).GetComponent<Rigidbody>();\n            rb.AddForce(transform.forward * forceforward, ForceMode.Impulse);\n            rb.AddForce(transform.up * forceup, ForceMode.Impulse);\n            ///End of attack code\n\n            alreadyAttacked = true;\n            Invoke(nameof(ResetAttack), timeBetweenAttacks);\n        }\n    }\n    private void ResetAttack()\n    {\n        alreadyAttacked = false;\n    }\n\n    \n    public void TakeDamage(int damage)\n    {\n        health -= damage;\n\n        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);\n    }\n    private void DestroyEnemy()\n    {\n        AudioManager.Play(\"EnemyDie\");\n        walkPoint = startpoint.position;\n        agent.acceleration = 0f;\n        self.transform.position = startpoint.position;\n    }\n    private void OnDrawGizmosSelected()\n    {\n        Gizmos.color = Color.red;\n        Gizmos.DrawWireSphere(transform.position, attackRange);\n        Gizmos.color = Color.yellow;\n        Gizmos.DrawWireSphere(transform.position, sightRange);\n    }\n}\n'''\n[Extracted JSON format of scene meta file] The scene file of 'Endless Level.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Enemy Type 5' and its script. The 'fileID' of gameobject 'Enemy Type 5' is: 7021357618633726246. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': True, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '7021357618633726267', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '3.15'}, {'y': '0.49'}, {'z': '5.83'}]}, {'m_LocalScale': [{'x': '0.75'}, {'y': '0.75'}, {'z': '0.75'}]}, {'m_Children': [{'fileID': '7021357619167718741'}, {'fileID': '2913934810850566424'}, {'fileID': '896072210631602074'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'CapsuleCollider': {'type': 'CapsuleCollider', 'properties': {'id': '1306247219', 'CapsuleCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'m_Radius': '0.5'}, {'m_Height': '2'}, {'m_Direction': '1'}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '614338935', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '10'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '10'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.5'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '8'}, {'attackRange': '6'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}, {'MonoBehaviour_1': {'id': '1888436447', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '10'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '10'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.5'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '8'}, {'attackRange': '6'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}, {'MonoBehaviour_2': {'id': '1640000274', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '15'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '5'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.75'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '10'}, {'attackRange': '7'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}, {'MonoBehaviour_3': {'id': '1646766445', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '15'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '5'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.75'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '10'}, {'attackRange': '7'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}, {'MonoBehaviour_4': {'id': '1673477538', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7021357618633726246'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '16000b3396174ab49b4983590de64f34'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'agent': [{'fileID': '7021357618633726265'}]}, {'player': [{'fileID': '0'}]}, {'whatIsGround': [{'serializedVersion': '2'}, {'m_Bits': '2048'}]}, {'whatIsPlayer': [{'serializedVersion': '2'}, {'m_Bits': '256'}]}, {'forceup': '1.5'}, {'forceforward': '10'}, {'Attackpoint': [{'fileID': '2913934810850566424'}]}, {'health': '10'}, {'AudioManager': [{'fileID': '0'}]}, {'self': [{'fileID': '7021357618633726246'}]}, {'startpoint': [{'fileID': '0'}]}, {'TextMeshPro': [{'fileID': '6064183479137054623'}]}, {'walkPoint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'walkPointRange': '10'}, {'timeBetweenAttacks': '0.5'}, {'projectile': [{'fileID': '6845118643277486568'}, {'guid': '647ac56353c74ad49ae408a2c10d8464'}, {'type': '3'}]}, {'sightRange': '8'}, {'attackRange': '6'}, {'playerInSightRange': '0'}, {'playerInAttackRange': '0'}]}}]}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_position\": {                    // Target world position to which the object should be moved\n    \"x\": \"<float>\",\n    \"y\": \"<float>\",\n    \"z\": \"<float>\"\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['7021357619167718740', '4047698858627285282'] to help formalize your test plans one by one.",
+    "timestamp": "2025-12-25T00:05:56.165623",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 7021357618633726246,\n          \"delta_position\": {\n            \"x\": -3.15,\n            \"y\": -0.49,\n            \"z\": -5.83\n          },\n          \"delta_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"delta_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.1\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"triggerring_time\": 0.8,\n          \"source_object_fileID\": 7021357618633726246,\n          \"condition\": \"Trigger AttackPlayer by placing the player target within both sightRange and attackRange. Enemy Type 5 has CapsuleCollider (id: 1306247219) and Rigidbody, so Trigger is valid. The exact script settings come from the EnemyAi MonoBehaviour components attached in-scene (script guid: 16000b3396174ab49b4983590de64f34). Component IDs and configs: [614338935: sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, health=10], [1888436447: same as 614338935], [1640000274: sightRange=10, attackRange=7, timeBetweenAttacks=0.75, forceforward=15, health=5], [1646766445: same as 1640000274], [1673477538: same as 614338935]. Expected behavior when condition met: agent stops, faces player, plays 'Gun Fire', instantiates projectile at Attackpoint (fileID: 2913934810850566424), applies forward/up impulse, sets alreadyAttacked true and auto-resets after timeBetweenAttacks.\",\n          \"triggerring_events\": [\n          ],\n          \"triggerred_events\": [\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-25T00:06:52.568546",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 5",
+              "source_object_fileID": 7021357618633726246,
+              "delta_position": {
+                "x": -3.15,
+                "y": -0.49,
+                "z": -5.83
+              },
+              "delta_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "delta_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.1
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Enemy Type 5",
+              "triggerring_time": 0.8,
+              "source_object_fileID": 7021357618633726246,
+              "condition": "Trigger AttackPlayer by placing the player target within both sightRange and attackRange. Enemy Type 5 has CapsuleCollider (id: 1306247219) and Rigidbody, so Trigger is valid. The exact script settings come from the EnemyAi MonoBehaviour components attached in-scene (script guid: 16000b3396174ab49b4983590de64f34). Component IDs and configs: [614338935: sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, health=10], [1888436447: same as 614338935], [1640000274: sightRange=10, attackRange=7, timeBetweenAttacks=0.75, forceforward=15, health=5], [1646766445: same as 1640000274], [1673477538: same as 614338935]. Expected behavior when condition met: agent stops, faces player, plays 'Gun Fire', instantiates projectile at Attackpoint (fileID: 2913934810850566424), applies forward/up impulse, sets alreadyAttacked true and auto-resets after timeBetweenAttacks.",
+              "triggerring_events": [],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The gameobject is \"Enemy Type 5\": {fileID: 7021357618633726246}. Please use the source code of the scripts attached to the gameobject and the extracted JSON format of scene meta file we provided in the last conversation to finalize the test plan.\n\nThe following gameobjects ['4940586919770313183', '5669860208052943625', '8256176680690771128'] have GameObject.Find() logic detected in the source script of gameobject \"7021357618633726246\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"7021357618633726246\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"4940586919770313183\" GameObject Name: \"Camera Offset\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '4940586919770313182'}]}]}, {'m_Layer': '8'}, {'m_Name': 'Camera Offset'}, {'m_TagString': 'XRRig'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '4940586919770313182', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4940586919770313183'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': [{'fileID': '4940586920243061435'}, {'fileID': '4940586920685677096'}, {'fileID': '4940586920751344817'}]}, {'m_Father': [{'fileID': '4940586920907814100'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n\n\nGameObject ID: \"5669860208052943625\" GameObject Name: \"Locomotion System (Left Hand)\":\n[Source code of script files attached]\n'''\nusing UnityEngine.InputSystem;\nusing UnityEngine.InputSystem.Controls;\nusing UnityEngine.XR.Interaction.Toolkit.Inputs;\n\nnamespace UnityEngine.XR.Interaction.Toolkit\n{\n    /// <summary>\n    /// A locomotion provider that allows the user to rotate their rig using a 2D axis input\n    /// from an input system action.\n    /// </summary>\n    [AddComponentMenu(\"XR/Locomotion/Snap Turn Provider (Action-based)\", 11)]\n    [HelpURL(XRHelpURLConstants.k_ActionBasedSnapTurnProvider)]\n    public class ActionBasedSnapTurnProvider : SnapTurnProviderBase\n    {\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Snap Turn data from the left hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_LeftHandSnapTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Snap Turn data sent from the left hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty leftHandSnapTurnAction\n        {\n            get => m_LeftHandSnapTurnAction;\n            set => SetInputActionProperty(ref m_LeftHandSnapTurnAction, value);\n        }\n\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Snap Turn data from the right hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_RightHandSnapTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Snap Turn data sent from the right hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty rightHandSnapTurnAction\n        {\n            get => m_RightHandSnapTurnAction;\n            set => SetInputActionProperty(ref m_RightHandSnapTurnAction, value);\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnEnable()\n        {\n            m_LeftHandSnapTurnAction.EnableDirectAction();\n            m_RightHandSnapTurnAction.EnableDirectAction();\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnDisable()\n        {\n            m_LeftHandSnapTurnAction.DisableDirectAction();\n            m_RightHandSnapTurnAction.DisableDirectAction();\n        }\n\n        /// <inheritdoc />\n        protected override Vector2 ReadInput()\n        {\n            var leftHandValue = m_LeftHandSnapTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n            var rightHandValue = m_RightHandSnapTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n\n            return leftHandValue + rightHandValue;\n        }\n\n        void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)\n        {\n            if (Application.isPlaying)\n                property.DisableDirectAction();\n\n            property = value;\n\n            if (Application.isPlaying && isActiveAndEnabled)\n                property.EnableDirectAction();\n        }\n    }\n}\nusing UnityEngine.InputSystem;\nusing UnityEngine.InputSystem.Controls;\nusing UnityEngine.XR.Interaction.Toolkit.Inputs;\n\nnamespace UnityEngine.XR.Interaction.Toolkit\n{\n    /// <summary>\n    /// Locomotion provider that allows the user to smoothly rotate their rig continuously over time\n    /// using a specified input action.\n    /// </summary>\n    /// <seealso cref=\"LocomotionProvider\"/>\n    /// <seealso cref=\"ActionBasedSnapTurnProvider\"/>\n    [AddComponentMenu(\"XR/Locomotion/Continuous Turn Provider (Action-based)\", 11)]\n    [HelpURL(XRHelpURLConstants.k_ActionBasedContinuousTurnProvider)]\n    public class ActionBasedContinuousTurnProvider : ContinuousTurnProviderBase\n    {\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Turn data from the left hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_LeftHandTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Turn data from the left hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty leftHandTurnAction\n        {\n            get => m_LeftHandTurnAction;\n            set => SetInputActionProperty(ref m_LeftHandTurnAction, value);\n        }\n\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Turn data from the right hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_RightHandTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Turn data from the right hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty rightHandTurnAction\n        {\n            get => m_RightHandTurnAction;\n            set => SetInputActionProperty(ref m_RightHandTurnAction, value);\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnEnable()\n        {\n            m_LeftHandTurnAction.EnableDirectAction();\n            m_RightHandTurnAction.EnableDirectAction();\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnDisable()\n        {\n            m_LeftHandTurnAction.DisableDirectAction();\n            m_RightHandTurnAction.DisableDirectAction();\n        }\n\n        /// <inheritdoc />\n        protected override Vector2 ReadInput()\n        {\n            var leftHandValue = m_LeftHandTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n            var rightHandValue = m_RightHandTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n\n            return leftHandValue + rightHandValue;\n        }\n\n        void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)\n        {\n            if (Application.isPlaying)\n                property.DisableDirectAction();\n\n            property = value;\n\n            if (Application.isPlaying && isActiveAndEnabled)\n                property.EnableDirectAction();\n        }\n    }\n}\nusing UnityEngine.InputSystem;\nusing UnityEngine.InputSystem.Controls;\nusing UnityEngine.XR.Interaction.Toolkit.Inputs;\n\nnamespace UnityEngine.XR.Interaction.Toolkit\n{\n    /// <summary>\n    /// Locomotion provider that allows the user to smoothly move their rig continuously over time\n    /// using a specified input action.\n    /// </summary>\n    /// <seealso cref=\"LocomotionProvider\"/>\n    [AddComponentMenu(\"XR/Locomotion/Continuous Move Provider (Action-based)\", 11)]\n    [HelpURL(XRHelpURLConstants.k_ActionBasedContinuousMoveProvider)]\n    public class ActionBasedContinuousMoveProvider : ContinuousMoveProviderBase\n    {\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Move data from the left hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_LeftHandMoveAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Move data from the left hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty leftHandMoveAction\n        {\n            get => m_LeftHandMoveAction;\n            set => SetInputActionProperty(ref m_LeftHandMoveAction, value);\n        }\n\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Move data from the right hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_RightHandMoveAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Move data from the right hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty rightHandMoveAction\n        {\n            get => m_RightHandMoveAction;\n            set => SetInputActionProperty(ref m_RightHandMoveAction, value);\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnEnable()\n        {\n            m_LeftHandMoveAction.EnableDirectAction();\n            m_RightHandMoveAction.EnableDirectAction();\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnDisable()\n        {\n            m_LeftHandMoveAction.DisableDirectAction();\n            m_RightHandMoveAction.DisableDirectAction();\n        }\n\n        /// <inheritdoc />\n        protected override Vector2 ReadInput()\n        {\n            var leftHandValue = m_LeftHandMoveAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n            var rightHandValue = m_RightHandMoveAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n\n            return leftHandValue + rightHandValue;\n        }\n\n        void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)\n        {\n            if (Application.isPlaying)\n                property.DisableDirectAction();\n\n            property = value;\n\n            if (Application.isPlaying && isActiveAndEnabled)\n                property.EnableDirectAction();\n        }\n    }\n}\n\n'''\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '5669860208052943624'}]}, {'component': [{'fileID': '5669860208052943630'}]}, {'component': [{'fileID': '5669860208052943623'}]}, {'component': [{'fileID': '5669860208052943631'}]}]}, {'m_Layer': '8'}, {'m_Name': 'Locomotion System (Left Hand)'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '5669860208052943624', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '5669860208052943625'}]}, {'m_LocalRotation': [{'x': '-0'}, {'y': '-0'}, {'z': '-0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '4940586921621305978'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '5669860208052943630', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '5669860208052943625'}]}, {'m_Enabled': '0'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '2213c36610e3b1c4bbf886810ed9db12'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_System': [{'fileID': '4940586921621305983'}]}, {'m_TurnAmount': '45'}, {'m_DebounceTime': '0.5'}, {'m_EnableTurnLeftRight': '1'}, {'m_EnableTurnAround': '1'}, {'m_LeftHandSnapTurnAction': [{'m_UseReference': '0'}, {'m_Action': [{'m_Name': 'Left Hand Snap Turn'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'a1d07c24-ca50-422a-a23f-685d9fabf63b'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '1010738217276881514'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}, {'m_RightHandSnapTurnAction': [{'m_UseReference': '1'}, {'m_Action': [{'m_Name': 'Right Hand Snap Turn'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'a7b54797-6974-4f75-81d0-42b9c15ef1e0'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '-6493913391331992944'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}]}}, {'MonoBehaviour_1': {'id': '5669860208052943623', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '5669860208052943625'}]}, {'m_Enabled': '0'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '919e39492806b334982b6b84c90dd927'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_System': [{'fileID': '4940586921621305983'}]}, {'m_TurnSpeed': '60'}, {'m_LeftHandTurnAction': [{'m_UseReference': '1'}, {'m_Action': [{'m_Name': 'Left Hand Turn'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'b9ac2485-f305-451c-9106-d1d25cc235dc'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '1010738217276881514'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}, {'m_RightHandTurnAction': [{'m_UseReference': '0'}, {'m_Action': [{'m_Name': 'Right Hand Turn'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': '93119ec4-ae3b-41c0-8fb4-7ff4c5e6f732'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '-6493913391331992944'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}]}}, {'MonoBehaviour_2': {'id': '5669860208052943631', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '5669860208052943625'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '0bf296fc962d7184ab14ad1841598d5f'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_System': [{'fileID': '4940586921621305983'}]}, {'m_MoveSpeed': '2.5'}, {'m_EnableStrafe': '1'}, {'m_UseGravity': '1'}, {'m_GravityApplicationMode': '0'}, {'m_ForwardSource': [{'fileID': '0'}]}, {'m_LeftHandMoveAction': [{'m_UseReference': '1'}, {'m_Action': [{'m_Name': 'Left Hand Move'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': '75f1b245-c357-48c8-9acb-8967bec9dda2'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '6972639530819350904'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}, {'m_RightHandMoveAction': [{'m_UseReference': '0'}, {'m_Action': [{'m_Name': 'Right Hand Move'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': '6bf6c732-e011-46b1-acc5-b649a4ec5f10'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '-8198699208435500284'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}]}}]}\n'''\n\n\nGameObject ID: \"8256176680690771128\" GameObject Name: \"Locomotion System (Right Hand)\":\n[Source code of script files attached]\n'''\nusing UnityEngine.InputSystem;\nusing UnityEngine.InputSystem.Controls;\nusing UnityEngine.XR.Interaction.Toolkit.Inputs;\n\nnamespace UnityEngine.XR.Interaction.Toolkit\n{\n    /// <summary>\n    /// A locomotion provider that allows the user to rotate their rig using a 2D axis input\n    /// from an input system action.\n    /// </summary>\n    [AddComponentMenu(\"XR/Locomotion/Snap Turn Provider (Action-based)\", 11)]\n    [HelpURL(XRHelpURLConstants.k_ActionBasedSnapTurnProvider)]\n    public class ActionBasedSnapTurnProvider : SnapTurnProviderBase\n    {\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Snap Turn data from the left hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_LeftHandSnapTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Snap Turn data sent from the left hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty leftHandSnapTurnAction\n        {\n            get => m_LeftHandSnapTurnAction;\n            set => SetInputActionProperty(ref m_LeftHandSnapTurnAction, value);\n        }\n\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Snap Turn data from the right hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_RightHandSnapTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Snap Turn data sent from the right hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty rightHandSnapTurnAction\n        {\n            get => m_RightHandSnapTurnAction;\n            set => SetInputActionProperty(ref m_RightHandSnapTurnAction, value);\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnEnable()\n        {\n            m_LeftHandSnapTurnAction.EnableDirectAction();\n            m_RightHandSnapTurnAction.EnableDirectAction();\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnDisable()\n        {\n            m_LeftHandSnapTurnAction.DisableDirectAction();\n            m_RightHandSnapTurnAction.DisableDirectAction();\n        }\n\n        /// <inheritdoc />\n        protected override Vector2 ReadInput()\n        {\n            var leftHandValue = m_LeftHandSnapTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n            var rightHandValue = m_RightHandSnapTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n\n            return leftHandValue + rightHandValue;\n        }\n\n        void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)\n        {\n            if (Application.isPlaying)\n                property.DisableDirectAction();\n\n            property = value;\n\n            if (Application.isPlaying && isActiveAndEnabled)\n                property.EnableDirectAction();\n        }\n    }\n}\nusing UnityEngine.InputSystem;\nusing UnityEngine.InputSystem.Controls;\nusing UnityEngine.XR.Interaction.Toolkit.Inputs;\n\nnamespace UnityEngine.XR.Interaction.Toolkit\n{\n    /// <summary>\n    /// Locomotion provider that allows the user to smoothly move their rig continuously over time\n    /// using a specified input action.\n    /// </summary>\n    /// <seealso cref=\"LocomotionProvider\"/>\n    [AddComponentMenu(\"XR/Locomotion/Continuous Move Provider (Action-based)\", 11)]\n    [HelpURL(XRHelpURLConstants.k_ActionBasedContinuousMoveProvider)]\n    public class ActionBasedContinuousMoveProvider : ContinuousMoveProviderBase\n    {\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Move data from the left hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_LeftHandMoveAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Move data from the left hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty leftHandMoveAction\n        {\n            get => m_LeftHandMoveAction;\n            set => SetInputActionProperty(ref m_LeftHandMoveAction, value);\n        }\n\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Move data from the right hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_RightHandMoveAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Move data from the right hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty rightHandMoveAction\n        {\n            get => m_RightHandMoveAction;\n            set => SetInputActionProperty(ref m_RightHandMoveAction, value);\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnEnable()\n        {\n            m_LeftHandMoveAction.EnableDirectAction();\n            m_RightHandMoveAction.EnableDirectAction();\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnDisable()\n        {\n            m_LeftHandMoveAction.DisableDirectAction();\n            m_RightHandMoveAction.DisableDirectAction();\n        }\n\n        /// <inheritdoc />\n        protected override Vector2 ReadInput()\n        {\n            var leftHandValue = m_LeftHandMoveAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n            var rightHandValue = m_RightHandMoveAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n\n            return leftHandValue + rightHandValue;\n        }\n\n        void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)\n        {\n            if (Application.isPlaying)\n                property.DisableDirectAction();\n\n            property = value;\n\n            if (Application.isPlaying && isActiveAndEnabled)\n                property.EnableDirectAction();\n        }\n    }\n}\nusing UnityEngine.InputSystem;\nusing UnityEngine.InputSystem.Controls;\nusing UnityEngine.XR.Interaction.Toolkit.Inputs;\n\nnamespace UnityEngine.XR.Interaction.Toolkit\n{\n    /// <summary>\n    /// Locomotion provider that allows the user to smoothly rotate their rig continuously over time\n    /// using a specified input action.\n    /// </summary>\n    /// <seealso cref=\"LocomotionProvider\"/>\n    /// <seealso cref=\"ActionBasedSnapTurnProvider\"/>\n    [AddComponentMenu(\"XR/Locomotion/Continuous Turn Provider (Action-based)\", 11)]\n    [HelpURL(XRHelpURLConstants.k_ActionBasedContinuousTurnProvider)]\n    public class ActionBasedContinuousTurnProvider : ContinuousTurnProviderBase\n    {\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Turn data from the left hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_LeftHandTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Turn data from the left hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty leftHandTurnAction\n        {\n            get => m_LeftHandTurnAction;\n            set => SetInputActionProperty(ref m_LeftHandTurnAction, value);\n        }\n\n        [SerializeField]\n        [Tooltip(\"The Input System Action that will be used to read Turn data from the right hand controller. Must be a Value Vector2 Control.\")]\n        InputActionProperty m_RightHandTurnAction;\n        /// <summary>\n        /// The Input System Action that Unity uses to read Turn data from the right hand controller. Must be a <see cref=\"InputActionType.Value\"/> <see cref=\"Vector2Control\"/> Control.\n        /// </summary>\n        public InputActionProperty rightHandTurnAction\n        {\n            get => m_RightHandTurnAction;\n            set => SetInputActionProperty(ref m_RightHandTurnAction, value);\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnEnable()\n        {\n            m_LeftHandTurnAction.EnableDirectAction();\n            m_RightHandTurnAction.EnableDirectAction();\n        }\n\n        /// <summary>\n        /// See <see cref=\"MonoBehaviour\"/>.\n        /// </summary>\n        protected void OnDisable()\n        {\n            m_LeftHandTurnAction.DisableDirectAction();\n            m_RightHandTurnAction.DisableDirectAction();\n        }\n\n        /// <inheritdoc />\n        protected override Vector2 ReadInput()\n        {\n            var leftHandValue = m_LeftHandTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n            var rightHandValue = m_RightHandTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;\n\n            return leftHandValue + rightHandValue;\n        }\n\n        void SetInputActionProperty(ref InputActionProperty property, InputActionProperty value)\n        {\n            if (Application.isPlaying)\n                property.DisableDirectAction();\n\n            property = value;\n\n            if (Application.isPlaying && isActiveAndEnabled)\n                property.EnableDirectAction();\n        }\n    }\n}\n\n'''\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '8256176680690771127'}]}, {'component': [{'fileID': '8256176680690771125'}]}, {'component': [{'fileID': '8256176680690771126'}]}, {'component': [{'fileID': '8256176680690771124'}]}]}, {'m_Layer': '8'}, {'m_Name': 'Locomotion System (Right Hand)'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '8256176680690771127', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '8256176680690771128'}]}, {'m_LocalRotation': [{'x': '-0'}, {'y': '-0'}, {'z': '-0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Children': []}, {'m_Father': [{'fileID': '4940586921621305978'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '8256176680690771125', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '8256176680690771128'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '2213c36610e3b1c4bbf886810ed9db12'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_System': [{'fileID': '4940586921621305983'}]}, {'m_TurnAmount': '45'}, {'m_DebounceTime': '0.5'}, {'m_EnableTurnLeftRight': '1'}, {'m_EnableTurnAround': '1'}, {'m_LeftHandSnapTurnAction': [{'m_UseReference': '0'}, {'m_Action': [{'m_Name': 'Left Hand Snap Turn'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'a1d07c24-ca50-422a-a23f-685d9fabf63b'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '1010738217276881514'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}, {'m_RightHandSnapTurnAction': [{'m_UseReference': '1'}, {'m_Action': [{'m_Name': 'Right Hand Snap Turn'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'a7b54797-6974-4f75-81d0-42b9c15ef1e0'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '-6493913391331992944'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}]}}, {'MonoBehaviour_1': {'id': '8256176680690771126', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '8256176680690771128'}]}, {'m_Enabled': '0'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '0bf296fc962d7184ab14ad1841598d5f'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_System': [{'fileID': '4940586921621305983'}]}, {'m_MoveSpeed': '2.5'}, {'m_EnableStrafe': '1'}, {'m_UseGravity': '1'}, {'m_GravityApplicationMode': '0'}, {'m_ForwardSource': [{'fileID': '0'}]}, {'m_LeftHandMoveAction': [{'m_UseReference': '0'}, {'m_Action': [{'m_Name': 'Left Hand Move'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': '75f1b245-c357-48c8-9acb-8967bec9dda2'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '6972639530819350904'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}, {'m_RightHandMoveAction': [{'m_UseReference': '1'}, {'m_Action': [{'m_Name': 'Right Hand Move'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': '6bf6c732-e011-46b1-acc5-b649a4ec5f10'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '-8198699208435500284'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}]}]}}, {'MonoBehaviour_2': {'id': '8256176680690771124', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '8256176680690771128'}]}, {'m_Enabled': '0'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '919e39492806b334982b6b84c90dd927'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_System': [{'fileID': '0'}]}, {'m_TurnSpeed': '0'}, {'m_LeftHandTurnAction': [{'m_UseReference': '0'}, {'m_Action': [{'m_Name': 'Left Hand Turn'}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': 'c27d1943-55c8-4158-ba06-52c8b97cb875'}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '0'}]}]}, {'m_RightHandTurnAction': [{'m_UseReference': '176'}, {'m_Action': [{'m_Name': ''}, {'m_Type': '0'}, {'m_ExpectedControlType': ''}, {'m_Id': ''}, {'m_Processors': ''}, {'m_Interactions': ''}, {'m_SingletonActionBindings': []}, {'m_Flags': '0'}]}, {'m_Reference': [{'fileID': '0'}]}]}]}}]}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-25T00:06:52.653834",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "request_type": "main_gameobject_find_logic_request",
+    "gobj_info": {
+      "gameobject_id": "7021357618633726246",
+      "gameobject_id_replace": "7021357618633726246",
+      "gameobject_type": "Source Prefab GameObject",
+      "gameobject_name": "Enemy Type 5",
+      "mono_comp_relations": [
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "614338935",
+          "target_replace": "614338935",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "614338935",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1888436447",
+          "target_replace": "1888436447",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1888436447",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1640000274",
+          "target_replace": "1640000274",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1640000274",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "15"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "5"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.75"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "10"
+              },
+              {
+                "attackRange": "7"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1646766445",
+          "target_replace": "1646766445",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1646766445",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "15"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "5"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.75"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "10"
+              },
+              {
+                "attackRange": "7"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1673477538",
+          "target_replace": "1673477538",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1673477538",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        }
+      ],
+      "child_relations": [
+        {
+          "source": "7021357618633726246",
+          "target": "7021357619167718740",
+          "edge_type": "Has_Child"
+        },
+        {
+          "source": "7021357618633726246",
+          "target": "4047698858627285282",
+          "edge_type": "Has_Child"
+        }
+      ],
+      "child_mono_comp_info": [],
+      "parent_id": null,
+      "depth": 0,
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "4940586919770313183",
+          "target_replace": "4940586919770313183",
+          "target_gameobject_name": "Camera Offset",
+          "edge_type": "Gameobject_Find_Logic_Relation"
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "5669860208052943625",
+          "target_replace": "5669860208052943625",
+          "target_gameobject_name": "Locomotion System (Left Hand)",
+          "edge_type": "Gameobject_Find_Logic_Relation"
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "8256176680690771128",
+          "target_replace": "8256176680690771128",
+          "target_gameobject_name": "Locomotion System (Right Hand)",
+          "edge_type": "Gameobject_Find_Logic_Relation"
+        }
+      ],
+      "gameobject_instantiate_info": [
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "6845118643277486568",
+          "target_replace": "6845118643277486568",
+          "target_gameobject_name": "Laser",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_find_info": [
+      {
+        "source": "7021357618633726246",
+        "source_replace": "7021357618633726246",
+        "target": "4940586919770313183",
+        "target_replace": "4940586919770313183",
+        "target_gameobject_name": "Camera Offset",
+        "edge_type": "Gameobject_Find_Logic_Relation"
+      },
+      {
+        "source": "7021357618633726246",
+        "source_replace": "7021357618633726246",
+        "target": "5669860208052943625",
+        "target_replace": "5669860208052943625",
+        "target_gameobject_name": "Locomotion System (Left Hand)",
+        "edge_type": "Gameobject_Find_Logic_Relation"
+      },
+      {
+        "source": "7021357618633726246",
+        "source_replace": "7021357618633726246",
+        "target": "8256176680690771128",
+        "target_replace": "8256176680690771128",
+        "target_gameobject_name": "Locomotion System (Right Hand)",
+        "edge_type": "Gameobject_Find_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 7021357618633726246,\n          \"delta_position\": {\n            \"x\": -3.15,\n            \"y\": -0.49,\n            \"z\": -5.83\n          },\n          \"delta_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"delta_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.1\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"triggerring_time\": 1.0,\n          \"source_object_fileID\": 7021357618633726246,\n          \"condition\": \"Attack event via proximity. Ensure GameObject.Find(\\\"Camera Offset\\\") (id: 4940586919770313183) resolves so EnemyAi.player is set in Awake. After moving Enemy Type 5 to approx (0,0,0), it should be within both sightRange and attackRange for all attached EnemyAi MonoBehaviours (guid: 16000b3396174ab49b4983590de64f34). Component configs: [614338935, 1888436447, 1673477538] sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, health=10; [1640000274, 1646766445] sightRange=10, attackRange=7, timeBetweenAttacks=0.75, forceforward=15, health=5. Expected automatic behavior during this hold: agent stops and faces player, AudioManager.Play(\\\"Gun Fire\\\"), projectile instantiated at Attackpoint (fileID: 2913934810850566424) with forward/up forces, alreadyAttacked set then auto-reset via Invoke after timeBetweenAttacks.\",\n          \"triggerring_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 7021357618633726246,\n          \"delta_position\": {\n            \"x\": 8.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.2\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"triggerring_time\": 0.6,\n          \"source_object_fileID\": 7021357618633726246,\n          \"condition\": \"Chase event via visibility only. At ~8 units from Camera Offset the enemy should be outside attackRange (max 7) but within sightRange (min 8) for EnemyAi components [614338935, 1888436447, 1673477538, 1640000274, 1646766445]. Expected automatic behavior: EnemyAi.ChasePlayer path runs, NavMeshAgent.SetDestination(player.position), LookAt constrained to yaw.\",\n          \"triggerring_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 7021357618633726246,\n          \"delta_position\": {\n            \"x\": 30.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.2\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"triggerring_time\": 1.0,\n          \"source_object_fileID\": 7021357618633726246,\n          \"condition\": \"Patrol event via no visibility. At ~38+ units from Camera Offset the enemy should be outside both sightRange and attackRange for all EnemyAi components [614338935, 1888436447, 1673477538, 1640000274, 1646766445]. Expected automatic behavior: Patroling() runs, SearchWalkPoint() may set walkPoint when Raycast on whatIsGround (m_Bits 2048) succeeds, NavMeshAgent.SetDestination(walkPoint) until within 1f, then walkPointSet=false.\",\n          \"triggerring_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-25T00:08:09.195962",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "The gameobject is \"Enemy Type 5\": {fileID: 7021357618633726246}. Please use the source code of the s..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 5",
+              "source_object_fileID": 7021357618633726246,
+              "delta_position": {
+                "x": -3.15,
+                "y": -0.49,
+                "z": -5.83
+              },
+              "delta_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "delta_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.1
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Enemy Type 5",
+              "triggerring_time": 1.0,
+              "source_object_fileID": 7021357618633726246,
+              "condition": "Attack event via proximity. Ensure GameObject.Find(\"Camera Offset\") (id: 4940586919770313183) resolves so EnemyAi.player is set in Awake. After moving Enemy Type 5 to approx (0,0,0), it should be within both sightRange and attackRange for all attached EnemyAi MonoBehaviours (guid: 16000b3396174ab49b4983590de64f34). Component configs: [614338935, 1888436447, 1673477538] sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, health=10; [1640000274, 1646766445] sightRange=10, attackRange=7, timeBetweenAttacks=0.75, forceforward=15, health=5. Expected automatic behavior during this hold: agent stops and faces player, AudioManager.Play(\"Gun Fire\"), projectile instantiated at Attackpoint (fileID: 2913934810850566424) with forward/up forces, alreadyAttacked set then auto-reset via Invoke after timeBetweenAttacks.",
+              "triggerring_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 5",
+              "source_object_fileID": 7021357618633726246,
+              "delta_position": {
+                "x": 8.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.2
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Enemy Type 5",
+              "triggerring_time": 0.6,
+              "source_object_fileID": 7021357618633726246,
+              "condition": "Chase event via visibility only. At ~8 units from Camera Offset the enemy should be outside attackRange (max 7) but within sightRange (min 8) for EnemyAi components [614338935, 1888436447, 1673477538, 1640000274, 1646766445]. Expected automatic behavior: EnemyAi.ChasePlayer path runs, NavMeshAgent.SetDestination(player.position), LookAt constrained to yaw.",
+              "triggerring_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 5",
+              "source_object_fileID": 7021357618633726246,
+              "delta_position": {
+                "x": 30.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.2
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Enemy Type 5",
+              "triggerring_time": 1.0,
+              "source_object_fileID": 7021357618633726246,
+              "condition": "Patrol event via no visibility. At ~38+ units from Camera Offset the enemy should be outside both sightRange and attackRange for all EnemyAi components [614338935, 1888436447, 1673477538, 1640000274, 1646766445]. Expected automatic behavior: Patroling() runs, SearchWalkPoint() may set walkPoint when Raycast on whatIsGround (m_Bits 2048) succeeds, NavMeshAgent.SetDestination(walkPoint) until within 1f, then walkPointSet=false.",
+              "triggerring_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The gameobject is \"Enemy Type 5\": {fileID: 7021357618633726246}. Please use the source code of the scripts attached to the gameobject and the extracted JSON format of scene meta file we provided in the last conversation to finalize the test plan.\n\nThe following gameobjects ['6845118643277486568'] have Instantiate() logic detected in the source script of gameobject \"7021357618633726246\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"7021357618633726246\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"6845118643277486568\" GameObject Name: \"Laser\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '6845118643277486577'}]}, {'component': [{'fileID': '6845118643277486582'}]}, {'component': [{'fileID': '6845118643277486583'}]}, {'component': [{'fileID': '6845118643277486580'}]}, {'component': [{'fileID': '6845118643277486570'}]}, {'component': [{'fileID': '6845118643277486571'}]}]}, {'m_Layer': '13'}, {'m_Name': 'Laser'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-25T00:08:09.198872",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "The gameobject is \"Enemy Type 5\": {fileID: 7021357618633726246}. Please use the source code of the s..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      }
+    ],
+    "request_type": "main_gameobject_instantiate_logic_request",
+    "gobj_info": {
+      "gameobject_id": "7021357618633726246",
+      "gameobject_id_replace": "7021357618633726246",
+      "gameobject_type": "Source Prefab GameObject",
+      "gameobject_name": "Enemy Type 5",
+      "mono_comp_relations": [
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "614338935",
+          "target_replace": "614338935",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "614338935",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1888436447",
+          "target_replace": "1888436447",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1888436447",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1640000274",
+          "target_replace": "1640000274",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1640000274",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "15"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "5"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.75"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "10"
+              },
+              {
+                "attackRange": "7"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1646766445",
+          "target_replace": "1646766445",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1646766445",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "15"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "5"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.75"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "10"
+              },
+              {
+                "attackRange": "7"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "1673477538",
+          "target_replace": "1673477538",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1673477538",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "16000b3396174ab49b4983590de64f34"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "agent": [
+                  {
+                    "fileID": "7021357618633726265"
+                  }
+                ]
+              },
+              {
+                "player": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "whatIsGround": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "2048"
+                  }
+                ]
+              },
+              {
+                "whatIsPlayer": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "256"
+                  }
+                ]
+              },
+              {
+                "forceup": "1.5"
+              },
+              {
+                "forceforward": "10"
+              },
+              {
+                "Attackpoint": [
+                  {
+                    "fileID": "2913934810850566424"
+                  }
+                ]
+              },
+              {
+                "health": "10"
+              },
+              {
+                "AudioManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "self": [
+                  {
+                    "fileID": "7021357618633726246"
+                  }
+                ]
+              },
+              {
+                "startpoint": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "TextMeshPro": [
+                  {
+                    "fileID": "6064183479137054623"
+                  }
+                ]
+              },
+              {
+                "walkPoint": [
+                  {
+                    "x": "0"
+                  },
+                  {
+                    "y": "0"
+                  },
+                  {
+                    "z": "0"
+                  }
+                ]
+              },
+              {
+                "walkPointRange": "10"
+              },
+              {
+                "timeBetweenAttacks": "0.5"
+              },
+              {
+                "projectile": [
+                  {
+                    "fileID": "6845118643277486568"
+                  },
+                  {
+                    "guid": "647ac56353c74ad49ae408a2c10d8464"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "sightRange": "8"
+              },
+              {
+                "attackRange": "6"
+              },
+              {
+                "playerInSightRange": "0"
+              },
+              {
+                "playerInAttackRange": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "16000b3396174ab49b4983590de64f34",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Enemy\\EnemyAi.cs.meta"
+            }
+          ]
+        }
+      ],
+      "child_relations": [
+        {
+          "source": "7021357618633726246",
+          "target": "7021357619167718740",
+          "edge_type": "Has_Child"
+        },
+        {
+          "source": "7021357618633726246",
+          "target": "4047698858627285282",
+          "edge_type": "Has_Child"
+        }
+      ],
+      "child_mono_comp_info": [],
+      "parent_id": null,
+      "depth": 0,
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "4940586919770313183",
+          "target_replace": "4940586919770313183",
+          "target_gameobject_name": "Camera Offset",
+          "edge_type": "Gameobject_Find_Logic_Relation"
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "5669860208052943625",
+          "target_replace": "5669860208052943625",
+          "target_gameobject_name": "Locomotion System (Left Hand)",
+          "edge_type": "Gameobject_Find_Logic_Relation"
+        },
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "8256176680690771128",
+          "target_replace": "8256176680690771128",
+          "target_gameobject_name": "Locomotion System (Right Hand)",
+          "edge_type": "Gameobject_Find_Logic_Relation"
+        }
+      ],
+      "gameobject_instantiate_info": [
+        {
+          "source": "7021357618633726246",
+          "source_replace": "7021357618633726246",
+          "target": "6845118643277486568",
+          "target_replace": "6845118643277486568",
+          "target_gameobject_name": "Laser",
+          "edge_type": "Instantiate_Logic_Relation"
+        }
+      ],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    },
+    "gameobject_instantiate_info": [
+      {
+        "source": "7021357618633726246",
+        "source_replace": "7021357618633726246",
+        "target": "6845118643277486568",
+        "target_replace": "6845118643277486568",
+        "target_gameobject_name": "Laser",
+        "edge_type": "Instantiate_Logic_Relation"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Camera Offset\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 4940586919770313183,\n          \"condition\": \"Ensure GameObject.Find(\\\"Camera Offset\\\") resolves during EnemyAi.Awake so EnemyAi.player is assigned. This object is the XR rig root (tag: XRRig). No direct controller interaction performed.\",\n          \"triggerring_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Locomotion System (Left Hand)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 5669860208052943625,\n          \"condition\": \"Acknowledge presence of XR locomotion providers (ActionBasedContinuousMoveProvider enabled id: 5669860208052943631; Snap/Turn providers disabled). No direct input simulation; used only to ensure XR rig systems are active while EnemyAi queries the player.\",\n          \"triggerring_events\": []\n        },\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Locomotion System (Right Hand)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 8256176680690771128,\n          \"condition\": \"Acknowledge presence of XR locomotion providers (ActionBasedSnapTurnProvider enabled id: 8256176680690771125). No direct controller interaction performed.\",\n          \"triggerring_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 7021357618633726246,\n          \"delta_position\": {\n            \"x\": -3.15,\n            \"y\": -0.49,\n            \"z\": -5.83\n          },\n          \"delta_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"delta_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.1\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"triggerring_time\": 1.6,\n          \"source_object_fileID\": 7021357618633726246,\n          \"condition\": \"Force AttackPlayer by placing the player within both sightRange and attackRange near (0,0,0). EnemyAi settings in-scene (script guid: 16000b3396174ab49b4983590de64f34) — components: [614338935, 1888436447, 1673477538] sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, health=10; [1640000274, 1646766445] sightRange=10, attackRange=7, timeBetweenAttacks=0.75, forceforward=15, health=5. Expected behavior: agent halts, faces player; AudioManager.Play(\\\"Gun Fire\\\"); Instantiate projectile prefab 'Laser' (fileID: 6845118643277486568) at Attackpoint (fileID: 2913934810850566424); apply forward/up impulses; alreadyAttacked toggles then auto-resets via Invoke to permit repeat fire within the 1.6s window.\",\n          \"triggerring_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 7021357618633726246,\n          \"delta_position\": {\n            \"x\": 8.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.2\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"triggerring_time\": 0.6,\n          \"source_object_fileID\": 7021357618633726246,\n          \"condition\": \"ChasePlayer via visibility only. At ~8 units from Camera Offset, outside attackRange (max 7) but within sightRange (>=8). Expected: NavMeshAgent.SetDestination(player.position), constrained yaw LookAt.\",\n          \"triggerring_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"source_object_fileID\": 7021357618633726246,\n          \"delta_position\": {\n            \"x\": 30.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_rotation\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"delta_scale\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.2\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Enemy Type 5\",\n          \"triggerring_time\": 1.0,\n          \"source_object_fileID\": 7021357618633726246,\n          \"condition\": \"Patroling by being outside both ranges for all EnemyAi components. Expected: SearchWalkPoint() picks random walkPoint on whatIsGround (m_Bits: 2048); NavMeshAgent.SetDestination(walkPoint) until within 1f then walkPointSet=false.\",\n          \"triggerring_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-25T00:09:27.949481",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "The gameobject is \"Enemy Type 5\": {fileID: 7021357618633726246}. Please use the source code of the s..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"..."
+      },
+      {
+        "role": "user",
+        "content": "The gameobject is \"Enemy Type 5\": {fileID: 7021357618633726246}. Please use the source code of the s..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Camera Offset",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 4940586919770313183,
+              "condition": "Ensure GameObject.Find(\"Camera Offset\") resolves during EnemyAi.Awake so EnemyAi.player is assigned. This object is the XR rig root (tag: XRRig). No direct controller interaction performed.",
+              "triggerring_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Locomotion System (Left Hand)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 5669860208052943625,
+              "condition": "Acknowledge presence of XR locomotion providers (ActionBasedContinuousMoveProvider enabled id: 5669860208052943631; Snap/Turn providers disabled). No direct input simulation; used only to ensure XR rig systems are active while EnemyAi queries the player.",
+              "triggerring_events": []
+            },
+            {
+              "type": "Trigger",
+              "source_object_name": "Locomotion System (Right Hand)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 8256176680690771128,
+              "condition": "Acknowledge presence of XR locomotion providers (ActionBasedSnapTurnProvider enabled id: 8256176680690771125). No direct controller interaction performed.",
+              "triggerring_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 5",
+              "source_object_fileID": 7021357618633726246,
+              "delta_position": {
+                "x": -3.15,
+                "y": -0.49,
+                "z": -5.83
+              },
+              "delta_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "delta_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.1
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Enemy Type 5",
+              "triggerring_time": 1.6,
+              "source_object_fileID": 7021357618633726246,
+              "condition": "Force AttackPlayer by placing the player within both sightRange and attackRange near (0,0,0). EnemyAi settings in-scene (script guid: 16000b3396174ab49b4983590de64f34) — components: [614338935, 1888436447, 1673477538] sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, health=10; [1640000274, 1646766445] sightRange=10, attackRange=7, timeBetweenAttacks=0.75, forceforward=15, health=5. Expected behavior: agent halts, faces player; AudioManager.Play(\"Gun Fire\"); Instantiate projectile prefab 'Laser' (fileID: 6845118643277486568) at Attackpoint (fileID: 2913934810850566424); apply forward/up impulses; alreadyAttacked toggles then auto-resets via Invoke to permit repeat fire within the 1.6s window.",
+              "triggerring_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 5",
+              "source_object_fileID": 7021357618633726246,
+              "delta_position": {
+                "x": 8.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.2
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Enemy Type 5",
+              "triggerring_time": 0.6,
+              "source_object_fileID": 7021357618633726246,
+              "condition": "ChasePlayer via visibility only. At ~8 units from Camera Offset, outside attackRange (max 7) but within sightRange (>=8). Expected: NavMeshAgent.SetDestination(player.position), constrained yaw LookAt.",
+              "triggerring_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "Enemy Type 5",
+              "source_object_fileID": 7021357618633726246,
+              "delta_position": {
+                "x": 30.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "delta_scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.2
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Enemy Type 5",
+              "triggerring_time": 1.0,
+              "source_object_fileID": 7021357618633726246,
+              "condition": "Patroling by being outside both ranges for all EnemyAi components. Expected: SearchWalkPoint() picks random walkPoint on whatIsGround (m_Bits: 2048); NavMeshAgent.SetDestination(walkPoint) until within 1f then walkPointSet=false.",
+              "triggerring_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  }
+]

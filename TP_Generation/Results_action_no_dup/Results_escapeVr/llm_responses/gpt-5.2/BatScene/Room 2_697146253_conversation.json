@@ -1,0 +1,1492 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the escapeVr App. One game object we want to test in the scene of 'BatScene.unity' is 'Room 2'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code of the script attached to this gameobjects below. There may be more than one script attached to one gameobject. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class room2 : MonoBehaviour\n{\n    private bool SphereChecked;\n    private bool CubeChecked;\n    private bool PyramidChecked;\n    private bool doorOpen;\n    [SerializeField] private Animator doorAnim = null;\n\n    public void SetSphereCheck() { SphereChecked = true; }\n\n    public void SetCubeCheck() { CubeChecked = true; }\n\n    public void SetPyramidCheck() { PyramidChecked = true; }\n\n    private void Update()\n    {\n        if (SphereChecked && CubeChecked && PyramidChecked && !doorOpen)\n        {\n            doorOpen = true;\n            doorAnim.Play(\"DoorOpen\", 0, 0.0f);\n        }\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file] The scene file of 'BatScene.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Room 2' and its script. The 'fileID' of gameobject 'Room 2' is: 697146253. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '697146255'}]}, {'component': [{'fileID': '697146254'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Room 2'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '697146255', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '697146253'}]}, {'serializedVersion': '2'}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '34.06234'}, {'y': '11.047845'}, {'z': '20.76964'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': [{'fileID': '855068736'}, {'fileID': '896816001'}, {'fileID': '559748134'}, {'fileID': '468619165'}, {'fileID': '1827571442'}, {'fileID': '1152042354'}, {'fileID': '1460706533'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '697146254', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '697146253'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '82aa235159f620648803cf53217af1e5'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'doorAnim': [{'fileID': '521131961'}]}]}}]}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"delta_position\": {                    // position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['855068735', '896816000', '559748133', '194480315', '284893529', '863577851', '1062197185'] to help formalize your test plans one by one.",
+    "timestamp": "2025-12-16T15:12:14.379979",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Room 2\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 697146253,\n          \"condition\": \"MonoBehaviour id=697146254 (m_Script guid=82aa235159f620648803cf53217af1e5) matches class 'room2'. Serialized doorAnim references fileID=521131961. Calling public no-arg methods SetSphereCheck/SetCubeCheck/SetPyramidCheck sets internal flags; Update() opens the door via doorAnim.Play(\\\"DoorOpen\\\",0,0.0f) once all three are true and doorOpen is false.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetSphereCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Room 2\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 697146253,\n          \"condition\": \"Progress second condition for room2: set CubeChecked true. Expect no door animation yet unless all three checks are true.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetCubeCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Room 2\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 697146253,\n          \"condition\": \"Finalize all checks for room2 by setting PyramidChecked true. Expected behavior: in the next Update(), since SphereChecked && CubeChecked && PyramidChecked && !doorOpen, the script sets doorOpen=true and calls doorAnim.Play(\\\"DoorOpen\\\", 0, 0.0f).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetPyramidCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-16T15:13:14.898395",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Room 2",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 697146253,
+              "condition": "MonoBehaviour id=697146254 (m_Script guid=82aa235159f620648803cf53217af1e5) matches class 'room2'. Serialized doorAnim references fileID=521131961. Calling public no-arg methods SetSphereCheck/SetCubeCheck/SetPyramidCheck sets internal flags; Update() opens the door via doorAnim.Play(\"DoorOpen\",0,0.0f) once all three are true and doorOpen is false.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetSphereCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Room 2",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 697146253,
+              "condition": "Progress second condition for room2: set CubeChecked true. Expect no door animation yet unless all three checks are true.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetCubeCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Room 2",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 697146253,
+              "condition": "Finalize all checks for room2 by setting PyramidChecked true. Expected behavior: in the next Update(), since SphereChecked && CubeChecked && PyramidChecked && !doorOpen, the script sets doorOpen=true and calls doorAnim.Play(\"DoorOpen\", 0, 0.0f).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetPyramidCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"collider_porte\": {fileID: 1631101808}. The direct parent of this gameobject is \"trigger_cube\". We only present the child with attached script. And the collider_porte gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class room2_trigger : MonoBehaviour\n{\n    [SerializeField] private bool checkSphere;\n    [SerializeField] private bool checkCube;\n    [SerializeField] private bool checkPyramid;\n    [SerializeField] private room2 roomDatas;\n    [SerializeField] private bool checkCompile;\n\n    private SnapToTrigger snap;\n\n    private void OnTriggerEnter(Collider collision)\n    {\n        snap = collision.GetComponent<SnapToTrigger>();\n        if (checkSphere && collision.CompareTag(\"Sphere\")) { \n            roomDatas.SetSphereCheck();\n            snap.Snap(gameObject.transform.position);\n        }\n        else if (checkPyramid && collision.CompareTag(\"Pyramid\")) \n        { \n            roomDatas.SetPyramidCheck(); \n            snap.Snap(gameObject.transform.position);\n        }\n        else if (checkCube && collision.CompareTag(\"Cube\")) \n        { \n            roomDatas.SetCubeCheck(); \n            snap.Snap(gameObject.transform.position);\n        }\n        if (checkCompile) {\n            checkCompile = false;\n        }\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1631101808'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1631101808', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '855068736'}]}, {'m_Modifications': [{'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '0.6'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-2.748'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '4.307'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '-9.876118'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.x'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.z'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Enabled'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Center.x'}, {'value': '0.01'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'collider_porte'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8870310304005890639'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'myDoor'}, {'value': ''}, {'objectReference': [{'fileID': '521131961'}]}]}, {'m_RemovedComponents': [{'fileID': '8870310304005890639'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': [{'targetCorrespondingSourceObject': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '1813076697'}]}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '863374845 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1631101808'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1813076697', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1813076694'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'f90cc8c0ee6cc9746bf3259c5e5bf2bc'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'checkSphere': '0'}, {'checkCube': '1'}, {'checkPyramid': '0'}, {'roomDatas': [{'fileID': '697146254'}]}, {'checkCompile': '0'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-16T15:13:14.899029",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 1,
+    "child_info": {
+      "child_id": "1813076694 stripped",
+      "child_id_replace": "1631101808",
+      "child_name": "collider_porte",
+      "mono_comp_targets": [
+        {
+          "source": "1813076694 stripped",
+          "source_replace": "1631101808",
+          "target": "1813076697",
+          "target_replace": "1813076697",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1813076697",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1813076694"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "f90cc8c0ee6cc9746bf3259c5e5bf2bc"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "checkSphere": "0"
+              },
+              {
+                "checkCube": "1"
+              },
+              {
+                "checkPyramid": "0"
+              },
+              {
+                "roomDatas": [
+                  {
+                    "fileID": "697146254"
+                  }
+                ]
+              },
+              {
+                "checkCompile": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "f90cc8c0ee6cc9746bf3259c5e5bf2bc",
+              "file_path": "D:\\escapeVr-main\\escapeVr-main\\Assets\\Script\\room2_trigger.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 2,
+      "parent_info": {
+        "parent_id": "855068735",
+        "parent_name": "trigger_cube"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1631101808,\n          \"condition\": \"Target script: room2 (MonoBehaviour id=697146254, m_Script guid=82aa235159f620648803cf53217af1e5) attached to GameObject 'Room 2' (fileID=697146253). Serialized doorAnim references Animator fileID=521131961. Manually set SphereChecked via public no-arg API to progress puzzle; Update() will later open door when all three checks are true.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetSphereCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1631101808,\n          \"condition\": \"Child trigger script: room2_trigger (MonoBehaviour id=1813076697, m_Script guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc) is added on 'collider_porte' PrefabInstance (id=1631101808) with checkCube=true and roomDatas->697146254. Normally OnTriggerEnter with a Rigidbody object tagged 'Cube' and having SnapToTrigger would call roomDatas.SetCubeCheck() and snap.Snap(). Since the colliding Cube object details are not provided, manually call SetCubeCheck on room2 to ensure coverage of door logic.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetCubeCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 1631101808,\n          \"condition\": \"Finalize puzzle by setting PyramidChecked. Expected: next Update() on room2 sees SphereChecked && CubeChecked && PyramidChecked && !doorOpen, sets doorOpen=true and plays doorAnim.Play('DoorOpen',0,0.0f).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetPyramidCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-16T15:14:04.394415",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1631101808}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1631101808,
+              "condition": "Target script: room2 (MonoBehaviour id=697146254, m_Script guid=82aa235159f620648803cf53217af1e5) attached to GameObject 'Room 2' (fileID=697146253). Serialized doorAnim references Animator fileID=521131961. Manually set SphereChecked via public no-arg API to progress puzzle; Update() will later open door when all three checks are true.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetSphereCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1631101808,
+              "condition": "Child trigger script: room2_trigger (MonoBehaviour id=1813076697, m_Script guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc) is added on 'collider_porte' PrefabInstance (id=1631101808) with checkCube=true and roomDatas->697146254. Normally OnTriggerEnter with a Rigidbody object tagged 'Cube' and having SnapToTrigger would call roomDatas.SetCubeCheck() and snap.Snap(). Since the colliding Cube object details are not provided, manually call SetCubeCheck on room2 to ensure coverage of door logic.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetCubeCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 1631101808,
+              "condition": "Finalize puzzle by setting PyramidChecked. Expected: next Update() on room2 sees SphereChecked && CubeChecked && PyramidChecked && !doorOpen, sets doorOpen=true and plays doorAnim.Play('DoorOpen',0,0.0f).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetPyramidCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"collider_porte\": {fileID: 1339877303}. The direct parent of this gameobject is \"trigger_pyramide\". We only present the child with attached script. And the collider_porte gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class room2_trigger : MonoBehaviour\n{\n    [SerializeField] private bool checkSphere;\n    [SerializeField] private bool checkCube;\n    [SerializeField] private bool checkPyramid;\n    [SerializeField] private room2 roomDatas;\n    [SerializeField] private bool checkCompile;\n\n    private SnapToTrigger snap;\n\n    private void OnTriggerEnter(Collider collision)\n    {\n        snap = collision.GetComponent<SnapToTrigger>();\n        if (checkSphere && collision.CompareTag(\"Sphere\")) { \n            roomDatas.SetSphereCheck();\n            snap.Snap(gameObject.transform.position);\n        }\n        else if (checkPyramid && collision.CompareTag(\"Pyramid\")) \n        { \n            roomDatas.SetPyramidCheck(); \n            snap.Snap(gameObject.transform.position);\n        }\n        else if (checkCube && collision.CompareTag(\"Cube\")) \n        { \n            roomDatas.SetCubeCheck(); \n            snap.Snap(gameObject.transform.position);\n        }\n        if (checkCompile) {\n            checkCompile = false;\n        }\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1339877303'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1339877303', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '896816001'}]}, {'m_Modifications': [{'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '0.6'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-2.738'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '4.307'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '-9.876118'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.x'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.z'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Center.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'collider_porte'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8870310304005890639'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'myDoor'}, {'value': ''}, {'objectReference': [{'fileID': '521131961'}]}]}, {'m_RemovedComponents': [{'fileID': '8870310304005890639'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': [{'targetCorrespondingSourceObject': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '1339877307'}]}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1339877304 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1339877303'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1339877307', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '870703383'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'f90cc8c0ee6cc9746bf3259c5e5bf2bc'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'checkSphere': '0'}, {'checkCube': '0'}, {'checkPyramid': '1'}, {'roomDatas': [{'fileID': '697146254'}]}, {'checkCompile': '0'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-16T15:14:04.395042",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1631101808}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "870703383 stripped",
+      "child_id_replace": "1339877303",
+      "child_name": "collider_porte",
+      "mono_comp_targets": [
+        {
+          "source": "870703383 stripped",
+          "source_replace": "1339877303",
+          "target": "1339877307",
+          "target_replace": "1339877307",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1339877307",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "870703383"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "f90cc8c0ee6cc9746bf3259c5e5bf2bc"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "checkSphere": "0"
+              },
+              {
+                "checkCube": "0"
+              },
+              {
+                "checkPyramid": "1"
+              },
+              {
+                "roomDatas": [
+                  {
+                    "fileID": "697146254"
+                  }
+                ]
+              },
+              {
+                "checkCompile": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "f90cc8c0ee6cc9746bf3259c5e5bf2bc",
+              "file_path": "D:\\escapeVr-main\\escapeVr-main\\Assets\\Script\\room2_trigger.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 2,
+      "parent_info": {
+        "parent_id": "896816000",
+        "parent_name": "trigger_pyramide"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1339877303,\n          \"condition\": \"PrefabInstance id=1339877303 GameObject 'collider_porte' includes MonoBehaviour id=1339877307 (m_Script guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc, class room2_trigger) configured with checkPyramid=true and roomDatas->697146254. Target room2 component on 'Room 2' is MonoBehaviour id=697146254 (m_Script guid=82aa235159f620648803cf53217af1e5) with doorAnim fileID=521131961. Manually invoke room2.SetSphereCheck() to simulate sphere condition; door should not open until all three checks are true.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetSphereCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1339877303,\n          \"condition\": \"Continue puzzle progression by manually invoking room2.SetCubeCheck() (room2 MonoBehaviour id=697146254, guid=82aa235159f620648803cf53217af1e5). Expect no door animation yet until the pyramid condition is also satisfied.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetCubeCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 1339877303,\n          \"condition\": \"Child trigger MonoBehaviour id=1339877307 (room2_trigger guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc) is configured for pyramid (checkPyramid=true). In absence of a physical OnTriggerEnter with a 'Pyramid' object, manually invoke room2.SetPyramidCheck(). Expected: on next Update() of room2 (id=697146254), with SphereChecked && CubeChecked && PyramidChecked && !doorOpen, set doorOpen=true and doorAnim.Play('DoorOpen',0,0.0f).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetPyramidCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-16T15:14:43.638079",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1631101808}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1339877303}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1339877303,
+              "condition": "PrefabInstance id=1339877303 GameObject 'collider_porte' includes MonoBehaviour id=1339877307 (m_Script guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc, class room2_trigger) configured with checkPyramid=true and roomDatas->697146254. Target room2 component on 'Room 2' is MonoBehaviour id=697146254 (m_Script guid=82aa235159f620648803cf53217af1e5) with doorAnim fileID=521131961. Manually invoke room2.SetSphereCheck() to simulate sphere condition; door should not open until all three checks are true.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetSphereCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1339877303,
+              "condition": "Continue puzzle progression by manually invoking room2.SetCubeCheck() (room2 MonoBehaviour id=697146254, guid=82aa235159f620648803cf53217af1e5). Expect no door animation yet until the pyramid condition is also satisfied.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetCubeCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 1339877303,
+              "condition": "Child trigger MonoBehaviour id=1339877307 (room2_trigger guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc) is configured for pyramid (checkPyramid=true). In absence of a physical OnTriggerEnter with a 'Pyramid' object, manually invoke room2.SetPyramidCheck(). Expected: on next Update() of room2 (id=697146254), with SphereChecked && CubeChecked && PyramidChecked && !doorOpen, set doorOpen=true and doorAnim.Play('DoorOpen',0,0.0f).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetPyramidCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"collider_porte\": {fileID: 1137377008}. The direct parent of this gameobject is \"trigger_sphere\". We only present the child with attached script. And the collider_porte gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\n\npublic class room2_trigger : MonoBehaviour\n{\n    [SerializeField] private bool checkSphere;\n    [SerializeField] private bool checkCube;\n    [SerializeField] private bool checkPyramid;\n    [SerializeField] private room2 roomDatas;\n    [SerializeField] private bool checkCompile;\n\n    private SnapToTrigger snap;\n\n    private void OnTriggerEnter(Collider collision)\n    {\n        snap = collision.GetComponent<SnapToTrigger>();\n        if (checkSphere && collision.CompareTag(\"Sphere\")) { \n            roomDatas.SetSphereCheck();\n            snap.Snap(gameObject.transform.position);\n        }\n        else if (checkPyramid && collision.CompareTag(\"Pyramid\")) \n        { \n            roomDatas.SetPyramidCheck(); \n            snap.Snap(gameObject.transform.position);\n        }\n        else if (checkCube && collision.CompareTag(\"Cube\")) \n        { \n            roomDatas.SetCubeCheck(); \n            snap.Snap(gameObject.transform.position);\n        }\n        if (checkCompile) {\n            checkCompile = false;\n        }\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1137377008'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1137377008', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '559748134'}]}, {'m_Modifications': [{'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '0.6'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-2.74'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '4.307'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '-9.876118'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.x'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.y'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Size.z'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6650539076773276978'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Center.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'collider_porte'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8870310304005890639'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'propertyPath': 'myDoor'}, {'value': ''}, {'objectReference': [{'fileID': '521131961'}]}]}, {'m_RemovedComponents': [{'fileID': '8870310304005890639'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': [{'targetCorrespondingSourceObject': [{'fileID': '6984040482441357486'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '1137377012'}]}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1137377009 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '4966204603583104217'}, {'guid': '3b0fc257447e0b543b4cff5d4102bf09'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1137377008'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1137377012', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1059889489'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'f90cc8c0ee6cc9746bf3259c5e5bf2bc'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'checkSphere': '1'}, {'checkCube': '0'}, {'checkPyramid': '0'}, {'roomDatas': [{'fileID': '697146254'}]}, {'checkCompile': '0'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-16T15:14:43.638634",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1631101808}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1339877303}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 3,
+    "child_info": {
+      "child_id": "1059889489 stripped",
+      "child_id_replace": "1137377008",
+      "child_name": "collider_porte",
+      "mono_comp_targets": [
+        {
+          "source": "1059889489 stripped",
+          "source_replace": "1137377008",
+          "target": "1137377012",
+          "target_replace": "1137377012",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1137377012",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1059889489"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "f90cc8c0ee6cc9746bf3259c5e5bf2bc"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "checkSphere": "1"
+              },
+              {
+                "checkCube": "0"
+              },
+              {
+                "checkPyramid": "0"
+              },
+              {
+                "roomDatas": [
+                  {
+                    "fileID": "697146254"
+                  }
+                ]
+              },
+              {
+                "checkCompile": "0"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "f90cc8c0ee6cc9746bf3259c5e5bf2bc",
+              "file_path": "D:\\escapeVr-main\\escapeVr-main\\Assets\\Script\\room2_trigger.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 2,
+      "parent_info": {
+        "parent_id": "559748133",
+        "parent_name": "trigger_sphere"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1137377008,\n          \"condition\": \"PrefabInstance id=1137377008 ('collider_porte') has BoxCollider (from prefab) so it is triggerable. Attached MonoBehaviour id=1137377012 (m_Script guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc, class room2_trigger) configured with checkSphere=true, checkCube=false, checkPyramid=false, and roomDatas -> MonoBehaviour id=697146254 on 'Room 2' (m_Script guid=82aa235159f620648803cf53217af1e5). doorAnim on room2 references Animator fileID=521131961. Manually invoke room2.SetSphereCheck() to simulate the sphere trigger path; door will only open once all three checks are true.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetSphereCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1137377008,\n          \"condition\": \"Continue puzzle progression on room2 (id=697146254). This specific child trigger is set only for Sphere, so Cube placement won't occur automatically here; manually set CubeChecked to cover room2 logic.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetCubeCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"collider_porte\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 1137377008,\n          \"condition\": \"Finalize by setting PyramidChecked on room2 (id=697146254). Expected: on next Update() of room2, since SphereChecked && CubeChecked && PyramidChecked && !doorOpen, it sets doorOpen=true and calls doorAnim.Play('DoorOpen', 0, 0.0f) on Animator fileID=521131961.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetPyramidCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-16T15:15:17.587981",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1631101808}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1339877303}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"collider_porte\": {fileID: 1137377008}. The direct parent of this gameobject is \"tri..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1137377008,
+              "condition": "PrefabInstance id=1137377008 ('collider_porte') has BoxCollider (from prefab) so it is triggerable. Attached MonoBehaviour id=1137377012 (m_Script guid=f90cc8c0ee6cc9746bf3259c5e5bf2bc, class room2_trigger) configured with checkSphere=true, checkCube=false, checkPyramid=false, and roomDatas -> MonoBehaviour id=697146254 on 'Room 2' (m_Script guid=82aa235159f620648803cf53217af1e5). doorAnim on room2 references Animator fileID=521131961. Manually invoke room2.SetSphereCheck() to simulate the sphere trigger path; door will only open once all three checks are true.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetSphereCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1137377008,
+              "condition": "Continue puzzle progression on room2 (id=697146254). This specific child trigger is set only for Sphere, so Cube placement won't occur automatically here; manually set CubeChecked to cover room2 logic.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetCubeCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "collider_porte",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 1137377008,
+              "condition": "Finalize by setting PyramidChecked on room2 (id=697146254). Expected: on next Update() of room2, since SphereChecked && CubeChecked && PyramidChecked && !doorOpen, it sets doorOpen=true and calls doorAnim.Play('DoorOpen', 0, 0.0f) on Animator fileID=521131961.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetPyramidCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Cube_salle2\": {fileID: 194480315}. The direct parent of this gameobject is \"Room 2\". We only present the child with attached script. And the Cube_salle2 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.XR.Interaction.Toolkit;\nusing UnityEngine.XR.Interaction.Toolkit.Transformers;\n\npublic class SnapToTrigger : MonoBehaviour\n{\n    private XRGrabInteractable interactable;\n    private XRGeneralGrabTransformer transformer;\n    private Rigidbody rb;\n    private bool isSnapped;\n\n    private void Start()\n    {\n        interactable = GetComponent<XRGrabInteractable>();\n        transformer = GetComponent<XRGeneralGrabTransformer>();\n        rb = GetComponent<Rigidbody>();\n    }\n\n    private void Update()\n    {\n        if (isSnapped)\n        {\n            gameObject.transform.RotateAroundLocal(new Vector3(0, 1, 0), 0.05f);\n        }\n    }\n\n    public void Snap(Vector3 trigger_pos)\n    {\n        interactable.enabled = false;\n        transformer.enabled = false;\n        gameObject.transform.position = new Vector3(trigger_pos.x, trigger_pos.y + 0.4f, trigger_pos.z);\n        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);\n        rb.constraints = RigidbodyConstraints.FreezeAll;\n        isSnapped = true;\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '194480315', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '697146255'}]}, {'m_Modifications': [{'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-1.5143394'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '-0.6058445'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '1.2993603'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '5256048718230962045'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Cube_salle2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '5391167601038255768'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'propertyPath': 'm_Materials.Array.data[0]'}, {'value': ''}, {'objectReference': [{'fileID': '2100000'}, {'guid': 'b997395fcf2be1b449c24e3e66a25afa'}, {'type': '2'}]}]}, {'m_RemovedComponents': []}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '2934283142313255132'}]}, {'component': [{'fileID': '7938768454823429942'}]}, {'component': [{'fileID': '5391167601038255768'}]}, {'component': [{'fileID': '1659405682678754060'}]}, {'component': [{'fileID': '7996065470232321614'}]}, {'component': [{'fileID': '970794898267398905'}]}, {'component': [{'fileID': '6269159679093585795'}]}, {'component': [{'fileID': '5374773463603666079'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Cube Interactable'}, {'m_TagString': 'Cube'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '468619165 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2934283142313255132'}, {'guid': '9053bb0efa46b1c438338b8c56f98f42'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '194480315'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '1659405682678754060', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '5256048718230962045'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IncludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_ExcludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_LayerOverridePriority': '0'}, {'m_IsTrigger': '0'}, {'m_ProvidesContacts': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '3'}, {'m_Size': [{'x': '0.010000001'}, {'y': '0.010000002'}, {'z': '0.010000001'}]}, {'m_Center': [{'x': '0'}, {'y': '-0.000000007450581'}, {'z': '6.9849193e-10'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '5374773463603666079', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '5256048718230962045'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '2723dba42bd113044ad231906b498006'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-16T15:15:17.588617",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 4,
+    "child_info": {
+      "child_id": "194480315",
+      "child_id_replace": "194480315",
+      "child_name": "Cube_salle2",
+      "mono_comp_targets": [
+        {
+          "source": "194480315",
+          "source_replace": "194480315",
+          "target": "5374773463603666079",
+          "target_replace": "5374773463603666079",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "5374773463603666079",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "5256048718230962045"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "2723dba42bd113044ad231906b498006"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "2723dba42bd113044ad231906b498006",
+              "file_path": "D:\\escapeVr-main\\escapeVr-main\\Assets\\Script\\SnapToTrigger.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "697146253",
+        "parent_name": "Room 2"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"Cube_salle2\",\n          \"source_object_fileID\": 194480315,\n          \"delta_position\": {\n            \"x\": 0.5,\n            \"y\": 0.0,\n            \"z\": 0.5\n          }\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Cube_salle2\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 194480315,\n          \"condition\": \"On 'Room 2' (GameObject fileID=697146253), MonoBehaviour id=697146254 (m_Script guid=82aa235159f620648803cf53217af1e5, class 'room2') is configured with doorAnim fileID=521131961. 'Cube_salle2' is a PrefabInstance (id=194480315) with Rigidbody and BoxCollider, and has MonoBehaviour id=5374773463603666079 (m_Script guid=2723dba42bd113044ad231906b498006) matching the provided 'SnapToTrigger' script. Manually invoke room2.SetCubeCheck() to set CubeChecked=true; expected: no door animation until Sphere and Pyramid checks are also true.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetCubeCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-16T15:16:23.452269",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Cube_salle2\": {fileID: 194480315}. The direct parent of this gameobject is \"Room 2\"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"sourc..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Grab",
+              "source_object_name": "Cube_salle2",
+              "source_object_fileID": 194480315,
+              "delta_position": {
+                "x": 0.5,
+                "y": 0.0,
+                "z": 0.5
+              }
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Cube_salle2",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 194480315,
+              "condition": "On 'Room 2' (GameObject fileID=697146253), MonoBehaviour id=697146254 (m_Script guid=82aa235159f620648803cf53217af1e5, class 'room2') is configured with doorAnim fileID=521131961. 'Cube_salle2' is a PrefabInstance (id=194480315) with Rigidbody and BoxCollider, and has MonoBehaviour id=5374773463603666079 (m_Script guid=2723dba42bd113044ad231906b498006) matching the provided 'SnapToTrigger' script. Manually invoke room2.SetCubeCheck() to set CubeChecked=true; expected: no door animation until Sphere and Pyramid checks are also true.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetCubeCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Sphere_salle2\": {fileID: 284893529}. The direct parent of this gameobject is \"Room 2\". We only present the child with attached script. And the Sphere_salle2 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.XR.Interaction.Toolkit;\nusing UnityEngine.XR.Interaction.Toolkit.Transformers;\n\npublic class SnapToTrigger : MonoBehaviour\n{\n    private XRGrabInteractable interactable;\n    private XRGeneralGrabTransformer transformer;\n    private Rigidbody rb;\n    private bool isSnapped;\n\n    private void Start()\n    {\n        interactable = GetComponent<XRGrabInteractable>();\n        transformer = GetComponent<XRGeneralGrabTransformer>();\n        rb = GetComponent<Rigidbody>();\n    }\n\n    private void Update()\n    {\n        if (isSnapped)\n        {\n            gameObject.transform.RotateAroundLocal(new Vector3(0, 1, 0), 0.05f);\n        }\n    }\n\n    public void Snap(Vector3 trigger_pos)\n    {\n        interactable.enabled = false;\n        transformer.enabled = false;\n        gameObject.transform.position = new Vector3(trigger_pos.x, trigger_pos.y + 0.4f, trigger_pos.z);\n        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);\n        rb.constraints = RigidbodyConstraints.FreezeAll;\n        isSnapped = true;\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '284893529', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '697146255'}]}, {'m_Modifications': [{'target': [{'fileID': '474040329037685031'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_Materials.Array.data[0]'}, {'value': ''}, {'objectReference': [{'fileID': '2100000'}, {'guid': 'e86bda91a44d35e40ae943a20264d488'}, {'type': '2'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '40'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '40'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '40'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-0.47433853'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '-0.58784485'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.29936028'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '6267713049852042523'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Sphere_salle2'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '607270575043706656'}]}, {'component': [{'fileID': '5903685248745500503'}]}, {'component': [{'fileID': '474040329037685031'}]}, {'component': [{'fileID': '5484464440020578138'}]}, {'component': [{'fileID': '975827942220187608'}]}, {'component': [{'fileID': '5224438142242771578'}]}, {'component': [{'fileID': '4035937954261686640'}]}, {'component': [{'fileID': '4388408440092428616'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Sphere Interactable'}, {'m_TagString': 'Sphere'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1827571442 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '607270575043706656'}, {'guid': '22be8abb1b15ffb42ab238a5db93c805'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '284893529'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'SphereCollider': {'type': 'SphereCollider', 'properties': {'id': '5484464440020578138', 'SphereCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6267713049852042523'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IncludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_ExcludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_LayerOverridePriority': '0'}, {'m_IsTrigger': '0'}, {'m_ProvidesContacts': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '3'}, {'m_Radius': '0.005'}, {'m_Center': [{'x': '0.0000000013969838'}, {'y': '0'}, {'z': '-0.000000001862645'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '4388408440092428616', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '6267713049852042523'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '2723dba42bd113044ad231906b498006'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-16T15:16:23.452993",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Cube_salle2\": {fileID: 194480315}. The direct parent of this gameobject is \"Room 2\"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"sourc..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 5,
+    "child_info": {
+      "child_id": "284893529",
+      "child_id_replace": "284893529",
+      "child_name": "Sphere_salle2",
+      "mono_comp_targets": [
+        {
+          "source": "284893529",
+          "source_replace": "284893529",
+          "target": "4388408440092428616",
+          "target_replace": "4388408440092428616",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "4388408440092428616",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "6267713049852042523"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "2723dba42bd113044ad231906b498006"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "2723dba42bd113044ad231906b498006",
+              "file_path": "D:\\escapeVr-main\\escapeVr-main\\Assets\\Script\\SnapToTrigger.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "697146253",
+        "parent_name": "Room 2"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Sphere_salle2\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 284893529,\n          \"condition\": \"Verify scene bindings: On 'Room 2' (GameObject fileID=697146253), MonoBehaviour id=697146254 uses m_Script guid=82aa235159f620648803cf53217af1e5 and matches class 'room2'; doorAnim serialized to fileID=521131961. Child 'Sphere_salle2' is a PrefabInstance (id=284893529) with Rigidbody/Collider and MonoBehaviour id=4388408440092428616 using m_Script guid=2723dba42bd113044ad231906b498006 which matches 'SnapToTrigger'. Since SnapToTrigger exposes no-arg public methods only via Start()/Update, manually set SphereChecked to true on room2.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetSphereCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Sphere_salle2\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 284893529,\n          \"condition\": \"Progress puzzle state on room2 (id=697146254) by setting CubeChecked true. Expect no door animation yet unless all three checks are true.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetCubeCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Sphere_salle2\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 284893529,\n          \"condition\": \"Finalize by setting PyramidChecked true on room2 (MonoBehaviour id=697146254). Expected: in the next Update(), since SphereChecked && CubeChecked && PyramidChecked && !doorOpen, the script sets doorOpen=true and calls doorAnim.Play(\\\"DoorOpen\\\", 0, 0.0f) on Animator fileID=521131961.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetPyramidCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-16T15:17:31.501652",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Cube_salle2\": {fileID: 194480315}. The direct parent of this gameobject is \"Room 2\"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"sourc..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Sphere_salle2\": {fileID: 284893529}. The direct parent of this gameobject is \"Room ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Sphere_salle2",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 284893529,
+              "condition": "Verify scene bindings: On 'Room 2' (GameObject fileID=697146253), MonoBehaviour id=697146254 uses m_Script guid=82aa235159f620648803cf53217af1e5 and matches class 'room2'; doorAnim serialized to fileID=521131961. Child 'Sphere_salle2' is a PrefabInstance (id=284893529) with Rigidbody/Collider and MonoBehaviour id=4388408440092428616 using m_Script guid=2723dba42bd113044ad231906b498006 which matches 'SnapToTrigger'. Since SnapToTrigger exposes no-arg public methods only via Start()/Update, manually set SphereChecked to true on room2.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetSphereCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Sphere_salle2",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 284893529,
+              "condition": "Progress puzzle state on room2 (id=697146254) by setting CubeChecked true. Expect no door animation yet unless all three checks are true.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetCubeCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Sphere_salle2",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 284893529,
+              "condition": "Finalize by setting PyramidChecked true on room2 (MonoBehaviour id=697146254). Expected: in the next Update(), since SphereChecked && CubeChecked && PyramidChecked && !doorOpen, the script sets doorOpen=true and calls doorAnim.Play(\"DoorOpen\", 0, 0.0f) on Animator fileID=521131961.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetPyramidCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Pyramid_salle2\": {fileID: 863577851}. The direct parent of this gameobject is \"Room 2\". We only present the child with attached script. And the Pyramid_salle2 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.XR.Interaction.Toolkit;\nusing UnityEngine.XR.Interaction.Toolkit.Transformers;\n\npublic class SnapToTrigger : MonoBehaviour\n{\n    private XRGrabInteractable interactable;\n    private XRGeneralGrabTransformer transformer;\n    private Rigidbody rb;\n    private bool isSnapped;\n\n    private void Start()\n    {\n        interactable = GetComponent<XRGrabInteractable>();\n        transformer = GetComponent<XRGeneralGrabTransformer>();\n        rb = GetComponent<Rigidbody>();\n    }\n\n    private void Update()\n    {\n        if (isSnapped)\n        {\n            gameObject.transform.RotateAroundLocal(new Vector3(0, 1, 0), 0.05f);\n        }\n    }\n\n    public void Snap(Vector3 trigger_pos)\n    {\n        interactable.enabled = false;\n        transformer.enabled = false;\n        gameObject.transform.position = new Vector3(trigger_pos.x, trigger_pos.y + 0.4f, trigger_pos.z);\n        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);\n        rb.constraints = RigidbodyConstraints.FreezeAll;\n        isSnapped = true;\n    }\n}\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': True, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': {'id': '863577851', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '697146255'}]}, {'m_Modifications': [{'target': [{'fileID': '7052035192442969920'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Pyramid_salle2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-1.5433388'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '-0.54984474'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '1.9153595'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '8853268541071326869'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'propertyPath': 'm_Materials.Array.data[0]'}, {'value': ''}, {'objectReference': [{'fileID': '2100000'}, {'guid': 'c132cd63aebfe2f4b9bd2e78a4a568f8'}, {'type': '2'}]}]}, {'m_RemovedComponents': []}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': []}, {'m_AddedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1152042354 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '7680339445034092026'}, {'guid': 'c728f323ea67acd4fb5d0d856fc65f28'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '863577851'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MeshCollider': {'type': 'MeshCollider', 'properties': {'id': '5405113805029009407', 'MeshCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7052035192442969920'}]}, {'m_Material': [{'fileID': '13400000'}, {'guid': '10bde48ef542d6a4fbee12145283824a'}, {'type': '2'}]}, {'m_IncludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_ExcludeLayers': [{'serializedVersion': '2'}, {'m_Bits': '0'}]}, {'m_LayerOverridePriority': '0'}, {'m_IsTrigger': '0'}, {'m_ProvidesContacts': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '5'}, {'m_Convex': '1'}, {'m_CookingOptions': '30'}, {'m_Mesh': [{'fileID': '-5076798556035486163'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}]}}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'serializedVersion': '3'}, {'m_TransformParent': [{'fileID': '0'}]}, {'m_Modifications': [{'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '4'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '14.282638'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '14.282638'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '14.282638'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '34.336'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '10.498'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '22.191376'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '-7511558181221131132'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_Materials.Array.data[0]'}, {'value': ''}, {'objectReference': [{'fileID': '2100000'}, {'guid': '83eabfe673263a445972586e5d8b56ee'}, {'type': '2'}]}, {'target': [{'fileID': '919132149155446097'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Tapered Interactable'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '919132149155446097'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'propertyPath': 'm_TagString'}, {'value': 'Pyramid'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}, {'m_RemovedGameObjects': []}, {'m_AddedGameObjects': [{'targetCorrespondingSourceObject': [{'fileID': '-8679921383154817045'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '5047673636486665999'}]}]}, {'m_AddedComponents': [{'targetCorrespondingSourceObject': [{'fileID': '919132149155446097'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '2717654256904753758'}]}, {'targetCorrespondingSourceObject': [{'fileID': '919132149155446097'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '5405113805029009407'}]}, {'targetCorrespondingSourceObject': [{'fileID': '919132149155446097'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '2493747437200475195'}]}, {'targetCorrespondingSourceObject': [{'fileID': '919132149155446097'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '3795878608002506126'}]}, {'targetCorrespondingSourceObject': [{'fileID': '919132149155446097'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}, {'insertIndex': '-1'}, {'addedObject': [{'fileID': '1838634263601427067'}]}]}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '759e8ecdd66ef614b844d0f68de1f901'}, {'type': '3'}]}]}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1838634263601427067', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '7052035192442969920'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '2723dba42bd113044ad231906b498006'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-16T15:17:31.502624",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Cube_salle2\": {fileID: 194480315}. The direct parent of this gameobject is \"Room 2\"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"sourc..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Sphere_salle2\": {fileID: 284893529}. The direct parent of this gameobject is \"Room ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 6,
+    "child_info": {
+      "child_id": "863577851",
+      "child_id_replace": "863577851",
+      "child_name": "Pyramid_salle2",
+      "mono_comp_targets": [
+        {
+          "source": "863577851",
+          "source_replace": "863577851",
+          "target": "1838634263601427067",
+          "target_replace": "1838634263601427067",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1838634263601427067",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "7052035192442969920"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "2723dba42bd113044ad231906b498006"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "2723dba42bd113044ad231906b498006",
+              "file_path": "D:\\escapeVr-main\\escapeVr-main\\Assets\\Script\\SnapToTrigger.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "697146253",
+        "parent_name": "Room 2"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"Pyramid_salle2\",\n          \"source_object_fileID\": 863577851,\n          \"delta_position\": {\n            \"x\": 0.3,\n            \"y\": 0.0,\n            \"z\": 0.3\n          }\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Pyramid_salle2\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 863577851,\n          \"condition\": \"Scene binding verification: On 'Room 2' (GameObject fileID=697146253), MonoBehaviour id=697146254 uses m_Script guid=82aa235159f620648803cf53217af1e5 and matches class 'room2'; serialized doorAnim references Animator fileID=521131961. Child 'Pyramid_salle2' is a PrefabInstance (id=863577851) with Rigidbody and MeshCollider(convex) and has MonoBehaviour id=1838634263601427067 using m_Script guid=2723dba42bd113044ad231906b498006 which matches the provided 'SnapToTrigger' script. To cover room2 logic, manually set PyramidChecked true. Note: SnapToTrigger.Snap(Vector3) cannot be invoked via Trigger (it requires parameters); provide the triggering component or event that calls Snap if coverage of the 'isSnapped' branch is required.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 697146254,\n                  \"method_name\": \"SetPyramidCheck\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true\n}",
+    "timestamp": "2025-12-16T15:19:01.948629",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Cube_salle2\": {fileID: 194480315}. The direct parent of this gameobject is \"Room 2\"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"sourc..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Sphere_salle2\": {fileID: 284893529}. The direct parent of this gameobject is \"Room ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Pyramid_salle2\": {fileID: 863577851}. The direct parent of this gameobject is \"Room..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"sourc..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Grab",
+              "source_object_name": "Pyramid_salle2",
+              "source_object_fileID": 863577851,
+              "delta_position": {
+                "x": 0.3,
+                "y": 0.0,
+                "z": 0.3
+              }
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Pyramid_salle2",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 863577851,
+              "condition": "Scene binding verification: On 'Room 2' (GameObject fileID=697146253), MonoBehaviour id=697146254 uses m_Script guid=82aa235159f620648803cf53217af1e5 and matches class 'room2'; serialized doorAnim references Animator fileID=521131961. Child 'Pyramid_salle2' is a PrefabInstance (id=863577851) with Rigidbody and MeshCollider(convex) and has MonoBehaviour id=1838634263601427067 using m_Script guid=2723dba42bd113044ad231906b498006 which matches the provided 'SnapToTrigger' script. To cover room2 logic, manually set PyramidChecked true. Note: SnapToTrigger.Snap(Vector3) cannot be invoked via Trigger (it requires parameters); provide the triggering component or event that calls Snap if coverage of the 'isSnapped' branch is required.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 697146254,
+                      "method_name": "SetPyramidCheck",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": true
+    }
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "5- Box Sockets Interactors",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 254571543,
+          "condition": "MonoBehaviour_0 (fileID: 254571545) in scene is the CheckElements script (guid: 3bc2acd74545a4f1aa9eba6d8f72a530), attached to GameObject fileID 254571543. It exposes a public no-arg method AddElementInSocket that increments internal count and, when numberOfElementsInSocket == numberOfElements (3), invokes UnityEvents: hideTaskDescription -> GameObject(fileID 1945735948).SetActive(false), showNextLevelUI -> GameObject(fileID 208823133).SetActive(true), unlock -> GameObject(fileID 157114427).SetActive(false). Canvas refs nextLevelUI(fileID 208823134) and taskDescription(fileID 1945735953) are present. Object has no Rigidbody, so we trigger the script method directly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 36331052,
+          "condition": "MonoBehaviour_0 (fileID: 680431495) on Box_02 is XRSocketInteractor (guid: 60523e0647cc6ab43acc73cb266a32a7). It has UnityEvent m_Calls: m_HoverEntered -> Renderer(fileID 680431493).set_enabled(false); m_SelectEntered -> CheckElements(fileID 254571545).AddElementInSocket(); m_SelectExited -> CheckElements(fileID 254571545).AddElementInSocket(). The parent GameObject '5- Box Sockets Interactors' has MonoBehaviour_0 (fileID: 254571545) which is CheckElements (guid: 3bc2acd74545a4f1aa9eba6d8f72a530) with numberOfElements=3 and UnityEvents: hideTaskDescription -> GameObject(1945735948).SetActive(false), showNextLevelUI -> GameObject(208823133).SetActive(true), unlock -> GameObject(157114427).SetActive(false). Since Box_02 has no Rigidbody and we lack a selectable Interactable to naturally fire XR events, we manually invoke AddElementInSocket three times to simulate one SelectEntered and one SelectExited plus an additional selection to meet the threshold.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (3)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1379860601,
+          "condition": "MonoBehaviour_0 (fileID: 1379860606) on Box_02 (3) is XRSocketInteractor (guid: 60523e0647cc6ab43acc73cb266a32a7) and its Interactable Events (m_Calls) are configured: m_SelectEntered -> CheckElements(fileID 254571545).AddElementInSocket(); m_SelectExited -> CheckElements(fileID 254571545).AddElementInSocket(). Parent GameObject '5- Box Sockets Interactors' has MonoBehaviour_0 (fileID: 254571545) which is CheckElements (guid: 3bc2acd74545a4f1aa9eba6d8f72a530) with numberOfElements=3. On the third AddElementInSocket call, CheckElements invokes UnityEvents: hideTaskDescription -> GameObject(fileID 1945735948).SetActive(false), showNextLevelUI -> GameObject(fileID 208823133).SetActive(true), unlock -> GameObject(fileID 157114427).SetActive(false). Canvas refs: nextLevelUI(fileID 208823134), taskDescription(fileID 1945735953). Box_02 (3) has no Rigidbody; we directly trigger the public no-arg method to simulate the select events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box_02 (4)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1940504553,
+          "condition": "MonoBehaviour_0 (fileID: 1940504558) on Box_02 (4) is XRSocketInteractor (guid: 60523e0647cc6ab43acc73cb266a32a7). Its Interactable Events (m_Calls) are configured: m_HoverEntered -> Renderer(fileID 1940504561).set_enabled(false); m_SelectEntered -> CheckElements(fileID 254571545).AddElementInSocket(); m_SelectExited -> CheckElements(fileID 254571545).AddElementInSocket(). The parent GameObject '5- Box Sockets Interactors' has MonoBehaviour_0 (fileID: 254571545) which is CheckElements (guid: 3bc2acd74545a4f1aa9eba6d8f72a530) with numberOfElements=3. When AddElementInSocket is invoked the third time, CheckElements triggers UnityEvents: hideTaskDescription -> GameObject(fileID 1945735948).SetActive(false), showNextLevelUI -> GameObject(fileID 208823133).SetActive(true), unlock -> GameObject(fileID 157114427).SetActive(false). Box_02 (4) has no Rigidbody or Collider info provided; to ensure coverage of configured m_Calls, we directly invoke the public no-arg method AddElementInSocket three times.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 254571545,
+                  "method_name": "AddElementInSocket",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

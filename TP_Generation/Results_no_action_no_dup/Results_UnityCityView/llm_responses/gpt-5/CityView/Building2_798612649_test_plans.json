@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 798612649,
+          "condition": "EventTrigger (MonoBehaviour fileID=1945288992) on Building2 is configured with eventID=4 (PointerClick) to invoke method 'showlabel' on Residential component (MonoBehaviour fileID=798612651; script guid=10a92b1b4549024468ecbc96831def68). Precondition: A GameObject named 'Player' exists and its child at index 1 has a TextMeshPro component; Start() of Residential will cache this label object. Expected outcome: Player/child[1].TextMeshPro.text becomes GetLabel().Substring(0,20) => 'Residential:Usagi Ap'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 798612651,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 798612649,
+          "condition": "EventTrigger (MonoBehaviour fileID=1945288992; eventID=4 PointerClick) on Building2 is configured to invoke Residential.showlabel() (MonoBehaviour fileID=798612651; script guid=10a92b1b4549024468ecbc96831def68). Expected: Player/child[1].TextMeshPro.text becomes GetLabel().Substring(0,20) => 'Residential:Usagi Ap'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 798612651,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

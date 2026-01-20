@@ -1,0 +1,42 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Teleport Anchor",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1071784861,
+          "condition": "PrefabInstance 1071784861 ('Teleport Anchor') under parent 'Teleport Area Setup' (fileID 1565887663878291440). MonoBehaviour fileID 3953368309659336407 is AnchorVisuals (script guid b2dd7fabdb14fca498bd9e0def11ab19). Scene meta matches script fields: m_FadeAnimation, m_Arrow, m_TargetArrowHeight=1, m_ArrowAnimationDuration=0.375, m_AnimationCurve modified via PrefabInstance. Trigger OnAnchorEnter to play fade/raise arrow; after 0.5s trigger HideArrowOnTeleport (simulate teleport) and OnAnchorExit (play reverse fade/lower arrow).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "OnAnchorEnter",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "HideArrowOnTeleport",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 3953368309659336407,
+                  "method_name": "OnAnchorExit",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1865680026,
+          "condition": "MonoBehaviour component id 1865680029 on GameObject 'Room_Modern' (PrefabInstance id 1865680026) corresponds to the provided PlayQuickSound script. Preconditions: an AudioSource component exists on the same GameObject (required by [RequireComponent]) and the 'sound' AudioClip field is assigned; OnValidate sets playOnAwake=false; Awake caches the AudioSource. Action: invoke PlayQuickSound.Play() to execute randomized pitch assignment and AudioSource.PlayOneShot(sound, volume). Expected: a one-shot sound plays at configured volume with pitch within [1 - randomPitchVariance, 1 + randomPitchVariance].",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680029,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building1",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1877717395,
+          "condition": "PrefabInstance(1877717395) -> GameObject 'Building1' has MonoBehaviour(1877717397) with script guid 10a92b1b4549024468ecbc96831def68 (Residential). EventTrigger(1877717399) has m_Delegates[eventID=0] with PersistentCall targeting MonoBehaviour(1877717397).Method 'showlabel' (no params), CallState=2. Trigger after Start() initializes label via Player.transform.GetChild(1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1877717397,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building1",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1877717395,
+          "condition": "PrefabInstance(1877717395) -> GameObject 'Building1' has MonoBehaviour(1877717397) with script guid 10a92b1b4549024468ecbc96831def68 (Residential). EventTrigger(1877717399) contains m_Delegates[eventID=0] PersistentCall targeting MonoBehaviour(1877717397).Method 'showlabel' (no params), CallState=2. Trigger after Residential.Start() locates Player and caches label = Player.transform.GetChild(1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1877717397,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

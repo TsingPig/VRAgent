@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Floor Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 213,
+          "condition": "MonoBehaviour (id: 976) on Floor Canvas is GvrPointerGraphicRaycaster (script guid: 739800cd36aba44e9b04ce977e5784bd). Exact serialized settings: raycastMode=0 (Camera), ignoreReversedGraphics=1 (true), blockingObjects=0 (None), blockingMask=0xFFFFFFFF. This component requires Canvas renderMode=WorldSpace and a valid GvrPointerManager.Pointer to drive raycasts.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 976,
+                  "method_name": "IsPointerAvailable",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 976,
+                  "method_name": "GetLastRay",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

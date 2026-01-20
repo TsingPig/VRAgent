@@ -1,0 +1,134 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1201257102,
+          "condition": "Validation step: Confirm the MonoBehaviour on this GameObject corresponds to Fire.cs (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) and uses the exact serialized settings provided (debug=0, isOn=0, timeToOnMin=40, timeToOnMax=60, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, neighbors=[]). This confirms the scene MonoBehaviour matches the attached script and settings.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1201257102,
+          "condition": "Precondition to enable Off->On/On->Off logic: Fire must start On. Externally set Fire.SetIsOn(true) at runtime (this method takes a bool parameter; the current harness cannot call parameterized methods). Expected: UpdateFireState(false) is invoked internally; mainEffectGo ParticleSystem plays.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Simulate a single water hit on the collider (BoxCollider enabled) via the water system calling IWaterInteractable.WaterHit(Vector3 normal). This sets isTurningOff=true and resets currentHitInterval=0 while fire is On. Repeat hits should occur within maxHitInterval (2s).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Second water hit within 2s window (keep extinguish timer accumulating). CurrentHitTime should be ~2s now, isTurningOff remains true.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Third water hit within 2s window (continue extinguish). CurrentHitTime ~3s.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 2.1,
+          "source_object_fileID": 1201257102,
+          "condition": "Stop water for > maxHitInterval (2s). Expected: In Update(), since currentHitInterval >= maxHitInterval, isTurningOff becomes false and currentHitTime resets to 0. This covers the early-abort branch of the turning-off logic.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1201257102,
+          "condition": "Re-enable fire to On again via external call: Fire.SetIsOn(true) (parameterized; requires test driver). Expected: ParticleSystem plays.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Water hit within 2s window (start extinguish).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Water hit within 2s window (continue to 2s total).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Water hit within 2s window (continue to 3s total).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Water hit within 2s window (continue to 4s total).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1201257102,
+          "condition": "Water hit within 2s window (reach totalHitTime=5s). Expected: Fire turns off (isOn=false), shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime=0. UpdateFireState(true) executes, stopping the ParticleSystem and notifying neighbors (if any) and FireController.Instance.FireChanged(-1).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1201257102,
+          "condition": "Neighbor-based auto-ignition test setup (requires neighbors): Two distinct neighbor Fire instances within maxNeighborDistance should notify this fire via NotifyNeighborState(true) so that onNeighbors >= onNeighborsThreshold (2). This sets shouldTurnOn=true, timeToOnDelta=0, and computes hasDownNeighbor. Note: This requires parameterized calls and neighbor setup not available in this harness.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 4",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 1201257102,
+          "condition": "With shouldTurnOn=true, wait until timeToOnDelta >= timeToOn (Awake sets timeToOn to Random.Range(timeToOnMin=40, timeToOnMax=60)). After ~61s, expected state transition to isOn=true; UpdateFireState(true) plays particles and notifies neighbors and FireController. If a down neighbor exists (y lower by > minNeighborDownDistance), the downMultiplier affects the countdown speed.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

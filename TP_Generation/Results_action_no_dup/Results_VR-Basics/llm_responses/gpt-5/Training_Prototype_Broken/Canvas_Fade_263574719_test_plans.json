@@ -1,0 +1,122 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 263574719,
+          "condition": "MonoBehaviour(id:263574720, guid:969b8e08cffa4e44681eb600a8dfc099) matches FadeCanvas; defaultDuration=1; CanvasGroup required by [RequireComponent] must be present/enabled. Start a default fade-in and interrupt it shortly after to cover StopAllCoroutines path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.2,
+          "source_object_fileID": 263574719,
+          "condition": "Interrupt previous FadeIn by starting a default FadeOut; expect coroutine switch via StopAllCoroutines and completion within ~1s.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 263574719,
+          "condition": "Begin a quick fade-in (duration ~0.25s) and interrupt early to exercise quick StopAllCoroutines path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.35,
+          "source_object_fileID": 263574719,
+          "condition": "Start quick fade-out to completion (duration ~0.25s) after interrupting quick fade-in.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.2,
+          "source_object_fileID": 263574719,
+          "condition": "Run a full default fade-in to completion using FadeCanvas.StartFadeIn; defaultDuration=1s as per scene config.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.2,
+          "source_object_fileID": 263574719,
+          "condition": "Run a full default fade-out to completion using FadeCanvas.StartFadeOut; ensures both FadeIn and FadeOut complete-paths are covered.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

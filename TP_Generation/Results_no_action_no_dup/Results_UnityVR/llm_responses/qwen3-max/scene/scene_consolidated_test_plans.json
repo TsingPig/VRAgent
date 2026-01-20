@@ -1,0 +1,172 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 60.0,
+          "source_object_fileID": 1094190421,
+          "condition": "Automatic on Start: MonoBehaviour(fileID: 1094190426, guid: 9da68a9b408a56a4294168dd4694f0dc) attached to GameObject(fileID: 1094190421) starts ExecuteAfterTime(60). After 60 seconds, it calls canvas.SetActive(false). This validates the coroutine path. No manual method calls exist (no public no-arg methods).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1094190421,
+          "condition": "Manual input path: Simulate Input.GetButtonDown('Fire1') during Update in MonoBehaviour(fileID: 1094190426, guid: 9da68a9b408a56a4294168dd4694f0dc). Expect canvas.SetActive(false). Note: Canvas has no Rigidbody/Collider/EventTrigger; script exposes no public no-arg methods, so this requires an input simulation mechanism or a UI/EventTrigger to be provided.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrReticlePointer",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1677032915,
+          "condition": "Manual invocation of no-arg public MonoBehaviour methods on GvrReticlePointer to increase code coverage. Scene MonoBehaviour component fileID=723926960, m_Script GUID=e7dcc90c2e60c4011896c7f21fc1f557. Current serialized settings: raycastMode=0 (Camera), maxReticleDistance=20, reticleSegments=20, reticleGrowthSpeed=8, reticleSortingOrder=32767. Note: Pointer enter/hover/exit require GvrPointerInputModule-driven raycasts and cannot be triggered here due to parameters; collider/EventTrigger presence not specified.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "UpdateDiameters",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickDown",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 723926960,
+                  "method_name": "OnPointerClickUp",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 3.0,
+          "source_object_fileID": 543585960,
+          "condition": "Trigger SpawnPaper.spawn() and SoundPlayer.PlaySound() on PrefabInstance(id=543585960) under parent Models(fileID=1472401654). Scene MonoBehaviour settings match scripts: SpawnPaper(fileID=698430408, guid=c3441e8102712e94eb08515cc7e18fb8) has clip(guid=5bf50410f355a654e91279204bd96587), paperToSpawn(fileID=8817731074829524137, name=Paper), position(fileID=1038081565). SoundPlayer(fileID=698430411, guid=71e616354a0b0cd47a7526ce46ba3eaf) has source(fileID=2093747358), sound(guid=5bf50410f355a654e91279204bd96587). Expected: PlaySound assigns AudioSource.clip then plays. SpawnPaper.spawn waits clip.length then Instantiate(paperToSpawn) at position.transform.position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430411,
+                  "method_name": "PlaySound",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 543585960,
+          "condition": "Manually invoke public no-arg methods on PrefabInstance(id=543585960) under Models(fileID=1472401654) to cover both SoundPlayer.PlaySound() and SpawnPaper.spawn(). Scene MonoBehaviour settings map exactly: SpawnPaper (script_fileID=698430408, guid=c3441e8102712e94eb08515cc7e18fb8) has clip(guid=5bf50410f355a654e91279204bd96587), paperToSpawn(fileID=8817731074829524137, name=Paper), position(fileID=1038081565). SoundPlayer (script_fileID=698430411, guid=71e616354a0b0cd47a7526ce46ba3eaf) has source(fileID=2093747358), sound(guid=5bf50410f355a654e91279204bd96587). Expectation: PlaySound assigns AudioSource.clip then plays; SpawnPaper.spawn starts coroutine and, after clip.length seconds, Instantiate(Paper) at position transform.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 698430411,
+                  "method_name": "PlaySound",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 698430408,
+                  "method_name": "spawn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1054453170,
+          "condition": "Toggle PC twice to cover both StartPC() and ShutDownPC() branches in RunPC. Scene MonoBehaviour settings map exactly: RunPC (script_fileID=759145567, guid=d40707984c8c8654a8e7422e0d85449f) has canvas(fileID=1480975538), source(fileID=1768927072), StartSound(guid=c7ed05b156a403a42b5d91316854e42d), EndSound(guid=33e37c2c5603b534a84188086a3b9147). First TogglePC should enable canvas and play StartSound; second TogglePC should disable canvas and play EndSound.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 759145567,
+                  "method_name": "TogglePC",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Unknown",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1873334408,
+          "condition": "Manually invoke PlayTV.ToggleVisibility() on PrefabInstance(id=1873334408) under Models(fileID=1472401654). Scene MonoBehaviour matches script: PlayTV (script_fileID=154554978, guid=d39ba5afdc055594f8b27d3626aef4f5) with canvas(fileID=1417754200). Expect: first call sets Isvisible=true and canvas active; after delay, second call sets Isvisible=false and canvas inactive.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 154554978,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building9",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1647098179,
+          "condition": "EventTrigger (MonoBehaviour id=1647098183, eventID=4 PointerClick) has a persistent call to the Government script (MonoBehaviour id=1647098181, guid=ed3b45ff7bbab2146bc55b624801e08e) method 'showlabel'. This manual trigger directly invokes the same public no-arg method to ensure the event is executed. Expected: Player->child[1] TextMeshPro text becomes first 20 chars of 'Government:Police Department' (i.e., 'Government:Police De').",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1647098181,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building9",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1647098179,
+          "condition": "EventTrigger component (MonoBehaviour id=1647098183, script guid=d0b148fe25e99eb48b9724523833bab1) on Building9 has a persistent call (eventID=4 PointerClick) to Government.showlabel on the Government MonoBehaviour (id=1647098181, guid=ed3b45ff7bbab2146bc55b624801e08e). This Trigger directly invokes that public no-arg method to ensure coverage. Expected: Player child[1] TextMeshPro text becomes the first 20 chars of 'Government:Police Department' => 'Government:Police De'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1647098181,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

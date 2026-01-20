@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Cause a Rigidbody-bearing collider (e.g., Player or a proxy test object) to enter Elevator's BoxCollider (isTrigger=1) so that AttachToElevator.OnTriggerEnter(Collider) executes. Scene MonoBehaviour corresponds to script guid 077cb2d6a53b18f4ea7d76e72138fc77, component fileID likely 4942415221793979109. Note: 'player' is currently null in scene, and code checks 'if (gameObject == player)', comparing Elevator to player, so no parenting will occur even when triggered.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Cause the same Rigidbody-bearing collider to exit Elevator's BoxCollider so that AttachToElevator.OnTriggerExit(Collider) executes. With 'player' null and equality check against Elevator, no unparenting will occur.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

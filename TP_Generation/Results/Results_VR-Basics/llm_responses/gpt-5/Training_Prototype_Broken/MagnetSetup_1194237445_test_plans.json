@@ -1,0 +1,300 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "MagnetSetup",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1194237445,
+          "condition": "MagnetSetup (fileID 1194237445) currently shows only a Transform component (id 1194237446) and no Collider, Rigidbody, EventTrigger, or MonoBehaviour entries with UnityEvents (m_Calls). Without a MonoBehaviour component in the scene data, we cannot map or trigger any public no-parameter methods. Please provide the attached script components (script_fileID, GUID) and any m_Calls for MagnetSetup or its children (Transform children fileIDs listed as 354555025 and 7541936462315295365) to define the exact triggerable events.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Target child object Magnet (fileID 7541936462315295362) under MagnetSetup has Rigidbody (Has_Rigidbody: True), so Trigger is allowed. Attached scripts mapped by scene MonoBehaviours: MatchRotation (script_fileID 14, GUID ae83748d921a24c479bbf9e63dd4ea89) with matchY=true and targetTransform fileID 4502080888245813405; PlaySoundsFromList (script_fileID 1145393436748058495, GUID 76a895b5e674db04d8b4f8110c068852) with a populated audioClips list and shouldLoop=false; MoveWithVelocity (script_fileID 2093529275998283900, GUID 082c3f8b71935c2468a296c7e6146e9b) speed=5, origin fileID 354555025. No m_Calls UnityEvents are present in the provided scene data, so we directly invoke parameterless public methods for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Magnet",
+          "source_object_fileID": 7541936462315295362,
+          "target_object_name": "Socket",
+          "target_object_fileID": 7541936460893253787
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Magnet has a Rigidbody (Has_Rigidbody: True), enabling interaction via Grab/Transform. Socket has a BoxCollider (id 1145393438020323227, isTrigger: true) and XRSocketInteractor (script_fileID 8477993898470408151, GUID 60523e0647cc6ab43acc73cb266a32a7). XRSocketInteractor UnityEvents m_OnSelectEntered and m_OnSelectExited each have m_Calls to PlaySoundsFromList.PlayAtIndex with IntArgument=4 targeting PlaySoundsFromList (script_fileID 1145393436748058495, GUID 76a895b5e674db04d8b4f8110c068852). These socket events will be naturally triggered by the preceding Grab (select entered) and by moving the Magnet out of the socket (select exited). To expand coverage beyond m_Calls, we manually invoke parameterless public methods on attached scripts.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Magnet",
+          "source_object_fileID": 7541936462315295362,
+          "delta_position": {
+            "x": 0.0,
+            "y": 1.5,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0.0,
+            "y": -90.0,
+            "z": 0.0
+          },
+          "target_scale": {
+            "x": 1.0,
+            "y": 1.0123,
+            "z": 1.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.3
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Magnet",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 7541936462315295362,
+          "condition": "Magnet (Rigidbody present) is placed into Socket (BoxCollider isTrigger=true, XRSocketInteractor script_fileID 8477993898470408151). XRSocketInteractor UnityEvents will automatically invoke PlaySoundsFromList.PlayAtIndex(4) on Select Entered/Exited targeting script_fileID 1145393436748058495. This manual trigger covers additional parameterless methods on attached scripts not invoked by those UnityEvents: MatchRotation.FollowRotation on Magnet (script_fileID 14), PlaySoundsFromList playback controls (script_fileID 1145393436748058495), and PlayContinuousSound controls on child Audio Source Move (script_fileID 931956745451022772).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 14,
+                  "method_name": "FollowRotation",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PlayCurrentClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "NextClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PreviousClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "RandomClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "PauseClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1145393436748058495,
+                  "method_name": "StopClip",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 931956745451022772,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source Raise",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1803692743623512621,
+          "condition": "Manual invocation of parameterless public methods on PlayContinuousSound to ensure coverage. Mapping: MonoBehaviour (id 4025780930682781986) on GameObject 'Audio Source Raise' (fileID 1803692743623512621) corresponds to script PlayContinuousSound (guid 0ab6d3e7b225a7342a0d702b6151692b). Serialized settings: sound (guid f3d02eed8de884b8f8e2df103802faf5), playOnStart=false, volume=1. No UnityEvent m_Calls are present, so no automatic events will fire; methods must be triggered manually. Note: this GameObject shows no Rigidbody/Collider/EventTrigger; to comply strictly with Trigger prerequisites, please confirm an allowed trigger source (e.g., parent 'Magnet' having a Collider/Rigidbody) or permit direct script method triggering for test execution.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4025780930682781986,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Audio Source Rotate",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 7727694622217070388,
+          "condition": "MonoBehaviour (id 4079354613688537254) on GameObject 'Audio Source Rotate' (fileID 7727694622217070388) corresponds to script PlayContinuousSound (guid 0ab6d3e7b225a7342a0d702b6151692b). Serialized settings: sound (guid f3d02eed8de884b8f8e2df103802faf5), playOnStart=false, volume=1. There are no UnityEvent m_Calls on this object; thus no automatic events will invoke these methods. Note: This object shows Has_Rigidbody=false and no Collider/EventTrigger in the provided data. To strictly satisfy Trigger prerequisites, please confirm an allowed trigger source (e.g., parent 'Magnet' having a Collider/Rigidbody) or permit direct script method invocation for testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "IsPlaying",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "TogglePlay",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4079354613688537254,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

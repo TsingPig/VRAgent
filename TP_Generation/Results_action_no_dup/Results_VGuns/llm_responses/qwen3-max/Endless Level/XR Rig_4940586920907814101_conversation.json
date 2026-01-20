@@ -1,0 +1,776 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the VGuns App. One game object we want to test in the scene of 'Endless Level.unity' is 'XR Rig'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code of the script attached to this gameobjects below. There may be more than one script attached to one gameobject. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of script files attached]\n'''\nusing UnityEngine;\nusing UnityEngine.InputSystem;\nusing UnityEngine.SceneManagement;\nusing UnityEngine.XR.Interaction.Toolkit;\n\nnamespace PauseMenu\n{\n    public class PauseMenu : MonoBehaviour\n    {\n        public GameObject Pausemenu;\n\n        public GameObject LocomotionSystem;\n\n        public InputActionReference LeftTogglePauseRefrence = null;\n        public InputActionReference RightTogglePauseRefrence = null;\n\n        public GameObject ray_Right;\n        public GameObject ray_Left;\n\n        public bool RightTeleport;\n        public bool LeftTeleport;\n        \n        public GameObject TeleportManagzerLeft;\n        public GameObject TeleportManagzerRight;\n        \n        public static bool started;\n\n        private void Awake()\n        {\n            started = false;\n        \n            LeftTogglePauseRefrence.action.started += Toggle;\n            RightTogglePauseRefrence.action.started += Toggle;\n        }\n\n        private void OnDestroy()\n        {\n            LeftTogglePauseRefrence.action.started += Toggle;\n            RightTogglePauseRefrence.action.started += Toggle;\n        }\n    \n    \n        private void Toggle(InputAction.CallbackContext context)\n        {\n            Debug.Log(\"Menu button is pressed\");\n            PauseMenuCheck();\n        }\n\n        public void PauseMenuCheck()\n        {\n            if (started == false)\n            {\n                Show();\n                started = true;\n            }\n            else\n            {\n                Hide();\n                started = false;\n            }\n        }\n    \n\n        public void Show()\n        {\n            Time.timeScale = 0f;\n\n            ray_Right.SetActive(true);\n            ray_Left.SetActive(true);\n\n            LocomotionSystem.SetActive(false);\n\n            TeleportManagzerLeft.SetActive(false);\n            TeleportManagzerRight.SetActive(false);\n            \n            Pausemenu.SetActive(true);\n        }\n\n        public void Hide()\n        {\n            Time.timeScale = 1f;\n\n            ray_Right.SetActive(false);\n            ray_Left.SetActive(false);\n\n            LocomotionSystem.SetActive(true);\n            \n            if (RightTeleport)\n            {\n                TeleportManagzerRight.SetActive(true);\n            } \n            else \n            {\n                if (LeftTeleport)\n                {\n                    TeleportManagzerLeft.SetActive(true);\n                }\n            }\n\n            Pausemenu.SetActive(false);\n        }\n    \n        public void MainMenu()\n        {\n            SceneManager.LoadScene(0);\n        }\n\n        public void Restart()\n        {\n            SceneManager.LoadScene(1);\n        }\n    }\n}\n'''\n[Source code of 1th script files attached]\n'''\nusing System;\nusing System.Collections;\nusing System.Collections.Generic;\nusing TMPro;\nusing Unity.VisualScripting;\nusing UnityEngine;\nusing UnityEngine.SceneManagement;\n\npublic class XRTarget : MonoBehaviour {\n    \n    public float health;\n    \n    public TextMeshPro livesText;\n    \n    public GameObject deathScreen;\n\n    public GameObject LocomotionSystem;\n\n    public GameObject ray_Right;\n    public GameObject ray_Left;\n        \n    public GameObject TeleportManagerLeft;\n    public GameObject TeleportManagerRight;\n\n    public GameObject[] enemies;\n\n\n    void Update()\n    {\n        livesText.text = \"Health: \" + health;\n        \n        if(health <= 0) {\n            if (deathScreen.activeSelf)\n            {\n                enemies = GameObject.FindGameObjectsWithTag(\"Enemy\");\n                    \n                foreach (GameObject enemy in enemies){\n                    enemy.SetActive(false);\n                }\n                \n                ray_Right.SetActive(true);\n                ray_Left.SetActive(true);\n\n                LocomotionSystem.SetActive(false);\n\n                TeleportManagerLeft.SetActive(false);\n                TeleportManagerRight.SetActive(false);\n                \n                deathScreen.SetActive(true);\n                \n                StartCoroutine(Wait());\n                \n                SceneManager.LoadScene(0);\n            }\n            else\n            {\n                if (!deathScreen.activeSelf)\n                {\n                                     \n                    enemies = GameObject.FindGameObjectsWithTag(\"Enemy\");\n                    \n                    foreach (GameObject enemy in enemies){\n                        enemy.SetActive(false);\n                    }\n\n\n                    ray_Right.SetActive(true);\n                    ray_Left.SetActive(true);\n\n                    LocomotionSystem.SetActive(false);\n\n                    TeleportManagerLeft.SetActive(false);\n                    TeleportManagerRight.SetActive(false);\n                \n                    deathScreen.SetActive(true);\n                    \n                    StartCoroutine(Wait());\n\n                    SceneManager.LoadScene(0);\n                }\n\n            }\n\n        }\n    }\n\n\n    IEnumerator Wait()\n    {\n        //yield on a new YieldInstruction that waits for 5 seconds.\n        yield return new WaitForSecondsRealtime(5); \n    }\n\n\n    /// 'Hits' the target for a certain amount of damage\n    public void Hit(float damage) {\n        health -= damage;\n    }\n    \n}\n'''\n[Extracted JSON format of scene meta file] The scene file of 'Endless Level.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'XR Rig' and its script. The 'fileID' of gameobject 'XR Rig' is: 4940586920907814101. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': True, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '4940586920907814100'}]}, {'component': [{'fileID': '411092635307078028'}]}, {'component': [{'fileID': '4940586920907814088'}]}, {'component': [{'fileID': '4460531382388078979'}]}, {'component': [{'fileID': '1221334210'}]}, {'component': [{'fileID': '4832168211630479034'}]}, {'component': [{'fileID': '378614782'}]}, {'component': [{'fileID': '378614788'}]}]}, {'m_Layer': '10'}, {'m_Name': 'XR Rig'}, {'m_TagString': 'XRRig'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '4940586920907814100', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4940586920907814101'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '9.59'}, {'y': '-6.17'}, {'z': '-6.24'}]}, {'m_LocalScale': [{'x': '0.7'}, {'y': '0.7'}, {'z': '0.7'}]}, {'m_Children': [{'fileID': '4940586919770313182'}, {'fileID': '4940586921621305978'}, {'fileID': '8695547647749308155'}, {'fileID': '2849838945483652375'}, {'fileID': '4940586919995872649'}, {'fileID': '2849838945004645116'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '0'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'CapsuleCollider': {'type': 'CapsuleCollider', 'properties': {'id': '378614788', 'CapsuleCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4940586920907814101'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'m_Radius': '0.5'}, {'m_Height': '2'}, {'m_Direction': '1'}, {'m_Center': [{'x': '0'}, {'y': '0.6452873'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '4460531382388078979', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4940586920907814101'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '28d50a2d56ade1341ae8d933ebdfbe0c'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'Pausemenu': [{'fileID': '8695547647749308152'}]}, {'LocomotionSystem': [{'fileID': '4940586921621305979'}]}, {'LeftTogglePauseRefrence': [{'fileID': '5648469562712163909'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}, {'RightTogglePauseRefrence': [{'fileID': '1144150887972669765'}, {'guid': 'c348712bda248c246b8c49b3db54643f'}, {'type': '3'}]}, {'ray_Right': [{'fileID': '4460531382215018888'}]}, {'ray_Left': [{'fileID': '4460531383235625767'}]}, {'RightTeleport': '1'}, {'LeftTeleport': '0'}, {'TeleportManagzerLeft': [{'fileID': '3207614173264834952'}]}, {'TeleportManagzerRight': [{'fileID': '2565836327702532538'}]}]}}, {'MonoBehaviour_1': {'id': '1221334210', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '4940586920907814101'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'f8b1dcb6406ea3d439b013ec14fb8388'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'health': '10'}, {'livesText': [{'fileID': '2291944129818462141'}]}, {'deathScreen': [{'fileID': '2849838945483652374'}]}, {'LocomotionSystem': [{'fileID': '4940586921621305979'}]}, {'ray_Right': [{'fileID': '4460531382215018888'}]}, {'ray_Left': [{'fileID': '4460531383235625767'}]}, {'TeleportManagerLeft': [{'fileID': '3207614173264834952'}]}, {'TeleportManagerRight': [{'fileID': '2565836327702532538'}]}, {'enemies': []}]}}]}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"target_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"delta_position\": {                    // position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"target_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['4940586919770313183', '4940586921621305979', '4940586919995872662', '2849838945004645118'] to help formalize your test plans one by one.",
+    "timestamp": "2025-12-17T16:14:37.104877",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"XR Rig\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 4940586920907814101,\n          \"condition\": \"Pause menu open test. MonoBehaviour component id 4460531382388078979 matches PauseMenu.PauseMenu (script guid 28d50a2d56ade1341ae8d933ebdfbe0c) on XR Rig. Serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538, RightTeleport=true, LeftTeleport=false. Expect Time.timeScale=0, rays ON, locomotion OFF, teleports OFF, Pausemenu active.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 4460531382388078979,\n                  \"method_name\": \"Show\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"XR Rig\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 4940586920907814101,\n          \"condition\": \"Pause menu close test. Same component (4460531382388078979). With RightTeleport=true and LeftTeleport=false, expect Time.timeScale=1, rays OFF, locomotion ON, TeleportManagzerRight ON, TeleportManagzerLeft OFF, Pausemenu inactive.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 4460531382388078979,\n                  \"method_name\": \"Hide\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"XR Rig\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 4940586920907814101,\n          \"condition\": \"Navigate to Main Menu. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(0) to be invoked.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 4460531382388078979,\n                  \"method_name\": \"MainMenu\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"XR Rig\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 4940586920907814101,\n          \"condition\": \"Restart current endless level. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(1) to be invoked.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 4460531382388078979,\n                  \"method_name\": \"Restart\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-17T16:16:07.909216",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "XR Rig",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 4940586920907814101,
+              "condition": "Pause menu open test. MonoBehaviour component id 4460531382388078979 matches PauseMenu.PauseMenu (script guid 28d50a2d56ade1341ae8d933ebdfbe0c) on XR Rig. Serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538, RightTeleport=true, LeftTeleport=false. Expect Time.timeScale=0, rays ON, locomotion OFF, teleports OFF, Pausemenu active.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 4460531382388078979,
+                      "method_name": "Show",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "XR Rig",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 4940586920907814101,
+              "condition": "Pause menu close test. Same component (4460531382388078979). With RightTeleport=true and LeftTeleport=false, expect Time.timeScale=1, rays OFF, locomotion ON, TeleportManagzerRight ON, TeleportManagzerLeft OFF, Pausemenu inactive.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 4460531382388078979,
+                      "method_name": "Hide",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "XR Rig",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 4940586920907814101,
+              "condition": "Navigate to Main Menu. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(0) to be invoked.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 4460531382388078979,
+                      "method_name": "MainMenu",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "XR Rig",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 4940586920907814101,
+              "condition": "Restart current endless level. Same PauseMenu component (4460531382388078979). Expect SceneManager.LoadScene(1) to be invoked.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 4460531382388078979,
+                      "method_name": "Restart",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The gameobject is \"XR Rig\": {fileID: 4940586920907814101}. Please use the source code of the scripts attached to the gameobject and the extracted JSON format of scene meta file we provided in the last conversation to finalize the test plan.\n\nThe following gameobjects ['614338932', '875851041', '1640000271', '1646766442', '1673477535'] have matching tags with .CompareTag() logic detected in the source script of gameobject \"4940586920907814101\". So, you need to add actionUnits to interact with these gameobjects in order to invocate the methods of gameobject \"4940586920907814101\" consequently. The information of these gameobjects are belows:\nGameObject ID: \"7021357618633726246\" GameObject Name: \"Enemy Type 3\" Tag: \"Enemy\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '614338935'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '614338935'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '1907783186'}]}, {'target': [{'fileID': '614338935'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 3'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '0269d75519f38b0438a6a701dfb1196e'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\nGameObject ID: \"7021357618633726246\" GameObject Name: \"Enemy Type 1\" Tag: \"Enemy\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1888436447'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1888436447'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '285480565'}]}, {'target': [{'fileID': '1888436447'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '2c3278d9e90e58e4a9b2d03c2de9efe0'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\nGameObject ID: \"7021357618633726246\" GameObject Name: \"Enemy Type 4\" Tag: \"Enemy\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1640000274'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1640000274'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '285480565'}]}, {'target': [{'fileID': '1640000274'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 4'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '3'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': '476bac3c87a199a4d9f407530b2ab42a'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\nGameObject ID: \"7021357618633726246\" GameObject Name: \"Enemy Type 2\" Tag: \"Enemy\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1646766445'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1646766445'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '1724239766'}]}, {'target': [{'fileID': '1646766445'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'bd4f238c957c283488d4a745fff71f33'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\nGameObject ID: \"7021357618633726246\" GameObject Name: \"Enemy Type 5\" Tag: \"Enemy\":\n\n[Source code of scene meta file]\n'''\n{'Has_Rigidbody': False, 'PrefabInstance': {'type': 'PrefabInstance', 'properties': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '44097954'}]}, {'m_Modifications': [{'target': [{'fileID': '1673477538'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'player'}, {'value': ''}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '1673477538'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'startpoint'}, {'value': ''}, {'objectReference': [{'fileID': '2103721648'}]}, {'target': [{'fileID': '1673477538'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'AudioManager'}, {'value': ''}, {'objectReference': [{'fileID': '1746374257'}]}, {'target': [{'fileID': '7021357618633726246'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Enemy Type 5'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '4'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '3.15'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.49'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '5.83'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '7021357618633726267'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'ecf49e437bf4de845930a6533a3f3425'}, {'type': '3'}]}]}, 'Source Prefab GameObject': {'type': 'Source Prefab GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '7021357618633726267'}]}, {'component': [{'fileID': '7021357618633726266'}]}, {'component': [{'fileID': '7021357618633726245'}]}, {'component': [{'fileID': '7021357618633726247'}]}, {'component': [{'fileID': '7021357618633726244'}]}, {'component': [{'fileID': '7021357618633726265'}]}, {'component': [{'fileID': '1673477538'}]}, {'component': [{'fileID': '1306247219'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Enemy Type 5'}, {'m_TagString': 'Enemy'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}}\n'''\n\n\n\nPlease finalize the test plan based on previous test plans to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need another information, Please also respond with a draft test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2025-12-17T16:16:07.914622",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "main_sorted_target_logic_request",
+    "gobj_info": {
+      "gameobject_id": "4940586920907814101",
+      "gameobject_id_replace": "4940586920907814101",
+      "gameobject_type": "Source Prefab GameObject",
+      "gameobject_name": "XR Rig",
+      "mono_comp_relations": [
+        {
+          "source": "4940586920907814101",
+          "source_replace": "4940586920907814101",
+          "target": "4460531382388078979",
+          "target_replace": "4460531382388078979",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "4460531382388078979",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "4940586920907814101"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "28d50a2d56ade1341ae8d933ebdfbe0c"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "Pausemenu": [
+                  {
+                    "fileID": "8695547647749308152"
+                  }
+                ]
+              },
+              {
+                "LocomotionSystem": [
+                  {
+                    "fileID": "4940586921621305979"
+                  }
+                ]
+              },
+              {
+                "LeftTogglePauseRefrence": [
+                  {
+                    "fileID": "5648469562712163909"
+                  },
+                  {
+                    "guid": "c348712bda248c246b8c49b3db54643f"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "RightTogglePauseRefrence": [
+                  {
+                    "fileID": "1144150887972669765"
+                  },
+                  {
+                    "guid": "c348712bda248c246b8c49b3db54643f"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "ray_Right": [
+                  {
+                    "fileID": "4460531382215018888"
+                  }
+                ]
+              },
+              {
+                "ray_Left": [
+                  {
+                    "fileID": "4460531383235625767"
+                  }
+                ]
+              },
+              {
+                "RightTeleport": "1"
+              },
+              {
+                "LeftTeleport": "0"
+              },
+              {
+                "TeleportManagzerLeft": [
+                  {
+                    "fileID": "3207614173264834952"
+                  }
+                ]
+              },
+              {
+                "TeleportManagzerRight": [
+                  {
+                    "fileID": "2565836327702532538"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "28d50a2d56ade1341ae8d933ebdfbe0c",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\PauseMenu\\PauseMenu.cs.meta"
+            }
+          ]
+        },
+        {
+          "source": "4940586920907814101",
+          "source_replace": "4940586920907814101",
+          "target": "1221334210",
+          "target_replace": "1221334210",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1221334210",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "4940586920907814101"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "f8b1dcb6406ea3d439b013ec14fb8388"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "health": "10"
+              },
+              {
+                "livesText": [
+                  {
+                    "fileID": "2291944129818462141"
+                  }
+                ]
+              },
+              {
+                "deathScreen": [
+                  {
+                    "fileID": "2849838945483652374"
+                  }
+                ]
+              },
+              {
+                "LocomotionSystem": [
+                  {
+                    "fileID": "4940586921621305979"
+                  }
+                ]
+              },
+              {
+                "ray_Right": [
+                  {
+                    "fileID": "4460531382215018888"
+                  }
+                ]
+              },
+              {
+                "ray_Left": [
+                  {
+                    "fileID": "4460531383235625767"
+                  }
+                ]
+              },
+              {
+                "TeleportManagerLeft": [
+                  {
+                    "fileID": "3207614173264834952"
+                  }
+                ]
+              },
+              {
+                "TeleportManagerRight": [
+                  {
+                    "fileID": "2565836327702532538"
+                  }
+                ]
+              },
+              {
+                "enemies": []
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "f8b1dcb6406ea3d439b013ec14fb8388",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\VGuns-Unity-VR-master\\VGuns-Unity-VR-master\\Assets\\Scripts\\Guns\\XRTarget.cs.meta"
+            }
+          ]
+        }
+      ],
+      "child_relations": [
+        {
+          "source": "4940586920907814101",
+          "target": "4940586919770313183",
+          "edge_type": "Has_Child"
+        },
+        {
+          "source": "4940586920907814101",
+          "target": "4940586921621305979",
+          "edge_type": "Has_Child"
+        },
+        {
+          "source": "4940586920907814101",
+          "target": "4940586919995872662",
+          "edge_type": "Has_Child"
+        },
+        {
+          "source": "4940586920907814101",
+          "target": "2849838945004645118",
+          "edge_type": "Has_Child"
+        }
+      ],
+      "child_mono_comp_info": [],
+      "parent_id": null,
+      "depth": 0,
+      "tag_logic_info": [
+        {
+          "id": "614338932",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 3",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "875851041",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 1",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "1640000271",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 4",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "1646766442",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 2",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "1673477535",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 5",
+          "tag_name": "Enemy"
+        }
+      ],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [
+        {
+          "id": "614338932",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 3",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "875851041",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 1",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "1640000271",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 4",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "1646766442",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 2",
+          "tag_name": "Enemy"
+        },
+        {
+          "id": "1673477535",
+          "id_replace": "7021357618633726246",
+          "gameobject_name": "Enemy Type 5",
+          "tag_name": "Enemy"
+        }
+      ],
+      "sorted_layer_logic_info": []
+    },
+    "sorted_target_logic_info": [
+      {
+        "id": "614338932",
+        "id_replace": "7021357618633726246",
+        "gameobject_name": "Enemy Type 3",
+        "tag_name": "Enemy"
+      },
+      {
+        "id": "875851041",
+        "id_replace": "7021357618633726246",
+        "gameobject_name": "Enemy Type 1",
+        "tag_name": "Enemy"
+      },
+      {
+        "id": "1640000271",
+        "id_replace": "7021357618633726246",
+        "gameobject_name": "Enemy Type 4",
+        "tag_name": "Enemy"
+      },
+      {
+        "id": "1646766442",
+        "id_replace": "7021357618633726246",
+        "gameobject_name": "Enemy Type 2",
+        "tag_name": "Enemy"
+      },
+      {
+        "id": "1673477535",
+        "id_replace": "7021357618633726246",
+        "gameobject_name": "Enemy Type 5",
+        "tag_name": "Enemy"
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"XR Rig\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 4940586920907814101,\n          \"condition\": \"Pause menu open test. MonoBehaviour component id 4460531382388078979 matches PauseMenu.PauseMenu (script guid 28d50a2d56ade1341ae8d933ebdfbe0c) on XR Rig. Serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538, RightTeleport=true, LeftTeleport=false. Expect Time.timeScale=0, rays ON, locomotion OFF, teleports OFF, Pausemenu active.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 4460531382388078979,\n                  \"method_name\": \"Show\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"XR Rig\",\n          \"triggerring_time\": 0.2,\n          \"source_object_fileID\": 4940586920907814101,\n          \"condition\": \"Pause menu close test. Same component (4460531382388078979). With RightTeleport=true and LeftTeleport=false, expect Time.timeScale=1, rays OFF, locomotion ON, TeleportManagzerRight ON, TeleportManagzerLeft OFF, Pausemenu inactive.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 4460531382388078979,\n                  \"method_name\": \"Hide\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"XR Rig\",\n          \"source_object_fileID\": 4940586920907814101,\n          \"delta_position\": {\n            \"x\": -6.44,\n            \"y\": 6.66,\n            \"z\": 12.07\n          },\n          \"target_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"target_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 1.0\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"XR Rig\",\n          \"source_object_fileID\": 4940586920907814101,\n          \"delta_position\": {\n            \"x\": 0.5,\n            \"y\": 0.0,\n            \"z\": -1.0\n          },\n          \"target_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"target_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"XR Rig\",\n          \"source_object_fileID\": 4940586920907814101,\n          \"delta_position\": {\n            \"x\": -0.5,\n            \"y\": 0.0,\n            \"z\": 1.5\n          },\n          \"target_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"target_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"XR Rig\",\n          \"source_object_fileID\": 4940586920907814101,\n          \"delta_position\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": 0.5\n          },\n          \"target_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"target_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.4\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": \"XR Rig\",\n          \"source_object_fileID\": 4940586920907814101,\n          \"delta_position\": {\n            \"x\": 0.0,\n            \"y\": 0.0,\n            \"z\": -2.0\n          },\n          \"target_rotation\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"target_scale\": {\n            \"x\": 0,\n            \"y\": 0,\n            \"z\": 0\n          },\n          \"triggerring_events\": [],\n          \"triggerred_events\": [],\n          \"triggerring_time\": 0.6\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-17T16:18:26.054897",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The gameobject is \"XR Rig\": {fileID: 4940586920907814101}. Please use the source code of the scripts..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "XR Rig",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 4940586920907814101,
+              "condition": "Pause menu open test. MonoBehaviour component id 4460531382388078979 matches PauseMenu.PauseMenu (script guid 28d50a2d56ade1341ae8d933ebdfbe0c) on XR Rig. Serialized refs: Pausemenu=8695547647749308152, LocomotionSystem=4940586921621305979, ray_Right=4460531382215018888, ray_Left=4460531383235625767, TeleportManagzerLeft=3207614173264834952, TeleportManagzerRight=2565836327702532538, RightTeleport=true, LeftTeleport=false. Expect Time.timeScale=0, rays ON, locomotion OFF, teleports OFF, Pausemenu active.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 4460531382388078979,
+                      "method_name": "Show",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "XR Rig",
+              "triggerring_time": 0.2,
+              "source_object_fileID": 4940586920907814101,
+              "condition": "Pause menu close test. Same component (4460531382388078979). With RightTeleport=true and LeftTeleport=false, expect Time.timeScale=1, rays OFF, locomotion ON, TeleportManagzerRight ON, TeleportManagzerLeft OFF, Pausemenu inactive.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 4460531382388078979,
+                      "method_name": "Hide",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "XR Rig",
+              "source_object_fileID": 4940586920907814101,
+              "delta_position": {
+                "x": -6.44,
+                "y": 6.66,
+                "z": 12.07
+              },
+              "target_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "target_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 1.0
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "XR Rig",
+              "source_object_fileID": 4940586920907814101,
+              "delta_position": {
+                "x": 0.5,
+                "y": 0.0,
+                "z": -1.0
+              },
+              "target_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "target_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.6
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "XR Rig",
+              "source_object_fileID": 4940586920907814101,
+              "delta_position": {
+                "x": -0.5,
+                "y": 0.0,
+                "z": 1.5
+              },
+              "target_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "target_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.6
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "XR Rig",
+              "source_object_fileID": 4940586920907814101,
+              "delta_position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.5
+              },
+              "target_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "target_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.4
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Transform",
+              "source_object_name": "XR Rig",
+              "source_object_fileID": 4940586920907814101,
+              "delta_position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -2.0
+              },
+              "target_rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "target_scale": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "triggerring_events": [],
+              "triggerred_events": [],
+              "triggerring_time": 0.6
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  }
+]

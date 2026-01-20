@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "DemoInputManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 197,
+          "condition": "MonoBehaviour id=972 uses script guid=ddd25f1308577456cbaa207901961126 (class DemoInputManager). Serialized fields: controllerMain(fileID=163), controllerPointer(fileID=25), reticlePointer(fileID=95), messageCanvas(null), messageText(null), gvrEmulatedPlatformType=0 (Daydream). Scene meta shows no Collider, Rigidbody, EventTrigger, and no UnityEvent m_Calls. Many behaviors (Start/Update/LateUpdate and VR platform switching) occur automatically at runtime. We will trigger accessible public no-arg methods to exercise code paths that can be invoked via Trigger.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 972,
+                  "method_name": "playerSettingsHasDaydream",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 972,
+                  "method_name": "playerSettingsHasCardboard",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Small",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1942656993140901281,
+          "condition": "Room_Small (fileID: 1942656993140901281) currently has no Rigidbody, Collider, EventTrigger, or attached MonoBehaviour in the provided scene meta, so no valid Trigger target or UnityEvent (m_Calls) is available at this level. To create a valid Trigger action, please provide the detailed components for its children: ['1625315348 stripped', '7432184646943501063', '3884016180346848259', '9093205527526174052', '8740198783673011707', '1338831022266921860', '5520989021043231010', '6970279254400523389', '1622188112238328543', '266977794', '260555812', '566844294', '1653149164', '1496474591', '1741344866', '1216310491', '170316958', '1993477995', '589705947', '1430556377 stripped', '1481277428 stripped', '929766718 stripped', '1566661062 stripped', '1239467364', '607759082', '1496174966', '381590700', '926884012', '1219552032', '1550143634', '86667844', '305796574 stripped', '52664382', '724256401', '921409843', '1366313214', '656544255', '1814612107', '1581271909', '1509043631', '314330859', '1919600075', '1696693279 stripped', '194648065', '721019284', '517757860', '1476946808', '1775452723', '586343744', '176858616']. Specifically, for any child we need: (1) presence of Collider or EventTrigger or Rigidbody, (2) MonoBehaviour details (script fileID, GUID) and public no-arg methods, and (3) any UnityEvent (m_Calls) configured so we can target a valid manual or automatic event.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Hourglass",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1993477995,
+          "condition": "Validate attached scripts and events for Hourglass PrefabInstance (fileID: 1993477995). MonoBehaviour_0 (id: 1053131476719109107) maps to script GUID 064a8dd92b340ea44b0dfedc7cf8e7b8 (Hourglass) with fields: HourglassTop=7569206847018913496, HourglassBottom=8636883280516482818, TimerFill=1, ParticleSand=1196784834592761554. MonoBehaviour_1 (id: 3259508153452503771) maps to script GUID 35ffe483d6934704b884767450fd49e5 (XROffsetGrabbable/XRGrabInteractable). All XR interaction UnityEvents (m_OnFirstHoverEnter, m_OnHoverEnter, m_OnHoverExit, m_OnLastHoverExit, m_OnSelectEnter, m_OnSelectExit, m_OnActivate, m_OnDeactivate) have empty m_Calls, so no manual UnityEvent invocations are required. Object has Rigidbody => eligible for Transform-based interaction to exercise Hourglass.Update branches.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 180.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -180.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 2.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Hourglass",
+          "source_object_fileID": 1993477995,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 90.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1635398362,
+          "condition": "Enter the trigger volume of Door 1 to invoke DoorAnimationEvent.OnTriggerEnter(Collider). Scene meta confirms: BoxCollider (id: 1635398364) with m_IsTrigger=1; MonoBehaviour_0 (id: 1635398365) uses script GUID a8a2c5194e4c1f1458096e7bee47220e (DoorAnimationEvent). On enter when isOpened == false, openDoors() sets isOpened=true and Animator.SetTrigger(\"DoorTrigger\") (Animator component id: 1635398366).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 1",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1635398362,
+          "condition": "Exit the trigger volume of Door 1 to invoke DoorAnimationEvent.OnTriggerExit(Collider). When isOpened == true, script calls Invoke(\"closeDoors\", 0.5f) which sets isOpened=false and Animator.SetTrigger(\"DoorTrigger\"). Wait >=0.5s to validate delayed close.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 353440278,
+          "condition": "Enter Door 2's trigger to invoke both MonoBehaviours via Unity physics. Scene meta confirms: BoxCollider (id: 353440280) with m_IsTrigger=1; MonoBehaviour_0 (id: 353440281) maps to script GUID a8a2c5194e4c1f1458096e7bee47220e (DoorAnimationEvent) and will run OnTriggerEnter -> openDoors() -> Animator.SetTrigger(\"DoorTrigger\"). MonoBehaviour_1 (id: 353440283) maps to script GUID 3dc13bc17e982d54e848fac3441c08c4 (AudioTrigger) and will run OnTriggerEnter -> audioSource.Play() (audioSource fileID: 1941851346). Animator component exists (component id: 353440282).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 353440278,
+          "condition": "Exit Door 2's trigger to invoke DoorAnimationEvent.OnTriggerExit(Collider). Since isOpened == true after the enter step, script calls Invoke(\"closeDoors\", 0.5f) leading to closeDoors() -> Animator.SetTrigger(\"DoorTrigger\"). Wait >=0.5s within this step to validate delayed close.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Door 2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 353440278,
+          "condition": "Validate AudioTrigger.Update branch that stops audio. Requirement: keysPlaced (fileID: 2046914207, component type keyMainScript) has numKeys == 3. When this condition becomes true, AudioTrigger.Update will execute audioSource.Stop(). Provide keysPlaced component details or a public no-arg method to set numKeys=3, or ensure environment precondition sets numKeys to 3.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

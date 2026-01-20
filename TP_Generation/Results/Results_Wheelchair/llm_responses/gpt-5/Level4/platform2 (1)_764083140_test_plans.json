@@ -1,0 +1,16 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764083140,
+          "condition": "MonoBehaviour (fileID 764083142, guid 077cb2d6a53b18f4ea7d76e72138fc77) matches the provided AttachToElevator script on GameObject 'platform2 (1)'. Current scene config: BoxCollider (id 764083144) m_IsTrigger=0; Has_Rigidbody=False; MonoBehaviour.player is null (fileID 0). The script only exposes Unity messages OnTriggerEnter(Collider) and OnTriggerExit(Collider) and no public no-arg methods. Therefore, no manual Trigger calls are available. Also, OnTrigger* cannot be fired automatically because this object is not a trigger and neither collider in the interaction is guaranteed to have a Rigidbody. Even if triggers fired, the internal condition if (gameObject == player) would not execute because 'player' is null. To test and cover: we need either (a) BoxCollider.m_IsTrigger=1 and a Rigidbody on one of the interacting objects plus a valid 'player' reference, or (b) a public no-arg test hook method to invoke, or (c) fix the comparison to other.gameObject == player.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

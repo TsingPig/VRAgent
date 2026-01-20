@@ -1,0 +1,65 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1943288798,
+          "condition": "MonoBehaviour WinLose attached (m_Script guid d8624f87f98aa484bb7925103f5d458e; component fileID 4225679855366766214). Serialized: restartdelay=2, WinUI -> fileID 109963297, LoseUI -> fileID 109963299. No m_Calls found in scene; Has_Rigidbody=False. Manually invoke to show Win UI.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1943288798,
+          "condition": "MonoBehaviour WinLose attached (m_Script guid d8624f87f98aa484bb7925103f5d458e; component fileID 4225679855366766214). Serialized: restartdelay=2, WinUI -> fileID 109963297, LoseUI -> fileID 109963299. No m_Calls found in scene; Has_Rigidbody=False. Manually invoke to show Lose UI.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1943288798,
+          "condition": "Optional coverage: Call empty Restart() on the same WinLose component to verify callable binding.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

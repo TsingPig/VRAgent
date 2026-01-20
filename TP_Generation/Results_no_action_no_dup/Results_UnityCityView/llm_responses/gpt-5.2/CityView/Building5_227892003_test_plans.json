@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 227892003,
+          "condition": "Trigger the configured EventTrigger (eventID=4, PointerClick) on Building5 (PrefabInstance id=227892003). Persistent call targets MonoBehaviour id=227892005 (Hotel, script guid=f713beac870e2bd45bed25f1cda3a140) and invokes showlabel(). Expected behavior: Hotel.showlabel() sets Player->Child[1] TextMeshPro text to GetLabel().Substring(0,20). For Building5, GetLabel() returns 'Hotel:Udon Hotel'. Note: This string has length 17, so Substring(0,20) will throw ArgumentOutOfRangeException unless handled; also requires a GameObject named 'Player' with at least two children and Child[1] having a TextMeshPro component.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building5",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 227892003,
+          "condition": "Invoke Building5's configured EventTrigger (eventID=4 PointerClick, component id=227892007). Persistent call targets MonoBehaviour id=227892005 (Hotel, script guid=f713beac870e2bd45bed25f1cda3a140) to call showlabel(). Expected: Hotel.showlabel() sets Player->Child[1]'s TextMeshPro.text to GetLabel().Substring(0,20). For Building5, GetLabel() returns 'Hotel:Udon Hotel'. Preconditions: a GameObject named 'Player' exists with at least two children and the second child has a TextMeshPro component; note Substring(0,20) may throw due to length < 20.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 227892005,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

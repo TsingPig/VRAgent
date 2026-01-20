@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig ",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 692630294,
+          "condition": "OnButtonPress (MonoBehaviour id=692630297, script guid=4a8d337e8bc7ac4498e0df29e7b8bd5e) has InputAction 'Action' bound to <XRController>{LeftHand}/secondaryButton and <XRController>{RightHand}/secondaryButton. OnPress UnityEvent has a persistent call to LoadScene.ReloadCurrentScene (m_Target fileID=1907113017). Manually trigger the OnPress path to validate scene reload.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "XR Rig ",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 692630294,
+          "condition": "TeleportPlayer (MonoBehaviour id=692630298, script guid=9469e5ef7ce252d48a689ad38d7b5695) is configured with anchor fileID=1702822959 and provider fileID=692630299. Invoking Teleport() should queue a TeleportRequest to the provider to move the rig to the anchor's position/rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 692630298,
+                  "method_name": "Teleport",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

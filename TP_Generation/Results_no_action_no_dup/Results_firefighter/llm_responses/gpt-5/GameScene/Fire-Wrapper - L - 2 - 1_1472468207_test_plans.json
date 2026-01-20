@@ -1,0 +1,35 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 50.0,
+          "source_object_fileID": 1472468207,
+          "condition": "MonoBehaviour (guid:1729fd01c90a64d5b8037e1eef0d000d, script_fileID:2592690533154406537) attached to this GameObject is Fire. Scene settings match: isOn=0, timeToOnMin=40, timeToOnMax=60, downMultiplier=2, onNeighborsThreshold=2, maxNeighborDistance overridden to 3.5 in PrefabInstance, neighbors list empty. To trigger ignition via neighbor logic: ensure at least two neighbor Fire components are within 3.5 units and are currently on (e.g., by calling their SetIsOn(true) or by pre-populating this object's 'neighbors' list with two active Fire instances). Also ensure at least one neighbor is lower by >=3 units to validate downMultiplier acceleration. Then call FindNeighbors on a controller or otherwise call NotifyNeighborState(true) twice so onNeighbors >= 2 and CheckNeighborState() sets shouldTurnOn = true. After waiting until randomized timeToOn (40-60s) passes (accelerated by downMultiplier if hasDownNeighbor), this fire should transition to isOn=true, reset timers, stop isTurningOff, and UpdateFireState(true) should Play particle system and call FireController.Instance.FireChanged(1). Note: Requires FireController singleton present to avoid NullReference.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 1472468207,
+          "condition": "Extinguish while maintaining hits under maxHitInterval: Precondition: fire is currently on after previous step. Use a water system that calls IWaterInteractable.WaterHit(Vector3) on this Fire once per second (interval < maxHitInterval=2) for >= totalHitTime=5 seconds. Expected: isTurningOff becomes true on first hit, currentHitInterval resets to 0 each hit, currentHitTime accumulates to >=5, then fire turns off: isOn=false, shouldTurnOn=false, timers reset, particle systems Stop and UpdateFireState(true) notifies neighbors and FireController.Instance.FireChanged(-1). Verify neighbors receive NotifyNeighborState(false).",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 2 - 1",
+          "triggerring_time": 2.2,
+          "source_object_fileID": 1472468207,
+          "condition": "Cooling interval cancels turning off: Precondition: fire is on. Trigger a single WaterHit to start isTurningOff. Then do not hit again and wait > maxHitInterval (2s). Expected: when currentHitInterval >= maxHitInterval, isTurningOff resets to false and currentHitTime resets to 0 without turning off; fire remains on, particle continues playing, no neighbor or FireController notifications fired.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

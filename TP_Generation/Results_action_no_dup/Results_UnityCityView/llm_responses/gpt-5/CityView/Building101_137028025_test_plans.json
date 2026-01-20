@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building101",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 137028025,
+          "condition": "CityView.unity: PrefabInstance id 137028025 named 'Building101' has EventTrigger MonoBehaviour id 137028029 (script guid d0b148fe25e99eb48b9724523833bab1). Its m_Delegates contains eventID=4 (PointerClick) with a PersistentCall targeting MonoBehaviour id 137028027 (script guid b78288e601dcaac41ae0297908e55692), which is the Bank component attached to Building101. On PointerClick, it invokes Bank.showlabel(). Precondition: After Start(), Bank finds GameObject 'Player' and assigns label = Player.transform.GetChild(1).gameObject which must have a TextMeshPro component. Expected behavior: label.text becomes the first 20 characters of 'Bank:Lucario's Bank Co.'",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 137028027,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building101",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 137028025,
+          "condition": "CityView.unity: PrefabInstance id 137028025 named 'Building101' has EventTrigger MonoBehaviour id 137028029 (script guid d0b148fe25e99eb48b9724523833bab1). Its m_Delegates contains eventID=4 (PointerClick) with a PersistentCall targeting MonoBehaviour id 137028027 which is the Bank component (script guid b78288e601dcaac41ae0297908e55692) attached to Building101. On click, it invokes Bank.showlabel(). Expected: Player child[1] TextMeshPro text = first 20 chars of 'Bank:Lucario's Bank Co.'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 137028027,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

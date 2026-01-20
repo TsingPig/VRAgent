@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1887208562,
+          "condition": "MonoBehaviour component id 1887208566 on GameObject fileID 1887208562 uses m_Script guid b61f5fbd6df31704b851371ab42625b2, which corresponds to the provided ToggleOnOff script (public void Toggle()). Initial scene state shows m_IsActive: 0 (inactive). Invoking Toggle() should activate the GameObject (activeSelf -> true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1887208566,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1887208562,
+          "condition": "After activation in the previous step, call Toggle() again on MonoBehaviour id 1887208566 (guid b61f5fbd6df31704b851371ab42625b2, ToggleOnOff) to verify deactivation. Expected result: gameObject.activeSelf -> false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1887208566,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

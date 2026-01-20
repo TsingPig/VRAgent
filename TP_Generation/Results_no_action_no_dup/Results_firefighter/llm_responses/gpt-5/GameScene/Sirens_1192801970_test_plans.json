@@ -1,0 +1,74 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1192801970,
+          "condition": "Pending verification: In the provided scene meta, 'Sirens' (fileID 1192801970) only has a Transform (fileID 1192801971) and no Rigidbody, Collider, EventTrigger, or MonoBehaviour component. To select and trigger a specific event, please provide the attached MonoBehaviour component for 'Sirens' (script fileID, serialized fields, and its UnityEvent m_Calls list). Also confirm whether the children (Transform.m_Children: 1696544509, 1915639392 — or as referenced 1696544506, 1915639391) include Collider/EventTrigger/MonoBehaviour components. Once available, we intend to manually trigger the primary siren event (e.g., OnSirenActivated or similar UnityEvent) via its MonoBehaviour fileID.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 1",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1696544506,
+          "condition": "MonoBehaviour_0 (fileID 1696544507) is SteamAudio.SteamAudioSource (script guid 59c3684b22f00604a97bb68037fcf4cd) with the following serialized settings from the scene meta: directBinaural=true, interpolation=Nearest, distanceAttenuation=true with PhysicsBased input, airAbsorption=true (SimulationDefined), airAbsorptionLow=1, airAbsorptionMid=1, airAbsorptionHigh=1, directivity=false, occlusion=true (SimulationDefined, type=Raycast, radius=1, samples=16, value=1), transmission=false, directMixLevel=1, reflections=false, pathing=false, applyHRTFToPathing=false, pathingMixLevel=1. MonoBehaviour_1 (fileID 1696544510) is SimpleMovement (script guid 0ed45ecca44e348b2863fcf42e6e747d) with speed=0.15, maxDistance=30, direction=(-1,0,0). There are no UnityEvent m_Calls configured in these components. The GameObject has no Rigidbody, and no Collider/EventTrigger is specified; component fileID 1696544508 is unspecified and likely an AudioSource. Per interaction rules, a valid Trigger requires a Collider/EventTrigger/Rigidbody or a UnityEvent-bearing component. Please confirm whether 1696544508 is a Collider or provide a Collider/EventTrigger on this object (or provide details of the sibling child 1915639391) so we can execute physical/event triggers. For now, we will invoke a public no-parameter method for code coverage on SteamAudioSource.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1696544507,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 1",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1696544506,
+          "condition": "Scene meta confirms that MonoBehaviour_0 (fileID 1696544507) is SteamAudio.SteamAudioSource (script guid 59c3684b22f00604a97bb68037fcf4cd) and its serialized settings match the script fields: directBinaural=true; interpolation=Nearest; distanceAttenuation=true with PhysicsBased; airAbsorption=true (SimulationDefined); occlusion=true (SimulationDefined, Raycast, radius=1, samples=16, value=1); reflections=false; pathing=false; directMixLevel=1; transmission=false. MonoBehaviour_1 (fileID 1696544510) is SimpleMovement (guid 0ed45ecca44e348b2863fcf42e6e747d) with speed=0.15, maxDistance=30, direction=(-1,0,0). No UnityEvent m_Calls are present, and the object has no Rigidbody/Collider/EventTrigger indicated. Component fileID 1696544508 appears to be a non-MonoBehaviour (likely AudioSource) but is not provided. To achieve code coverage on the attached scripts, we will invoke a public no-parameter method on SteamAudioSource.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1696544507,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 2",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1915639391,
+          "condition": "Scene meta confirms that MonoBehaviour_0 (fileID 1915639393) is SteamAudio.SteamAudioSource (script guid 59c3684b22f00604a97bb68037fcf4cd) and its serialized settings match the script fields: directBinaural=true; interpolation=Nearest; distanceAttenuation=true with PhysicsBased; airAbsorption=true (SimulationDefined); occlusion=true (SimulationDefined, Raycast, radius=1, samples=16, value=1); reflections=false; pathing=false; directMixLevel=1; transmission=false. MonoBehaviour_1 (fileID 1915639395) is SimpleMovement (guid 0ed45ecca44e348b2863fcf42e6e747d) with speed=0.15, maxDistance=40, direction=(1,0,0). No UnityEvent m_Calls are present, and the object has no Rigidbody/Collider/EventTrigger indicated. Component fileID 1915639394 appears to be a non-MonoBehaviour (likely AudioSource) but is not provided. To achieve code coverage on the attached scripts, we will invoke a public no-parameter method on SteamAudioSource.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1915639393,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

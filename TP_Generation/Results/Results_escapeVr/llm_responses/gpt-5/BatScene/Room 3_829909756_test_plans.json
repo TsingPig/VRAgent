@@ -1,0 +1,319 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 3",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 829909756,
+          "condition": "Manual activation of first laser on Room 3 controller (MonoBehaviour id 829909757, script guid 1b862119da8709d4e9055a3c441a7bb4). Serialized refs: doorAnim->1865011923 (Animator), winton->829909759 (AudioSource). Expected: internal state laser1 becomes true; no door animation yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 3",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 829909756,
+          "condition": "Manual activation of second laser on Room 3 controller (MonoBehaviour id 829909757, script guid 1b862119da8709d4e9055a3c441a7bb4). With laser1 already true, this sets laser2 true. In Update(), condition laser1 && laser2 && !doorOpen becomes true, so it should play Animator 'DoorOpen' on doorAnim (1865011923) and play AudioSource winton (829909759), and set doorOpen true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room 3",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 829909756,
+          "condition": "Deactivate first laser using Room 3 controller (MonoBehaviour id 829909757). Expected: laser1 becomes false; door remains open because doorOpen stays true and there is no closing logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Trigger Room 3->room3.SetLaser once to simulate first laser connection. Source has BoxCollider (PrefabInstance id 1538632858) so it is a valid trigger initiator. Target MonoBehaviour id 829909757 (script guid 1b862119da8709d4e9055a3c441a7bb4) with serialized refs: doorAnim->1865011923, winton->829909759. Expected: laser1 = true; no door animation yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Trigger Room 3->room3.SetLaser a second time to simulate second laser connection. With laser1 already true, this sets laser2 = true. Update() on Room 3 should open the door (Animator plays 'DoorOpen') and play audio once.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Trigger Room 3->room3.DesactivateLaser to simulate breaking the first laser after the door is open. Expected: laser1 = false; door remains open (doorOpen stays true; no closing logic).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Invoke QuitGame.ExitGame on Room 3 to cover application quit path. Target MonoBehaviour id 829909760 (script guid e9bec2616c6206946b1a15b3faa151c2). Expected: Application.Quit() called (may terminate the app/TestRunner). Run this last.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909760,
+                  "method_name": "ExitGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Use Sender (PrefabInstance id 1538632858 with BoxCollider id 1375581698089229451). Its attached MonoBehaviour (script guid fe963bb06f1c63d4fa78e077220a709b -> LaserBeamSender, id 5803819061987961593) has roomData wired to Room 3's room3 MonoBehaviour (id 829909757, guid 1b862119da8709d4e9055a3c441a7bb4). Manually invoke first laser activation on Room 3 to simulate Sender connecting. Expected: room3.laser1 becomes true; no door animation yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 807270095,
+          "condition": "Use Sender (1) (PrefabInstance id 807270095 with BoxCollider id 1375581698089229451). Its attached MonoBehaviour (script guid fe963bb06f1c63d4fa78e077220a709b -> LaserBeamSender, id 5803819061987961593) also targets Room 3's room3 (id 829909757). Invoke second laser activation to simulate the second beam connecting. Expected: room3.laser2 becomes true; in Update(), since laser1 && laser2 && !doorOpen, Animator 1865011923 on Room 3 plays 'DoorOpen' and AudioSource 829909759 plays; doorOpen becomes true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1538632858,
+          "condition": "Simulate breaking one beam after the door opened. Call Room 3->room3.DesactivateLaser (MonoBehaviour id 829909757). Expected: laser1 becomes false if it was true; door remains open because doorOpen stays true and there is no closing logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sender (1)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 807270095,
+          "condition": "Cover quit path. Room 3 also has QuitGame MonoBehaviour (id 829909760, guid e9bec2616c6206946b1a15b3faa151c2). Invoke ExitGame last to avoid interrupting prior checks. Expected: Application.Quit() requested.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909760,
+                  "method_name": "ExitGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1131040470,
+          "condition": "Mapping confirmation only: Cube_salle3 (1) (PrefabInstance id 1131040470) has MonoBehaviour id 5374773463603666079 using script guid 2723dba42bd113044ad231906b498006, which matches SnapToTrigger. It also has Rigidbody (Has_Rigidbody: true) and BoxCollider id 1659405682678754060. SnapToTrigger exposes only one public method Snap(Vector3) which has a parameter, so it cannot be invoked via the Trigger action per constraints; no UnityEvent m_Calls were provided to invoke it indirectly.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "Cube_salle3 (1)",
+          "source_object_fileID": 1131040470,
+          "target_position": {
+            "x": 34.2,
+            "y": 10.4,
+            "z": 16.5
+          }
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle3 (1)",
+          "source_object_fileID": 1131040470,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.2,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 45.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1448143134,
+          "condition": "Use child with Collider/Rigidbody to invoke Room 3 controller. Target: room3 MonoBehaviour id 829909757 (script guid 1b862119da8709d4e9055a3c441a7bb4), serialized fields doorAnim->1865011923 (Animator) and winton->829909759 (AudioSource) match scene. Expected: first SetLaser sets laser1=true only; no animation yet.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1448143134,
+          "condition": "Second activation to satisfy door logic on Room 3 controller (MonoBehaviour id 829909757; script guid 1b862119da8709d4e9055a3c441a7bb4). With laser1 already true, SetLaser sets laser2=true. In Update(), laser1 && laser2 && !doorOpen triggers doorAnim.Play('DoorOpen') and winton.Play(); doorOpen becomes true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "SetLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (2)",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1448143134,
+          "condition": "Deactivate a laser on Room 3 controller (MonoBehaviour id 829909757). Expected: DesactivateLaser sets laser1=false. Door remains open because doorOpen stays true and there's no closing logic.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909757,
+                  "method_name": "DesactivateLaser",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Cube_salle3 (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1448143134,
+          "condition": "Invoke QuitGame on Room 3 (MonoBehaviour id 829909760; script guid e9bec2616c6206946b1a15b3faa151c2). Expected: Application.Quit() called (may terminate play mode).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 829909760,
+                  "method_name": "ExitGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

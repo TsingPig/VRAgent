@@ -1,0 +1,56 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 163,
+          "condition": "Auto-update path: Let GvrController (MonoBehaviour id: 949, guid: adde9bdea083943199c7959004756e60, emulatorConnectionMode=USB) run its EndOfFrame() coroutine, which invokes OnControllerUpdate each frame. GvrArmModel (MonoBehaviour id: 948, guid: 7dda4bb2d5509e44e978d2bf56e25d7c, followGaze=DuringMotion, useAccelerometer=false) listens to that event and executes OnControllerUpdate() -> ApplyArmModel(), UpdateTransparency(), UpdatePointer(). This requires no manual calls; we just wait one frame for the automatic events to fire.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 163,
+          "condition": "Recenter path in GvrArmModel.OnControllerUpdate(): set GvrController.Recentered=true for one frame so GvrArmModel.ResetState() executes; also exercises UpdateTorsoDirection() with firstUpdate=true. Needs controller provider or test hook to simulate a recenter gesture or to set the state flag.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 163,
+          "condition": "Disconnected state path in GvrArmModel.OnControllerUpdate(): set GvrController.State != Connected (e.g., Disconnected) to force ResetState() branch instead of UpdateFromController(). Requires controller provider hook to simulate connection state change.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 163,
+          "condition": "Accelerometer path: toggle GvrArmModel.useAccelerometer=true at runtime and feed non-zero Accel/Gyro to exercise UpdateFromController(), UpdateVelocity(), TransformElbow() branches; also cover MIN_ACCEL gating and velocity/acceleration suppression code paths. Requires a way to modify the MonoBehaviour field or provide motion data through the controller provider; no public no-arg methods exist to toggle this via Trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 163,
+          "condition": "Gaze-following variations: change GvrArmModel.followGaze to Never and Always to cover UpdateTorsoDirection() branches (Never: early return; Always: direct set; DuringMotion: slerp using Gyro magnitude). Requires runtime access to the serialized field or alternate prefabs; no public no-arg methods are available.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GvrControllerMain",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 163,
+          "condition": "Transparency/tooltip alpha paths: move wristPosition close to origin (< fadeDistanceFromFace) and beyond tooltipMinDistanceFromFace to exercise both fade-in and fade-out branches in UpdateTransparency(). This requires feeding controller orientation/pose data via the provider; cannot be done with Grab/Transform because the object lacks a Rigidbody/Collider.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

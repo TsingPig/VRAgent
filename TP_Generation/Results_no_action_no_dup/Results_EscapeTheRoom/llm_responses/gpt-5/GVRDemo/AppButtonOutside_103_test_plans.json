@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "AppButtonOutside",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 103,
+          "condition": "MonoBehaviour (fileID: 929) on GameObject 'AppButtonOutside' (fileID: 103) uses script guid 7c52851ea0de74a228fa29a84de008ba, which matches GvrTooltip. Scene config: location=2 (enum: AppButtonOutside), text=fileID 1013, alwaysVisible=false. No Collider, Rigidbody, or EventTrigger present; no UnityEvent m_Calls listed. We will directly invoke public, parameterless methods to validate inside/left-side logic. Note: Full coverage of runtime fade behavior and side switching on arm-model updates requires a valid GvrArmModel instance and handedness changes, which are not provided in the scene data.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 929,
+                  "method_name": "IsTooltipInside",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 929,
+                  "method_name": "IsTooltipOnLeft",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

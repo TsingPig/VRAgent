@@ -1,0 +1,144 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1943288798,
+          "condition": "Manually invoke WinLose.Winlevel() on GameCondition to display WinUI (MonoBehaviour guid d8624f87f98aa484bb7925103f5d458e). No Collider/Rigidbody/EventTrigger found; no m_Calls in scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1943288798,
+          "condition": "Manually invoke WinLose.loselevel() on GameCondition to display LoseUI (MonoBehaviour guid d8624f87f98aa484bb7925103f5d458e). No Collider/Rigidbody/EventTrigger found; no m_Calls in scene meta.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1943288798,
+          "condition": "Optionally invoke WinLose.Restart() (no-op) for coverage (MonoBehaviour guid d8624f87f98aa484bb7925103f5d458e).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 764083140,
+          "condition": "MonoBehaviour (fileID 764083142, guid 077cb2d6a53b18f4ea7d76e72138fc77) matches the provided AttachToElevator script on GameObject 'platform2 (1)'. Current scene config: BoxCollider (id 764083144) m_IsTrigger=0; Has_Rigidbody=False; MonoBehaviour.player is null (fileID 0). The script only exposes Unity messages OnTriggerEnter(Collider) and OnTriggerExit(Collider) and no public no-arg methods. Therefore, no manual Trigger calls are available. Also, OnTrigger* cannot be fired automatically because this object is not a trigger and neither collider in the interaction is guaranteed to have a Rigidbody. Even if triggers fired, the internal condition if (gameObject == player) would not execute because 'player' is null. To test and cover: we need either (a) BoxCollider.m_IsTrigger=1 and a Rigidbody on one of the interacting objects plus a valid 'player' reference, or (b) a public no-arg test hook method to invoke, or (c) fix the comparison to other.gameObject == player.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (2)",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 2013310823,
+          "condition": "MonoBehaviour_0 (id: 2013310826, guid: 077cb2d6a53b18f4ea7d76e72138fc77) matches script AttachToElevator on platform2 (2). To exercise OnTriggerEnter/OnTriggerExit, BoxCollider (id: 2013310828) must have m_IsTrigger=1 and the 'player' field must reference the Player GameObject in the scene. Currently, m_IsTrigger=0 and 'player' is null, so triggers will never fire. After setting m_IsTrigger=1 and assigning a valid Player object, move the Player into and out of the platform's trigger volume to automatically invoke OnTriggerEnter/Exit. Note: The script compares 'gameObject == player' instead of 'other.gameObject == player'; unless 'player' is set to platform2 (2) itself (which results in a no-op parent operation), the intended parenting of the Player will not occur. This needs confirmation or fix to validate expected behavior.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2 (3)",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 666190384,
+          "condition": "MonoBehaviour_0 (id: 666190386, guid: 077cb2d6a53b18f4ea7d76e72138fc77) matches script AttachToElevator. Scene serialization shows player: {fileID: 0} (null). BoxCollider (id: 666190388) is present with m_IsTrigger: 0 and the GameObject has no Rigidbody. The script only has private OnTriggerEnter/OnTriggerExit and no public methods. Intended behavior: when the Player enters the elevator collider, set Player as child of platform2 (3); when exiting, detach. To trigger these conditions, the collider must be set to IsTrigger=1 and 'player' must reference the Player object. Note: current code compares 'gameObject == player' instead of 'other.gameObject == player', so even with correct setup, it will not parent the Player unless 'player' is the same GameObject as platform2 (3), which is incorrect. There are no m_Calls (Interactable events) defined for this MonoBehaviour in the scene meta.",
+          "triggerring_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 397541581,
+          "condition": "Exercise AttachToElevator.OnTriggerEnter on platform2. Preconditions: BoxCollider (id 397541586) must be set to m_IsTrigger=1, and either platform2 or the Player must have a Rigidbody. The attached MonoBehaviour component (id 397541585; script guid 077cb2d6a53b18f4ea7d76e72138fc77; field 'player' currently null) must have its 'player' reference set to the Player GameObject. When the Player's collider enters platform2's trigger, OnTriggerEnter should run. Note: current code checks if (gameObject == player); this will only execute if 'player' references platform2 itself, which likely prevents coverage of SetParent unless misconfigured and may cause invalid self-parenting.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "platform2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 397541581,
+          "condition": "Exercise AttachToElevator.OnTriggerExit on platform2. Same preconditions as OnTriggerEnter. After the Player leaves platform2's trigger, OnTriggerExit should run and clear the player's parent (player.transform.parent = null). Note: due to the code's condition (gameObject == player), this will only execute if 'player' references platform2 itself.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1468535024,
+          "condition": "MonoBehaviour (script guid f7de224e5fee443418417f9f2bfa2998) attached to GameObject 'ScoreManager' matches the provided script (Scoremanager). PrefabInstance (guid b547ef9648ba13749828322159356dee) overrides scene defaults: Timer=fileID 109963298, AmountUI=fileID 109963301, ScoreText=fileID 109963300, StarValue=1, winAmount=6, winlosescript=fileID 1943288799. Start() and Update() auto-run, but the win path is normally reached via changescore(int), which cannot be manually triggered under current constraints (Trigger requires no-parameter methods). To ensure coverage of the Win condition path referenced by Scoremanager.changescore when score==winAmount, manually invoke the linked WinLose method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1943288799,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

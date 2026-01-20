@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "MonoBehaviour_0 (fileID: 973) is GvrAudioSource (script guid: 6dbca64e524ea44f9b26142ec59aca8a) attached to GameObject 'ButtonClickSound' (fileID: 202). Scene settings match script fields: playOnAwake=0, sourceClip guid=ec4642a7ec8557245a62d08bb0076fd9, loop=0, volume=1, pitch=1, priority=128, rolloffMode=Logarithmic, minDistance=1, maxDistance=500, hrtfEnabled=1, occlusionEnabled=0. No m_Calls (UnityEvent) bindings present; manual trigger required to start playback.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "After starting playback, pause to validate Pause() path and isPaused flag transitions.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "Resume playback to validate UnPause() behavior and state updates.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "Stop playback to validate Stop() path, ShutdownSource(), and state reset.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

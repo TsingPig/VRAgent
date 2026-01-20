@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Play/Pause",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 863850739,
+          "condition": "Invoke XR Interaction Toolkit XRSimpleInteractable (MonoBehaviour fileID 863850741, guid 8a35f6cfbfba9b548aaa00d52cfe8a50) m_SelectEntered event. This object has an enabled BoxCollider (fileID 863850742). The persistent call on m_SelectEntered targets PlaySoundsFromList.PlayPause (component fileID 1734837741) with no parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PlayPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Play/Pause",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 863850739,
+          "condition": "Repeat selection to validate toggle behavior and idempotency: trigger the same XRSimpleInteractable m_SelectEntered persistent call to PlaySoundsFromList.PlayPause (component fileID 1734837741).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1734837741,
+                  "method_name": "PlayPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

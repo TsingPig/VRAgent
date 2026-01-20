@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 15099978,
+          "condition": "OnTriggerEnter should fire when Player (fileID 7425022) overlaps Elevator's BoxCollider (id 1067963289, isTrigger=1). MonoBehaviour (component id 1067963293, script guid 077cb2d6a53b18f4ea7d76e72138fc77, class AttachToElevator) is attached with serialized field 'player' pointing to fileID 7425022. Expected behavior per script: player.transform.SetParent(Elevator.transform, true). Note: current code compares 'gameObject == player' (where gameObject is Elevator), so parenting will occur only if 'player' erroneously references the Elevator itself; otherwise no effect.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 15099978,
+          "condition": "OnTriggerExit should fire when Player (fileID 7425022) leaves Elevator's BoxCollider (id 1067963289). MonoBehaviour (component id 1067963293, script guid 077cb2d6a53b18f4ea7d76e72138fc77, class AttachToElevator). Expected behavior per script: player.transform.parent = null. Note: due to 'gameObject == player' comparison, this will only execute if 'player' equals Elevator; otherwise no effect.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

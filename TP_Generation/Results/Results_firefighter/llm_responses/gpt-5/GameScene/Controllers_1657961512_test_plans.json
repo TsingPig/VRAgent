@@ -1,0 +1,59 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Controllers",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1657961512,
+          "condition": "Manually invoke public no-arg methods on child MonoBehaviours to ensure coverage without relying on frame-time side effects. Mapping: FireController MonoBehaviour (id: 1920635018) corresponds to script GUID 0fd19a8a27a542c45932ea66cb115c58; FireVisualsController MonoBehaviour (id: 676587433) corresponds to script GUID f742c92c23cdb4c51bb7d099258cdb4b. No m_Calls UnityEvents present in these components. FireController.Start() will automatically call FireVisualsController.InitializeVisuals(); to avoid redundancy, we do not manually trigger InitializeVisuals here. This step triggers FlickerLights explicitly and queries GetTotalFires to touch their code paths.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 676587433,
+                  "method_name": "FlickerLights",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1920635018,
+                  "method_name": "GetTotalFires",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Controllers",
+          "triggerring_time": 11.5,
+          "source_object_fileID": 1657961512,
+          "condition": "Trigger public no-arg methods on child MonoBehaviours. Mapping confirmation: FireController MonoBehaviour (id: 1920635018) corresponds to script GUID 0fd19a8a27a542c45932ea66cb115c58; FireVisualsController MonoBehaviour (id: 676587433) corresponds to script GUID f742c92c23cdb4c51bb7d099258cdb4b; AudienceController MonoBehaviour (id: 865422729) corresponds to script GUID 568674ad8ac51e348a0d5515b1de19c1. No UnityEvent m_Calls present. Start() methods will run automatically; FireController.Start() already invokes FireVisualsController.InitializeVisuals(), so we avoid redundant calls. We explicitly trigger methods that may not naturally occur during short tests: FireVisualsController.FlickerLights (immediate visual update), FireController.GetTotalFires (query path), and AudienceController.StartVictory (begins coroutine, calls Celebrate immediately, then after 10s fades and after 1s changes scene). The 11.5s duration allows the coroutine yields (10s + 1s) to complete.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 676587433,
+                  "method_name": "FlickerLights",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1920635018,
+                  "method_name": "GetTotalFires",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 865422729,
+                  "method_name": "StartVictory",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

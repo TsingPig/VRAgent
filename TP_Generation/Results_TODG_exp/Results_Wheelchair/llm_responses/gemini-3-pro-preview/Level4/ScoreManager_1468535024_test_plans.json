@@ -1,0 +1,34 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1468535024,
+          "condition": "Scene mapping: GameObject 'ScoreManager' (fileID 1468535024) has a MonoBehaviour with m_Script GUID f7de224e5fee443418417f9f2bfa2998 (class Scoremanager). Effective instance values come from the PrefabInstance overrides: ScoreText -> fileID 109963300, AmountUI -> fileID 109963301, Timer -> fileID 109963298, StarValue=1, winAmount=6, winlosescript -> fileID 1943288799. Auto events Start() and Update() will run on play and update UI text/timer. The event we need to trigger under test conditions is Scoremanager.changescore(int), repeatedly on star pickup, until score == winAmount to cover the Winlevel() path. However, ScoreManager has no Rigidbody/Collider/EventTrigger and the only public method that changes state requires an int parameter, which the Trigger action does not support. We need either: (a) a collider/EventTrigger/UnityEvent (m_Calls) that invokes changescore(int), or (b) a parameterless proxy method to increment score.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1468535024,
+          "condition": "Validate dependency chain: Scoremanager.winlosescript is assigned (object/component fileID 1943288799). Invoke WinLose.Winlevel() directly (parameterless) to simulate the post-win path that Scoremanager would call once score == winAmount.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1943288799,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

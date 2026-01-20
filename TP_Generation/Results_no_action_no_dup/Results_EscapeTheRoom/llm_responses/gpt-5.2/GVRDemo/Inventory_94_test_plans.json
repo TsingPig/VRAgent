@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Inventory",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 94,
+          "condition": "Manually invoke Inventory.ToggleVisibility() to simulate GvrController.AppButtonUp and cover the 'show' branch. MonoBehaviour component id=985 is the Inventory script (m_Script guid=3652d147b24254c618ce4989e3b9003c, type=3) attached to GameObject fileID=94. Requires a CanvasGroup on the same GameObject to avoid NullReference.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 985,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Inventory",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 94,
+          "condition": "Manually invoke Inventory.ToggleVisibility() again to cover the 'hide' branch and verify CanvasGroup.alpha toggles back and blocksRaycasts is reset. Same MonoBehaviour id=985 (guid=3652d147b24254c618ce4989e3b9003c).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 985,
+                  "method_name": "ToggleVisibility",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Spot Light",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1090992645,
+          "condition": "Manual trigger of ToggleLight on Spot Light. MonoBehaviour component (fileID: 1090992649, guid: 376688c5b82056e4da4c2b159887a7dc) corresponds to script ToggleLight with isOn=0 in scene. Start() will set Light.enabled=false automatically. Trigger no-arg public methods to validate state changes: TurnOn -> Flip -> TurnOff. Ensure object is allowed for manual trigger (Collider/EventTrigger) or direct script invocation is permitted.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "Flip",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1090992649,
+                  "method_name": "TurnOff",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

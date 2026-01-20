@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 1",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 2066176386,
+          "condition": "Extinguish by water hits. Target MonoBehaviour is Fire (m_Script guid: 1729fd01c90a64d5b8037e1eef0d000d) on GameObject 'Fire-Wrapper - L - 1 - 1'. Scene serialization confirms fields: isOn=0 (must be set to 1 before this test), maxHitInterval=2, totalHitTime=5, mainEffectGo fileID=1849464941111748095, BoxCollider present (no Rigidbody). During this trigger window, an external water system must repeatedly invoke IWaterInteractable.WaterHit(Vector3) on this object at intervals < 2s so that currentHitTime accumulates to >=5s. Expected behavior: Fire turns off (isOn=false), UpdateFireState(true) stops ParticleSystem on mainEffectGo, notifies neighbors, and calls FireController.Instance.FireChanged(-1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 1",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 2066176386,
+          "condition": "Ignition via neighbor spread. Fire script (guid: 1729fd01c90a64d5b8037e1eef0d000d) has timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, minNeighborDownDistance=3. Precondition: Populate 'neighbors' with at least 2 nearby Fire instances within 4 units and set those neighbors isOn=true; ensure FindNeighbors(...) has been called or neighbors list is manually populated in the inspector. Optionally, include one neighbor positioned lower by >3 units to activate faster countdown via downMultiplier. When onNeighbors>=2, shouldTurnOn becomes true and after the randomized timeToOn in [40,60]s, this fire should set isOn=true and call UpdateFireState(true). Expected: ParticleSystem on mainEffectGo plays, NotifyAllNeighbors executes, FireController.Instance.FireChanged(+1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 1",
+          "triggerring_time": 2.2,
+          "source_object_fileID": 2066176386,
+          "condition": "Cancel turning-off if water hits stop. With isOn=true, invoke IWaterInteractable.WaterHit(Vector3) once to set isTurningOff=true, then stop hits and wait > maxHitInterval (2s). Expected: Update() path detects currentHitInterval>=2s, resets isTurningOff=false and currentHitTime=0 while keeping isOn=true; no call to UpdateFireState occurs.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "SceneLoad",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1907113014,
+          "condition": "Training_Prototype_Broken.unity -> GameObject 'SceneLoad' (fileID: 1907113014). MonoBehaviour_0 (id: 1907113015, guid: e9315cd1bd0bb624886da5b1f92c045e) is OnSceneLoad and its OnLoad UnityEvent has persistent calls: TeleportPlayer.Teleport (target fileID: 692630298) and FadeCanvas.StartFadeOut (target fileID: 263574720). MonoBehaviour_1 (id: 1907113017, guid: 403efda511d335c4a865b0a1f33cc9e0) is LoadScene. We will trigger LoadScene.ReloadCurrentScene() (public, no parameters). Expected: scene reload fires SceneManager.sceneLoaded, OnSceneLoad.PlayEvent invokes OnLoad which calls Teleport() and StartFadeOut(). This confirms the scene file's MonoBehaviours match the provided scripts and their serialized event settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1907113017,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

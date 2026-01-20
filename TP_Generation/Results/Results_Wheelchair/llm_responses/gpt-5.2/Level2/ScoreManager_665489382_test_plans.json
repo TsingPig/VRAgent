@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 665489382,
+          "condition": "Scoremanager (MonoBehaviour, m_Script guid=f7de224e5fee443418417f9f2bfa2998) in Level2.unity. PrefabInstance applies: ScoreText=fileID 1410783274, AmountUI=fileID 101471811, Timer=fileID 1937840742, winAmount=4, winlosescript=fileID 283832888. Start() sets AmountUI text; Update() updates Timer; changescore(int) increments score and calls WinLose.Winlevel() when score == winAmount. No Collider/Rigidbody/EventTrigger on ScoreManager and no m_Calls provided; to cover the win path we directly invoke the referenced WinLose.Winlevel().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

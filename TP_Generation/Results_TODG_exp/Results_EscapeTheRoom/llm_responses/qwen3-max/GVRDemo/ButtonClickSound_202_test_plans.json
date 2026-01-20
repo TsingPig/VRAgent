@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 202,
+          "condition": "Manual start required since playOnAwake=false; trigger GvrAudioSource.Play() on MonoBehaviour (fileID=973, script GUID=6dbca64e524ea44f9b26142ec59aca8a). Clip assigned (guid=ec4642a7ec8557245a62d08bb0076fd9). Expected: audioSource.Play(), isPaused=false, spatializer initialized, output routed to GvrAudioMixer.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 202,
+          "condition": "While audio is playing, pause playback to test GvrAudioSource.Pause(). Expected: audioSource.Pause(), isPaused=true.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Pause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 202,
+          "condition": "Resume playback after pause using GvrAudioSource.UnPause(). Expected: audioSource.UnPause(), isPaused=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "UnPause",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ButtonClickSound",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 202,
+          "condition": "Stop playback to exercise shutdown path via GvrAudioSource.Stop(). Expected: audioSource.Stop(), spatializer Id reset, ZeroOutput set, isPaused=false.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 973,
+                  "method_name": "Stop",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

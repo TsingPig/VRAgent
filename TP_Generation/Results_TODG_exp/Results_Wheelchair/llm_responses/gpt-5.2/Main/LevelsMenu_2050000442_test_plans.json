@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MonoBehaviour id=2050000444 (script guid=f43df138c8422d842a109f05ee02b96e) matches MainMenu. LevelsMenu is inactive (m_IsActive=0) and has no Collider/Rigidbody/EventTrigger/m_Calls; manually invoke public no-parameter methods to ensure coverage. Expected: SceneManager.LoadScene(GetActiveScene().buildIndex + 1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MonoBehaviour id=2050000444 (script guid=f43df138c8422d842a109f05ee02b96e) matches MainMenu. LevelsMenu is inactive (m_IsActive=0) and has no Collider/Rigidbody/EventTrigger/m_Calls; manually invoke public no-parameter methods to ensure coverage. Expected: Application.Quit().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

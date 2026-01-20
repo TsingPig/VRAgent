@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 3",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 461528148,
+          "condition": "Auto-ignite path: Fire.cs (script guid: 1729fd01c90a64d5b8037e1eef0d000d) attached as MonoBehaviour_0 with scene-configured fields (isOn=false, timeToOnMin=40, timeToOnMax=60, onNeighborsThreshold=2, maxNeighborDistance=4, downMultiplier=2, totalHitTime=5). When onNeighbors >= onNeighborsThreshold, shouldTurnOn becomes true and after timeToOn (Random.Range[40,60]) fire turns on and UpdateFireState(true) should play ParticleSystem and call FireController.Instance.FireChanged(+1). Requires neighbors to be populated via FindNeighbors; no m_Calls UnityEvents provided in scene JSON.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 3",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 461528148,
+          "condition": "Manual water interaction event to test extinguishing: Repeated WaterHit(Vector3 normal) within intervals < maxHitInterval (2s) until currentHitTime >= totalHitTime (5s) should turn the fire off, resetting timers and calling UpdateFireState(true) and FireController.Instance.FireChanged(-1). The Fire object has a BoxCollider (enabled) but no Rigidbody; there is no exposed parameterless public method to invoke directly, and no UnityEvent (m_Calls) listed to route a call to WaterHit.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 461528148,
+          "condition": "Direct state toggle path: invoke SetIsOn(true) and then SetIsOn(false) to cover UpdateFireState(false) (no neighbor notifications). Note: SetIsOn(bool) is a public method but requires a bool parameter; current Trigger constraints only allow parameterless methods. No m_Calls are provided in the scene JSON to bind preset arguments.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

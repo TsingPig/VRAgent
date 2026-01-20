@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "MessageText",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 130,
+          "condition": "MonoBehaviour_0 (fileID 939) on GameObject 'MessageText' (fileID 130) references m_Script GUID 6e888d82ad62a4fd99699eeee0553755, which matches the provided ShowMessage MonoBehaviour source. ShowMessage exposes one public method RunMessage(string) that starts the ShowText coroutine (sets Text.text, fades CanvasGroup alpha to 1, waits 5s, fades to 0). To trigger this in tests, a callable no-arg event (e.g., a UnityEvent m_Calls entry on a Button/EventTrigger/Collider interaction) must be present that invokes RunMessage with a constant string argument. However, MessageText has no Rigidbody, no Collider, and no EventTrigger; and the Trigger action only supports public no-parameter methods. Precondition: parent must contain a CanvasGroup (as Start() expects), and a Text component must be on this GameObject. Expected behavior on invocation: messageBox.text equals the provided string; canvasGroup.alpha animates to 1, stays visible for ~5s, then animates back to 0 without errors.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 939,
+                  "method_name": "RunMessage",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

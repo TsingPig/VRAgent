@@ -1,0 +1,56 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 86838640,
+          "condition": "MonoBehaviour id 8870310304005890639 in scene is DoorOpenScript (m_Script guid=5f8d06fe579502c4496842932d0afead, fileID=11500000) attached to collider_porte. Scene config matches script: BoxCollider id=6650539076773276978 with m_IsTrigger=1; openTrigger=true; myDoor references Animator fileID=1075516723 via PrefabInstance modification. No UnityEvent m_Calls are defined; the interaction is via OnTriggerEnter. Trigger this by entering the collider with another object tagged 'Objet1' that has a SnapToTrigger component. Expected: SnapToTrigger.Snap is called with collider_porte.transform.position; Animator.Play('DoorOpen', 0, 0.0f) is invoked on myDoor; collider_porte SetActive(false); openTrigger becomes false.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 86838640,
+          "condition": "Negative branch coverage for OnTriggerEnter: enter the trigger with an object that either does NOT have tag 'Objet1' or lacks SnapToTrigger component (while openTrigger=true). Expected: no Snap() call, no Animator.Play, collider_porte remains active, openTrigger remains true.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "collider_porte",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 86838640,
+          "condition": "Post-success re-entry guard: after the first successful trigger, collider_porte is inactive (SetActive(false)) and openTrigger=false. Attempt to enter the trigger again with an object tagged 'Objet1' with SnapToTrigger. Expected: no OnTriggerEnter invocation (object inactive), no further state changes or animation plays.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Cube_salle1",
+          "source_object_fileID": 816818218,
+          "delta_position": {
+            "x": -3.2,
+            "y": 4.7,
+            "z": -20.8
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 1.5,
+          "condition": "This action moves Cube_salle1 (PrefabInstance id=816818218, Has_Rigidbody=true) into the trigger volume of collider_porte (PrefabInstance id=86838640, BoxCollider id=6650539076773276978 with m_IsTrigger=1). MonoBehaviour id=5374773463603666079 on Cube_salle1 is SnapToTrigger (m_Script guid=2723dba42bd113044ad231906b498006, fileID=11500000) with no serialized fields; scene settings match the script. Cube_salle1 tag is set to 'Objet1' via prefab modification, satisfying DoorOpenScript's tag check. On entering collider_porte, DoorOpenScript (MonoBehaviour id=8870310304005890639, m_Script guid=5f8d06fe579502c4496842932d0afead) will invoke snap.Snap(transform.position) because openTrigger=true and myDoor is assigned (Animator fileID=1075516723). Expected during/after the move: SnapToTrigger.Snap disables XRGrabInteractable and XRGeneralGrabTransformer, repositions Cube_salle1 to trigger_pos with +0.4f Y offset, sets rotation to Quaternion(0,0,0,0), freezes Rigidbody constraints (FreezeAll), sets isSnapped=true; thereafter Update() rotates the cube around local Y by 0.05 each frame for the duration of triggerring_time. Note: exact delta may need adjustment to ensure overlap with collider_porte's trigger volume."
+        }
+      ]
+    }
+  ]
+}

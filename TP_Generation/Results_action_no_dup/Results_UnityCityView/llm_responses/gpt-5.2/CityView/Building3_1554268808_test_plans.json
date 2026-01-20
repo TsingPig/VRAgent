@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Building3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1554268808,
+          "condition": "EventTrigger (guid d0b148fe25e99eb48b9724523833bab1) on Building3 has m_Delegates eventID=4 (PointerClick) with PersistentCall to MonoBehaviour id 1554268810 using script guid 10a92b1b4549024468ecbc96831def68 (Residential). On click, it should invoke Residential.showlabel() which sets the Player child[1] TextMeshPro text to the first 20 characters of 'Residential:Kumo Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1554268810,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Building3",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1554268808,
+          "condition": "EventTrigger (guid d0b148fe25e99eb48b9724523833bab1) on Building3 has m_Delegates eventID=4 (PointerClick) with PersistentCall to MonoBehaviour id 1554268810 using script guid 10a92b1b4549024468ecbc96831def68 (Residential). Trigger to invoke Residential.showlabel(), which sets Player child[1] TextMeshPro text to the first 20 chars of GetLabel() -> 'Residential:Kumo Apartment'.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1554268810,
+                  "method_name": "showlabel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

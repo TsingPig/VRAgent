@@ -1,0 +1,64 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 81815621,
+          "condition": "Scene MonoBehaviour_0 (script GUID: 1729fd01c90a64d5b8037e1eef0d000d) matches Fire class. Serialized config confirms: isOn=false, timeToOnMin=40, timeToOnMax=60, maxHitInterval=2, totalHitTime=5, onNeighborsThreshold=2, maxNeighborDistance=4 (Prefab overrides may set debug=1 and maxNeighborDistance=3.5). This object has a BoxCollider and no Rigidbody, so only Trigger actions are valid. To test the turning-off path we must first set the fire ON. Condition: require invoking Fire.SetIsOn(true) (public, has parameter) or otherwise ensure neighbors cause shouldTurnOn and the fire becomes ON. Note: No UnityEvent m_Calls are present, and the script exposes no parameterless public methods, so a test harness or external controller must call SetIsOn(true) to proceed.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 81815621,
+          "condition": "With fire ON, simulate a water impact to start turn-off: call Fire.WaterHit(Vector3 normal) via a water system/IWaterInteractor. Hit 1/5. Keep each hit interval < maxHitInterval (2s) so currentHitTime accumulates toward totalHitTime (5s).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 81815621,
+          "condition": "Water hit 2/5 within 2 seconds of the previous hit: call Fire.WaterHit(Vector3 normal). Verify currentHitInterval reset to 0 and isTurningOff remains true.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 81815621,
+          "condition": "Water hit 3/5 within 2 seconds: call Fire.WaterHit(Vector3 normal).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 81815621,
+          "condition": "Water hit 4/5 within 2 seconds: call Fire.WaterHit(Vector3 normal).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 81815621,
+          "condition": "Water hit 5/5 within 2 seconds: call Fire.WaterHit(Vector3 normal). After cumulative 5 seconds of hits, Update loop should turn fire OFF, reset timers, and call UpdateFireState(true) which stops ParticleSystem and notifies neighbors + FireController.Instance.FireChanged(-1).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 1 - 2",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 81815621,
+          "condition": "Verification wait: expect isOn=false, shouldTurnOn=false, timeToOnDelta=0, isTurningOff=false, currentHitTime=0. Particle systems should be stopped. No further WaterHit calls for >= maxHitInterval (2s) should keep it OFF.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

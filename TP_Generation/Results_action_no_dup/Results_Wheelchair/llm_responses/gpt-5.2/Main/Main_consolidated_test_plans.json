@@ -1,0 +1,86 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MonoBehaviour id=2050000444 (script guid=f43df138c8422d842a109f05ee02b96e) matches MainMenu. LevelsMenu is inactive (m_IsActive=0) and has no Collider/Rigidbody/EventTrigger/m_Calls; manually invoke public no-parameter methods to ensure coverage. Expected: SceneManager.LoadScene(GetActiveScene().buildIndex + 1).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LevelsMenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 2050000442,
+          "condition": "MonoBehaviour id=2050000444 (script guid=f43df138c8422d842a109f05ee02b96e) matches MainMenu. LevelsMenu is inactive (m_IsActive=0) and has no Collider/Rigidbody/EventTrigger/m_Calls; manually invoke public no-parameter methods to ensure coverage. Expected: Application.Quit().",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2050000444,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Manual invocation of MainMenu.PlayGame on GameObject 'Mainmenu' (GameObject fileID: 1908371632). Attached MonoBehaviour component fileID: 1908371634 maps to script GUID f43df138c8422d842a109f05ee02b96e (class MainMenu). No Rigidbody, Collider, EventTrigger, or UnityEvent m_Calls are defined on this object; therefore, this event will not be triggered automatically and must be invoked directly. Expected behavior: SceneManager.LoadScene(GetActiveScene().buildIndex + 1). Ensure next scene exists in Build Settings.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "PlayGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Mainmenu",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1908371632,
+          "condition": "Manual invocation of MainMenu.Quite on GameObject 'Mainmenu' (GameObject fileID: 1908371632). Attached MonoBehaviour component fileID: 1908371634 maps to script GUID f43df138c8422d842a109f05ee02b96e (class MainMenu). No Rigidbody, Collider, EventTrigger, or UnityEvent m_Calls are defined on this object; therefore, this event will not be triggered automatically and must be invoked directly. Expected behavior: Application.Quit() (will close player; in Editor may not exit play mode). Run this as a separate/last test to avoid prematurely terminating other tests.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1908371634,
+                  "method_name": "Quite",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

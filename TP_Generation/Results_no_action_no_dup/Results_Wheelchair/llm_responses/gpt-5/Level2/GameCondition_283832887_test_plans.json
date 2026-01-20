@@ -1,0 +1,66 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 283832887,
+          "condition": "Invoke WinLose.Winlevel on MonoBehaviour fileID 283832888 (script guid d8624f87f98aa484bb7925103f5d458e) attached to GameCondition (fileID 283832887). Scene config matches script fields: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. Expectation: WinUI.SetActive(true). After waiting restartdelay, optionally invoke Restart(). Note: GameObject has no Rigidbody/Collider/EventTrigger; this step assumes direct method invocation is permitted for testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 283832887,
+          "condition": "Invoke WinLose.loselevel on MonoBehaviour fileID 283832888 (script guid d8624f87f98aa484bb7925103f5d458e) attached to GameCondition (fileID 283832887). Scene config matches script fields: restartdelay=2, LoseUI fileID=1999610191, WinUI fileID=1345324351. Expectation: LoseUI.SetActive(true). After waiting restartdelay, optionally invoke Restart(). Note: GameObject has no Rigidbody/Collider/EventTrigger; this step assumes direct method invocation is permitted for testing.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 283832888,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - R - 1 - 2",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 197853773,
+          "condition": "MonoBehaviour_0 in the scene is the Fire script (m_Script guid=1729fd01c90a64d5b8037e1eef0d000d, fileID=11500000) attached to GameObject 'Fire-Wrapper - R - 1 - 2' (has BoxCollider, no Rigidbody, Has_Event_Trigger not present). Serialized settings from scene: isOn=0, timeToOnMin=40, timeToOnMax=60 (Awake will randomize timeToOn), timeToOn=3 (pre-set), shouldTurnOn=0, onNeighbors=0, onNeighborsThreshold=2, neighbors=[], maxNeighborDistance=4, downMultiplier=2, minNeighborDownDistance=3, totalHitTime=5, maxHitInterval=2, mainEffectGo=fileID 1849464941111748095 (ParticleSystem child). With neighbors empty and shouldTurnOn=false, Update will not turn on automatically; to test the manual event path we need to trigger IWaterInteractable.WaterHit(Vector3 normal) while isOn==true to exercise the turn-off logic. However, Fire exposes no public parameterless methods; thus this Trigger action only asserts collider-based interaction readiness. Expected behavior during this step: no state change (isOn remains false) because no neighbors and no water hits occur.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1741 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the Parkinson App. One game object we want to test in the scene of 'Gems.unity' is '5- Box Sockets Interactors'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code of the script attached to this gameobjects below. There may be more than one script attached to one gameobject. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of script files attached]\n'''\nusing System;\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.Events;\n\npublic class CheckElements : MonoBehaviour\n{\n    [SerializeField] private int numberOfElements; //3\n    private int numberOfElementsInSocket = 0;\n\n    [SerializeField] bool cursorActive = true;\n\n    [Header(\"Unity Events\")]\n    public UnityEvent unlock;\n    public UnityEvent hideTaskDescription;\n    public UnityEvent showNextLevelUI;\n\n    [Header(\"UI Components\")]\n    [SerializeField] Canvas nextLevelUI;\n    [SerializeField] Canvas taskDescription;\n\n\n    private void Start()\n    {\n        if (cursorActive)\n        {\n            Cursor.lockState = CursorLockMode.Locked;\n            Cursor.visible = false;\n        }\n    }\n\n\n    public void AddElementInSocket()\n    {\n        numberOfElementsInSocket++;\n        CheckNumberOfElements(); \n    }\n\n    private void CheckNumberOfElements()\n    {\n        if (numberOfElementsInSocket == numberOfElements)\n        {\n            hideTaskDescription.Invoke();\n            showNextLevelUI.Invoke();\n            unlock.Invoke();\n        }\n    }\n}\n'''\n[Extracted JSON format of scene meta file] The scene file of 'Gems.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object '5- Box Sockets Interactors' and its script. The 'fileID' of gameobject '5- Box Sockets Interactors' is: 254571543. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '254571544'}]}, {'component': [{'fileID': '254571545'}]}]}, {'m_Layer': '0'}, {'m_Name': '5- Box Sockets Interactors'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '254571544', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '254571543'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': [{'fileID': '36331053'}, {'fileID': '1379860602'}, {'fileID': '1940504554'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '9'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '254571545', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '254571543'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '3bc2acd74545a4f1aa9eba6d8f72a530'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'numberOfElements': '3'}, {'unlock': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '157114427'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.GameObject, UnityEngine'}, {'m_MethodName': 'SetActive'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'hideTaskDescription': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '1945735948'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.GameObject, UnityEngine'}, {'m_MethodName': 'SetActive'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'showNextLevelUI': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '208823133'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.GameObject, UnityEngine'}, {'m_MethodName': 'SetActive'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '1'}]}, {'m_CallState': '2'}]}]}]}, {'nextLevelUI': [{'fileID': '208823134'}]}, {'taskDescription': [{'fileID': '1945735953'}]}]}}]}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_position\": {                    // Target world position to which the object should be moved\n    \"x\": \"<float>\",\n    \"y\": \"<float>\",\n    \"z\": \"<float>\"\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['680431491 stripped', '204501879 stripped', '1386619014 stripped'] to help formalize your test plans one by one.",
+    "timestamp": "2025-12-19T22:56:24.015241",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"5- Box Sockets Interactors\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 254571543,\n          \"condition\": \"MonoBehaviour id=254571545 on GameObject id=254571543 uses script guid=3bc2acd74545a4f1aa9eba6d8f72a530 (CheckElements). numberOfElements=3. First call to AddElementInSocket increments numberOfElementsInSocket to 1; no UnityEvents should fire.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"5- Box Sockets Interactors\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 254571543,\n          \"condition\": \"Second call to AddElementInSocket increments numberOfElementsInSocket to 2; still below threshold numberOfElements=3; no UnityEvents should fire.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"5- Box Sockets Interactors\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 254571543,\n          \"condition\": \"Third call to AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), which should Invoke UnityEvents: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false). These m_Calls are configured on MonoBehaviour id=254571545.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-19T22:57:33.212709",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "5- Box Sockets Interactors",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 254571543,
+              "condition": "MonoBehaviour id=254571545 on GameObject id=254571543 uses script guid=3bc2acd74545a4f1aa9eba6d8f72a530 (CheckElements). numberOfElements=3. First call to AddElementInSocket increments numberOfElementsInSocket to 1; no UnityEvents should fire.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "5- Box Sockets Interactors",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 254571543,
+              "condition": "Second call to AddElementInSocket increments numberOfElementsInSocket to 2; still below threshold numberOfElements=3; no UnityEvents should fire.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "5- Box Sockets Interactors",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 254571543,
+              "condition": "Third call to AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), which should Invoke UnityEvents: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false). These m_Calls are configured on MonoBehaviour id=254571545.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box_02\": {fileID: 36331052}. The direct parent of this gameobject is \"5- Box Sockets Interactors\". We only present the child with attached script. And the Box_02 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\n// This scriptXRSocketInteractor.cs.meta is the XR Interaction Toolkit. You only need to trigger the Interactable Events (m_Calls) in scene meta file if exist.\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '5129442236857904303'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '36331052'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '36331052', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '254571544'}]}, {'m_Modifications': [{'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '0.4434631'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '0.41222382'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '0.5608487'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-5.3238'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.532'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.75'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '5129442236857904303'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box_02'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '680431496', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '680431491'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '0.9163016'}, {'y': '0.9166262'}, {'z': '0.9132222'}]}, {'m_Center': [{'x': '-0.0014074445'}, {'y': '0.0011831819'}, {'z': '-0.00005801022'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '36331053 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '36331052'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '680431495', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '680431491'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '60523e0647cc6ab43acc73cb266a32a7'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_InteractionManager': [{'fileID': '780483283'}]}, {'m_InteractionLayerMask': [{'serializedVersion': '2'}, {'m_Bits': '4294967295'}]}, {'m_InteractionLayers': [{'m_Bits': '2'}]}, {'m_AttachTransform': [{'fileID': '0'}]}, {'m_KeepSelectedTargetValid': '1'}, {'m_DisableVisualsWhenBlockedInGroup': '1'}, {'m_StartingSelectedInteractable': [{'fileID': '0'}]}, {'m_StartingTargetFilter': [{'fileID': '0'}]}, {'m_HoverEntered': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '680431493'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.Renderer, UnityEngine'}, {'m_MethodName': 'set_enabled'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_HoverExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_SelectEntered': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '254571545'}]}, {'m_TargetAssemblyTypeName': 'CheckElements, Assembly-CSharp'}, {'m_MethodName': 'AddElementInSocket'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_SelectExited': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '254571545'}]}, {'m_TargetAssemblyTypeName': 'CheckElements, Assembly-CSharp'}, {'m_MethodName': 'AddElementInSocket'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_StartingHoverFilters': []}, {'m_StartingSelectFilters': []}, {'m_OnHoverEntered': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnHoverExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnSelectEntered': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnSelectExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_ShowInteractableHoverMeshes': '1'}, {'m_InteractableHoverMeshMaterial': [{'fileID': '0'}]}, {'m_InteractableCantHoverMeshMaterial': [{'fileID': '0'}]}, {'m_SocketActive': '1'}, {'m_InteractableHoverScale': '1'}, {'m_RecycleDelayTime': '1'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-19T22:57:33.213451",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 1,
+    "child_info": {
+      "child_id": "680431491 stripped",
+      "child_id_replace": "36331052",
+      "child_name": "Box_02",
+      "mono_comp_targets": [
+        {
+          "source": "680431491 stripped",
+          "source_replace": "36331052",
+          "target": "680431495",
+          "target_replace": "680431495",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "680431495",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "680431491"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "60523e0647cc6ab43acc73cb266a32a7"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "m_InteractionManager": [
+                  {
+                    "fileID": "780483283"
+                  }
+                ]
+              },
+              {
+                "m_InteractionLayerMask": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "4294967295"
+                  }
+                ]
+              },
+              {
+                "m_InteractionLayers": [
+                  {
+                    "m_Bits": "2"
+                  }
+                ]
+              },
+              {
+                "m_AttachTransform": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_KeepSelectedTargetValid": "1"
+              },
+              {
+                "m_DisableVisualsWhenBlockedInGroup": "1"
+              },
+              {
+                "m_StartingSelectedInteractable": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_StartingTargetFilter": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_HoverEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "680431493"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "UnityEngine.Renderer, UnityEngine"
+                          },
+                          {
+                            "m_MethodName": "set_enabled"
+                          },
+                          {
+                            "m_Mode": "6"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_HoverExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_SelectEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "254571545"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "CheckElements, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "AddElementInSocket"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_SelectExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "254571545"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "CheckElements, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "AddElementInSocket"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_StartingHoverFilters": []
+              },
+              {
+                "m_StartingSelectFilters": []
+              },
+              {
+                "m_OnHoverEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnHoverExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnSelectEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnSelectExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_ShowInteractableHoverMeshes": "1"
+              },
+              {
+                "m_InteractableHoverMeshMaterial": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_InteractableCantHoverMeshMaterial": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_SocketActive": "1"
+              },
+              {
+                "m_InteractableHoverScale": "1"
+              },
+              {
+                "m_RecycleDelayTime": "1"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "60523e0647cc6ab43acc73cb266a32a7",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\Parkinson-App-Virtual-Reality-main\\Parkinson-App-Virtual-Reality-main\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.4.3\\Runtime\\Interaction\\Interactors\\XRSocketInteractor.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "254571543",
+        "parent_name": "5- Box Sockets Interactors"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 36331052,\n          \"condition\": \"Simulate XR Socket Interactor SelectEntered on Box_02. MonoBehaviour id=680431495 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). After first call, numberOfElementsInSocket=1 < numberOfElements=3; no UnityEvents fire.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 36331052,\n          \"condition\": \"Simulate XR Socket Interactor SelectExited on Box_02. MonoBehaviour id=680431495 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. After second call, numberOfElementsInSocket=2 < 3; no UnityEvents fire.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 36331052,\n          \"condition\": \"Simulate another SelectEntered on Box_02 to reach required elements. This third AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), invoking UnityEvents configured on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": []\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-19T22:59:04.452980",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02\": {fileID: 36331052}. The direct parent of this gameobject is \"5- Box Socket..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 36331052,
+              "condition": "Simulate XR Socket Interactor SelectEntered on Box_02. MonoBehaviour id=680431495 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). After first call, numberOfElementsInSocket=1 < numberOfElements=3; no UnityEvents fire.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 36331052,
+              "condition": "Simulate XR Socket Interactor SelectExited on Box_02. MonoBehaviour id=680431495 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. After second call, numberOfElementsInSocket=2 < 3; no UnityEvents fire.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 36331052,
+              "condition": "Simulate another SelectEntered on Box_02 to reach required elements. This third AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), invoking UnityEvents configured on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ],
+              "triggerred_events": []
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box_02 (3)\": {fileID: 1379860601}. The direct parent of this gameobject is \"5- Box Sockets Interactors\". We only present the child with attached script. And the Box_02 (3) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\n// This scriptXRSocketInteractor.cs.meta is the XR Interaction Toolkit. You only need to trigger the Interactable Events (m_Calls) in scene meta file if exist.\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '5129442236857904303'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1379860601'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1379860601', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '254571544'}]}, {'m_Modifications': [{'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '0.25517216'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '0.25081193'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '0.251492'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-4.195'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.4818'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.759'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '5129442236857904303'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box_02 (3)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '1379860607', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '204501879'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '0.9163017'}, {'y': '0.9166263'}, {'z': '0.9132223'}]}, {'m_Center': [{'x': '-0.0014074446'}, {'y': '0.001183182'}, {'z': '-0.00005789102'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1379860602 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1379860601'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1379860606', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '204501879'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '60523e0647cc6ab43acc73cb266a32a7'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_InteractionManager': [{'fileID': '0'}]}, {'m_InteractionLayerMask': [{'serializedVersion': '2'}, {'m_Bits': '4294967295'}]}, {'m_InteractionLayers': [{'m_Bits': '4'}]}, {'m_AttachTransform': [{'fileID': '0'}]}, {'m_KeepSelectedTargetValid': '1'}, {'m_DisableVisualsWhenBlockedInGroup': '1'}, {'m_StartingSelectedInteractable': [{'fileID': '0'}]}, {'m_StartingTargetFilter': [{'fileID': '0'}]}, {'m_HoverEntered': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '1379860609'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.Renderer, UnityEngine'}, {'m_MethodName': 'set_enabled'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_HoverExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_SelectEntered': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '254571545'}]}, {'m_TargetAssemblyTypeName': 'CheckElements, Assembly-CSharp'}, {'m_MethodName': 'AddElementInSocket'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_SelectExited': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '254571545'}]}, {'m_TargetAssemblyTypeName': 'CheckElements, Assembly-CSharp'}, {'m_MethodName': 'AddElementInSocket'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_StartingHoverFilters': []}, {'m_StartingSelectFilters': []}, {'m_OnHoverEntered': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnHoverExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnSelectEntered': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnSelectExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_ShowInteractableHoverMeshes': '1'}, {'m_InteractableHoverMeshMaterial': [{'fileID': '0'}]}, {'m_InteractableCantHoverMeshMaterial': [{'fileID': '0'}]}, {'m_SocketActive': '1'}, {'m_InteractableHoverScale': '1'}, {'m_RecycleDelayTime': '1'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-19T22:59:04.453863",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02\": {fileID: 36331052}. The direct parent of this gameobject is \"5- Box Socket..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "204501879 stripped",
+      "child_id_replace": "1379860601",
+      "child_name": "Box_02 (3)",
+      "mono_comp_targets": [
+        {
+          "source": "204501879 stripped",
+          "source_replace": "1379860601",
+          "target": "1379860606",
+          "target_replace": "1379860606",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1379860606",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "204501879"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "60523e0647cc6ab43acc73cb266a32a7"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "m_InteractionManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_InteractionLayerMask": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "4294967295"
+                  }
+                ]
+              },
+              {
+                "m_InteractionLayers": [
+                  {
+                    "m_Bits": "4"
+                  }
+                ]
+              },
+              {
+                "m_AttachTransform": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_KeepSelectedTargetValid": "1"
+              },
+              {
+                "m_DisableVisualsWhenBlockedInGroup": "1"
+              },
+              {
+                "m_StartingSelectedInteractable": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_StartingTargetFilter": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_HoverEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "1379860609"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "UnityEngine.Renderer, UnityEngine"
+                          },
+                          {
+                            "m_MethodName": "set_enabled"
+                          },
+                          {
+                            "m_Mode": "6"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_HoverExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_SelectEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "254571545"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "CheckElements, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "AddElementInSocket"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_SelectExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "254571545"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "CheckElements, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "AddElementInSocket"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_StartingHoverFilters": []
+              },
+              {
+                "m_StartingSelectFilters": []
+              },
+              {
+                "m_OnHoverEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnHoverExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnSelectEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnSelectExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_ShowInteractableHoverMeshes": "1"
+              },
+              {
+                "m_InteractableHoverMeshMaterial": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_InteractableCantHoverMeshMaterial": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_SocketActive": "1"
+              },
+              {
+                "m_InteractableHoverScale": "1"
+              },
+              {
+                "m_RecycleDelayTime": "1"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "60523e0647cc6ab43acc73cb266a32a7",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\Parkinson-App-Virtual-Reality-main\\Parkinson-App-Virtual-Reality-main\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.4.3\\Runtime\\Interaction\\Interactors\\XRSocketInteractor.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "254571543",
+        "parent_name": "5- Box Sockets Interactors"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02 (3)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1379860601,\n          \"condition\": \"Simulate XR Socket Interactor SelectEntered on Box_02 (3). MonoBehaviour id=1379860606 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). First call: numberOfElementsInSocket=1 < numberOfElements=3; no UnityEvents should fire.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02 (3)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1379860601,\n          \"condition\": \"Simulate XR Socket Interactor SelectExited on Box_02 (3). MonoBehaviour id=1379860606 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. Second call: numberOfElementsInSocket=2 < 3; no UnityEvents should fire.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02 (3)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1379860601,\n          \"condition\": \"Simulate another SelectEntered on Box_02 (3). Third AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), invoking UnityEvents on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-19T22:59:55.249881",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02\": {fileID: 36331052}. The direct parent of this gameobject is \"5- Box Socket..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02 (3)\": {fileID: 1379860601}. The direct parent of this gameobject is \"5- Box ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02 (3)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1379860601,
+              "condition": "Simulate XR Socket Interactor SelectEntered on Box_02 (3). MonoBehaviour id=1379860606 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). First call: numberOfElementsInSocket=1 < numberOfElements=3; no UnityEvents should fire.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02 (3)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1379860601,
+              "condition": "Simulate XR Socket Interactor SelectExited on Box_02 (3). MonoBehaviour id=1379860606 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. Second call: numberOfElementsInSocket=2 < 3; no UnityEvents should fire.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02 (3)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1379860601,
+              "condition": "Simulate another SelectEntered on Box_02 (3). Third AddElementInSocket makes numberOfElementsInSocket == numberOfElements (3), invoking UnityEvents on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Box_02 (4)\": {fileID: 1940504553}. The direct parent of this gameobject is \"5- Box Sockets Interactors\". We only present the child with attached script. And the Box_02 (4) gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\n// This scriptXRSocketInteractor.cs.meta is the XR Interaction Toolkit. You only need to trigger the Interactable Events (m_Calls) in scene meta file if exist.\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'Prefab GameObject': {'type': 'Prefab GameObject', 'properties': [{'m_CorrespondingSourceObject': [{'fileID': '5129442236857904303'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1940504553'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}, 'Source Prefab GameObject': {'type': 'PrefabInstance', 'properties': {'id': '1940504553', 'PrefabInstance': [{'m_ObjectHideFlags': '0'}, {'serializedVersion': '2'}, {'m_Modification': [{'m_TransformParent': [{'fileID': '254571544'}]}, {'m_Modifications': [{'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_RootOrder'}, {'value': '2'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.x'}, {'value': '0.11216942'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.y'}, {'value': '0.15475442'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalScale.z'}, {'value': '0.1630645'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.x'}, {'value': '-3.587'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.y'}, {'value': '0.4182'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalPosition.z'}, {'value': '0.77'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.w'}, {'value': '1'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.x'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.y'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalRotation.z'}, {'value': '-0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.x'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.y'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_LocalEulerAnglesHint.z'}, {'value': '0'}, {'objectReference': [{'fileID': '0'}]}, {'target': [{'fileID': '5129442236857904303'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'propertyPath': 'm_Name'}, {'value': 'Box_02 (4)'}, {'objectReference': [{'fileID': '0'}]}]}, {'m_RemovedComponents': []}]}, {'m_SourcePrefab': [{'fileID': '100100000'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}]}}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '1940504559', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1386619014'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '1'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '0.9163016'}, {'y': '0.9166263'}, {'z': '0.9132222'}]}, {'m_Center': [{'x': '-0.0014074445'}, {'y': '0.001183182'}, {'z': '-0.00005836785'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1940504554 stripped', 'Transform': [{'m_CorrespondingSourceObject': [{'fileID': '2559810838395413726'}, {'guid': 'e37d55d9adae8724c9dcf1dff5b67578'}, {'type': '3'}]}, {'m_PrefabInstance': [{'fileID': '1940504553'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1940504558', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1386619014'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '60523e0647cc6ab43acc73cb266a32a7'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'m_InteractionManager': [{'fileID': '0'}]}, {'m_InteractionLayerMask': [{'serializedVersion': '2'}, {'m_Bits': '4294967295'}]}, {'m_InteractionLayers': [{'m_Bits': '16'}]}, {'m_AttachTransform': [{'fileID': '0'}]}, {'m_KeepSelectedTargetValid': '1'}, {'m_DisableVisualsWhenBlockedInGroup': '1'}, {'m_StartingSelectedInteractable': [{'fileID': '0'}]}, {'m_StartingTargetFilter': [{'fileID': '0'}]}, {'m_HoverEntered': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '1940504561'}]}, {'m_TargetAssemblyTypeName': 'UnityEngine.Renderer, UnityEngine'}, {'m_MethodName': 'set_enabled'}, {'m_Mode': '6'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_HoverExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_SelectEntered': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '254571545'}]}, {'m_TargetAssemblyTypeName': 'CheckElements, Assembly-CSharp'}, {'m_MethodName': 'AddElementInSocket'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_SelectExited': [{'m_PersistentCalls': [{'m_Calls': [{'m_Target': [{'fileID': '254571545'}]}, {'m_TargetAssemblyTypeName': 'CheckElements, Assembly-CSharp'}, {'m_MethodName': 'AddElementInSocket'}, {'m_Mode': '1'}, {'m_Arguments': [{'m_ObjectArgument': [{'fileID': '0'}]}, {'m_ObjectArgumentAssemblyTypeName': 'UnityEngine.Object, UnityEngine'}, {'m_IntArgument': '0'}, {'m_FloatArgument': '0'}, {'m_StringArgument': ''}, {'m_BoolArgument': '0'}]}, {'m_CallState': '2'}]}]}]}, {'m_StartingHoverFilters': []}, {'m_StartingSelectFilters': []}, {'m_OnHoverEntered': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnHoverExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnSelectEntered': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_OnSelectExited': [{'m_PersistentCalls': [{'m_Calls': []}]}]}, {'m_ShowInteractableHoverMeshes': '1'}, {'m_InteractableHoverMeshMaterial': [{'fileID': '0'}]}, {'m_InteractableCantHoverMeshMaterial': [{'fileID': '0'}]}, {'m_SocketActive': '1'}, {'m_InteractableHoverScale': '1'}, {'m_RecycleDelayTime': '1'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2025-12-19T22:59:55.250694",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02\": {fileID: 36331052}. The direct parent of this gameobject is \"5- Box Socket..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02 (3)\": {fileID: 1379860601}. The direct parent of this gameobject is \"5- Box ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 3,
+    "child_info": {
+      "child_id": "1386619014 stripped",
+      "child_id_replace": "1940504553",
+      "child_name": "Box_02 (4)",
+      "mono_comp_targets": [
+        {
+          "source": "1386619014 stripped",
+          "source_replace": "1940504553",
+          "target": "1940504558",
+          "target_replace": "1940504558",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1940504558",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1386619014"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "60523e0647cc6ab43acc73cb266a32a7"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "m_InteractionManager": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_InteractionLayerMask": [
+                  {
+                    "serializedVersion": "2"
+                  },
+                  {
+                    "m_Bits": "4294967295"
+                  }
+                ]
+              },
+              {
+                "m_InteractionLayers": [
+                  {
+                    "m_Bits": "16"
+                  }
+                ]
+              },
+              {
+                "m_AttachTransform": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_KeepSelectedTargetValid": "1"
+              },
+              {
+                "m_DisableVisualsWhenBlockedInGroup": "1"
+              },
+              {
+                "m_StartingSelectedInteractable": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_StartingTargetFilter": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_HoverEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "1940504561"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "UnityEngine.Renderer, UnityEngine"
+                          },
+                          {
+                            "m_MethodName": "set_enabled"
+                          },
+                          {
+                            "m_Mode": "6"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_HoverExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_SelectEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "254571545"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "CheckElements, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "AddElementInSocket"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_SelectExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": [
+                          {
+                            "m_Target": [
+                              {
+                                "fileID": "254571545"
+                              }
+                            ]
+                          },
+                          {
+                            "m_TargetAssemblyTypeName": "CheckElements, Assembly-CSharp"
+                          },
+                          {
+                            "m_MethodName": "AddElementInSocket"
+                          },
+                          {
+                            "m_Mode": "1"
+                          },
+                          {
+                            "m_Arguments": [
+                              {
+                                "m_ObjectArgument": [
+                                  {
+                                    "fileID": "0"
+                                  }
+                                ]
+                              },
+                              {
+                                "m_ObjectArgumentAssemblyTypeName": "UnityEngine.Object, UnityEngine"
+                              },
+                              {
+                                "m_IntArgument": "0"
+                              },
+                              {
+                                "m_FloatArgument": "0"
+                              },
+                              {
+                                "m_StringArgument": ""
+                              },
+                              {
+                                "m_BoolArgument": "0"
+                              }
+                            ]
+                          },
+                          {
+                            "m_CallState": "2"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_StartingHoverFilters": []
+              },
+              {
+                "m_StartingSelectFilters": []
+              },
+              {
+                "m_OnHoverEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnHoverExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnSelectEntered": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_OnSelectExited": [
+                  {
+                    "m_PersistentCalls": [
+                      {
+                        "m_Calls": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "m_ShowInteractableHoverMeshes": "1"
+              },
+              {
+                "m_InteractableHoverMeshMaterial": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_InteractableCantHoverMeshMaterial": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_SocketActive": "1"
+              },
+              {
+                "m_InteractableHoverScale": "1"
+              },
+              {
+                "m_RecycleDelayTime": "1"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "60523e0647cc6ab43acc73cb266a32a7",
+              "file_path": "D:\\UnityDataAnalyzer\\subjects\\Group_2\\Parkinson-App-Virtual-Reality-main\\Parkinson-App-Virtual-Reality-main\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.4.3\\Runtime\\Interaction\\Interactors\\XRSocketInteractor.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "254571543",
+        "parent_name": "5- Box Sockets Interactors"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": [],
+      "sorted_target_logic_info": [],
+      "sorted_layer_logic_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02 (4)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1940504553,\n          \"condition\": \"Simulate XR Socket Interactor SelectEntered on Box_02 (4). MonoBehaviour id=1940504558 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). First call increments count; no UnityEvents should fire yet if numberOfElementsInSocket < 3.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02 (4)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1940504553,\n          \"condition\": \"Simulate XR Socket Interactor SelectExited on Box_02 (4). MonoBehaviour id=1940504558 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. Second call increments count; still below threshold if starting from 0.\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Box_02 (4)\",\n          \"triggerring_time\": 0.1,\n          \"source_object_fileID\": 1940504553,\n          \"condition\": \"Simulate another SelectEntered on Box_02 (4). The third AddElementInSocket should make numberOfElementsInSocket == numberOfElements (3), invoking configured UnityEvents on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": 254571545,\n                  \"method_name\": \"AddElementInSocket\",\n                  \"parameter_fileID\": []\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2025-12-19T23:01:03.045994",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02\": {fileID: 36331052}. The direct parent of this gameobject is \"5- Box Socket..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02 (3)\": {fileID: 1379860601}. The direct parent of this gameobject is \"5- Box ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Box_02 (4)\": {fileID: 1940504553}. The direct parent of this gameobject is \"5- Box ..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"so..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": {
+      "taskUnits": [
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02 (4)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1940504553,
+              "condition": "Simulate XR Socket Interactor SelectEntered on Box_02 (4). MonoBehaviour id=1940504558 (guid=60523e0647cc6ab43acc73cb266a32a7) has m_SelectEntered m_Calls targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545 (guid=3bc2acd74545a4f1aa9eba6d8f72a530). First call increments count; no UnityEvents should fire yet if numberOfElementsInSocket < 3.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02 (4)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1940504553,
+              "condition": "Simulate XR Socket Interactor SelectExited on Box_02 (4). MonoBehaviour id=1940504558 has m_SelectExited m_Calls also targeting CheckElements.AddElementInSocket on MonoBehaviour id=254571545. Second call increments count; still below threshold if starting from 0.",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "actionUnits": [
+            {
+              "type": "Trigger",
+              "source_object_name": "Box_02 (4)",
+              "triggerring_time": 0.1,
+              "source_object_fileID": 1940504553,
+              "condition": "Simulate another SelectEntered on Box_02 (4). The third AddElementInSocket should make numberOfElementsInSocket == numberOfElements (3), invoking configured UnityEvents on MonoBehaviour id=254571545: hideTaskDescription -> GameObject id=1945735948.SetActive(false); showNextLevelUI -> GameObject id=208823133.SetActive(true); unlock -> GameObject id=157114427.SetActive(false).",
+              "triggerring_events": [
+                {
+                  "methodCallUnits": [
+                    {
+                      "script_fileID": 254571545,
+                      "method_name": "AddElementInSocket",
+                      "parameter_fileID": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Need_more_Info": false
+    }
+  }
+]

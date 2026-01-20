@@ -1,0 +1,65 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1943288798,
+          "condition": "Call WinLose.loselevel() on GameCondition. Script GUID d8624f87f98aa484bb7925103f5d458e, prefab MonoBehaviour component fileID 4225679855366766214, restartdelay=2. Serialized refs: LoseUI->fileID 109963299, WinUI->fileID 109963297. Expected: LoseUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1943288798,
+          "condition": "Call WinLose.Winlevel() on GameCondition. Script GUID d8624f87f98aa484bb7925103f5d458e, prefab MonoBehaviour component fileID 4225679855366766214, restartdelay=2. Serialized refs: LoseUI->fileID 109963299, WinUI->fileID 109963297. Expected: WinUI.SetActive(true).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.25,
+          "source_object_fileID": 1943288798,
+          "condition": "Call WinLose.Restart() on GameCondition to cover method. Script GUID d8624f87f98aa484bb7925103f5d458e, prefab MonoBehaviour component fileID 4225679855366766214. restartdelay=2 (unused). Expected: no-op.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

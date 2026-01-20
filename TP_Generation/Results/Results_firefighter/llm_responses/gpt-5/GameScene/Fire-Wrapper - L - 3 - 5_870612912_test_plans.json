@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 5",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 870612912,
+          "condition": "Simulate continuous water hits calling Fire.WaterHit(Vector3) through the IWaterInteractable pipeline (BoxCollider present, no Rigidbody). Ensure each hit occurs within maxHitInterval=2s until currentHitTime >= totalHitTime=5s so fire turns off (isOn=false) and UpdateFireState(true) is invoked internally to stop particles and notify neighbors and FireController.Instance.FireChanged(-1). Script: Fire (MonoBehaviour m_Script guid=1729fd01c90a64d5b8037e1eef0d000d, mainEffectGo fileID=1849464941111748095). No UnityEvent m_Calls available on this component.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 5",
+          "triggerring_time": 61.0,
+          "source_object_fileID": 870612912,
+          "condition": "Neighbor-ignition timing test: Raise onNeighbors to meet/exceed onNeighborsThreshold=2 via neighbor fires within maxNeighborDistance=4 so CheckNeighborState() sets shouldTurnOn=true. Then wait until timeToOn elapses (Awake will randomize timeToOn between timeToOnMin=40 and timeToOnMax=60). Expect isOn to become true and UpdateFireState(true) to start particles and notify neighbors and FireController.Instance.FireChanged(1). Requires known neighbor Fire instances or NotifyNeighborState(true) calls from neighbors. No UnityEvent m_Calls are defined, so this relies on scene neighbor configuration.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

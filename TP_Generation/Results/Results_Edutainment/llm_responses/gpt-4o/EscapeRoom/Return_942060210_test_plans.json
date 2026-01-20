@@ -1,0 +1,176 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Return",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 942060210,
+          "condition": "The provided scene excerpt for GameObject 'Return' (fileID 942060210) includes only a Transform (fileID 942060211) and no MonoBehaviour, Collider, or EventTrigger components. Has_Rigidbody is false. To select and trigger a specific event, we need the attached MonoBehaviour(s) and any UnityEvent m_Calls configured for 'Return' or its children. Please provide the MonoBehaviour component entries (script_fileID, GUID, serialized settings including m_Calls) or confirm Collider/EventTrigger presence.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": -5.818,
+            "y": 3.1876,
+            "z": 0.331
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.5,
+            "y": -0.5,
+            "z": 0.5
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": -5.818,
+            "y": 3.1876,
+            "z": 0.331
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.2
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 33018423,
+          "delta_position": {
+            "x": 0.5,
+            "y": -0.5,
+            "z": 0.5
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collider",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 791172510,
+          "condition": "MonoBehaviour id 791172512 (script guid 7401fcbb2352a5d4aa45b4e4cd766f3f, class ButtonVR) attached to GameObject 'Collider' (fileID 791172510) matches the provided source code: fields 'button' and UnityEvents 'onPress'/'onRelease'. Scene meta shows onPress.m_PersistentCalls.m_Calls targeting MonoBehaviour fileID 349218716 (class Restart) method 'RestartGame'. BoxCollider (id 791172515) isTrigger=1 and Has_Rigidbody=True, so when a GameObject tagged 'hand' (Sphere fileIDs 28697937 or 33018423) enters, ButtonVR.OnTriggerEnter will call onPress.Invoke(), which in turn should call Restart.RestartGame. This manual Trigger directly calls the mapped method to validate UnityEvent wiring if physics overlap does not occur.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 349218716,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Collider",
+          "triggerring_time": 0.05,
+          "source_object_fileID": 732398526,
+          "condition": "MonoBehaviour id 732398528 (script guid 7401fcbb2352a5d4aa45b4e4cd766f3f, class ButtonVR) attached to GameObject 'Collider' (fileID 732398526) exactly matches the provided source code: fields 'button', UnityEvents 'onPress'/'onRelease'. BoxCollider id 732398531 isTrigger=1. Scene meta shows onPress.m_PersistentCalls.m_Calls targeting MonoBehaviour fileID 634275531 (class Restart) method 'RestartGame' with CallState=2. Therefore, when a GameObject tagged 'hand' (Sphere fileID 28697937 or 33018423) enters this collider, ButtonVR.OnTriggerEnter will invoke onPress, which will call Restart.RestartGame automatically. OnTriggerExit will invoke onRelease (no persistent calls) to cover the release path.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Sphere",
+          "source_object_fileID": 28697937,
+          "delta_position": {
+            "x": 0.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "target_rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "target_scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Knapp (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 634275529,
+          "condition": "MonoBehaviour component id 634275531 on GameObject 'Knapp (1)' (fileID 634275529), child of 'Return', has m_Script GUID ebe465df961443d48804431d04f45f98 which matches Restart.cs. Serialized field 'scene' is set to 0. No UnityEvent m_Calls are defined in this component. Trigger the public no-parameter method RestartGame() to cover Restart script behavior, which calls SceneManager.LoadScene(scene) -> SceneManager.LoadScene(0).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 634275531,
+                  "method_name": "RestartGame",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

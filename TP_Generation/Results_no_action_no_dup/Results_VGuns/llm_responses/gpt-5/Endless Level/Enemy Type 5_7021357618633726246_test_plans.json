@@ -1,0 +1,122 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": -3.15,
+            "y": -0.49,
+            "z": -5.83
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Force the enemy close to the player so that, per EnemyAi (script guid 16000b3396174ab49b4983590de64f34), Update() sets playerInSightRange && playerInAttackRange true. This triggers AttackPlayer() automatically on the attached MonoBehaviour component (example: MonoBehaviour_4 id 1673477538 with sightRange=8, attackRange=6, timeBetweenAttacks=0.5, forceforward=10, forceup=1.5, Attackpoint fileID 2913934810850566424). Expected behavior: agent stops (destination set to self, acceleration=0), enemy faces player, AudioManager.Play(\"Gun Fire\") called, a projectile prefab (guid 647ac56353c74ad49ae408a2c10d8464, fileID 6845118643277486568) is instantiated at Attackpoint and propelled by AddForce forward and up. alreadyAttacked toggles true and ResetAttack() auto-invokes after timeBetweenAttacks. Note: The MonoBehaviour component settings in the scene file (fileID 1673477538 and peers) are the exact serialized configuration of the attached EnemyAi script.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "EnemyAi (script guid 16000b3396174ab49b4983590de64f34) is attached multiple times to this GameObject with exact serialized settings per scene MonoBehaviour components (ids: 614338935, 1888436447, 1640000274, 1646766445, 1673477538). After moving Enemy near the player (Camera Offset, id 4940586919770313183, found in Awake via GameObject.Find), Update() should detect playerInSightRange && playerInAttackRange and invoke AttackPlayer() automatically. Expected: agent stops (SetDestination(self)), acceleration=0, LookAt(player), AudioManager.Play(\"Gun Fire\"), instantiate projectile (guid 647ac56353c74ad49ae408a2c10d8464, fileID 6845118643277486568) at Attackpoint (fileID 2913934810850566424) and AddForce forward/up using forceforward/forceup per component (e.g., id 1673477538: forceforward=10, forceup=1.5, timeBetweenAttacks=0.5). alreadyAttacked toggles true and ResetAttack() auto-invokes after timeBetweenAttacks.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 3.15,
+            "y": 0.49,
+            "z": 5.83
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Chase scenario: With player (Camera Offset) present and enemy positioned so distance is within sightRange but > attackRange for at least one attached EnemyAi component (e.g., ids 614338935/1888436447: sightRange=8, attackRange=6; ids 1640000274/1646766445: sightRange=10, attackRange=7), Update() should route to ChasePlayer(). Expected: agent.SetDestination(player.position), transform.LookAt(player) with constrained rotation about Y.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Enemy Type 5",
+          "source_object_fileID": 7021357618633726246,
+          "delta_position": {
+            "x": 12.0,
+            "y": 0.0,
+            "z": 12.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Enemy Type 5",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 7021357618633726246,
+          "condition": "Patrol scenario: Place enemy clearly outside all sightRange values (>= 12 units from Camera Offset) so Update() routes to Patroling(). Expected: if no walkPointSet, SearchWalkPoint() picks a point on whatIsGround (m_Bits 2048) within walkPointRange=10, then agent.SetDestination(walkPoint). On reaching within 1f, walkPointSet resets.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Laser",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 6845118643277486568,
+          "condition": "Interact with the projectile prefab instantiated by EnemyAi.AttackPlayer() on Enemy Type 5. The scene MonoBehaviour components (ids: 614338935, 1888436447, 1640000274, 1646766445, 1673477538; all mapped to script guid 16000b3396174ab49b4983590de64f34) reference this prefab in the 'projectile' field (fileID 6845118643277486568, guid 647ac56353c74ad49ae408a2c10d8464). After Enemy Type 5 enters playerInAttackRange && playerInSightRange, AttackPlayer() should Instantiate this prefab at Attackpoint (fileID 2913934810850566424) and propel it with AddForce using forceforward/forceup from each component. Expected: a Laser instance appears and moves forward/up from the enemy. This Trigger validates interaction with the instantiated projectile asset.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

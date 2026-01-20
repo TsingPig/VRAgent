@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1865680026,
+          "condition": "PrefabInstance Room_Modern (id 1865680026) includes an added MonoBehaviour (id 1865680030) that corresponds to the PlayQuickSound script (public void Play()). The scene meta shows this MonoBehaviour added via m_AddedComponents, so these settings are the attached script’s serialized config. Ensure Room_Modern and its AudioSource are active (PlayQuickSound requires AudioSource; OnValidate enforces playOnAwake=false). Manually invoke Play() to cover the audio play path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TV_FlatWallMounted",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 772053049,
+          "condition": "PrefabInstance TV_FlatWallMounted (id 772053049) has an added MonoBehaviour (id 725697786) with serialized fields { playAtStart: false, videoMaterial: fae3ce4ed00d4ed4aa7976b88c6cd658, videoClips: 8cd99a81a5fad4847b8aa48a15272de0 }. These are the exact scene settings of the attached script (m_Script guid: 3d4642753971e264fbb20044fa231cd5). Because playAtStart is disabled, playback won’t start automatically; manually invoke the script’s public no-arg Play() to cover the video start path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 725697786,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

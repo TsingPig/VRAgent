@@ -1,0 +1,49 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Phone_Blue",
+          "triggerring_time": 2.0,
+          "source_object_fileID": 1633495854,
+          "condition": "MonoBehaviour component id 1633495861 (m_Script guid: 036aa4c6ab8e55144a03e8aefc6e9cca) corresponds to PhoneRingScreen. Field calling_material is set to Material guid 8669b00696550574cb2f5a0480bbc344. Precondition: Phone_Blue has an enabled AudioSource component. At t=0, start audio playback (AudioSource.Play()) so audioSource.isPlaying == true. Expected: During the trigger window, Update() sets Renderer.material to calling_material each frame.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Phone_Blue",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1633495854,
+          "condition": "At t=0, stop audio playback on Phone_Blue's AudioSource (AudioSource.Stop()) so audioSource.isPlaying == false. Expected: On the next frame, Update() restores Renderer.material to the original_material cached in Start().",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Phone_Blue",
+          "source_object_fileID": 1633495854,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.05,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 15.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.1
+        }
+      ]
+    }
+  ]
+}

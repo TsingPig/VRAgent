@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 1620417930,
+          "condition": "Physics trigger enter with a Rigidbody collider tagged 'Ball' entering Plane (2)'s MeshCollider trigger (id 1620417933, isTrigger=1, convex=1). This exercises OtherLaneController (MonoBehaviour id 1620417931, script guid 9cde80f2fe6fe6e47b57eb962721c06f) which waits 5s, reads BallSoundController.peso and pesoEnKgs from the incoming ball, destroys that ball, then instantiates bolaPrefab (guid 1be75124d3e50ad4997a90e0d8d1fe74, fileID 424594858964415916) at aparicionBola (Transform fileID 165335085), calls BallSoundController.changePeso() on the prefab instance, and applies an impulse via Rigidbody.AddForce. Note: Plane (2) has no Rigidbody so the incoming object must have a Rigidbody. This MonoBehaviour component matches the provided script settings and fields in the scene.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (2)",
+          "triggerring_time": 5.5,
+          "source_object_fileID": 1620417930,
+          "condition": "Physics trigger enter with a Rigidbody collider NOT tagged 'Ball' (e.g., 'Untagged') entering Plane (2)'s MeshCollider trigger (id 1620417933). This should still invoke OtherLaneController.OnTriggerEnter but, after the 5s wait, the tag check fails so no destruction/instantiation occurs. Verifies non-Ball path and that no calls to GeneraBola, BallSoundController.changePeso, or Rigidbody.AddForce are made.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

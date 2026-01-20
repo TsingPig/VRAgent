@@ -1,0 +1,45 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1176795495,
+          "condition": "MonoBehaviour WinLose (script GUID d8624f87f98aa484bb7925103f5d458e, script asset fileID 11500000) attached to GameCondition. Serialized fields: restartdelay=2, WinUI->fileID 365561371, LoseUI->fileID 365561372 (overridden via PrefabInstance). No Collider/Rigidbody/EventTrigger present and no m_Calls defined, so manual method invocation is required to cover public no-arg methods. Expected: Winlevel() activates WinUI, loselevel() activates LoseUI, Restart() is a no-op.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            },
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

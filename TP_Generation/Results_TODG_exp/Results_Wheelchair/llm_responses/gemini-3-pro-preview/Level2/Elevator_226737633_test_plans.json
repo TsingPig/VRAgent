@@ -1,0 +1,24 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Enter Elevator trigger volume. BoxCollider.m_IsTrigger == true; Elevator.Has_Rigidbody == false; AttachToElevator (MonoBehaviour_0, m_Script guid: 077cb2d6a53b18f4ea7d76e72138fc77) is attached with field 'player' = null per scene PrefabInstance modifications. OnTriggerEnter(Collider other) will only parent if (gameObject == player), which will be false given current config, so no parenting will occur. This Trigger aims to cause the physics OnTriggerEnter to fire by moving a different object with a Rigidbody+Collider through the Elevator's trigger.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Elevator",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 226737633,
+          "condition": "Exit Elevator trigger volume. BoxCollider.m_IsTrigger == true; AttachToElevator (MonoBehaviour_0, m_Script guid: 077cb2d6a53b18f4ea7d76e72138fc77) has 'player' = null. OnTriggerExit(Collider other) will only unparent if (gameObject == player), which will be false given current config, so no unparenting will occur. This Trigger aims to cause the physics OnTriggerExit to fire by moving the same Rigidbody object out of the Elevator's trigger.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Grab",
+          "source_object_name": "Gun",
+          "source_object_fileID": 299703487714392757,
+          "delta_position": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (MonoBehaviour id 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2) m_Activated has m_Calls to Gun.TriggerPulled and Gun.Shoot. Manually invoke Gun.Shoot() (MonoBehaviour id 8183513503680063775, guid d01186f01818ef24ead588d87fd2fea5) to simulate activation; expect round spawn, 'Gun Fire' audio, ammo--, and fire-rate gating.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Manual reload while gun is Ready (wait > fireRate interval ~0.67s). Expects text 'Reloading', AudioManager.Play('Reload'), shootState=Reloading per Gun.Reload().",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "After reloadTime=2.5s, Update() should complete reload (ammo refilled, state Ready). Fire again.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Validate fireRate gating by waiting >= 0.67s and firing once more.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 299703487714392757,
+          "condition": "XRGrabInteractable (MonoBehaviour id 1135932914521357561, guid 0ad34abafad169848a38072baa96cdb2) m_Activated maps to Gun.Shoot (m_Calls). Manually invoke Gun.Shoot() (MonoBehaviour id 8183513503680063775, guid d01186f01818ef24ead588d87fd2fea5). Expect: instantiate Laser prefab (id 6845118643277486568) at GunPov, play 'Gun Fire', decrement ammo, set state Shooting and nextShootTime=Time+1/fireRate.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Manual reload while gun is Ready (fireRate=1.5 -> ~0.67s between shots). After waiting 0.8s, invoke Gun.Reload() to enter Reloading state. Expect text 'Reloading', AudioManager.Play('Reload'), nextShootTime=Time+reloadTime (2.5s).",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Reload",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 2.6,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Wait for reloadTime (2.5s) to elapse so Update() refills ammo and sets state Ready. Then fire to verify post-reload behavior.",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Gun",
+          "triggerring_time": 0.8,
+          "source_object_fileID": 299703487714392757,
+          "condition": "Validate fireRate gating by waiting >= 0.67s and firing again. Expect: additional Laser spawn, ammo--, state transitions Ready->Shooting->Ready.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 8183513503680063775,
+                  "method_name": "Shoot",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

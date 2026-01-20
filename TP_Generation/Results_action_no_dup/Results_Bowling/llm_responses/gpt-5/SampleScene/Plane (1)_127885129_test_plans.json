@@ -1,0 +1,17 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Plane (1)",
+          "triggerring_time": 6.0,
+          "source_object_fileID": 127885129,
+          "condition": "Physics trigger entry required: Move a GameObject with tag 'Ball' that has a Rigidbody and Collider, and includes a BallSoundController component (with fields 'peso' and 'pesoEnKgs' and method 'changePeso()'), into Plane (1)'s MeshCollider (isTrigger=1, id=127885132). This must invoke OtherLaneController.OnTriggerEnter(Collider other) [MonoBehaviour fileID=127885130, Script GUID=9cde80f2fe6fe6e47b57eb962721c06f]. Expected behavior: after WaitForSeconds(5), if other.tag == 'Ball', the incoming ball is Destroyed; then GeneraBola(bolaPrefab, pesoEnKgs, peso) runs, setting the BallSoundController values on bolaPrefab, calling changePeso(), Instantiating at 'aparicionBola' (Transform id=165335085), and adding Force (Impulse 1.5 along +X). Ensure the entering Ball has the correct tag and component to avoid NullReferenceExceptions and to cover the tag check branch.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

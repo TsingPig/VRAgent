@@ -1,0 +1,32 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 1",
+          "triggerring_time": 0.0,
+          "source_object_fileID": 1849725428,
+          "condition": "Verification: MonoBehaviour_0 on this GameObject uses script GUID 1729fd01c90a64d5b8037e1eef0d000d (class Fire). Its serialized fields (debug, isOn, timeToOnMin/Max, onNeighborsThreshold, mainEffectGo, etc.) align exactly with the Fire script definition provided. Collider present (BoxCollider, m_IsTrigger=0). No Rigidbody. No EventTrigger and no UnityEvent m_Calls found. The Fire script exposes no public parameterless methods; therefore, there is no callable manual Trigger per the action rules. Automatic behaviors require: (a) neighbor fires to reach onNeighborsThreshold to set shouldTurnOn and start the ignition timer; (b) WaterHit(Vector3) calls from a water system to begin extinguishing. Both require additional scene objects or bindings not included here.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 1",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 1849725428,
+          "condition": "Intended manual event if available: call a public no-arg method to toggle state for coverage (e.g., SetIsOn(true) or UpdateFireState(false)), but none exist in Fire. To cover ignition path, we need either: (1) neighbors list populated (via Fire.FindNeighbors called externally, likely by FireController) with at least onNeighborsThreshold=2 active neighbors so Update() naturally flips isOn after timeToOn; or (2) a UnityEvent binding (m_Calls) or EventTrigger to invoke a no-arg method. Requesting such bindings or test hooks.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 1",
+          "triggerring_time": 10.0,
+          "source_object_fileID": 1849725428,
+          "condition": "Intended extinguish path: WaterHit(Vector3) must be called repeatedly within maxHitInterval until totalHitTime is reached to turn fire off. However, Trigger action cannot call parameterized methods. Provide a water emitter object that invokes IWaterInteractable.WaterHit on collision, or expose a no-arg testing hook (e.g., Test_WaterHitOnce, Test_ToggleOn/Off) via UnityEvent m_Calls.",
+          "triggerring_events": []
+        }
+      ]
+    }
+  ]
+}

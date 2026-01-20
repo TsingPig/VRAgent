@@ -1,0 +1,17 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fire-Wrapper - L - 3 - 1",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 1849725428,
+          "condition": "Scene object has BoxCollider (IsTrigger=0), no Rigidbody. The attached MonoBehaviour is the Fire script (m_Script fileID: 11500000, guid: 1729fd01c90a64d5b8037e1eef0d000d) with the exact serialized settings from the scene: isOn=0, timeToOnMin=40, timeToOnMax=60, totalHitTime=5, maxHitInterval=2, onNeighborsThreshold=2, neighbors=[], mainEffectGo fileID=1849464941111748095. No UnityEvent m_Calls are defined on this component. This manual trigger stands for externally applying water (via IWaterInteractable.WaterHit(Vector3) calls) at intervals < maxHitInterval until currentHitTime ≥ totalHitTime, to drive the turn-off path: isTurningOff toggles true, fire turns off, UpdateFireState(true) stops particles on mainEffectGo and notifies FireController.Instance.FireChanged(-1). Also validate the reset path where pausing hits for >= maxHitInterval cancels turning off.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

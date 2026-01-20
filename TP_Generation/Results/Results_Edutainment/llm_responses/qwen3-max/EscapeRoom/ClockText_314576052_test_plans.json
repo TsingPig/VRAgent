@@ -1,0 +1,46 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 2.5,
+          "source_object_fileID": 314576052,
+          "condition": "Clock MonoBehaviour (id 314576056) from script guid 27b31662383b39d4a9c98eb14ed39152 (fileID 11500000). Let Update run for a short duration while finished==false so time accumulates and TimeDisplay() updates clockText (fileID 314576054), then manually finish to invoke BestTime.checkTime(time).",
+          "triggerring_events": [],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onFinish",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "ClockText",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 314576052,
+          "condition": "Invoke timeout path on the same Clock MonoBehaviour (id 314576056) to ensure finished flag is set via onTimeOut() even if already finished.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 314576056,
+                  "method_name": "onTimeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

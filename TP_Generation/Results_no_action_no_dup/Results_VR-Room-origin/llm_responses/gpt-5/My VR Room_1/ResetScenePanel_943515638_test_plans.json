@@ -1,0 +1,27 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ResetScenePanel",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 943515638,
+          "condition": "MonoBehaviour component (id: 943515640) on GameObject 'ResetScenePanel' maps to script GUID 403efda511d335c4a865b0a1f33cc9e0 (LoadScene). GameObject is currently inactive (m_IsActive: 0), MonoBehaviour is enabled (m_Enabled: 1). Ensure the object is interactable (has Collider or EventTrigger) or programmatically activate the GameObject before testing. Expected behavior: calling ReloadCurrentScene should invoke SceneManager.LoadScene(SceneManager.GetActiveScene().name) and reload the active scene.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 943515640,
+                  "method_name": "ReloadCurrentScene",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

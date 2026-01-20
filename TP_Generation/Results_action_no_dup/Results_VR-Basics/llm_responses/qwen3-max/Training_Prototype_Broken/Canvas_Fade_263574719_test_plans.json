@@ -1,0 +1,84 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.1,
+          "source_object_fileID": 263574719,
+          "condition": "Call StartFadeIn on FadeCanvas (scene MonoBehaviour id=263574720, script guid=969b8e08cffa4e44681eb600a8dfc099, defaultDuration=1). Requires CanvasGroup. Expect canvasGroup.alpha to increase toward 1 over ~1s.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 1.1,
+          "source_object_fileID": 263574719,
+          "condition": "Call StartFadeOut on FadeCanvas (scene MonoBehaviour id=263574720, script guid=969b8e08cffa4e44681eb600a8dfc099, defaultDuration=1). Requires CanvasGroup. Expect canvasGroup.alpha to decrease toward 0 over ~1s.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "StartFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Call QuickFadeIn on FadeCanvas (scene MonoBehaviour id=263574720, script guid=969b8e08cffa4e44681eb600a8dfc099, quickFadeDuration=0.25). Requires CanvasGroup. Expect canvasGroup.alpha to quickly increase toward 1.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeIn",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Canvas_Fade",
+          "triggerring_time": 0.3,
+          "source_object_fileID": 263574719,
+          "condition": "Call QuickFadeOut on FadeCanvas (scene MonoBehaviour id=263574720, script guid=969b8e08cffa4e44681eb600a8dfc099, quickFadeDuration=0.25). Requires CanvasGroup. Expect canvasGroup.alpha to quickly decrease toward 0.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 263574720,
+                  "method_name": "QuickFadeOut",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

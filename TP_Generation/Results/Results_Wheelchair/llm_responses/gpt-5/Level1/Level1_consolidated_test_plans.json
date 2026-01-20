@@ -1,0 +1,87 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "GameCondition",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 4225679855409841556,
+          "condition": "MonoBehaviour component (fileID: 4225679855366766214) on GameCondition uses script guid d8624f87f98aa484bb7925103f5d458e (WinLose.cs, fileID: 11500000). Serialized fields: restartdelay=2. PrefabInstance modifications indicate WinUI objectReference fileID=852022849 and LoseUI objectReference fileID=215505909. Expected behavior: Winlevel() sets WinUI active; loselevel() sets LoseUI active; Restart() currently does nothing. Has_Rigidbody=false; no Collider/EventTrigger listed, so events are manually triggered for coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "loselevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 4225679855366766214,
+                  "method_name": "Restart",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Mesh_TrafficLight",
+          "triggerring_time": 65.0,
+          "source_object_fileID": 1221980191,
+          "condition": "MonoBehaviour component (fileID 123183794) with m_Script guid 50410efda0128f248aadbf8266a903cb is the TrafficLights script attached to Mesh_TrafficLight. Its serialized fields map to Light components: Red(fileID 8569639267829841366, guid 743b330bb9f325948b9118bc7695a4c1, type 3), Green(fileID 2097357867), Yellow(fileID 888664352). The Start() coroutine runs automatically to cycle lights (Green.enabled=true for 30s, then Yellow.enabled=true for 5s, then Red.enabled=true for 30s) and logs 'on' twice; there are no m_Calls defined. This trigger holds time to observe the automatic cycle to ensure Start coroutine coverage.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 123183794,
+                  "method_name": "Update",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "ScoreManager",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 738895512495048047,
+          "condition": "MonoBehaviour_0 uses script GUID f7de224e5fee443418417f9f2bfa2998 (Scoremanager). Scene settings: winAmount=2; StarValue overridden to 1 via PrefabInstance m_Modifications; UI bindings set (ScoreText=174987324, AmountUI=395448813, Timer=388437890); winlosescript bound to fileID=93502226. Start() and Update() run automatically when the scene loads, but changescore(int) requires a parameter and cannot be triggered via the test harness. Since there is no Collider/Rigidbody/EventTrigger on ScoreManager and no m_Calls UnityEvent configured, manually trigger the WinLose integration to ensure coverage of Scoremanager's external call path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 93502226,
+                  "method_name": "Winlevel",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

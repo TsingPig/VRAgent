@@ -1,0 +1,314 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Boxes",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 77525554,
+          "condition": "GameObject 'Boxes' (fileID: 77525554) has no Rigidbody, no Collider, and no EventTrigger. The only component listed is Transform (fileID: 77525555). No MonoBehaviour with UnityEvent (m_Calls) is present at this level, so there are no interactable events to trigger directly on 'Boxes'. To choose the specific events to trigger under test conditions, we need the components/MonoBehaviours (including any UnityEvent m_Calls) and colliders on its child objects: ['3569975690511002028', '203819837 stripped', '531403572 stripped', '898355185 stripped', '1147109799 stripped', '49734231', '1124768095 stripped', '988422737 stripped', '1793308539 stripped', '1320904623 stripped', '41552074']. Please provide their scene entries so we can select valid Trigger events tied to their scripts.",
+          "triggerring_events": [],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (0)",
+          "source_object_fileID": 3569975690511002028,
+          "delta_position": {
+            "x": 0.0,
+            "y": -10.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (0)",
+          "source_object_fileID": 3569975690511002028,
+          "delta_position": {
+            "x": 0.0,
+            "y": 2.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (0)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 3569975690511002028,
+          "condition": "Validate MonoBehaviours and UnityEvents: MonoBehaviour (fileID: 7040005640398465217) is OnCollision (guid: 6bf7bf2b5cedc0b4fb673b10c7900629) with BoxCollider (IsTrigger: false) and Rigidbody present. OnEnter.m_PersistentCalls.m_Calls invokes PlayQuickSound.Play on MonoBehaviour (fileID: 2085702217920827848; guid: 0755a2ba17a31d643b4a27e3034d8a79). OnExit has no listeners. Two TranslateObject components are present (fileIDs: 74831552 and 1248989243; guid: 866d134ae31a01841b6156f8d0a87054). The first Transform drop should cause OnCollisionEnter (thus PlayQuickSound.Play via m_Calls); the second Transform lift should cause OnCollisionExit.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 2085702217920827848,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (1)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 730385652,
+          "condition": "Box (1) is a PrefabInstance (id: 730385652) under 'Boxes' without a Rigidbody. The only presented MonoBehaviour is TranslateObject (script guid: 866d134ae31a01841b6156f8d0a87054) with instance fileID: 203819839. No UnityEvent (m_Calls) and no explicit Collider/EventTrigger were provided in this scene excerpt. To remain within allowed interactions, we invoke the only parameterless public method to cover logic initialized by Start and the reset path.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 203819839,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (2)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 331566651,
+          "condition": "PrefabInstance 'Box (2)' (id: 331566651) under 'Boxes' has Has_Rigidbody: false. The only provided script is TranslateObject (guid: 866d134ae31a01841b6156f8d0a87054) with MonoBehaviour fileID: 531403574. This MonoBehaviour mapping matches the provided script. No UnityEvent m_Calls are defined. Start() runs automatically to cache start position/rotation. To exercise code paths we can call the only parameterless public method ResetToStartingPosition(). If a Collider/EventTrigger is not present at runtime, please confirm/add one to satisfy Trigger action policy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 531403574,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (3)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1736349558,
+          "condition": "PrefabInstance 'Box (3)' (m_PrefabInstance: 1736349558) is a child of 'Boxes'. Has_Rigidbody: False. Scene MonoBehaviour (fileID: 898355187) uses script TranslateObject (guid: 866d134ae31a01841b6156f8d0a87054), which matches the provided source code. No UnityEvent m_Calls are defined on this component in the scene meta. The only public parameterless method is ResetToStartingPosition(), which we will invoke to cover Start() initialization and reset behavior. To fully cover methods requiring float parameters (TranslateX/Y/Z, SetLocalX/Y/Z), please provide UnityEvent wiring or permission to invoke with test float values, and confirm whether a Collider or EventTrigger component exists to satisfy Trigger-action prerequisites.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 898355187,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (4)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1058824938,
+          "condition": "Child of 'Boxes'. PrefabInstance m_PrefabInstance: 1058824938. Has_Rigidbody: False. Scene MonoBehaviour (fileID: 1147109801) references script guid 866d134ae31a01841b6156f8d0a87054, which is the provided TranslateObject class. This confirms the MonoBehaviour settings correspond to the attached script. No UnityEvent m_Calls are defined in the scene meta. We will invoke the only public parameterless method ResetToStartingPosition() to cover Start() initialization and reset behavior. To cover TranslateX/Y/Z and SetLocalX/Y/Z (float parameters), additional invocation wiring is required (UnityEvent or test harness). Also, please confirm a Collider or EventTrigger exists on this object to satisfy the Trigger action precondition when no Rigidbody is present.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1147109801,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": -2.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Transform",
+          "source_object_name": "Box (5)",
+          "source_object_fileID": 49734231,
+          "delta_position": {
+            "x": 0.0,
+            "y": 2.0,
+            "z": 0.0
+          },
+          "delta_rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "delta_scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "triggerring_events": [],
+          "triggerred_events": [],
+          "triggerring_time": 0.5
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (5)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 49734231,
+          "condition": "Box (5) is a PrefabInstance (fileID: 49734231) under 'Boxes' with Has_Rigidbody: True and a BoxCollider (id: 3174054499936259574, m_IsTrigger: 0). This enables physics collision to drive events. OnCollision MonoBehaviour (fileID: 7040005640398465217, script guid: 6bf7bf2b5cedc0b4fb673b10c7900629) maps to the provided OnCollision script and declares UnityEvents OnEnter/OnExit. OnEnter.m_Calls invokes PlayQuickSound.Play on MonoBehaviour (fileID: 2085702217920827848, script guid: 0755a2ba17a31d643b4a27e3034d8a79). AudioSource exists (fileID: 8312855220770769008), satisfying PlayQuickSound's requirement. Two TranslateObject components are present (fileIDs: 74831552 and 1248989243, script guid: 866d134ae31a01841b6156f8d0a87054), matching the provided TranslateObject script; we invoke their parameterless ResetToStartingPosition() to exercise their logic. The preceding Transform down/up steps are intended to cause OnCollisionEnter then OnCollisionExit to automatically fire, thereby triggering the wired PlayQuickSound.Play via OnEnter. If no suitable opposing collider (e.g., floor) exists at the moved positions, please provide a target collider GameObject fileID to guarantee collision.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 74831552,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                },
+                {
+                  "script_fileID": 1248989243,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (6)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1843663307,
+          "condition": "PrefabInstance 'Box (6)' (m_PrefabInstance: 1843663307) is a child of 'Boxes'. Has_Rigidbody: False, and no Collider/EventTrigger are listed. Scene MonoBehaviour (fileID: 1124768097) references script guid 866d134ae31a01841b6156f8d0a87054, which matches the provided TranslateObject class; this confirms the MonoBehaviour settings correspond to the script. No UnityEvent m_Calls are defined. We invoke the only public parameterless method ResetToStartingPosition() to exercise Start() caching and the reset path. Note: Per action policy, Trigger requires Rigidbody/Collider/EventTrigger or a UnityEvent-derived script; since none are present on Box (6), please confirm a valid interaction component (e.g., add a Collider or EventTrigger) or provide an alternate source object that satisfies the precondition. To fully cover TranslateX/Y/Z and SetLocalX/Y/Z (float methods), provide UnityEvent wiring or permission to invoke with test float values.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1124768097,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (7)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 930118958,
+          "condition": "Verification: MonoBehaviour (fileID: 988422739) on 'Box (7)' references script guid 866d134ae31a01841b6156f8d0a87054 (fileID: 11500000), which matches the provided TranslateObject script. This confirms the scene MonoBehaviour settings correspond to the attached script. Constraints: 'Box (7)' has Has_Rigidbody: False and no Collider/EventTrigger listed; no UnityEvent m_Calls are configured. Therefore, the only invocable public parameterless method is ResetToStartingPosition(), which exercises Start() caching and the reset path. To achieve full coverage of TranslateX/Y/Z and SetLocalX/Y/Z (float), provide UnityEvent wiring or an interaction component capable of supplying float parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 988422739,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (8)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 176049113,
+          "condition": "Verification: MonoBehaviour (fileID: 1793308541) on 'Box (8)' references script guid 866d134ae31a01841b6156f8d0a87054 (fileID: 11500000), which matches the provided TranslateObject script. This confirms the scene MonoBehaviour settings correspond to the attached script. Constraint: Has_Rigidbody = False and no UnityEvent m_Calls are listed; to cover TranslateX/Y/Z and SetLocalX/Y/Z (float), we need UnityEvent bindings or permission to invoke methods with float parameters. This plan triggers the only public parameterless method.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1793308541,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Box (9)",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1025029724,
+          "condition": "Verification: MonoBehaviour (fileID: 1320904625) on 'Box (9)' references script guid 866d134ae31a01841b6156f8d0a87054 (fileID: 11500000), which matches the provided TranslateObject script. This confirms the scene MonoBehaviour settings correspond to the attached script. Constraints: Has_Rigidbody = False and no Collider/EventTrigger or UnityEvent m_Calls are listed in the provided meta. Therefore, the only public parameterless method available to invoke is ResetToStartingPosition(), which exercises Start() state capture and the reset path. To achieve full coverage for TranslateX/Y/Z and SetLocalX/Y/Z (float), please provide UnityEvent bindings or wrappers exposing parameterless calls (or an EventTrigger setup) that pass float parameters.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1320904625,
+                  "method_name": "ResetToStartingPosition",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

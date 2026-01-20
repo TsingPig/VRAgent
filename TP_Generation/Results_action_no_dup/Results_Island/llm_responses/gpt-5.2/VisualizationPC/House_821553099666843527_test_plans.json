@@ -1,0 +1,26 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "House",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 821553099666843527,
+          "condition": "Call HouseController.changeLights() on House. MonoBehaviour (component fileID 821553098848002451, m_Script guid 340adb04e4e259e4b9c3e716ea2e6ced) matches the provided script HouseController and is configured in-scene with windowGlassObjects [821553098795559414, 821553099003664447, 821553098404871707, 821553099487161785], lightsOnEmissionColor (HDR), lightsOffEmissionColor (HDR), lightStatus=false, switchSound->AudioSource fileID 821553098848002450. No m_Calls (UnityEvent) entries are defined, so this method must be triggered manually to validate emission updates. Expected result: for each windowGlassObject, its Renderer.material _EmissionColor becomes lightsOffEmissionColor and _EMISSION keyword is enabled. Note: switchSound.Play() only happens when Update detects a change in lightStatus; this Trigger will not play audio.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 821553098848002451,
+                  "method_name": "changeLights",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

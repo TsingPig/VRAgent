@@ -1,0 +1,76 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Verify Fireplace_Traditional (PrefabInstance fileID=631718162) has TeleportAnchorWithFade (added component likely fileID=1133633788) whose inspector setting teleportTrigger == OnSelectEntered. Scene MonoBehaviour with fileID=631718164 corresponds to Universal/Additional Light Data (GUID 474bcb49853aa07438625e644c072ee6) and is not the teleport script. Ensure a Collider is present for XR interaction and a FadeCanvas exists in scene so FadeCanvas.QuickFadeIn/Out can run without null refs. Expected: OnSelectEntered path starts FadeSequence, invokes base.OnSelectEntered (teleport), then fades out.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Set/confirm TeleportAnchorWithFade.teleportTrigger == OnSelectExited. Simulate deselection of the anchor via XR interaction. Collider and FadeCanvas required. Expected: FadeSequence runs for OnSelectExited, base.OnSelectExited invoked, then fade out.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Set/confirm TeleportAnchorWithFade.teleportTrigger == OnActivated. Simulate XR Activate (e.g., primary button while hovered/selected). Requires Collider and FadeCanvas in scene. Expected: FadeSequence runs for OnActivated, base.OnActivated invoked, then fade out.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Fireplace_Traditional",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 631718162,
+          "condition": "Set/confirm TeleportAnchorWithFade.teleportTrigger == OnDeactivated. Simulate XR Deactivate. Requires Collider and FadeCanvas in scene. Expected: FadeSequence runs for OnDeactivated, base.OnDeactivated invoked, then fade out.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Room_Modern",
+          "triggerring_time": 1.5,
+          "source_object_fileID": 1865680026,
+          "condition": "PrefabInstance (fileID=1865680026) under --STATIC-- contains an added MonoBehaviour (likely fileID=1865680030) corresponding to PlayQuickSound (RequireComponent AudioSource). Ensure an AudioSource exists on Room_Modern and that a valid AudioClip is assigned to PlayQuickSound.sound; volume > 0; randomPitchVariance within [0,1]. Note: MonoBehaviour id=1865680029 (GUID 474bcb49853aa07438625e644c072ee6) is URP Additional Light Data and does not require triggering. Expected: PlayQuickSound.Play() sets AudioSource.pitch to randomized value, calls PlayOneShot(sound, volume), then restores default pitch.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1865680030,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "TV_FlatWallMounted",
+          "triggerring_time": 5.0,
+          "source_object_fileID": 772053049,
+          "condition": "PrefabInstance (fileID=772053049) under --STATIC-- has an added MonoBehaviour (fileID=725697786, GUID=3d4642753971e264fbb20044fa231cd5) with fields: playAtStart=0, videoMaterial (guid=fae3ce4e...), and videoClips (one clip guid=8cd99a81...). This MonoBehaviour represents the TV video controller. The provided script snippet in this step (UniversalAdditionalLightData) does not match this MonoBehaviour; therefore we assume the TV controller exposes a public no-arg Play() method to start playback. Preconditions: the TV mesh/renderer uses the provided videoMaterial; the clip asset is valid; any required VideoPlayer/AudioSource components are present; object is active in hierarchy.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 725697786,
+                  "method_name": "Play",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

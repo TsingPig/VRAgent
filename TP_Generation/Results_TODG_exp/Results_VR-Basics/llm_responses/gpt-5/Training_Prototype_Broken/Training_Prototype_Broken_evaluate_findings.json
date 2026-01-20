@@ -1,0 +1,1842 @@
+{
+  "CER@100AU": 0.0,
+  "CVR@100AU": 240.3225806451613,
+  "DR@100AU": 4.032258064516129,
+  "gobj_coverage_ratio": 0.6451612903225806,
+  "AU": 124,
+  "consistency_number": 298,
+  "correctness_number": 0,
+  "duplicate_number": 5,
+  "smells": [
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/0/actionUnits/47",
+      "message": "Schema validation: {'type': 'Trigger', 'source_object_name': 'SpawnObject Host', 'triggerring_time': 0.1, 'source_object_fileID': '7863669396577847636', 'condition': 'Manual trigger required for SpawnObject.Spawn() (MonoBehaviour id=839586645, script guid=a658f19182a575a46b14f720a8e295a7). Serialized config: originalObject guid=97e89670ed7696d489d6ddba4543a01b, spawnPosition fileID=7863669396577847637 (defaults to host transform via OnValidate). Expect Instantiate(originalObject) at spawnPosition.position/rotation.', 'triggerring_events': [{'methodCallUnits': [{'script_fileID': '839586645', 'method_name': 'Spawn', 'parameter_fileID': []}]}], 'triggerred_events': []} is not valid under any of the given schemas"
+    },
+    {
+      "level": "ERROR",
+      "type": "schema_error",
+      "path": "taskUnits/0/actionUnits/48",
+      "message": "Schema validation: {'type': 'Transform', 'source_object_name': 'Spawn Position', 'source_object_fileID': '7863669396577847637', 'delta_position': {'x': 0.0, 'y': 0.5, 'z': 0.0}, 'delta_rotation': {'x': 0.0, 'y': 15.0, 'z': 0.0}, 'delta_scale': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'triggerring_events': [{'methodCallUnits': [{'script_fileID': '839586645', 'method_name': 'Spawn', 'parameter_fileID': []}]}], 'triggerred_events': [], 'triggerring_time': 0.1} is not valid under any of the given schemas"
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[0]/actionUnits[101]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 7541936462315295362. This action is identical to the one at taskUnits[0]/actionUnits[98]. Consider removing the duplicate action."
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[0]/actionUnits[26]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 341662330. This action is identical to the one at taskUnits[0]/actionUnits[25]. Consider removing the duplicate action."
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[0]/actionUnits[39]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 692630294. This action is identical to the one at taskUnits[0]/actionUnits[38]. Consider removing the duplicate action."
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[0]/actionUnits[73]",
+      "message": "Duplicate Trigger action detected for source_object_fileID 1519901173. This action is identical to the one at taskUnits[0]/actionUnits[72]. Consider removing the duplicate action."
+    },
+    {
+      "level": "DUPLICATE",
+      "type": "duplicate_action",
+      "path": "taskUnits[0]/actionUnits[94]",
+      "message": "Duplicate Transform action detected for source_object_fileID 2095114517. This action is identical to the one at taskUnits[0]/actionUnits[93]. Consider removing the duplicate action."
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[0]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[1]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 14 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[1]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[2]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[2]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[3]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[3]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[4]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[5]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[5]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID -1 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[6]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[7]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[7]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 131723510 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[7]/source_object_name",
+      "message": "Name does not match scene index (expected 'Spawn Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[8]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[9]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[9]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 203819839 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[10]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[10]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 243225250 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[10]/source_object_name",
+      "message": "Name does not match scene index (expected 'RightRay')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[11]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[11]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 243225252 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[11]/source_object_name",
+      "message": "Name does not match scene index (expected 'RightRay')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[12]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[12]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 259193823 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[12]/source_object_name",
+      "message": "Name does not match scene index (expected 'Welcome')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[13]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[13]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 259193823 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[13]/source_object_name",
+      "message": "Name does not match scene index (expected 'Welcome')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[14]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[14]/source_object_name",
+      "message": "Name does not match scene index (expected 'Welcome')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[15]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[15]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[15]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Fade')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[16]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[16]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[16]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Fade')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[17]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[17]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[17]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[17]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Fade')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[18]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[18]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[18]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Fade')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[19]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[19]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Fade')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[20]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[20]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Fade')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[21]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[21]/source_object_name",
+      "message": "Name does not match scene index (expected 'Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[22]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[22]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 326360037 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[22]/source_object_name",
+      "message": "Name does not match scene index (expected 'Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[23]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[23]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[23]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[24]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[24]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[24]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[25]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[25]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[25]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[26]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[26]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[26]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[27]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[27]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[27]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[28]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[28]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[28]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[29]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[29]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[29]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[30]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[30]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 382035877 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[30]/source_object_name",
+      "message": "Name does not match scene index (expected 'Input Action Manager')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[31]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[31]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 382035877 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[31]/source_object_name",
+      "message": "Name does not match scene index (expected 'Input Action Manager')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[32]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[32]/source_object_name",
+      "message": "Name does not match scene index (expected 'Button_Next')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[33]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[33]/source_object_name",
+      "message": "Name does not match scene index (expected 'Button_Next')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[34]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[34]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 421878384 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[34]/source_object_name",
+      "message": "Name does not match scene index (expected 'Button_Next')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[35]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[36]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[36]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 531403574 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[37]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[37]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1907113017 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[37]/source_object_name",
+      "message": "Name does not match scene index (expected 'XR Rig ')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[38]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[38]/source_object_name",
+      "message": "Name does not match scene index (expected 'XR Rig ')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[39]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[39]/source_object_name",
+      "message": "Name does not match scene index (expected 'XR Rig ')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[40]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[40]/source_object_name",
+      "message": "Name does not match scene index (expected 'SpawnBoxes_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[41]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[41]/source_object_name",
+      "message": "Name does not match scene index (expected 'SpawnBoxes_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[42]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[42]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[42]/source_object_name",
+      "message": "Name does not match scene index (expected 'Knob')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[43]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[43]/source_object_name",
+      "message": "Name does not match scene index (expected 'Knob')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[44]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[44]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[44]/source_object_name",
+      "message": "Name does not match scene index (expected 'Knob')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[45]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[45]/source_object_name",
+      "message": "Name does not match scene index (expected 'ClearBoxes_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[46]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[46]/source_object_name",
+      "message": "Name does not match scene index (expected 'ClearBoxes_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[47]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[47]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 839586645 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[47]/source_object_name",
+      "message": "Name does not match scene index (expected 'Move Up Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[48]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[49]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[50]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[50]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 898355187 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[51]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[52]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[52]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 988422739 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[53]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[53]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[53]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[54]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[54]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[54]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[55]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[55]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[55]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[55]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[56]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[56]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[56]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[57]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[57]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[57]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[58]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[58]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1026361732 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[58]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[59]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[59]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1086352045 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[59]/source_object_name",
+      "message": "Name does not match scene index (expected 'Move Down Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[60]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[61]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[61]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1124768097 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[62]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[63]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[63]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1147109801 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[64]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[64]/source_object_name",
+      "message": "Name does not match scene index (expected 'MoveLateral_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[65]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[65]/source_object_name",
+      "message": "Name does not match scene index (expected 'MoveLateral_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[66]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[67]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[67]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1320904625 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[68]/source_object_name",
+      "message": "Name does not match scene index (expected 'LeftHand Controller')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[69]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[69]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1351763419 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[69]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 1351763419 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[69]/triggerring_events[0]/methodCallUnits[2]/script_fileID",
+      "message": "Script fileID 1351763419 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[69]/triggerring_events[0]/methodCallUnits[3]/script_fileID",
+      "message": "Script fileID 1351763419 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[70]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[70]/source_object_name",
+      "message": "Name does not match scene index (expected 'Rotate_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[71]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[71]/source_object_name",
+      "message": "Name does not match scene index (expected 'Rotate_Label')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[72]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[72]/source_object_name",
+      "message": "Name does not match scene index (expected 'Toggle_Labels')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[73]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[73]/source_object_name",
+      "message": "Name does not match scene index (expected 'Toggle_Labels')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[74]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[74]/source_object_name",
+      "message": "Name does not match scene index (expected 'Checkmark')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[75]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[75]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1618447875 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[75]/source_object_name",
+      "message": "Name does not match scene index (expected 'Checkmark')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[76]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[76]/source_object_name",
+      "message": "Name does not match scene index (expected 'Anchor')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[77]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[77]/source_object_name",
+      "message": "Name does not match scene index (expected 'Anchor')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[78]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[78]/source_object_name",
+      "message": "Name does not match scene index (expected 'Controls')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[79]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[79]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1718703368 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[79]/source_object_name",
+      "message": "Name does not match scene index (expected 'Controls')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[80]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[80]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1719633269 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[80]/source_object_name",
+      "message": "Name does not match scene index (expected 'LeftRay')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[81]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[81]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1719633271 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[81]/source_object_name",
+      "message": "Name does not match scene index (expected 'LeftRay')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[82]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[82]/source_object_name",
+      "message": "Name does not match scene index (expected 'LeftRay')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[83]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[84]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[84]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1793308541 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[85]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[85]/source_object_name",
+      "message": "Name does not match scene index (expected 'Reset Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[86]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[86]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 692630298 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[86]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 263574720 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[86]/source_object_name",
+      "message": "Name does not match scene index (expected 'SceneLoad')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[87]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[87]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1907113017 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[87]/source_object_name",
+      "message": "Name does not match scene index (expected 'SceneLoad')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[88]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[88]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Labels')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[89]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[89]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1963046888 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[89]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Labels')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[90]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[90]/source_object_name",
+      "message": "Name does not match scene index (expected 'Background')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[91]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[91]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 2063182041 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[91]/source_object_name",
+      "message": "Name does not match scene index (expected 'Background')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[92]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[92]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Main')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[93]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[93]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Main')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[94]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[94]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Main')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[95]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[95]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Main')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[96]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[96]/source_object_name",
+      "message": "Name does not match scene index (expected 'Canvas_Main')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[97]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[97]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[97]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[97]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source Move')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[98]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[98]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[99]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[99]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[100]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[100]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[101]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[101]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[102]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[102]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[103]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[103]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[104]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1145393436748058495 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[104]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[105]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[106]/source_object_name",
+      "message": "Name does not match scene index (expected 'Magnet')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[107]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[107]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 1718703368 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[107]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 341662333 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[107]/source_object_name",
+      "message": "Name does not match scene index (expected 'Move Up Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[108]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 74831552 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[1]/script_fileID",
+      "message": "Script fileID 203819839 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[2]/script_fileID",
+      "message": "Script fileID 531403574 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[3]/script_fileID",
+      "message": "Script fileID 898355187 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[4]/script_fileID",
+      "message": "Script fileID 1147109801 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[5]/script_fileID",
+      "message": "Script fileID 1248989243 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[6]/script_fileID",
+      "message": "Script fileID 1124768097 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[108]/triggerring_events[0]/methodCallUnits[7]/script_fileID",
+      "message": "Script fileID 988422739 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[108]/source_object_name",
+      "message": "Name does not match scene index (expected 'Reset Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[109]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[109]/source_object_name",
+      "message": "Name does not match scene index (expected 'Spawn Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[110]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[110]/source_object_name",
+      "message": "Name does not match scene index (expected 'Spawn Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[111]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[111]/source_object_name",
+      "message": "Name does not match scene index (expected 'Move Down Button')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[112]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[112]/source_object_name",
+      "message": "Name does not match scene index (expected 'Joystick_Raise')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[113]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[113]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[113]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[114]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[114]/source_object_name",
+      "message": "Name does not match scene index (expected 'Joystick_Move')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[115]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[115]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[115]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 931956745451022772 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[115]/source_object_name",
+      "message": "Name does not match scene index (expected 'Joystick_Move')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[116]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[116]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[116]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4025780930682781986 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[116]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source Raise')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[117]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[117]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[117]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source Rotate')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[118]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[118]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[118]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source Rotate')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[119]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[119]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 4079354613688537254 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[119]/source_object_name",
+      "message": "Name does not match scene index (expected 'Audio Source Rotate')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[120]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[120]/source_object_name",
+      "message": "Name does not match scene index (expected 'Lever')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[121]/source_object_fileID",
+      "message": "Transform requires source object to have a Rigidbody"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[121]/source_object_name",
+      "message": "Name does not match scene index (expected 'Lever')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[122]/triggerring_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 7541936460893253790 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "script_not_found",
+      "path": "taskUnits[0]/actionUnits[122]/triggerred_events[0]/methodCallUnits[0]/script_fileID",
+      "message": "Script fileID 7541936460893253790 not found in scene index"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "name_mismatch",
+      "path": "taskUnits[0]/actionUnits[122]/source_object_name",
+      "message": "Name does not match scene index (expected 'Socket')"
+    },
+    {
+      "level": "CONSISTENCY",
+      "type": "missing_component",
+      "path": "taskUnits[0]/actionUnits[123]/source_object_fileID",
+      "message": "Trigger requires source object to have Rigidbody or Collider or EventTrigger, or scripts inheriting UnityEngine.Events"
+    }
+  ]
+}

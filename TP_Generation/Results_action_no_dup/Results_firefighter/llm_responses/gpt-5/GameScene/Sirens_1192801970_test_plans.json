@@ -1,0 +1,70 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1192801970,
+          "condition": "Has_Rigidbody is false, so only Trigger is eligible if Sirens (fileID 1192801970) or its children have a Collider, EventTrigger, or a MonoBehaviour with public no-arg methods and/or UnityEvent listeners (m_Calls). In the provided scene snippet, Sirens lists only a Transform component (fileID 1192801971) and no MonoBehaviour/Collider/EventTrigger, so we cannot specify a concrete method to invoke yet. Please provide the MonoBehaviour component(s) actually attached to Sirens and its children, including script_fileID, GUID, serialized fields, and m_Calls. We will treat the MonoBehaviour component(s) in the scene file as the exact runtime settings for the attached script(s) as requested. Note: children listed are fileIDs 1696544509 and 1915639392, but you mentioned 1696544506 and 1915639391; please confirm which are correct and share their components so we can select the precise event to trigger (e.g., StartSiren(), ToggleSiren(), Play(), Stop()).",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1696544506,
+          "condition": "MonoBehaviour_0 (fileID 1696544507) in scene is SteamAudio.SteamAudioSource (guid 59c3684b22f00604a97bb68037fcf4cd) and MonoBehaviour_1 (fileID 1696544510) is SimpleMovement (guid 0ed45ecca44e348b2863fcf42e6e747d). These MonoBehaviour components in the scene are the exact runtime settings for their scripts. Has_Rigidbody is false and no Collider/EventTrigger is listed for Sirens - 1; thus only public no-arg MonoBehaviour methods are eligible to trigger. We will invoke SteamAudioSource.GetSource() (public, no parameters) to cover the exposed public API. Note: Please confirm what component 1696544508 is (e.g., AudioSource/Collider) and whether any UnityEvent m_Calls exist; if a Collider/EventTrigger or UnityEvent targets are present, we can add additional Trigger actions accordingly.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1696544507,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1696544506,
+          "condition": "MonoBehaviour components in scene are the exact runtime settings of their scripts: SteamAudio.SteamAudioSource (guid 59c3684b22f00604a97bb68037fcf4cd, script_fileID 1696544507) and SimpleMovement (guid 0ed45ecca44e348b2863fcf42e6e747d, script_fileID 1696544510). No Rigidbody on this object; we will trigger the public no-arg API on SteamAudioSource to ensure coverage of accessible events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1696544507,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Sirens - 2",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1915639391,
+          "condition": "MonoBehaviour components in scene are the exact runtime settings of their scripts: SteamAudio.SteamAudioSource (guid 59c3684b22f00604a97bb68037fcf4cd, script_fileID 1915639393) and SimpleMovement (guid 0ed45ecca44e348b2863fcf42e6e747d, script_fileID 1915639395). No Rigidbody on this object; we will trigger the public no-arg API on SteamAudioSource to ensure coverage of accessible events.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1915639393,
+                  "method_name": "GetSource",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
