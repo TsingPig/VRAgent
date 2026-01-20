@@ -1,136 +1,54 @@
-# README
+# LLM-based Automated Testing with Dependency Analysis for VR Apps
 
-This repository demonstrates how to integrate **Large Language Models (LLMs)** with **VRExplorer** to reduce manual effort in **model abstraction** and **dataset analysis** for automated VR application testing. The workflow supports LLM-generated (or manually authored) test plans that can be imported, validated, and executed inside Unity.
+This repository couples a Python pipeline for automated Unity scene analysis and test-plan generation (**TP_Generation**) with a Unity runtime agent that imports and executes those plans in VR (**VRAgent**). Use it to turn Unity scenes into structured, reproducible interaction tests.
 
-## Features
+## Repository Layout
+- [TP_Generation/README.md](TP_Generation/README.md) — Python scripts for extracting scene data, preprocessing logic, and producing test plans.
+- [VRAgent/README.md](VRAgent/README.md) — Unity-side package for importing, validating, and running test plans in VRExplorer.
+- [VRAgent/Documentation.md](VRAgent/Documentation.md) — Detailed Unity setup, usage, and test-plan schema.
+- Analyzer configs and results: `TP_Generation/CodeStructureAnalyzer/`, `TP_Generation/CSharpScriptAnalyzer/`, `TP_Generation/Results*/`, `TP_Generation/UnityDataAnalyzer/`.
 
-- LLM-assisted test plan generation (with optional RAG support)
-- Seamless integration with VRExplorer’s testing pipeline
-- Automated ID binding and runtime execution via VRAgent
-- Reproducible and configurable VR test execution in Unity
+## Prerequisites
+- Python 3.10+ on Windows (for TP_Generation scripts).
+- Unity 2021.3.45f1c2 (recommended) with XR setup.
+- Unity packages installed via Git URL in Package Manager:
+  - VRExplorer: `https://github.com/TsingPig/VRExplorer_Release.git`
+  - VRAgent: `https://github.com/TsingPig/VRAgent_Release.git`
+- OpenAI API key if using LLM-based plan generation.
 
-## Setup
+## End-to-End Workflow
+1. **Analyze the Unity project** with TP_Generation to extract scenes, hierarchies, and C# relationships.
+2. **Generate a test plan** (LLM-assisted or manual) in the expected JSON format.
+3. **Import and validate** the plan in Unity via VRAgent/VRExplorer (FileIdManager, NavMesh, bindings).
+4. **Run and iterate** tests in-editor or at runtime; optionally record coverage.
 
-### 1. Unity Configuration
+## TP_Generation (Python)
+Purpose: Build structured, LLM-ready context from Unity scenes and emit executable test plans.
+- Key scripts: `ExtractSceneDependency.py` → `TraverseSceneHierarchy.py` → `TagLogicPreprocessor.py` → `GenerateTestPlanModified.py` (or original `GenerateTestPlan.py`).
+- External analyzers: `UnityDataAnalyzer.exe`, `CSharpAnalyzer.exe`, `CodeStructureAnalyzer.exe` (paths configured in `config.py`).
+- Typical run:
+  ```bash
+  python ExtractSceneDependency.py -p <unity_project_path> -r <results_dir>
+  python TraverseSceneHierarchy.py -r <results_dir>
+  python TagLogicPreprocessor.py -r <results_dir> -s <scene_name> -a <app_name>
+  python GenerateTestPlanModified.py -r <results_dir> -s <scene_name> -a <app_name>
+  ```
+- Outputs: GML graphs, `gobj_hierarchy.json`, tag metadata, and `test_plan_conversations_*.json` under `Results*` directories.
 
-- Use the **recommended Unity version** **(2021.3.45f1c2)** 
+## VRAgent (Unity)
+Purpose: Execute generated plans inside Unity/VRExplorer with automated bindings and runtime control.
+- Setup highlights (see [VRAgent/Documentation.md](VRAgent/Documentation.md)):
+  - Add VRAgent prefab to the target scene.
+  - Bake NavMesh for static geometry (Window → AI → Navigation).
+  - Ensure FileIdManager is generated and fileID mappings are valid.
+- Usage:
+  - Import plan: Tools → VRExplorer → Import Test Plan.
+  - Validate bindings and optional code-coverage package setup.
+- Test plan schema and action types (Grab, Trigger, etc.) are fully documented in [VRAgent/Documentation.md](VRAgent/Documentation.md).
 
-- Add Required Packages via Unity Package Manager. This project depends on the following Unity packages.
-     Add them **via Git URL** in **Unity Package Manager**:
-
-    1. Open **Unity Editor**
-    2. Go to **Window → Package Manager**         <img src="Docs\4f72b677-b246-4b3e-8b92-e896fea4d7d8.png" alt="image-20251222122744225" style="zoom:33%;" />
-    3. Click **`+` → Add package from git URL…**<img src="Docs\e1ddbed4-e99d-442e-94ae-f073a25551db.png" alt="image-20251222122744225" style="zoom:33%;" />
-    4. Add the following packages:
-
-    - **VRExplorer**
-
-        ```
-        https://github.com/TsingPig/VRExplorer_Release.git
-        ```
-
-        <img src="Docs\903bd5df-f96e-4659-93ca-3e6275d1c921.png" alt="image-20251222122744225" style="zoom:50%;" />
-
-    - **VRAgent**
-
-        ```
-        https://github.com/TsingPig/VRAgent_Release.git
-        ```
-
-    After installation, ensure both packages are successfully loaded without errors.
-
-### 2. Scene Preparation
-
-1. Open or select the **scene to be tested** in Unity.
-
-2. From the **Package** view, navigate to:<img src="Docs\21b88997-a1d8-4971-98e1-a0e65e3f99fb.png" alt="image-20251222122744225" style="zoom:33%;" />
-
-    ```
-    Packages → VRAgent
-    ```
-
-3. Drag the **VRAgent Prefab** into the selected scene.<img src="Docs\f2a695a1-e4e9-4f09-adfa-55e5f6d996fe.png" alt="image-20251222122744225" style="zoom:30%;" />
-
-------
-
-### 3. Navigation Mesh Baking
-
-1. Select all static environment objects (e.g., walls, floors, obstacles).
-
-2. Mark them as **Static** in the Inspector.
-    <img src="Docs\9fa18dd5-1806-4b23-bd73-62dae6e22a34.png" alt="image-20251222122744225" style="zoom:33%;" />
-
-3. Open the Navigation window:
-
-    ```
-    Window → AI → Navigation
-    ```
-
-    <img src="Docs\bfba4b5c-d2a0-48fb-bdb7-b06788a1c146.png" alt="image-20251222122744225" style="zoom:33%;" />
-
-4. Bake the **NavMesh** for the scene.
-    <img src="Docs\152bc526-eb60-4f45-a4a3-ae922f00f8d4.png" alt="image-20251222122744225" style="zoom:33%;" />
-
-------
-
-## Usage
-
-### 1. *[Optional]* Test Plan Generation
-
-Test plans can be prepared using:
-
-- **LLM-based generation** (optionally enhanced with Retrieval-Augmented Generation), or
-- **Manual configuration**, following the predefined test plan format.
-
-The generated test plan is expected to be in a structured (e.g., JSON-based) format compatible with VRExplorer.
-
-------
-
-### 2. Import Test Plan
-
-In the Unity Editor, import the test plan via: 
-
-```
-Tools → VRExplorer → Import Test Plan → Browse → Import Test Plan
-```
-
-<img src="Docs/d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd.png" alt="d13a2dcd-1193-4310-8b5b-83f4ebd4c1bd" style="zoom:43%;" />
-
-<img src="Docs/0c628c71-fc60-463e-9bca-1e2a04d6f26a.png" alt="0c628c71-fc60-463e-9bca-1e2a04d6f26a" style="zoom:50%;" />
-
-
-
-------
-
-### 3. Test Plan Validation
-
-Before execution, verify that:
-
-- A **FileIdManager** has been generated in the testing scene.<img src="Docs\f23fa1c193641069134af1cff847e2c7.png" alt="f23fa1c193641069134af1cff847e2c7" style="zoom:43%;" />
-- All fileID mappings are correct and complete.
-    <img src="Docs\8debdf7a-1f38-41a6-9d4d-bd3c8dcdcc73.png" alt="f23fa1c193641069134af1cff847e2c7" style="zoom:43%;" />
-
-### *[Optional]* Code Coverage Recorading
-
-#### 1. Install Unity Code Coverage Package
-
-1. Open **Unity Editor**
-2. Go to **Window → Package Manager**
-3. Enable **Unity Registry**
-4. Search for **Code Coverage**
-5. Install the **Code Coverage** package provided by Unity
-
-------
-
-#### 2. Select Scripts for Coverage Collection
-
-1. Open the Code Coverage window:
-
-    ```
-    Window → Analysis → Code Coverage
-    ```
-
-2. In the Code Coverage settings:
-
-    - Select the **assemblies or scripts** to be included in coverage recording
-    - Exclude unrelated or third-party code if necessary
+## Quick Start Checklist
+- Install Python deps (`networkx`, `requests`, `openai`, etc.) for TP_Generation.
+- Configure `config.py` with analyzer paths and API keys.
+- Run the TP_Generation pipeline against your Unity project; review experiment results under `Results*/`.
+- Open the Unity project, install VRExplorer + VRAgent packages, add the prefab, bake NavMesh.
+- Import the generated plan and execute;/'
