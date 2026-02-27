@@ -1,0 +1,483 @@
+[
+  {
+    "role": "user",
+    "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving into the specifics of the code. Test engineers want to test the escapeVr App. One game object we want to test in the scene of 'HomeScene.unity' is 'Room2'.\nDespite the events that can be triggered automatically, please choose the event we want to trigger in some conditions. We will provide the source code attached to this gameobjects below.\n[Extracted JSON format of scene meta file] The scene file of 'HomeScene.unity' can specify the detailed settings of gameobjects and its attached Monobehavior. I'll provide you with the related information of game object 'Room2' and its script. The 'fileID' of gameobject 'Room2' is: 1271916000. Please specify that the Monobehaviour component in the scene file I provided is the exact settings of the script file attached to the game objects we want to test. Please notice that the 'm_Calls' in MonoBehaviour component are the Interactable events that also need to be triggered manually or automatically to test the scripts. And the Collider component defines the shape of a GameObject for the purpose of physical collisions. 'Has_Rigidbody' indicates whether the gameobject has Rigidbody component. 'Has_Event_Trigger' indicates the gameobject has EventTrigger MonoBehaviour component. Please read the file below.\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '1271916001'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Room2'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'Transform': {'type': 'Transform', 'properties': {'id': '1271916001', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1271916000'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}, {'m_LocalScale': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': [{'fileID': '1469150675'}, {'fileID': '1356062999'}, {'fileID': '1447775912'}, {'fileID': '836814675'}, {'fileID': '1280930694'}, {'fileID': '340544672'}, {'fileID': '1833460382'}, {'fileID': '12688612'}, {'fileID': '1504208436'}, {'fileID': '134420580'}, {'fileID': '1618227213'}]}, {'m_Father': [{'fileID': '0'}]}, {'m_RootOrder': '2'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}}\n'''\n[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called \"Player\" or \"player\", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:\n'''\n{\n  \"taskUnits\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"target_object_name\": {target_object_name},\n          \"target_object_fileID\": {target_object_fileID}\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": {source_object_name},\n          \"triggerring_time\": {triggerring_time},\n          \"source_object_fileID\": {source_object_fileID},\n          \"condition\": \"Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\",\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Transform\",\n          \"source_object_name\": {source_object_name},\n          \"source_object_fileID\": {source_object_fileID},\n          \"delta_position\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_rotation\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"delta_scale\": {\n            \"x\": {x},\n            \"y\": {y},\n            \"z\": {z}\n          },\n          \"triggerring_events\": [\n            {\n              \"methodCallUnits\": [\n                {\n                  \"script_fileID\": {script_fileID},\n                  \"method_name\": {method_name},\n                  \"parameter_fileID\": [{parameter_fileID}]\n                }\n              ]\n            }\n          ],\n          \"triggerred_events\": [\n          ],\n          \"triggerring_time\": {triggerring_time}\n          }\n      ]\n    }\n  ],\n  \"Need_more_Info\": true/false\n}\n'''\n**Action Type Guidelines:**\n- **Grab**: Grab or pick up source object and drop it to the target object or position.\nGrab action format1:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the agent or object initiating the grab\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_object_name\": \"<string>\",       // Name of the target object being grabbed\n  \"target_object_fileID\": <long>          // FileID of the target object in the Unity scene file\n}\nGrab action format2:\n{\n  \"type\": \"Grab\",\n  \"source_object_name\": \"<string>\",       // Name of the source object\n  \"source_object_fileID\": <long>,         // FileID of the source object in the Unity scene file\n  \"target_position\": {                    // Target world position to which the object should be moved\n    \"x\": \"<float>\",\n    \"y\": \"<float>\",\n    \"z\": \"<float>\"\n  }\n}\n- **Trigger**: Trigger describes the triggering process in interactive actions, mainly used to simulate the player's interaction with objects in VR scenes, such as clicking a button, pulling a lever, or triggering a state change. 'Trigger' action can only support to trigger public methods that inherit from MonoBehaviour with no parameters of script file.\nTrigger action format:\n{\n  \"type\": \"Trigger\",\n  \"source_object_name\": \"<string>\",       // Name of the source object that triggers the event\n  \"triggerring_time\": <float>, \t\t\t      // Duration of the trigger\n  \"source_object_fileID\": <long>,         // FileID of the source object in Unity scene file\n  \"condition\": \"<string>\",                // Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n    // 0 or more event units\n    {\n      \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n        {\n          \"script_fileID\": <long>,       // FileID of the target MonoBehaviour Component\n          \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n          \"parameter_fileID\": []         // No need to fill. Must be empty.\n        }\n      ]\n    }\n  ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n    \t// 0 or more event units\n  ]\n}\n- **Transform**: A Transform describes translation, rotation, and scale operations on an object, used to implement incremental adjustments (delta) of object states within an action unit. It can support to execute 'Trigger' action simultaneously.\nTransform action format:\n{\n  \"type\": \"Transform\",\n  \"source_object_name\": \"<string>\",        // Target object name\n  \"source_object_fileID\": <long>,          // FileID of the object in Unity scene\n  \"delta_position\": {                     // Position delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_rotation\": {                     // Rotation delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"delta_scale\": {                        // Scale delta (offset)\n    \"x\": <float>,\n    \"y\": <float>,\n    \"z\": <float>\n  },\n  \"triggerring_events\": [                 // List of events during the Trigger process, these events will be triggered witin one frame.\n        // 0 or more event units\n        {\n          \"methodCallUnits\": [                // An event unit containing 0 or more methodCallUnit\n            {\n              \"script_fileID\": <long>,     // FileID of the target MonoBehaviour Component\n              \"method_name\": \"<string>\",     // Name of public method with no parameters to call\n              \"parameter_fileID\": []         // No need to fill. Must be empty.\n            }\n          ]\n        }\n      ],\n  \"triggerred_events\": [                  // List of events after 'triggering_events' have completed, 'triggerred_events' will be executed after waiting for the triggering time. These events will also be triggered within one frame.\n            // 0 or more event units\n      ],\n  \"triggerring_time\": <float>                  // Duration of the action\n}\n**Redundancy Avoidance Policy:**\n- If you choose to add a \"Trigger\" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual \"Trigger\" actions.\n- Please try to avoid adding manual \"Trigger\" actions. Please wait until we provide you with all the children information to choose 'Trigger' action.\n- For scene meta settings on 'm_Calls', you are encouraged to add 'Trigger' action to trigger the event in case that it cannot be triggered automatically.\n\nThe 'm_Children' of Transform indicate series of attached child game objects. We can provide the related information of these objects ['1469150674', '1356062998', '1447775911', '836814674', '1280930693', '340544671', '1833460381', '12688611', '1504208435', '134420579', '1618227212'] to help formalize your test plans one by one. You can respond with a test plan and respond with \"Need_more_Info\" be true.\n",
+    "timestamp": "2026-02-27T15:43:00.244032",
+    "llm_context": [],
+    "request_type": "first_request"
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"Player\",\n          \"source_object_fileID\": \"12345\",\n          \"target_object_name\": \"Interactive Object\",\n          \"target_object_fileID\": \"67890\"\n        },\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Interactive Object\",\n          \"method\": \"OnTriggerEnter\",\n          \"condition\": \"Trigger once when player enters collision area\"\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2026-02-27T15:43:00.245544",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": null
+  },
+  {
+    "role": "user",
+    "content": "The children is \"Drawer\": {fileID: 659474793}. The direct parent of this gameobject is \"Cabinet\". We only present the child with attached script. And the Drawer gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\n/// <summary>\n/// Smoothly slides a drawer open or closed along its local Z axis.\n/// Wire XRSimpleInteractable.selectEntered -> DrawerController.Toggle().\n/// </summary>\npublic class DrawerController : MonoBehaviour\n{\n    [SerializeField] private float openDistance = 0.42f;\n    [SerializeField] private float animationSpeed = 5f;\n\n    private bool isOpen = false;\n    private Vector3 closedLocalPosition;\n    private Vector3 openLocalPosition;\n\n    private void Start()\n    {\n        closedLocalPosition = transform.localPosition;\n        openLocalPosition = closedLocalPosition + new Vector3(0f, 0f, -openDistance);\n    }\n\n    private void Update()\n    {\n        Vector3 target = isOpen ? openLocalPosition : closedLocalPosition;\n        transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * animationSpeed);\n    }\n\n    /// <summary>Toggles the drawer open/closed state.</summary>\n    public void Toggle()\n    {\n        isOpen = !isOpen;\n        Debug.Log($\"[Drawer] {gameObject.name} → {(isOpen ? \"OPEN\" : \"CLOSED\")}\");\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '659474794'}]}, {'component': [{'fileID': '659474799'}]}, {'component': [{'fileID': '659474798'}]}, {'component': [{'fileID': '659474797'}]}, {'component': [{'fileID': '659474796'}]}, {'component': [{'fileID': '659474795'}]}]}, {'m_Layer': '0'}, {'m_Name': 'Drawer'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '659474798', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '659474793'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '659474794', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '659474793'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '0'}, {'y': '0.45'}, {'z': '0.26'}]}, {'m_LocalScale': [{'x': '0.85'}, {'y': '0.32'}, {'z': '0.04'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': []}, {'m_Father': [{'fileID': '134420580'}]}, {'m_RootOrder': '1'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '659474796', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '659474793'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': '181a93ff91c685946b20f54ea877474b'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'openDistance': '0.42'}, {'animationSpeed': '5'}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2026-02-27T15:43:00.249107",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 1,
+    "child_info": {
+      "child_id": "659474793",
+      "child_id_replace": "659474793",
+      "child_name": "Drawer",
+      "mono_comp_targets": [
+        {
+          "source": "659474793",
+          "source_replace": "659474793",
+          "target": "659474796",
+          "target_replace": "659474796",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "659474796",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "659474793"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "181a93ff91c685946b20f54ea877474b"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "openDistance": "0.42"
+              },
+              {
+                "animationSpeed": "5"
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "181a93ff91c685946b20f54ea877474b",
+              "file_path": "d:\\--UnityProject\\HenryLabXR\\VRAgent\\VRAgent\\Assets\\Scripts\\DrawerController.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 2,
+      "parent_info": {
+        "parent_id": "134420579",
+        "parent_name": "Cabinet"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"Player\",\n          \"source_object_fileID\": \"12345\",\n          \"target_object_name\": \"Interactive Object\",\n          \"target_object_fileID\": \"67890\"\n        },\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Interactive Object\",\n          \"method\": \"OnTriggerEnter\",\n          \"condition\": \"Trigger once when player enters collision area\"\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2026-02-27T15:43:00.250112",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Drawer\": {fileID: 659474793}. The direct parent of this gameobject is \"Cabinet\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Drawer\": {fileID: 659474793}. The direct parent of this gameobject is \"Cabinet\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Drawer\": {fileID: 659474793}. The direct parent of this gameobject is \"Cabinet\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"Drawer\": {fileID: 659474793}. The direct parent of this gameobject is \"Cabinet\". We..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": null
+  },
+  {
+    "role": "user",
+    "content": "The children is \"LightSwitch_Room2\": {fileID: 1618227212}. The direct parent of this gameobject is \"Room2\". We only present the child with attached script. And the LightSwitch_Room2 gameobject which has attached script's information is below. There may be more than one script attached to one gameobject. Please specify that the Monobehaviour component in the scene file I provided is the settings of the script file attached to the game objects. And the scene meta setting (MonoBehaviour Component) is shown corresponding to the script file shown.\n[Source code of 1st script files attached]\n'''\nusing UnityEngine;\n\n/// <summary>\n/// Toggles a target Light on/off and swaps the switch's visual material.\n/// Wire XRSimpleInteractable.selectEntered -> LightSwitchController.Toggle().\n/// </summary>\npublic class LightSwitchController : MonoBehaviour\n{\n    [SerializeField] private Light controlledLight;\n    [SerializeField] private Renderer switchRenderer;\n    [SerializeField] private Material litMaterial;\n    [SerializeField] private Material unlitMaterial;\n\n    private bool isOn;\n\n    private void Start()\n    {\n        isOn = controlledLight != null && controlledLight.enabled;\n        UpdateVisual();\n    }\n\n    /// <summary>Toggles the controlled light and updates the switch visual.</summary>\n    public void Toggle()\n    {\n        isOn = !isOn;\n\n        if (controlledLight != null)\n            controlledLight.enabled = isOn;\n\n        UpdateVisual();\n        Debug.Log($\"[LightSwitch] {gameObject.name} → {(isOn ? \"ON\" : \"OFF\")}\");\n    }\n\n    private void UpdateVisual()\n    {\n        if (switchRenderer == null) return;\n        switchRenderer.sharedMaterial = isOn ? litMaterial : unlitMaterial;\n    }\n}\n\n'''\n[Extracted JSON format of scene meta file]\n'''\n{'Has_Rigidbody': False, 'GameObject': {'type': 'GameObject', 'properties': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'serializedVersion': '6'}, {'m_Component': [{'component': [{'fileID': '1618227213'}]}, {'component': [{'fileID': '1618227217'}]}, {'component': [{'fileID': '1618227216'}]}, {'component': [{'fileID': '1618227215'}]}, {'component': [{'fileID': '1618227214'}]}, {'component': [{'fileID': '1618227218'}]}]}, {'m_Layer': '0'}, {'m_Name': 'LightSwitch_Room2'}, {'m_TagString': 'Untagged'}, {'m_Icon': [{'fileID': '0'}]}, {'m_NavMeshLayer': '0'}, {'m_StaticEditorFlags': '0'}, {'m_IsActive': '1'}]}, 'BoxCollider': {'type': 'BoxCollider', 'properties': {'id': '1618227216', 'BoxCollider': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1618227212'}]}, {'m_Material': [{'fileID': '0'}]}, {'m_IsTrigger': '0'}, {'m_Enabled': '1'}, {'serializedVersion': '2'}, {'m_Size': [{'x': '1'}, {'y': '1'}, {'z': '1'}]}, {'m_Center': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'Transform': {'type': 'Transform', 'properties': {'id': '1618227213', 'Transform': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1618227212'}]}, {'m_LocalRotation': [{'x': '0'}, {'y': '0'}, {'z': '0'}, {'w': '1'}]}, {'m_LocalPosition': [{'x': '7.88'}, {'y': '1.4'}, {'z': '1'}]}, {'m_LocalScale': [{'x': '0.05'}, {'y': '0.2'}, {'z': '0.12'}]}, {'m_ConstrainProportionsScale': '0'}, {'m_Children': []}, {'m_Father': [{'fileID': '1271916001'}]}, {'m_RootOrder': '10'}, {'m_LocalEulerAnglesHint': [{'x': '0'}, {'y': '0'}, {'z': '0'}]}]}}, 'MonoBehaviour': [{'MonoBehaviour_0': {'id': '1618227218', 'MonoBehaviour': [{'m_ObjectHideFlags': '0'}, {'m_CorrespondingSourceObject': [{'fileID': '0'}]}, {'m_PrefabInstance': [{'fileID': '0'}]}, {'m_PrefabAsset': [{'fileID': '0'}]}, {'m_GameObject': [{'fileID': '1618227212'}]}, {'m_Enabled': '1'}, {'m_EditorHideFlags': '0'}, {'m_Script': [{'fileID': '11500000'}, {'guid': 'afb52d2e54ea1614294036b01b20569f'}, {'type': '3'}]}, {'m_Name': ''}, {'m_EditorClassIdentifier': ''}, {'controlledLight': [{'fileID': '340544673'}]}, {'switchRenderer': [{'fileID': '1618227215'}]}, {'litMaterial': [{'fileID': '2100000'}, {'guid': '1529549f84e419e409d02128368bed06'}, {'type': '2'}]}, {'unlitMaterial': [{'fileID': '2100000'}, {'guid': '25cacebe91df7a9478efb7354f75efdf'}, {'type': '2'}]}]}}]}\n'''\n\nPlease give me one test plan to trigger all the events to ensure code coverage. Do not include former test plans if they are already perfect. Please respond with the Test Plans format and you must conform the redundancy avoidance policy I gave you. If you need other information, Please also respond with a test plan and respond with \"Need_more_Info\" be true.",
+    "timestamp": "2026-02-27T15:43:00.253649",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      }
+    ],
+    "request_type": "child_request",
+    "child_index": 2,
+    "child_info": {
+      "child_id": "1618227212",
+      "child_id_replace": "1618227212",
+      "child_name": "LightSwitch_Room2",
+      "mono_comp_targets": [
+        {
+          "source": "1618227212",
+          "source_replace": "1618227212",
+          "target": "1618227218",
+          "target_replace": "1618227218",
+          "edge_type": "Has_Mono_Comp",
+          "mono_property": {
+            "id": "1618227218",
+            "MonoBehaviour": [
+              {
+                "m_ObjectHideFlags": "0"
+              },
+              {
+                "m_CorrespondingSourceObject": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabInstance": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_PrefabAsset": [
+                  {
+                    "fileID": "0"
+                  }
+                ]
+              },
+              {
+                "m_GameObject": [
+                  {
+                    "fileID": "1618227212"
+                  }
+                ]
+              },
+              {
+                "m_Enabled": "1"
+              },
+              {
+                "m_EditorHideFlags": "0"
+              },
+              {
+                "m_Script": [
+                  {
+                    "fileID": "11500000"
+                  },
+                  {
+                    "guid": "afb52d2e54ea1614294036b01b20569f"
+                  },
+                  {
+                    "type": "3"
+                  }
+                ]
+              },
+              {
+                "m_Name": ""
+              },
+              {
+                "m_EditorClassIdentifier": ""
+              },
+              {
+                "controlledLight": [
+                  {
+                    "fileID": "340544673"
+                  }
+                ]
+              },
+              {
+                "switchRenderer": [
+                  {
+                    "fileID": "1618227215"
+                  }
+                ]
+              },
+              {
+                "litMaterial": [
+                  {
+                    "fileID": "2100000"
+                  },
+                  {
+                    "guid": "1529549f84e419e409d02128368bed06"
+                  },
+                  {
+                    "type": "2"
+                  }
+                ]
+              },
+              {
+                "unlitMaterial": [
+                  {
+                    "fileID": "2100000"
+                  },
+                  {
+                    "guid": "25cacebe91df7a9478efb7354f75efdf"
+                  },
+                  {
+                    "type": "2"
+                  }
+                ]
+              }
+            ]
+          },
+          "valid_source_code_files": [
+            {
+              "script_id": "afb52d2e54ea1614294036b01b20569f",
+              "file_path": "d:\\--UnityProject\\HenryLabXR\\VRAgent\\VRAgent\\Assets\\Scripts\\LightSwitchController.cs.meta"
+            }
+          ]
+        }
+      ],
+      "depth": 1,
+      "parent_info": {
+        "parent_id": "1271916000",
+        "parent_name": "Room2"
+      },
+      "tag_logic_info": [],
+      "layer_logic_info": [],
+      "gameobject_find_info": [],
+      "gameobject_instantiate_info": []
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source_object_name\": \"Player\",\n          \"source_object_fileID\": \"12345\",\n          \"target_object_name\": \"Interactive Object\",\n          \"target_object_fileID\": \"67890\"\n        },\n        {\n          \"type\": \"Trigger\",\n          \"source_object_name\": \"Interactive Object\",\n          \"method\": \"OnTriggerEnter\",\n          \"condition\": \"Trigger once when player enters collision area\"\n        }\n      ]\n    }\n  ],\n  \"Need_more_Info\": false\n}",
+    "timestamp": "2026-02-27T15:43:00.255159",
+    "llm_context": [
+      {
+        "role": "user",
+        "content": "Imagine you are helping software test engineers to create comprehensive test plans without delving i..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LightSwitch_Room2\": {fileID: 1618227212}. The direct parent of this gameobject is \"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LightSwitch_Room2\": {fileID: 1618227212}. The direct parent of this gameobject is \"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LightSwitch_Room2\": {fileID: 1618227212}. The direct parent of this gameobject is \"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      },
+      {
+        "role": "user",
+        "content": "The children is \"LightSwitch_Room2\": {fileID: 1618227212}. The direct parent of this gameobject is \"..."
+      },
+      {
+        "role": "assistant",
+        "content": "{\n  \"taskUnit\": [\n    {\n      \"actionUnits\": [\n        {\n          \"type\": \"Grab\",\n          \"source..."
+      }
+    ],
+    "response_type": "test_plan_response",
+    "need_more_info": false,
+    "test_plan": null
+  }
+]

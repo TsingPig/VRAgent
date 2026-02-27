@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load data
-df = pd.read_csv("dataset_summary.csv")
+df = pd.read_csv("dataset_metrics.csv")
 
 # Columns for statistics
 metrics = ["Scripts", "LOC", "Files", "Scenes", "GOs"]

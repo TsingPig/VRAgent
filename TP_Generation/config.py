@@ -1068,3 +1068,17 @@ Please finalize the test plan based on previous test plans to ensure code covera
 """
 # Default values for test plan generation
 DEFAULT_APP_NAME = "escapeVr"
+
+# Path configurations for analysis tools
+import os
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+unity_analyzer_path = os.path.join(_script_dir, "UnityDataAnalyzer", "UnityDataAnalyzer.exe")
+csharp_analyzer_path = os.path.join(_script_dir, "CSharpScriptAnalyzer", "CSharpAnalyzer.exe")
+structure_analyzer_path = os.path.join(_script_dir, "CodeStructureAnalyzer", "CodeStructureAnalyzer.exe")
+
+
+
+
+# OpenAI API Configuration
+OPENAI_API_KEY = "sk-..."  # 替换为你从 https://platform.openai.com/api-keys 获得的 API Key
+basicUrl_gpt35 = "https://api.openai.com/v1"

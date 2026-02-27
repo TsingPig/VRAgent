@@ -1,4 +1,4 @@
- #!/usr/bin/env python3
+﻿ #!/usr/bin/env python3
 """
 Modified GenerateTestPlan.py - Uses sorted_target_logic_info field
 
@@ -14,7 +14,7 @@ import sys
 import argparse
 import importlib
 from datetime import datetime
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional, Set, Tuple
 import networkx as nx
 import openai
 import time
@@ -284,7 +284,7 @@ class GenerateTestPlanModified:
             except Exception as e:
                 print(f"[ERROR] LLM API call failed (attempt {attempt + 1}/{max_retries}): {e}")
                 if attempt < max_retries - 1:
-                    print("⏳ Waiting 30 seconds before retry...")
+                    print("鈴?Waiting 30 seconds before retry...")
                     time.sleep(30)
                 else:
                     print("[ERROR] All retries failed")
@@ -1162,7 +1162,7 @@ class GenerateTestPlanModified:
     
     def _handle_llm_response(self, response: str, conversation_history: List[Dict[str, Any]], 
                            llm_context: List[Dict[str, str]], request: str, 
-                           response_type: str = 'test_plan_response', **kwargs) -> tuple[bool, int]:
+                           response_type: str = 'test_plan_response', **kwargs) -> Tuple[bool, int]:
         """
         General method to handle LLM response
         
@@ -1558,7 +1558,7 @@ class GenerateTestPlanModified:
                     return child_info.get('gameobject_instantiate_info', [])
         return None
     
-    def _handle_sorted_target_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_target_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_sorted_target_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_target_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
         Handle sorted_target_logic_info related conversation (supports multi-turn conversation)
         
@@ -1629,7 +1629,7 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context, turn_count
     
-    def _handle_sorted_layer_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_layer_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_sorted_layer_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_layer_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
         Handle sorted_layer_logic_info related conversation (supports multi-turn conversation)
         
@@ -1700,7 +1700,7 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context, turn_count
     
-    def _handle_gameobject_find_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_find_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_gameobject_find_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_find_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
         Handle gameobject_find_info related conversation (supports multi-turn conversation)
         
@@ -1772,7 +1772,7 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context, turn_count
     
-    def _handle_gameobject_instantiate_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_instantiate_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_gameobject_instantiate_logic_conversation(self, child_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_instantiate_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
         Handle gameobject_instantiate_info related conversation (supports multi-turn conversation)
         
@@ -1844,19 +1844,19 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context, turn_count
     
-    def _handle_main_sorted_target_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_target_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_main_sorted_target_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_target_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
-        处理主对象的 sorted_target_logic_info 相关的对话（支持多轮对话）
+        澶勭悊涓诲璞＄殑 sorted_target_logic_info 鐩稿叧鐨勫璇濓紙鏀寔澶氳疆瀵硅瘽锛?
         
         Args:
-            gobj_info: 主GameObject信息
-            scene_name: 场景名称
-            conversation_history: 对话历史记录
-            sorted_target_logic_info: 排序后的目标逻辑信息
-            llm_context: LLM对话上下文
+            gobj_info: 涓籊ameObject淇℃伅
+            scene_name: 鍦烘櫙鍚嶇О
+            conversation_history: 瀵硅瘽鍘嗗彶璁板綍
+            sorted_target_logic_info: 鎺掑簭鍚庣殑鐩爣閫昏緫淇℃伅
+            llm_context: LLM瀵硅瘽涓婁笅鏂?
         
         Returns:
-            tuple: (更新后的对话历史记录, 更新后的LLM上下文, 对话轮数)
+            tuple: (鏇存柊鍚庣殑瀵硅瘽鍘嗗彶璁板綍, 鏇存柊鍚庣殑LLM涓婁笅鏂? 瀵硅瘽杞暟)
         """
         gobj_name = gobj_info['gameobject_name']
         gobj_id = gobj_info['gameobject_id']
@@ -1865,25 +1865,25 @@ class GenerateTestPlanModified:
         
         print(f"[PROCESS] Starting to process main object {gobj_name}'s sorted_target_logic_info...")
         
-        # 将当前主对象ID添加到已处理集合中
+        # 灏嗗綋鍓嶄富瀵硅薄ID娣诲姞鍒板凡澶勭悊闆嗗悎涓?
         self.processed_object_ids.add(gobj_id)
         
-        # 获取脚本源代码
+        # 鑾峰彇鑴氭湰婧愪唬鐮?
         combined_script_source = self._build_script_content(mono_comp_ids)
         
-        # 获取主对象的场景元数据
+        # 鑾峰彇涓诲璞＄殑鍦烘櫙鍏冩暟鎹?
         gobj_scene_meta = self._extract_scene_meta_info(gobj_id, scene_name, mono_comp_ids)
         
-        # 从sorted_target_logic_info中获取需要的GameObject ID列表
+        # 浠巗orted_target_logic_info涓幏鍙栭渶瑕佺殑GameObject ID鍒楄〃
         needed_gameobject_ids = []
         if isinstance(sorted_target_logic_info, list):
             self.processed_object_ids.update([item.get('id') for item in sorted_target_logic_info if item.get('id')])
             needed_gameobject_ids = [item.get('id') for item in sorted_target_logic_info if item.get('id')]
         
-        # 获取这些GameObject的脚本源代码和场景元数据
+        # 鑾峰彇杩欎簺GameObject鐨勮剼鏈簮浠ｇ爜鍜屽満鏅厓鏁版嵁
         script_sources_and_meta = self._get_formatted_script_sources_and_meta(sorted_target_logic_info, scene_name)
         
-        # 使用 TAG_LOGIC_MAIN_REQUEST_TEMPLATE 生成请求
+        # 浣跨敤 TAG_LOGIC_MAIN_REQUEST_TEMPLATE 鐢熸垚璇锋眰
         request = self.TAG_LOGIC_MAIN_REQUEST_TEMPLATE.format(
             gobj_name=gobj_name,
             gobj_id=gobj_id_replace,
@@ -1891,7 +1891,7 @@ class GenerateTestPlanModified:
             script_sources_and_meta=script_sources_and_meta
         )
         
-        # 发送请求到对话历史
+        # 鍙戦€佽姹傚埌瀵硅瘽鍘嗗彶
         self._add_conversation_message(
             conversation_history, 'user', request,
             llm_context=llm_context,
@@ -1900,10 +1900,10 @@ class GenerateTestPlanModified:
             sorted_target_logic_info=sorted_target_logic_info
         )
         
-        # 调用LLM API获取响应（传递对话上下文）
+        # 璋冪敤LLM API鑾峰彇鍝嶅簲锛堜紶閫掑璇濅笂涓嬫枃锛?
         tag_response = self._call_llm_api(request, llm_context, llm_model=llm_model)
         
-        # 使用通用方法处理响应
+        # 浣跨敤閫氱敤鏂规硶澶勭悊鍝嶅簲
         need_more_info, turn_count = self._handle_llm_response(
             tag_response, conversation_history, llm_context, request,
             response_type='test_plan_response'
@@ -1911,19 +1911,19 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context, turn_count
     
-    def _handle_main_sorted_layer_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_layer_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_main_sorted_layer_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], sorted_layer_logic_info: Dict[str, Any], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
-        处理主对象的 sorted_layer_logic_info 相关的对话（支持多轮对话）
+        澶勭悊涓诲璞＄殑 sorted_layer_logic_info 鐩稿叧鐨勫璇濓紙鏀寔澶氳疆瀵硅瘽锛?
         
         Args:
-            gobj_info: 主GameObject信息
-            scene_name: 场景名称
-            conversation_history: 对话历史记录
-            sorted_layer_logic_info: 排序后的layer逻辑信息
-            llm_context: LLM对话上下文
+            gobj_info: 涓籊ameObject淇℃伅
+            scene_name: 鍦烘櫙鍚嶇О
+            conversation_history: 瀵硅瘽鍘嗗彶璁板綍
+            sorted_layer_logic_info: 鎺掑簭鍚庣殑layer閫昏緫淇℃伅
+            llm_context: LLM瀵硅瘽涓婁笅鏂?
         
         Returns:
-            tuple: (更新后的对话历史记录, 更新后的LLM上下文, 对话轮数)
+            tuple: (鏇存柊鍚庣殑瀵硅瘽鍘嗗彶璁板綍, 鏇存柊鍚庣殑LLM涓婁笅鏂? 瀵硅瘽杞暟)
         """
         gobj_name = gobj_info['gameobject_name']
         gobj_id = gobj_info['gameobject_id']
@@ -1932,25 +1932,25 @@ class GenerateTestPlanModified:
         
         print(f"[PROCESS] Starting to process main object {gobj_name}'s sorted_layer_logic_info...")
         
-        # 将当前主对象ID添加到已处理集合中
+        # 灏嗗綋鍓嶄富瀵硅薄ID娣诲姞鍒板凡澶勭悊闆嗗悎涓?
         self.processed_object_ids.add(gobj_id)
         
-        # 获取脚本源代码
+        # 鑾峰彇鑴氭湰婧愪唬鐮?
         combined_script_source = self._build_script_content(mono_comp_ids)
         
-        # 获取主对象的场景元数据
+        # 鑾峰彇涓诲璞＄殑鍦烘櫙鍏冩暟鎹?
         gobj_scene_meta = self._extract_scene_meta_info(gobj_id, scene_name, mono_comp_ids)
         
-        # 从sorted_layer_logic_info中获取需要的GameObject ID列表
+        # 浠巗orted_layer_logic_info涓幏鍙栭渶瑕佺殑GameObject ID鍒楄〃
         needed_gameobject_ids = []
         if isinstance(sorted_layer_logic_info, list):
             self.processed_object_ids.update([item.get('id') for item in sorted_layer_logic_info if item.get('id')])
             needed_gameobject_ids = [item.get('id') for item in sorted_layer_logic_info if item.get('id')]
         
-        # 获取这些GameObject的脚本源代码和场景元数据
+        # 鑾峰彇杩欎簺GameObject鐨勮剼鏈簮浠ｇ爜鍜屽満鏅厓鏁版嵁
         script_sources_and_meta = self._get_formatted_script_sources_and_meta(sorted_layer_logic_info, scene_name)
         
-        # 使用 LAYER_LOGIC_MAIN_REQUEST_TEMPLATE 生成请求
+        # 浣跨敤 LAYER_LOGIC_MAIN_REQUEST_TEMPLATE 鐢熸垚璇锋眰
         request = self.LAYER_LOGIC_MAIN_REQUEST_TEMPLATE.format(
             gobj_name=gobj_name,
             gobj_id=gobj_id_replace,
@@ -1958,7 +1958,7 @@ class GenerateTestPlanModified:
             script_sources_and_meta=script_sources_and_meta
         )
         
-        # 发送请求到对话历史
+        # 鍙戦€佽姹傚埌瀵硅瘽鍘嗗彶
         self._add_conversation_message(
             conversation_history, 'user', request,
             llm_context=llm_context,
@@ -1967,10 +1967,10 @@ class GenerateTestPlanModified:
             sorted_layer_logic_info=sorted_layer_logic_info
         )
         
-        # 调用LLM API获取响应（传递对话上下文）
+        # 璋冪敤LLM API鑾峰彇鍝嶅簲锛堜紶閫掑璇濅笂涓嬫枃锛?
         layer_response = self._call_llm_api(request, llm_context, llm_model=llm_model)
         
-        # 使用通用方法处理响应
+        # 浣跨敤閫氱敤鏂规硶澶勭悊鍝嶅簲
         need_more_info, turn_count = self._handle_llm_response(
             layer_response, conversation_history, llm_context, request,
             response_type='test_plan_response'
@@ -1978,19 +1978,19 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context, turn_count
     
-    def _handle_main_gameobject_find_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_find_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_main_gameobject_find_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_find_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
-        处理主对象的 gameobject_find_info 相关的对话（支持多轮对话）
+        澶勭悊涓诲璞＄殑 gameobject_find_info 鐩稿叧鐨勫璇濓紙鏀寔澶氳疆瀵硅瘽锛?
         
         Args:
-            gobj_info: 主GameObject信息
-            scene_name: 场景名称
-            conversation_history: 对话历史记录
-            gameobject_find_info: GameObject Find逻辑信息列表
-            llm_context: LLM对话上下文
+            gobj_info: 涓籊ameObject淇℃伅
+            scene_name: 鍦烘櫙鍚嶇О
+            conversation_history: 瀵硅瘽鍘嗗彶璁板綍
+            gameobject_find_info: GameObject Find閫昏緫淇℃伅鍒楄〃
+            llm_context: LLM瀵硅瘽涓婁笅鏂?
         
         Returns:
-            tuple: (更新后的对话历史记录, 更新后的LLM上下文, 对话轮数)
+            tuple: (鏇存柊鍚庣殑瀵硅瘽鍘嗗彶璁板綍, 鏇存柊鍚庣殑LLM涓婁笅鏂? 瀵硅瘽杞暟)
         """
         gobj_name = gobj_info['gameobject_name']
         gobj_id = gobj_info['gameobject_id']
@@ -1999,25 +1999,25 @@ class GenerateTestPlanModified:
         
         print(f"[PROCESS] Starting to process main object {gobj_name}'s gameobject_find_info...")
         
-        # 将当前主对象ID添加到已处理集合中
+        # 灏嗗綋鍓嶄富瀵硅薄ID娣诲姞鍒板凡澶勭悊闆嗗悎涓?
         self.processed_object_ids.add(gobj_id)
         
-        # 获取脚本源代码
+        # 鑾峰彇鑴氭湰婧愪唬鐮?
         combined_script_source = self._build_script_content(mono_comp_ids)
         
-        # 获取主对象的场景元数据
+        # 鑾峰彇涓诲璞＄殑鍦烘櫙鍏冩暟鎹?
         gobj_scene_meta = self._extract_scene_meta_info(gobj_id, scene_name, mono_comp_ids)
         
-        # 从gameobject_find_info中获取需要的GameObject ID列表
+        # 浠巊ameobject_find_info涓幏鍙栭渶瑕佺殑GameObject ID鍒楄〃
         needed_gameobject_ids = []
         if isinstance(gameobject_find_info, list):
             needed_gameobject_ids = [item.get('target') for item in gameobject_find_info if item.get('target')]
             self.processed_object_ids.update(needed_gameobject_ids)
         
-        # 获取这些GameObject的脚本源代码和场景元数据
+        # 鑾峰彇杩欎簺GameObject鐨勮剼鏈簮浠ｇ爜鍜屽満鏅厓鏁版嵁
         script_sources_and_meta = self._get_formatted_script_sources_and_meta_for_find_logic(gameobject_find_info, scene_name)
         
-        # 使用 GAMEOBJECT_FIND_LOGIC_MAIN_REQUEST_TEMPLATE 生成请求
+        # 浣跨敤 GAMEOBJECT_FIND_LOGIC_MAIN_REQUEST_TEMPLATE 鐢熸垚璇锋眰
         request = self.GAMEOBJECT_FIND_LOGIC_MAIN_REQUEST_TEMPLATE.format(
             gobj_name=gobj_name,
             gobj_id=gobj_id_replace,
@@ -2025,7 +2025,7 @@ class GenerateTestPlanModified:
             script_sources_and_meta=script_sources_and_meta
         )
         
-        # 发送请求到对话历史
+        # 鍙戦€佽姹傚埌瀵硅瘽鍘嗗彶
         self._add_conversation_message(
             conversation_history, 'user', request,
             llm_context=llm_context,
@@ -2034,10 +2034,10 @@ class GenerateTestPlanModified:
             gameobject_find_info=gameobject_find_info
         )
         
-        # 调用LLM API获取响应（传递对话上下文）
+        # 璋冪敤LLM API鑾峰彇鍝嶅簲锛堜紶閫掑璇濅笂涓嬫枃锛?
         find_response = self._call_llm_api(request, llm_context, llm_model=llm_model)
         
-        # 使用通用方法处理响应
+        # 浣跨敤閫氱敤鏂规硶澶勭悊鍝嶅簲
         need_more_info, turn_count = self._handle_llm_response(
             find_response, conversation_history, llm_context, request,
             response_type='test_plan_response'
@@ -2045,19 +2045,19 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context, turn_count
     
-    def _handle_main_gameobject_instantiate_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_instantiate_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
+    def _handle_main_gameobject_instantiate_logic_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], gameobject_instantiate_info: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]], int]:
         """
-        处理主对象的 gameobject_instantiate_info 相关的对话（支持多轮对话）
+        澶勭悊涓诲璞＄殑 gameobject_instantiate_info 鐩稿叧鐨勫璇濓紙鏀寔澶氳疆瀵硅瘽锛?
         
         Args:
-            gobj_info: 主GameObject信息
-            scene_name: 场景名称
-            conversation_history: 对话历史记录
-            gameobject_instantiate_info: GameObject Instantiate逻辑信息列表
-            llm_context: LLM对话上下文
+            gobj_info: 涓籊ameObject淇℃伅
+            scene_name: 鍦烘櫙鍚嶇О
+            conversation_history: 瀵硅瘽鍘嗗彶璁板綍
+            gameobject_instantiate_info: GameObject Instantiate閫昏緫淇℃伅鍒楄〃
+            llm_context: LLM瀵硅瘽涓婁笅鏂?
         
         Returns:
-            tuple: (更新后的对话历史记录, 更新后的LLM上下文, 对话轮数)
+            tuple: (鏇存柊鍚庣殑瀵硅瘽鍘嗗彶璁板綍, 鏇存柊鍚庣殑LLM涓婁笅鏂? 瀵硅瘽杞暟)
         """
         gobj_name = gobj_info['gameobject_name']
         gobj_id = gobj_info['gameobject_id']
@@ -2066,25 +2066,25 @@ class GenerateTestPlanModified:
         
         print(f"[PROCESS] Starting to process main object {gobj_name}'s gameobject_instantiate_info...")
         
-        # 将当前主对象ID添加到已处理集合中
+        # 灏嗗綋鍓嶄富瀵硅薄ID娣诲姞鍒板凡澶勭悊闆嗗悎涓?
         self.processed_object_ids.add(gobj_id)
         
-        # 获取脚本源代码
+        # 鑾峰彇鑴氭湰婧愪唬鐮?
         combined_script_source = self._build_script_content(mono_comp_ids)
         
-        # 获取主对象的场景元数据
+        # 鑾峰彇涓诲璞＄殑鍦烘櫙鍏冩暟鎹?
         gobj_scene_meta = self._extract_scene_meta_info(gobj_id, scene_name, mono_comp_ids)
         
-        # 从gameobject_instantiate_info中获取需要的GameObject ID列表
+        # 浠巊ameobject_instantiate_info涓幏鍙栭渶瑕佺殑GameObject ID鍒楄〃
         needed_gameobject_ids = []
         if isinstance(gameobject_instantiate_info, list):
             needed_gameobject_ids = [item.get('target') for item in gameobject_instantiate_info if item.get('target')]
             self.processed_object_ids.update(needed_gameobject_ids)
         
-        # 获取这些GameObject的脚本源代码和场景元数据
+        # 鑾峰彇杩欎簺GameObject鐨勮剼鏈簮浠ｇ爜鍜屽満鏅厓鏁版嵁
         script_sources_and_meta = self._get_formatted_script_sources_and_meta_for_instantiate_logic(gameobject_instantiate_info, scene_name)
         
-        # 使用 GAMEOBJECT_INSTANTIATE_LOGIC_MAIN_REQUEST_TEMPLATE 生成请求
+        # 浣跨敤 GAMEOBJECT_INSTANTIATE_LOGIC_MAIN_REQUEST_TEMPLATE 鐢熸垚璇锋眰
         request = self.GAMEOBJECT_INSTANTIATE_LOGIC_MAIN_REQUEST_TEMPLATE.format(
             gobj_name=gobj_name,
             gobj_id=gobj_id_replace,
@@ -2092,7 +2092,7 @@ class GenerateTestPlanModified:
             script_sources_and_meta=script_sources_and_meta
         )
         
-        # 发送请求到对话历史
+        # 鍙戦€佽姹傚埌瀵硅瘽鍘嗗彶
         self._add_conversation_message(
             conversation_history, 'user', request,
             llm_context=llm_context,
@@ -2101,10 +2101,10 @@ class GenerateTestPlanModified:
             gameobject_instantiate_info=gameobject_instantiate_info
         )
         
-        # 调用LLM API获取响应（传递对话上下文）
+        # 璋冪敤LLM API鑾峰彇鍝嶅簲锛堜紶閫掑璇濅笂涓嬫枃锛?
         instantiate_response = self._call_llm_api(request, llm_context, llm_model=llm_model)
         
-        # 使用通用方法处理响应
+        # 浣跨敤閫氱敤鏂规硶澶勭悊鍝嶅簲
         need_more_info, turn_count = self._handle_llm_response(
             instantiate_response, conversation_history, llm_context, request,
             response_type='test_plan_response'
@@ -2114,18 +2114,18 @@ class GenerateTestPlanModified:
     
     def _get_formatted_script_sources_and_meta_for_find_logic(self, gameobject_find_info: List[Dict[str, Any]], scene_name: str) -> str:
         """
-        获取指定GameObject的脚本源代码和场景元数据，格式化输出（用于gameobject_find_info）
+        鑾峰彇鎸囧畾GameObject鐨勮剼鏈簮浠ｇ爜鍜屽満鏅厓鏁版嵁锛屾牸寮忓寲杈撳嚭锛堢敤浜巊ameobject_find_info锛?
         
         Args:
-            gameobject_find_info: gameobject_find_info列表，每个元素包含source、target、edge_type、target_gameobject_name等字段
-            scene_name: 场景名称
+            gameobject_find_info: gameobject_find_info鍒楄〃锛屾瘡涓厓绱犲寘鍚玸ource銆乼arget銆乪dge_type銆乼arget_gameobject_name绛夊瓧娈?
+            scene_name: 鍦烘櫙鍚嶇О
         
         Returns:
-            str: 格式化的脚本源代码和场景元数据
+            str: 鏍煎紡鍖栫殑鑴氭湰婧愪唬鐮佸拰鍦烘櫙鍏冩暟鎹?
         """
         result = ""
         
-        # 遍历gameobject_find_info列表，每个元素包含target和target_gameobject_name
+        # 閬嶅巻gameobject_find_info鍒楄〃锛屾瘡涓厓绱犲寘鍚玹arget鍜宼arget_gameobject_name
         for i, find_item in enumerate(gameobject_find_info):
             target_id = find_item.get('target')
             target_id_replace = find_item.get('target_replace')
@@ -2135,25 +2135,25 @@ class GenerateTestPlanModified:
                 print(f"[WARN]  Target GameObject ID not found")
                 continue
             
-            # 直接使用target_gameobject_name字段
+            # 鐩存帴浣跨敤target_gameobject_name瀛楁
             gobj_name = target_gameobject_name
             
-            # 为每个 GameObject 添加分隔符和标题
+            # 涓烘瘡涓?GameObject 娣诲姞鍒嗛殧绗﹀拰鏍囬
             if i > 0:
                 result += "\n"
             
             result += f"""GameObject ID: "{target_id_replace}" GameObject Name: "{gobj_name}":\n"""
             
-            # 获取该 GameObject 的脚本源代码
+            # 鑾峰彇璇?GameObject 鐨勮剼鏈簮浠ｇ爜
             script_source = ""
             found_mono_comp = False
             if scene_name in self.scene_meta_data:
                 scene_graph = self.scene_meta_data[scene_name]   
-                # 查找以target_id为source的Has_Mono_Comp关系
+                # 鏌ユ壘浠arget_id涓簊ource鐨凥as_Mono_Comp鍏崇郴
                 for source, target, edge_data in scene_graph.edges(data=True):
                     if (edge_data.get('type') == 'Has_Mono_Comp' and 
                         source == target_id):                        
-                        # 找到Has_Mono_Comp关系，使用target调用_extract_script_source_code
+                        # 鎵惧埌Has_Mono_Comp鍏崇郴锛屼娇鐢╰arget璋冪敤_extract_script_source_code
                         mono_comp_id = target
                         found_mono_comp = True
                         extracted_script = self._extract_script_source_code(mono_comp_id)
@@ -2172,8 +2172,8 @@ class GenerateTestPlanModified:
             
             result += "\n"
             
-            # 获取该 GameObject 的场景元数据
-            # 使用 _extract_scene_meta_info 方法获取场景元数据
+            # 鑾峰彇璇?GameObject 鐨勫満鏅厓鏁版嵁
+            # 浣跨敤 _extract_scene_meta_info 鏂规硶鑾峰彇鍦烘櫙鍏冩暟鎹?
             scene_meta = self._extract_scene_meta_info(target_id, scene_name, [])
             if scene_meta:
                 result += "[Source code of scene meta file]\n"
@@ -2190,18 +2190,18 @@ class GenerateTestPlanModified:
     
     def _get_formatted_script_sources_and_meta_for_instantiate_logic(self, gameobject_instantiate_info: List[Dict[str, Any]], scene_name: str) -> str:
         """
-        获取指定GameObject的脚本源代码和场景元数据，格式化输出（用于gameobject_instantiate_info）
+        鑾峰彇鎸囧畾GameObject鐨勮剼鏈簮浠ｇ爜鍜屽満鏅厓鏁版嵁锛屾牸寮忓寲杈撳嚭锛堢敤浜巊ameobject_instantiate_info锛?
         
         Args:
-            gameobject_instantiate_info: gameobject_instantiate_info列表，每个元素包含source、target、edge_type、target_gameobject_name等字段
-            scene_name: 场景名称
+            gameobject_instantiate_info: gameobject_instantiate_info鍒楄〃锛屾瘡涓厓绱犲寘鍚玸ource銆乼arget銆乪dge_type銆乼arget_gameobject_name绛夊瓧娈?
+            scene_name: 鍦烘櫙鍚嶇О
         
         Returns:
-            str: 格式化的脚本源代码和场景元数据
+            str: 鏍煎紡鍖栫殑鑴氭湰婧愪唬鐮佸拰鍦烘櫙鍏冩暟鎹?
         """
         result = ""
         
-        # 遍历gameobject_instantiate_info列表，每个元素包含target和target_gameobject_name
+        # 閬嶅巻gameobject_instantiate_info鍒楄〃锛屾瘡涓厓绱犲寘鍚玹arget鍜宼arget_gameobject_name
         for i, instantiate_item in enumerate(gameobject_instantiate_info):
             target_id = instantiate_item.get('target')
             target_id_replace = instantiate_item.get('target_replace')
@@ -2211,25 +2211,25 @@ class GenerateTestPlanModified:
                 print(f"[WARN]  Target GameObject ID not found")
                 continue
             
-            # 直接使用target_gameobject_name字段
+            # 鐩存帴浣跨敤target_gameobject_name瀛楁
             gobj_name = target_gameobject_name
             
-            # 为每个 GameObject 添加分隔符和标题
+            # 涓烘瘡涓?GameObject 娣诲姞鍒嗛殧绗﹀拰鏍囬
             if i > 0:
                 result += "\n"
             
             result += f"""GameObject ID: "{target_id_replace}" GameObject Name: "{gobj_name}":\n"""
             
-            # 获取该 GameObject 的脚本源代码
+            # 鑾峰彇璇?GameObject 鐨勮剼鏈簮浠ｇ爜
             script_source = ""
             found_mono_comp = False
             if scene_name in self.scene_meta_data:
                 scene_graph = self.scene_meta_data[scene_name]   
-                # 查找以target_id为source的Has_Mono_Comp关系
+                # 鏌ユ壘浠arget_id涓簊ource鐨凥as_Mono_Comp鍏崇郴
                 for source, target, edge_data in scene_graph.edges(data=True):
                     if (edge_data.get('type') == 'Has_Mono_Comp' and 
                         source == target_id):                        
-                        # 找到Has_Mono_Comp关系，使用target调用_extract_script_source_code
+                        # 鎵惧埌Has_Mono_Comp鍏崇郴锛屼娇鐢╰arget璋冪敤_extract_script_source_code
                         mono_comp_id = target
                         found_mono_comp = True
                         extracted_script = self._extract_script_source_code(mono_comp_id)
@@ -2248,8 +2248,8 @@ class GenerateTestPlanModified:
             
             result += "\n"
             
-            # 获取该 GameObject 的场景元数据
-            # 使用 _extract_scene_meta_info 方法获取场景元数据
+            # 鑾峰彇璇?GameObject 鐨勫満鏅厓鏁版嵁
+            # 浣跨敤 _extract_scene_meta_info 鏂规硶鑾峰彇鍦烘櫙鍏冩暟鎹?
             scene_meta = self._extract_scene_meta_info(target_id, scene_name, [])
             if scene_meta:
                 result += "[Source code of scene meta file]\n"
@@ -2302,7 +2302,7 @@ class GenerateTestPlanModified:
         conversation_turn_count += turn_count
         
         if first_response:
-            # 将first_request和first_response添加到llm_context中
+            # 灏唂irst_request鍜宖irst_response娣诲姞鍒發lm_context涓?
             llm_context.append({'role': 'user', 'content': first_request})
             llm_context.append({'role': 'assistant', 'content': first_response})
             
@@ -2441,24 +2441,24 @@ class GenerateTestPlanModified:
         print(f"[DONE] GameObject '{gobj_info['gameobject_name']}' test plan generation complete, conducted {conversation_turn_count} turns of conversation")
         return all_conversation_history
     
-    def _handle_child_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]]]:
+    def _handle_child_conversation(self, gobj_info: Dict[str, Any], scene_name: str, conversation_history: List[Dict[str, Any]], llm_context: List[Dict[str, str]], llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]]]:
         """
-        处理子对象的对话（支持多轮对话）
+        澶勭悊瀛愬璞＄殑瀵硅瘽锛堟敮鎸佸杞璇濓級
         
         Args:
-            gobj_info: GameObject信息
-            scene_name: 场景名称
-            conversation_history: 对话历史记录
-            llm_context: LLM对话上下文
+            gobj_info: GameObject淇℃伅
+            scene_name: 鍦烘櫙鍚嶇О
+            conversation_history: 瀵硅瘽鍘嗗彶璁板綍
+            llm_context: LLM瀵硅瘽涓婁笅鏂?
         
         Returns:
-            tuple: (更新后的对话历史记录, 更新后的LLM上下文)
+            tuple: (鏇存柊鍚庣殑瀵硅瘽鍘嗗彶璁板綍, 鏇存柊鍚庣殑LLM涓婁笅鏂?
         """
-        # 处理子对象的Mono组件信息 - 先对子对象进行排序，将含有特殊逻辑的子节点优先处理
+        # 澶勭悊瀛愬璞＄殑Mono缁勪欢淇℃伅 - 鍏堝瀛愬璞¤繘琛屾帓搴忥紝灏嗗惈鏈夌壒娈婇€昏緫鐨勫瓙鑺傜偣浼樺厛澶勭悊
         child_mono_comp_info = gobj_info.get('child_mono_comp_info', [])
         child_mono_comp_info = self._sort_children_by_special_logic(child_mono_comp_info)
         
-        # 从对话历史中提取已经通过sorted_target_logic_info处理过的对象ID
+        # 浠庡璇濆巻鍙蹭腑鎻愬彇宸茬粡閫氳繃sorted_target_logic_info澶勭悊杩囩殑瀵硅薄ID
         processed_object_ids = set()
         for msg in conversation_history:
             if msg.get('response_type') == 'processed_objects_info' and 'processed_object_ids' in msg:
@@ -2471,12 +2471,12 @@ class GenerateTestPlanModified:
             child_id = child_info['child_id']
             child_name = child_info['child_name']
             
-            # 检查该子对象是否已经在sorted_target_logic_info中被处理过
+            # 妫€鏌ヨ瀛愬璞℃槸鍚﹀凡缁忓湪sorted_target_logic_info涓澶勭悊杩?
             if child_id in processed_object_ids:
                 print(f"[SKIP]  Skipping child object {child_name} (ID: {child_id}), already processed in sorted_target_logic_info")
                 conversation_history.append({
                     'role': 'system',
-                    'content': f"跳过子对象 {child_name} (ID: {child_id})，已在sorted_target_logic_info中处理过",
+                    'content': f"璺宠繃瀛愬璞?{child_name} (ID: {child_id})锛屽凡鍦╯orted_target_logic_info涓鐞嗚繃",
                     'response_type': 'skipped_object_info',
                     'skipped_object_id': child_id,
                     'skipped_object_name': child_name,
@@ -2486,15 +2486,15 @@ class GenerateTestPlanModified:
             
             print(f"[SEND] Providing child object {i} information: {child_name}")
             
-            # 生成子对象请求，并处理sorted_target_logic_info逻辑
+            # 鐢熸垚瀛愬璞¤姹傦紝骞跺鐞唖orted_target_logic_info閫昏緫
             child_request_result = self.generate_child_request(child_info, i, scene_name, conversation_history, llm_context)
             
             if child_request_result['has_sorted_target_logic'] or child_request_result['has_gameobject_find_logic'] or child_request_result['has_gameobject_instantiate_logic']:
-                # 如果有特殊逻辑信息，已经通过generate_child_request处理完成
+                # 濡傛灉鏈夌壒娈婇€昏緫淇℃伅锛屽凡缁忛€氳繃generate_child_request澶勭悊瀹屾垚
                 print(f"[INFO] {child_request_result['message']}")
                 continue
             
-            # 没有特殊逻辑信息的子对象，使用正常的流程
+            # 娌℃湁鐗规畩閫昏緫淇℃伅鐨勫瓙瀵硅薄锛屼娇鐢ㄦ甯哥殑娴佺▼
             child_request = child_request_result['request']
             print(f"[INFO] {child_request_result['message']}")
             
@@ -2507,31 +2507,31 @@ class GenerateTestPlanModified:
                 'timestamp': datetime.now().isoformat()
             })
             
-            # 调用LLM API获取子对象响应（传递对话上下文）
+            # 璋冪敤LLM API鑾峰彇瀛愬璞″搷搴旓紙浼犻€掑璇濅笂涓嬫枃锛?
             child_response = self._call_llm_api(child_request, llm_context, llm_model=llm_model)
             
             if child_response:
-                # 将响应添加到LLM上下文
+                # 灏嗗搷搴旀坊鍔犲埌LLM涓婁笅鏂?
                 llm_context.append({'role': 'user', 'content': child_request})
                 llm_context.append({'role': 'assistant', 'content': child_response})
                 
-                # 解析LLM响应
+                # 瑙ｆ瀽LLM鍝嶅簲
                 parsed_child_response = self._parse_llm_response(child_response)
                 
-                # 如果子对象需要更多信息，启用多轮对话
+                # 濡傛灉瀛愬璞￠渶瑕佹洿澶氫俊鎭紝鍚敤澶氳疆瀵硅瘽
                 if parsed_child_response['need_more_info']:
                     print(f"[INFO] Child object {child_name} needs more information, enabling multi-turn conversation...")
-                    # 使用多轮对话来完善子对象的测试计划
+                    # 浣跨敤澶氳疆瀵硅瘽鏉ュ畬鍠勫瓙瀵硅薄鐨勬祴璇曡鍒?
                     final_child_response, llm_context, multi_turn_count = self._handle_multi_turn_conversation(
                         child_request, max_turns=3, llm_context=llm_context
                     )
                     
-                    # 记录多轮对话的最终结果
+                    # 璁板綍澶氳疆瀵硅瘽鐨勬渶缁堢粨鏋?
                     conversation_history.append({
                         'role': 'assistant',
                         'content': final_child_response,
                         'response_type': 'test_plan_response',
-                        'need_more_info': False,  # 多轮对话后应该完成
+                        'need_more_info': False,  # 澶氳疆瀵硅瘽鍚庡簲璇ュ畬鎴?
                         'test_plan': self._parse_llm_response(final_child_response)['test_plan'],
                         'timestamp': datetime.now().isoformat()
                     })
@@ -2547,7 +2547,7 @@ class GenerateTestPlanModified:
                     })
                     print(f"[OK] Child object {child_name} has obtained sufficient information")
                 
-                # 继续处理下一个子对象
+                # 缁х画澶勭悊涓嬩竴涓瓙瀵硅薄
                 if i < len(child_mono_comp_info):
                     print(f"[INFO] Continuing to process next child object...")
                     continue
@@ -2556,7 +2556,7 @@ class GenerateTestPlanModified:
                     break
             else:
                 print(f"[ERROR] Failed to get LLM response for child object {child_name}")
-                # 添加错误响应到对话历史
+                # 娣诲姞閿欒鍝嶅簲鍒板璇濆巻鍙?
                 conversation_history.append({
                     'role': 'assistant',
                     'content': f"Error: Failed to get LLM response for child object {child_name}",
@@ -2567,7 +2567,7 @@ class GenerateTestPlanModified:
         return conversation_history, llm_context
     
     def _get_remaining_children(self, gobj_info: Dict[str, Any], processed_children: set) -> List[Dict[str, Any]]:
-        """获取未处理的子对象列表，并对其进行排序，将含有特殊逻辑的子节点优先处理"""
+        """鑾峰彇鏈鐞嗙殑瀛愬璞″垪琛紝骞跺鍏惰繘琛屾帓搴忥紝灏嗗惈鏈夌壒娈婇€昏緫鐨勫瓙鑺傜偣浼樺厛澶勭悊"""
         remaining_children = [child_info for child_info in gobj_info.get('child_mono_comp_info', [])
                               if child_info['child_id'] not in processed_children]
         return self._sort_children_by_special_logic(remaining_children)
@@ -2577,20 +2577,20 @@ class GenerateTestPlanModified:
                                              llm_context: List[Dict[str, str]], 
                                              remaining_children: List[Dict[str, Any]], 
                                              run_number: int,
-                                             llm_model: str = 'gpt-5') -> tuple[List[Dict[str, Any]], List[Dict[str, str]]]:
+                                             llm_model: str = 'gpt-5') -> Tuple[List[Dict[str, Any]], List[Dict[str, str]]]:
         """
-        处理剩余子对象的对话
+        澶勭悊鍓╀綑瀛愬璞＄殑瀵硅瘽
         
         Args:
-            gobj_info: GameObject信息
-            scene_name: 场景名称
-            conversation_history: 对话历史记录
-            llm_context: LLM对话上下文
-            remaining_children: 剩余的子对象列表
-            run_number: 当前运行轮数
+            gobj_info: GameObject淇℃伅
+            scene_name: 鍦烘櫙鍚嶇О
+            conversation_history: 瀵硅瘽鍘嗗彶璁板綍
+            llm_context: LLM瀵硅瘽涓婁笅鏂?
+            remaining_children: 鍓╀綑鐨勫瓙瀵硅薄鍒楄〃
+            run_number: 褰撳墠杩愯杞暟
         
         Returns:
-            tuple: (更新后的对话历史记录, 更新后的LLM上下文)
+            tuple: (鏇存柊鍚庣殑瀵硅瘽鍘嗗彶璁板綍, 鏇存柊鍚庣殑LLM涓婁笅鏂?
         """
         for i, child_info in enumerate(remaining_children, 1):
             child_id = child_info['child_id']
@@ -2598,11 +2598,11 @@ class GenerateTestPlanModified:
             
             print(f"[SEND] Round {run_number}: Providing child object {i} information: {child_name}")
             
-            # 生成子对象请求，并处理sorted_target_logic_info逻辑
+            # 鐢熸垚瀛愬璞¤姹傦紝骞跺鐞唖orted_target_logic_info閫昏緫
             child_request_result = self.generate_child_request(child_info, i, scene_name, conversation_history, llm_context)
             
             if child_request_result['has_sorted_target_logic'] or child_request_result['has_gameobject_find_logic'] or child_request_result['has_gameobject_instantiate_logic']:
-                # 如果有特殊逻辑信息，已经通过generate_child_request处理完成
+                # 濡傛灉鏈夌壒娈婇€昏緫淇℃伅锛屽凡缁忛€氳繃generate_child_request澶勭悊瀹屾垚
                 print(f"[INFO] Round {run_number}: {child_request_result['message']}")
                 continue
             
@@ -2620,26 +2620,26 @@ class GenerateTestPlanModified:
                 'timestamp': datetime.now().isoformat()
             })
             
-            # 调用LLM API获取子对象响应（传递对话上下文）
+            # 璋冪敤LLM API鑾峰彇瀛愬璞″搷搴旓紙浼犻€掑璇濅笂涓嬫枃锛?
             child_response = self._call_llm_api(child_request, llm_context, llm_model=llm_model)
             
             if child_response:
-                # 将响应添加到LLM上下文
+                # 灏嗗搷搴旀坊鍔犲埌LLM涓婁笅鏂?
                 llm_context.append({'role': 'user', 'content': child_request})
                 llm_context.append({'role': 'assistant', 'content': child_response})
                 
-                # 解析LLM响应
+                # 瑙ｆ瀽LLM鍝嶅簲
                 parsed_child_response = self._parse_llm_response(child_response)
                 
-                # 如果子对象需要更多信息，启用多轮对话
+                # 濡傛灉瀛愬璞￠渶瑕佹洿澶氫俊鎭紝鍚敤澶氳疆瀵硅瘽
                 if parsed_child_response['need_more_info']:
                     print(f"[INFO] Round {run_number}: Child object {child_name} needs more information, enabling multi-turn conversation...")
-                    # 使用多轮对话来完善子对象的测试计划
+                    # 浣跨敤澶氳疆瀵硅瘽鏉ュ畬鍠勫瓙瀵硅薄鐨勬祴璇曡鍒?
                     final_child_response, llm_context, multi_turn_count = self._handle_multi_turn_conversation(
                         child_request, max_turns=3, llm_context=llm_context
                     )
                     
-                    # 记录多轮对话的最终结果
+                    # 璁板綍澶氳疆瀵硅瘽鐨勬渶缁堢粨鏋?
                     conversation_history.append({
                         'role': 'assistant',
                         'content': final_child_response,
@@ -2674,7 +2674,7 @@ class GenerateTestPlanModified:
         
         return conversation_history, llm_context
 
-    def _handle_multi_turn_conversation(self, initial_prompt: str, max_turns: int = 3, llm_context: List[Dict[str, str]] = None, llm_model: str = 'gpt-5') -> tuple[str, List[Dict[str, str]], int]:
+    def _handle_multi_turn_conversation(self, initial_prompt: str, max_turns: int = 3, llm_context: List[Dict[str, str]] = None, llm_model: str = 'gpt-5') -> Tuple[str, List[Dict[str, str]], int]:
         """
         Handle multi-turn conversation, iterate based on LLM response (no feedback prompts provided)
         
@@ -3176,3 +3176,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

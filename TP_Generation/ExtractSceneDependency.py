@@ -278,7 +278,7 @@ def AddmonoRelation(G, results_dir):
     edges_to_add = []
     nodes_to_add = []
     
-    with open(codeAnalysis_json, 'r') as f:
+    with open(codeAnalysis_json, 'r', encoding='utf-8') as f:
         read_json = json.load(f)
         codeAnalysis_lis = read_json["Project"]
         for project in codeAnalysis_lis:
@@ -1816,6 +1816,7 @@ def main():
     parser = argparse.ArgumentParser(description="Analyze Unity project settings.")
     parser.add_argument('-p', '--project-path', required=True, help='Path to the Unity project.')
     parser.add_argument('-r', '--results-dir', required=True, help='Path to the results directory.')
+    parser.add_argument('-s', '--scene-name', required=False, help='Specific scene name to analyze (e.g., HomeScene)')
 
     args = parser.parse_args()
 
@@ -1835,17 +1836,26 @@ def main():
         results_subdir = 'mainResults' if not asset_name.endswith('.meta') else 'metaResults'
         json_file_path = os.path.join(args.results_dir, 'BuildAsset_info', results_subdir, f'{asset_name}.json')
 
-        # Extract scene paths from the JSON file
-        if os.path.exists(json_file_path):
+        # Extract scene paths from the JSON file or use specified scene
+        scene_paths = []
+        if args.scene_name:
+            # If scene name is specified, use it directly
+            print(f"Using specified scene: {args.scene_name}")
+            scene_paths = [f"Assets/Scenes/{args.scene_name}.unity"]
+        elif os.path.exists(json_file_path):
             scene_paths = extract_scene_paths_from_json(json_file_path)
             print("Extracted Scene Paths:")
-            analyze_scenes(args.project_path, scene_paths, args.results_dir)
         else:
             raise FileNotFoundError(f"Analysis result JSON file not found at {json_file_path}")
+            
+        if scene_paths:
+            analyze_scenes(args.project_path, scene_paths, args.results_dir)
+        else:
+            print("Warning: No scenes to analyze")
 
         
         print("Analyzing Script Meta File:")
-        script_lis = analyze_csharp_meta(os.path.join(args.project_path), args.results_dir)
+        script_lis = analyze_csharp_meta(os.path.join(args.project_path, 'Assets'), args.results_dir)
 
         print("Analyzing Script CSharp File:")
         analyze_script(os.path.join(args.project_path, 'Assets'), args.results_dir)
@@ -1862,9 +1872,15 @@ def main():
         print("Creating Scene Database:")
         # Determine the scene JSON files path
         scene_db_dir = os.path.join(args.results_dir, 'scene_detailed_info', 'mainResults')
-        scene_json_files = [f for f in os.listdir(scene_db_dir) if f.endswith('.unity.json')]
-        # Create databases for each scene
-        create_scene_database(scene_json_files, args.project_path, args.results_dir, script_lis, layer_lis)
+        if os.path.exists(scene_db_dir):
+            scene_json_files = [f for f in os.listdir(scene_db_dir) if f.endswith('.unity.json')]
+            # Create databases for each scene
+            if scene_json_files:
+                create_scene_database(scene_json_files, args.project_path, args.results_dir, script_lis, layer_lis)
+            else:
+                print("Warning: No scene JSON files found")
+        else:
+            print("Warning: Scene database directory not found")
 
 if __name__ == "__main__":
     main()
