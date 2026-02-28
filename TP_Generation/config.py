@@ -1077,8 +1077,8 @@ csharp_analyzer_path = os.path.join(_script_dir, "CSharpScriptAnalyzer", "CSharp
 structure_analyzer_path = os.path.join(_script_dir, "CodeStructureAnalyzer", "CodeStructureAnalyzer.exe")
 
 
+# Invoke-WebRequest -Uri "https://api.vectorengine.ai/v1/models" -Headers @{Authorization="Bearer sk-sXkm9CzdZ9lTHwWhSf55UygJFZwxk1HcvwR3HYl3KLrIRpRN"} | Select-Object -ExpandProperty StatusCode
 
-
-# OpenAI API Configuration
-OPENAI_API_KEY = "sk-..."  # 替换为你从 https://platform.openai.com/api-keys 获得的 API Key
-basicUrl_gpt35 = "https://api.openai.com/v1"
+# OpenAI API Configuration (use environment variables to avoid hardcoding secrets)
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+basicUrl_gpt35 = os.getenv("OPENAI_BASE_URL", "https://api.vectorengine.ai/v1")

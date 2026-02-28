@@ -1,0 +1,44 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LightSwitch_Room1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1894443793,
+          "condition": "Manual call to simulate XRSimpleInteractable.selectEntered because no m_Calls wiring is provided. LightSwitch_Room1 has BoxCollider (id: 1894443797) allowing Trigger. MonoBehaviour_0 (id: 1894443799, guid: afb52d2e54ea1614294036b01b20569f) is LightSwitchController with serialized fields: controlledLight fileID 590520313, switchRenderer fileID 1894443796, litMaterial guid 1529549f84e419e409d02128368bed06, unlitMaterial guid 25cacebe91df7a9478efb7354f75efdf. Expect Toggle to flip controlledLight.enabled and update material.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1894443799,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LightSwitch_Room1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1894443793,
+          "condition": "Second manual Toggle to return to original state and cover both visual/material branches (lit and unlit) and light enabled/disabled states for controlledLight (fileID 590520313).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1894443799,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

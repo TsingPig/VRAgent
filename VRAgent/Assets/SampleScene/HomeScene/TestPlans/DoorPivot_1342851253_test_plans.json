@@ -1,0 +1,94 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1342851253,
+          "condition": "MonoBehaviour (script_fileID: 1342851255, GUID: df6ed34bdc198f845aeef08129f7eb31) is DoorController with serialization config: openAngle=90, animationSpeed=3, startLocked=1. Initial isLocked=true, so Toggle should have no effect. No m_Calls are specified in scene meta; manual trigger required.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1342851253,
+          "condition": "Unlock must be called before Open/Toggle have any effect. MonoBehaviour (script_fileID: 1342851255, GUID: df6ed34bdc198f845aeef08129f7eb31) has startLocked=1, so we first Unlock, then Open. Expect [DoorController] DoorPivot unlocked log, then door begins lerping toward +90° Y open rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Unlock",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1342851253,
+          "condition": "Door is now unlocked (from previous step). Close should always set isOpen=false regardless of lock state, causing door to lerp back to closedRotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Close",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1342851253,
+          "condition": "After Unlock, Toggle should flip isOpen state each call. With isLocked=false, Toggle should alternate between opening and closing the door via Update lerp.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}

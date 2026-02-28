@@ -1,0 +1,227 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1342851253,
+          "condition": "MonoBehaviour (script_fileID: 1342851255, GUID: df6ed34bdc198f845aeef08129f7eb31) is DoorController with serialization config: openAngle=90, animationSpeed=3, startLocked=1. Initial isLocked=true, so Toggle should have no effect. No m_Calls are specified in scene meta; manual trigger required.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1342851253,
+          "condition": "Unlock must be called before Open/Toggle have any effect. MonoBehaviour (script_fileID: 1342851255, GUID: df6ed34bdc198f845aeef08129f7eb31) has startLocked=1, so we first Unlock, then Open. Expect [DoorController] DoorPivot unlocked log, then door begins lerping toward +90° Y open rotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Unlock",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1342851253,
+          "condition": "Door is now unlocked (from previous step). Close should always set isOpen=false regardless of lock state, causing door to lerp back to closedRotation.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Close",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 1342851253,
+          "condition": "After Unlock, Toggle should flip isOpen state each call. With isLocked=false, Toggle should alternate between opening and closing the door via Update lerp.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "KeySocket",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 746320259,
+          "condition": "MonoBehaviour (id=746320263) is KeyUnlockReceiver (script guid=c87167e8859f9dc4d98e818aab1910b1) attached to GameObject 'KeySocket' (fileID=746320259). It registers in Awake to XRSocketInteractor.selectEntered on component fileID=746320261. Serialized refs: doorController=fileID 1342851255, socketIndicatorRenderer=fileID 864473226, unlockedMaterial guid=7c38ca2c8b284d9439e0aeac6916567c. Since 'KeySocket' has a SphereCollider (isTrigger=1) and no Rigidbody, we cannot use Grab/Transform to naturally insert an interactable. Manually trigger the expected outcome of selectEntered by calling DoorController.Unlock(), which KeyUnlockReceiver would invoke upon item insertion. Expected behavior: hasUnlocked becomes true, door unlocked, socketIndicatorRenderer.sharedMaterial set to unlockedMaterial, and Debug.Log prints \"[KeyUnlockReceiver] Item inserted — door unlocked!\".",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Unlock",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LightSwitch_Room1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1894443793,
+          "condition": "Manual call to simulate XRSimpleInteractable.selectEntered because no m_Calls wiring is provided. LightSwitch_Room1 has BoxCollider (id: 1894443797) allowing Trigger. MonoBehaviour_0 (id: 1894443799, guid: afb52d2e54ea1614294036b01b20569f) is LightSwitchController with serialized fields: controlledLight fileID 590520313, switchRenderer fileID 1894443796, litMaterial guid 1529549f84e419e409d02128368bed06, unlitMaterial guid 25cacebe91df7a9478efb7354f75efdf. Expect Toggle to flip controlledLight.enabled and update material.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1894443799,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LightSwitch_Room1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1894443793,
+          "condition": "Second manual Toggle to return to original state and cover both visual/material branches (lit and unlit) and light enabled/disabled states for controlledLight (fileID 590520313).",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1894443799,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "Room2",
+          "triggerring_time": 0.2,
+          "source_object_fileID": 1271916000,
+          "condition": "Room2 (fileID 1271916000) currently shows no Rigidbody, Collider, EventTrigger, or attached MonoBehaviour with UnityEvent (m_Calls) in the provided scene JSON. We will only add manual Trigger actions for UnityEvent m_Calls defined on MonoBehaviour components if they exist. Please provide the MonoBehaviour components (including script fileID, GUID, and m_Calls) attached to Room2 and its children so we can target public no-arg methods. We will treat the provided MonoBehaviour component data as the exact settings of the attached scripts to be tested.",
+          "triggerring_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Drawer",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 659474793,
+          "condition": "MonoBehaviour (id 659474796) on Drawer (fileID 659474793) is the exact scene settings of the attached script DrawerController (m_Script guid 181a93ff91c685946b20f54ea877474b) with openDistance=0.42 and animationSpeed=5. Drawer has a BoxCollider (id 659474798) and no Rigidbody, so Trigger action is valid. XR selectEntered would normally call Toggle(), but to ensure coverage we manually invoke the public no-arg method Toggle() twice: first to OPEN, then after 1.0s to CLOSE, exercising both states and the Lerp motion handled in Update. Drawer’s Transform is parented under Cabinet (m_Father fileID 134420580) within Room2.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 659474796,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 659474796,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LightSwitch_Room2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1618227212,
+          "condition": "MonoBehaviour (id 1618227218) on LightSwitch_Room2 (fileID 1618227212) is the exact scene settings of the attached script LightSwitchController (m_Script guid afb52d2e54ea1614294036b01b20569f, type 3) with serialized refs: controlledLight=fileID 340544673, switchRenderer=fileID 1618227215, litMaterial guid 1529549f84e419e409d02128368bed06, unlitMaterial guid 25cacebe91df7a9478efb7354f75efdf. LightSwitch_Room2 has a BoxCollider (id 1618227216) and no Rigidbody, so Trigger is valid. XR selectEntered would normally invoke Toggle(), but to ensure coverage we manually call the public no-arg method Toggle() twice to exercise both ON and OFF states and the material swap.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1618227218,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1618227218,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
