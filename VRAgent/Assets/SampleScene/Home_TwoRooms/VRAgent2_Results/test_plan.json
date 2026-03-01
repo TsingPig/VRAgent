@@ -1,0 +1,64 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "KeySocket",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 746320259,
+          "condition": "Trigger the selectEntered event to simulate an item being inserted into the KeySocket.",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 746320263,
+                  "method_name": "OnItemInserted",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Drawer",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 659474793,
+          "condition": "Trigger the Toggle method to open/close the drawer",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 659474796,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "LightSwitch_Room2",
+          "triggerring_time": 1.0,
+          "source_object_fileID": 1618227212,
+          "condition": "Trigger the Toggle method to switch the light on/off and update the visual",
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1618227218,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        }
+      ]
+    }
+  ]
+}
