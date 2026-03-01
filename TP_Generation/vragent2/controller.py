@@ -22,7 +22,7 @@ from .graph.gate_graph import GateGraph, StateNode
 from .retrieval.retrieval_layer import RetrievalLayer
 from .utils.llm_client import LLMClient
 from .utils.config_loader import VRAgentConfig, load_config
-from .utils.file_utils import save_json, ensure_dir
+from .utils.file_utils import save_json, load_json, ensure_dir
 
 
 class VRAgentController:
@@ -71,6 +71,77 @@ class VRAgentController:
         self._all_actions: List[Dict] = []
         self._all_traces: List[Dict] = []
         self._iteration_logs: List[Dict] = []
+        self._processed_objects: set = set()  # Object names already processed (for resume)
+
+    # ------------------------------------------------------------------
+    # Session persistence (resume support)
+    # ------------------------------------------------------------------
+
+    def save_session(self) -> None:
+        """Persist current session state so it can be resumed later."""
+        session = {
+            "processed_objects": list(self._processed_objects),
+            "all_actions": self._all_actions,
+            "all_traces": self._all_traces,
+            "iteration_logs": self._iteration_logs,
+            "explorer_state": {
+                "mode": self.explorer.state.mode.value,
+                "step_count": self.explorer.state.step_count,
+                "budget_remaining": self.explorer.state.budget_remaining,
+                "total_coverage": self.explorer.state.total_coverage,
+                "zero_novelty_streak": self.explorer.state.zero_novelty_streak,
+                "solved_gates": self.explorer.state.solved_gates,
+            },
+            "gate_graph": self.gate_graph.to_dict(),
+        }
+        path = os.path.join(self.output_dir, "session_state.json")
+        ensure_dir(self.output_dir)
+        save_json(path, session)
+        print(f"[CONTROLLER] Session saved ({len(self._processed_objects)} objects processed)")
+
+    def load_session(self) -> bool:
+        """Load previous session state if available. Returns True if loaded."""
+        path = os.path.join(self.output_dir, "session_state.json")
+        if not os.path.exists(path):
+            print("[CONTROLLER] No previous session found — starting fresh")
+            return False
+
+        from .graph.gate_graph import GateGraph
+        from .contracts import ExplorationMode
+
+        data = load_json(path)
+        if not data:
+            return False
+
+        self._processed_objects = set(data.get("processed_objects", []))
+        self._all_actions = data.get("all_actions", [])
+        self._all_traces = data.get("all_traces", [])
+        self._iteration_logs = data.get("iteration_logs", [])
+
+        # Restore explorer state
+        es = data.get("explorer_state", {})
+        if es:
+            self.explorer.state.step_count = es.get("step_count", 0)
+            self.explorer.state.budget_remaining = es.get("budget_remaining",
+                                                          self.explorer.state.budget_remaining)
+            self.explorer.state.total_coverage = es.get("total_coverage", 0.0)
+            self.explorer.state.zero_novelty_streak = es.get("zero_novelty_streak", 0)
+            self.explorer.state.solved_gates = es.get("solved_gates", [])
+            try:
+                self.explorer.state.mode = ExplorationMode(es.get("mode", "expand"))
+            except ValueError:
+                pass
+
+        # Restore gate graph
+        gg_data = data.get("gate_graph", {})
+        if gg_data:
+            self.gate_graph = GateGraph.load_from_dict(gg_data)
+            self.explorer.gate_graph = self.gate_graph
+
+        print(f"[CONTROLLER] Session resumed — {len(self._processed_objects)} objects already processed, "
+              f"{len(self._all_actions)} actions cached, "
+              f"budget remaining: {self.explorer.state.budget_remaining}")
+        return True
 
     # ------------------------------------------------------------------
     # Main loop
@@ -104,6 +175,11 @@ class VRAgentController:
         for gobj_info in gobj_list:
             gobj_name = gobj_info.get("gameobject_name", "?")
 
+            # Skip objects already processed in a previous session
+            if gobj_name in self._processed_objects:
+                print(f"[CONTROLLER] Skipping {gobj_name} (already processed in previous session)")
+                continue
+
             goal = self.explorer.next_goal(observer_output)
             if goal is None:
                 print("[CONTROLLER] Budget exhausted.")
@@ -116,6 +192,11 @@ class VRAgentController:
 
             result = self._run_single_object(gobj_info, goal, iteration)
             observer_output = result.get("observer_output", observer_output)
+
+            # Mark object as processed and save session incrementally
+            self._processed_objects.add(gobj_name)
+            self.save_session()
+
             iteration += 1
 
         # Save final results

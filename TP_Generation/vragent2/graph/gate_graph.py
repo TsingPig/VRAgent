@@ -227,6 +227,11 @@ class GateGraph:
     def load(cls, path: str) -> GateGraph:
         from ..utils.file_utils import load_json
         data = load_json(path)
+        return cls.load_from_dict(data)
+
+    @classmethod
+    def load_from_dict(cls, data: Dict[str, Any]) -> GateGraph:
+        """Restore a GateGraph from a deserialized dict."""
         gg = cls()
         for nid, nd in data.get("nodes", {}).items():
             gg.nodes[nid] = StateNode(**nd)

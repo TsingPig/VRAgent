@@ -2,9 +2,10 @@ using HenryLab.VRExplorer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using System.Threading.Tasks;
-using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using Debug = UnityEngine.Debug;
 
 namespace HenryLab.VRAgent.Online
@@ -231,21 +232,15 @@ namespace HenryLab.VRAgent.Online
             response.stateBefore = _stateCollector.CaptureState(sourceObj, actionUnit.objectA);
             _stateCollector.DrainEvents(); // Clear any stale events
 
-            // For Trigger actions with explicit method calls, prefer direct event invocation.
-            // This avoids XRTriggerable runtime assumptions that can cause NullReferenceException.
-            if(actionUnit is TriggerActionUnit directTrigger && HasMethodCalls(directTrigger))
-            {
-                InvokeTriggerEventsDirectly(directTrigger, response);
-                response.stateAfter = _stateCollector.CaptureState(sourceObj, actionUnit.objectA);
-                response.events = _stateCollector.DrainEvents();
-                return response;
-            }
-
-            // Build and execute task
+            // Build and execute task (XRTriggerable is now the primary path)
             List<BaseAction> task = BuildTask(actionUnit, sourceObj, response);
 
             if(task != null)
             {
+                // Yield one frame so Unity calls Start() on any dynamically added components
+                // (XRBase.Start sets _interactable/_interactor which XRTriggerable needs)
+                await Task.Yield();
+
                 foreach(var action in task)
                 {
                     try
@@ -256,9 +251,30 @@ namespace HenryLab.VRAgent.Online
                     }
                     catch(Exception ex)
                     {
-                        response.exceptions.Add($"{action.GetType().Name}: {ex.Message}");
-                        _stateCollector.RecordEvent($"exception:{action.GetType().Name}:{ex.Message}");
-                        Debug.LogException(ex);
+                        // If XRTriggerable path fails, try direct invocation as fallback
+                        if(action is TriggerAction && actionUnit is TriggerActionUnit triggerFallback
+                            && HasMethodCalls(triggerFallback))
+                        {
+                            Debug.LogWarning($"[AgentOnline] XRTriggerable failed ({ex.Message}), " +
+                                             $"falling back to direct event invocation");
+                            _stateCollector.RecordEvent($"fallback_to_direct:{action.GetType().Name}");
+                            try
+                            {
+                                InvokeTriggerEventsDirectly(triggerFallback, response);
+                                _stateCollector.RecordEvent($"fallback_completed:{action.GetType().Name}");
+                            }
+                            catch(Exception fallbackEx)
+                            {
+                                response.exceptions.Add($"DirectTriggerFallback: {fallbackEx.Message}");
+                                Debug.LogException(fallbackEx);
+                            }
+                        }
+                        else
+                        {
+                            response.exceptions.Add($"{action.GetType().Name}: {ex.Message}");
+                            _stateCollector.RecordEvent($"exception:{action.GetType().Name}:{ex.Message}");
+                            Debug.LogException(ex);
+                        }
                     }
                 }
             }
@@ -373,6 +389,9 @@ namespace HenryLab.VRAgent.Online
                     XRTransformable transformable = sourceObj.AddComponent<XRTransformable>();
                     _stateCollector.RecordEvent($"component_added:XRTransformable:{sourceObj.name}");
 
+                    // Pre-initialize XRBase fields (same reason as Trigger)
+                    EnsureXRBaseInitialized(transformable, sourceObj);
+
                     transformable.deltaPosition = transformAU.deltaPosition;
                     transformable.deltaRotation = transformAU.deltaRotation;
                     transformable.deltaScale = transformAU.deltaScale;
@@ -391,6 +410,11 @@ namespace HenryLab.VRAgent.Online
                 {
                     XRTriggerable triggerable = sourceObj.AddComponent<XRTriggerable>();
                     _stateCollector.RecordEvent($"component_added:XRTriggerable:{sourceObj.name}");
+
+                    // Pre-initialize XRBase protected fields that normally happen in Start().
+                    // Without this, Triggerring()/Triggerred() would NRE because Start()
+                    // runs next frame but we execute in the same frame.
+                    EnsureXRBaseInitialized(triggerable, sourceObj);
 
                     if(trigger.trigerringTime != null)
                         triggerable.triggeringTime = (float)trigger.trigerringTime;
@@ -558,6 +582,68 @@ namespace HenryLab.VRAgent.Online
             });
 
             Debug.Log("[AgentOnline] Reset complete");
+        }
+
+        // =================================================================
+        // XR Component Initialization
+        // =================================================================
+
+        /// <summary>
+        /// Pre-initialize XRBase's protected fields that are normally set in Start().
+        /// When components are dynamically added via AddComponent, Start() runs next
+        /// frame, but we need to execute Triggerring()/Triggerred() in the same frame.
+        /// This uses reflection to set _interactable and _interactor early.
+        /// Also ensures EntityManager.Instance.vrexplorerMono is valid.
+        /// </summary>
+        private void EnsureXRBaseInitialized(XRBase xrBase, GameObject target)
+        {
+            // Ensure EntityManager knows about our explorer
+            if(EntityManager.Instance.vrexplorerMono == null)
+            {
+                EntityManager.Instance.vrexplorerMono = this;
+                Debug.Log("[AgentOnline] Re-assigned EntityManager.vrexplorerMono");
+            }
+
+            var flags = BindingFlags.NonPublic | BindingFlags.Instance;
+
+            // _interactable: may be null if the object has no XRBaseInteractable — that's OK,
+            // XRTriggerable checks `if(_interactable)` before using it.
+            var interactableField = typeof(XRBase).GetField("_interactable", flags);
+            if(interactableField != null)
+            {
+                var existing = interactableField.GetValue(xrBase) as XRBaseInteractable;
+                if(existing == null)
+                {
+                    existing = target.GetComponent<XRBaseInteractable>();
+                    interactableField.SetValue(xrBase, existing);
+                }
+            }
+
+            // _interactor: XRTriggerable.Triggerring/Triggerred creates its own interactor
+            // on the explorer's gameObject, so the target's _interactor being null is safe.
+            // But we still initialize it to prevent XRBase.Start() from adding a stray
+            // XRDirectInteractor to the target object next frame.
+            var interactorField = typeof(XRBase).GetField("_interactor", flags);
+            if(interactorField != null)
+            {
+                var existing = interactorField.GetValue(xrBase) as XRBaseInteractor;
+                if(existing == null)
+                {
+                    // Use the explorer's interactor (if any) as a placeholder,
+                    // or create one on the target to prevent Start() from adding one.
+                    existing = target.GetComponent<XRBaseInteractor>();
+                    if(existing == null)
+                    {
+                        // Add a minimal interactor so _interactor is non-null
+                        // This prevents XRBase.Start() from adding XRDirectInteractor which
+                        // requires XRBaseController and causes errors.
+                        existing = target.AddComponent<XRDirectInteractor>();
+                    }
+                    interactorField.SetValue(xrBase, existing);
+                }
+            }
+
+            _stateCollector.RecordEvent($"xrbase_initialized:{target.name}");
         }
 
         // =================================================================

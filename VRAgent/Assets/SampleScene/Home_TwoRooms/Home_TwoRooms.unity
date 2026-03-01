@@ -121,7 +121,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8134c2f531f372742a05f035f9466091, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 92ec2e6f51799b148a7a08401a548f3a, type: 2}
 --- !u!1 &1640959
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +352,17 @@ Transform:
   m_Father: {fileID: 1271916001}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &21600089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8174785374544425003, guid: 7536e93f5e86cf542ad33bdf02ea7b09, type: 3}
+  m_PrefabInstance: {fileID: 730593457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e97e54343fcd4e4b81f6e22d317008a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &45572453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1300,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   port: 6400
   autoStart: 1
+--- !u!114 &75889668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75889658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b839dd7887a52e24d8bed59d18ec5987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reportCoverageDuration: 5
+  exitAfterTesting: 0
+  leftHandController: {fileID: 21600089}
+  moveSpeed: 6
+  randomInitPos: 0
+  drag: 0
+  _areaDiameter: 7.5
+  _curTask: []
+  useFileID: 1
+  objA: {fileID: 0}
+  objB: {fileID: 0}
+--- !u!114 &75889669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75889658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec675469d72486646a106baa5e0e1bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &81779359
 GameObject:
   m_ObjectHideFlags: 0
@@ -5247,7 +5293,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6214257061678146550, guid: 7536e93f5e86cf542ad33bdf02ea7b09, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7536e93f5e86cf542ad33bdf02ea7b09, type: 3}
 --- !u!1 &738229646
 GameObject:

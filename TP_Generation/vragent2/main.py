@@ -61,6 +61,15 @@ def parse_args() -> argparse.Namespace:
                    help="Unity AgentBridge host (default: 127.0.0.1)")
     p.add_argument("--unity_port", type=int, default=6400,
                    help="Unity AgentBridge port (default: 6400)")
+
+    # Session resume
+    p.add_argument("--resume", action="store_true", default=False,
+                   help="Resume from last session state (skip processed objects, reuse LLM cache)")
+
+    # Unity project integration
+    p.add_argument("--unity_project", default=None,
+                   help="Unity project Assets path. Results auto-copy to scene folder. "
+                        "E.g. d:/MyProject/Assets")
     return p.parse_args()
 
 
@@ -187,7 +196,21 @@ def main() -> None:
         unity_bridge=unity_bridge,
     )
 
+    # Resume from previous session if requested
+    if args.resume:
+        controller.load_session()
+
     results = controller.run(gobj_list)
+
+    # ── Copy results to Unity scene folder ────────────────────────
+    unity_assets = args.unity_project
+    if not unity_assets:
+        # Auto-detect from workspace structure
+        candidate = Path(args.hierarchy_json).parent.parent.parent / "VRAgent" / "Assets"
+        if candidate.is_dir():
+            unity_assets = str(candidate)
+    if unity_assets:
+        _copy_results_to_unity(args.output, unity_assets, args.scene_name)
 
     # ── Cleanup bridge ────────────────────────────────────────────────
     if unity_bridge is not None:
@@ -210,6 +233,27 @@ def main() -> None:
     print(f"  Gates solved  : {exp.get('gates_solved', 0)}")
     print(f"{'='*60}")
 
+def _copy_results_to_unity(output_dir: str, unity_assets: str, scene_name: str) -> None:
+    """Copy pipeline results to the Unity scene folder for easy inspector access."""
+    import shutil
+    dest = Path(unity_assets) / "SampleScene" / scene_name / "VRAgent2_Results"
+    dest.mkdir(parents=True, exist_ok=True)
+
+    for fname in ("all_actions.json", "iteration_logs.json", "summary.json",
+                  "gate_graph.json", "test_plan.json", "session_state.json"):
+        src = Path(output_dir) / fname
+        if src.exists():
+            shutil.copy2(str(src), str(dest / fname))
+
+    # Copy execution traces
+    exec_src = Path(output_dir) / "execution"
+    if exec_src.is_dir():
+        exec_dest = dest / "execution"
+        exec_dest.mkdir(exist_ok=True)
+        for trace_file in exec_src.glob("trace_*.json"):
+            shutil.copy2(str(trace_file), str(exec_dest / trace_file.name))
+
+    print(f"[MAIN] Results copied to Unity: {dest}")
 
 if __name__ == "__main__":
     main()
