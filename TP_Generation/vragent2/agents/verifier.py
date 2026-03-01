@@ -183,6 +183,18 @@ class VerifierAgent(BaseAgent):
                 fix_suggestion="Trigger action must specify a condition description.",
             ))
 
+        # Trigger should contain at least one method call unit.
+        event_count = 0
+        for event_key in ("triggerring_events", "triggerred_events"):
+            for event in au.get(event_key, []):
+                event_count += len(event.get("methodCallUnits", []))
+        if event_count == 0:
+            errors.append(VerifierError(
+                type=VerifierErrorType.SCHEMA_ERROR.value,
+                location=f"{loc}.triggerring_events",
+                fix_suggestion="Trigger action must include at least one methodCallUnit.",
+            ))
+
         # Validate method calls in events
         for event_key in ("triggerring_events", "triggerred_events"):
             for ei, event in enumerate(au.get(event_key, [])):

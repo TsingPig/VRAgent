@@ -43,7 +43,7 @@ def parse_args() -> argparse.Namespace:
                    help="Total exploration budget (iterations)")
     p.add_argument("--max_repair", type=int, default=2,
                    help="Max Verifier→Planner repair rounds per iteration")
-    p.add_argument("--model", default="gpt-5",
+    p.add_argument("--model", default="gpt-4o",
                    help="LLM model identifier")
     p.add_argument("--api_key", default=None,
                    help="OpenAI API key (or set OPENAI_API_KEY env var)")
@@ -53,6 +53,14 @@ def parse_args() -> argparse.Namespace:
                    help="Path to C# scripts directory (for ScriptIndexer)")
     p.add_argument("--limit", type=int, default=0,
                    help="Limit number of objects to process (0 = all)")
+
+    # Unity Bridge (online mode)
+    p.add_argument("--unity", action="store_true", default=False,
+                   help="Connect to Unity via TCP for real-time execution")
+    p.add_argument("--unity_host", default="127.0.0.1",
+                   help="Unity AgentBridge host (default: 127.0.0.1)")
+    p.add_argument("--unity_port", type=int, default=6400,
+                   help="Unity AgentBridge port (default: 6400)")
     return p.parse_args()
 
 
@@ -65,6 +73,7 @@ def main() -> None:
     from .utils.file_utils import load_json, ensure_dir
     from .retrieval.retrieval_layer import RetrievalLayer
     from .controller import VRAgentController
+    from .bridge.unity_bridge import UnityBridge
 
     # ── Config ────────────────────────────────────────────────────────
     config = load_config()
@@ -77,8 +86,8 @@ def main() -> None:
         try:
             import importlib
             legacy = importlib.import_module("config")
-            api_key = getattr(legacy, "API_KEY", "")
-            api_base = getattr(legacy, "BASE_URL", api_base)
+            api_key = getattr(legacy, "OPENAI_API_KEY", "") or getattr(legacy, "API_KEY", "")
+            api_base = api_base or getattr(legacy, "basicUrl_gpt35", "") or getattr(legacy, "BASE_URL", "")
         except ImportError:
             pass
 
@@ -94,10 +103,11 @@ def main() -> None:
         print(f"[ERROR] Cannot load hierarchy from {args.hierarchy_json}")
         sys.exit(1)
 
+    # Derive results_dir from hierarchy_json path
+    results_dir = str(Path(args.hierarchy_json).parent)
     retrieval = RetrievalLayer(
-        gml_path=args.scene_gml,
-        hierarchy_data=hierarchy_data,
-        scripts_dir=args.scripts_dir or "",
+        results_dir=results_dir,
+        scene_name=args.scene_name,
     )
 
     # ── Build object list ─────────────────────────────────────────────
@@ -111,6 +121,26 @@ def main() -> None:
         else:
             gobj_list = list(hierarchy_data.values())
 
+    # Filter out infra/system objects that are not meaningful interaction targets
+    default_skip_tokens = (
+        "vragent",
+        "fileidmanager",
+        "agentbridge",
+        "eventsystem",
+        "xr interaction manager",
+        "xr origin",
+        "main camera",
+    )
+    filtered_list = []
+    for obj in gobj_list:
+        obj_name = str(obj.get("gameobject_name", "")).strip()
+        low = obj_name.lower()
+        if any(token in low for token in default_skip_tokens):
+            continue
+        filtered_list.append(obj)
+    if filtered_list:
+        gobj_list = filtered_list
+
     if args.limit > 0:
         gobj_list = gobj_list[:args.limit]
 
@@ -119,6 +149,29 @@ def main() -> None:
     print(f"[MAIN] Budget: {args.budget}")
     print(f"[MAIN] Model: {args.model}")
     print(f"[MAIN] Output: {args.output}")
+    print(f"[MAIN] Unity Bridge: {'ON' if args.unity else 'OFF (dry-run)'}")
+
+    # ── Unity Bridge (optional) ───────────────────────────────────────
+    unity_bridge = None
+    if args.unity:
+        unity_bridge = UnityBridge(host=args.unity_host, port=args.unity_port)
+        try:
+            unity_bridge.connect()
+            if unity_bridge.ping():
+                print(f"[MAIN] Unity connected at {args.unity_host}:{args.unity_port}")
+                try:
+                    reset_resp = unity_bridge.reset()
+                    if reset_resp.get("success", False):
+                        print("[MAIN] Unity runtime reset completed")
+                except Exception as reset_exc:
+                    print(f"[MAIN] WARNING: Unity reset failed: {reset_exc}")
+            else:
+                print("[MAIN] ERROR: Unity connected but ping failed")
+                sys.exit(1)
+        except Exception as exc:
+            print(f"[MAIN] ERROR: Cannot connect to Unity — {exc}")
+            print("[MAIN] Hint: ensure Unity is in Play mode and AgentBridge port matches --unity_port")
+            sys.exit(1)
 
     # ── Run Controller ────────────────────────────────────────────────
     controller = VRAgentController(
@@ -131,9 +184,18 @@ def main() -> None:
         total_budget=args.budget,
         max_repair_rounds=args.max_repair,
         llm_model=args.model,
+        unity_bridge=unity_bridge,
     )
 
     results = controller.run(gobj_list)
+
+    # ── Cleanup bridge ────────────────────────────────────────────────
+    if unity_bridge is not None:
+        try:
+            unity_bridge.close()
+            print("[MAIN] Unity Bridge disconnected")
+        except Exception:
+            pass
 
     # ── Print summary ─────────────────────────────────────────────────
     summary = results.get("summary", {})

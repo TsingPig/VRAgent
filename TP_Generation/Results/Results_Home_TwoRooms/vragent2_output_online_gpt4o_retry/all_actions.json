@@ -1,0 +1,135 @@
+[
+  {
+    "type": "Trigger",
+    "source_object_name": "KeySocket",
+    "triggerring_time": 0.5,
+    "source_object_fileID": 746320259,
+    "condition": "Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 746320263,
+            "method_name": "OnItemInserted",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "Drawer",
+    "triggerring_time": 0.0,
+    "source_object_fileID": 659474793,
+    "condition": "Trigger the Toggle method to test drawer open/close functionality",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 659474796,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "LightSwitch_Room2",
+    "triggerring_time": 0.0,
+    "source_object_fileID": 1618227212,
+    "condition": "Trigger the Toggle method to test light switch on/off functionality",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1618227218,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "DoorPivot",
+    "triggerring_time": 0.5,
+    "source_object_fileID": 1342851253,
+    "condition": "Unlock the door to allow opening or toggling",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1342851255,
+            "method_name": "Unlock",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "DoorPivot",
+    "triggerring_time": 0.5,
+    "source_object_fileID": 1342851253,
+    "condition": "Toggle the door state after unlocking",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1342851255,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Transform",
+    "source_object_name": "DoorPivot",
+    "source_object_fileID": 1342851253,
+    "delta_position": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "delta_rotation": {
+      "x": 0,
+      "y": 90,
+      "z": 0
+    },
+    "delta_scale": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "triggerring_events": [],
+    "triggerred_events": [],
+    "triggerring_time": 1.0
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "LightSwitch_Room1",
+    "triggerring_time": 1.0,
+    "source_object_fileID": 1894443793,
+    "condition": "Trigger condition description (Toggle light on/off)",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1894443799,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ]
+  }
+]

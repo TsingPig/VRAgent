@@ -37,7 +37,7 @@ class PlannerAgent(BaseAgent):
         app_name: str = "UnityApp",
         max_multi_turns: int = 3,
         max_child_runs: int = 4,
-        llm_model: str = "gpt-5",
+        llm_model: str = "gpt-4o",
     ):
         self.llm = llm
         self.retrieval = retrieval

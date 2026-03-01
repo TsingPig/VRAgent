@@ -15,10 +15,14 @@ import re
 import time
 from typing import Any, Dict, List, Optional
 
+import httpx
 import openai
 
 # Regex to strip <think>...</think> blocks (some reasoning models emit these)
 _THINK_RE = re.compile(r"<\s*think\s*>.*?<\s*/\s*think\s*>", re.IGNORECASE | re.DOTALL)
+
+# Local proxy for API access
+_PROXY_URL = "http://127.0.0.1:15236"
 
 
 class LLMClient:
@@ -28,18 +32,23 @@ class LLMClient:
         self,
         api_key: str,
         base_url: str,
-        default_model: str = "gpt-5",
+        default_model: str = "gpt-4o",
         default_temperature: float = 0.0,
         max_retries: int = 5,
         retry_delay: float = 30.0,
+        proxy_url: str = _PROXY_URL,
     ):
         self.default_model = default_model
         self.default_temperature = default_temperature
         self.max_retries = max_retries
         self.retry_delay = retry_delay
 
-        openai.api_key = api_key
-        openai.base_url = base_url
+        http_client = httpx.Client(proxy=proxy_url) if proxy_url else None
+        self._client = openai.OpenAI(
+            api_key=api_key,
+            base_url=base_url,
+            http_client=http_client,
+        )
 
     # ------------------------------------------------------------------
     # Core API call
@@ -64,7 +73,7 @@ class LLMClient:
 
         for attempt in range(1, retries + 1):
             try:
-                response = openai.chat.completions.create(
+                response = self._client.chat.completions.create(
                     model=model,
                     messages=messages,
                     temperature=temperature,

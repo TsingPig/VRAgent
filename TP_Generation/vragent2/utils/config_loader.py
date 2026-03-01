@@ -25,7 +25,7 @@ class VRAgentConfig:
     OPENAI_API_KEY: str = ""
     OPENAI_API_KEY_1: str = ""
     base_url: str = ""
-    default_model: str = "gpt-5"
+    default_model: str = "gpt-4o"
 
     # --- Paths to external analyzers ---
     unity_analyzer_path: str = ""

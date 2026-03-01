@@ -1,0 +1,134 @@
+[
+  {
+    "type": "Trigger",
+    "source_object_name": "KeySocket",
+    "triggerring_time": 0.1,
+    "source_object_fileID": 746320259,
+    "condition": "Validate KeyUnlockReceiver (MonoBehaviour fileID=746320263, script guid=c87167e8859f9dc4d98e818aab1910b1) responds only to XRSocketInteractor.selectEntered when an interactable is inserted. No manual Trigger is defined because the unlock logic is in private OnItemInserted(SelectEnterEventArgs) and should be invoked naturally by inserting a grabbable interactable into the socket; also no m_Calls are configured in the scene meta for this script. Expect: first insertion calls doorController.Unlock() (doorController fileID=1342851255) and changes socketIndicatorRenderer.sharedMaterial (renderer fileID=864473226) to unlockedMaterial (guid=7c38ca2c8b284d9439e0aeac6916567c). Subsequent insertions should not unlock again due to hasUnlocked guard.",
+    "triggerring_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "Drawer",
+    "triggerring_time": 0.1,
+    "source_object_fileID": 659474793,
+    "condition": "Manually invoke DrawerController.Toggle() (script guid=181a93ff91c685946b20f54ea877474b, MonoBehaviour fileID=659474796) to cover state flip isOpen=false->true. Then allow Update() to lerp toward openLocalPosition computed in Start() using openDistance=0.42 and animationSpeed=5. Expect Debug.Log '[Drawer] Drawer → OPEN' and localPosition.z to move toward (0.26 - 0.42) over subsequent frames.",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 659474796,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "Drawer",
+    "triggerring_time": 0.6,
+    "source_object_fileID": 659474793,
+    "condition": "Invoke DrawerController.Toggle() again to cover state flip isOpen=true->false (close path). Wait long enough for Update() to lerp back toward closedLocalPosition captured in Start() (initial localPosition {x:0,y:0.45,z:0.26}). Expect Debug.Log '[Drawer] Drawer → CLOSED' and localPosition.z to move back toward 0.26.",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 659474796,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "LightSwitch_Room2",
+    "triggerring_time": 0.1,
+    "source_object_fileID": 1618227212,
+    "condition": "Manually invoke LightSwitchController.Toggle() (script guid=afb52d2e54ea1614294036b01b20569f, MonoBehaviour fileID=1618227218). This covers Toggle() path and UpdateVisual() with non-null switchRenderer (fileID=1618227215). Expect controlledLight (fileID=340544673) enabled state to flip, switchRenderer.sharedMaterial set to litMaterial/unlitMaterial accordingly, and Debug.Log '[LightSwitch] LightSwitch_Room2 → ON/OFF'.",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1618227218,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "LightSwitch_Room2",
+    "triggerring_time": 0.1,
+    "source_object_fileID": 1618227212,
+    "condition": "Invoke LightSwitchController.Toggle() a second time to cover the opposite isOn branch and ensure controlledLight.enabled and switchRenderer.sharedMaterial revert. Expect Debug.Log '[LightSwitch] LightSwitch_Room2 → OFF/ON' (opposite of prior).",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1618227218,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "DoorPivot",
+    "triggerring_time": 0.1,
+    "source_object_fileID": 1342851253,
+    "condition": "DoorPivot has DoorController (MonoBehaviour fileID=1342851255, script guid=df6ed34bdc198f845aeef08129f7eb31) with startLocked=1, so Toggle()/Open() should have no effect until Unlock() is called. Manually call Unlock() to move door from locked to unlocked state before any further interaction-based tests.",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1342851255,
+            "method_name": "Unlock",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
+    "source_object_name": "LightSwitch_Room1",
+    "triggerring_time": 0.1,
+    "source_object_fileID": 1894443793,
+    "condition": "LightSwitchController (script guid=afb52d2e54ea1614294036b01b20569f, MonoBehaviour fileID=1894443799) is enabled. BoxCollider (fileID=1894443797) allows interaction. Manually invoke Toggle() to cover: isOn flip, controlledLight.enabled update (controlledLight fileID=590520313), UpdateVisual() material swap on switchRenderer (fileID=1894443796), and Debug.Log path.",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1894443799,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1894443799,
+            "method_name": "Toggle",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ]
+  }
+]

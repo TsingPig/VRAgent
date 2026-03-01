@@ -163,6 +163,7 @@ class VerifierOutput:
             "executable_score": self.executable_score,
             "errors": [asdict(e) for e in self.errors],
             "pass": self.passed,
+            "passed": self.passed,
             "patched_actions": self.patched_actions,
         }
 

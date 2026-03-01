@@ -39,12 +39,14 @@ class VRAgentController:
         scene_name: str = "",
         total_budget: int = 100,
         max_repair_rounds: int = 2,
-        llm_model: str = "gpt-5",
+        llm_model: str = "gpt-4o",
+        unity_bridge=None,
     ):
         self.config = config
         self.output_dir = output_dir
         self.scene_name = scene_name
         self.max_repair_rounds = max_repair_rounds
+        self.unity_bridge = unity_bridge
 
         # Build sub-components
         self.gate_graph = GateGraph()
@@ -53,7 +55,10 @@ class VRAgentController:
             app_name=app_name, llm_model=llm_model,
         )
         self.verifier = VerifierAgent(retrieval)
-        self.executor = ExecutorAgent(output_dir=os.path.join(output_dir, "execution"))
+        self.executor = ExecutorAgent(
+            output_dir=os.path.join(output_dir, "execution"),
+            unity_bridge=unity_bridge,
+        )
         self.observer = ObserverAgent()
         self.explorer = ExplorationController(
             self.gate_graph,
@@ -148,7 +153,7 @@ class VRAgentController:
         for repair_round in range(self.max_repair_rounds + 1):
             verifier_output = self.verifier.run({"actions": actions})
             errors = verifier_output.get("errors", [])
-            passed = verifier_output.get("passed", False)
+            passed = verifier_output.get("passed", verifier_output.get("pass", False))
             score = verifier_output.get("executable_score", 0.0)
             print(f"[CONTROLLER]   Verifier score={score:.2f}, errors={len(errors)}, pass={passed}")
 
@@ -176,9 +181,10 @@ class VRAgentController:
 
         # ── 4. Observe ───────────────────────────────────────────────
         print("[CONTROLLER] → Observer")
+        console_logs = self.executor.get_console_logs()
         observer_output = self.observer.run({
             "executor_output": executor_output,
-            "console_logs": [],  # TODO: read from Unity bridge
+            "console_logs": console_logs,
             "goal": goal.description,
         })
         delta = observer_output.get("coverage_delta", 0.0)
