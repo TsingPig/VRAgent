@@ -1,0 +1,130 @@
+[
+  {
+    "action": "Trigger:Room1",
+    "state_before": {
+      "fileid": "1401208695",
+      "name": "Room1",
+      "active": true,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "components": [
+        "Transform"
+      ]
+    },
+    "state_after": {
+      "fileid": "1401208695",
+      "name": "Room1",
+      "active": true,
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "components": [
+        "Transform",
+        "XRTriggerable",
+        "XRDirectInteractor"
+      ]
+    },
+    "events": [
+      "component_added:XRTriggerable:Room1",
+      "xrbase_initialized:Room1",
+      "execute:MoveAction",
+      "completed:MoveAction",
+      "execute:TriggerAction",
+      "completed:TriggerAction"
+    ]
+  },
+  {
+    "action": "Trigger:LightSwitch_Room1",
+    "state_before": {
+      "fileid": "1894443793",
+      "name": "LightSwitch_Room1",
+      "active": true,
+      "position": {
+        "x": -6.5,
+        "y": 1.4,
+        "z": 3.88
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.12,
+        "y": 0.2,
+        "z": 0.05
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "BoxCollider",
+        "MeshRenderer",
+        "XRSimpleInteractable",
+        "LightSwitchController"
+      ]
+    },
+    "state_after": {
+      "fileid": "1894443793",
+      "name": "LightSwitch_Room1",
+      "active": true,
+      "position": {
+        "x": -6.5,
+        "y": 1.4,
+        "z": 3.88
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.12,
+        "y": 0.2,
+        "z": 0.05
+      },
+      "components": [
+        "Transform",
+        "MeshFilter",
+        "BoxCollider",
+        "MeshRenderer",
+        "XRSimpleInteractable",
+        "LightSwitchController",
+        "XRTriggerable",
+        "XRDirectInteractor"
+      ]
+    },
+    "events": [
+      "component_added:XRTriggerable:LightSwitch_Room1",
+      "xrbase_initialized:LightSwitch_Room1",
+      "execute:MoveAction",
+      "completed:MoveAction",
+      "execute:TriggerAction",
+      "completed:TriggerAction"
+    ]
+  }
+]

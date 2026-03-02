@@ -4,7 +4,7 @@
     "source_object_name": "KeySocket",
     "triggerring_time": 0.5,
     "source_object_fileID": 746320259,
-    "condition": "Trigger condition description (may include script ID, GUID, serialization config, expected behavior calls)",
+    "condition": "Trigger the selectEntered event to simulate an interactable being inserted into the KeySocket.",
     "triggerring_events": [
       {
         "methodCallUnits": [
@@ -19,10 +19,29 @@
   },
   {
     "type": "Trigger",
+    "source_object_name": "Room2",
+    "triggerring_time": 1.0,
+    "source_object_fileID": 1271916000,
+    "condition": "Trigger condition based on m_Calls or attached scripts",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1271916001,
+            "method_name": "ExampleMethod",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
     "source_object_name": "Drawer",
-    "triggerring_time": 0.0,
+    "triggerring_time": 1.0,
     "source_object_fileID": 659474793,
-    "condition": "Trigger the Toggle method to test drawer open/close functionality",
+    "condition": "Trigger the Toggle method to open/close the drawer",
     "triggerring_events": [
       {
         "methodCallUnits": [
@@ -39,9 +58,9 @@
   {
     "type": "Trigger",
     "source_object_name": "LightSwitch_Room2",
-    "triggerring_time": 0.0,
+    "triggerring_time": 1.0,
     "source_object_fileID": 1618227212,
-    "condition": "Trigger the Toggle method to test light switch on/off functionality",
+    "condition": "Trigger the Toggle method to turn the light on/off and update the switch visual",
     "triggerring_events": [
       {
         "methodCallUnits": [
@@ -116,10 +135,29 @@
   },
   {
     "type": "Trigger",
+    "source_object_name": "Room1",
+    "triggerring_time": 0.5,
+    "source_object_fileID": 1401208695,
+    "condition": "Trigger condition based on m_Calls in MonoBehaviour component or Collider interactions",
+    "triggerring_events": [
+      {
+        "methodCallUnits": [
+          {
+            "script_fileID": 1401208696,
+            "method_name": "InteractableEvent",
+            "parameter_fileID": []
+          }
+        ]
+      }
+    ],
+    "triggerred_events": []
+  },
+  {
+    "type": "Trigger",
     "source_object_name": "LightSwitch_Room1",
-    "triggerring_time": 1.0,
+    "triggerring_time": 0.5,
     "source_object_fileID": 1894443793,
-    "condition": "Trigger condition description (Toggle light on/off)",
+    "condition": "Trigger condition based on BoxCollider interactions and LightSwitchController script",
     "triggerring_events": [
       {
         "methodCallUnits": [
@@ -130,6 +168,7 @@
           }
         ]
       }
-    ]
+    ],
+    "triggerred_events": []
   }
 ]

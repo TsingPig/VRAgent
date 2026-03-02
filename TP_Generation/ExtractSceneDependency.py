@@ -8,6 +8,19 @@ import config
 import networkx as nx
 import matplotlib.pyplot as plt
 
+
+def find_scene_path_by_name(project_path, scene_name):
+    """Find <scene_name>.unity under Assets recursively and return project-relative path."""
+    assets_root = os.path.join(project_path, 'Assets')
+    target = f"{scene_name}.unity"
+    for root, _, files in os.walk(assets_root):
+        for fname in files:
+            if fname == target:
+                abs_path = os.path.join(root, fname)
+                rel = os.path.relpath(abs_path, project_path)
+                return rel.replace('\\', '/')
+    return None
+
 def get_editor_build_settings_path(project_path):
     """Find the EditorBuildSettings.asset file within the given Unity project path."""
     asset_path = os.path.join(project_path, 'ProjectSettings', 'EditorBuildSettings.asset')
@@ -1817,6 +1830,8 @@ def main():
     parser.add_argument('-p', '--project-path', required=True, help='Path to the Unity project.')
     parser.add_argument('-r', '--results-dir', required=True, help='Path to the results directory.')
     parser.add_argument('-s', '--scene-name', required=False, help='Specific scene name to analyze (e.g., HomeScene)')
+    parser.add_argument('--scene-path', required=False,
+                        help='Specific Unity scene path relative to project root (e.g., Assets/SampleScene/Home_TwoRooms/Home_TwoRooms.unity)')
 
     args = parser.parse_args()
 
@@ -1838,20 +1853,38 @@ def main():
 
         # Extract scene paths from the JSON file or use specified scene
         scene_paths = []
-        if args.scene_name:
-            # If scene name is specified, use it directly
-            print(f"Using specified scene: {args.scene_name}")
-            scene_paths = [f"Assets/Scenes/{args.scene_name}.unity"]
+        if args.scene_path:
+            rel = args.scene_path.replace('\\', '/')
+            print(f"Using specified scene path: {rel}")
+            scene_paths = [rel]
+        elif args.scene_name:
+            # If scene name is specified, resolve it under Assets recursively
+            resolved = find_scene_path_by_name(args.project_path, args.scene_name)
+            if resolved:
+                print(f"Using resolved scene: {resolved}")
+                scene_paths = [resolved]
+            else:
+                print(f"Warning: scene '{args.scene_name}' not found under Assets. "
+                      f"Falling back to Build Settings.")
         elif os.path.exists(json_file_path):
             scene_paths = extract_scene_paths_from_json(json_file_path)
             print("Extracted Scene Paths:")
         else:
             raise FileNotFoundError(f"Analysis result JSON file not found at {json_file_path}")
+
+        if not scene_paths and os.path.exists(json_file_path):
+            # Build Settings exists but contains no enabled scenes
+            scene_paths = extract_scene_paths_from_json(json_file_path)
             
         if scene_paths:
+            for scene_path in scene_paths:
+                full_scene_path = os.path.join(args.project_path, scene_path)
+                if not os.path.exists(full_scene_path):
+                    print(f"Warning: scene path does not exist: {scene_path}")
             analyze_scenes(args.project_path, scene_paths, args.results_dir)
         else:
-            print("Warning: No scenes to analyze")
+            print("Warning: No scenes to analyze. "
+                  "Use --scene-path or set enabled scenes in Build Settings.")
 
         
         print("Analyzing Script Meta File:")

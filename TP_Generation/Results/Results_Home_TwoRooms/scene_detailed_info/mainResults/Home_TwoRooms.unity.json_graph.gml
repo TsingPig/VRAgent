@@ -775,7 +775,7 @@ graph [
     type "script_file"
     properties [
       guid "c89c1afb3b2e53540923a9fec17e30c1"
-      file_path "d:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\VRAgent.cs.meta"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\VRAgent.cs.meta"
       name "VRAgent.cs"
       type "meta"
       file_size 254
@@ -1134,7 +1134,15 @@ graph [
         ]
       ]
       m_Modification [
-        m_RemovedComponents "[]"
+        m_RemovedComponents [
+          fileID "6214257061678146550"
+        ]
+        m_RemovedComponents [
+          guid "7536e93f5e86cf542ad33bdf02ea7b09"
+        ]
+        m_RemovedComponents [
+          type "3"
+        ]
       ]
     ]
     properties [
@@ -3133,7 +3141,7 @@ graph [
     type "script_file"
     properties [
       guid "391b934ff9ea64a4daca9d5340355a02"
-      file_path "d:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\FileIDContainer.cs.meta"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\FileIDContainer.cs.meta"
       name "FileIDContainer.cs"
       type "meta"
       file_size 254
@@ -11979,7 +11987,7 @@ graph [
     type "script_file"
     properties [
       guid "181a93ff91c685946b20f54ea877474b"
-      file_path "d:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\DrawerController.cs.meta"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\DrawerController.cs.meta"
       name "DrawerController.cs"
       type "meta"
       file_size 243
@@ -14622,7 +14630,7 @@ graph [
     type "script_file"
     properties [
       guid "c87167e8859f9dc4d98e818aab1910b1"
-      file_path "d:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\KeyUnlockReceiver.cs.meta"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\KeyUnlockReceiver.cs.meta"
       name "KeyUnlockReceiver.cs"
       type "meta"
       file_size 243
@@ -20839,7 +20847,7 @@ graph [
     type "script_file"
     properties [
       guid "df6ed34bdc198f845aeef08129f7eb31"
-      file_path "d:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\DoorController.cs.meta"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\DoorController.cs.meta"
       name "DoorController.cs"
       type "meta"
       file_size 243
@@ -25363,7 +25371,7 @@ graph [
     type "script_file"
     properties [
       guid "afb52d2e54ea1614294036b01b20569f"
-      file_path "d:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\LightSwitchController.cs.meta"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\SampleScene\Home_TwoRooms\LightSwitchController.cs.meta"
       name "LightSwitchController.cs"
       type "meta"
       file_size 243
@@ -33301,8 +33309,258 @@ graph [
     type "script_file"
     properties [
       guid "936d9149ac1e25949911d561695a271a"
-      file_path "d:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\Online\AgentBridge.cs.meta"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\Online\AgentBridge.cs.meta"
       name "AgentBridge.cs"
+      type "meta"
+      file_size 243
+      num_components 0
+      COMPONENTS "_networkx_list_start"
+      COMPONENTS [
+        id "MonoImporter"
+        MonoImporter [
+          externalObjects ""
+        ]
+        MonoImporter [
+          serializedVersion "2"
+        ]
+        MonoImporter [
+          defaultReferences "[]"
+        ]
+        MonoImporter [
+          executionOrder "0"
+        ]
+        MonoImporter [
+          icon "_networkx_list_start"
+          icon [
+            instanceID "0"
+          ]
+        ]
+        MonoImporter [
+          userData ""
+        ]
+        MonoImporter [
+          assetBundleName ""
+        ]
+        MonoImporter [
+          assetBundleVariant ""
+        ]
+      ]
+      ProjectName "UnityProject"
+      ProjectPath ""
+    ]
+  ]
+  node [
+    id 349
+    label "75889668"
+    type "Mono_Component"
+    properties [
+      id "75889668"
+      MonoBehaviour [
+        m_ObjectHideFlags "0"
+      ]
+      MonoBehaviour [
+        m_CorrespondingSourceObject "_networkx_list_start"
+        m_CorrespondingSourceObject [
+          fileID "0"
+        ]
+      ]
+      MonoBehaviour [
+        m_PrefabInstance "_networkx_list_start"
+        m_PrefabInstance [
+          fileID "0"
+        ]
+      ]
+      MonoBehaviour [
+        m_PrefabAsset "_networkx_list_start"
+        m_PrefabAsset [
+          fileID "0"
+        ]
+      ]
+      MonoBehaviour [
+        m_GameObject "_networkx_list_start"
+        m_GameObject [
+          fileID "75889658"
+        ]
+      ]
+      MonoBehaviour [
+        m_Enabled "1"
+      ]
+      MonoBehaviour [
+        m_EditorHideFlags "0"
+      ]
+      MonoBehaviour [
+        m_Script [
+          fileID "11500000"
+        ]
+        m_Script [
+          guid "b839dd7887a52e24d8bed59d18ec5987"
+        ]
+        m_Script [
+          type "3"
+        ]
+      ]
+      MonoBehaviour [
+        m_Name ""
+      ]
+      MonoBehaviour [
+        m_EditorClassIdentifier ""
+      ]
+      MonoBehaviour [
+        reportCoverageDuration "5"
+      ]
+      MonoBehaviour [
+        exitAfterTesting "0"
+      ]
+      MonoBehaviour [
+        leftHandController "_networkx_list_start"
+        leftHandController [
+          fileID "21600089"
+        ]
+      ]
+      MonoBehaviour [
+        moveSpeed "6"
+      ]
+      MonoBehaviour [
+        randomInitPos "0"
+      ]
+      MonoBehaviour [
+        drag "0"
+      ]
+      MonoBehaviour [
+        areaDiameter "7.5"
+      ]
+      MonoBehaviour [
+        curTask "[]"
+      ]
+      MonoBehaviour [
+        useFileID "1"
+      ]
+      MonoBehaviour [
+        objA "_networkx_list_start"
+        objA [
+          fileID "0"
+        ]
+      ]
+      MonoBehaviour [
+        objB "_networkx_list_start"
+        objB [
+          fileID "0"
+        ]
+      ]
+    ]
+  ]
+  node [
+    id 350
+    label "b839dd7887a52e24d8bed59d18ec5987"
+    type "script_file"
+    properties [
+      guid "b839dd7887a52e24d8bed59d18ec5987"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\Online\VRAgentOnline.cs.meta"
+      name "VRAgentOnline.cs"
+      type "meta"
+      file_size 243
+      num_components 0
+      COMPONENTS "_networkx_list_start"
+      COMPONENTS [
+        id "MonoImporter"
+        MonoImporter [
+          externalObjects ""
+        ]
+        MonoImporter [
+          serializedVersion "2"
+        ]
+        MonoImporter [
+          defaultReferences "[]"
+        ]
+        MonoImporter [
+          executionOrder "0"
+        ]
+        MonoImporter [
+          icon "_networkx_list_start"
+          icon [
+            instanceID "0"
+          ]
+        ]
+        MonoImporter [
+          userData ""
+        ]
+        MonoImporter [
+          assetBundleName ""
+        ]
+        MonoImporter [
+          assetBundleVariant ""
+        ]
+      ]
+      ProjectName "UnityProject"
+      ProjectPath ""
+    ]
+  ]
+  node [
+    id 351
+    label "75889669"
+    type "Mono_Component"
+    properties [
+      id "75889669"
+      MonoBehaviour [
+        m_ObjectHideFlags "0"
+      ]
+      MonoBehaviour [
+        m_CorrespondingSourceObject "_networkx_list_start"
+        m_CorrespondingSourceObject [
+          fileID "0"
+        ]
+      ]
+      MonoBehaviour [
+        m_PrefabInstance "_networkx_list_start"
+        m_PrefabInstance [
+          fileID "0"
+        ]
+      ]
+      MonoBehaviour [
+        m_PrefabAsset "_networkx_list_start"
+        m_PrefabAsset [
+          fileID "0"
+        ]
+      ]
+      MonoBehaviour [
+        m_GameObject "_networkx_list_start"
+        m_GameObject [
+          fileID "75889658"
+        ]
+      ]
+      MonoBehaviour [
+        m_Enabled "1"
+      ]
+      MonoBehaviour [
+        m_EditorHideFlags "0"
+      ]
+      MonoBehaviour [
+        m_Script [
+          fileID "11500000"
+        ]
+        m_Script [
+          guid "ec675469d72486646a106baa5e0e1bfd"
+        ]
+        m_Script [
+          type "3"
+        ]
+      ]
+      MonoBehaviour [
+        m_Name ""
+      ]
+      MonoBehaviour [
+        m_EditorClassIdentifier ""
+      ]
+    ]
+  ]
+  node [
+    id 352
+    label "ec675469d72486646a106baa5e0e1bfd"
+    type "script_file"
+    properties [
+      guid "ec675469d72486646a106baa5e0e1bfd"
+      file_path "D:\--UnityProject\HenryLabXR\VRAgent\VRAgent\Assets\Package\VRAgent\Online\StateCollector.cs.meta"
+      name "StateCollector.cs"
       type "meta"
       file_size 243
       num_components 0
@@ -33544,6 +33802,16 @@ graph [
   edge [
     source 35
     target 347
+    type "Has_Mono_Comp"
+  ]
+  edge [
+    source 35
+    target 349
+    type "Has_Mono_Comp"
+  ]
+  edge [
+    source 35
+    target 351
     type "Has_Mono_Comp"
   ]
   edge [
@@ -35069,6 +35337,16 @@ graph [
   edge [
     source 347
     target 348
+    type "Source_Code_File"
+  ]
+  edge [
+    source 349
+    target 350
+    type "Source_Code_File"
+  ]
+  edge [
+    source 351
+    target 352
     type "Source_Code_File"
   ]
 ]
