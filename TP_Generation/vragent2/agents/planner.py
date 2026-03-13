@@ -19,6 +19,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from .base_agent import BaseAgent
 from ..contracts import PlannerOutput
 from ..retrieval.retrieval_layer import RetrievalLayer
+from ..retrieval.data_types import ContextPack
 from ..utils.llm_client import LLMClient
 from ..utils.config_loader import VRAgentConfig
 
@@ -59,6 +60,10 @@ class PlannerAgent(BaseAgent):
             Required keys:
                 gobj_info   – dict from gobj_hierarchy.json
                 scene_name  – str
+            Optional keys:
+                goal         – exploration goal text
+                recent_trace – last N trace entries (for failure context)
+                gate_hints   – gate condition hints from Observer
 
         Returns
         -------
@@ -67,6 +72,15 @@ class PlannerAgent(BaseAgent):
         gobj_info = input_data["gobj_info"]
         scene_name = input_data["scene_name"]
         goal = input_data.get("goal", "")
+        recent_trace = input_data.get("recent_trace")
+        gate_hints = input_data.get("gate_hints")
+
+        # Build structured context pack for this planning round
+        self._context_pack = self.retrieval.build_planner_context(
+            goal, gobj_info,
+            recent_trace=recent_trace,
+            gate_hints=gate_hints,
+        )
 
         conversation, actions = self.generate_test_plan(gobj_info, scene_name)
 
@@ -148,21 +162,45 @@ class PlannerAgent(BaseAgent):
         original_actions: List[Dict],
         errors: List[Dict],
         context: List[Dict[str, str]],
+        *,
+        verifier_evidence: Optional[List[Dict]] = None,
     ) -> List[Dict]:
         """Given Verifier errors, ask the LLM to produce a targeted fix.
 
         This implements "结构化修复 instead of 重写整计划".
+        Now also incorporates verifier evidence (component info, existence checks)
+        to help the LLM make more targeted repairs.
         """
         error_block = json.dumps(errors, indent=2, ensure_ascii=False)
         action_block = json.dumps(original_actions, indent=2, ensure_ascii=False)
-        prompt = (
+
+        prompt_parts = [
             "The Verifier found the following errors in the proposed actions:\n"
-            f"```json\n{error_block}\n```\n\n"
+            f"```json\n{error_block}\n```\n",
+        ]
+
+        # Add verifier evidence if available
+        if verifier_evidence:
+            evidence_block = json.dumps(verifier_evidence[:20], indent=2, ensure_ascii=False)
+            prompt_parts.append(
+                "Verifier evidence (object existence / component checks):\n"
+                f"```json\n{evidence_block}\n```\n"
+            )
+
+        # Add context pack hints if available
+        if hasattr(self, '_context_pack') and self._context_pack:
+            gate_h = self._context_pack.gate_hints
+            if gate_h:
+                prompt_parts.append(f"Gate hints from previous failures:\n{gate_h}\n")
+
+        prompt_parts.append(
             "Original actions:\n"
             f"```json\n{action_block}\n```\n\n"
             "Please fix ONLY the flagged actions.  Return the complete corrected "
             "action list as a JSON array.  Do NOT rewrite actions that are already valid."
         )
+        prompt = "\n".join(prompt_parts)
+
         resp = self.llm.ask_with_context(prompt, context, model=self.llm_model)
         if resp:
             parsed = LLMClient.extract_json(resp)
@@ -178,6 +216,15 @@ class PlannerAgent(BaseAgent):
     # ==================================================================
     # Prompt builders
     # ==================================================================
+
+    @staticmethod
+    def _format_context_pack_for_prompt(ctx: ContextPack) -> str:
+        """Adapter: convert a structured ContextPack into a prompt-friendly text block.
+
+        This keeps the old template flow working while letting Planner
+        benefit from the structured retrieval output.
+        """
+        return ctx.to_prompt_text(max_tokens=4000)
 
     def _build_first_request(self, gobj_info: Dict[str, Any], scene_name: str) -> str:
         """Build the initial prompt for a top-level GameObject."""
@@ -218,7 +265,15 @@ class PlannerAgent(BaseAgent):
         if has_children:
             kwargs["children_ids"] = [c.get("target") for c in children]
 
-        return tpl.format(**kwargs)
+        result = tpl.format(**kwargs)
+
+        # Append structured context pack if available (gate hints, nearby objects, failures)
+        if hasattr(self, '_context_pack') and self._context_pack:
+            extra = self._format_context_pack_for_prompt(self._context_pack)
+            if extra and extra != "(no context available)":
+                result += "\n\n--- Additional Context ---\n" + extra
+
+        return result
 
     def _build_child_request(
         self, child: Dict[str, Any], index: int, scene_name: str

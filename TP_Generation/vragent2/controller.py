@@ -59,7 +59,7 @@ class VRAgentController:
             output_dir=os.path.join(output_dir, "execution"),
             unity_bridge=unity_bridge,
         )
-        self.observer = ObserverAgent()
+        self.observer = ObserverAgent(retrieval=self.retrieval)
         self.explorer = ExplorationController(
             self.gate_graph,
             total_budget=total_budget,
@@ -169,6 +169,8 @@ class VRAgentController:
             "bug_signals": [],
             "next_exploration_suggestion": "Initial exploration of all interactable objects.",
             "recommended_mode": ExplorationMode.EXPAND.value,
+            "gate_hints": [],
+            "failure_summary": "",
         }
 
         iteration = 0
@@ -190,7 +192,7 @@ class VRAgentController:
             print(f"[CONTROLLER] Goal: {goal.description}")
             print(f"{'='*60}")
 
-            result = self._run_single_object(gobj_info, goal, iteration)
+            result = self._run_single_object(gobj_info, goal, iteration, observer_output)
             observer_output = result.get("observer_output", observer_output)
 
             # Mark object as processed and save session incrementally
@@ -207,7 +209,8 @@ class VRAgentController:
     # ------------------------------------------------------------------
 
     def _run_single_object(
-        self, gobj_info: Dict, goal: ExplorationGoal, iteration: int
+        self, gobj_info: Dict, goal: ExplorationGoal, iteration: int,
+        prev_observer_output: Optional[Dict] = None,
     ) -> Dict[str, Any]:
         log_entry: Dict[str, Any] = {
             "iteration": iteration,
@@ -217,12 +220,18 @@ class VRAgentController:
             "timestamp": datetime.now().isoformat(),
         }
 
+        # Extract gate hints + recent trace from previous observer output
+        gate_hints = (prev_observer_output or {}).get("gate_hints", [])
+        recent_trace = self._all_traces[-10:] if self._all_traces else None
+
         # ── 1. Plan ──────────────────────────────────────────────────
         print("[CONTROLLER] → Planner")
         planner_output = self.planner.run({
             "gobj_info": gobj_info,
             "scene_name": self.scene_name,
             "goal": goal.description,
+            "recent_trace": recent_trace,
+            "gate_hints": gate_hints,
         })
         actions = planner_output.get("actions", [])
         log_entry["planned_actions"] = len(actions)
@@ -231,20 +240,25 @@ class VRAgentController:
         # ── 2. Verify (+ repair loop) ────────────────────────────────
         print("[CONTROLLER] → Verifier")
         llm_ctx: List[Dict[str, str]] = []
+        verifier_evidence: List[Dict] = []
         for repair_round in range(self.max_repair_rounds + 1):
             verifier_output = self.verifier.run({"actions": actions})
             errors = verifier_output.get("errors", [])
             passed = verifier_output.get("passed", verifier_output.get("pass", False))
             score = verifier_output.get("executable_score", 0.0)
+            verifier_evidence = verifier_output.get("evidence", [])
             print(f"[CONTROLLER]   Verifier score={score:.2f}, errors={len(errors)}, pass={passed}")
 
             if passed or repair_round >= self.max_repair_rounds:
                 actions = verifier_output.get("patched_actions", actions)
                 break
 
-            # Structured repair
+            # Structured repair — now passes verifier evidence too
             print(f"[CONTROLLER]   Repair round {repair_round + 1}")
-            actions = self.planner.repair(actions, errors, llm_ctx)
+            actions = self.planner.repair(
+                actions, errors, llm_ctx,
+                verifier_evidence=verifier_evidence,
+            )
 
         log_entry["verified_actions"] = len(actions)
         log_entry["verifier_score"] = score
@@ -267,16 +281,23 @@ class VRAgentController:
             "executor_output": executor_output,
             "console_logs": console_logs,
             "goal": goal.description,
+            "actions": actions,
         })
         delta = observer_output.get("coverage_delta", 0.0)
         bugs = observer_output.get("bug_signals", [])
-        print(f"[CONTROLLER]   Coverage delta={delta:.4f}, bugs={len(bugs)}")
+        gate_hints_out = observer_output.get("gate_hints", [])
+        failure_summary = observer_output.get("failure_summary", "")
+        print(f"[CONTROLLER]   Coverage delta={delta:.4f}, bugs={len(bugs)}, gate_hints={len(gate_hints_out)}")
+        if failure_summary:
+            print(f"[CONTROLLER]   Failure summary: {failure_summary[:200]}")
 
         # ── 5. Update Gate Graph ─────────────────────────────────────
         self._update_gate_graph(gobj_info, actions, executor_output, observer_output)
 
         log_entry["coverage_delta"] = delta
         log_entry["bugs"] = bugs
+        log_entry["gate_hints"] = gate_hints_out
+        log_entry["failure_summary"] = failure_summary
         log_entry["observer_suggestion"] = observer_output.get("next_exploration_suggestion", "")
         self._iteration_logs.append(log_entry)
 

@@ -8,8 +8,10 @@ performs "弱 oracle" observation:
     - Key event trigger verification
     - Object state achievement checking
     - Coverage delta evaluation
+    - **Failure-to-condition inference → gate_hints** (§B3.2)
 
-Output: coverage delta, bug signals, and next-exploration suggestions.
+Output: coverage delta, bug signals, next-exploration suggestions,
+        gate_hints (structured, consumable by Planner), failure_summary.
 """
 
 from __future__ import annotations
@@ -24,6 +26,7 @@ from ..contracts import (
     CoverageDelta,
     TraceEntry,
 )
+from ..retrieval.condition_inference import infer_conditions
 
 
 class ObserverAgent(BaseAgent):
@@ -31,10 +34,11 @@ class ObserverAgent(BaseAgent):
 
     name = "ObserverAgent"
 
-    def __init__(self, *, novelty_threshold_k: int = 5):
+    def __init__(self, *, novelty_threshold_k: int = 5, retrieval=None):
         self.novelty_threshold_k = novelty_threshold_k
         self._consecutive_zero_novelty: int = 0
         self._total_coverage = CoverageDelta()
+        self.retrieval = retrieval  # RetrievalLayer (optional, for observer context)
 
     # ------------------------------------------------------------------
     # Contract entry point
@@ -51,14 +55,17 @@ class ObserverAgent(BaseAgent):
                 previous_coverage – CoverageDelta dict
                 console_logs      – list of Unity console log strings
                 goal              – current ExplorationGoal description
+                actions           – the actions that were executed
 
         Returns
         -------
-        dict matching ObserverOutput schema.
+        dict with keys: coverage_delta, bug_signals, next_exploration_suggestion,
+        recommended_mode, gate_hints, failure_summary.
         """
         exec_out = input_data.get("executor_output", {})
         console_logs: List[str] = input_data.get("console_logs", [])
         goal: str = input_data.get("goal", "")
+        actions: List[Dict] = input_data.get("actions", [])
 
         trace = exec_out.get("trace", [])
         coverage = exec_out.get("coverage_delta", {})
@@ -70,16 +77,30 @@ class ObserverAgent(BaseAgent):
         # ② Compute novelty / coverage gain
         delta = self._evaluate_coverage(coverage)
 
-        # ③ Suggest next exploration action
-        suggestion, mode = self._suggest_next(delta, bug_signals, trace, goal)
-
-        output = ObserverOutput(
-            coverage_delta=delta,
-            bug_signals=bug_signals,
-            next_exploration_suggestion=suggestion,
-            recommended_mode=mode,
+        # ③ Run failure-to-condition inference
+        conditions = infer_conditions(
+            actions=actions,
+            executor_output=exec_out,
+            console_logs=console_logs,
         )
-        return output.to_dict()
+        gate_hints = [c.to_dict() for c in conditions]
+
+        # ④ Build failure summary
+        failure_summary = self._build_failure_summary(conditions, bug_signals)
+
+        # ⑤ Suggest next exploration action (informed by conditions)
+        suggestion, mode = self._suggest_next(delta, bug_signals, trace, goal, conditions)
+
+        # Build output (extended beyond base ObserverOutput)
+        output = {
+            "coverage_delta": delta,
+            "bug_signals": bug_signals,
+            "next_exploration_suggestion": suggestion,
+            "recommended_mode": mode.value,
+            "gate_hints": gate_hints,
+            "failure_summary": failure_summary,
+        }
+        return output
 
     # ------------------------------------------------------------------
     # Bug detection (weak oracle)
@@ -148,7 +169,28 @@ class ObserverAgent(BaseAgent):
         return round(delta, 4)
 
     # ------------------------------------------------------------------
-    # Exploration suggestion
+    # Failure summary builder
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _build_failure_summary(conditions, bug_signals: List[str]) -> str:
+        """Build a human-readable failure summary for logging / downstream agents."""
+        parts: List[str] = []
+        if conditions:
+            parts.append("Inferred conditions:")
+            for c in conditions:
+                parts.append(
+                    f"  - [{c.failure_type}] {c.missing_condition} "
+                    f"(confidence={c.confidence:.2f})"
+                )
+        if bug_signals:
+            parts.append(f"Bug signals ({len(bug_signals)}):")
+            for sig in bug_signals[:5]:
+                parts.append(f"  - {sig[:150]}")
+        return "\n".join(parts) if parts else ""
+
+    # ------------------------------------------------------------------
+    # Exploration suggestion (now condition-aware)
     # ------------------------------------------------------------------
 
     def _suggest_next(
@@ -157,6 +199,7 @@ class ObserverAgent(BaseAgent):
         bug_signals: List[str],
         trace: List[Dict],
         goal: str,
+        conditions=None,
     ) -> tuple[str, ExplorationMode]:
         """Recommend next exploration mode + specific action hint."""
 
@@ -169,7 +212,18 @@ class ObserverAgent(BaseAgent):
                 ExplorationMode.RECOVER,
             )
 
-        # Exploit mode: gate / lock detected
+        # Exploit mode: structural condition detected
+        if conditions:
+            actionable = [c for c in conditions if c.failure_type != "unknown" and c.confidence >= 0.5]
+            if actionable:
+                top = actionable[0]
+                return (
+                    f"Condition inferred: [{top.failure_type}] {top.missing_condition} "
+                    f"(confidence={top.confidence:.2f}). Resolve this condition first.",
+                    ExplorationMode.EXPLOIT,
+                )
+
+        # Exploit mode: gate / lock detected from bug signals
         gate_keywords = re.compile(
             r"(locked|need_item|need_key|need_state|ui_hidden|cannot open|not interactable)",
             re.IGNORECASE,
