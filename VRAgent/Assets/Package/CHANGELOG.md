@@ -1,6 +1,28 @@
 # Changelog
 
 
+## [2.0.3] - 2026-03-20
+
+### Updated
+
+- Refactor VRAgent 2.0 pipeline to **blackboard-based multi-agent architecture** (SharedWorldState)
+- Agent collaboration: Planner → Verifier (V1 rule-based + V2 semantic) → Executor → Observer (O1/O2/O3)
+- Scheduler accepts Observer strategy bias and object failure history for smarter target selection
+
+### Feature
+
+- ***[Star]*** **SharedWorldState blackboard** — central state shared across all agents with session persistence
+- ***[Star]*** **SemanticVerifier (V2)** — LLM-based semantic consistency check with structured plan revision
+- Observer O1 State Delta / O2 Failure Hypothesis / O3 Strategy Recommendation outputs
+- Runtime-only API key injection via `--api_key` CLI argument or `OPENAI_API_KEY` env variable
+- VRAgent 2.0-PVEO Online module: `AgentBridge` TCP server + `StateCollector` + `VRAgentOnline` for Unity Play Mode closed-loop execution
+
+### Fixed
+
+- Remove hardcoded API key from Python generation workflow for security
+- Session resume (`--resume`) correctly restores blackboard state and skips processed objects
+
+
 ## [1.8.12] - 2025-12-11
 ### Updated
 - NavMeshPointChecker editor tool

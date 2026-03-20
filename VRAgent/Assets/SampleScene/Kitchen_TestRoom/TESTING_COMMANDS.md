@@ -48,7 +48,9 @@ $Common = @(
   "--app_name",        "Kitchen_TestRoom",
   "--budget",          "100",
   "--max_repair",      "2",
-  "--model",           "gpt-4o"
+  "--model",           "gpt-4o",
+  "--api_key",         "<YOUR_API_KEY>",
+  "--api_base",        "https://api.vectorengine.ai/v1"
 )
 ```
 

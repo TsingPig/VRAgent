@@ -4,8 +4,10 @@ This repository demonstrates how to integrate **Large Language Models (LLMs)** w
 
 ## Features
 
-- LLM-assisted test plan generation (with optional RAG support)
-- Seamless integration with VRExplorer’s testing pipeline
+- LLM-assisted test plan generation (with optional RAG support)- **Multi-agent closed-loop pipeline**: Planner → Verifier → Executor → Observer with SharedWorldState blackboard
+- Semantic verification (V2) and observer-guided iterative plan correction
+- Session persistence and resumable execution via `session_state.json`
+- Online execution mode via `VRAgentOnline` / `AgentBridge` TCP bridge in Unity Play Mode- Seamless integration with VRExplorer’s testing pipeline
 - Automated ID binding and runtime execution via VRAgent
 - Reproducible and configurable VR test execution in Unity
 
