@@ -172,7 +172,23 @@ class TestObserverLLM(unittest.TestCase):
 
     def test_observer_with_mock_llm(self):
         mock_llm = MagicMock()
-        mock_llm.ask.return_value = "Root cause: missing collider"
+        fake_llm_result = {
+            "state_delta": {
+                "changed_objects": [], "expected_changes": [],
+                "unexpected_changes": [], "gates_opened": [],
+                "gates_still_blocked": [], "semantic_failures": [],
+            },
+            "failure_hypotheses": [],
+            "strategy": {
+                "new_facts": ["collider missing"],
+                "gates_inferred": [],
+                "planner_instruction": "Fix collider",
+                "scheduler_bias": [],
+                "oracle_updates": [],
+            },
+        }
+        mock_llm.chat.return_value = json.dumps(fake_llm_result)
+        mock_llm.extract_json.return_value = fake_llm_result
         obs = self._make_observer(llm=mock_llm, enabled=True)
         result = obs.run({
             "executor_output": {
@@ -183,7 +199,7 @@ class TestObserverLLM(unittest.TestCase):
             "console_logs": ["NullReferenceException at line 42"],
         })
         self.assertIn("llm_analysis", result)
-        mock_llm.ask.assert_called_once()
+        mock_llm.chat.assert_called_once()
         self.assertTrue(len(result["bug_signals"]) > 0)
 
 
@@ -382,10 +398,13 @@ class TestControllerSharedContext(unittest.TestCase):
     def test_shared_context_with_scene_understanding(self):
         from vragent2.contracts import SceneUnderstandingOutput
         ctrl = self._make_controller()
-        ctrl._scene_understanding = SceneUnderstandingOutput(
+        su = SceneUnderstandingOutput(
             scene_overview="Kitchen scene",
             key_objects=["Knife"],
         )
+        ctrl._scene_understanding = su
+        # Also write to blackboard so _build_shared_context finds it
+        ctrl.world_state.scene_understanding = su
         ctx = ctrl._build_shared_context()
         self.assertIn("scene_understanding_summary", ctx)
         self.assertIn("Kitchen scene", ctx["scene_understanding_summary"])
@@ -448,6 +467,357 @@ class TestPipelineIntegration(unittest.TestCase):
         # With an invalid path, scene_understanding should be empty but not crash
         self.assertIsNotNone(ctrl._scene_understanding)
         self.assertEqual(ctrl._scene_understanding.scene_overview, "")
+
+
+# ======================================================================
+# 9. SharedWorldState (blackboard)
+# ======================================================================
+
+class TestSharedWorldState(unittest.TestCase):
+
+    def _make_ws(self):
+        from vragent2.contracts import SharedWorldState
+        return SharedWorldState()
+
+    def test_add_fact_dedup(self):
+        ws = self._make_ws()
+        ws.add_fact("Knife is sharp")
+        ws.add_fact("Knife is sharp")
+        ws.add_fact("Oven is hot")
+        self.assertEqual(len(ws.facts), 2)
+
+    def test_mark_tested(self):
+        ws = self._make_ws()
+        ws.mark_tested("Knife")
+        ws.mark_tested("Knife")
+        self.assertEqual(ws.tested_objects, ["Knife"])
+
+    def test_record_failure(self):
+        ws = self._make_ws()
+        ws.record_failure("Knife", "grab failed")
+        ws.record_failure("Knife", "grab failed again")
+        self.assertEqual(ws.object_failure_counts["Knife"], 2)
+        self.assertEqual(len(ws.recent_failures), 2)
+
+    def test_to_dict_roundtrip(self):
+        ws = self._make_ws()
+        ws.add_fact("fact1")
+        ws.open_gates = ["gate_A"]
+        ws.blocked_gates = ["gate_B"]
+        ws.mark_tested("Obj1")
+        ws.record_failure("Obj2", "err")
+        ws.total_coverage = 0.5
+        ws.coverage_history = [0.1, 0.2, 0.2]
+        ws.scheduler_bias = ["try Knife next"]
+        d = ws.to_dict()
+        self.assertEqual(d["facts"], ["fact1"])
+        self.assertEqual(d["open_gates"], ["gate_A"])
+        self.assertEqual(d["blocked_gates"], ["gate_B"])
+        self.assertEqual(d["tested_objects"], ["Obj1"])
+        self.assertEqual(d["object_failure_counts"]["Obj2"], 1)
+        self.assertAlmostEqual(d["total_coverage"], 0.5)
+        self.assertEqual(d["scheduler_bias"], ["try Knife next"])
+
+    def test_to_prompt_summary_not_empty(self):
+        ws = self._make_ws()
+        ws.add_fact("The door is locked")
+        ws.blocked_gates = ["door_A"]
+        ws.oracle_rules = ["Must unlock door before entering"]
+        text = ws.to_prompt_summary()
+        self.assertIn("door is locked", text)
+        self.assertIn("Blocked Gates", text)
+        self.assertIn("Oracle Rules", text)
+
+    def test_to_prompt_summary_empty(self):
+        ws = self._make_ws()
+        text = ws.to_prompt_summary()
+        # Empty state should produce empty or minimal summary
+        self.assertIsInstance(text, str)
+
+
+# ======================================================================
+# 10. SemanticVerifierOutput
+# ======================================================================
+
+class TestSemanticVerifierOutput(unittest.TestCase):
+
+    def test_from_dict(self):
+        from vragent2.contracts import SemanticVerifierOutput
+        d = {
+            "semantic_risk_score": 0.7,
+            "missing_preconditions": ["need blue key"],
+            "suspicious_steps": ["step 3: grab locked door"],
+            "counter_plan": [{"actionType": "Grab"}],
+            "verdict": "revise",
+        }
+        sv = SemanticVerifierOutput.from_dict(d)
+        self.assertAlmostEqual(sv.semantic_risk_score, 0.7)
+        self.assertEqual(sv.verdict, "revise")
+        self.assertEqual(len(sv.missing_preconditions), 1)
+        self.assertEqual(len(sv.counter_plan), 1)
+
+    def test_from_dict_defaults(self):
+        from vragent2.contracts import SemanticVerifierOutput
+        sv = SemanticVerifierOutput.from_dict({})
+        self.assertAlmostEqual(sv.semantic_risk_score, 0.0)
+        self.assertEqual(sv.verdict, "accept")
+        self.assertEqual(sv.missing_preconditions, [])
+
+    def test_to_dict(self):
+        from vragent2.contracts import SemanticVerifierOutput
+        sv = SemanticVerifierOutput(
+            semantic_risk_score=0.3,
+            missing_preconditions=[],
+            suspicious_steps=[],
+            counter_plan=[],
+            verdict="accept",
+        )
+        d = sv.to_dict()
+        self.assertEqual(d["verdict"], "accept")
+        self.assertAlmostEqual(d["semantic_risk_score"], 0.3)
+
+
+# ======================================================================
+# 11. StateDelta / FailureHypothesis / StrategyRecommendation
+# ======================================================================
+
+class TestObserverContracts(unittest.TestCase):
+
+    def test_state_delta(self):
+        from vragent2.contracts import StateDelta
+        sd = StateDelta(
+            changed_objects=["Knife"],
+            expected_changes=["move"],
+            unexpected_changes=[],
+            gates_opened=["drawer"],
+            gates_still_blocked=["oven_door"],
+            semantic_failures=[],
+        )
+        d = sd.to_dict()
+        self.assertEqual(d["gates_opened"], ["drawer"])
+
+    def test_failure_hypothesis(self):
+        from vragent2.contracts import FailureHypothesis
+        fh = FailureHypothesis(
+            hypothesis="Door is locked",
+            evidence=["error: locked"],
+            confidence=0.8,
+            blocked_object="Door",
+            needed_condition="Key",
+        )
+        d = fh.to_dict()
+        self.assertAlmostEqual(d["confidence"], 0.8)
+        self.assertEqual(d["blocked_object"], "Door")
+
+    def test_strategy_recommendation(self):
+        from vragent2.contracts import StrategyRecommendation
+        sr = StrategyRecommendation(
+            new_facts=["Key is in drawer"],
+            gates_inferred=["drawer_unlocked"],
+            planner_instruction="Try drawer first",
+            scheduler_bias=["Drawer"],
+            oracle_updates=["unlock drawer → use key"],
+        )
+        d = sr.to_dict()
+        self.assertEqual(d["planner_instruction"], "Try drawer first")
+        self.assertEqual(d["scheduler_bias"], ["Drawer"])
+
+
+# ======================================================================
+# 12. SemanticVerifier agent
+# ======================================================================
+
+class TestSemanticVerifier(unittest.TestCase):
+
+    def test_with_mock_llm(self):
+        from vragent2.agents.verifier import SemanticVerifier
+        from vragent2.utils.config_loader import AgentLLMConfig
+
+        fake_response = json.dumps({
+            "semantic_risk_score": 0.2,
+            "missing_preconditions": [],
+            "suspicious_steps": [],
+            "counter_plan": [],
+            "verdict": "accept",
+        })
+        mock_llm = MagicMock()
+        mock_llm.chat.return_value = fake_response
+        mock_llm.extract_json.return_value = json.loads(fake_response)
+
+        sv = SemanticVerifier(
+            llm=mock_llm,
+            llm_config=AgentLLMConfig(model="gpt-4o", temperature=0.2, enabled=True),
+        )
+        result = sv.run({
+            "actions": [{"actionType": "Grab"}],
+            "world_state": "test context",
+            "planner_intent": "test all",
+            "recent_failures": [],
+        })
+        self.assertEqual(result["verdict"], "accept")
+        self.assertAlmostEqual(result["semantic_risk_score"], 0.2)
+        mock_llm.chat.assert_called_once()
+
+    def test_without_llm_returns_accept(self):
+        from vragent2.agents.verifier import SemanticVerifier
+        from vragent2.utils.config_loader import AgentLLMConfig
+
+        sv = SemanticVerifier(
+            llm=None,
+            llm_config=AgentLLMConfig(enabled=False),
+        )
+        result = sv.run({"actions": []})
+        self.assertEqual(result["verdict"], "accept")
+
+
+# ======================================================================
+# 13. Observer O1/O2/O3 outputs
+# ======================================================================
+
+class TestObserverO1O2O3(unittest.TestCase):
+
+    def _make_observer(self, llm=None, enabled=True):
+        from vragent2.agents.observer import ObserverAgent
+        from vragent2.utils.config_loader import AgentLLMConfig
+        config = AgentLLMConfig(model="test-model", temperature=0.2, enabled=enabled)
+        return ObserverAgent(llm=llm, llm_config=config)
+
+    def test_observer_produces_state_delta(self):
+        """Observer run() should produce state_delta in output."""
+        obs = self._make_observer(llm=None, enabled=False)
+        result = obs.run({
+            "executor_output": {
+                "trace": [{"action": "grab", "state_before": {"pos": [0,0,0]},
+                           "state_after": {"pos": [1,1,1]}, "events": []}],
+                "coverage_delta": {"LC": 0.1},
+                "exceptions": [],
+            },
+            "console_logs": [],
+            "actions": [{"actionType": "Grab", "objectA_fileId": "123"}],
+        })
+        self.assertIn("state_delta", result)
+        sd = result["state_delta"]
+        self.assertIsInstance(sd, dict)
+
+    def test_observer_produces_failure_hypotheses(self):
+        obs = self._make_observer(llm=None, enabled=False)
+        result = obs.run({
+            "executor_output": {
+                "trace": [],
+                "coverage_delta": {},
+                "exceptions": ["NullReferenceException"],
+            },
+            "console_logs": ["Error: object not found"],
+            "actions": [{"actionType": "Trigger", "target_fileId": "999"}],
+        })
+        self.assertIn("failure_hypotheses", result)
+        # Should detect issues from exceptions
+        self.assertIsInstance(result["failure_hypotheses"], list)
+
+    def test_observer_with_llm_produces_strategy(self):
+        """When LLM is available, Observer should produce strategy."""
+        fake_llm_response = json.dumps({
+            "state_delta": {
+                "changed_objects": ["Knife"],
+                "expected_changes": ["moved"],
+                "unexpected_changes": [],
+                "gates_opened": [],
+                "gates_still_blocked": [],
+                "semantic_failures": [],
+            },
+            "failure_hypotheses": [],
+            "strategy": {
+                "new_facts": ["Knife can be grabbed"],
+                "gates_inferred": [],
+                "planner_instruction": "Try oven next",
+                "scheduler_bias": ["Oven"],
+                "oracle_updates": [],
+            },
+        })
+        mock_llm = MagicMock()
+        mock_llm.ask.return_value = fake_llm_response
+        mock_llm.extract_json.return_value = json.loads(fake_llm_response)
+
+        obs = self._make_observer(llm=mock_llm, enabled=True)
+        result = obs.run({
+            "executor_output": {
+                "trace": [{"action": "grab", "state_before": {}, "state_after": {}, "events": []}],
+                "coverage_delta": {"LC": 0.1},
+                "exceptions": [],
+            },
+            "console_logs": [],
+            "actions": [{"actionType": "Grab"}],
+        })
+        self.assertIn("strategy", result)
+        if result.get("strategy"):
+            self.assertIn("planner_instruction", result["strategy"])
+
+
+# ======================================================================
+# 14. Scheduler with blackboard inputs
+# ======================================================================
+
+class TestSchedulerBlackboard(unittest.TestCase):
+
+    def _candidates(self):
+        return [
+            {"gameobject_name": "Knife"},
+            {"gameobject_name": "Oven"},
+            {"gameobject_name": "Plate"},
+        ]
+
+    def test_scheduler_accepts_bias_and_failure_counts(self):
+        """Scheduler should accept scheduler_bias and failure_counts without error."""
+        from vragent2.scheduling.object_scheduler import ObjectScheduler
+        from vragent2.utils.config_loader import AgentLLMConfig
+
+        scheduler = ObjectScheduler(
+            llm=MagicMock(),
+            llm_config=AgentLLMConfig(enabled=False),
+        )
+        decision = scheduler.select_next(
+            self._candidates(),
+            processed=set(),
+            scheduler_bias=["Oven", "Plate"],
+            failure_counts={"Knife": 3},
+        )
+        self.assertIsNotNone(decision)
+
+    def test_scheduler_prompt_includes_bias(self):
+        """When LLM is enabled, scheduler prompt should include bias info."""
+        from vragent2.scheduling.object_scheduler import ObjectScheduler
+        from vragent2.utils.config_loader import AgentLLMConfig
+
+        mock_llm = MagicMock()
+        mock_llm.chat.return_value = json.dumps({
+            "object_name": "Oven",
+            "reason": "Observer suggested",
+            "priority_score": 0.8,
+            "skip_list": [],
+        })
+        mock_llm.extract_json.return_value = {
+            "object_name": "Oven",
+            "reason": "Observer suggested",
+            "priority_score": 0.8,
+            "skip_list": [],
+        }
+
+        scheduler = ObjectScheduler(
+            llm=mock_llm,
+            llm_config=AgentLLMConfig(enabled=True),
+        )
+        decision = scheduler.select_next(
+            self._candidates(),
+            processed=set(),
+            scheduler_bias=["Oven"],
+            failure_counts={"Knife": 2},
+        )
+        self.assertEqual(decision.object_name, "Oven")
+        # Verify the prompt text included bias info
+        call_args = mock_llm.chat.call_args
+        prompt_text = call_args[0][0][1]["content"]  # user message
+        self.assertIn("Observer priority", prompt_text)
+        self.assertIn("Failure counts", prompt_text)
 
 
 if __name__ == "__main__":

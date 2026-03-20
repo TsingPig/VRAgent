@@ -73,9 +73,11 @@ def parse_args() -> argparse.Namespace:
                         "<output>/test_plan.json.")
 
     # Clean previous results
-    p.add_argument("--clean", action="store_true", default=False,
-                   help="Delete all previous results in the output directory before running. "
-                        "Cannot be combined with --resume.")
+    p.add_argument("--clean", choices=["llm", "analysis", "all"], default=None,
+                   help="Clean previous results before running. "
+                        "'llm' = LLM pipeline output only (test_plan, traces, etc.); "
+                        "'analysis' = upstream analysis results only (GML, hierarchy, scripts); "
+                        "'all' = both. Cannot be combined with --resume or --replay.")
 
     # Unity project integration
     p.add_argument("--unity_project", default=None,
@@ -274,7 +276,13 @@ def main() -> None:
         if args.replay:
             print("[ERROR] --clean and --replay cannot be used together (would delete the plan to replay).")
             sys.exit(1)
-        _clean_output(args.output)
+        analysis_dir = str(Path(args.hierarchy_json).parent)
+        if args.clean in ("llm", "all"):
+            _clean_output(args.output)
+        if args.clean in ("analysis", "all"):
+            _clean_analysis_output(analysis_dir)
+        print("[CLEAN] Done. Exiting.")
+        return
 
     # ── Replay mode — skip LLM, just execute existing test_plan ────────
     if args.replay:
@@ -375,6 +383,35 @@ def _clean_output(output_dir: str) -> None:
             removed += count
 
     print(f"[CLEAN] Removed {removed} files/entries from {output_dir}")
+
+
+def _clean_analysis_output(analysis_dir: str) -> None:
+    """Remove upstream analysis results (GML, hierarchy, script_info, etc.)."""
+    import shutil
+
+    if not os.path.isdir(analysis_dir):
+        print(f"[CLEAN-ANALYSIS] Analysis directory does not exist: {analysis_dir}")
+        return
+
+    removed = 0
+    # Remove known subdirectories
+    for subdir in ("scene_detailed_info", "script_detailed_info",
+                   "BuildAsset_info", "TagManager_info"):
+        dirpath = os.path.join(analysis_dir, subdir)
+        if os.path.isdir(dirpath):
+            count = len(os.listdir(dirpath))
+            shutil.rmtree(dirpath)
+            removed += count
+
+    # Remove generated files (JSON, CSV, etc.) but keep the directory itself
+    for fname in os.listdir(analysis_dir):
+        fpath = os.path.join(analysis_dir, fname)
+        if os.path.isfile(fpath):
+            os.remove(fpath)
+            removed += 1
+
+    print(f"[CLEAN-ANALYSIS] Removed {removed} files/entries from {analysis_dir}")
+    print(f"[CLEAN-ANALYSIS] You need to re-run Stage 1 & 2 (ExtractSceneDependency + TraverseSceneHierarchy) to regenerate.")
 
 
 def _replay_test_plan(test_plan_path: str, bridge, output_dir: str) -> Dict[str, Any]:

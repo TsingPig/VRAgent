@@ -20,7 +20,7 @@ import json
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .base_agent import BaseAgent
-from ..contracts import VerifierOutput, VerifierError, VerifierErrorType
+from ..contracts import VerifierOutput, VerifierError, VerifierErrorType, SemanticVerifierOutput
 from ..retrieval.retrieval_layer import RetrievalLayer
 from ..retrieval.hierarchy_builder import FORBIDDEN_NAMES
 
@@ -460,3 +460,127 @@ class VerifierAgent(BaseAgent):
             except (ValueError, TypeError):
                 return False
         return False
+
+
+# =====================================================================
+# Semantic Verifier (V2) — LLM-based plan critic
+# =====================================================================
+
+_SEMANTIC_VERIFIER_SYSTEM = """\
+You are a critical reviewer for VR test plans. Your job is NOT to check syntax \
+or fileIDs (that has already been done). Instead you evaluate whether the \
+proposed actions actually make sense given the scene's ground truth.
+
+You must check:
+1. Does the action sequence have a realistic chance of achieving its stated goal?
+2. Are there missing preconditions (e.g. a door that must be unlocked first)?
+3. Are any steps targeting decoration/system objects instead of key interactables?
+4. Does the sequence violate the known gate chain order?
+5. Are there "looks valid but actually useless" steps (e.g. grabbing an object \
+   that is already in the right place)?
+
+Return a JSON object:
+{
+  "semantic_risk_score": <0.0 low risk – 1.0 high risk>,
+  "missing_preconditions": ["<precondition not met>", ...],
+  "suspicious_steps": ["<step description>", ...],
+  "counter_plan": ["<alternative action description>", ...],
+  "verdict": "accept" | "reject" | "revise"
+}
+
+- "accept" = plan is reasonable, proceed.
+- "revise" = fixable issues, planner should address counter_plan suggestions.
+- "reject" = fundamentally flawed, replanning needed.
+
+Return ONLY valid JSON.
+"""
+
+
+class SemanticVerifier(BaseAgent):
+    """V2 — LLM-based plan critic that evaluates semantic validity.
+
+    Unlike the rule-based ``VerifierAgent`` (V1), this critic checks whether
+    the plan *makes sense* w.r.t. scene ground truth, gate chains, and prior
+    execution history.  It can propose counter-plans for the Planner to merge.
+    """
+
+    name = "SemanticVerifier"
+
+    def __init__(
+        self,
+        *,
+        llm: "LLMClient",
+        llm_config: Optional["AgentLLMConfig"] = None,
+        default_model: str = "gpt-4o",
+    ):
+        self.llm = llm
+        self.llm_config = llm_config
+        self._default_model = default_model
+
+    def run(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Parameters
+        ----------
+        input_data : dict
+            Required keys:
+                actions       – list of action dicts (already passed V1)
+            Optional keys:
+                world_state   – SharedWorldState.to_prompt_summary()
+                planner_intent – what the planner was trying to do
+                recent_failures – list of recent failure summaries
+
+        Returns
+        -------
+        dict matching SemanticVerifierOutput schema.
+        """
+        actions = input_data.get("actions", [])
+        world_summary = input_data.get("world_state", "")
+        intent = input_data.get("planner_intent", "")
+        recent_failures = input_data.get("recent_failures", [])
+
+        if not actions:
+            return SemanticVerifierOutput(verdict="accept").to_dict()
+
+        # Build user prompt
+        sample = actions[:20]
+        action_block = json.dumps(sample, indent=2, ensure_ascii=False)
+
+        parts = [f"## Proposed Actions ({len(actions)} total)\n```json\n{action_block}\n```"]
+        if intent:
+            parts.append(f"**Planner Intent**: {intent}")
+        if world_summary:
+            parts.append(f"## World State\n{world_summary}")
+        if recent_failures:
+            fail_text = "\n".join(f"  - {f}" for f in recent_failures[-10:])
+            parts.append(f"**Recent Failures**:\n{fail_text}")
+
+        user_prompt = "\n\n".join(parts)
+
+        model = (
+            self.llm_config.effective_model(self._default_model)
+            if self.llm_config
+            else self._default_model
+        )
+        temp = self.llm_config.temperature if self.llm_config else 0.3
+
+        try:
+            raw = self.llm.chat(
+                [
+                    {"role": "system", "content": _SEMANTIC_VERIFIER_SYSTEM},
+                    {"role": "user", "content": user_prompt},
+                ],
+                model=model,
+                temperature=temp,
+            )
+        except Exception as exc:
+            print(f"[SEMANTIC_VERIFIER] LLM call failed: {exc}")
+            return SemanticVerifierOutput(verdict="accept").to_dict()
+
+        if not raw:
+            return SemanticVerifierOutput(verdict="accept").to_dict()
+
+        parsed = self.llm.extract_json(raw)
+        if not parsed:
+            return SemanticVerifierOutput(verdict="accept").to_dict()
+
+        return SemanticVerifierOutput.from_dict(parsed).to_dict()

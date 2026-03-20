@@ -69,6 +69,8 @@ class ObjectScheduler:
         gate_hints: Optional[List[Dict]] = None,
         recent_failures: Optional[List[str]] = None,
         coverage_state: Optional[Dict[str, float]] = None,
+        scheduler_bias: Optional[List[str]] = None,
+        failure_counts: Optional[Dict[str, int]] = None,
     ) -> Optional[SchedulerDecision]:
         """Pick the next object to process.
 
@@ -81,6 +83,10 @@ class ObjectScheduler:
         scene_understanding : SceneUnderstandingOutput, optional
             Structured scene knowledge.
         gate_hints, recent_failures, coverage_state : optional runtime state.
+        scheduler_bias : list[str], optional
+            Observer-recommended object priorities from blackboard.
+        failure_counts : dict[str, int], optional
+            Per-object failure counts from blackboard.
 
         Returns
         -------
@@ -101,6 +107,7 @@ class ObjectScheduler:
         user_prompt = self._build_prompt(
             remaining, processed, scene_understanding,
             gate_hints, recent_failures, coverage_state,
+            scheduler_bias, failure_counts,
         )
 
         model = (
@@ -158,6 +165,8 @@ class ObjectScheduler:
         gate_hints: Optional[List[Dict]],
         recent_failures: Optional[List[str]],
         coverage_state: Optional[Dict[str, float]],
+        scheduler_bias: Optional[List[str]] = None,
+        failure_counts: Optional[Dict[str, int]] = None,
     ) -> str:
         parts: List[str] = []
 
@@ -184,6 +193,16 @@ class ObjectScheduler:
         # Coverage
         if coverage_state:
             parts.append(f"**Coverage state**: {json.dumps(coverage_state)}")
+
+        # Scheduler bias from Observer/blackboard
+        if scheduler_bias:
+            parts.append(f"**Observer priority recommendations**: {json.dumps(scheduler_bias[:10])}")
+
+        # Per-object failure counts from blackboard
+        if failure_counts:
+            relevant = {k: v for k, v in failure_counts.items() if v > 0}
+            if relevant:
+                parts.append(f"**Failure counts**: {json.dumps(relevant)}")
 
         # Selection history (last 5)
         if self._history:

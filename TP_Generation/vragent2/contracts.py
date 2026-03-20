@@ -3,6 +3,9 @@ Contract-based Interaction Protocol — Agent I/O Schema Definitions
 
 Every agent's output MUST conform to these schemas so multi-agent
 collaboration becomes a testable pipeline rather than free-form chat.
+
+v2.1: SharedWorldState blackboard — agents read/write a shared state object
+instead of piping dicts through a sequential chain.
 """
 
 from __future__ import annotations
@@ -282,6 +285,11 @@ class SceneUnderstandingOutput:
     main_path: List[str] = field(default_factory=list)          # correct walkthrough steps
     failure_paths: List[str] = field(default_factory=list)      # common failure patterns
     object_priority_ranking: List[str] = field(default_factory=list)  # object names ranked by importance
+    # v2.1 additions
+    object_roles: Dict[str, str] = field(default_factory=dict)  # e.g. {"Key": "unlocker", "Door": "gated_target"}
+    oracle_hints: List[str] = field(default_factory=list)       # e.g. ["door open state should change"]
+    completion_criteria: List[str] = field(default_factory=list) # what counts as "done"
+    forbidden_test_objects: List[str] = field(default_factory=list)  # objects to never test
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -292,6 +300,10 @@ class SceneUnderstandingOutput:
             "main_path": self.main_path,
             "failure_paths": self.failure_paths,
             "object_priority_ranking": self.object_priority_ranking,
+            "object_roles": self.object_roles,
+            "oracle_hints": self.oracle_hints,
+            "completion_criteria": self.completion_criteria,
+            "forbidden_test_objects": self.forbidden_test_objects,
         }
 
     @staticmethod
@@ -305,6 +317,10 @@ class SceneUnderstandingOutput:
             main_path=d.get("main_path", []),
             failure_paths=d.get("failure_paths", []),
             object_priority_ranking=d.get("object_priority_ranking", []),
+            object_roles=d.get("object_roles", {}),
+            oracle_hints=d.get("oracle_hints", []),
+            completion_criteria=d.get("completion_criteria", []),
+            forbidden_test_objects=d.get("forbidden_test_objects", []),
         )
 
     def to_prompt_text(self) -> str:
@@ -322,6 +338,15 @@ class SceneUnderstandingOutput:
             parts.append("**Main Path**:\n" + "\n".join(f"  {i+1}. {s}" for i, s in enumerate(self.main_path)))
         if self.failure_paths:
             parts.append("**Common Failures**:\n" + "\n".join(f"  - {f}" for f in self.failure_paths))
+        if self.object_roles:
+            role_lines = [f"  - {obj}: {role}" for obj, role in self.object_roles.items()]
+            parts.append("**Object Roles**:\n" + "\n".join(role_lines))
+        if self.oracle_hints:
+            parts.append("**Oracle Hints**:\n" + "\n".join(f"  - {h}" for h in self.oracle_hints))
+        if self.completion_criteria:
+            parts.append("**Completion Criteria**:\n" + "\n".join(f"  - {c}" for c in self.completion_criteria))
+        if self.forbidden_test_objects:
+            parts.append(f"**Do NOT test**: {', '.join(self.forbidden_test_objects)}")
         return "\n\n".join(parts)
 
 
@@ -337,6 +362,195 @@ class SchedulerDecision:
     reason: str = ""
     priority_score: float = 0.0
     skip_list: List[str] = field(default_factory=list)  # objects explicitly skipped
+
+
+# ---------------------------------------------------------------------------
+# Semantic Verifier output (V2 — LLM critic)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SemanticVerifierOutput:
+    """Output of the LLM-based Semantic Verifier (V2).
+
+    Unlike the rule-based StaticVerifier which checks structural validity,
+    the SemanticVerifier evaluates whether a plan *makes sense* w.r.t. the
+    scene ground truth, gate chains, and prior failures.
+    """
+    semantic_risk_score: float = 0.0
+    missing_preconditions: List[str] = field(default_factory=list)
+    suspicious_steps: List[str] = field(default_factory=list)
+    counter_plan: List[str] = field(default_factory=list)   # alternative actions
+    verdict: str = "accept"  # accept | reject | revise
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+    @staticmethod
+    def from_dict(d: Dict[str, Any]) -> "SemanticVerifierOutput":
+        return SemanticVerifierOutput(**{
+            k: d[k] for k in (
+                "semantic_risk_score", "missing_preconditions",
+                "suspicious_steps", "counter_plan", "verdict",
+            ) if k in d
+        })
+
+
+# ---------------------------------------------------------------------------
+# Observer structured sub-outputs (O1/O2/O3)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class StateDelta:
+    """O1 — State Delta Interpreter output."""
+    changed_objects: List[str] = field(default_factory=list)
+    expected_changes: List[str] = field(default_factory=list)
+    unexpected_changes: List[str] = field(default_factory=list)
+    gates_opened: List[str] = field(default_factory=list)
+    gates_still_blocked: List[str] = field(default_factory=list)
+    semantic_failures: List[str] = field(default_factory=list)  # "action ok but semantically wrong"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class FailureHypothesis:
+    """O2 — Failure Hypothesis Builder output."""
+    hypothesis: str = ""
+    evidence: List[str] = field(default_factory=list)
+    confidence: float = 0.0
+    blocked_object: str = ""
+    needed_condition: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class StrategyRecommendation:
+    """O3 — Strategy Recommender structured output."""
+    new_facts: List[str] = field(default_factory=list)
+    gates_inferred: List[Dict[str, str]] = field(default_factory=list)
+    planner_instruction: str = ""
+    scheduler_bias: List[str] = field(default_factory=list)   # object names to prioritize
+    oracle_updates: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+# ---------------------------------------------------------------------------
+# SharedWorldState — Blackboard
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SharedWorldState:
+    """Global blackboard that all agents read from and write to.
+
+    The Controller does NOT pass dicts between agents; instead, every agent
+    reads the fields it needs and writes back its conclusions.  This makes
+    inter-agent coupling explicit and testable.
+    """
+    # ── Scene ground truth (written by SceneUnderstandingAgent) ────────
+    scene_understanding: Optional[SceneUnderstandingOutput] = None
+
+    # ── Accumulated world knowledge ───────────────────────────────────
+    facts: List[str] = field(default_factory=list)              # inferred truths
+    open_gates: List[str] = field(default_factory=list)
+    blocked_gates: List[str] = field(default_factory=list)
+
+    # ── Object tracking ──────────────────────────────────────────────
+    tested_objects: List[str] = field(default_factory=list)
+    object_risk_scores: Dict[str, float] = field(default_factory=dict)
+    object_failure_counts: Dict[str, int] = field(default_factory=dict)
+
+    # ── Recent context ───────────────────────────────────────────────
+    recent_failures: List[str] = field(default_factory=list)
+    recent_traces: List[Dict[str, Any]] = field(default_factory=list)
+
+    # ── Oracle rules (from Observer / DELIVERY_NOTES) ─────────────────
+    oracle_rules: List[str] = field(default_factory=list)
+
+    # ── Plan negotiation ─────────────────────────────────────────────
+    candidate_plan: Optional[Dict[str, Any]] = None       # PlannerOutput dict
+    semantic_critique: Optional[SemanticVerifierOutput] = None
+    accepted_plan: Optional[Dict[str, Any]] = None
+
+    # ── Observer analysis ────────────────────────────────────────────
+    state_delta: Optional[StateDelta] = None
+    failure_hypotheses: List[FailureHypothesis] = field(default_factory=list)
+    strategy: Optional[StrategyRecommendation] = None
+
+    # ── Coverage ─────────────────────────────────────────────────────
+    total_coverage: float = 0.0
+    coverage_history: List[float] = field(default_factory=list)
+
+    # ── Scheduler bias (written by Observer O3) ──────────────────────
+    scheduler_bias: List[str] = field(default_factory=list)
+
+    # -----------------------------------------------------------------
+    # Helpers
+    # -----------------------------------------------------------------
+
+    def to_dict(self) -> Dict[str, Any]:
+        d: Dict[str, Any] = {}
+        d["facts"] = self.facts
+        d["open_gates"] = self.open_gates
+        d["blocked_gates"] = self.blocked_gates
+        d["tested_objects"] = self.tested_objects
+        d["object_risk_scores"] = self.object_risk_scores
+        d["object_failure_counts"] = self.object_failure_counts
+        d["recent_failures"] = self.recent_failures
+        d["oracle_rules"] = self.oracle_rules
+        d["total_coverage"] = self.total_coverage
+        d["coverage_history"] = self.coverage_history
+        d["scheduler_bias"] = self.scheduler_bias
+        if self.scene_understanding:
+            d["scene_understanding"] = self.scene_understanding.to_dict()
+        if self.state_delta:
+            d["state_delta"] = self.state_delta.to_dict()
+        if self.failure_hypotheses:
+            d["failure_hypotheses"] = [h.to_dict() for h in self.failure_hypotheses]
+        if self.strategy:
+            d["strategy"] = self.strategy.to_dict()
+        if self.semantic_critique:
+            d["semantic_critique"] = self.semantic_critique.to_dict()
+        return d
+
+    def add_fact(self, fact: str) -> None:
+        if fact not in self.facts:
+            self.facts.append(fact)
+
+    def record_failure(self, object_name: str, summary: str) -> None:
+        self.object_failure_counts[object_name] = (
+            self.object_failure_counts.get(object_name, 0) + 1
+        )
+        self.recent_failures.append(f"{object_name}: {summary}")
+        self.recent_failures = self.recent_failures[-30:]  # bounded
+
+    def mark_tested(self, object_name: str) -> None:
+        if object_name not in self.tested_objects:
+            self.tested_objects.append(object_name)
+
+    def to_prompt_summary(self) -> str:
+        """Compact text block for injecting into LLM prompts."""
+        parts: List[str] = []
+        if self.scene_understanding:
+            parts.append(self.scene_understanding.to_prompt_text())
+        if self.facts:
+            parts.append("**Known Facts**:\n" + "\n".join(f"  - {f}" for f in self.facts[-15:]))
+        if self.open_gates:
+            parts.append(f"**Open Gates**: {', '.join(self.open_gates)}")
+        if self.blocked_gates:
+            parts.append(f"**Blocked Gates**: {', '.join(self.blocked_gates)}")
+        if self.failure_hypotheses:
+            hyps = [f"  - [{h.confidence:.1f}] {h.hypothesis}" for h in self.failure_hypotheses[-5:]]
+            parts.append("**Failure Hypotheses**:\n" + "\n".join(hyps))
+        if self.strategy and self.strategy.planner_instruction:
+            parts.append(f"**Observer Instruction**: {self.strategy.planner_instruction}")
+        if self.oracle_rules:
+            parts.append("**Oracle Rules**:\n" + "\n".join(f"  - {r}" for r in self.oracle_rules[-10:]))
+        return "\n\n".join(parts)
 
 
 # ---------------------------------------------------------------------------

@@ -1,7 +1,11 @@
 """
-Controller — Top-level orchestrator for the VRAgent 2.0 pipeline (§B2.3).
+Controller — Blackboard-based orchestrator for the VRAgent 2.0 pipeline.
 
-Loop: SceneUnderstanding → [Scheduler → Planner → Verifier → Executor → Observer]*
+Architecture: SharedWorldState blackboard + agent read/write protocol.
+Each agent reads what it needs and writes back conclusions.
+
+Loop: SceneUnderstanding → [Scheduler → Planner → V1(Static) → V2(Semantic)
+      → Executor → Observer → Blackboard update]*
 Repeats until budget exhausted or coverage target reached.
 """
 
@@ -13,7 +17,7 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from .agents.planner import PlannerAgent
-from .agents.verifier import VerifierAgent
+from .agents.verifier import VerifierAgent, SemanticVerifier
 from .agents.executor import ExecutorAgent
 from .agents.observer import ObserverAgent
 from .agents.scene_understanding import SceneUnderstandingAgent
@@ -21,6 +25,11 @@ from .contracts import (
     ExplorationGoal,
     ExplorationMode,
     SceneUnderstandingOutput,
+    SharedWorldState,
+    SemanticVerifierOutput,
+    FailureHypothesis,
+    StrategyRecommendation,
+    StateDelta,
 )
 from .exploration.explorer import ExplorationController
 from .graph.gate_graph import GateGraph, StateNode
@@ -83,6 +92,13 @@ class VRAgentController:
             total_budget=total_budget,
         )
 
+        # V2: Semantic Verifier (LLM-based critic)
+        self.semantic_verifier = SemanticVerifier(
+            llm=llm,
+            llm_config=config.verifier_llm,
+            default_model=llm_model,
+        )
+
         # Scene understanding + dynamic scheduler
         self.scene_agent = SceneUnderstandingAgent(
             llm=llm,
@@ -95,6 +111,9 @@ class VRAgentController:
             default_model=llm_model,
         )
         self._scene_understanding: Optional[SceneUnderstandingOutput] = None
+
+        # ── Blackboard (SharedWorldState) ─────────────────────────────
+        self.world_state = SharedWorldState()
 
         # Accumulated results
         self._all_actions: List[Dict] = []
@@ -122,6 +141,7 @@ class VRAgentController:
                 "solved_gates": self.explorer.state.solved_gates,
             },
             "gate_graph": self.gate_graph.to_dict(),
+            "world_state": self.world_state.to_dict(),
         }
         path = os.path.join(self.output_dir, "session_state.json")
         ensure_dir(self.output_dir)
@@ -166,6 +186,22 @@ class VRAgentController:
         if gg_data:
             self.gate_graph = GateGraph.load_from_dict(gg_data)
             self.explorer.gate_graph = self.gate_graph
+
+        # Restore SharedWorldState (blackboard)
+        ws_data = data.get("world_state", {})
+        if ws_data:
+            ws = self.world_state
+            ws.facts = ws_data.get("facts", [])
+            ws.open_gates = ws_data.get("open_gates", [])
+            ws.blocked_gates = ws_data.get("blocked_gates", [])
+            ws.tested_objects = ws_data.get("tested_objects", [])
+            ws.object_risk_scores = ws_data.get("object_risk_scores", {})
+            ws.object_failure_counts = ws_data.get("object_failure_counts", {})
+            ws.oracle_rules = ws_data.get("oracle_rules", [])
+            ws.total_coverage = ws_data.get("total_coverage", 0.0)
+            ws.coverage_history = ws_data.get("coverage_history", [])
+            ws.scheduler_bias = ws_data.get("scheduler_bias", [])
+            ws.recent_failures = ws_data.get("recent_failures", [])
 
         print(f"[CONTROLLER] Session resumed — {len(self._processed_objects)} objects already processed, "
               f"{len(self._all_actions)} actions cached, "
@@ -215,7 +251,7 @@ class VRAgentController:
                 print("[CONTROLLER] Budget exhausted.")
                 break
 
-            # Ask scheduler for next object
+            # Ask scheduler for next object — inject blackboard scheduler_bias
             coverage_state = {"total": self.explorer.state.total_coverage}
             gate_hints = observer_output.get("gate_hints", [])
 
@@ -226,6 +262,8 @@ class VRAgentController:
                 gate_hints=gate_hints,
                 recent_failures=recent_failures,
                 coverage_state=coverage_state,
+                scheduler_bias=self.world_state.scheduler_bias,
+                failure_counts=self.world_state.object_failure_counts,
             )
             if decision is None:
                 print("[CONTROLLER] No more objects to process.")
@@ -243,10 +281,11 @@ class VRAgentController:
             result = self._run_single_object(gobj_info, goal, iteration, observer_output)
             observer_output = result.get("observer_output", observer_output)
 
-            # Track failures for scheduler
+            # Track failures for scheduler (blackboard also has failure_counts)
             if observer_output.get("bug_signals"):
                 recent_failures.append(gobj_name)
-                recent_failures = recent_failures[-20:]  # keep last 20
+                recent_failures = recent_failures[-20:]
+            self.world_state.recent_failures = recent_failures
 
             # Mark object as processed and save session incrementally
             self._processed_objects.add(gobj_name)
@@ -262,7 +301,10 @@ class VRAgentController:
     # ------------------------------------------------------------------
 
     def _run_scene_understanding(self) -> None:
-        """Run SceneUnderstandingAgent if a scene doc path is configured."""
+        """Run SceneUnderstandingAgent if a scene doc path is configured.
+
+        Writes results to the blackboard (SharedWorldState).
+        """
         doc_path = self.config.scene_doc_path
         if not doc_path:
             print("[CONTROLLER] No scene_doc_path configured — skipping scene understanding")
@@ -271,11 +313,24 @@ class VRAgentController:
         print("[CONTROLLER] → SceneUnderstandingAgent")
         raw = self.scene_agent.run({"scene_doc_path": doc_path})
         self._scene_understanding = SceneUnderstandingOutput.from_dict(raw)
+
+        # ── Write to blackboard ──────────────────────────────────────
+        self.world_state.scene_understanding = self._scene_understanding
+        # Populate oracle rules from scene doc
+        for hint in self._scene_understanding.oracle_hints:
+            if hint not in self.world_state.oracle_rules:
+                self.world_state.oracle_rules.append(hint)
+        # Populate blocked gates from gate chains
+        for gc in self._scene_understanding.gate_chains:
+            if gc not in self.world_state.blocked_gates:
+                self.world_state.blocked_gates.append(gc)
+
         overview = self._scene_understanding.scene_overview[:200]
         n_objs = len(self._scene_understanding.key_objects)
         n_deps = len(self._scene_understanding.interaction_dependencies)
+        n_oracle = len(self._scene_understanding.oracle_hints)
         print(f"[CONTROLLER]   Scene: {overview}")
-        print(f"[CONTROLLER]   Key objects: {n_objs}, Dependencies: {n_deps}")
+        print(f"[CONTROLLER]   Key objects: {n_objs}, Dependencies: {n_deps}, Oracle hints: {n_oracle}")
 
         # Persist for debugging
         save_json(
@@ -295,18 +350,23 @@ class VRAgentController:
         executor_output: Optional[Dict] = None,
         observer_output: Optional[Dict] = None,
     ) -> Dict[str, Any]:
-        """Build a shared_context dict based on InfoSharingConfig."""
+        """Build a shared_context dict from blackboard + InfoSharingConfig.
+
+        This is an adapter that reads the SharedWorldState and formats it
+        for agents that still consume a flat dict (backward compatibility).
+        """
         ctx: Dict[str, Any] = {}
         sharing = self.config.info_sharing
 
-        # Scene understanding → configurable per target
-        if self._scene_understanding:
-            # Provide to all that have their flag on (checked at consumption sites,
-            # but we always populate since most agents benefit)
+        # Scene understanding from blackboard
+        if self.world_state.scene_understanding:
             if (sharing.scene_summary_to_planner
                     or sharing.scene_summary_to_verifier
                     or sharing.scene_summary_to_observer):
-                ctx["scene_understanding_summary"] = self._scene_understanding.to_prompt_text()
+                ctx["scene_understanding_summary"] = self.world_state.scene_understanding.to_prompt_text()
+
+        # Full blackboard summary (for V2 / Observer)
+        ctx["world_state_summary"] = self.world_state.to_prompt_summary()
 
         # Planner → Verifier / Observer
         if planner_output:
@@ -324,12 +384,15 @@ class VRAgentController:
             if sharing.verifier_evidence_to_planner:
                 ctx["verifier_errors"] = verifier_output.get("errors", [])
 
-        # Observer → Planner
+        # Observer → Planner (now includes strategy)
         if observer_output:
             if sharing.observer_gate_hints_to_planner:
                 ctx["observer_suggestion"] = observer_output.get("next_exploration_suggestion", "")
                 ctx["observer_bugs"] = observer_output.get("bug_signals", [])
                 ctx["observer_analysis"] = observer_output.get("llm_analysis", "")
+                # Strategy from blackboard
+                if self.world_state.strategy:
+                    ctx["observer_instruction"] = self.world_state.strategy.planner_instruction
 
         return ctx
 
@@ -349,7 +412,7 @@ class VRAgentController:
             "timestamp": datetime.now().isoformat(),
         }
 
-        # Extract gate hints + recent trace from previous observer output
+        # Extract gate hints + recent trace from blackboard
         gate_hints = (prev_observer_output or {}).get("gate_hints", [])
         recent_trace = self._all_traces[-10:] if self._all_traces else None
 
@@ -362,16 +425,23 @@ class VRAgentController:
             "recent_trace": recent_trace,
             "gate_hints": gate_hints,
         }
-        # Inject scene understanding into planner context
-        if self._scene_understanding:
-            planner_input["scene_context"] = self._scene_understanding.to_prompt_text()
+        # Inject blackboard context into planner
+        if self.world_state.scene_understanding:
+            planner_input["scene_context"] = self.world_state.to_prompt_summary()
+        # Observer strategy instruction → planner directive
+        if self.world_state.strategy and self.world_state.strategy.planner_instruction:
+            planner_input["observer_instruction"] = self.world_state.strategy.planner_instruction
+
         planner_output = self.planner.run(planner_input)
         actions = planner_output.get("actions", [])
         log_entry["planned_actions"] = len(actions)
         print(f"[CONTROLLER]   Planner proposed {len(actions)} actions")
 
-        # ── 2. Verify (+ repair loop) ────────────────────────────────
-        print("[CONTROLLER] → Verifier")
+        # Store candidate plan on blackboard
+        self.world_state.candidate_plan = planner_output
+
+        # ── 2a. V1: Static Verify (+ repair loop) ────────────────────
+        print("[CONTROLLER] → Verifier (V1: Static)")
         shared_ctx = self._build_shared_context(planner_output=planner_output)
         llm_ctx: List[Dict[str, str]] = []
         verifier_evidence: List[Dict] = []
@@ -384,7 +454,7 @@ class VRAgentController:
             passed = verifier_output.get("passed", verifier_output.get("pass", False))
             score = verifier_output.get("executable_score", 0.0)
             verifier_evidence = verifier_output.get("evidence", [])
-            print(f"[CONTROLLER]   Verifier score={score:.2f}, errors={len(errors)}, pass={passed}")
+            print(f"[CONTROLLER]   V1 score={score:.2f}, errors={len(errors)}, pass={passed}")
 
             if passed or repair_round >= self.max_repair_rounds:
                 actions = verifier_output.get("patched_actions", actions)
@@ -401,6 +471,45 @@ class VRAgentController:
         log_entry["verifier_score"] = score
         log_entry["verifier_errors"] = len(errors)
 
+        # ── 2b. V2: Semantic Verify (LLM critic) ─────────────────────
+        print("[CONTROLLER] → Verifier (V2: Semantic)")
+        sv_output = self.semantic_verifier.run({
+            "actions": actions,
+            "world_state": self.world_state.to_prompt_summary(),
+            "planner_intent": planner_output.get("intent", ""),
+            "recent_failures": self.world_state.recent_failures[-10:],
+        })
+        sv = SemanticVerifierOutput.from_dict(sv_output)
+        self.world_state.semantic_critique = sv
+        print(f"[CONTROLLER]   V2 verdict={sv.verdict}, risk={sv.semantic_risk_score:.2f}, "
+              f"missing_precond={len(sv.missing_preconditions)}")
+        log_entry["semantic_verdict"] = sv.verdict
+        log_entry["semantic_risk"] = sv.semantic_risk_score
+
+        # If V2 says "revise" and has counter-plan, let Planner merge
+        if sv.verdict == "revise" and sv.counter_plan:
+            print("[CONTROLLER]   V2 requests revision — passing counter-plan to Planner")
+            revision_errors = [
+                {"type": "SemanticIssue", "location": s, "fix_suggestion": ""}
+                for s in sv.suspicious_steps
+            ]
+            if sv.missing_preconditions:
+                revision_errors.append({
+                    "type": "MissingPrecondition",
+                    "location": "plan",
+                    "fix_suggestion": "; ".join(sv.missing_preconditions),
+                })
+            actions = self.planner.repair(
+                actions, revision_errors, llm_ctx,
+                verifier_evidence=verifier_evidence,
+            )
+            log_entry["post_v2_actions"] = len(actions)
+
+        elif sv.verdict == "reject":
+            print("[CONTROLLER]   V2 REJECTED the plan — logging but proceeding with V1-passed actions")
+            for pc in sv.missing_preconditions:
+                self.world_state.add_fact(f"V2 missing precondition: {pc}")
+
         # ── 3. Execute ───────────────────────────────────────────────
         print("[CONTROLLER] → Executor")
         executor_output = self.executor.run({"actions": actions})
@@ -410,31 +519,29 @@ class VRAgentController:
 
         self._all_actions.extend(actions)
         self._all_traces.extend(trace)
+        self.world_state.recent_traces = trace
 
-        # ── 4. Observe ───────────────────────────────────────────────
+        # ── 4. Observe (writes to blackboard) ────────────────────────
         print("[CONTROLLER] → Observer")
-        shared_ctx = self._build_shared_context(
-            planner_output=planner_output,
-            verifier_output=verifier_output,
-            executor_output=executor_output,
-        )
         console_logs = self.executor.get_console_logs()
         observer_output = self.observer.run({
             "executor_output": executor_output,
             "console_logs": console_logs,
             "goal": goal.description,
             "actions": actions,
-            "shared_context": shared_ctx,
+            "world_state": self.world_state.to_prompt_summary(),
         })
         delta = observer_output.get("coverage_delta", 0.0)
         bugs = observer_output.get("bug_signals", [])
         gate_hints_out = observer_output.get("gate_hints", [])
         failure_summary = observer_output.get("failure_summary", "")
         print(f"[CONTROLLER]   Coverage delta={delta:.4f}, bugs={len(bugs)}, gate_hints={len(gate_hints_out)}")
-        if failure_summary:
-            print(f"[CONTROLLER]   Failure summary: {failure_summary[:200]}")
 
-        # ── 5. Update Gate Graph ─────────────────────────────────────
+        # ── 5. Write Observer results back to blackboard ─────────────
+        gobj_name = gobj_info.get("gameobject_name", "")
+        self._update_blackboard_from_observer(gobj_name, observer_output, bugs, failure_summary)
+
+        # ── 6. Update Gate Graph ─────────────────────────────────────
         self._update_gate_graph(gobj_info, actions, executor_output, observer_output)
 
         log_entry["coverage_delta"] = delta
@@ -442,9 +549,81 @@ class VRAgentController:
         log_entry["gate_hints"] = gate_hints_out
         log_entry["failure_summary"] = failure_summary
         log_entry["observer_suggestion"] = observer_output.get("next_exploration_suggestion", "")
+        log_entry["state_delta"] = observer_output.get("state_delta", {})
+        log_entry["strategy"] = observer_output.get("strategy", {})
         self._iteration_logs.append(log_entry)
 
         return {"observer_output": observer_output, "log": log_entry}
+
+    # ------------------------------------------------------------------
+    # Blackboard update from Observer
+    # ------------------------------------------------------------------
+
+    def _update_blackboard_from_observer(
+        self,
+        gobj_name: str,
+        observer_output: Dict,
+        bugs: List[str],
+        failure_summary: str,
+    ) -> None:
+        """Write Observer's structured outputs back to the SharedWorldState."""
+        # Mark tested
+        self.world_state.mark_tested(gobj_name)
+
+        # Record failures
+        if bugs or failure_summary:
+            self.world_state.record_failure(gobj_name, failure_summary[:200])
+
+        # O1: State delta → open/blocked gates
+        sd = observer_output.get("state_delta", {})
+        if isinstance(sd, dict):
+            for g in sd.get("gates_opened", []):
+                if g not in self.world_state.open_gates:
+                    self.world_state.open_gates.append(g)
+                if g in self.world_state.blocked_gates:
+                    self.world_state.blocked_gates.remove(g)
+            for g in sd.get("gates_still_blocked", []):
+                if g not in self.world_state.blocked_gates:
+                    self.world_state.blocked_gates.append(g)
+            self.world_state.state_delta = StateDelta(**sd) if sd else None
+
+        # O2: Failure hypotheses
+        fhs = observer_output.get("failure_hypotheses", [])
+        if fhs:
+            self.world_state.failure_hypotheses = [
+                FailureHypothesis(**h) if isinstance(h, dict) else h
+                for h in fhs
+            ]
+
+        # O3: Strategy → facts, scheduler bias, oracle updates
+        strat = observer_output.get("strategy", {})
+        if isinstance(strat, dict) and strat:
+            strategy = StrategyRecommendation(
+                new_facts=strat.get("new_facts", []),
+                gates_inferred=strat.get("gates_inferred", []),
+                planner_instruction=strat.get("planner_instruction", ""),
+                scheduler_bias=strat.get("scheduler_bias", []),
+                oracle_updates=strat.get("oracle_updates", []),
+            )
+            self.world_state.strategy = strategy
+
+            # Write new facts
+            for fact in strategy.new_facts:
+                self.world_state.add_fact(fact)
+
+            # Write scheduler bias
+            if strategy.scheduler_bias:
+                self.world_state.scheduler_bias = strategy.scheduler_bias
+
+            # Write oracle updates
+            for rule in strategy.oracle_updates:
+                if rule not in self.world_state.oracle_rules:
+                    self.world_state.oracle_rules.append(rule)
+
+        # Coverage
+        delta = observer_output.get("coverage_delta", 0.0)
+        self.world_state.total_coverage += delta
+        self.world_state.coverage_history.append(delta)
 
     # ------------------------------------------------------------------
     # Gate Graph updates

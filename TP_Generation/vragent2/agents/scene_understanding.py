@@ -47,7 +47,20 @@ Return a JSON object with the following fields:
     "<Common failure pattern description>",
     ...
   ],
-  "object_priority_ranking": ["<mostImportantObj>", "<nextObj>", ...]
+  "object_priority_ranking": ["<mostImportantObj>", "<nextObj>", ...],
+  "object_roles": {
+    "<objectName>": "<role: unlocker|gated_target|feedback|tool|container|trigger|optional_decoration>",
+    ...
+  },
+  "oracle_hints": [
+    "<observable condition that should be true if the interaction succeeded>",
+    ...
+  ],
+  "completion_criteria": [
+    "<what counts as completing the scene / test objective>",
+    ...
+  ],
+  "forbidden_test_objects": ["<objectName that should NEVER be tested — controllers, agents, system objects>", ...]
 }
 
 Rules:
@@ -57,6 +70,10 @@ Rules:
 - "main_path" is the intended walkthrough sequence.
 - "failure_paths" lists things that commonly go wrong.
 - "object_priority_ranking" orders objects by testing importance (gates first, then critical interactions, then optional).
+- "object_roles" assigns a semantic role to each key object.
+- "oracle_hints" are observable post-conditions (state changes, log events, visual changes) that verify success.
+- "completion_criteria" describes the final success condition(s) for the scene.
+- "forbidden_test_objects" are objects the agent should never interact with (controllers, managers, system infrastructure).
 - Be concise. Do NOT invent objects/interactions not mentioned in the docs.
 - Return ONLY valid JSON, no extra text.
 """
