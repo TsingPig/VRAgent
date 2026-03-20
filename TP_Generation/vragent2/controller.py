@@ -1,7 +1,7 @@
 """
 Controller — Top-level orchestrator for the VRAgent 2.0 pipeline (§B2.3).
 
-Loop: Planner → Verifier → [repair] → Executor → Observer → ExplorationController
+Loop: SceneUnderstanding → [Scheduler → Planner → Verifier → Executor → Observer]*
 Repeats until budget exhausted or coverage target reached.
 """
 
@@ -16,10 +16,16 @@ from .agents.planner import PlannerAgent
 from .agents.verifier import VerifierAgent
 from .agents.executor import ExecutorAgent
 from .agents.observer import ObserverAgent
-from .contracts import ExplorationGoal, ExplorationMode
+from .agents.scene_understanding import SceneUnderstandingAgent
+from .contracts import (
+    ExplorationGoal,
+    ExplorationMode,
+    SceneUnderstandingOutput,
+)
 from .exploration.explorer import ExplorationController
 from .graph.gate_graph import GateGraph, StateNode
 from .retrieval.retrieval_layer import RetrievalLayer
+from .scheduling.object_scheduler import ObjectScheduler
 from .utils.llm_client import LLMClient
 from .utils.config_loader import VRAgentConfig, load_config
 from .utils.file_utils import save_json, load_json, ensure_dir
@@ -47,6 +53,8 @@ class VRAgentController:
         self.scene_name = scene_name
         self.max_repair_rounds = max_repair_rounds
         self.unity_bridge = unity_bridge
+        self.retrieval = retrieval
+        self.llm = llm
 
         # Build sub-components
         self.gate_graph = GateGraph()
@@ -54,18 +62,39 @@ class VRAgentController:
             llm, retrieval, config,
             app_name=app_name, llm_model=llm_model,
         )
-        self.verifier = VerifierAgent(retrieval)
+        self.verifier = VerifierAgent(
+            retrieval,
+            llm=llm if config.verifier_llm.enabled else None,
+            llm_config=config.verifier_llm,
+            default_model=llm_model,
+        )
         self.executor = ExecutorAgent(
             output_dir=os.path.join(output_dir, "execution"),
             unity_bridge=unity_bridge,
         )
-        self.observer = ObserverAgent(retrieval=self.retrieval)
+        self.observer = ObserverAgent(
+            retrieval=self.retrieval,
+            llm=llm if config.observer_llm.enabled else None,
+            llm_config=config.observer_llm,
+            default_model=llm_model,
+        )
         self.explorer = ExplorationController(
             self.gate_graph,
             total_budget=total_budget,
         )
-        self.retrieval = retrieval
-        self.llm = llm
+
+        # Scene understanding + dynamic scheduler
+        self.scene_agent = SceneUnderstandingAgent(
+            llm=llm,
+            llm_config=config.scene_understanding_llm,
+            default_model=llm_model,
+        )
+        self.scheduler = ObjectScheduler(
+            llm=llm,
+            llm_config=config.planner_llm,  # shares planner config
+            default_model=llm_model,
+        )
+        self._scene_understanding: Optional[SceneUnderstandingOutput] = None
 
         # Accumulated results
         self._all_actions: List[Dict] = []
@@ -163,6 +192,9 @@ class VRAgentController:
         ensure_dir(os.path.join(self.output_dir, "execution"))
         print(f"[CONTROLLER] Starting VRAgent 2.0 — {len(gobj_list)} objects, scene={self.scene_name}")
 
+        # ── Phase 0: Scene Understanding ─────────────────────────────
+        self._run_scene_understanding()
+
         # Initial goal: Expand (explore everything)
         observer_output: Dict[str, Any] = {
             "coverage_delta": 0.0,
@@ -174,26 +206,47 @@ class VRAgentController:
         }
 
         iteration = 0
-        for gobj_info in gobj_list:
-            gobj_name = gobj_info.get("gameobject_name", "?")
+        recent_failures: List[str] = []
 
-            # Skip objects already processed in a previous session
-            if gobj_name in self._processed_objects:
-                print(f"[CONTROLLER] Skipping {gobj_name} (already processed in previous session)")
-                continue
-
+        # ── Dynamic scheduling loop ──────────────────────────────────
+        while True:
             goal = self.explorer.next_goal(observer_output)
             if goal is None:
                 print("[CONTROLLER] Budget exhausted.")
                 break
 
+            # Ask scheduler for next object
+            coverage_state = {"total": self.explorer.state.total_coverage}
+            gate_hints = observer_output.get("gate_hints", [])
+
+            decision = self.scheduler.select_next(
+                gobj_list,
+                processed=self._processed_objects,
+                scene_understanding=self._scene_understanding,
+                gate_hints=gate_hints,
+                recent_failures=recent_failures,
+                coverage_state=coverage_state,
+            )
+            if decision is None:
+                print("[CONTROLLER] No more objects to process.")
+                break
+
+            gobj_info = decision.object_info
+            gobj_name = decision.object_name
+
             print(f"\n{'='*60}")
             print(f"[CONTROLLER] Iteration {iteration} | Mode: {goal.mode.value} | Object: {gobj_name}")
+            print(f"[CONTROLLER] Scheduler reason: {decision.reason}")
             print(f"[CONTROLLER] Goal: {goal.description}")
             print(f"{'='*60}")
 
             result = self._run_single_object(gobj_info, goal, iteration, observer_output)
             observer_output = result.get("observer_output", observer_output)
+
+            # Track failures for scheduler
+            if observer_output.get("bug_signals"):
+                recent_failures.append(gobj_name)
+                recent_failures = recent_failures[-20:]  # keep last 20
 
             # Mark object as processed and save session incrementally
             self._processed_objects.add(gobj_name)
@@ -203,6 +256,82 @@ class VRAgentController:
 
         # Save final results
         return self._finalize()
+
+    # ------------------------------------------------------------------
+    # Scene Understanding Phase
+    # ------------------------------------------------------------------
+
+    def _run_scene_understanding(self) -> None:
+        """Run SceneUnderstandingAgent if a scene doc path is configured."""
+        doc_path = self.config.scene_doc_path
+        if not doc_path:
+            print("[CONTROLLER] No scene_doc_path configured — skipping scene understanding")
+            return
+
+        print("[CONTROLLER] → SceneUnderstandingAgent")
+        raw = self.scene_agent.run({"scene_doc_path": doc_path})
+        self._scene_understanding = SceneUnderstandingOutput.from_dict(raw)
+        overview = self._scene_understanding.scene_overview[:200]
+        n_objs = len(self._scene_understanding.key_objects)
+        n_deps = len(self._scene_understanding.interaction_dependencies)
+        print(f"[CONTROLLER]   Scene: {overview}")
+        print(f"[CONTROLLER]   Key objects: {n_objs}, Dependencies: {n_deps}")
+
+        # Persist for debugging
+        save_json(
+            os.path.join(self.output_dir, "scene_understanding.json"),
+            self._scene_understanding.to_dict(),
+        )
+
+    # ------------------------------------------------------------------
+    # Shared context builder (info-sharing)
+    # ------------------------------------------------------------------
+
+    def _build_shared_context(
+        self,
+        *,
+        planner_output: Optional[Dict] = None,
+        verifier_output: Optional[Dict] = None,
+        executor_output: Optional[Dict] = None,
+        observer_output: Optional[Dict] = None,
+    ) -> Dict[str, Any]:
+        """Build a shared_context dict based on InfoSharingConfig."""
+        ctx: Dict[str, Any] = {}
+        sharing = self.config.info_sharing
+
+        # Scene understanding → configurable per target
+        if self._scene_understanding:
+            # Provide to all that have their flag on (checked at consumption sites,
+            # but we always populate since most agents benefit)
+            if (sharing.scene_summary_to_planner
+                    or sharing.scene_summary_to_verifier
+                    or sharing.scene_summary_to_observer):
+                ctx["scene_understanding_summary"] = self._scene_understanding.to_prompt_text()
+
+        # Planner → Verifier / Observer
+        if planner_output:
+            if sharing.planner_summary_to_verifier:
+                ctx["planner_intent"] = planner_output.get("intent", "")
+                ctx["planner_summary"] = planner_output.get("expected_reward", "")
+            if sharing.planner_summary_to_observer:
+                ctx["planner_intent"] = planner_output.get("intent", "")
+
+        # Verifier → Observer / Planner
+        if verifier_output:
+            if sharing.verifier_evidence_to_observer:
+                ctx["verifier_summary"] = verifier_output.get("llm_review", "")
+                ctx["verifier_score"] = verifier_output.get("executable_score", 0.0)
+            if sharing.verifier_evidence_to_planner:
+                ctx["verifier_errors"] = verifier_output.get("errors", [])
+
+        # Observer → Planner
+        if observer_output:
+            if sharing.observer_gate_hints_to_planner:
+                ctx["observer_suggestion"] = observer_output.get("next_exploration_suggestion", "")
+                ctx["observer_bugs"] = observer_output.get("bug_signals", [])
+                ctx["observer_analysis"] = observer_output.get("llm_analysis", "")
+
+        return ctx
 
     # ------------------------------------------------------------------
     # Single-object pipeline
@@ -226,23 +355,31 @@ class VRAgentController:
 
         # ── 1. Plan ──────────────────────────────────────────────────
         print("[CONTROLLER] → Planner")
-        planner_output = self.planner.run({
+        planner_input: Dict[str, Any] = {
             "gobj_info": gobj_info,
             "scene_name": self.scene_name,
             "goal": goal.description,
             "recent_trace": recent_trace,
             "gate_hints": gate_hints,
-        })
+        }
+        # Inject scene understanding into planner context
+        if self._scene_understanding:
+            planner_input["scene_context"] = self._scene_understanding.to_prompt_text()
+        planner_output = self.planner.run(planner_input)
         actions = planner_output.get("actions", [])
         log_entry["planned_actions"] = len(actions)
         print(f"[CONTROLLER]   Planner proposed {len(actions)} actions")
 
         # ── 2. Verify (+ repair loop) ────────────────────────────────
         print("[CONTROLLER] → Verifier")
+        shared_ctx = self._build_shared_context(planner_output=planner_output)
         llm_ctx: List[Dict[str, str]] = []
         verifier_evidence: List[Dict] = []
         for repair_round in range(self.max_repair_rounds + 1):
-            verifier_output = self.verifier.run({"actions": actions})
+            verifier_output = self.verifier.run({
+                "actions": actions,
+                "shared_context": shared_ctx,
+            })
             errors = verifier_output.get("errors", [])
             passed = verifier_output.get("passed", verifier_output.get("pass", False))
             score = verifier_output.get("executable_score", 0.0)
@@ -276,12 +413,18 @@ class VRAgentController:
 
         # ── 4. Observe ───────────────────────────────────────────────
         print("[CONTROLLER] → Observer")
+        shared_ctx = self._build_shared_context(
+            planner_output=planner_output,
+            verifier_output=verifier_output,
+            executor_output=executor_output,
+        )
         console_logs = self.executor.get_console_logs()
         observer_output = self.observer.run({
             "executor_output": executor_output,
             "console_logs": console_logs,
             "goal": goal.description,
             "actions": actions,
+            "shared_context": shared_ctx,
         })
         delta = observer_output.get("coverage_delta", 0.0)
         bugs = observer_output.get("bug_signals", [])

@@ -14,8 +14,57 @@ from __future__ import annotations
 
 import importlib
 from dataclasses import dataclass, field
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
+
+# ---------------------------------------------------------------------------
+# Per-Agent LLM configuration
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AgentLLMConfig:
+    """LLM configuration for a single agent."""
+    model: str = ""          # empty → use default_model from VRAgentConfig
+    temperature: float = 0.0
+    enabled: bool = True     # set False to keep agent rule-based only
+
+    def effective_model(self, fallback: str) -> str:
+        return self.model or fallback
+
+
+# ---------------------------------------------------------------------------
+# Inter-Agent information sharing configuration
+# ---------------------------------------------------------------------------
+
+@dataclass
+class InfoSharingConfig:
+    """Controls what information each agent shares with others.
+
+    Each flag means: "<source_agent>'s <field> is forwarded to <target_agents>".
+    """
+    # Planner → others
+    planner_summary_to_verifier: bool = True
+    planner_summary_to_observer: bool = False
+
+    # Verifier → others
+    verifier_evidence_to_planner: bool = True   # already used in repair()
+    verifier_evidence_to_observer: bool = True
+
+    # Observer → others
+    observer_gate_hints_to_planner: bool = True  # already used via controller
+    observer_gate_hints_to_verifier: bool = False
+    observer_failure_summary_to_planner: bool = True
+    observer_failure_summary_to_verifier: bool = False
+
+    # Scene understanding summary (high-priority ground truth)
+    scene_summary_to_planner: bool = True
+    scene_summary_to_verifier: bool = True
+    scene_summary_to_observer: bool = True
+
+
+# ---------------------------------------------------------------------------
+# Main project config
+# ---------------------------------------------------------------------------
 
 @dataclass
 class VRAgentConfig:
@@ -41,6 +90,18 @@ class VRAgentConfig:
     # --- Exploration budget ---
     max_steps: int = 200
     novelty_threshold_k: int = 5  # consecutive 0-novelty steps → Recover mode
+
+    # --- Per-agent LLM configs ---
+    planner_llm: AgentLLMConfig = field(default_factory=lambda: AgentLLMConfig(enabled=True))
+    verifier_llm: AgentLLMConfig = field(default_factory=lambda: AgentLLMConfig(enabled=False))
+    observer_llm: AgentLLMConfig = field(default_factory=lambda: AgentLLMConfig(enabled=False))
+    scene_understanding_llm: AgentLLMConfig = field(default_factory=lambda: AgentLLMConfig(enabled=True))
+
+    # --- Info sharing ---
+    info_sharing: InfoSharingConfig = field(default_factory=InfoSharingConfig)
+
+    # --- Scene ground-truth document path ---
+    scene_doc_path: str = ""
 
     # ------------------------------------------------------------------
     # Template access

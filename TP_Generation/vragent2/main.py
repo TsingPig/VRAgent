@@ -66,10 +66,49 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--resume", action="store_true", default=False,
                    help="Resume from last session state (skip processed objects, reuse LLM cache)")
 
+    # Replay mode — execute existing test_plan.json in Unity without LLM
+    p.add_argument("--replay", default=None, metavar="TEST_PLAN_JSON",
+                   help="Replay an existing test_plan.json in Unity (no LLM needed). "
+                        "Requires --unity. Pass path to test_plan.json or 'auto' to use "
+                        "<output>/test_plan.json.")
+
+    # Clean previous results
+    p.add_argument("--clean", action="store_true", default=False,
+                   help="Delete all previous results in the output directory before running. "
+                        "Cannot be combined with --resume.")
+
     # Unity project integration
     p.add_argument("--unity_project", default=None,
                    help="Unity project Assets path. Results auto-copy to scene folder. "
                         "E.g. d:/MyProject/Assets")
+
+    # --- Scene understanding ---
+    p.add_argument("--scene_doc", default=None,
+                   help="Path to scene .md ground-truth doc (file or directory)")
+
+    # --- Per-agent LLM overrides ---
+    p.add_argument("--planner_model", default=None)
+    p.add_argument("--planner_temp", type=float, default=None)
+    p.add_argument("--verifier_model", default=None)
+    p.add_argument("--verifier_temp", type=float, default=None)
+    p.add_argument("--observer_model", default=None)
+    p.add_argument("--observer_temp", type=float, default=None)
+    p.add_argument("--scene_model", default=None,
+                   help="Model for SceneUnderstandingAgent")
+    p.add_argument("--scene_temp", type=float, default=None)
+
+    # --- Enable/disable LLM per agent ---
+    p.add_argument("--verifier_llm", action="store_true", default=True,
+                   help="Enable LLM for Verifier (default: on)")
+    p.add_argument("--no_verifier_llm", dest="verifier_llm", action="store_false")
+    p.add_argument("--observer_llm", action="store_true", default=True,
+                   help="Enable LLM for Observer (default: on)")
+    p.add_argument("--no_observer_llm", dest="observer_llm", action="store_false")
+
+    # --- Info-sharing toggles ---
+    p.add_argument("--no_info_sharing", action="store_true", default=False,
+                   help="Disable all inter-agent info sharing")
+
     return p.parse_args()
 
 
@@ -86,6 +125,51 @@ def main() -> None:
 
     # ── Config ────────────────────────────────────────────────────────
     config = load_config()
+
+    # Apply CLI overrides to per-agent LLM configs
+    from .utils.config_loader import AgentLLMConfig, InfoSharingConfig
+
+    if args.scene_doc:
+        config.scene_doc_path = args.scene_doc
+
+    # Per-agent model/temperature overrides
+    if args.planner_model:
+        config.planner_llm.model = args.planner_model
+    if args.planner_temp is not None:
+        config.planner_llm.temperature = args.planner_temp
+
+    config.verifier_llm.enabled = args.verifier_llm
+    if args.verifier_model:
+        config.verifier_llm.model = args.verifier_model
+    if args.verifier_temp is not None:
+        config.verifier_llm.temperature = args.verifier_temp
+
+    config.observer_llm.enabled = args.observer_llm
+    if args.observer_model:
+        config.observer_llm.model = args.observer_model
+    if args.observer_temp is not None:
+        config.observer_llm.temperature = args.observer_temp
+
+    if args.scene_model:
+        config.scene_understanding_llm.model = args.scene_model
+    if args.scene_temp is not None:
+        config.scene_understanding_llm.temperature = args.scene_temp
+
+    # Disable info sharing if requested
+    if args.no_info_sharing:
+        config.info_sharing = InfoSharingConfig(
+            planner_summary_to_verifier=False,
+            planner_summary_to_observer=False,
+            verifier_evidence_to_planner=False,
+            verifier_evidence_to_observer=False,
+            observer_gate_hints_to_planner=False,
+            observer_gate_hints_to_verifier=False,
+            observer_failure_summary_to_planner=False,
+            observer_failure_summary_to_verifier=False,
+            scene_summary_to_planner=False,
+            scene_summary_to_verifier=False,
+            scene_summary_to_observer=False,
+        )
 
     # ── LLM Client ────────────────────────────────────────────────────
     api_key = args.api_key or os.environ.get("OPENAI_API_KEY", "")
@@ -182,6 +266,36 @@ def main() -> None:
             print("[MAIN] Hint: ensure Unity is in Play mode and AgentBridge port matches --unity_port")
             sys.exit(1)
 
+    # ── Clean previous results ────────────────────────────────────────
+    if args.clean:
+        if args.resume:
+            print("[ERROR] --clean and --resume cannot be used together.")
+            sys.exit(1)
+        if args.replay:
+            print("[ERROR] --clean and --replay cannot be used together (would delete the plan to replay).")
+            sys.exit(1)
+        _clean_output(args.output)
+
+    # ── Replay mode — skip LLM, just execute existing test_plan ────────
+    if args.replay:
+        if unity_bridge is None or not unity_bridge.connected:
+            print("[ERROR] --replay requires --unity (must connect to Unity).")
+            sys.exit(1)
+
+        replay_path = args.replay
+        if replay_path.lower() == "auto":
+            replay_path = str(Path(args.output) / "test_plan.json")
+
+        results = _replay_test_plan(replay_path, unity_bridge, args.output)
+
+        if unity_bridge is not None:
+            try:
+                unity_bridge.close()
+                print("[MAIN] Unity Bridge disconnected")
+            except Exception:
+                pass
+        return
+
     # ── Run Controller ────────────────────────────────────────────────
     controller = VRAgentController(
         config=config,
@@ -232,6 +346,139 @@ def main() -> None:
     print(f"  Coverage      : {exp.get('total_coverage', 0):.4f}")
     print(f"  Gates solved  : {exp.get('gates_solved', 0)}")
     print(f"{'='*60}")
+
+
+def _clean_output(output_dir: str) -> None:
+    """Remove all previous pipeline results from the output directory."""
+    import shutil
+
+    if not os.path.isdir(output_dir):
+        print(f"[CLEAN] Output directory does not exist yet: {output_dir}")
+        return
+
+    removed = 0
+    # Remove known result files
+    for fname in ("all_actions.json", "iteration_logs.json", "summary.json",
+                  "gate_graph.json", "test_plan.json", "session_state.json",
+                  "scene_understanding.json", "pending_command.json"):
+        fpath = os.path.join(output_dir, fname)
+        if os.path.isfile(fpath):
+            os.remove(fpath)
+            removed += 1
+
+    # Remove execution/ and replay/ subdirectories
+    for subdir in ("execution", "replay"):
+        dirpath = os.path.join(output_dir, subdir)
+        if os.path.isdir(dirpath):
+            count = len(os.listdir(dirpath))
+            shutil.rmtree(dirpath)
+            removed += count
+
+    print(f"[CLEAN] Removed {removed} files/entries from {output_dir}")
+
+
+def _replay_test_plan(test_plan_path: str, bridge, output_dir: str) -> Dict[str, Any]:
+    """Replay an existing test_plan.json via Unity Bridge — zero LLM calls."""
+    from .utils.file_utils import load_json, save_json, ensure_dir
+    from typing import Dict, Any, List
+
+    print(f"[REPLAY] Loading test plan from: {test_plan_path}")
+    plan = load_json(test_plan_path)
+    if not plan or "taskUnits" not in plan:
+        print(f"[ERROR] Invalid or missing test plan at {test_plan_path}")
+        sys.exit(1)
+
+    # Flatten all action units
+    all_actions: List[Dict[str, Any]] = []
+    for task in plan["taskUnits"]:
+        all_actions.extend(task.get("actionUnits", []))
+
+    print(f"[REPLAY] {len(all_actions)} actions to execute")
+
+    # Import objects (pre-resolve FileIDs)
+    print("[REPLAY] Importing objects into Unity...")
+    import_result = bridge.import_objects(plan, use_file_id=True)
+    print(f"[REPLAY] Import result: {import_result}")
+
+    # Execute each action and record traces
+    ensure_dir(os.path.join(output_dir, "replay"))
+    traces: List[Dict[str, Any]] = []
+    exceptions: List[str] = []
+
+    for i, action in enumerate(all_actions):
+        action_type = action.get("type", "Unknown")
+        source_name = action.get("source_object_name", "")
+        print(f"[REPLAY] [{i+1}/{len(all_actions)}] {action_type} on {source_name}")
+
+        try:
+            result = bridge.execute(action)
+            success = result.get("success", False)
+            duration = result.get("duration_ms", 0)
+            status = "OK" if success else "FAIL"
+            print(f"[REPLAY]   {status} ({duration:.0f}ms)")
+
+            trace_entry = {
+                "action": f"{action_type}:{source_name}",
+                "state_before": result.get("state_before", {}),
+                "state_after": result.get("state_after", {}),
+                "events": result.get("events", []),
+                "success": success,
+                "duration_ms": duration,
+            }
+            traces.append(trace_entry)
+
+            for exc in result.get("exceptions", []):
+                exceptions.append(f"{action_type}:{source_name} → {exc}")
+                print(f"[REPLAY]   Exception: {exc}")
+
+        except Exception as exc:
+            exceptions.append(f"{action_type}:{source_name} → {exc}")
+            traces.append({
+                "action": f"{action_type}:{source_name}",
+                "state_before": {},
+                "state_after": {},
+                "events": [f"bridge_error:{exc}"],
+                "success": False,
+            })
+            print(f"[REPLAY]   Bridge error: {exc}")
+
+    # Collect console logs
+    logs: List[str] = []
+    try:
+        log_result = bridge.query_logs(since_index=0)
+        logs = [f"[{l.get('level','Log')}] {l.get('message','')}" for l in log_result.get("logs", [])]
+    except Exception:
+        pass
+
+    # Save replay results
+    from datetime import datetime
+    replay_result = {
+        "timestamp": datetime.now().isoformat(),
+        "test_plan_path": test_plan_path,
+        "total_actions": len(all_actions),
+        "executed": len(traces),
+        "successes": sum(1 for t in traces if t.get("success")),
+        "failures": sum(1 for t in traces if not t.get("success")),
+        "exceptions": exceptions,
+        "traces": traces,
+        "console_logs": logs,
+    }
+
+    replay_file = os.path.join(output_dir, "replay",
+                               f"replay_{datetime.now():%Y%m%d_%H%M%S}.json")
+    save_json(replay_file, replay_result)
+
+    print(f"\n{'='*60}")
+    print(f"[REPLAY] Complete")
+    print(f"  Actions   : {len(all_actions)}")
+    print(f"  Successes : {replay_result['successes']}")
+    print(f"  Failures  : {replay_result['failures']}")
+    print(f"  Exceptions: {len(exceptions)}")
+    print(f"  Trace     : {replay_file}")
+    print(f"{'='*60}")
+
+    return replay_result
+
 
 def _copy_results_to_unity(output_dir: str, unity_assets: str, scene_name: str) -> None:
     """Copy pipeline results to the Unity scene folder for easy inspector access."""

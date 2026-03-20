@@ -16,8 +16,9 @@ Output: coverage delta, bug signals, next-exploration suggestions,
 
 from __future__ import annotations
 
+import json
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .base_agent import BaseAgent
 from ..contracts import (
@@ -28,17 +29,37 @@ from ..contracts import (
 )
 from ..retrieval.condition_inference import infer_conditions
 
+if TYPE_CHECKING:
+    from ..utils.llm_client import LLMClient
+    from ..utils.config_loader import AgentLLMConfig
+
 
 class ObserverAgent(BaseAgent):
-    """Agent 4 — Judges execution results and recommends next moves."""
+    """Agent 4 — Judges execution results and recommends next moves.
+
+    When an ``LLMClient`` is provided, the observer augments its rule-based
+    analysis with an LLM call for deeper failure reasoning and richer
+    next-step suggestions.
+    """
 
     name = "ObserverAgent"
 
-    def __init__(self, *, novelty_threshold_k: int = 5, retrieval=None):
+    def __init__(
+        self,
+        *,
+        novelty_threshold_k: int = 5,
+        retrieval=None,
+        llm: Optional["LLMClient"] = None,
+        llm_config: Optional["AgentLLMConfig"] = None,
+        default_model: str = "gpt-4o",
+    ):
         self.novelty_threshold_k = novelty_threshold_k
         self._consecutive_zero_novelty: int = 0
         self._total_coverage = CoverageDelta()
         self.retrieval = retrieval  # RetrievalLayer (optional, for observer context)
+        self.llm = llm
+        self.llm_config = llm_config
+        self._default_model = default_model
 
     # ------------------------------------------------------------------
     # Contract entry point
@@ -91,6 +112,19 @@ class ObserverAgent(BaseAgent):
         # ⑤ Suggest next exploration action (informed by conditions)
         suggestion, mode = self._suggest_next(delta, bug_signals, trace, goal, conditions)
 
+        # ⑥ LLM-enhanced analysis (optional)
+        llm_analysis = ""
+        if self.llm and self.llm_config and self.llm_config.enabled:
+            llm_analysis = self._llm_enhanced_analysis(
+                actions=actions,
+                trace=trace,
+                bug_signals=bug_signals,
+                failure_summary=failure_summary,
+                delta=delta,
+                goal=goal,
+                shared_context=input_data.get("shared_context", {}),
+            )
+
         # Build output (extended beyond base ObserverOutput)
         output = {
             "coverage_delta": delta,
@@ -99,6 +133,7 @@ class ObserverAgent(BaseAgent):
             "recommended_mode": mode.value,
             "gate_hints": gate_hints,
             "failure_summary": failure_summary,
+            "llm_analysis": llm_analysis,
         }
         return output
 
@@ -248,6 +283,65 @@ class ObserverAgent(BaseAgent):
             "Minor progress. Consider trying untested interaction patterns.",
             ExplorationMode.EXPAND,
         )
+
+    # ------------------------------------------------------------------
+    # LLM-enhanced observation
+    # ------------------------------------------------------------------
+
+    def _llm_enhanced_analysis(
+        self,
+        actions: List[Dict],
+        trace: List[Dict],
+        bug_signals: List[str],
+        failure_summary: str,
+        delta: float,
+        goal: str,
+        shared_context: Optional[Dict] = None,
+    ) -> str:
+        """Call LLM to provide deeper analysis on execution results."""
+        model = self.llm_config.effective_model(self._default_model)
+        temp = self.llm_config.temperature
+
+        trace_sample = trace[:10]
+        trace_block = json.dumps(trace_sample, indent=2, ensure_ascii=False)
+        bug_block = json.dumps(bug_signals[:10], indent=2, ensure_ascii=False)
+
+        prompt_parts = [
+            "You are a VR test observer. Analyze the execution results of a "
+            "Unity VR test session and provide insights.\n",
+            f"Goal: {goal}\n" if goal else "",
+            f"Coverage Delta: {delta:.4f}\n",
+            f"Bug Signals:\n```json\n{bug_block}\n```\n",
+            f"Execution Trace (first {len(trace_sample)} entries):\n"
+            f"```json\n{trace_block}\n```\n",
+        ]
+
+        if failure_summary:
+            prompt_parts.append(f"Failure Summary:\n{failure_summary}\n")
+
+        if shared_context:
+            scene_sum = shared_context.get("scene_understanding_summary", "")
+            if scene_sum:
+                prompt_parts.append(f"Scene Ground Truth:\n{scene_sum}\n")
+            verifier_sum = shared_context.get("verifier_summary", "")
+            if verifier_sum:
+                prompt_parts.append(f"Verifier Notes:\n{verifier_sum}\n")
+
+        prompt_parts.append(
+            "Provide a concise analysis covering:\n"
+            "1. Root cause of any failures or anomalies.\n"
+            "2. Whether the coverage gain is meaningful or superficial.\n"
+            "3. One specific, actionable recommendation for the next step.\n"
+            "Keep the response under 200 words."
+        )
+        prompt = "\n".join(p for p in prompt_parts if p)
+
+        try:
+            result = self.llm.ask(prompt, model=model, temperature=temp)
+            return result or ""
+        except Exception as exc:
+            print(f"[OBSERVER] LLM analysis failed: {exc}")
+            return ""
 
     # ------------------------------------------------------------------
     # State accessors

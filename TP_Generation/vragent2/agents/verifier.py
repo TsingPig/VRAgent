@@ -17,12 +17,16 @@ Now consumes ``RetrievalLayer.build_verifier_context()`` for hard structural che
 from __future__ import annotations
 
 import json
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .base_agent import BaseAgent
 from ..contracts import VerifierOutput, VerifierError, VerifierErrorType
 from ..retrieval.retrieval_layer import RetrievalLayer
 from ..retrieval.hierarchy_builder import FORBIDDEN_NAMES
+
+if TYPE_CHECKING:
+    from ..utils.llm_client import LLMClient
+    from ..utils.config_loader import AgentLLMConfig
 
 
 # ---------------------------------------------------------------------------
@@ -44,12 +48,28 @@ TEST_PLAN_SCHEMA = {
 
 
 class VerifierAgent(BaseAgent):
-    """Agent 2 — Validates candidate actions before execution."""
+    """Agent 2 — Validates candidate actions before execution.
+
+    When ``llm`` and ``llm_config`` are provided and ``llm_config.enabled`` is
+    True, the verifier runs an additional LLM-based semantic review after the
+    deterministic rule checks.  This catches higher-level logical errors that
+    rules alone miss (e.g. "grabbing a wall" is structurally valid but
+    semantically wrong).
+    """
 
     name = "VerifierAgent"
 
-    def __init__(self, retrieval: RetrievalLayer):
+    def __init__(
+        self,
+        retrieval: RetrievalLayer,
+        llm: Optional["LLMClient"] = None,
+        llm_config: Optional["AgentLLMConfig"] = None,
+        default_model: str = "gpt-4o",
+    ):
         self.retrieval = retrieval
+        self.llm = llm
+        self.llm_config = llm_config
+        self._default_model = default_model
 
     # ------------------------------------------------------------------
     # Contract entry point
@@ -101,6 +121,15 @@ class VerifierAgent(BaseAgent):
         for fid, comps in ctx.component_info.items():
             evidence.append({"fileID": fid, "components": comps})
 
+        # ── Optional LLM-enhanced semantic review ───────────────────
+        llm_review = ""
+        if (self.llm and self.llm_config and self.llm_config.enabled
+                and patched):
+            llm_review = self._llm_semantic_review(
+                patched, errors, evidence,
+                shared_context=input_data.get("shared_context", {}),
+            )
+
         output = VerifierOutput(
             executable_score=round(score, 3),
             errors=errors,
@@ -109,6 +138,7 @@ class VerifierAgent(BaseAgent):
         )
         result = output.to_dict()
         result["evidence"] = evidence
+        result["llm_review"] = llm_review
         return result
 
     # ------------------------------------------------------------------
@@ -358,6 +388,62 @@ class VerifierAgent(BaseAgent):
                 ))
 
         return errors
+
+    # ------------------------------------------------------------------
+    # LLM-enhanced semantic review
+    # ------------------------------------------------------------------
+
+    def _llm_semantic_review(
+        self,
+        actions: List[Dict],
+        rule_errors: List[VerifierError],
+        evidence: List[Dict],
+        *,
+        shared_context: Optional[Dict] = None,
+    ) -> str:
+        """Ask LLM to review action semantics beyond what rules can check."""
+        model = self.llm_config.effective_model(self._default_model)
+        temp = self.llm_config.temperature
+
+        sample = actions[:15]  # limit token usage
+        action_block = json.dumps(sample, indent=2, ensure_ascii=False)
+        error_block = json.dumps(
+            [{"type": e.type, "location": e.location, "fix": e.fix_suggestion}
+             for e in rule_errors[:10]],
+            indent=2, ensure_ascii=False,
+        )
+
+        prompt_parts = [
+            "You are a VR test plan verifier. Review the following action units "
+            "for semantic correctness in a Unity VR scene.\n",
+            f"Actions ({len(actions)} total, showing first {len(sample)}):\n"
+            f"```json\n{action_block}\n```\n",
+            f"Rule-based errors already found:\n```json\n{error_block}\n```\n",
+        ]
+
+        # Inject shared context from other agents
+        if shared_context:
+            scene_sum = shared_context.get("scene_understanding_summary", "")
+            if scene_sum:
+                prompt_parts.append(f"Scene Ground Truth Summary:\n{scene_sum}\n")
+            planner_sum = shared_context.get("planner_summary", "")
+            if planner_sum:
+                prompt_parts.append(f"Planner Intent:\n{planner_sum}\n")
+
+        prompt_parts.append(
+            "Identify any additional semantic issues: nonsensical interactions, "
+            "physically impossible grabs, redundant action patterns, or mismatched "
+            "object types. Be concise. Return a short text summary of findings.\n"
+            "If everything looks good, respond with: OK"
+        )
+        prompt = "\n".join(prompt_parts)
+
+        try:
+            result = self.llm.ask(prompt, model=model, temperature=temp)
+            return result or ""
+        except Exception as exc:
+            print(f"[VERIFIER] LLM review failed: {exc}")
+            return ""
 
     # ------------------------------------------------------------------
     # Helpers

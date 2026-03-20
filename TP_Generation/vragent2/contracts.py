@@ -261,6 +261,85 @@ class ExplorationGoal:
 
 
 # ---------------------------------------------------------------------------
+# Scene Understanding output
+# ---------------------------------------------------------------------------
+
+@dataclass
+class InteractionDependency:
+    """A single dependency in the interaction chain."""
+    source: str = ""        # e.g. "Key" or "PowerSwitch"
+    target: str = ""        # e.g. "LockedCabinet"
+    relation: str = ""      # e.g. "unlocks", "enables", "requires"
+
+
+@dataclass
+class SceneUnderstandingOutput:
+    """Structured summary produced by SceneUnderstandingAgent."""
+    scene_overview: str = ""
+    key_objects: List[str] = field(default_factory=list)
+    interaction_dependencies: List[InteractionDependency] = field(default_factory=list)
+    gate_chains: List[str] = field(default_factory=list)        # ordered gate descriptions
+    main_path: List[str] = field(default_factory=list)          # correct walkthrough steps
+    failure_paths: List[str] = field(default_factory=list)      # common failure patterns
+    object_priority_ranking: List[str] = field(default_factory=list)  # object names ranked by importance
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "scene_overview": self.scene_overview,
+            "key_objects": self.key_objects,
+            "interaction_dependencies": [asdict(d) for d in self.interaction_dependencies],
+            "gate_chains": self.gate_chains,
+            "main_path": self.main_path,
+            "failure_paths": self.failure_paths,
+            "object_priority_ranking": self.object_priority_ranking,
+        }
+
+    @staticmethod
+    def from_dict(d: Dict[str, Any]) -> "SceneUnderstandingOutput":
+        deps = [InteractionDependency(**dep) for dep in d.get("interaction_dependencies", [])]
+        return SceneUnderstandingOutput(
+            scene_overview=d.get("scene_overview", ""),
+            key_objects=d.get("key_objects", []),
+            interaction_dependencies=deps,
+            gate_chains=d.get("gate_chains", []),
+            main_path=d.get("main_path", []),
+            failure_paths=d.get("failure_paths", []),
+            object_priority_ranking=d.get("object_priority_ranking", []),
+        )
+
+    def to_prompt_text(self) -> str:
+        """Format as text block for LLM prompts."""
+        parts = [f"## Scene Understanding\n{self.scene_overview}"]
+        if self.key_objects:
+            parts.append(f"**Key Objects**: {', '.join(self.key_objects)}")
+        if self.interaction_dependencies:
+            dep_lines = [f"  - {d.source} --[{d.relation}]--> {d.target}"
+                         for d in self.interaction_dependencies]
+            parts.append("**Interaction Dependencies**:\n" + "\n".join(dep_lines))
+        if self.gate_chains:
+            parts.append("**Gate Chains**:\n" + "\n".join(f"  {i+1}. {g}" for i, g in enumerate(self.gate_chains)))
+        if self.main_path:
+            parts.append("**Main Path**:\n" + "\n".join(f"  {i+1}. {s}" for i, s in enumerate(self.main_path)))
+        if self.failure_paths:
+            parts.append("**Common Failures**:\n" + "\n".join(f"  - {f}" for f in self.failure_paths))
+        return "\n\n".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# Scheduler output
+# ---------------------------------------------------------------------------
+
+@dataclass
+class SchedulerDecision:
+    """Output of the dynamic ObjectScheduler — which object to process next."""
+    object_name: str = ""
+    object_info: Dict[str, Any] = field(default_factory=dict)
+    reason: str = ""
+    priority_score: float = 0.0
+    skip_list: List[str] = field(default_factory=list)  # objects explicitly skipped
+
+
+# ---------------------------------------------------------------------------
 # Serialisation helpers
 # ---------------------------------------------------------------------------
 
