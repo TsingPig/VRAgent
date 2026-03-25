@@ -1,0 +1,133 @@
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Trigger",
+          "source_object_name": "LightSwitch_Room1",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1894443793,
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1894443799,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "DoorPivot",
+          "triggerring_time": 0.1,
+          "source_object_fileID": 1342851253,
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Unlock",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1342851255,
+                  "method_name": "Open",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "Drawer",
+          "triggerring_time": 0.5,
+          "source_object_fileID": 659474793,
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 659474796,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Move",
+          "target_position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          }
+        },
+        {
+          "type": "Grab",
+          "source_object_name": "InvalidGrabNoDestination",
+          "source_object_fileID": 1894443793
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InvalidScriptFileId",
+          "source_object_fileID": 1894443793,
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 999999001,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Trigger",
+          "source_object_name": "InvalidSourceObject",
+          "source_object_fileID": 999999002,
+          "triggerring_events": [
+            {
+              "methodCallUnits": [
+                {
+                  "script_fileID": 1894443799,
+                  "method_name": "Toggle",
+                  "parameter_fileID": []
+                }
+              ]
+            }
+          ],
+          "triggerred_events": []
+        },
+        {
+          "type": "Triggr",
+          "source_object_name": "UnknownType",
+          "source_object_fileID": 1894443793
+        },
+        {
+          "type": "Move",
+          "source_object_name": "InvalidMoveNoDestination"
+        },
+        {
+          "type": "Move",
+          "source_object_name": "InvalidMoveTargetObject",
+          "target_object_fileID": 999999003
+        }
+      ]
+    }
+  ]
+}

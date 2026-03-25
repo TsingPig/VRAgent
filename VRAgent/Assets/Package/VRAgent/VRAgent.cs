@@ -2,6 +2,7 @@ using HenryLab.VRExplorer;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
@@ -20,7 +21,7 @@ namespace HenryLab.VRAgent
 
             public void Log()
             {
-                // ====== Debug Êä³ö ======
+                // ====== Debug ï¿½ï¿½ï¿½ ======
                 Debug.Log(
                     $"{Str.Tags.LogsTag} Test Plan Metrics:\n" +
                     new RichText().Add($"Tasks: {taskUnitCount}, Actions: {actionUnitCount}\n", color: Color.yellow, bold: true) +
@@ -34,6 +35,24 @@ namespace HenryLab.VRAgent
         private int _index = 0;
         private TestPlanCounter _testPlanCounter;
         private List<TaskUnit> _taskUnits = new List<TaskUnit>();
+        private int _totalActionCount = 0;
+        private int _syntaxRejectedActionCount = 0;
+        private int _semanticRejectedActionCount = 0;
+        private int _legalActionCount = 0;
+        private int _declaredGrabActionCount = 0;
+        private int _declaredTriggerActionCount = 0;
+        private int _declaredTransformActionCount = 0;
+        private int _declaredMoveActionCount = 0;
+        private int _declaredUnknownActionCount = 0;
+        private int _legalGrabActionCount = 0;
+        private int _legalTriggerActionCount = 0;
+        private int _legalTransformActionCount = 0;
+        private int _legalMoveActionCount = 0;
+        private int _runtimeActionAttemptCount = 0;
+        private int _runtimeActionSuccessCount = 0;
+        private int _runtimeActionExceptionCount = 0;
+        private DateTime _testStartTime;
+        private bool _legalRateLogged = false;
 
         [Header("Show for Debug")]
         [SerializeField] private GameObject objA;
@@ -56,11 +75,11 @@ namespace HenryLab.VRAgent
 
         protected TaskUnit NextTask => _taskUnits[_index++];
 
-        #region »ùÓÚÐÐÎªÖ´ÐÐµÄ³¡¾°Ì½Ë÷£¨Scene Exploration with Behaviour Executation£©
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÖ´ï¿½ÐµÄ³ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½Scene Exploration with Behaviour Executationï¿½ï¿½
 
         /// <summary>
-        /// ÖØ¸´Ö´ÐÐ³¡¾°Ì½Ë÷¡£
-        /// ³õÊ¼Ê±¼ÇÂ¼³¡¾°ÐÅÏ¢£¬µ±½áÊøÔËÐÐÊ±×Ô¶¯½áÊøÒì²½ÈÎÎñ¡£
+        /// ï¿½Ø¸ï¿½Ö´ï¿½Ð³ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½
+        /// ï¿½ï¿½Ê¼Ê±ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         protected override async Task RepeatSceneExplore()
@@ -77,6 +96,13 @@ namespace HenryLab.VRAgent
                 }
                 if(TestFinished)
                 {
+                    if(!_legalRateLogged)
+                    {
+                        LogLegalActionRate();
+                        ExportFinalAnalysisReport();
+                        _legalRateLogged = true;
+                    }
+
                     //ExperimentManager.Instance.ExperimentFinish();
                     if(exitAfterTesting)
                     {
@@ -84,7 +110,7 @@ namespace HenryLab.VRAgent
                     }
                     else
                     {
-                        // ÊµÑé½áÊøºó ²»Ñ¡ÔñÍË³ö£¬ÖØÖÃËùÓÐ×´Ì¬Ñ­»·ÊµÑé
+                        // Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬Ñ­ï¿½ï¿½Êµï¿½ï¿½
                         ResetExploration();
                     }
                 }
@@ -103,14 +129,22 @@ namespace HenryLab.VRAgent
         {
             _curTask = TaskGenerator(NextTask);
 
+            if(_curTask == null || _curTask.Count == 0)
+            {
+                return;
+            }
+
             foreach(var action in _curTask)
             {
+                _runtimeActionAttemptCount++;
                 try
                 {
                     await action.Execute();
+                    _runtimeActionSuccessCount++;
                 }
                 catch(Exception ex)
                 {
+                    _runtimeActionExceptionCount++;
                     Debug.LogException(ex);
                 }
             }
@@ -122,7 +156,7 @@ namespace HenryLab.VRAgent
 
         protected override bool TestFinished => _index >= _taskUnits.Count;
 
-        #endregion »ùÓÚÐÐÎªÖ´ÐÐµÄ³¡¾°Ì½Ë÷£¨Scene Exploration with Behaviour Executation£©
+        #endregion ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÖ´ï¿½ÐµÄ³ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½Scene Exploration with Behaviour Executationï¿½ï¿½
 
         private static TaskList GetTaskListFromJson()
         {
@@ -136,7 +170,7 @@ namespace HenryLab.VRAgent
             try
             {
                 string jsonContent = File.ReadAllText(filePath);
-                // TaskList taskList = JsonUtility.FromJson<TaskList>(jsonContent);  ²»Ö§³Ö¶àÌ¬
+                // TaskList taskList = JsonUtility.FromJson<TaskList>(jsonContent);  ï¿½ï¿½Ö§ï¿½Ö¶ï¿½Ì¬
                 TaskList taskList = JsonConvert.DeserializeObject<TaskList>(jsonContent);
                 if(taskList == null)
                 {
@@ -152,7 +186,7 @@ namespace HenryLab.VRAgent
         }
 
         /// <summary>
-        /// µ¼Èë²âÊÔ¼Æ»®
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼Æ»ï¿½
         /// </summary>
         /// <param name="useFileID"></param>
         public static void ImportTestPlan(bool useFileID = true)
@@ -163,7 +197,7 @@ namespace HenryLab.VRAgent
             FileIDContainer manager = GetOrCreateManager();
             manager.Clear();
 
-            // ====== Í³¼ÆÐÅÏ¢ ======
+            // ====== Í³ï¿½ï¿½ï¿½ï¿½Ï¢ ======
             TestPlanCounter counter = new TestPlanCounter();
             counter.taskUnitCount = tasklist.taskUnits.Count;
 
@@ -244,24 +278,24 @@ namespace HenryLab.VRAgent
                 }
             }
 
-            // ====== Debug Êä³ö ======
+            // ====== Debug ï¿½ï¿½ï¿½ ======
             counter.Log();
         }
 
         /// <summary>
-        /// Çå³ýÒÑµ¼ÈëµÄ²âÊÔ¼Æ»®
+        /// ï¿½ï¿½ï¿½ï¿½Ñµï¿½ï¿½ï¿½Ä²ï¿½ï¿½Ô¼Æ»ï¿½
         /// </summary>
         /// <param name="useFileID"></param>
         public static void RemoveTestPlan(bool useFileID = true)
         {
-            // ÒÆ³ýÁÙÊ±Ä¿±êÎïÌå
+            // ï¿½Æ³ï¿½ï¿½ï¿½Ê±Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             var tempTargets = GameObject.FindGameObjectsWithTag(Str.Tags.TempTargetTag);
             foreach(var t in tempTargets)
             {
                 DestroyImmediate(t);
             }
 
-            // ÒÆ³ý³¡¾°µÄ FileIdManager
+            // ï¿½Æ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ FileIdManager
             FileIDContainer manager = FindObjectOfType<FileIDContainer>();
             if(manager != null)
                 DestroyImmediate(manager.gameObject);
@@ -273,7 +307,7 @@ namespace HenryLab.VRAgent
             {
                 foreach(var action in taskUnit.actionUnits)
                 {
-                    if(action.type == "Move") continue;     // ÎÞÐè²Ù×÷
+                    if(action.type == "Move") continue;     // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
                     GameObject objA = FileIDResolver.FindGameObject(action.objectA, useFileID);
@@ -293,7 +327,7 @@ namespace HenryLab.VRAgent
                         XRTriggerable triggerable = objA.GetComponent<XRTriggerable>();
                         if(triggerable != null)
                         {
-                            // Çå¿ÕÊÂ¼þÁÐ±í
+                            // ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ð±ï¿½
                             triggerable.triggerringEvents.Clear();
                             triggerable.triggerredEvents.Clear();
 
@@ -328,7 +362,7 @@ namespace HenryLab.VRAgent
 
         private List<BaseAction> TaskGenerator(TaskUnit taskUnit)
         {
-            if(taskUnit.actionUnits.Count == 0)
+            if(taskUnit == null || taskUnit.actionUnits == null || taskUnit.actionUnits.Count == 0)
             {
                 Debug.LogError($"{Str.Tags.LogsTag} {taskUnit} is null");
                 return null;
@@ -339,6 +373,17 @@ namespace HenryLab.VRAgent
             for(int actionIndex = 0; actionIndex < taskUnit.actionUnits.Count; actionIndex++)
             {
                 var action = taskUnit.actionUnits[actionIndex];
+                _totalActionCount++;
+
+                if(action == null)
+                {
+                    _syntaxRejectedActionCount++;
+                    Debug.LogWarning($"{Str.Tags.LogsTag} Skip action due to syntax mismatch: null action at task {_index}, action {actionIndex}");
+                    continue;
+                }
+
+                CountDeclaredActionType(action.type);
+
                 var debugText = new RichText()
                     .Add($"[Task {_index}][Action {actionIndex}] ", color: Color.yellow)
                     .Add("Type: ", color: Color.yellow)
@@ -355,11 +400,11 @@ namespace HenryLab.VRAgent
                     break;
 
                     case TransformActionUnit transform:
-                    debugText.Add(" | ¦¤Pos: ", color: Color.white)
+                    debugText.Add(" | ï¿½ï¿½Pos: ", color: Color.white)
                              .Add(transform.deltaPosition.ToString(), color: Color.cyan)
-                             .Add(" | ¦¤Rot: ", color: Color.white)
+                             .Add(" | ï¿½ï¿½Rot: ", color: Color.white)
                              .Add(transform.deltaRotation.ToString(), color: Color.cyan)
-                             .Add(" | ¦¤Scale: ", color: Color.white)
+                             .Add(" | ï¿½ï¿½Scale: ", color: Color.white)
                              .Add(transform.deltaScale.ToString(), color: Color.cyan);
                     break;
 
@@ -380,131 +425,342 @@ namespace HenryLab.VRAgent
                 }
                 Debug.Log(debugText);
 
-               
-
-
-                if(action.type == "Grab")
+                switch(action)
                 {
-                    objA = GetOrCreateManager().GetObject(action.objectA);
-                    if(objA == null) continue;
-
-                    GrabActionUnit grabAction = action as GrabActionUnit;
-                    if(grabAction == null) continue;
-                    XRGrabbable grabbable = objA.AddComponent<XRGrabbable>();
-                    Debug.Log($"Added XRGrabbable component to {objA.name}");
-
-                    if(grabAction.objectB != null)
+                    case GrabActionUnit grabAction when action.type == "Grab":
                     {
-                        objB = GetOrCreateManager().GetObject(grabAction.objectB);
-                        grabbable.destination = objB.transform;
-                    }
-                    else if(grabAction.targetPosition != null)// Ê¹ÓÃ Vector3×÷Îª target
-                    {
-                        Vector3 targetPos = (Vector3)grabAction.targetPosition;
-                        // ÏÈ²éÕÒ³¡¾°ÖÐÊÇ·ñÒÑÓÐÁÙÊ±Ä¿±ê
-                        GameObject targetObj = GameObject.Find($"{objA.name}_TargetPosition");
-                        if(targetObj == null)
+                        if(string.IsNullOrEmpty(grabAction.objectA))
                         {
-                            targetObj = new GameObject($"{objA.name}_TargetPosition_{Str.Tags.TempTargetTag}");
+                            _syntaxRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Grab action due to syntax mismatch: source_object_fileID is empty");
+                            continue;
+                        }
+
+                        objA = ResolveAndCacheObject(grabAction.objectA);
+                        if(objA == null)
+                        {
+                            _semanticRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Grab action due to semantic mismatch: source object not found ({grabAction.objectA})");
+                            continue;
+                        }
+
+                        Transform destinationTransform = null;
+                        if(!string.IsNullOrEmpty(grabAction.objectB))
+                        {
+                            objB = ResolveAndCacheObject(grabAction.objectB);
+                            if(objB == null)
+                            {
+                                _semanticRejectedActionCount++;
+                                Debug.LogWarning($"{Str.Tags.LogsTag} Skip Grab action due to semantic mismatch: target object not found ({grabAction.objectB})");
+                                continue;
+                            }
+                            destinationTransform = objB.transform;
+                        }
+                        else if(grabAction.targetPosition != null)
+                        {
+                            Vector3 targetPos = (Vector3)grabAction.targetPosition;
+                            GameObject targetObj = GameObject.Find($"{objA.name}_TargetPosition");
+                            if(targetObj == null)
+                            {
+                                targetObj = new GameObject($"{objA.name}_TargetPosition_{Str.Tags.TempTargetTag}");
+                                targetObj.tag = Str.Tags.TempTargetTag;
+                            }
                             targetObj.transform.position = targetPos;
-                            targetObj.tag = Str.Tags.TempTargetTag;  // ¸øÁÙÊ±Ä¿±ê¼Ó±ê¼Ç£¬·½±ãºóÐøÉ¾³ý
+                            destinationTransform = targetObj.transform;
+                            Debug.Log($"Set {objA.name}'s destination to position {targetPos}");
                         }
                         else
                         {
-                            targetObj.transform.position = targetPos; // ¸üÐÂÎ»ÖÃ
+                            _semanticRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Grab action due to semantic mismatch: lacking destination");
+                            continue;
                         }
 
-                        grabbable.destination = targetObj.transform;
-                        Debug.Log($"Set {objA.name}'s destination to position {targetPos}");
+                        XRGrabbable grabbable = objA.AddComponent<XRGrabbable>();
+                        grabbable.destination = destinationTransform;
+                        Debug.Log($"Added XRGrabbable component to {objA.name}");
+                        task.AddRange(GrabTask(grabbable));
+                        _legalActionCount++;
+                        _legalGrabActionCount++;
+                        break;
                     }
-                    else
+
+                    case TriggerActionUnit triggerAction when action.type == "Trigger":
                     {
-                        Debug.LogError("Lacking of Destination");
-                    }
-                    task.AddRange(GrabTask(grabbable));
-                }
-                else if(action.type == "Trigger")
-                {
-                    objA = GetOrCreateManager().GetObject(action.objectA);
-                    if(objA == null) continue;
-
-                    TriggerActionUnit triggerAction = action as TriggerActionUnit;
-                    if(triggerAction == null) continue;
-                    XRTriggerable triggerable = objA.AddComponent<XRTriggerable>();
-                    Debug.Log($"Added XRTriggerable component to {objA.name}");
-
-                    if(triggerAction.trigerringTime != null) triggerable.triggeringTime = (float)triggerAction.trigerringTime;
-                    ParameterResolver.BindEventList(triggerAction.triggerringEvents, triggerable.triggerringEvents);
-                    ParameterResolver.BindEventList(triggerAction.triggerredEvents, triggerable.triggerredEvents);
-
-                    task.AddRange(TriggerTask(triggerable));
-                }
-                else if(action.type == "Transform")
-                {
-                    objA = GetOrCreateManager().GetObject(action.objectA);
-                    if(objA == null) continue;
-
-                    TransformActionUnit transformAction = action as TransformActionUnit;
-                    if(transformAction == null) continue;
-                    XRTransformable transformable = objA.AddComponent<XRTransformable>();
-                    Debug.Log($"Added XRTransformable component to {objA.name}");
-
-                    // ÉèÖÃ±ä»»²ÎÊý
-                    if(transformAction.trigerringTime != null) transformable.triggerringTime = (float)transformAction.trigerringTime;
-                    transformable.deltaPosition = transformAction.deltaPosition;
-                    transformable.deltaRotation = transformAction.deltaRotation;
-                    transformable.deltaScale = transformAction.deltaScale;
-
-                    if(transformAction.trigerringTime != null)
-                        transformable.triggerringTime = (float)transformAction.trigerringTime;
-
-                    task.AddRange(TransformTask(transformable));
-                }
-                else if(action.type == "Move")
-                {
-                    // Ë¼Â·ºÍGrab»ù±¾Ò»ÖÂ
-                    Vector3 destination = transform.position;
-                    MoveActionUnit moveAction = action as MoveActionUnit;
-                    if(moveAction == null) continue;
-
-                    if(moveAction.objectB != null)
-                    {
-                        objB = GetOrCreateManager().GetObject(moveAction.objectB);
-                        destination = objB.transform.position;
-                    }
-                    else if(moveAction.targetPosition != null)// Ê¹ÓÃ Vector3×÷Îª target
-                    {
-                        Vector3 targetPos = (Vector3)moveAction.targetPosition;
-                        // ÏÈ²éÕÒ³¡¾°ÖÐÊÇ·ñÒÑÓÐÁÙÊ±Ä¿±ê
-                        GameObject targetObj = GameObject.Find($"{objB.name}_TargetPosition");
-                        if(targetObj == null)
+                        if(string.IsNullOrEmpty(triggerAction.objectA))
                         {
-                            targetObj = new GameObject($"{objB.name}_TargetPosition_{Str.Tags.TempTargetTag}");
-                            targetObj.transform.position = targetPos;
-                            targetObj.tag = Str.Tags.TempTargetTag;  // ¸øÁÙÊ±Ä¿±ê¼Ó±ê¼Ç£¬·½±ãºóÐøÉ¾³ý
+                            _syntaxRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Trigger action due to syntax mismatch: source_object_fileID is empty");
+                            continue;
+                        }
+
+                        objA = ResolveAndCacheObject(triggerAction.objectA);
+                        if(objA == null)
+                        {
+                            _semanticRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Trigger action due to semantic mismatch: source object not found ({triggerAction.objectA})");
+                            continue;
+                        }
+
+                        if(!ValidateAndCacheEventScripts(triggerAction.triggerringEvents) || !ValidateAndCacheEventScripts(triggerAction.triggerredEvents))
+                        {
+                            _semanticRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Trigger action due to semantic mismatch: script_fileID cannot be resolved");
+                            continue;
+                        }
+
+                        XRTriggerable triggerable = objA.AddComponent<XRTriggerable>();
+                        Debug.Log($"Added XRTriggerable component to {objA.name}");
+
+                        if(triggerAction.trigerringTime != null) triggerable.triggeringTime = (float)triggerAction.trigerringTime;
+                        ParameterResolver.BindEventList(triggerAction.triggerringEvents, triggerable.triggerringEvents);
+                        ParameterResolver.BindEventList(triggerAction.triggerredEvents, triggerable.triggerredEvents);
+
+                        task.AddRange(TriggerTask(triggerable));
+                        _legalActionCount++;
+                        _legalTriggerActionCount++;
+                        break;
+                    }
+
+                    case TransformActionUnit transformAction when action.type == "Transform":
+                    {
+                        if(string.IsNullOrEmpty(transformAction.objectA))
+                        {
+                            _syntaxRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Transform action due to syntax mismatch: source_object_fileID is empty");
+                            continue;
+                        }
+
+                        objA = ResolveAndCacheObject(transformAction.objectA);
+                        if(objA == null)
+                        {
+                            _semanticRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Transform action due to semantic mismatch: source object not found ({transformAction.objectA})");
+                            continue;
+                        }
+
+                        XRTransformable transformable = objA.AddComponent<XRTransformable>();
+                        Debug.Log($"Added XRTransformable component to {objA.name}");
+
+                        if(transformAction.trigerringTime != null) transformable.triggerringTime = (float)transformAction.trigerringTime;
+                        transformable.deltaPosition = transformAction.deltaPosition;
+                        transformable.deltaRotation = transformAction.deltaRotation;
+                        transformable.deltaScale = transformAction.deltaScale;
+
+                        task.AddRange(TransformTask(transformable));
+                        _legalActionCount++;
+                        _legalTransformActionCount++;
+                        break;
+                    }
+
+                    case MoveActionUnit moveAction when action.type == "Move":
+                    {
+                        Vector3 destination = transform.position;
+
+                        if(!string.IsNullOrEmpty(moveAction.objectB))
+                        {
+                            objB = ResolveAndCacheObject(moveAction.objectB);
+                            if(objB == null)
+                            {
+                                _semanticRejectedActionCount++;
+                                Debug.LogWarning($"{Str.Tags.LogsTag} Skip Move action due to semantic mismatch: target object not found ({moveAction.objectB})");
+                                continue;
+                            }
+                            destination = objB.transform.position;
+                        }
+                        else if(moveAction.targetPosition != null)
+                        {
+                            destination = (Vector3)moveAction.targetPosition;
                         }
                         else
                         {
-                            targetObj.transform.position = targetPos; // ¸üÐÂÎ»ÖÃ
+                            _semanticRejectedActionCount++;
+                            Debug.LogWarning($"{Str.Tags.LogsTag} Skip Move action due to semantic mismatch: lacking destination");
+                            continue;
                         }
 
-                        destination = targetObj.transform.position;
-                        Debug.Log($"Set {objB.name}'s destination to position {destination}");
+                        task.Add(new MoveAction(_navMeshAgent, moveSpeed, destination));
+                        _legalActionCount++;
+                        _legalMoveActionCount++;
+                        break;
                     }
-                    else
+
+                    default:
                     {
-                        Debug.LogError("Lacking of Destination");
+                        _syntaxRejectedActionCount++;
+                        Debug.LogWarning($"{Str.Tags.LogsTag} Skip action due to syntax mismatch: unsupported type '{action.type}' or type-body mismatch");
+                        break;
                     }
-                    task.Add(new MoveAction(_navMeshAgent, moveSpeed, destination));
                 }
             }
             return task;
         }
 
+        private GameObject ResolveAndCacheObject(string fileId)
+        {
+            if(string.IsNullOrEmpty(fileId)) return null;
+
+            GameObject go = FileIDResolver.FindGameObject(fileId, useFileID);
+            if(go != null)
+            {
+                GetOrCreateManager().Add(fileId, go);
+            }
+            return go;
+        }
+
+        private bool ValidateAndCacheEventScripts(IEnumerable<eventUnit> eventUnits)
+        {
+            if(eventUnits == null) return true;
+
+            foreach(var eventUnit in eventUnits)
+            {
+                if(eventUnit?.methodCallUnits == null) continue;
+
+                foreach(var methodCallUnit in eventUnit.methodCallUnits)
+                {
+                    if(methodCallUnit == null || string.IsNullOrEmpty(methodCallUnit.script))
+                    {
+                        return false;
+                    }
+
+                    MonoBehaviour component = FileIDResolver.FindComponentByFileID(methodCallUnit.script);
+                    if(component == null)
+                    {
+                        return false;
+                    }
+
+                    GetOrCreateManager()._AddComponent(methodCallUnit.script, component);
+                }
+            }
+
+            return true;
+        }
+
+        private void LogLegalActionRate()
+        {
+            int illegalCount = _syntaxRejectedActionCount + _semanticRejectedActionCount;
+            float legalRate = _totalActionCount > 0
+                ? (float)_legalActionCount / _totalActionCount * 100f
+                : 0f;
+
+            Debug.Log(
+                $"{Str.Tags.LogsTag} Legal Action Summary:\n" +
+                new RichText().Add($"Total Actions: {_totalActionCount}\n", color: Color.yellow, bold: true) +
+                new RichText().Add($"Legal Actions: {_legalActionCount}\n", color: Color.green, bold: true) +
+                new RichText().Add($"Syntax Rejected: {_syntaxRejectedActionCount}\n", color: Color.red, bold: true) +
+                new RichText().Add($"Semantic Rejected: {_semanticRejectedActionCount}\n", color: Color.red, bold: true) +
+                new RichText().Add($"Skipped Total: {illegalCount}\n", color: Color.red, bold: true) +
+                new RichText().Add($"Legal Action Rate: {legalRate:F2}%", color: Color.cyan, bold: true)
+            );
+        }
+
+        private void CountDeclaredActionType(string actionType)
+        {
+            switch(actionType)
+            {
+                case "Grab":
+                _declaredGrabActionCount++;
+                break;
+                case "Trigger":
+                _declaredTriggerActionCount++;
+                break;
+                case "Transform":
+                _declaredTransformActionCount++;
+                break;
+                case "Move":
+                _declaredMoveActionCount++;
+                break;
+                default:
+                _declaredUnknownActionCount++;
+                break;
+            }
+        }
+
+        private void ExportFinalAnalysisReport()
+        {
+            string testPlanPath = PlayerPrefs.GetString("TestPlanPath", Str.TestPlanPath);
+            DateTime testEndTime = DateTime.Now;
+            TimeSpan duration = testEndTime - _testStartTime;
+
+            int illegalCount = _syntaxRejectedActionCount + _semanticRejectedActionCount;
+            float legalRate = _totalActionCount > 0 ? (float)_legalActionCount / _totalActionCount * 100f : 0f;
+            float runtimeSuccessRate = _runtimeActionAttemptCount > 0 ? (float)_runtimeActionSuccessCount / _runtimeActionAttemptCount * 100f : 0f;
+
+            string verdict;
+            if(legalRate >= 80f) verdict = "Healthy";
+            else if(legalRate >= 50f) verdict = "Needs Improvement";
+            else verdict = "High Rejection Risk";
+
+            string reportDir = Path.Combine(Path.GetDirectoryName(testPlanPath) ?? Application.dataPath, "Reports");
+            Directory.CreateDirectory(reportDir);
+
+            string planName = Path.GetFileNameWithoutExtension(testPlanPath);
+            if(string.IsNullOrEmpty(planName)) planName = "test_plan";
+
+            string reportPath = Path.Combine(reportDir, $"{planName}_analysis_{testEndTime:yyyyMMdd_HHmmss}.md");
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("# VRAgent Final Analysis Report");
+            sb.AppendLine();
+            sb.AppendLine("## Overview");
+            sb.AppendLine($"- Generated at: {testEndTime:yyyy-MM-dd HH:mm:ss}");
+            sb.AppendLine($"- Test plan: {testPlanPath}");
+            sb.AppendLine($"- Duration: {duration:c}");
+            sb.AppendLine($"- Verdict: {verdict}");
+            sb.AppendLine();
+
+            sb.AppendLine("## Action Legality Summary");
+            sb.AppendLine("| Metric | Value |");
+            sb.AppendLine("| --- | ---: |");
+            sb.AppendLine($"| Total Actions | {_totalActionCount} |");
+            sb.AppendLine($"| Legal Actions | {_legalActionCount} |");
+            sb.AppendLine($"| Syntax Rejected | {_syntaxRejectedActionCount} |");
+            sb.AppendLine($"| Semantic Rejected | {_semanticRejectedActionCount} |");
+            sb.AppendLine($"| Skipped Total | {illegalCount} |");
+            sb.AppendLine($"| Legal Action Rate | {legalRate:F2}% |");
+            sb.AppendLine();
+
+            sb.AppendLine("## Declared vs Legal by Type");
+            sb.AppendLine("| Action Type | Declared | Legal |");
+            sb.AppendLine("| --- | ---: | ---: |");
+            sb.AppendLine($"| Grab | {_declaredGrabActionCount} | {_legalGrabActionCount} |");
+            sb.AppendLine($"| Trigger | {_declaredTriggerActionCount} | {_legalTriggerActionCount} |");
+            sb.AppendLine($"| Transform | {_declaredTransformActionCount} | {_legalTransformActionCount} |");
+            sb.AppendLine($"| Move | {_declaredMoveActionCount} | {_legalMoveActionCount} |");
+            sb.AppendLine($"| Unknown Type | {_declaredUnknownActionCount} | 0 |");
+            sb.AppendLine();
+
+            sb.AppendLine("## Runtime Execution Summary");
+            sb.AppendLine("| Metric | Value |");
+            sb.AppendLine("| --- | ---: |");
+            sb.AppendLine($"| Attempted Runtime Actions | {_runtimeActionAttemptCount} |");
+            sb.AppendLine($"| Runtime Success | {_runtimeActionSuccessCount} |");
+            sb.AppendLine($"| Runtime Exceptions | {_runtimeActionExceptionCount} |");
+            sb.AppendLine($"| Runtime Success Rate | {runtimeSuccessRate:F2}% |");
+            sb.AppendLine();
+
+            sb.AppendLine("## Interpretation");
+            sb.AppendLine("- Syntax rejections usually indicate malformed JSON fields, unsupported type names, or type-body mismatch.");
+            sb.AppendLine("- Semantic rejections usually indicate unresolved object/script FileID or missing action destination.");
+            sb.AppendLine("- Runtime exceptions indicate execution-time failures after action legality checks passed.");
+
+            try
+            {
+                File.WriteAllText(reportPath, sb.ToString());
+                Debug.Log($"{Str.Tags.LogsTag} Final analysis report exported: {reportPath}");
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError($"{Str.Tags.LogsTag} Failed to export final analysis report: {ex.Message}");
+            }
+        }
+
         private new void Start()
         {
             base.Start();
-            _taskUnits = GetTaskListFromJson().taskUnits;  // ³õÊ¼»¯_taskList
+            _testStartTime = DateTime.Now;
+            TaskList taskList = GetTaskListFromJson();
+            _taskUnits = taskList?.taskUnits ?? new List<TaskUnit>();
         }
     }
 }

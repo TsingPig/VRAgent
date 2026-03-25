@@ -1,6 +1,10 @@
 # Changelog
+## [1.9.0] - 2026-03-25
 
+### Added
+- Automatic final analysis report export (`.md`) at the end of test execution.
 
+  
 ## [1.8.12] - 2025-12-11
 ### Updated
 - NavMeshPointChecker editor tool
