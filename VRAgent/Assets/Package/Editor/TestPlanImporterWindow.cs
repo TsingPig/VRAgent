@@ -120,7 +120,10 @@ namespace HenryLab.VRAgent
 
             if(_detectedTestPlans.Length == 0)
             {
-                EditorGUILayout.HelpBox($"No test plans found for scene \"{sceneName}\".\nExpected directory: Assets/SampleScene/{sceneName}/TestPlans/", MessageType.Info);
+                string expectedDir = !string.IsNullOrEmpty(activeScene.path)
+                    ? Path.GetDirectoryName(activeScene.path) + "/TestPlans/"
+                    : "<SceneDirectory>/TestPlans/";
+                EditorGUILayout.HelpBox($"No test plans found for scene \"{sceneName}\".\nExpected directory: {expectedDir}", MessageType.Info);
                 return;
             }
 
@@ -190,16 +193,26 @@ namespace HenryLab.VRAgent
         }
 
         /// <summary>
-        /// 根据场景名查找 TestPlans 目录。
-        /// 优先查找 Assets/SampleScene/{sceneName}/TestPlans/，
-        /// 然后回退到 Assets 下任意匹配的 {sceneName}/TestPlans/。
+        /// 根据当前场景文件的实际路径查找 TestPlans 目录。
+        /// 优先查找场景文件所在目录下的 TestPlans/，
+        /// 然后回退到 Assets 下任意匹配 {sceneName}/TestPlans/ 的目录。
         /// </summary>
         private static string FindTestPlanDirectory(string sceneName)
         {
-            // 优先路径：SampleScene 下
-            string primaryPath = Path.Combine(Application.dataPath, "SampleScene", sceneName, "TestPlans");
-            if(Directory.Exists(primaryPath))
-                return primaryPath;
+            // 优先：根据当前场景文件的实际路径查找
+            var activeScene = EditorSceneManager.GetActiveScene();
+            if(!string.IsNullOrEmpty(activeScene.path))
+            {
+                // activeScene.path 格式: "Assets/xxx/SceneName/SceneName.unity"
+                string sceneAssetDir = Path.GetDirectoryName(activeScene.path);
+                // 转为磁盘绝对路径
+                string sceneAbsDir = Path.Combine(
+                    Directory.GetParent(Application.dataPath).FullName,
+                    sceneAssetDir);
+                string testPlanDir = Path.Combine(sceneAbsDir, "TestPlans");
+                if(Directory.Exists(testPlanDir))
+                    return testPlanDir;
+            }
 
             // 回退：在整个 Assets 下搜索 <sceneName>/TestPlans
             try
