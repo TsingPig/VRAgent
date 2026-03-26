@@ -36,7 +36,7 @@ jobs: # Jobs是工作流的核心部分，定义了要运行的任务，每个jo
         run: |
           set -euo pipefail  # 严格模式：错误、未定义变量、管道失败时终止
           # 配置变量
-          FOLDER_PATH="Assets/Package" # 要同步的文件夹路径
+          FOLDER_PATH="VRAgent/Assets/Package" # 要同步的文件夹路径
           NEW_REPO="VRAgent_Release" # 目标新仓库名称
           NEW_REPO_URL="https://${{ secrets.GH_PAT }}@github.com/${{ github.repository_owner }}/$NEW_REPO.git"
 
