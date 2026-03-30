@@ -262,18 +262,101 @@ def _metric_card(value: Any, label: str, css_class: str = "") -> str:
     )
 
 
-def _section_summary(summary: Dict) -> str:
-    """Dashboard summary cards."""
+def _excepted_action_names(exceptions: List[str]) -> set:
+    """Extract action names from the top-level exceptions list.
+
+    Exception format: ``"ActionType:SourceName → message"``
+    """
+    names: set = set()
+    for exc_str in exceptions:
+        if " \u2192 " in exc_str:
+            names.add(exc_str.split(" \u2192 ")[0].strip())
+    return names
+
+
+def _reconcile_replay(replay: Dict) -> Dict:
+    """Return a *shallow copy* of *replay* with corrected success fields.
+
+    Fixes stale data in old replay files (generated before exception-
+    injection was added) by cross-referencing the top-level ``exceptions``
+    list with per-trace events.  Reconciles:
+
+    * ``traces[i]["success"]`` — override to False when the action had an
+      exception (either already in events or only in top-level list).
+    * ``successes`` / ``failures`` — recomputed from corrected traces.
+    * ``gates_solved`` / ``gates_failed`` — recomputed consistently.
+    """
+    replay = dict(replay)                         # shallow copy
+    exceptions = replay.get("exceptions", [])
+    excepted = _excepted_action_names(exceptions)
+
+    error_keywords = ("error:", "exception:", "bridge_error:", "import_error:")
+
+    new_traces: List[Dict] = []
+    for t in replay.get("traces", []):
+        t = dict(t)                               # shallow copy
+        action_name = t.get("action", "")
+        events = t.get("events", [])
+        joined = " ".join(events)
+
+        # Override success → False if events contain errors, or if the
+        # action appears in the top-level exceptions list.
+        if any(kw in joined for kw in error_keywords):
+            t["success"] = False
+        elif action_name in excepted:
+            t["success"] = False
+        new_traces.append(t)
+
+    replay["traces"] = new_traces
+
+    # Recompute aggregates
+    ok = sum(1 for t in new_traces if t.get("success"))
+    replay["successes"] = ok
+    replay["failures"] = len(new_traces) - ok
+
+    # Recompute gate lists (unique action names, solved vs failed)
+    solved: List[str] = []
+    failed: List[str] = []
+    seen: set = set()
+    for t in new_traces:
+        name = t.get("action", "")
+        if name in seen:
+            continue
+        seen.add(name)
+        if t.get("success"):
+            solved.append(name)
+        else:
+            failed.append(name)
+    replay["gates_solved"] = solved
+    replay["gates_failed"] = failed
+
+    return replay
+
+
+def _section_summary(summary: Dict, replay: Optional[Dict] = None) -> str:
+    """Dashboard summary cards.
+
+    When a replay is available, gate stats are recomputed from traces
+    (summary.json may be stale if generated before bug-fixes).
+    """
     exp = summary.get("explorer", {})
     total_actions = summary.get("total_actions", summary.get("total_traces", 0))
     iters = summary.get("iterations", 0)
     nodes = summary.get("gate_graph_nodes", 0)
     edges = summary.get("gate_graph_edges", 0)
     coverage = exp.get("total_coverage", 0.0) * 100
-    gates_solved = exp.get("gates_solved", 0)
-    gates_frontier = exp.get("gates_frontier", 0)
     mode = exp.get("mode", "N/A")
     budget = exp.get("budget_remaining", "N/A")
+
+    # Compute gate stats — prefer replay-derived data over stale summary.json
+    if replay:
+        gates_solved_list = replay.get("gates_solved", [])
+        gates_failed_list = replay.get("gates_failed", [])
+        gates_solved = len(gates_solved_list)
+        gates_total = len(gates_solved_list) + len(gates_failed_list)
+    else:
+        gates_solved = exp.get("gates_solved", 0)
+        gates_total = exp.get("gates_frontier", 0)
 
     cov_color = "green" if coverage > 50 else ("yellow" if coverage > 10 else "red")
 
@@ -281,7 +364,7 @@ def _section_summary(summary: Dict) -> str:
     html += _metric_card(total_actions, "Total Actions", "blue")
     html += _metric_card(iters, "Iterations", "purple")
     html += _metric_card(f"{coverage:.1f}%", "Coverage", cov_color)
-    html += _metric_card(f"{gates_solved}/{gates_frontier}", "Gates Solved", "green" if gates_solved > 0 else "red")
+    html += _metric_card(f"{gates_solved}/{gates_total}", "Gates Solved", "green" if gates_solved > 0 else "red")
     html += _metric_card(nodes, "State Nodes", "cyan")
     html += _metric_card(edges, "Gate Edges", "cyan")
     html += _metric_card(mode, "Explorer Mode", "yellow")
@@ -298,6 +381,8 @@ def _section_replay(replay: Dict) -> str:
     successes = replay.get("successes", 0)
     failures = replay.get("failures", 0)
     exceptions = replay.get("exceptions", [])
+    gates_solved = replay.get("gates_solved", [])
+    gates_failed = replay.get("gates_failed", [])
 
     succ_pct = (successes / executed * 100) if executed > 0 else 0
 
@@ -309,6 +394,16 @@ def _section_replay(replay: Dict) -> str:
     html += _metric_card(successes, "Successes", "green")
     html += _metric_card(failures, "Failures", "red" if failures > 0 else "green")
     html += '</div>'
+
+    # Gates solved/failed (from new replay output)
+    if gates_solved or gates_failed:
+        total_gates = len(gates_solved) + len(gates_failed)
+        gate_pct = (len(gates_solved) / total_gates * 100) if total_gates > 0 else 0
+        html += '<div class="grid grid-3" style="margin-top:10px">'
+        html += _metric_card(f"{len(gates_solved)}/{total_gates}", "Gates Solved (Technical)", "green" if gate_pct > 50 else "red")
+        html += _metric_card(len(gates_solved), "Unique Actions OK", "green")
+        html += _metric_card(len(gates_failed), "Unique Actions Failed", "red" if gates_failed else "green")
+        html += '</div>'
 
     # Success rate bar
     html += '<div style="margin:12px 0">'
@@ -530,7 +625,6 @@ def _section_iteration_logs(logs: List[Dict]) -> str:
 
         # Bugs
         if bugs:
-            bug_cats = _classify_bugs(bugs)
             html += '<h3>Bug Signals</h3><div class="log-box" style="max-height:160px">'
             for b in bugs:
                 cls = "log-err" if "[exception]" in b.lower() else ("log-warn" if "[console_warn]" in b.lower() else "log-info")
@@ -711,6 +805,7 @@ def _section_all_replays(output_dir: str) -> str:
         data = _load_json(os.path.join(replay_dir, fname))
         if not data:
             continue
+        data = _reconcile_replay(data)
         ts = data.get("timestamp", "?")
         total = data.get("total_actions", 0)
         succ = data.get("successes", 0)
@@ -754,6 +849,10 @@ def generate_report(
     session = _extract_session(output_dir)
     replay = _extract_replay(output_dir, replay_path)
 
+    # Reconcile replay data once — fixes stale success fields in old replays
+    if replay:
+        replay = _reconcile_replay(replay)
+
     traces = replay.get("traces", []) if replay else []
 
     # Determine output path
@@ -774,7 +873,7 @@ def generate_report(
 
     # Sections — each is independently robust
     if summary:
-        parts.append(_section_summary(summary))
+        parts.append(_section_summary(summary, replay=replay))
     if replay:
         parts.append(_section_replay(replay))
     if traces:

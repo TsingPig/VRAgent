@@ -511,19 +511,23 @@ def _replay_test_plan(test_plan_path: str, bridge, output_dir: str) -> Dict[str,
             status = "OK" if success else "FAIL"
             print(f"[REPLAY]   {status} ({duration:.0f}ms)")
 
+            trace_events = list(result.get("events", []))
+
+            # Inject exceptions into trace events (match ExecutorAgent behavior)
+            for exc in result.get("exceptions", []):
+                trace_events.append(f"exception:{exc}")
+                exceptions.append(f"{action_type}:{source_name} → {exc}")
+                print(f"[REPLAY]   Exception: {exc}")
+
             trace_entry = {
                 "action": f"{action_type}:{source_name}",
                 "state_before": result.get("state_before", {}),
                 "state_after": result.get("state_after", {}),
-                "events": result.get("events", []),
+                "events": trace_events,
                 "success": success,
                 "duration_ms": duration,
             }
             traces.append(trace_entry)
-
-            for exc in result.get("exceptions", []):
-                exceptions.append(f"{action_type}:{source_name} → {exc}")
-                print(f"[REPLAY]   Exception: {exc}")
 
         except Exception as exc:
             exceptions.append(f"{action_type}:{source_name} → {exc}")
@@ -544,18 +548,35 @@ def _replay_test_plan(test_plan_path: str, bridge, output_dir: str) -> Dict[str,
     except Exception:
         pass
 
+    # Compute gate statistics from traces
+    from .controller import VRAgentController
+    gates_solved = []
+    gates_failed = []
+    for t in traces:
+        action_name = t.get("action", "")
+        if VRAgentController._is_trace_success(t):
+            if action_name not in gates_solved:
+                gates_solved.append(action_name)
+        else:
+            if action_name not in gates_failed:
+                gates_failed.append(action_name)
+
     # Save replay results
     from datetime import datetime
+    successes = sum(1 for t in traces if VRAgentController._is_trace_success(t))
+    failures = len(traces) - successes
     replay_result = {
         "timestamp": datetime.now().isoformat(),
         "test_plan_path": test_plan_path,
         "total_actions": len(all_actions),
         "executed": len(traces),
-        "successes": sum(1 for t in traces if t.get("success")),
-        "failures": sum(1 for t in traces if not t.get("success")),
+        "successes": successes,
+        "failures": failures,
         "exceptions": exceptions,
         "traces": traces,
         "console_logs": logs,
+        "gates_solved": gates_solved,
+        "gates_failed": gates_failed,
     }
 
     replay_file = os.path.join(output_dir, "replay",
@@ -565,8 +586,10 @@ def _replay_test_plan(test_plan_path: str, bridge, output_dir: str) -> Dict[str,
     print(f"\n{'='*60}")
     print(f"[REPLAY] Complete")
     print(f"  Actions   : {len(all_actions)}")
-    print(f"  Successes : {replay_result['successes']}")
-    print(f"  Failures  : {replay_result['failures']}")
+    print(f"  Successes : {successes}")
+    print(f"  Failures  : {failures}")
+    print(f"  Gates OK  : {len(gates_solved)}")
+    print(f"  Gates Fail: {len(gates_failed)}")
     print(f"  Exceptions: {len(exceptions)}")
     print(f"  Trace     : {replay_file}")
     print(f"{'='*60}")

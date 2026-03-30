@@ -101,14 +101,36 @@ $Common = @(
 
 ## 可视化结果
 
-```
-# 最简用法 — 直接指定结果目录
-python -m vragent2 --visualize Results_VRAgent2.0/Kitchen_TestRoom
+```powershell
+# 最简用法 — 指定结果目录，自动选最新 replay，生成后浏览器打开
+& $Python -m vragent2 --visualize $OutputDir
 
-# 指定特定 replay 文件
-python -m vragent2 --visualize Results_VRAgent2.0/Kitchen_TestRoom \
-    --visualize_replay Results_VRAgent2.0/Kitchen_TestRoom/replay/replay_20260330_173742.json
+# 指定特定 replay 文件高亮
+& $Python -m vragent2 --visualize $OutputDir `
+  --visualize_replay "$OutputDir\replay\replay_20260330_184707.json"
+
+# Pipeline 内自动生成（在线/离线跑完后附加 --visualize）
+& $Python -m vragent2 @Common --unity --visualize
 ```
+
+输出：`$OutputDir\report.html`（自包含 HTML，无外部依赖）
+
+报告包含 9 个 Section：
+
+| Section | 内容 |
+|---------|------|
+| Session Dashboard | 总动作数、迭代、覆盖率、Gates Solved |
+| Replay Results | 执行成功/失败、Gate 统计、异常列表 |
+| Action Type Breakdown | Grab/Trigger/Transform 分类 + 成功率柱状图 |
+| Object Interaction Heatmap | 各对象交互频次热力图 |
+| Action Timeline | 可搜索逐条动作时间线（含状态变化） |
+| Gate Graph | 状态节点 + 门控边 |
+| Iteration Logs | 每轮 Planner/Verifier/Observer 详情 |
+| Replay History | 所有历史 replay 对比表 |
+| Console Logs | Unity Console 日志（可搜索） |
+
+> **数据修正**：内置 `_reconcile_replay()` 自动交叉校验 exceptions 与 trace success，
+> 旧 replay 文件也能显示修正后的正确数据。
 ---
 
 ## 参数速查
@@ -127,6 +149,8 @@ python -m vragent2 --visualize Results_VRAgent2.0/Kitchen_TestRoom \
 | `--unity` | off | 连接 Unity 实时执行 |
 | `--replay PATH/auto` | — | 重放已有 test_plan（需 `--unity`） |
 | `--clean llm/analysis/all` | — | 清除旧结果 |
+| `--visualize [DIR]` | — | 生成 HTML 报告（可独立使用） |
+| `--visualize_replay PATH` | latest | 指定高亮的 replay 文件 |
 | `--no_verifier_llm` | — | 关闭 V1 LLM（仅规则检查） |
 | `--no_observer_llm` | — | 关闭 Observer LLM（仅规则 O1/O2） |
 | `--no_info_sharing` | — | 关闭 Agent 间信息共享 |

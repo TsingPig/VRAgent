@@ -644,23 +644,98 @@ class VRAgentController:
         )
         self.gate_graph.add_state(node)
 
-        # Record success/failure edges based on trace
+        # Build semantic-failure set from Observer for cross-referencing
+        sem_failures: set = set()
+        state_delta = observer_output.get("state_delta", {})
+        if isinstance(state_delta, dict):
+            for sf in state_delta.get("semantic_failures", []):
+                sem_failures.add(str(sf).lower())
+            for gb in state_delta.get("gates_still_blocked", []):
+                sem_failures.add(str(gb).lower())
+
+        # Record success/failure edges based on trace + observer semantics
         for trace_entry in executor_output.get("trace", []):
             events = trace_entry.get("events", [])
             action_name = trace_entry.get("action", "")
-            success = "dispatched" in " ".join(events) if events else True
+            evidence_str = "; ".join(events)
+
+            tech_ok = self._is_trace_success(trace_entry)
+
+            # Semantic override: Observer flagged this action as a semantic
+            # failure (e.g. "Trigger:Door_Pantry completed but door stayed locked")
+            action_lower = action_name.lower()
+            # Extract object name (after colon) for broader matching
+            obj_name_lower = action_lower.split(":", 1)[1] if ":" in action_lower else action_lower
+            sem_ok = not any(
+                action_lower in sf or obj_name_lower in sf
+                for sf in sem_failures
+            )
+
+            success = tech_ok and sem_ok
+
             if success:
                 self.gate_graph.add_edge(
                     node.node_id, node.node_id,
                     action=action_name, success=True,
                 )
+                self.explorer.mark_gate_solved(action_name)
             else:
-                evidence = "; ".join(events)
+                if not sem_ok:
+                    evidence_str += "; [observer] semantic failure detected"
                 self.gate_graph.add_edge(
                     node.node_id, f"blocked_{action_name}",
                     action=action_name, success=False,
-                    evidence=evidence,
+                    evidence=evidence_str,
                 )
+
+    @staticmethod
+    def _is_trace_success(trace_entry: Dict) -> bool:
+        """Determine whether a trace entry represents a technically successful
+        interaction (bridge executed without errors).
+
+        Works for both online (Unity Bridge) and offline (dry-run) modes:
+        - Online: bridge sets 'success' and produces 'completed:*' events.
+        - Offline: executor produces 'dispatched:*' events.
+        Error/exception events always mean failure.
+
+        Note: this is *technical* success only.  Semantic success (did the
+        door actually open?) is determined by Observer and applied in
+        ``_update_gate_graph``.
+        """
+        events = trace_entry.get("events", [])
+        joined = " ".join(events)
+
+        # Explicit errors always fail
+        if any(kw in joined for kw in ("error:", "exception:", "bridge_error:", "import_error:")):
+            return False
+
+        # Online mode: bridge reports success + action completed
+        if "success" in trace_entry:
+            bridge_ok = trace_entry["success"]
+            has_completed = any(e.startswith("completed:") for e in events)
+            if bridge_ok and has_completed:
+                return True
+
+        # Offline mode: dispatched event means the action was sent
+        if any(e.startswith("dispatched:") for e in events):
+            return True
+
+        # State change — but only meaningful changes count.
+        # Component-only additions (e.g., XRGrabbable added by instrumentation)
+        # without position/rotation/active change do NOT indicate success.
+        before = trace_entry.get("state_before", {})
+        after = trace_entry.get("state_after", {})
+        if before and after and before != after:
+            # Check for meaningful state change beyond component injection
+            pos_changed = before.get("position") != after.get("position")
+            rot_changed = before.get("rotation") != after.get("rotation")
+            active_changed = before.get("active") != after.get("active")
+            if pos_changed or rot_changed or active_changed:
+                return True
+            # Component-only change: only count if completed event also present
+            # (component_added alone is just instrumentation, not interaction)
+
+        return False
 
     # ------------------------------------------------------------------
     # Finalization
