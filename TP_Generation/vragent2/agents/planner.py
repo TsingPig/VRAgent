@@ -109,7 +109,7 @@ class PlannerAgent(BaseAgent):
         first_req = self._build_first_request(gobj_info, scene_name)
         self._record(conversation, "user", first_req, request_type="first_request")
 
-        first_resp = self.llm.ask_with_context(first_req, llm_ctx, model=self.llm_model)
+        first_resp = self.llm.ask_with_context(first_req, llm_ctx, model=self.llm_model, caller="planner")
         parsed = self._parse_and_record(first_resp, conversation, llm_ctx, first_req)
         turn_count += 1
 
@@ -201,7 +201,7 @@ class PlannerAgent(BaseAgent):
         )
         prompt = "\n".join(prompt_parts)
 
-        resp = self.llm.ask_with_context(prompt, context, model=self.llm_model)
+        resp = self.llm.ask_with_context(prompt, context, model=self.llm_model, caller="planner_repair")
         if resp:
             parsed = LLMClient.extract_json(resp)
             if isinstance(parsed, list):
@@ -381,7 +381,7 @@ class PlannerAgent(BaseAgent):
             return 0
 
         self._record(conversation, "user", request, request_type=f"{logic_type}_request")
-        resp = self.llm.ask_with_context(request, llm_ctx, model=self.llm_model)
+        resp = self.llm.ask_with_context(request, llm_ctx, model=self.llm_model, caller="planner")
         self._parse_and_record(resp, conversation, llm_ctx, request)
         return 1
 
@@ -420,7 +420,7 @@ class PlannerAgent(BaseAgent):
         # Normal child
         request = self._build_child_request(child, index, scene_name)
         self._record(conversation, "user", request, request_type="child_request")
-        resp = self.llm.ask_with_context(request, llm_ctx, model=self.llm_model)
+        resp = self.llm.ask_with_context(request, llm_ctx, model=self.llm_model, caller="planner")
         self._parse_and_record(resp, conversation, llm_ctx, request)
         return 1
 

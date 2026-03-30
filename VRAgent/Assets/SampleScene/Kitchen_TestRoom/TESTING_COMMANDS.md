@@ -11,7 +11,7 @@ $TPGen      = "d:\--UnityProject\HenryLabXR\VRAgent\TP_Generation"
 $ResultsDir = "$TPGen\Results\Results_Kitchen_TestRoom"
 $SceneDoc   = "$ProjectRoot\Assets\SampleScene\Kitchen_TestRoom\DELIVERY_NOTES.md"
 $ScriptsDir = "$ProjectRoot\Assets\SampleScene\Kitchen_TestRoom"
-$Model      = "gpt-4o"                              # 切换模型改这里
+$Model      = "gemini-3-pro-preview"                              # 切换模型改这里
 $OutputBase = "$TPGen\Results_VRAgent2.0"          # 基目录
 $OutputDir  = "$OutputBase\Kitchen_TestRoom\$Model" # 实际输出（代码自动组织）
 cd $TPGen
@@ -124,6 +124,19 @@ $Common = @(
 & $Python -m vragent2 @Common --unity --visualize
 ```
 
+## 跨模型 Benchmark 对比
+
+```powershell
+# 生成 benchmark_report.html（汇总所有模型/场景的运行数据）
+& $Python -m vragent2 --benchmark $OutputBase
+```
+
+输出：`$OutputBase\benchmark_report.html`
+数据源：`$OutputBase\benchmark.json`（每次 Pipeline 运行自动追加）
+
+包含：运行对比表（场景/模型/Actions/Gates/Tokens/Cost/Coverage）、
+Unity Code Coverage 按类柱状图、Token 消耗对比条形图。
+
 输出：`$OutputDir\report.html`（自包含 HTML，无外部依赖）
 
 ### 结果目录结构
@@ -147,11 +160,12 @@ Results_VRAgent2.0/               ← --output 基目录
       ...
 ```
 
-报告包含 9 个 Section：
+报告包含 10 个 Section：
 
 | Section | 内容 |
 |---------|------|
 | Session Dashboard | 总动作数、迭代、覆盖率、Gates Solved |
+| Token Usage | 总 Token（输入/输出）、按 Agent 细分、按迭代柱状图 |
 | Replay Results | 执行成功/失败、Gate 统计、异常列表 |
 | Action Type Breakdown | Grab/Trigger/Transform 分类 + 成功率柱状图 |
 | Object Interaction Heatmap | 各对象交互频次热力图 |
@@ -183,6 +197,7 @@ Results_VRAgent2.0/               ← --output 基目录
 | `--clean llm/analysis/all` | — | 清除旧结果 |
 | `--visualize [DIR]` | — | 生成 HTML 报告（可独立使用） |
 | `--visualize_replay PATH` | latest | 指定高亮的 replay 文件 |
+| `--benchmark [DIR]` | — | 生成跨模型 Benchmark 对比报告 |
 | `--no_verifier_llm` | — | 关闭 V1 LLM（仅规则检查） |
 | `--no_observer_llm` | — | 关闭 Observer LLM（仅规则 O1/O2） |
 | `--no_info_sharing` | — | 关闭 Agent 间信息共享 |

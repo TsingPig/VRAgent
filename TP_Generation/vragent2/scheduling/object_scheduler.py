@@ -124,6 +124,7 @@ class ObjectScheduler:
             ],
             model=model,
             temperature=temp,
+            caller="scheduler",
         )
 
         if not raw:

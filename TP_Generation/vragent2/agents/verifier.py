@@ -439,7 +439,7 @@ class VerifierAgent(BaseAgent):
         prompt = "\n".join(prompt_parts)
 
         try:
-            result = self.llm.ask(prompt, model=model, temperature=temp)
+            result = self.llm.ask(prompt, model=model, temperature=temp, caller="verifier_v1")
             return result or ""
         except Exception as exc:
             print(f"[VERIFIER] LLM review failed: {exc}")
@@ -571,6 +571,7 @@ class SemanticVerifier(BaseAgent):
                 ],
                 model=model,
                 temperature=temp,
+                caller="verifier_v2",
             )
         except Exception as exc:
             print(f"[SEMANTIC_VERIFIER] LLM call failed: {exc}")

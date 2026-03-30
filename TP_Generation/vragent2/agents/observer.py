@@ -443,6 +443,7 @@ class ObserverAgent(BaseAgent):
                 ],
                 model=model,
                 temperature=temp,
+                caller="observer",
             )
             if raw:
                 return self.llm.extract_json(raw)

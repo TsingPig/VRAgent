@@ -139,7 +139,7 @@ class SceneUnderstandingAgent(BaseAgent):
             {"role": "system", "content": _SYSTEM_PROMPT},
             {"role": "user", "content": user_prompt},
         ]
-        raw = self.llm.chat(messages, model=model, temperature=temp)
+        raw = self.llm.chat(messages, model=model, temperature=temp, caller="scene_understanding")
 
         if not raw:
             print("[SCENE_UNDERSTANDING] LLM returned empty response")

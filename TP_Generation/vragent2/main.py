@@ -94,6 +94,10 @@ def parse_args() -> argparse.Namespace:
                    metavar="REPLAY_JSON",
                    help="Specific replay JSON to highlight in the visualization "
                         "(default: latest replay in results dir)")
+    p.add_argument("--benchmark", nargs="?", const="auto", default=None,
+                   metavar="RESULTS_BASE",
+                   help="Generate cross-model benchmark comparison report from "
+                        "benchmark.json. Pass base dir or 'auto'.")
 
     # --- Scene understanding ---
     p.add_argument("--scene_doc", default=None,
@@ -166,6 +170,25 @@ def main() -> None:
             sys.exit(1)
 
         visualize_cli(viz_dir, replay_path=args.visualize_replay)
+        return
+
+    # ── Standalone benchmark report ───────────────────────────────────
+    if args.benchmark is not None:
+        from .visualize import generate_benchmark_report
+
+        bench_dir = args.benchmark
+        if bench_dir == "auto":
+            bench_dir = args.output
+        if not os.path.isdir(bench_dir):
+            print(f"[ERROR] Directory not found: {bench_dir}")
+            sys.exit(1)
+        out = generate_benchmark_report(bench_dir)
+        if out:
+            try:
+                import webbrowser
+                webbrowser.open(f"file:///{out.replace(os.sep, '/')}")
+            except Exception:
+                pass
         return
 
     # ── Validate required args for non-visualize modes ────────────────
@@ -389,6 +412,19 @@ def main() -> None:
         return
 
     # ── Run Controller ────────────────────────────────────────────────
+    # Auto-detect Unity CodeCoverage report dir
+    coverage_report_dir = None
+    if args.hierarchy_json:
+        # hierarchy_json is typically at <Project>/TP_Generation/Results/...
+        # Project root: go up from TP_Generation
+        _tp_gen = Path(args.hierarchy_json).resolve().parent
+        while _tp_gen.name and _tp_gen.name != "TP_Generation":
+            _tp_gen = _tp_gen.parent
+        if _tp_gen.name == "TP_Generation":
+            _cov_dir = _tp_gen.parent / "VRAgent" / "CodeCoverage" / "Report"
+            if _cov_dir.is_dir():
+                coverage_report_dir = str(_cov_dir)
+
     controller = VRAgentController(
         config=config,
         llm=llm,
@@ -400,6 +436,7 @@ def main() -> None:
         max_repair_rounds=args.max_repair,
         llm_model=args.model,
         unity_bridge=unity_bridge,
+        coverage_report_dir=coverage_report_dir,
     )
 
     # Resume from previous session if requested

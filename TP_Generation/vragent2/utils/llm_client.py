@@ -43,6 +43,9 @@ class LLMClient:
         self.max_retries = max_retries
         self.retry_delay = retry_delay
 
+        # Token usage accumulator: {caller: {prompt_tokens, completion_tokens, total_tokens, calls}}
+        self._token_usage: Dict[str, Dict[str, int]] = {}
+
         http_client = httpx.Client(proxy=proxy_url) if proxy_url else None
         self._client = openai.OpenAI(
             api_key=api_key,
@@ -61,11 +64,13 @@ class LLMClient:
         model: Optional[str] = None,
         temperature: Optional[float] = None,
         max_retries: Optional[int] = None,
+        caller: Optional[str] = None,
     ) -> Optional[str]:
         """
         Send *messages* to the LLM and return the assistant reply as a string.
 
-        Returns ``None`` on total failure after retries.
+        *caller* is an optional tag (e.g. ``"planner"``, ``"verifier"``) used
+        to attribute token usage.  Returns ``None`` on total failure after retries.
         """
         model = model or self.default_model
         temperature = temperature if temperature is not None else self.default_temperature
@@ -78,6 +83,9 @@ class LLMClient:
                     messages=messages,
                     temperature=temperature,
                 )
+                # Accumulate token usage
+                self._accumulate_usage(response, caller or model)
+
                 if response.choices:
                     return response.choices[0].message.content
                 print("[LLM] Empty response from API")
@@ -90,12 +98,44 @@ class LLMClient:
         return None
 
     # ------------------------------------------------------------------
+    # Token usage tracking
+    # ------------------------------------------------------------------
+
+    def _accumulate_usage(self, response: Any, caller: str) -> None:
+        """Extract token counts from the API response and accumulate."""
+        usage = getattr(response, "usage", None)
+        if not usage:
+            return
+        bucket = self._token_usage.setdefault(caller, {
+            "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "calls": 0,
+        })
+        bucket["prompt_tokens"] += getattr(usage, "prompt_tokens", 0) or 0
+        bucket["completion_tokens"] += getattr(usage, "completion_tokens", 0) or 0
+        bucket["total_tokens"] += getattr(usage, "total_tokens", 0) or 0
+        bucket["calls"] += 1
+
+    def get_token_usage(self) -> Dict[str, Dict[str, int]]:
+        """Return accumulated token usage by caller, plus an ``_total`` key."""
+        totals = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "calls": 0}
+        for v in self._token_usage.values():
+            for k in totals:
+                totals[k] += v[k]
+        result = dict(self._token_usage)
+        result["_total"] = totals
+        return result
+
+    def reset_token_usage(self) -> None:
+        """Clear accumulated stats (e.g. between iterations)."""
+        self._token_usage.clear()
+
+    # ------------------------------------------------------------------
     # Convenience: single-turn
     # ------------------------------------------------------------------
 
     def ask(self, prompt: str, **kwargs) -> Optional[str]:
         """Single-turn user→assistant call."""
         return self.chat([{"role": "user", "content": prompt}], **kwargs)
+
 
     # ------------------------------------------------------------------
     # Convenience: multi-turn with context management

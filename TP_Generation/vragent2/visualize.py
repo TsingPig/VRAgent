@@ -787,6 +787,83 @@ def _section_session(session: Dict) -> str:
     return html
 
 
+# ── Token Usage ──────────────────────────────────────────────────────
+
+def _section_token_usage(summary: Dict, iteration_logs: List[Dict]) -> str:
+    """Token usage breakdown — per agent and per iteration."""
+    token_data = summary.get("token_usage", {})
+    total = token_data.get("_total", {})
+
+    if not total or total.get("calls", 0) == 0:
+        return ""
+
+    html = '<h2>Token Usage</h2>'
+
+    # ── Summary cards ─────────────────────────────────────────────
+    prompt_t = total.get("prompt_tokens", 0)
+    comp_t = total.get("completion_tokens", 0)
+    total_t = total.get("total_tokens", 0)
+    calls_t = total.get("calls", 0)
+
+    html += '<div class="grid grid-4">'
+    html += _metric_card(f"{total_t:,}", "Total Tokens", "purple")
+    html += _metric_card(f"{prompt_t:,}", "Input Tokens", "blue")
+    html += _metric_card(f"{comp_t:,}", "Output Tokens", "green")
+    html += _metric_card(f"{calls_t}", "LLM Calls", "cyan")
+    html += '</div>'
+
+    # ── Per-agent table ───────────────────────────────────────────
+    agents = {k: v for k, v in token_data.items() if k != "_total"}
+    if agents:
+        html += '<div class="card"><h3>Per-Agent Breakdown</h3>'
+        html += '<table class="log-table"><thead><tr>'
+        html += '<th>Agent</th><th>Calls</th><th>Input Tokens</th>'
+        html += '<th>Output Tokens</th><th>Total Tokens</th><th>%</th></tr></thead><tbody>'
+        for agent, stats in sorted(agents.items(), key=lambda x: -x[1].get("total_tokens", 0)):
+            a_total = stats.get("total_tokens", 0)
+            pct = (a_total / total_t * 100) if total_t else 0
+            html += (
+                f'<tr><td><strong>{_escape(agent)}</strong></td>'
+                f'<td>{stats.get("calls", 0)}</td>'
+                f'<td>{stats.get("prompt_tokens", 0):,}</td>'
+                f'<td>{stats.get("completion_tokens", 0):,}</td>'
+                f'<td>{a_total:,}</td>'
+                f'<td>{pct:.1f}%</td></tr>'
+            )
+        html += '</tbody></table></div>'
+
+    # ── Per-iteration chart (stacked bar via inline CSS) ──────────
+    iter_tokens = []
+    for log in iteration_logs:
+        usage = log.get("token_usage", {})
+        t = usage.get("_total", {}).get("total_tokens", 0)
+        if t == 0:
+            # Compute total from agent-level
+            t = sum(v.get("total_tokens", 0) for k, v in usage.items() if k != "_total")
+        iter_tokens.append(t)
+
+    if iter_tokens and max(iter_tokens) > 0:
+        max_t = max(iter_tokens)
+        html += '<div class="card"><h3>Tokens per Iteration</h3>'
+        for i, t in enumerate(iter_tokens):
+            obj_name = iteration_logs[i].get("object", "") if i < len(iteration_logs) else ""
+            pct = (t / max_t * 100) if max_t else 0
+            html += (
+                f'<div style="display:flex;align-items:center;margin:4px 0;gap:8px">'
+                f'<span style="min-width:24px;text-align:right;color:#888">#{i+1}</span>'
+                f'<div style="flex:1;background:#1a1a2e;border-radius:4px;height:22px;position:relative">'
+                f'<div style="width:{pct:.1f}%;height:100%;background:linear-gradient(90deg,#6c5ce7,#a29bfe);'
+                f'border-radius:4px"></div>'
+                f'<span style="position:absolute;right:8px;top:2px;font-size:.75rem;color:#ccc">{t:,}</span>'
+                f'</div>'
+                f'<span style="min-width:120px;font-size:.8rem;color:#888;overflow:hidden;'
+                f'text-overflow:ellipsis;white-space:nowrap">{_escape(obj_name)}</span></div>'
+            )
+        html += '</div>'
+
+    return html
+
+
 def _section_all_replays(output_dir: str) -> str:
     """List all replay files with key stats."""
     replay_dir = os.path.join(output_dir, "replay")
@@ -874,6 +951,8 @@ def generate_report(
     # Sections — each is independently robust
     if summary:
         parts.append(_section_summary(summary, replay=replay))
+    if summary or iteration_logs:
+        parts.append(_section_token_usage(summary or {}, iteration_logs or []))
     if replay:
         parts.append(_section_replay(replay))
     if traces:
@@ -944,3 +1023,152 @@ def main_cli(output_dir: str, replay_path: Optional[str] = None) -> None:
         print("[VISUALIZE] Opened in browser.")
     except Exception:
         pass
+
+
+# ======================================================================
+# Benchmark comparison report
+# ======================================================================
+
+def generate_benchmark_report(output_base: str, out_html: Optional[str] = None) -> str:
+    """Generate a cross-model comparison HTML report from benchmark.json.
+
+    Args:
+        output_base: Path to Results_VRAgent2.0/ (containing benchmark.json).
+        out_html: Output HTML path (default: <output_base>/benchmark_report.html).
+    """
+    from .utils.benchmark import load_benchmark
+
+    entries = load_benchmark(output_base)
+    if not entries:
+        print("[BENCHMARK] No benchmark data found.")
+        return ""
+
+    if not out_html:
+        out_html = os.path.join(output_base, "benchmark_report.html")
+
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    parts: List[str] = []
+    parts.append('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">')
+    parts.append('<meta name="viewport" content="width=device-width,initial-scale=1.0">')
+    parts.append('<title>VRAgent 2.0 — Benchmark Comparison</title>')
+    parts.append(f'<style>{_CSS}</style>')
+    parts.append('</head><body>')
+    parts.append('<h1>VRAgent 2.0 — Benchmark Comparison</h1>')
+    parts.append(f'<div class="subtitle">Generated: {now} | Entries: {len(entries)}</div>')
+
+    # ── Summary cards ─────────────────────────────────────────────
+    scenes = set(e.get("scene", "") for e in entries)
+    models = set(e.get("model", "") for e in entries)
+    total_tokens_all = sum(e.get("token_usage", {}).get("total_tokens", 0) for e in entries)
+    total_cost = sum(e.get("cost_usd", 0) for e in entries)
+
+    parts.append('<h2>Overview</h2><div class="grid grid-4">')
+    parts.append(_metric_card(len(entries), "Total Runs", "blue"))
+    parts.append(_metric_card(len(scenes), "Scenes", "purple"))
+    parts.append(_metric_card(len(models), "Models", "cyan"))
+    parts.append(_metric_card(f"${total_cost:.2f}", "Total Cost", "green"))
+    parts.append('</div>')
+
+    # ── Comparison table ──────────────────────────────────────────
+    parts.append('<div class="card"><h3>Run Comparison</h3>')
+    parts.append('<table class="log-table"><thead><tr>')
+    parts.append('<th>Scene</th><th>Model</th><th>Date</th>'
+                 '<th>Actions</th><th>Iters</th>'
+                 '<th>Gates ✓</th><th>Frontier</th>'
+                 '<th>Total Tokens</th><th>Cost</th>'
+                 '<th>LC%</th><th>MC%</th><th>Notes</th></tr></thead><tbody>')
+
+    for e in sorted(entries, key=lambda x: (x.get("scene", ""), x.get("run_start", ""))):
+        tu = e.get("token_usage", {})
+        cov = e.get("coverage", {})
+        run_date = e.get("run_start", "")[:10]
+        lc = cov.get("line_coverage", "")
+        mc = cov.get("method_coverage", "")
+        lc_str = f'{lc}%' if lc != "" else "—"
+        mc_str = f'{mc}%' if mc != "" else "—"
+        cost = e.get("cost_usd")
+        cost_str = f'${cost:.2f}' if cost else "—"
+        tokens = tu.get("total_tokens", 0)
+        tokens_str = f'{tokens:,}' if tokens else "—"
+        notes = e.get("notes", "")
+        gs = e.get("gates_solved", 0)
+        gs_color = "color:#2ecc71" if gs > 0 else ""
+
+        parts.append(
+            f'<tr><td>{_escape(e.get("scene", ""))}</td>'
+            f'<td><strong>{_escape(e.get("model", ""))}</strong></td>'
+            f'<td>{run_date}</td>'
+            f'<td>{e.get("total_actions", 0)}</td>'
+            f'<td>{e.get("iterations", 0)}</td>'
+            f'<td style="{gs_color}">{gs}</td>'
+            f'<td>{e.get("gates_frontier", 0)}</td>'
+            f'<td>{tokens_str}</td>'
+            f'<td>{cost_str}</td>'
+            f'<td>{lc_str}</td>'
+            f'<td>{mc_str}</td>'
+            f'<td style="font-size:.8rem;color:#888">{_escape(notes[:60])}</td></tr>'
+        )
+    parts.append('</tbody></table></div>')
+
+    # ── Per-class coverage (from latest entry with coverage data) ─
+    cov_entries = [e for e in entries if e.get("coverage", {}).get("per_class")]
+    if cov_entries:
+        latest_cov = cov_entries[-1]
+        cov = latest_cov["coverage"]
+        per_class = cov["per_class"]
+        parts.append(f'<div class="card"><h3>Code Coverage Breakdown '
+                     f'({_escape(latest_cov.get("model", ""))} — '
+                     f'LC {cov.get("line_coverage", 0)}% / MC {cov.get("method_coverage", 0)}%)</h3>')
+        parts.append('<table class="log-table"><thead><tr>')
+        parts.append('<th>Class</th><th>Line Coverage</th><th>Bar</th>'
+                     '<th>Methods</th></tr></thead><tbody>')
+        for cls in sorted(per_class, key=lambda c: -c.get("line_coverage", 0)):
+            lc_val = cls.get("line_coverage", 0)
+            cl = cls.get("covered_lines", 0)
+            tl = cls.get("coverable_lines", 0)
+            cm = cls.get("covered_methods", 0)
+            tm = cls.get("total_methods", 0)
+            bar_color = "#2ecc71" if lc_val >= 70 else ("#f39c12" if lc_val >= 40 else "#e74c3c")
+            parts.append(
+                f'<tr><td><strong>{_escape(cls.get("name", ""))}</strong></td>'
+                f'<td>{lc_val}% ({cl}/{tl})</td>'
+                f'<td><div style="background:#1a1a2e;border-radius:4px;height:16px;width:120px">'
+                f'<div style="width:{lc_val}%;height:100%;background:{bar_color};border-radius:4px"></div>'
+                f'</div></td>'
+                f'<td>{cm}/{tm}</td></tr>'
+            )
+        parts.append('</tbody></table></div>')
+
+    # ── Token comparison chart ────────────────────────────────────
+    token_entries = [e for e in entries if e.get("token_usage", {}).get("total_tokens", 0) > 0]
+    if token_entries:
+        max_tokens = max(e["token_usage"]["total_tokens"] for e in token_entries)
+        parts.append('<div class="card"><h3>Token Usage Comparison</h3>')
+        for e in token_entries:
+            tu = e["token_usage"]
+            t = tu["total_tokens"]
+            pct = (t / max_tokens * 100) if max_tokens else 0
+            label = f'{e.get("scene", "")} / {e.get("model", "")}'
+            parts.append(
+                f'<div style="display:flex;align-items:center;margin:6px 0;gap:8px">'
+                f'<span style="min-width:200px;font-size:.85rem;text-align:right;color:#ccc">'
+                f'{_escape(label)}</span>'
+                f'<div style="flex:1;background:#1a1a2e;border-radius:4px;height:24px;position:relative">'
+                f'<div style="width:{pct:.1f}%;height:100%;background:linear-gradient(90deg,#6c5ce7,#a29bfe);'
+                f'border-radius:4px"></div>'
+                f'<span style="position:absolute;right:8px;top:3px;font-size:.8rem;color:#ccc">'
+                f'{t:,} tokens</span></div></div>'
+            )
+        parts.append('</div>')
+
+    parts.append(f'<script>{_JS}</script>')
+    parts.append('</body></html>')
+
+    html_content = "\n".join(parts)
+    os.makedirs(os.path.dirname(out_html) or ".", exist_ok=True)
+    with open(out_html, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
+    print(f"[BENCHMARK] Report generated: {out_html}")
+    return out_html

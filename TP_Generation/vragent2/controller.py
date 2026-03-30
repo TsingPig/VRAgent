@@ -38,6 +38,7 @@ from .scheduling.object_scheduler import ObjectScheduler
 from .utils.llm_client import LLMClient
 from .utils.config_loader import VRAgentConfig, load_config
 from .utils.file_utils import save_json, load_json, ensure_dir
+from .utils.benchmark import build_benchmark_entry, append_benchmark
 
 
 class VRAgentController:
@@ -56,6 +57,7 @@ class VRAgentController:
         max_repair_rounds: int = 2,
         llm_model: str = "gpt-4o",
         unity_bridge=None,
+        coverage_report_dir: Optional[str] = None,
     ):
         self.config = config
         self.output_dir = output_dir
@@ -64,6 +66,8 @@ class VRAgentController:
         self.unity_bridge = unity_bridge
         self.retrieval = retrieval
         self.llm = llm
+        self.llm_model = llm_model
+        self.coverage_report_dir = coverage_report_dir
 
         # Build sub-components
         self.gate_graph = GateGraph()
@@ -412,6 +416,9 @@ class VRAgentController:
             "timestamp": datetime.now().isoformat(),
         }
 
+        # Snapshot token usage before this iteration
+        _usage_before = self.llm.get_token_usage()
+
         # Extract gate hints + recent trace from blackboard
         gate_hints = (prev_observer_output or {}).get("gate_hints", [])
         recent_trace = self._all_traces[-10:] if self._all_traces else None
@@ -551,6 +558,15 @@ class VRAgentController:
         log_entry["observer_suggestion"] = observer_output.get("next_exploration_suggestion", "")
         log_entry["state_delta"] = observer_output.get("state_delta", {})
         log_entry["strategy"] = observer_output.get("strategy", {})
+
+        # ── Token usage for this iteration ───────────────────────────
+        _usage_after = self.llm.get_token_usage()
+        iter_tokens: Dict[str, Dict[str, int]] = {}
+        for caller, after in _usage_after.items():
+            before = _usage_before.get(caller, {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "calls": 0})
+            iter_tokens[caller] = {k: after[k] - before[k] for k in after}
+        log_entry["token_usage"] = iter_tokens
+
         self._iteration_logs.append(log_entry)
 
         return {"observer_output": observer_output, "log": log_entry}
@@ -749,6 +765,7 @@ class VRAgentController:
             "explorer": self.explorer.summary(),
             "gate_graph_nodes": len(self.gate_graph.nodes),
             "gate_graph_edges": len(self.gate_graph.edges),
+            "token_usage": self.llm.get_token_usage(),
         }
         print(f"\n[CONTROLLER] === DONE ===")
         print(f"[CONTROLLER] {json.dumps(summary, indent=2)}")
@@ -762,6 +779,19 @@ class VRAgentController:
         # Save test plan in VRAgent-compatible format
         test_plan = self._build_test_plan()
         save_json(os.path.join(self.output_dir, "test_plan.json"), test_plan)
+
+        # ── Append to benchmark.json ─────────────────────────────────
+        # Derive output_base: strip /<scene>/<model> suffix from output_dir
+        output_path = Path(self.output_dir)
+        output_base = str(output_path.parent.parent)  # up from <scene>/<model>
+        entry = build_benchmark_entry(
+            scene_name=self.scene_name,
+            model=self.llm_model,
+            summary=summary,
+            iteration_logs=self._iteration_logs,
+            coverage_report_dir=self.coverage_report_dir,
+        )
+        append_benchmark(output_base, entry)
 
         return {
             "actions": self._all_actions,
