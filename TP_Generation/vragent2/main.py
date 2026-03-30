@@ -135,7 +135,13 @@ def main() -> None:
         viz_dir = args.visualize
         if viz_dir == "auto":
             if args.scene_name:
-                viz_dir = os.path.join(args.output, args.scene_name)
+                # New structure: <output>/<scene>/<model>
+                candidate = os.path.join(args.output, args.scene_name, args.model)
+                if os.path.isdir(candidate):
+                    viz_dir = candidate
+                else:
+                    # Fallback: <output>/<scene>
+                    viz_dir = os.path.join(args.output, args.scene_name)
             else:
                 # Try to find a single scene subfolder in output
                 out = Path(args.output)
@@ -300,6 +306,27 @@ def main() -> None:
     print(f"[MAIN] Objects: {len(gobj_list)}")
     print(f"[MAIN] Budget: {args.budget}")
     print(f"[MAIN] Model: {args.model}")
+
+    # ── Auto-organize output: <output>/<scene_name>/<model> ───────────
+    # Ensures results are always stored in a structured hierarchy.
+    # User can override with explicit paths like --output "my/custom/dir".
+    base_output = args.output
+    scene_suffix = args.scene_name
+    model_suffix = args.model  # e.g. "gpt-4o", "gpt-5.2", "o3-mini"
+
+    # Only auto-append if the path does NOT already end with the model name.
+    # Also guard against double scene-name nesting.
+    output_parts = Path(args.output).parts
+    if output_parts and output_parts[-1] == model_suffix:
+        pass  # already fully qualified
+    elif len(output_parts) >= 2 and output_parts[-1] == scene_suffix:
+        # User passed <base>/<scene> — only append model
+        args.output = str(Path(base_output) / model_suffix)
+    else:
+        args.output = str(Path(base_output) / scene_suffix / model_suffix)
+
+    ensure_dir(args.output)
+
     print(f"[MAIN] Output: {args.output}")
     print(f"[MAIN] Unity Bridge: {'ON' if args.unity else 'OFF (dry-run)'}")
 

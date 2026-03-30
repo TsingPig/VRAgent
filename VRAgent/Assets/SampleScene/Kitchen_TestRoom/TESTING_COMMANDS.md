@@ -11,7 +11,9 @@ $TPGen      = "d:\--UnityProject\HenryLabXR\VRAgent\TP_Generation"
 $ResultsDir = "$TPGen\Results\Results_Kitchen_TestRoom"
 $SceneDoc   = "$ProjectRoot\Assets\SampleScene\Kitchen_TestRoom\DELIVERY_NOTES.md"
 $ScriptsDir = "$ProjectRoot\Assets\SampleScene\Kitchen_TestRoom"
-$OutputDir  = "$TPGen\Results_VRAgent2.0\Kitchen_TestRoom"
+$Model      = "gpt-4o"                              # 切换模型改这里
+$OutputBase = "$TPGen\Results_VRAgent2.0"          # 基目录
+$OutputDir  = "$OutputBase\Kitchen_TestRoom\$Model" # 实际输出（代码自动组织）
 cd $TPGen
 ```
 
@@ -44,14 +46,16 @@ $Common = @(
   "--scene_gml",       "$ResultsDir\scene_detailed_info\mainResults\Kitchen_TestRoom.unity.json_graph.gml",
   "--scene_doc",       $SceneDoc,
   "--scripts_dir",     $ScriptsDir,
-  "--output",          $OutputDir,
+  "--output",          $OutputBase,
   "--app_name",        "Kitchen_TestRoom",
   "--budget",          "100",
   "--max_repair",      "2",
-  "--model",           "gpt-4o",
+  "--model",           $Model,
   "--api_key",         "<YOUR_API_KEY>",
   "--api_base",        "https://api.vectorengine.ai/v1"
 )
+# 实际输出路径 = $OutputBase/<scene_name>/<model> = Results_VRAgent2.0/Kitchen_TestRoom/$Model
+# 切换模型只需改顶部 $Model 变量并重新执行环境变量块
 ```
 
 ```powershell
@@ -75,6 +79,10 @@ $Common = @(
 ```powershell
 & $Python -m vragent2 @Common --unity --replay auto
 & $Python -m vragent2 @Common --unity --replay "$OutputDir\test_plan.json"
+
+# 切换模型重放：先改 $Model 再重新设 $Common
+# $Model = "gpt-5.2"; $OutputDir = "$OutputBase\Kitchen_TestRoom\$Model"
+# 然后重新执行 $Common 赋值块，再 replay
 ```
 
 ---
@@ -102,18 +110,42 @@ $Common = @(
 ## 可视化结果
 
 ```powershell
-# 最简用法 — 指定结果目录，自动选最新 replay，生成后浏览器打开
+# 指定模型结果目录
 & $Python -m vragent2 --visualize $OutputDir
 
 # 指定特定 replay 文件高亮
 & $Python -m vragent2 --visualize $OutputDir `
   --visualize_replay "$OutputDir\replay\replay_20260330_184707.json"
 
+# 查看其他模型的结果（直接指定路径）
+& $Python -m vragent2 --visualize "$OutputBase\Kitchen_TestRoom\gpt-5.2"
+
 # Pipeline 内自动生成（在线/离线跑完后附加 --visualize）
 & $Python -m vragent2 @Common --unity --visualize
 ```
 
 输出：`$OutputDir\report.html`（自包含 HTML，无外部依赖）
+
+### 结果目录结构
+
+```
+Results_VRAgent2.0/               ← --output 基目录
+  Kitchen_TestRoom/               ← 按场景分
+    gpt-4o/                       ← 按模型分（自动创建）
+      test_plan.json
+      summary.json
+      gate_graph.json
+      iteration_logs.json
+      session_state.json
+      execution/
+      replay/
+      report.html
+    gpt-5.2/                      ← 换 --model 自动归入
+      ...
+  Home_TwoRooms/
+    gpt-4o/
+      ...
+```
 
 报告包含 9 个 Section：
 
