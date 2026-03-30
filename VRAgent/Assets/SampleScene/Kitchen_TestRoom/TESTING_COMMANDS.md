@@ -97,6 +97,18 @@ $Common = @(
 & $Python -m tests.test_vragent2_smoke
 ```
 
+
+
+## 可视化结果
+
+```
+# 最简用法 — 直接指定结果目录
+python -m vragent2 --visualize Results_VRAgent2.0/Kitchen_TestRoom
+
+# 指定特定 replay 文件
+python -m vragent2 --visualize Results_VRAgent2.0/Kitchen_TestRoom \
+    --visualize_replay Results_VRAgent2.0/Kitchen_TestRoom/replay/replay_20260330_173742.json
+```
 ---
 
 ## 参数速查

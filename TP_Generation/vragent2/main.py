@@ -30,10 +30,10 @@ def parse_args() -> argparse.Namespace:
         prog="vragent2",
         description="VRAgent 2.0 — Multi-Agent Closed-Loop VR Test Generation",
     )
-    p.add_argument("--scene_name", required=True, help="Unity scene name")
-    p.add_argument("--hierarchy_json", required=True,
+    p.add_argument("--scene_name", default=None, help="Unity scene name")
+    p.add_argument("--hierarchy_json", default=None,
                    help="Path to gobj_hierarchy.json (from TraverseSceneHierarchy)")
-    p.add_argument("--scene_gml", required=True,
+    p.add_argument("--scene_gml", default=None,
                    help="Path to scene dependency graph .gml (from ExtractSceneDependency)")
     p.add_argument("--output", default="Results_VRAgent2.0",
                    help="Output directory (default: Results_VRAgent2.0)")
@@ -84,6 +84,17 @@ def parse_args() -> argparse.Namespace:
                    help="Unity project Assets path. Results auto-copy to scene folder. "
                         "E.g. d:/MyProject/Assets")
 
+    # Visualize results
+    p.add_argument("--visualize", nargs="?", const="auto", default=None,
+                   metavar="RESULTS_DIR",
+                   help="Generate an HTML dashboard from results. "
+                        "Pass a results directory path, or 'auto' (default) to use "
+                        "<output>/<scene_name>. Can be used standalone.")
+    p.add_argument("--visualize_replay", default=None,
+                   metavar="REPLAY_JSON",
+                   help="Specific replay JSON to highlight in the visualization "
+                        "(default: latest replay in results dir)")
+
     # --- Scene understanding ---
     p.add_argument("--scene_doc", default=None,
                    help="Path to scene .md ground-truth doc (file or directory)")
@@ -116,6 +127,52 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+
+    # ── Standalone visualize — no other args required ─────────────────
+    if args.visualize is not None:
+        from .visualize import main_cli as visualize_cli
+
+        viz_dir = args.visualize
+        if viz_dir == "auto":
+            if args.scene_name:
+                viz_dir = os.path.join(args.output, args.scene_name)
+            else:
+                # Try to find a single scene subfolder in output
+                out = Path(args.output)
+                if out.is_dir():
+                    subdirs = [d for d in out.iterdir() if d.is_dir() and not d.name.startswith(".")]
+                    if len(subdirs) == 1:
+                        viz_dir = str(subdirs[0])
+                    elif len(subdirs) > 1:
+                        print(f"[ERROR] Multiple scene folders in {args.output}: {[d.name for d in subdirs]}")
+                        print(f"[HINT] Specify: --visualize <path_to_results_dir>")
+                        sys.exit(1)
+                    else:
+                        # output dir itself might be the results dir
+                        viz_dir = str(out)
+                else:
+                    print(f"[ERROR] Output directory not found: {args.output}")
+                    sys.exit(1)
+
+        if not os.path.isdir(viz_dir):
+            print(f"[ERROR] Results directory not found: {viz_dir}")
+            print(f"[HINT] Try: --visualize <path_to_results_dir>")
+            sys.exit(1)
+
+        visualize_cli(viz_dir, replay_path=args.visualize_replay)
+        return
+
+    # ── Validate required args for non-visualize modes ────────────────
+    missing = []
+    if not args.scene_name:
+        missing.append("--scene_name")
+    if not args.hierarchy_json:
+        missing.append("--hierarchy_json")
+    if not args.scene_gml:
+        missing.append("--scene_gml")
+    if missing:
+        print(f"[ERROR] Missing required arguments: {', '.join(missing)}")
+        sys.exit(1)
 
     # ── Imports (deferred to keep --help fast) ────────────────────────
     from .utils.llm_client import LLMClient
