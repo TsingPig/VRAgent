@@ -246,11 +246,15 @@ class VerifierAgent(BaseAgent):
             errors.extend(self._check_trigger(au, location, ctx=ctx))
         elif action_type == "Transform":
             errors.extend(self._check_transform(au, location))
+        elif action_type == "Socket":
+            errors.extend(self._check_socket(au, location))
+        elif action_type == "Move":
+            pass  # Move has no additional structural checks beyond source_object
         elif action_type:
             errors.append(VerifierError(
                 type=VerifierErrorType.SCHEMA_ERROR.value,
                 location=f"{location}.type",
-                fix_suggestion=f"Unknown action type '{action_type}'. Must be Grab/Trigger/Transform.",
+                fix_suggestion=f"Unknown action type '{action_type}'. Must be Grab/Trigger/Transform/Socket/Move.",
             ))
 
         return errors
@@ -327,6 +331,17 @@ class VerifierAgent(BaseAgent):
                     location=f"{loc}.{vec_key}",
                     fix_suggestion=f"{vec_key} must contain x, y, z numeric fields.",
                 ))
+        return errors
+
+    def _check_socket(self, au: Dict, loc: str) -> List[VerifierError]:
+        errors: List[VerifierError] = []
+        mode = au.get("socket_mode")
+        if mode not in ("insert", "remove"):
+            errors.append(VerifierError(
+                type=VerifierErrorType.SCHEMA_ERROR.value,
+                location=f"{loc}.socket_mode",
+                fix_suggestion="Socket action must have socket_mode set to 'insert' or 'remove'.",
+            ))
         return errors
 
     # ------------------------------------------------------------------

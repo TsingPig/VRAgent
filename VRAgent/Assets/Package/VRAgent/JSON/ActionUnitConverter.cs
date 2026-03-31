@@ -36,6 +36,10 @@ namespace HenryLab.VRAgent
                 action = new MoveActionUnit();
                 break;
 
+                case "Socket":
+                action = new SocketActionUnit();
+                break;
+
                 default:
                 action = new ActionUnit();
                 break;

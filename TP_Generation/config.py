@@ -8,7 +8,7 @@ Despite the events that can be triggered automatically, please choose the event 
 '''
 {scene_meta}
 '''
-[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
+[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform', 'Socket']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
 '''
 {{
   "taskUnits": [
@@ -169,6 +169,14 @@ Transform action format:
             // 0 or more event units
       ],
   "triggerring_time": <float>                  // Duration of the action
+}}
+- **Socket**: Socket simulates inserting or removing an object from an XRSocketInteractor zone. In real VR, dropping an object into a socket zone fires selectEntered; pulling it out fires selectExited. This action reproduces those events programmatically. Use it when the source object has an XRSocketInteractor component.
+Socket action format:
+{{
+  "type": "Socket",
+  "source_object_name": "<string>",       // Name of the object with the XRSocketInteractor
+  "source_object_fileID": <long>,         // FileID of the socket object in Unity scene
+  "socket_mode": "<string>"               // "insert" (fires selectEntered) or "remove" (fires selectExited)
 }}
 **Redundancy Avoidance Policy:**
 - If you choose to add a "Trigger" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual "Trigger" actions.
@@ -185,7 +193,7 @@ Despite the events that can be triggered automatically, please choose the event 
 '''
 {scene_meta}
 '''
-[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
+[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform', 'Socket']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
 '''
 {{
   "taskUnits": [
@@ -346,6 +354,14 @@ Transform action format:
             // 0 or more event units
       ],
   "triggerring_time": <float>                  // Duration of the action
+}}
+- **Socket**: Socket simulates inserting or removing an object from an XRSocketInteractor zone. In real VR, dropping an object into a socket zone fires selectEntered; pulling it out fires selectExited. This action reproduces those events programmatically. Use it when the source object has an XRSocketInteractor component.
+Socket action format:
+{{
+  "type": "Socket",
+  "source_object_name": "<string>",       // Name of the object with the XRSocketInteractor
+  "source_object_fileID": <long>,         // FileID of the socket object in Unity scene
+  "socket_mode": "<string>"               // "insert" (fires selectEntered) or "remove" (fires selectExited)
 }}
 **Redundancy Avoidance Policy:**
 - If you choose to add a "Trigger" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual "Trigger" actions.
@@ -366,7 +382,7 @@ Despite the events that can be triggered automatically, please choose the event 
 '''
 {scene_meta}
 '''
-[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
+[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform', 'Socket']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
 '''
 {{
   "taskUnits": [
@@ -527,6 +543,14 @@ Transform action format:
             // 0 or more event units
       ],
   "triggerring_time": <float>                  // Duration of the action
+}}
+- **Socket**: Socket simulates inserting or removing an object from an XRSocketInteractor zone. In real VR, dropping an object into a socket zone fires selectEntered; pulling it out fires selectExited. This action reproduces those events programmatically. Use it when the source object has an XRSocketInteractor component.
+Socket action format:
+{{
+  "type": "Socket",
+  "source_object_name": "<string>",       // Name of the object with the XRSocketInteractor
+  "source_object_fileID": <long>,         // FileID of the socket object in Unity scene
+  "socket_mode": "<string>"               // "insert" (fires selectEntered) or "remove" (fires selectExited)
 }}
 **Redundancy Avoidance Policy:**
 - If you choose to add a "Trigger" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual "Trigger" actions.
@@ -542,7 +566,7 @@ Despite the events that can be triggered automatically, please choose the event 
 '''
 {scene_meta}
 '''
-[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly interact with controllers that may derive from XR Interaction Toolkit, also do not directly interact with our test agent. \n\nPlease structure your response in the following JSON format:
+[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform', 'Socket']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly interact with controllers that may derive from XR Interaction Toolkit, also do not directly interact with our test agent. \n\nPlease structure your response in the following JSON format:
 '''
 {{
   "taskUnits": [
@@ -703,6 +727,14 @@ Transform action format:
             // 0 or more event units
       ],
   "triggerring_time": <float>                  // Duration of the action
+}}
+- **Socket**: Socket simulates inserting or removing an object from an XRSocketInteractor zone. In real VR, dropping an object into a socket zone fires selectEntered; pulling it out fires selectExited. This action reproduces those events programmatically. Use it when the source object has an XRSocketInteractor component.
+Socket action format:
+{{
+  "type": "Socket",
+  "source_object_name": "<string>",       // Name of the object with the XRSocketInteractor
+  "source_object_fileID": <long>,         // FileID of the socket object in Unity scene
+  "socket_mode": "<string>"               // "insert" (fires selectEntered) or "remove" (fires selectExited)
 }}
 **Redundancy Avoidance Policy:**
 - If you choose to add a "Trigger" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual "Trigger" actions.
@@ -722,7 +754,7 @@ Despite the events that can be triggered automatically, please choose the event 
 '''
 {scene_meta}
 '''
-[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
+[Format of Test Plans] The test plan should contain actions chosen from the action list: ['Grab', 'Trigger', 'Transform', 'Socket']. You should choose these actions according to the related information of the target gameobject you want to interact with. Use 'm_PrefabInstance' fileID as the target GameObject's 'source_object_fileID' if it has 'PrefabInstance' component. Please remind that 'Grab' and 'Transform' can only interact with gameobjects that have Rigidbody component. 'Trigger' action can only interact with gameobjects that have Rigidbody or Collider or EventTrigger component, or their attached script has class inherit from UnityEngine.Events. In their attached scripts, there may be interfaces or APIs to indicate that you can only interact with these gameobjects using specific action. Also, if the target GameObject is called "Player" or "player", please do not choose 'Grab' and 'Transform' actions. Also, do not directly perform actions on the controllers that may derive from XR Interaction Toolkit, also do not directly perform actions on our test agent. \n\nPlease structure your response in the following JSON format:
 '''
 {{
   "taskUnits": [
@@ -883,6 +915,14 @@ Transform action format:
             // 0 or more event units
       ],
   "triggerring_time": <float>                  // Duration of the action
+}}
+- **Socket**: Socket simulates inserting or removing an object from an XRSocketInteractor zone. In real VR, dropping an object into a socket zone fires selectEntered; pulling it out fires selectExited. This action reproduces those events programmatically. Use it when the source object has an XRSocketInteractor component.
+Socket action format:
+{{
+  "type": "Socket",
+  "source_object_name": "<string>",       // Name of the object with the XRSocketInteractor
+  "source_object_fileID": <long>,         // FileID of the socket object in Unity scene
+  "socket_mode": "<string>"               // "insert" (fires selectEntered) or "remove" (fires selectExited)
 }}
 **Redundancy Avoidance Policy:**
 - If you choose to add a "Trigger" action, please first check if the event will already be triggered naturally by a previous actions. If so, you don't need to add manual "Trigger" actions.
@@ -1077,6 +1117,6 @@ csharp_analyzer_path = os.path.join(_script_dir, "CSharpScriptAnalyzer", "CSharp
 structure_analyzer_path = os.path.join(_script_dir, "CodeStructureAnalyzer", "CodeStructureAnalyzer.exe")
 
 
-# OpenAI API Configuration â€” set via environment variable or --api_key CLI arg
+# OpenAI API Configuration â€?set via environment variable or --api_key CLI arg
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 basicUrl_gpt35 = os.getenv("OPENAI_BASE_URL", "https://api.vectorengine.ai/v1")

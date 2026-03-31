@@ -447,6 +447,23 @@ namespace HenryLab.VRAgent.Online
                     break;
                 }
 
+                case SocketActionUnit socketAU:
+                {
+                    var socket = sourceObj.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRSocketInteractor>();
+                    if(socket == null)
+                    {
+                        response.exceptions.Add($"No XRSocketInteractor on {sourceObj.name}");
+                        return null;
+                    }
+
+                    SocketAction.Mode mode = (socketAU.socketMode == "remove")
+                        ? SocketAction.Mode.Remove
+                        : SocketAction.Mode.Insert;
+                    task.Add(new SocketAction(socket, mode));
+                    _stateCollector.RecordEvent($"socket_{socketAU.socketMode}:{sourceObj.name}");
+                    break;
+                }
+
                 default:
                     response.exceptions.Add($"Unknown action type: {actionUnit.type}");
                     return null;

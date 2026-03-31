@@ -598,6 +598,91 @@ The **source object** must contain a **`Collider` component** in Unity, that can
     }
 ```
 
+***
+
+### Socket
+
+#### Action Definition
+
+A **Socket** action simulates the insertion or removal of an object into/from an **XRSocketInteractor** zone. In real VR, dropping an object into a socket zone fires the `selectEntered` event; pulling it out fires `selectExited`. This action reproduces those events programmatically, enabling automated test plans to exercise socket-based logic without relying on physics overlap detection.
+
+Socket actions are particularly useful for testing workflows that depend on object placement — for example, inserting a key into a lock, placing an ingredient into a wash station, or delivering a dish to a serving counter.
+
+```json
+{
+  "type": "Socket",
+  "source_object_name": "<string>",       // Name of the object with the XRSocketInteractor
+  "source_object_fileID": <long>,         // FileID of the socket object in the Unity scene
+  "socket_mode": "<string>"               // "insert" or "remove"
+}
+```
+
+| Field Name           | Type   | Requirement  | Description                                                  |
+| -------------------- | ------ | ------------ | ------------------------------------------------------------ |
+| type                 | string | **Required** | Always fixed as `"Socket"`                                   |
+| source_object_name   | string | Optional     | Name of the socket object (for readability)                  |
+| source_object_fileID | long   | **Required** | FileID of the GameObject that has the XRSocketInteractor     |
+| socket_mode          | string | **Required** | Either `"insert"` (fires `selectEntered`) or `"remove"` (fires `selectExited`) |
+
+#### Requirement for Action Objects
+
+The **source object** must contain an **`XRSocketInteractor` component** in Unity. Without it, the action will fail at runtime.
+
+#### Examples
+
+**Example1 — Insert:** Simulate placing a key into a lock socket.
+
+```json
+{
+  "type": "Socket",
+  "source_object_name": "Socket_PantryLock",
+  "source_object_fileID": 351089451,
+  "socket_mode": "insert"
+}
+```
+
+**Example2 — Remove:** Simulate removing an ingredient from a wash station socket.
+
+```json
+{
+  "type": "Socket",
+  "source_object_name": "Sink_WashStation",
+  "source_object_fileID": 2088852900,
+  "socket_mode": "remove"
+}
+```
+
+**Example3 — Insert/Remove sequence:** A common pattern is to insert, remove, then re-insert to test state carryover logic.
+
+```json
+{
+  "taskUnits": [
+    {
+      "actionUnits": [
+        {
+          "type": "Socket",
+          "source_object_name": "Sink_WashStation",
+          "source_object_fileID": 2088852900,
+          "socket_mode": "insert"
+        },
+        {
+          "type": "Socket",
+          "source_object_name": "Sink_WashStation",
+          "source_object_fileID": 2088852900,
+          "socket_mode": "remove"
+        },
+        {
+          "type": "Socket",
+          "source_object_name": "Sink_WashStation",
+          "source_object_fileID": 2088852900,
+          "socket_mode": "insert"
+        }
+      ]
+    }
+  ]
+}
+```
+
 
 
 
@@ -646,6 +731,11 @@ The **source object** must contain a **`Collider` component** in Unity, that can
 >  [JsonProperty("delta_position")] public Vector3 deltaPosition;
 >  [JsonProperty("delta_rotation")] public Vector3 deltaRotation;
 >  [JsonProperty("delta_scale")] public Vector3 deltaScale;
+> }
+> 
+> public class SocketActionUnit : ActionUnit
+> {
+>  [JsonProperty("socket_mode")] public string socketMode; // "insert" or "remove"
 > }
 > ```
 
