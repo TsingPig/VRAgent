@@ -1,0 +1,187 @@
+{
+  "scene": "Apartment",
+  "version": "1.0",
+  "total_bugs": 10,
+  "oracles": [
+    {
+      "id": "BUG-001",
+      "category": "crash",
+      "severity": "high",
+      "title": "NullReferenceException in CoffeeMachineController.FinishBrew",
+      "description": "Developer added GetComponent<AudioSource>().Play() in FinishBrew without null-check. No AudioSource exists on this GameObject, causing NullReferenceException every time brew completes.",
+      "script": "CoffeeMachineController.cs",
+      "method": "FinishBrew",
+      "trigger_condition": "Complete coffee brewing (TryStartBrew → wait brewDuration → FinishBrew)",
+      "detection": {
+        "type": "exception",
+        "pattern": "NullReferenceException.*CoffeeMachineController"
+      },
+      "impact": "Exception logged on every successful brew. SetCoffeeBrewed() is called first so state advances, but the exception indicates a crash-level bug.",
+      "fix": "Add null-check: var audio = GetComponent<AudioSource>(); if (audio != null) audio.Play();"
+    },
+    {
+      "id": "BUG-002",
+      "category": "functional",
+      "severity": "medium",
+      "title": "Coffee machine brews without cup in socket",
+      "description": "TryStartBrew checks PowerOn but does NOT check cupSocket.HasCup. The coffee machine brews even when no cup is placed in the socket.",
+      "script": "CoffeeMachineController.cs",
+      "method": "TryStartBrew",
+      "trigger_condition": "Press brew button without placing Cup_Coffee in the CoffeeCupSocket",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-002:TRIGGERED\\]"
+      },
+      "impact": "Coffee brews into nothing, wasting the brew cycle. State coffeeBrewed becomes true without a cup present.",
+      "fix": "Add guard: if (cupSocket != null && !cupSocket.HasCup) { Debug.LogWarning(...); return; }"
+    },
+    {
+      "id": "BUG-003",
+      "category": "state",
+      "severity": "medium",
+      "title": "Circuit breaker OFF does not reset PowerOn state",
+      "description": "CircuitBreakerController.Toggle() calls SetPowerOn() when IsOn becomes true, but does NOT call SetPowerOff() when IsOn becomes false. ApartmentStateController.PowerOn stays true forever once set.",
+      "script": "CircuitBreakerController.cs",
+      "method": "Toggle",
+      "trigger_condition": "Toggle circuit breaker ON, then toggle OFF again",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-003:TRIGGERED\\]"
+      },
+      "impact": "State inconsistency between physical breaker position (OFF) and logical power state (true). Downstream systems (TV, coffee machine, blinds) still see power as enabled.",
+      "fix": "Add else branch: ApartmentStateController.Instance?.SetPowerOff();"
+    },
+    {
+      "id": "BUG-004",
+      "category": "functional",
+      "severity": "medium",
+      "title": "Toaster timer not reset on bread re-insert",
+      "description": "When bread is removed mid-toast (OnBreadRemoved sets IsToasting=false) and then re-inserted, _toastTimer is NOT reset to 0. Accumulated time from the previous attempt carries over, causing toast to complete instantly or prematurely.",
+      "script": "ToasterController.cs",
+      "method": "OnBreadInserted",
+      "trigger_condition": "Insert bread → start toasting → remove bread before done → re-insert bread",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-004:TRIGGERED\\]"
+      },
+      "impact": "Skip the intended 3-second toast duration. If previous toast accumulated e.g. 2.9s, a re-insertion immediately completes the toast.",
+      "fix": "Add _toastTimer = 0f; in OnBreadInserted before logging"
+    },
+    {
+      "id": "BUG-005",
+      "category": "functional",
+      "severity": "low",
+      "title": "Window blind opens downward instead of upward (sign error)",
+      "description": "WindowBlindController.Start() computes _openLocalPosition with NEGATIVE Y offset. The correct direction should be POSITIVE Y (up). Blind slides downward / into the floor instead of opening upward.",
+      "script": "WindowBlindController.cs",
+      "method": "Start",
+      "trigger_condition": "Toggle window blind open (requires power from circuit breaker first)",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-005:TRIGGERED\\]"
+      },
+      "impact": "Blind visually slides downward into the floor geometry. Functionally the state says 'open' but the visual is wrong — window remains blocked.",
+      "fix": "Change sign: new Vector3(0f, openDistance, 0f) instead of new Vector3(0f, -openDistance, 0f)"
+    },
+    {
+      "id": "BUG-006",
+      "category": "functional",
+      "severity": "high",
+      "title": "Faucet washes dishes without power — skips hot-water gate",
+      "description": "TryWashDishes() checks only IsRunning but does NOT check PowerOn for hot water. Dishes can be washed with cold water, bypassing the hot-water heater requirement.",
+      "script": "FaucetController.cs",
+      "method": "TryWashDishes",
+      "trigger_condition": "Turn on faucet (Toggle) without circuit breaker power, then call TryWashDishes",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-006:TRIGGERED\\]"
+      },
+      "impact": "Critical gate bypass. Dishes can be washed without power, skipping the circuit breaker requirement. Downstream state advances incorrectly.",
+      "fix": "Add power guard: if (ApartmentStateController.Instance != null && !ApartmentStateController.Instance.PowerOn) return;"
+    },
+    {
+      "id": "BUG-007",
+      "category": "state",
+      "severity": "medium",
+      "title": "Power enables with key pickup only — skips mailbox unlock step",
+      "description": "SetPowerOn() checks hasMailKey instead of mailboxUnlocked. Player can enable power immediately after picking up the key, without actually inserting it into the mailbox lock socket. This skips step 2.",
+      "script": "ApartmentStateController.cs",
+      "method": "SetPowerOn",
+      "trigger_condition": "Pick up Key_Mailbox → immediately toggle circuit breaker (without inserting key into mailbox lock socket)",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-007:TRIGGERED\\]"
+      },
+      "impact": "Gate skip: step 2 (mailboxUnlocked) can be bypassed. The downstream chain continues as if mailbox was opened. Power enables with just the key in hand.",
+      "fix": "Restore precondition: if (!mailboxUnlocked) instead of if (!hasMailKey)"
+    },
+    {
+      "id": "BUG-008",
+      "category": "visual",
+      "severity": "low",
+      "title": "Fridge alarm indicator stays on after door closed",
+      "description": "When fridge door stays open past alarmDelay, alarm indicator material turns red. On door close, _alarmActive flag is cleared but alarmRenderer.sharedMaterial is NOT restored to materialNormal. Indicator stays red.",
+      "script": "FridgeDoorController.cs",
+      "method": "Toggle",
+      "trigger_condition": "Open fridge door → wait > 5s for alarm → close door (indicator stays red)",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-008:TRIGGERED\\]"
+      },
+      "impact": "Visual-only: fridge door closes correctly but alarm indicator gives misleading red status. User may think fridge is still in alarm state.",
+      "fix": "Restore material in close path: if (alarmRenderer != null) alarmRenderer.sharedMaterial = materialNormal;"
+    },
+    {
+      "id": "BUG-009",
+      "category": "functional",
+      "severity": "medium",
+      "title": "TV CycleChannel calls SetTvNewsWatched before power check",
+      "description": "CycleChannel() calls ApartmentStateController.SetTvNewsWatched(IsPowered) BEFORE checking if IsPowered is true. When TV is off, SetTvNewsWatched(false) is called, hitting the state controller's 'not powered' guard and producing a spurious FAIL warning.",
+      "script": "TVController.cs",
+      "method": "CycleChannel",
+      "trigger_condition": "Call CycleChannel when the TV is NOT powered on",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-009:TRIGGERED\\]"
+      },
+      "impact": "Spurious ApartmentStateController FAIL log. No functional damage (guard prevents state change), but pollutes logs and confuses test analysis.",
+      "fix": "Move SetTvNewsWatched call after the IsPowered guard, only when channel actually changes."
+    },
+    {
+      "id": "BUG-010",
+      "category": "state",
+      "severity": "medium",
+      "title": "ResetAllState does not reset downstream controller flags",
+      "description": "ApartmentStateController.ResetAllState() clears its 10 boolean flags but does not notify downstream controllers (CircuitBreakerController.IsOn, CoffeeMachineController.CurrentState, ToasterController.IsDone, etc.). After reset, routine state is fresh but controllers retain stale local state from previous run.",
+      "script": "ApartmentStateController.cs",
+      "method": "ResetAllState",
+      "trigger_condition": "Call ResetAllState() (between test iterations)",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-010:TRIGGERED\\]"
+      },
+      "impact": "State desync after reset. Controllers think steps are already completed. Second test run produces incorrect results if same scene instance is reused.",
+      "fix": "Add reset events or iterate FindObjectsOfType to reset all controller flags."
+    }
+  ],
+  "state_oracles": [
+    {
+      "id": "STATE-001",
+      "label": "routine_monotonic",
+      "description": "Routine flags must be set in strict order (1→10). No flag should be true if its predecessor is false.",
+      "check": "If coffeeBrewed=true then cupPlaced must be true; if breakfastServed=true then coffeeBrewed and toastMade must be true; etc."
+    },
+    {
+      "id": "STATE-002",
+      "label": "completion_consistency",
+      "description": "routineComplete=true implies breakfastServed=true and tvNewsWatched=true.",
+      "check": "Both breakfastServed and tvNewsWatched must be true when routineComplete is reported."
+    },
+    {
+      "id": "STATE-003",
+      "label": "power_state_sync",
+      "description": "CircuitBreakerController.IsOn must match ApartmentStateController.PowerOn (no desync).",
+      "check": "Both must be true or both false at any observation point."
+    }
+  ]
+}

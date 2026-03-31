@@ -23,9 +23,16 @@ public class StoveBurnerController : MonoBehaviour
         ApplyState();
     }
 
-    /// <summary>Toggle the burner on/off.</summary>
+    /// <summary>Toggle the burner on/off (requires power to ignite).</summary>
     public void Toggle()
     {
+        if (ApartmentStateController.Instance != null &&
+            !ApartmentStateController.Instance.PowerOn && !IsOn)
+        {
+            Debug.LogWarning("[StoveBurner] No power — cannot ignite");
+            return;
+        }
+
         IsOn = !IsOn;
         ApplyState();
         Debug.Log($"[StoveBurnerController] {gameObject.name} → {(IsOn ? "ON" : "OFF")}");

@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Controls a TV: power on/off and channel cycling.
-/// Screen switches between a dark off-material and colored channel materials with emission.
-/// Wire XRSimpleInteractable.selectEntered → TogglePower() on a power button,
-/// and another XRSimpleInteractable.selectEntered → CycleChannel() on a channel button.
+/// TV controller with power dependency and state reporting.
+/// Requires power from CircuitBreaker to operate.
+/// Wire XRSimpleInteractable.selectEntered → TogglePower() on power button,
+/// and another XRSimpleInteractable.selectEntered → CycleChannel() on channel button.
 /// </summary>
 public class TVController : MonoBehaviour
 {
@@ -32,17 +32,34 @@ public class TVController : MonoBehaviour
         ApplyScreenState();
     }
 
-    /// <summary>Toggle TV power on/off.</summary>
+    /// <summary>Toggle TV power on/off (requires circuit breaker power).</summary>
     public void TogglePower()
     {
+        if (ApartmentStateController.Instance != null &&
+            !ApartmentStateController.Instance.PowerOn)
+        {
+            Debug.LogWarning("[TVController] No power from circuit breaker");
+            return;
+        }
+
         IsPowered = !IsPowered;
         ApplyScreenState();
         Debug.Log($"[TVController] {gameObject.name} → {(IsPowered ? "ON" : "OFF")}");
     }
 
-    /// <summary>Cycle to the next channel (only when powered on).</summary>
+    // ══════════════════════════════════════════════════════════════
+    // ▼ BUG-009: Calls SetTvNewsWatched(IsPowered) BEFORE the
+    //   IsPowered early-return check. When TV is off, this passes
+    //   IsPowered=false to the state controller, producing a
+    //   spurious FAIL warning log that pollutes test analysis.
+    //   Correct: move SetTvNewsWatched after the IsPowered guard.
+    // ══════════════════════════════════════════════════════════════
+    /// <summary>Cycle to the next channel.</summary>
     public void CycleChannel()
     {
+        // BUG-009: side effect before validation
+        ApartmentStateController.Instance?.SetTvNewsWatched(IsPowered);
+
         if (!IsPowered || channelMaterials.Count == 0) return;
 
         CurrentChannel = (CurrentChannel + 1) % channelMaterials.Count;

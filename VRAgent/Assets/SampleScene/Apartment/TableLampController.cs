@@ -26,9 +26,16 @@ public class TableLampController : MonoBehaviour
         ApplyState();
     }
 
-    /// <summary>Toggle the lamp on/off.</summary>
+    /// <summary>Toggle the lamp on/off (requires power to turn on).</summary>
     public void Toggle()
     {
+        if (ApartmentStateController.Instance != null &&
+            !ApartmentStateController.Instance.PowerOn && !IsOn)
+        {
+            Debug.LogWarning("[TableLamp] No power — cannot turn on");
+            return;
+        }
+
         IsOn = !IsOn;
         ApplyState();
         Debug.Log($"[TableLampController] {gameObject.name} → {(IsOn ? "ON" : "OFF")}");
