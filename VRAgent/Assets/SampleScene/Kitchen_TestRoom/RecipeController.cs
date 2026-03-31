@@ -93,11 +93,15 @@ public class RecipeController : MonoBehaviour
     /// <summary>Called by Switch_MainPower after pantry ingredients are collected.</summary>
     public void SetPowerEnabled()
     {
-        if (!doorPantryUnlocked)
+        // BUG-007: Wrong precondition — checks hasPantryKey instead of doorPantryUnlocked
+        // Fix: should be if (!doorPantryUnlocked)
+        if (!hasPantryKey)
         {
-            Debug.LogWarning("[RecipeController] FAIL — tried to enable power before opening pantry.");
+            Debug.LogWarning("[RecipeController] FAIL \u2014 tried to enable power before picking up key.");
             return;
         }
+        if (hasPantryKey && !doorPantryUnlocked)
+            OracleRegistry.Trigger("BUG-007", "Power enabled without opening pantry door");
         if (powerEnabled) return;
         powerEnabled = true;
         Debug.Log("[RecipeController] Step 3 PASSED — main power enabled.");
@@ -238,6 +242,12 @@ public class RecipeController : MonoBehaviour
         dishCooked          = false;
         dishPlated          = false;
         finalDoorUnlocked   = false;
+
+        // BUG-010: Downstream controllers (LockedCabinetController, StoveController,
+        // SinkWashStation, etc.) retain their local _isUnlocked / _hasWashed / CurrentState
+        // flags. After reset, RecipeController is clean but controllers are stale.
+        OracleRegistry.Trigger("BUG-010", "ResetAllState called but downstream controllers not reset");
+
         Debug.Log("[RecipeController] All state reset.");
     }
 }

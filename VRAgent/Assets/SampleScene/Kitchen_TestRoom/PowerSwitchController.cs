@@ -29,7 +29,11 @@ public class PowerSwitchController : MonoBehaviour
 
         if (IsOn)
             RecipeController.Instance?.SetPowerEnabled();
-
+        // BUG-003: Toggling OFF does not reset RecipeController.PowerEnabled
+        // Expected: else RecipeController.Instance?.SetPowerDisabled();
+        // Result: PowerEnabled stays true even after switch is turned off
+        if (!IsOn && RecipeController.Instance != null && RecipeController.Instance.PowerEnabled)
+            OracleRegistry.Trigger("BUG-003", "IsOn=false but PowerEnabled=true");
         Debug.Log($"[PowerSwitchController] {gameObject.name} → {(IsOn ? "ON" : "OFF")}");
     }
 

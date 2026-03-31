@@ -64,6 +64,10 @@ public class StoveController : MonoBehaviour
             return;
         }
 
+        // BUG-002: Missing hobSocket.HasBowl check — cooking starts even without bowl on hob
+        OracleRegistry.Check("BUG-002", hobSocket != null && !hobSocket.HasBowl,
+            $"hobSocket.HasBowl={hobSocket?.HasBowl}");
+
         CurrentState = StoveState.Cooking;
         _cookTimer = 0f;
 
@@ -81,6 +85,10 @@ public class StoveController : MonoBehaviour
             burnerRenderer.sharedMaterial = materialDone;
 
         RecipeController.Instance?.SetDishCooked();
+
+        // BUG-001: Developer added audio feedback but forgot null-check — no AudioSource on this GO
+        GetComponent<AudioSource>().Play();
+
         Debug.Log("[StoveController] Cooking complete — dish is ready.");
     }
 }

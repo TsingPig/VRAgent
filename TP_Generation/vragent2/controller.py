@@ -780,6 +780,15 @@ class VRAgentController:
         test_plan = self._build_test_plan()
         save_json(os.path.join(self.output_dir, "test_plan.json"), test_plan)
 
+        # Copy oracle definition if available (for visualization)
+        from .utils.oracle import copy_oracle_to_output
+        oracle_dst = copy_oracle_to_output(
+            getattr(self.config, "scene_doc_path", ""),
+            self.output_dir,
+        )
+        if oracle_dst:
+            print(f"[CONTROLLER] Oracle definition copied → {oracle_dst}")
+
         # ── Append to benchmark.json ─────────────────────────────────
         # Derive output_base: strip /<scene>/<model> suffix from output_dir
         output_path = Path(self.output_dir)

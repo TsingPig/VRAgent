@@ -40,8 +40,14 @@ public class KitchenBadgeUnlockReceiver : MonoBehaviour
         RecipeController.Instance.SetKitchenDoorUnlocked();
         kitchenDoorController?.Unlock();
 
-        if (panelRenderer != null && materialUnlocked != null)
-            panelRenderer.sharedMaterial = materialUnlocked;
+        // BUG-008: Panel material not updated on successful scan.
+        // If badge was previously scanned without power (panel set to red/materialNoPower),
+        // this success path does NOT reset it to materialUnlocked.
+        // Fix: uncomment the block below
+        // if (panelRenderer != null && materialUnlocked != null)
+        //     panelRenderer.sharedMaterial = materialUnlocked;
+        if (panelRenderer != null && panelRenderer.sharedMaterial == materialNoPower)
+            OracleRegistry.Trigger("BUG-008", "Panel stuck on red despite successful unlock");
 
         Debug.Log("[KitchenBadgeUnlockReceiver] Badge accepted — kitchen door unlocked.");
     }

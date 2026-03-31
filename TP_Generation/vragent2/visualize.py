@@ -22,6 +22,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from .utils.oracle import load_oracle_bugs, find_oracle_file, evaluate_oracle_coverage
+
 
 # ── helpers ──────────────────────────────────────────────────────────
 
@@ -898,6 +900,116 @@ def _section_all_replays(output_dir: str) -> str:
     return html
 
 
+# ── oracle coverage section ──────────────────────────────────────────
+
+def _section_oracle_coverage(oracle_eval: Dict[str, Any]) -> str:
+    """Oracle/Bug coverage section — shows which injected bugs were detected."""
+    total = oracle_eval.get("total_bugs", 0)
+    triggered = oracle_eval.get("triggered_bugs", 0)
+    coverage = oracle_eval.get("coverage_pct", 0.0)
+    weighted = oracle_eval.get("weighted_coverage_pct", 0.0)
+    results = oracle_eval.get("results", [])
+    category_stats = oracle_eval.get("category_stats", {})
+    severity_stats = oracle_eval.get("severity_stats", {})
+    state_oracles = oracle_eval.get("state_oracles", [])
+
+    cov_color = "#4ade80" if coverage >= 60 else ("#fbbf24" if coverage >= 30 else "#f87171")
+    wcov_color = "#4ade80" if weighted >= 60 else ("#fbbf24" if weighted >= 30 else "#f87171")
+
+    html = '<h2>Oracle Coverage (Bug Detection)</h2>'
+
+    # Summary cards
+    html += '<div class="grid grid-4">'
+    html += _metric_card(f"{triggered}/{total}", "Bugs Triggered", "green" if triggered > 0 else "red")
+    html += _metric_card(f"{coverage:.1f}%", "Oracle Coverage", "green" if coverage >= 50 else "red")
+    html += _metric_card(f"{weighted:.1f}%", "Weighted Coverage", "green" if weighted >= 50 else "red")
+    not_hit = total - triggered
+    html += _metric_card(not_hit, "Bugs Missed", "red" if not_hit > 0 else "green")
+    html += '</div>'
+
+    # Coverage bar
+    html += '<div style="margin:12px 0">'
+    html += '<h3>Bug Detection Rate</h3>'
+    html += f'<div class="bar-wrap" style="width:100%;height:28px">'
+    html += f'<div class="bar-fill" style="width:{coverage:.1f}%;background:{cov_color}"></div>'
+    html += f'<div class="bar-text" style="font-size:.85rem">{triggered}/{total} ({coverage:.1f}%)</div>'
+    html += '</div></div>'
+
+    # Category breakdown
+    if category_stats:
+        html += '<div class="card"><h3>Coverage by Category</h3>'
+        html += '<div class="grid grid-4" style="margin:8px 0">'
+        cat_colors = {"crash": "#f87171", "functional": "#60a5fa",
+                      "state": "#c084fc", "visual": "#fbbf24", "performance": "#22d3ee"}
+        for cat, stats in sorted(category_stats.items()):
+            ct = stats["triggered"]
+            ctot = stats["total"]
+            pct = (ct / ctot * 100) if ctot > 0 else 0
+            color_class = "green" if pct >= 50 else "red"
+            html += _metric_card(f"{ct}/{ctot}", cat.upper(), color_class)
+        html += '</div></div>'
+
+    # Per-bug detail table
+    html += '<div class="card"><h3>Bug Detail</h3>'
+    html += '<table class="log-table"><thead><tr>'
+    html += '<th>ID</th><th>Category</th><th>Severity</th>'
+    html += '<th>Title</th><th>Script</th><th>Status</th></tr></thead><tbody>'
+
+    sev_colors = {"high": "#f87171", "medium": "#fbbf24", "low": "#94a3b8"}
+    for r in results:
+        status_badge = ('<span class="badge badge-ok">TRIGGERED</span>'
+                        if r["triggered"]
+                        else '<span class="badge badge-fail">NOT HIT</span>')
+        sev_c = sev_colors.get(r["severity"], "#888")
+        html += (
+            f'<tr><td><strong>{_escape(r["id"])}</strong></td>'
+            f'<td>{_escape(r["category"])}</td>'
+            f'<td style="color:{sev_c}">{_escape(r["severity"])}</td>'
+            f'<td>{_escape(r["title"])}</td>'
+            f'<td style="font-size:.75rem;color:#888">{_escape(r["script"])}</td>'
+            f'<td>{status_badge}</td></tr>'
+        )
+    html += '</tbody></table></div>'
+
+    # Severity breakdown bars
+    if severity_stats:
+        html += '<div class="card"><h3>Coverage by Severity</h3>'
+        for sev in ("high", "medium", "low"):
+            if sev not in severity_stats:
+                continue
+            stats = severity_stats[sev]
+            pct = (stats["triggered"] / stats["total"] * 100) if stats["total"] > 0 else 0
+            bar_c = "#f87171" if sev == "high" else ("#fbbf24" if sev == "medium" else "#94a3b8")
+            html += (
+                f'<div style="display:flex;align-items:center;margin:6px 0;gap:8px">'
+                f'<span style="min-width:80px;text-align:right;color:{bar_c};font-weight:600">'
+                f'{sev.upper()}</span>'
+                f'<div style="flex:1">{_bar(pct, bar_c, width=300)}</div>'
+                f'<span style="color:#888;font-size:.82rem">'
+                f'{stats["triggered"]}/{stats["total"]}</span></div>'
+            )
+        html += '</div>'
+
+    # State oracles
+    if state_oracles:
+        html += '<div class="card"><h3>State Oracles</h3>'
+        html += '<table class="log-table"><thead><tr>'
+        html += '<th>ID</th><th>Label</th><th>Description</th><th>Observed</th>'
+        html += '</tr></thead><tbody>'
+        for so in state_oracles:
+            obs = ('<span class="badge badge-ok">YES</span>' if so["observed"]
+                   else '<span class="badge badge-fail">NO</span>')
+            html += (
+                f'<tr><td>{_escape(so["id"])}</td>'
+                f'<td><strong>{_escape(so["label"])}</strong></td>'
+                f'<td style="font-size:.78rem">{_escape(so["description"])}</td>'
+                f'<td>{obs}</td></tr>'
+            )
+        html += '</tbody></table></div>'
+
+    return html
+
+
 # ── main entry ───────────────────────────────────────────────────────
 
 def generate_report(
@@ -925,6 +1037,11 @@ def generate_report(
     gate_graph = _extract_gate_graph(output_dir)
     session = _extract_session(output_dir)
     replay = _extract_replay(output_dir, replay_path)
+
+    # Oracle evaluation — look for oracle_bugs.json
+    oracle_path = find_oracle_file(output_dir)
+    oracle_def = load_oracle_bugs(oracle_path) if oracle_path else None
+    oracle_eval = None
 
     # Reconcile replay data once — fixes stale success fields in old replays
     if replay:
@@ -955,6 +1072,20 @@ def generate_report(
         parts.append(_section_token_usage(summary or {}, iteration_logs or []))
     if replay:
         parts.append(_section_replay(replay))
+
+    # Oracle coverage — evaluate from console_logs if oracle definition exists
+    if oracle_def and replay:
+        console_logs = replay.get("console_logs", [])
+        exceptions = replay.get("exceptions", [])
+        # Also treat exceptions as log lines for detection
+        all_detection_logs = console_logs + exceptions
+        oracle_eval = evaluate_oracle_coverage(all_detection_logs, oracle_def)
+        parts.append(_section_oracle_coverage(oracle_eval))
+    elif oracle_def and not replay:
+        # No replay but oracle exists — show empty oracle section
+        empty_eval = evaluate_oracle_coverage([], oracle_def)
+        parts.append(_section_oracle_coverage(empty_eval))
+
     if traces:
         parts.append(_section_action_type_chart(traces))
         parts.append(_section_object_heatmap(traces))
@@ -1000,7 +1131,7 @@ def main_cli(output_dir: str, replay_path: Optional[str] = None) -> None:
 
     # List available data
     for fname in ("summary.json", "iteration_logs.json", "gate_graph.json",
-                  "session_state.json", "test_plan.json"):
+                  "session_state.json", "test_plan.json", "oracle_bugs.json"):
         fpath = os.path.join(output_dir, fname)
         status = "[OK]" if os.path.isfile(fpath) else "[--]"
         print(f"  {status} {fname}")
@@ -1015,6 +1146,24 @@ def main_cli(output_dir: str, replay_path: Optional[str] = None) -> None:
     out = generate_report(output_dir, replay_path=replay_path)
     print(f"\n[VISUALIZE] Report generated: {out}")
     print(f"[VISUALIZE] Open in browser to view the dashboard.")
+
+    # Show oracle summary if available
+    oracle_path = find_oracle_file(output_dir)
+    if oracle_path:
+        oracle_def = load_oracle_bugs(oracle_path)
+        if oracle_def:
+            n_bugs = len(oracle_def.get("oracles", []))
+            print(f"[ORACLE] Loaded {n_bugs} bug oracles from oracle_bugs.json")
+            # Quick eval summary
+            replay = _extract_replay(output_dir, replay_path)
+            if replay:
+                logs = replay.get("console_logs", []) + replay.get("exceptions", [])
+                ev = evaluate_oracle_coverage(logs, oracle_def)
+                print(f"[ORACLE] Result: {ev['triggered_bugs']}/{ev['total_bugs']} bugs triggered ({ev['coverage_pct']:.1f}% coverage)")
+            else:
+                print(f"[ORACLE] No replay data — oracle evaluated with 0 logs (run --replay first)")
+    else:
+        print(f"[ORACLE] oracle_bugs.json not found (no oracle evaluation)")
 
     # Try to open in default browser
     try:
@@ -1070,12 +1219,38 @@ def generate_benchmark_report(output_base: str, out_html: Optional[str] = None) 
     parts.append(_metric_card(f"${total_cost:.2f}", "Total Cost", "green"))
     parts.append('</div>')
 
+    # ── Oracle evaluation per run ─────────────────────────────────
+    # Try to evaluate oracle coverage for each entry by scanning their replay data
+    oracle_by_run: Dict[str, Dict[str, Any]] = {}  # key = "scene/model"
+    for e in entries:
+        scene = e.get("scene", "")
+        model = e.get("model", "")
+        run_dir = os.path.join(output_base, scene, model)
+        oracle_file = find_oracle_file(run_dir)
+        if not oracle_file:
+            continue
+        odef = load_oracle_bugs(oracle_file)
+        if not odef:
+            continue
+        rep = _extract_replay(run_dir)
+        if rep:
+            rep = _reconcile_replay(rep)
+            logs = rep.get("console_logs", []) + rep.get("exceptions", [])
+        else:
+            logs = []
+        oeval = evaluate_oracle_coverage(logs, odef)
+        oracle_by_run[f"{scene}/{model}"] = oeval
+
+    has_oracle = bool(oracle_by_run)
+
     # ── Comparison table ──────────────────────────────────────────
     parts.append('<div class="card"><h3>Run Comparison</h3>')
     parts.append('<table class="log-table"><thead><tr>')
+    oracle_th = '<th>Bugs Found</th><th>Oracle%</th>' if has_oracle else ''
     parts.append('<th>Scene</th><th>Model</th><th>Date</th>'
                  '<th>Actions</th><th>Iters</th>'
                  '<th>Gates ✓</th><th>Frontier</th>'
+                 f'{oracle_th}'
                  '<th>Total Tokens</th><th>Cost</th>'
                  '<th>LC%</th><th>MC%</th><th>Notes</th></tr></thead><tbody>')
 
@@ -1095,6 +1270,21 @@ def generate_benchmark_report(output_base: str, out_html: Optional[str] = None) 
         gs = e.get("gates_solved", 0)
         gs_color = "color:#2ecc71" if gs > 0 else ""
 
+        # Oracle coverage for this run
+        oracle_td = ""
+        if has_oracle:
+            run_key = f"{e.get('scene', '')}/{e.get('model', '')}"
+            oeval = oracle_by_run.get(run_key)
+            if oeval:
+                ot = oeval["triggered_bugs"]
+                otot = oeval["total_bugs"]
+                opct = oeval["coverage_pct"]
+                oc = "color:#4ade80" if opct >= 50 else ("color:#fbbf24" if opct >= 20 else "color:#f87171")
+                oracle_td = (f'<td style="{oc}">{ot}/{otot}</td>'
+                             f'<td style="{oc}">{opct:.0f}%</td>')
+            else:
+                oracle_td = '<td>—</td><td>—</td>'
+
         parts.append(
             f'<tr><td>{_escape(e.get("scene", ""))}</td>'
             f'<td><strong>{_escape(e.get("model", ""))}</strong></td>'
@@ -1103,6 +1293,7 @@ def generate_benchmark_report(output_base: str, out_html: Optional[str] = None) 
             f'<td>{e.get("iterations", 0)}</td>'
             f'<td style="{gs_color}">{gs}</td>'
             f'<td>{e.get("gates_frontier", 0)}</td>'
+            f'{oracle_td}'
             f'<td>{tokens_str}</td>'
             f'<td>{cost_str}</td>'
             f'<td>{lc_str}</td>'
@@ -1161,6 +1352,66 @@ def generate_benchmark_report(output_base: str, out_html: Optional[str] = None) 
                 f'{t:,} tokens</span></div></div>'
             )
         parts.append('</div>')
+
+    # ── Oracle coverage comparison ────────────────────────────────
+    if has_oracle:
+        parts.append('<h2>Oracle Coverage Comparison</h2>')
+
+        # Bar chart showing oracle coverage per model
+        parts.append('<div class="card"><h3>Bug Detection Rate by Model</h3>')
+        for key, oeval in sorted(oracle_by_run.items()):
+            pct = oeval["coverage_pct"]
+            trig = oeval["triggered_bugs"]
+            total_b = oeval["total_bugs"]
+            bar_c = "#4ade80" if pct >= 50 else ("#fbbf24" if pct >= 20 else "#f87171")
+            parts.append(
+                f'<div style="display:flex;align-items:center;margin:6px 0;gap:8px">'
+                f'<span style="min-width:250px;font-size:.85rem;text-align:right;color:#ccc">'
+                f'{_escape(key)}</span>'
+                f'<div style="flex:1;background:#1a1a2e;border-radius:4px;height:24px;position:relative">'
+                f'<div style="width:{pct:.1f}%;height:100%;background:{bar_c};'
+                f'border-radius:4px"></div>'
+                f'<span style="position:absolute;right:8px;top:3px;font-size:.8rem;color:#ccc">'
+                f'{trig}/{total_b} bugs ({pct:.0f}%)</span></div></div>'
+            )
+        parts.append('</div>')
+
+        # Per-bug comparison table (which model found which bug)
+        # Collect all bugs from any oracle_eval
+        any_eval = next(iter(oracle_by_run.values()))
+        bug_ids = [r["id"] for r in any_eval.get("results", [])]
+        run_keys = sorted(oracle_by_run.keys())
+
+        if bug_ids and run_keys:
+            parts.append('<div class="card"><h3>Per-Bug Detection Matrix</h3>')
+            parts.append('<table class="log-table"><thead><tr>')
+            parts.append('<th>Bug ID</th><th>Category</th><th>Severity</th><th>Title</th>')
+            for rk in run_keys:
+                model_name = rk.split("/")[-1] if "/" in rk else rk
+                parts.append(f'<th>{_escape(model_name)}</th>')
+            parts.append('</tr></thead><tbody>')
+
+            sev_colors = {"high": "#f87171", "medium": "#fbbf24", "low": "#94a3b8"}
+            for bug_idx, bug_id in enumerate(bug_ids):
+                bug_info = any_eval["results"][bug_idx]
+                sev_c = sev_colors.get(bug_info.get("severity", ""), "#888")
+                parts.append(
+                    f'<tr><td><strong>{_escape(bug_id)}</strong></td>'
+                    f'<td>{_escape(bug_info.get("category", ""))}</td>'
+                    f'<td style="color:{sev_c}">{_escape(bug_info.get("severity", ""))}</td>'
+                    f'<td style="font-size:.78rem">{_escape(bug_info.get("title", ""))}</td>'
+                )
+                for rk in run_keys:
+                    oeval = oracle_by_run[rk]
+                    r_list = oeval.get("results", [])
+                    found = any(r["id"] == bug_id and r["triggered"] for r in r_list)
+                    if found:
+                        parts.append('<td><span class="badge badge-ok">✓</span></td>')
+                    else:
+                        parts.append('<td><span class="badge badge-fail">✗</span></td>')
+                parts.append('</tr>')
+
+            parts.append('</tbody></table></div>')
 
     parts.append(f'<script>{_JS}</script>')
     parts.append('</body></html>')

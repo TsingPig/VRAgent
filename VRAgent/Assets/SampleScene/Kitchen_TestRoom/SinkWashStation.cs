@@ -51,7 +51,12 @@ public class SinkWashStation : MonoBehaviour
         }
 
         _isWashing = true;
-        _washTimer = 0f;
+
+        // BUG-004: _washTimer not reset on re-place — accumulated time from
+        // previous aborted wash carries over, causing instant/premature completion
+        // Fix would be: _washTimer = 0f;
+        if (_washTimer > 0f)
+            OracleRegistry.Trigger("BUG-004", $"washTimer={_washTimer:F2} carried over");
 
         if (waterFXRenderer != null && materialWashing != null)
             waterFXRenderer.sharedMaterial = materialWashing;

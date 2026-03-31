@@ -32,7 +32,13 @@ public class CuttingBoardController : MonoBehaviour
         if (_hasBeenCut) return;
 
         bool knifePresent = knifeSlot != null && knifeSlot.IsKnifePresent;
+
+        // BUG-009: SetIngredientCut called BEFORE knifePresent/wash validation.
+        // Even with knifePresent=false, this hits RecipeController producing a
+        // spurious FAIL warning. Fix: move this call AFTER all validation passes.
         RecipeController.Instance?.SetIngredientCut(knifePresent);
+        if (!knifePresent)
+            OracleRegistry.Trigger("BUG-009", "SetIngredientCut(false) called before validation");
 
         if (!knifePresent)
         {

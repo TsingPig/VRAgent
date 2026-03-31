@@ -26,7 +26,9 @@ public class LockedCabinetController : MonoBehaviour
     private void Start()
     {
         _closedLocalPosition = transform.localPosition;
-        _openLocalPosition = _closedLocalPosition + new Vector3(0f, 0f, -openDistance);
+        // BUG-005: Sign error — cabinet slides into wall instead of opening outward
+        // Fix: should be new Vector3(0f, 0f, -openDistance)
+        _openLocalPosition = _closedLocalPosition + new Vector3(0f, 0f, openDistance);
         UpdateLockVisual();
     }
 
@@ -57,6 +59,14 @@ public class LockedCabinetController : MonoBehaviour
         }
 
         _isOpen = !_isOpen;
+        // BUG-005 oracle: detect cabinet sliding wrong direction
+        if (_isOpen)
+        {
+            Vector3 expectedDir = new Vector3(0f, 0f, -openDistance);
+            Vector3 actualDir = _openLocalPosition - _closedLocalPosition;
+            if (Vector3.Dot(expectedDir.normalized, actualDir.normalized) < 0f)
+                OracleRegistry.Trigger("BUG-005", "Cabinet slides in wrong direction");
+        }
         Debug.Log($"[LockedCabinetController] {gameObject.name} → {(_isOpen ? "OPEN" : "CLOSED")}");
     }
 

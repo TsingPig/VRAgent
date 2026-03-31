@@ -1,0 +1,187 @@
+{
+  "scene": "Kitchen_TestRoom",
+  "version": "1.0",
+  "total_bugs": 10,
+  "oracles": [
+    {
+      "id": "BUG-001",
+      "category": "crash",
+      "severity": "high",
+      "title": "NullReferenceException in StoveController.FinishCooking",
+      "description": "Developer added GetComponent<AudioSource>().Play() in FinishCooking without null-check. No AudioSource exists on this GameObject, causing NullReferenceException every time cooking completes.",
+      "script": "StoveController.cs",
+      "method": "FinishCooking",
+      "trigger_condition": "Complete cooking on the stove (TryStartCooking → wait cookDuration → FinishCooking)",
+      "detection": {
+        "type": "exception",
+        "pattern": "NullReferenceException.*StoveController"
+      },
+      "impact": "Exception logged on every successful cook. SetDishCooked() is called first so state advances, but the exception indicates a crash-level bug.",
+      "fix": "Add null-check: var audio = GetComponent<AudioSource>(); if (audio != null) audio.Play();"
+    },
+    {
+      "id": "BUG-002",
+      "category": "functional",
+      "severity": "medium",
+      "title": "Stove starts cooking without bowl on hob",
+      "description": "TryStartCooking checks PowerEnabled and IngredientsCombined but does NOT check hobSocket.HasBowl. The stove fires even when no bowl is physically placed on the hob surface.",
+      "script": "StoveController.cs",
+      "method": "TryStartCooking",
+      "trigger_condition": "Activate stove without placing Bowl_Mixing on the MixingBowlSocket hob",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-002:TRIGGERED\\]"
+      },
+      "impact": "Cooking succeeds without bowl, violating the physical requirement. State dishCooked becomes true without proper physical setup.",
+      "fix": "Add guard: if (hobSocket != null && !hobSocket.HasBowl) { Debug.LogWarning(...); return; }"
+    },
+    {
+      "id": "BUG-003",
+      "category": "state",
+      "severity": "medium",
+      "title": "Power toggle-off does not reset RecipeController.PowerEnabled",
+      "description": "PowerSwitchController.Toggle() calls SetPowerEnabled() when IsOn becomes true, but does NOT call any reset method when IsOn becomes false. RecipeController.PowerEnabled stays true forever once set.",
+      "script": "PowerSwitchController.cs",
+      "method": "Toggle",
+      "trigger_condition": "Toggle power switch ON, then toggle OFF again",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-003:TRIGGERED\\]"
+      },
+      "impact": "State inconsistency between physical switch position (OFF) and logical power state (true). Downstream systems like KitchenBadgeUnlockReceiver still see power as enabled.",
+      "fix": "Add else branch: RecipeController.Instance?.SetPowerDisabled(); (requires new method in RecipeController)"
+    },
+    {
+      "id": "BUG-004",
+      "category": "functional",
+      "severity": "medium",
+      "title": "Sink wash timer not reset — instant wash on retry",
+      "description": "When ingredient is removed mid-wash (OnIngredientRemoved sets _isWashing=false) and then re-placed, _washTimer is NOT reset to 0. Accumulated time from the previous attempt carries over, causing the wash to complete instantly or prematurely.",
+      "script": "SinkWashStation.cs",
+      "method": "OnIngredientPlaced",
+      "trigger_condition": "Place ingredient in sink → remove before wash completes → place again",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-004:TRIGGERED\\]"
+      },
+      "impact": "Skip the intended 1.5-second wash duration. If previous wash accumulated e.g. 1.4s, a re-placement instantly completes the wash.",
+      "fix": "Add _washTimer = 0f; in OnIngredientPlaced before setting _isWashing = true"
+    },
+    {
+      "id": "BUG-005",
+      "category": "functional",
+      "severity": "low",
+      "title": "Cabinet slides in wrong direction (sign error)",
+      "description": "LockedCabinetController.Start() computes _openLocalPosition = _closedLocalPosition + new Vector3(0, 0, openDistance) with POSITIVE openDistance. The correct direction should be NEGATIVE Z. Cabinet slides into the wall instead of opening outward.",
+      "script": "LockedCabinetController.cs",
+      "method": "Start",
+      "trigger_condition": "Open Cabinet_Ingredients after unlocking pantry door",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-005:TRIGGERED\\]"
+      },
+      "impact": "Cabinet_Ingredients visually slides into the wall geometry. Functionally the state says 'open' but the visual is wrong — objects inside may become unreachable.",
+      "fix": "Change sign: new Vector3(0f, 0f, -openDistance)"
+    },
+    {
+      "id": "BUG-006",
+      "category": "functional",
+      "severity": "high",
+      "title": "ServingPlateSocket accepts uncooked dish — skips cooking gate",
+      "description": "The DishCooked validation guard in OnDishPlaced was removed. Any dish (raw or cooked) can be plated, bypassing the cooking step entirely. This breaks the 10-step recipe chain.",
+      "script": "ServingPlateSocket.cs",
+      "method": "OnDishPlaced",
+      "trigger_condition": "Place uncombined/uncooked Bowl_Mixing onto Plate_Serving",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-006:TRIGGERED\\]"
+      },
+      "impact": "Critical gate bypass. Player can skip steps 7-8 (combine + cook) and go directly to plating. Task can complete without ever using the stove.",
+      "fix": "Restore the DishCooked guard: if (!RecipeController.Instance.DishCooked) { ... return; }"
+    },
+    {
+      "id": "BUG-007",
+      "category": "state",
+      "severity": "medium",
+      "title": "RecipeController allows power without opening pantry (wrong precondition)",
+      "description": "SetPowerEnabled() checks hasPantryKey instead of doorPantryUnlocked. Player can enable power immediately after picking up the key, without actually inserting it into the pantry lock. This skips step 2.",
+      "script": "RecipeController.cs",
+      "method": "SetPowerEnabled",
+      "trigger_condition": "Pick up Key_Pantry → immediately toggle power switch (without inserting key into pantry lock socket)",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-007:TRIGGERED\\]"
+      },
+      "impact": "Gate skip: step 2 (doorPantryUnlocked) can be bypassed. The downstream chain continues as if pantry was opened, but Cabinet_Ingredients may still be locked.",
+      "fix": "Restore precondition: if (!doorPantryUnlocked) instead of if (!hasPantryKey)"
+    },
+    {
+      "id": "BUG-008",
+      "category": "visual",
+      "severity": "low",
+      "title": "Badge panel stays red after successful kitchen unlock",
+      "description": "When badge is first scanned without power, panelRenderer is set to materialNoPower (red). On subsequent successful scan (with power), the material update to materialUnlocked is removed. Panel stays red despite successful unlock.",
+      "script": "KitchenBadgeUnlockReceiver.cs",
+      "method": "OnBadgeInserted",
+      "trigger_condition": "Scan badge without power (panel turns red) → enable power → scan badge again (succeeds but panel stays red)",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-008:TRIGGERED\\]"
+      },
+      "impact": "Visual-only: kitchen door opens correctly but badge panel gives misleading red indication. Player may think the scan failed.",
+      "fix": "Restore material update in success path: panelRenderer.sharedMaterial = materialUnlocked;"
+    },
+    {
+      "id": "BUG-009",
+      "category": "functional",
+      "severity": "medium",
+      "title": "CuttingBoard calls SetIngredientCut(false) before validation",
+      "description": "TryCut() calls RecipeController.SetIngredientCut(knifePresent) at line 35 BEFORE checking if knifePresent is true. When knife is absent, SetIngredientCut(false) is called, hitting RecipeController's 'no knife' guard and producing a spurious FAIL warning.",
+      "script": "CuttingBoardController.cs",
+      "method": "TryCut",
+      "trigger_condition": "Interact with Board_Cutting when Tool_Knife is NOT in the knife slot",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-009:TRIGGERED\\]"
+      },
+      "impact": "Spurious RecipeController FAIL log. No functional damage (guard prevents state change), but pollutes logs and confuses test analysis.",
+      "fix": "Move SetIngredientCut(knifePresent) call after all validation passes, only when _hasBeenCut is about to become true."
+    },
+    {
+      "id": "BUG-010",
+      "category": "state",
+      "severity": "medium",
+      "title": "ResetAllState does not reset downstream controller flags",
+      "description": "RecipeController.ResetAllState() clears its 10 boolean flags but does not notify downstream controllers (LockedCabinetController._isUnlocked, StoveController.CurrentState, SinkWashStation._hasWashed, etc.). After reset, recipe state is fresh but controllers retain stale local state from previous run.",
+      "script": "RecipeController.cs",
+      "method": "ResetAllState",
+      "trigger_condition": "Call ResetAllState() (between test iterations)",
+      "detection": {
+        "type": "oracle_marker",
+        "pattern": "\\[ORACLE:BUG-010:TRIGGERED\\]"
+      },
+      "impact": "State desync after reset. Controllers think steps are already completed. Second test run produces incorrect results if same scene instance is reused.",
+      "fix": "Add reset events or iterate FindObjectsOfType to reset all controller flags."
+    }
+  ],
+  "state_oracles": [
+    {
+      "id": "STATE-001",
+      "label": "recipe_monotonic",
+      "description": "Recipe flags must be set in strict order (1→10). No flag should be true if its predecessor is false.",
+      "check": "If ingredientCut=true then ingredientWashed must be true; if dishCooked=true then ingredientsCombined must be true; etc."
+    },
+    {
+      "id": "STATE-002",
+      "label": "completion_consistency",
+      "description": "FinalExitTrigger.CompletedSuccessfully=true implies all 10 RecipeController flags are true.",
+      "check": "All 10 flags must be true when CompletedSuccessfully is reported."
+    },
+    {
+      "id": "STATE-003",
+      "label": "power_state_sync",
+      "description": "PowerSwitchController.IsOn must match RecipeController.PowerEnabled (no desync).",
+      "check": "Both must be true or both false at any observation point."
+    }
+  ]
+}

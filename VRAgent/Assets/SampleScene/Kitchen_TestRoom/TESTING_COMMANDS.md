@@ -11,7 +11,7 @@ $TPGen      = "d:\--UnityProject\HenryLabXR\VRAgent\TP_Generation"
 $ResultsDir = "$TPGen\Results\Results_Kitchen_TestRoom"
 $SceneDoc   = "$ProjectRoot\Assets\SampleScene\Kitchen_TestRoom\DELIVERY_NOTES.md"
 $ScriptsDir = "$ProjectRoot\Assets\SampleScene\Kitchen_TestRoom"
-$Model      = "gemini-3-pro-preview"                              # 切换模型改这里
+$Model      = "gpt-5.4"                              # 切换模型改这里
 $OutputBase = "$TPGen\Results_VRAgent2.0"          # 基目录
 $OutputDir  = "$OutputBase\Kitchen_TestRoom\$Model" # 实际输出（代码自动组织）
 cd $TPGen
@@ -99,6 +99,28 @@ $Common = @(
 
 ---
 
+## Oracle Bug Benchmark
+
+场景内预注入了 10 个 Bug + 3 个 State Oracle（参见 `ORACLE_BENCHMARK.md`）。
+Pipeline 运行时自动将 `oracle_bugs.json` 拷贝到输出目录，Replay 产生的 console_logs
+中若包含 `[ORACLE:BUG-XXX:TRIGGERED]` 标记则判定对应 Bug 被触发。
+
+```powershell
+# 完整工作流：Pipeline → Replay → 可视化（含 Oracle）
+& $Python -m vragent2 @Common --unity                     # 生成 test_plan
+& $Python -m vragent2 @Common --unity --replay auto       # 在 Unity 中重放
+& $Python -m vragent2 --visualize $OutputDir               # 生成含 Oracle 的报告
+
+# 跨模型 Oracle 对比
+& $Python -m vragent2 --benchmark $OutputBase              # 含 Per-Bug Detection Matrix
+```
+
+Oracle 评估结果出现在：
+- **单模型报告** — "Oracle Coverage (Bug Detection)" Section
+- **Benchmark 报告** — "Oracle Coverage Comparison" + 逐 Bug 检测矩阵
+
+---
+
 ## 烟雾测试（42 tests）
 
 ```powershell
@@ -110,7 +132,7 @@ $Common = @(
 ## 可视化结果
 
 ```powershell
-# 指定模型结果目录
+# 指定模型结果目录（自动检测 oracle_bugs.json + replay 数据）
 & $Python -m vragent2 --visualize $OutputDir
 
 # 指定特定 replay 文件高亮
@@ -124,6 +146,9 @@ $Common = @(
 & $Python -m vragent2 @Common --unity --visualize
 ```
 
+> **Oracle 可视化前提**：目录下需有 `oracle_bugs.json`（Pipeline 自动拷贝）+ `replay/*.json`（需先 `--replay`）。
+> 终端会打印 `[ORACLE] Result: X/10 bugs triggered (XX% coverage)` 确认检测结果。
+
 ## 跨模型 Benchmark 对比
 
 ```powershell
@@ -134,8 +159,9 @@ $Common = @(
 输出：`$OutputBase\benchmark_report.html`
 数据源：`$OutputBase\benchmark.json`（每次 Pipeline 运行自动追加）
 
-包含：运行对比表（场景/模型/Actions/Gates/Tokens/Cost/Coverage）、
-Unity Code Coverage 按类柱状图、Token 消耗对比条形图。
+包含：运行对比表（场景/模型/Actions/Gates/Tokens/Cost/Coverage/Oracle%）、
+Unity Code Coverage 按类柱状图、Token 消耗对比条形图、
+**Oracle Coverage 跨模型对比** + **Per-Bug Detection Matrix**。
 
 输出：`$OutputDir\report.html`（自包含 HTML，无外部依赖）
 
@@ -143,6 +169,8 @@ Unity Code Coverage 按类柱状图、Token 消耗对比条形图。
 
 ```
 Results_VRAgent2.0/               ← --output 基目录
+  benchmark.json                  ← 跨模型对比数据（自动追加）
+  benchmark_report.html           ← --benchmark 生成
   Kitchen_TestRoom/               ← 按场景分
     gpt-4o/                       ← 按模型分（自动创建）
       test_plan.json
@@ -150,9 +178,10 @@ Results_VRAgent2.0/               ← --output 基目录
       gate_graph.json
       iteration_logs.json
       session_state.json
+      oracle_bugs.json            ← Oracle 定义（Pipeline 自动拷贝）
+      report.html                 ← --visualize 生成
       execution/
-      replay/
-      report.html
+      replay/                     ← --replay 后的执行结果
     gpt-5.2/                      ← 换 --model 自动归入
       ...
   Home_TwoRooms/
@@ -160,13 +189,14 @@ Results_VRAgent2.0/               ← --output 基目录
       ...
 ```
 
-报告包含 10 个 Section：
+报告包含 11 个 Section：
 
 | Section | 内容 |
 |---------|------|
 | Session Dashboard | 总动作数、迭代、覆盖率、Gates Solved |
 | Token Usage | 总 Token（输入/输出）、按 Agent 细分、按迭代柱状图 |
 | Replay Results | 执行成功/失败、Gate 统计、异常列表 |
+| **Oracle Coverage** | **注入 Bug 触发率、分类/严重度统计、逐 Bug 检测表** |
 | Action Type Breakdown | Grab/Trigger/Transform 分类 + 成功率柱状图 |
 | Object Interaction Heatmap | 各对象交互频次热力图 |
 | Action Timeline | 可搜索逐条动作时间线（含状态变化） |
