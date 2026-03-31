@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace HenryLab.VRAgent
 {
-    [JsonConverter(typeof(ActionUnitConverter))] // Ö§³ÖJSON¶àÌ¬
+    [JsonConverter(typeof(ActionUnitConverter))] // Ö§ï¿½ï¿½JSONï¿½ï¿½Ì¬
     public class ActionUnit
     {
         public string type;
@@ -27,7 +27,7 @@ namespace HenryLab.VRAgent
     }
 
     /// <summary>
-    /// TransformActionUnit ÓÃÓÚÃèÊöÎïÌåµÄÆ½ÒÆ/Ðý×ª/Ëõ·Å²Ù×÷
+    /// TransformActionUnit ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½/ï¿½ï¿½×ª/ï¿½ï¿½ï¿½Å²ï¿½ï¿½ï¿½
     /// </summary>
     public class TransformActionUnit : TriggerActionUnit
     {
@@ -40,5 +40,10 @@ namespace HenryLab.VRAgent
     {
         [JsonProperty("target_object_fileID")] public string? objectB;
         [JsonProperty("target_position")] public Vector3? targetPosition;
+    }
+
+    public class SocketActionUnit : ActionUnit
+    {
+        [JsonProperty("socket_mode")] public string socketMode; // "insert" or "remove"
     }
 }
