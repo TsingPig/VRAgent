@@ -6708,6 +6708,10 @@ MonoBehaviour:
   openAngle: -100
   speed: 4
   interiorLight: {fileID: 1117979233}
+  alarmDelay: 5
+  alarmRenderer: {fileID: 0}
+  materialNormal: {fileID: 0}
+  materialAlarm: {fileID: 0}
 --- !u!1 &607002985
 GameObject:
   m_ObjectHideFlags: 0
@@ -7929,6 +7933,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterStream: {fileID: 1983602740}
   waterAudio: {fileID: 0}
+  sinkRenderer: {fileID: 0}
+  materialClean: {fileID: 0}
+  materialWashing: {fileID: 0}
+  washDuration: 2
 --- !u!1 &742240133
 GameObject:
   m_ObjectHideFlags: 0
@@ -10569,6 +10577,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterStream: {fileID: 1364935117}
   waterAudio: {fileID: 0}
+  sinkRenderer: {fileID: 0}
+  materialClean: {fileID: 0}
+  materialWashing: {fileID: 0}
+  washDuration: 2
 --- !u!1 &976871603
 GameObject:
   m_ObjectHideFlags: 0
@@ -11803,6 +11815,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072855537}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1074375249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.04268205
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.31935978
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7079584
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7062542
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 89.862
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183206924, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194219831183207930, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
+      propertyPath: m_Name
+      value: VRAgent2.0-PVEO
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6ce8c876147a3548a19d0d08d3a759b, type: 3}
 --- !u!1 &1076829561
 GameObject:
   m_ObjectHideFlags: 0
@@ -14357,7 +14426,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1374384220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 624030498}
+  m_Script: {fileID: 11500000, guid: b58e2f4934ee33243823f79a4f316428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
@@ -18798,6 +18867,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterStream: {fileID: 183562029}
   waterAudio: {fileID: 0}
+  sinkRenderer: {fileID: 0}
+  materialClean: {fileID: 0}
+  materialWashing: {fileID: 0}
+  washDuration: 2
 --- !u!1 &1760074750
 GameObject:
   m_ObjectHideFlags: 0
@@ -21123,7 +21196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975111244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 624030498}
+  m_Script: {fileID: 11500000, guid: b58e2f4934ee33243823f79a4f316428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
@@ -21908,7 +21981,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994042769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 624030498}
+  m_Script: {fileID: 11500000, guid: b58e2f4934ee33243823f79a4f316428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
@@ -23362,7 +23435,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2083390043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 624030498}
+  m_Script: {fileID: 11500000, guid: b58e2f4934ee33243823f79a4f316428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2

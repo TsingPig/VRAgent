@@ -11,7 +11,7 @@ $TPGen      = "d:\--UnityProject\HenryLabXR\VRAgent\TP_Generation"
 $ResultsDir = "$TPGen\Results\Results_Apartment"
 $SceneDoc   = "$ProjectRoot\Assets\SampleScene\Apartment\DELIVERY_NOTES.md"
 $ScriptsDir = "$ProjectRoot\Assets\SampleScene\Apartment"
-$Model      = "gpt-5.4"                              # 切换模型改这里
+$Model      = "gpt-4o"                              # 切换模型改这里
 $OutputBase = "$TPGen\Results_VRAgent2.0"          # 基目录
 $OutputDir  = "$OutputBase\Apartment\$Model"       # 实际输出（代码自动组织）
 cd $TPGen
