@@ -1,0 +1,44 @@
+{
+  "_comment": "Gold-standard test plan for MiniGame_TowerDefense — covers all 10 bugs.",
+  "scene_name": "MiniGame_TowerDefense",
+  "version": "1.0",
+  "taskUnits": [
+    { "name":"T1_Power",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_TowerDefenseStateController","methodName":"SetPowerOn","parameters":[true],"delay":0.1 }
+      ]},
+    { "name":"T2_BUG001_PlaceTowerWithGold",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-001"],"targetFileID":"FILEID_TowerPlacer","scriptFileID":"SCRIPT_TowerPlacer","methodName":"PlaceTower","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T3_BUG009_PlaceWithoutGold",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_ResourceManager","scriptFileID":"SCRIPT_ResourceManager","methodName":"Spend","parameters":[100],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-009"],"targetFileID":"FILEID_TowerPlacer","scriptFileID":"SCRIPT_TowerPlacer","methodName":"PlaceTower","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T4_BUG002_BUG005_TowerActions",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-002"],"targetFileID":"FILEID_Tower_00","scriptFileID":"SCRIPT_Tower","methodName":"Fire","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T5_BUG003_BUG004_WaveCycle",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_WaveSpawner","scriptFileID":"SCRIPT_WaveSpawner","methodName":"StartWave","parameters":[],"delay":0.5 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-003"],"targetFileID":"FILEID_WaveSpawner","scriptFileID":"SCRIPT_WaveSpawner","methodName":"StopWave","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-004"],"targetFileID":"FILEID_WaveSpawner","scriptFileID":"SCRIPT_WaveSpawner","methodName":"StartWave","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T6_BUG007_BuildExpensive",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-007"],"targetFileID":"FILEID_ResourceManager","scriptFileID":"SCRIPT_ResourceManager","methodName":"TryBuildExpensive","parameters":[9999],"delay":0.1 }
+      ]},
+    { "name":"T7_BUG008_EnemyRedStuck",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Enemy_00","scriptFileID":"SCRIPT_EnemyController","methodName":"TakeDamage","parameters":[80],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-008"],"targetFileID":"FILEID_Enemy_00","scriptFileID":"SCRIPT_EnemyController","methodName":"Heal","parameters":[50],"delay":0.1 }
+      ]},
+    { "name":"T8_BUG006_BUG010_VictoryReset",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-006"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_TowerDefenseStateController","methodName":"TryDeclareVictory","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-010"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_TowerDefenseStateController","methodName":"ResetAllState","parameters":[],"delay":0.1 }
+      ]}
+  ]
+}

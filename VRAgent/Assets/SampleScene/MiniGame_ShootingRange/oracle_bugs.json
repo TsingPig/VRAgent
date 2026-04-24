@@ -1,0 +1,107 @@
+{
+  "scene": "MiniGame_ShootingRange",
+  "version": "1.0",
+  "total_bugs": 10,
+  "oracles": [
+    {
+      "id": "BUG-001", "category": "crash", "severity": "high",
+      "title": "NullReferenceException in WeaponController.Fire",
+      "description": "Fire() calls GetComponent<AudioSource>().Play() but the weapon GameObject has no AudioSource attached.",
+      "script": "WeaponController.cs", "method": "Fire",
+      "trigger_condition": "Grab the pistol → Reload → Trigger Fire() at least once",
+      "detection": { "type": "exception", "pattern": "NullReferenceException.*WeaponController" },
+      "impact": "Every shot logs an exception; can crash certain Unity build configurations.",
+      "fix": "var src = GetComponent<AudioSource>(); if (src != null) src.Play();"
+    },
+    {
+      "id": "BUG-002", "category": "functional", "severity": "medium",
+      "title": "Target awards score without bullet collision",
+      "description": "OnHit(wasRealBulletHit) does not gate on the boolean. Calling ForceTriggerHitWithoutBullet() awards score with no actual collision.",
+      "script": "TargetController.cs", "method": "OnHit",
+      "trigger_condition": "Activate() target → invoke ForceTriggerHitWithoutBullet()",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-002:TRIGGERED\\]" },
+      "impact": "Score inflation; defeats game objective.",
+      "fix": "Add: if (!wasRealBulletHit) return;"
+    },
+    {
+      "id": "BUG-003", "category": "state", "severity": "medium",
+      "title": "WaveSpawner.StopWave does not reset IsActive",
+      "description": "StopWave() only zeroes the timer; IsActive remains true so StateController believes a wave is still running.",
+      "script": "WaveSpawner.cs", "method": "StopWave",
+      "trigger_condition": "StartWave() → StopWave()",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-003:TRIGGERED\\]" },
+      "impact": "Subsequent state checks see WaveStarted=true forever.",
+      "fix": "IsActive = false; ShootingRangeStateController.Instance?.SetWaveStarted(false);"
+    },
+    {
+      "id": "BUG-004", "category": "functional", "severity": "medium",
+      "title": "AmmoMagazine reload timer not reset on retry",
+      "description": "_reloadTimer is not zeroed in OnInsert(); a previously-interrupted reload's accumulated time persists.",
+      "script": "AmmoMagazine.cs", "method": "OnInsert",
+      "trigger_condition": "OnInsert → wait < reloadDuration → OnRemove → OnInsert again",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-004:TRIGGERED\\]" },
+      "impact": "Player can effectively reload instantly by pumping insert/remove.",
+      "fix": "Add _reloadTimer = 0f at top of OnInsert()."
+    },
+    {
+      "id": "BUG-005", "category": "functional", "severity": "low",
+      "title": "Target popup uses negated angle (rotates away)",
+      "description": "Activate() multiplies start rotation by Quaternion.Euler(-popupAngle, ...) so the target tilts away from the player instead of facing them.",
+      "script": "TargetController.cs", "method": "Activate",
+      "trigger_condition": "Trigger Activate() on any target",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-005:TRIGGERED\\]" },
+      "impact": "Target visually faces away — players cannot aim at it.",
+      "fix": "Use +popupAngle instead of -popupAngle."
+    },
+    {
+      "id": "BUG-006", "category": "functional", "severity": "high",
+      "title": "Game completes without checking required hit count",
+      "description": "TryFinishGame() does not validate TargetsHit ≥ TargetsRequired or ScoreSubmitted.",
+      "script": "ShootingRangeStateController.cs", "method": "TryFinishGame",
+      "trigger_condition": "Trigger TryFinishGame() before hitting all targets",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-006:TRIGGERED\\]" },
+      "impact": "Win condition is bypassable.",
+      "fix": "Guard with: if (TargetsHit < TargetsRequired || !ScoreSubmitted) return;"
+    },
+    {
+      "id": "BUG-007", "category": "state", "severity": "medium",
+      "title": "AwardPoints uses wrong precondition (IsActive vs IsHit)",
+      "description": "Should gate on target.IsHit; instead checks target.IsActive.",
+      "script": "ScoreManager.cs", "method": "AwardPoints",
+      "trigger_condition": "Activate target → AwardPoints called externally without OnHit",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-007:TRIGGERED\\]" },
+      "impact": "Score awarded under wrong circumstances; couples to wrong state field.",
+      "fix": "if (!target.IsHit) return;"
+    },
+    {
+      "id": "BUG-008", "category": "visual", "severity": "low",
+      "title": "Muzzle flash stays active after visibility window",
+      "description": "Update() detects timer expiry but does NOT call SetActive(false) on flashQuad.",
+      "script": "MuzzleFlashController.cs", "method": "Update",
+      "trigger_condition": "Call Flash() → wait > visibleDuration",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-008:TRIGGERED\\]" },
+      "impact": "Persistent muzzle flash blocks player view.",
+      "fix": "if (flashQuad != null) flashQuad.SetActive(false);"
+    },
+    {
+      "id": "BUG-009", "category": "functional", "severity": "medium",
+      "title": "Reload increments chamber before validating magazine",
+      "description": "Reload() sets ChamberRounds = 6 BEFORE checking magazine.IsLoaded; reloads succeed even with empty mag.",
+      "script": "WeaponController.cs", "method": "Reload",
+      "trigger_condition": "Reload() with magazine null or magazine.IsLoaded=false",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-009:TRIGGERED\\]" },
+      "impact": "Infinite ammo by spamming Reload.",
+      "fix": "Validate magazine FIRST, then assign ChamberRounds."
+    },
+    {
+      "id": "BUG-010", "category": "state", "severity": "medium",
+      "title": "ResetAllState does not cascade to combo / wave / flash",
+      "description": "Resets only state-controller fields; downstream singletons retain stale data.",
+      "script": "ShootingRangeStateController.cs", "method": "ResetAllState",
+      "trigger_condition": "Award some combo → ResetAllState() → check ScoreManager.ComboStreak",
+      "detection": { "type": "oracle_marker", "pattern": "\\[ORACLE:BUG-010:TRIGGERED\\]" },
+      "impact": "New game inherits old combo / wave / visual state.",
+      "fix": "ScoreManager.Instance?.ResetCombo(); WaveSpawner.Instance?.StopWave(); MuzzleFlashController.Instance?.ForceHide();"
+    }
+  ]
+}

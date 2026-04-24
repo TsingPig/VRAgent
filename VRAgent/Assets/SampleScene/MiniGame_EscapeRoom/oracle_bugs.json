@@ -1,0 +1,17 @@
+{
+  "scene": "MiniGame_EscapeRoom",
+  "version": "1.0",
+  "total_bugs": 10,
+  "oracles": [
+    { "id":"BUG-001","category":"crash","severity":"high","title":"NRE in KeySafeController.TryUnlock","script":"EscapeRoomControllers.cs","method":"TryUnlock","trigger_condition":"Dial correct combo → TryUnlock","detection":{"type":"exception","pattern":"NullReferenceException.*KeySafeController"} },
+    { "id":"BUG-002","category":"functional","severity":"medium","title":"Puzzle accepts any answer","script":"EscapeRoomControllers.cs","method":"SubmitAnswer","trigger_condition":"SubmitAnswer(\"WRONG\")","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-002:TRIGGERED\\]"} },
+    { "id":"BUG-003","category":"state","severity":"medium","title":"DoorController.CloseDoor leaves IsOpen=true","script":"EscapeRoomControllers.cs","method":"CloseDoor","trigger_condition":"OpenDoor → CloseDoor","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-003:TRIGGERED\\]"} },
+    { "id":"BUG-004","category":"functional","severity":"medium","title":"Key insert timer not reset","script":"EscapeRoomControllers.cs","method":"OnInsert","trigger_condition":"OnInsert→OnRemove→OnInsert","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-004:TRIGGERED\\]"} },
+    { "id":"BUG-005","category":"functional","severity":"low","title":"Dial rotates wrong direction","script":"EscapeRoomControllers.cs","method":"RotateDial","trigger_condition":"RotateDial(any non-zero)","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-005:TRIGGERED\\]"} },
+    { "id":"BUG-006","category":"functional","severity":"high","title":"TryEscape skips puzzle count","script":"EscapeRoomControllers.cs","method":"TryEscape","trigger_condition":"TryEscape with PuzzlesSolved<Required","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-006:TRIGGERED\\]"} },
+    { "id":"BUG-007","category":"state","severity":"medium","title":"OpenDoor wrong precondition (SafeUnlocked vs KeyInserted)","script":"EscapeRoomControllers.cs","method":"OpenDoor","trigger_condition":"Set SafeUnlocked=true, KeyInserted=false → OpenDoor","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-007:TRIGGERED\\]"} },
+    { "id":"BUG-008","category":"visual","severity":"low","title":"HintLight stays on after solve","script":"EscapeRoomControllers.cs","method":"OnSolved","trigger_condition":"TurnOn → OnSolved","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-008:TRIGGERED\\]"} },
+    { "id":"BUG-009","category":"functional","severity":"medium","title":"KeySafe opens before combo validation","script":"EscapeRoomControllers.cs","method":"TryUnlock","trigger_condition":"TryUnlock without dialing combo","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-009:TRIGGERED\\]"} },
+    { "id":"BUG-010","category":"state","severity":"medium","title":"ResetAllState doesn't cascade to HintLight/Door","script":"EscapeRoomControllers.cs","method":"ResetAllState","trigger_condition":"TurnOn hint → ResetAllState","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-010:TRIGGERED\\]"} }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "_comment": "Gold-standard test plan for MiniGame_BowlingSports — covers all 10 bugs.",
+  "scene_name": "MiniGame_BowlingSports",
+  "version": "1.0",
+  "taskUnits": [
+    { "name":"T1_Power_BUG007_ScoreBeforeRelease",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_BowlingStateController","methodName":"SetPowerOn","parameters":[true],"delay":0.1 },
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_BowlingStateController","methodName":"SetBallGrabbed","parameters":[true],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-007"],"targetFileID":"FILEID_Scoreboard","scriptFileID":"SCRIPT_FrameScoreboard","methodName":"AddFrameScore","parameters":[5],"delay":0.1 }
+      ]},
+    { "name":"T2_BUG001_BUG009_GrabRollScore",
+      "actionUnits":[
+        { "type":"GrabActionUnit","objectAFileID":"FILEID_BowlingBall","destinationFileID":"FILEID_PlayerHand","delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-001"],"targetFileID":"FILEID_BowlingBall","scriptFileID":"SCRIPT_BowlingBall","methodName":"RollBall","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-009"],"targetFileID":"FILEID_BowlingBall","scriptFileID":"SCRIPT_BowlingBall","methodName":"RegisterFrameResult","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T3_BUG002_BUG005_PinFall",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-002","BUG-005"],"targetFileID":"FILEID_Pin_00","scriptFileID":"SCRIPT_BowlingPin","methodName":"ForceFallWithoutContact","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T4_BUG003_LaneEndFrame",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Lane","scriptFileID":"SCRIPT_LaneController","methodName":"StartFrame","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-003"],"targetFileID":"FILEID_Lane","scriptFileID":"SCRIPT_LaneController","methodName":"EndFrame","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T5_BUG004_LaneResetCarryover",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Lane","scriptFileID":"SCRIPT_LaneController","methodName":"StartReset","parameters":[],"delay":0.5 },
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Lane","scriptFileID":"SCRIPT_LaneController","methodName":"CancelReset","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-004"],"targetFileID":"FILEID_Lane","scriptFileID":"SCRIPT_LaneController","methodName":"StartReset","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T6_BUG008_PinResetLight",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-008"],"targetFileID":"FILEID_PinResetLight","scriptFileID":"SCRIPT_PinResetLight","methodName":"Flash","parameters":[],"delay":1.0 }
+      ]},
+    { "name":"T7_BUG006_BUG010_FinishReset",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-006"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_BowlingStateController","methodName":"TryFinishGame","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-010"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_BowlingStateController","methodName":"ResetAllState","parameters":[],"delay":0.1 }
+      ]}
+  ]
+}

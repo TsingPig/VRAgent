@@ -1,0 +1,17 @@
+{
+  "scene": "MiniGame_BowlingSports",
+  "version": "1.0",
+  "total_bugs": 10,
+  "oracles": [
+    { "id":"BUG-001","category":"crash","severity":"high","title":"NRE in BowlingBall.RollBall","script":"BowlingControllers.cs","method":"RollBall","trigger_condition":"Grab ball → RollBall","detection":{"type":"exception","pattern":"NullReferenceException.*BowlingBall"} },
+    { "id":"BUG-002","category":"functional","severity":"medium","title":"Pin counts without real collision","script":"BowlingControllers.cs","method":"OnFall","trigger_condition":"ForceFallWithoutContact()","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-002:TRIGGERED\\]"} },
+    { "id":"BUG-003","category":"state","severity":"medium","title":"LaneController.EndFrame leaves IsActive=true","script":"BowlingControllers.cs","method":"EndFrame","trigger_condition":"StartFrame → EndFrame","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-003:TRIGGERED\\]"} },
+    { "id":"BUG-004","category":"functional","severity":"medium","title":"Lane reset timer not reset on retry","script":"BowlingControllers.cs","method":"StartReset","trigger_condition":"StartReset→CancelReset→StartReset","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-004:TRIGGERED\\]"} },
+    { "id":"BUG-005","category":"functional","severity":"low","title":"Pin tilts in -X (buries into ground)","script":"BowlingControllers.cs","method":"OnFall","trigger_condition":"Any pin OnFall","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-005:TRIGGERED\\]"} },
+    { "id":"BUG-006","category":"functional","severity":"high","title":"TryFinishGame skips required frames","script":"BowlingControllers.cs","method":"TryFinishGame","trigger_condition":"TryFinishGame() with CurrentFrame<10","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-006:TRIGGERED\\]"} },
+    { "id":"BUG-007","category":"state","severity":"medium","title":"AddFrameScore wrong precondition","script":"BowlingControllers.cs","method":"AddFrameScore","trigger_condition":"SetBallGrabbed(true) without SetBallReleased → AddFrameScore","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-007:TRIGGERED\\]"} },
+    { "id":"BUG-008","category":"visual","severity":"low","title":"PinResetLight bulb stuck active","script":"BowlingControllers.cs","method":"Update","trigger_condition":"Flash() → wait > duration","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-008:TRIGGERED\\]"} },
+    { "id":"BUG-009","category":"functional","severity":"medium","title":"RegisterFrameResult scores before pin validation","script":"BowlingControllers.cs","method":"RegisterFrameResult","trigger_condition":"RegisterFrameResult() with no pins knocked","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-009:TRIGGERED\\]"} },
+    { "id":"BUG-010","category":"state","severity":"medium","title":"ResetAllState doesn't cascade","script":"BowlingControllers.cs","method":"ResetAllState","trigger_condition":"AddFrameScore → ResetAllState","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-010:TRIGGERED\\]"} }
+  ]
+}

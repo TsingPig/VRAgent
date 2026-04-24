@@ -1,0 +1,72 @@
+{
+  "_comment": "Gold-standard test plan for MiniGame_RhythmBeat — covers all 10 bugs.",
+  "_fileid_note": "Replace FILEID_* placeholders with values from FileIdManager after Build Scene + Save.",
+  "scene_name": "MiniGame_RhythmBeat",
+  "version": "1.0",
+  "taskUnits": [
+    {
+      "name": "T1_Power_LoadSong_BUG007",
+      "_intent": "Trigger BUG-007: Play() without selecting difficulty.",
+      "actionUnits": [
+        { "type": "TriggerActionUnit", "targetFileID": "FILEID_StateController", "scriptFileID": "SCRIPT_RhythmBeatStateController", "methodName": "SetPowerOn",  "parameters": [true], "delay": 0.1 },
+        { "type": "TriggerActionUnit", "targetFileID": "FILEID_SongController",  "scriptFileID": "SCRIPT_SongController",             "methodName": "LoadSong",   "parameters": ["track1"], "delay": 0.1 },
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-007"], "targetFileID": "FILEID_SongController", "scriptFileID": "SCRIPT_SongController", "methodName": "Play", "parameters": [], "delay": 0.1 }
+      ]
+    },
+    {
+      "name": "T2_BUG003_SongStop",
+      "_intent": "BUG-003: Stop doesn't reset IsPlaying.",
+      "actionUnits": [
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-003"], "targetFileID": "FILEID_SongController", "scriptFileID": "SCRIPT_SongController", "methodName": "Stop", "parameters": [], "delay": 0.1 }
+      ]
+    },
+    {
+      "name": "T3_BUG008_DifficultyClear",
+      "_intent": "BUG-008: indicator sticky after Clear()",
+      "actionUnits": [
+        { "type": "TriggerActionUnit", "targetFileID": "FILEID_DifficultySelector", "scriptFileID": "SCRIPT_DifficultySelector", "methodName": "Select", "parameters": ["hard"], "delay": 0.1 },
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-008"], "targetFileID": "FILEID_DifficultySelector", "scriptFileID": "SCRIPT_DifficultySelector", "methodName": "Clear", "parameters": [], "delay": 0.1 }
+      ]
+    },
+    {
+      "name": "T4_BUG001_GrabSaber_Slash",
+      "_intent": "BUG-001: NRE on Slash audio.",
+      "actionUnits": [
+        { "type": "GrabActionUnit",   "objectAFileID": "FILEID_Saber_Blue", "destinationFileID": "FILEID_PlayerHand", "delay": 0.1 },
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-001"], "targetFileID": "FILEID_Saber_Blue", "scriptFileID": "SCRIPT_BeatSaberWeapon", "methodName": "Slash", "parameters": ["down"], "delay": 0.1 }
+      ]
+    },
+    {
+      "name": "T5_BUG002_BUG009_BlockSlash",
+      "_intent": "BUG-002: wrong-dir scores. BUG-009: combo before validation.",
+      "actionUnits": [
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-009"], "targetFileID": "FILEID_Saber_Blue", "scriptFileID": "SCRIPT_BeatSaberWeapon", "methodName": "RegisterSwing", "parameters": ["up", "FILEID_BeatBlock_00"], "delay": 0.1 },
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-002"], "targetFileID": "FILEID_BeatBlock_00", "scriptFileID": "SCRIPT_BeatBlock", "methodName": "ForceSlashWrongDirection", "parameters": [], "delay": 0.1 }
+      ]
+    },
+    {
+      "name": "T6_BUG004_ComboTimer_Carryover",
+      "_intent": "BUG-004: stale combo timer.",
+      "actionUnits": [
+        { "type": "TriggerActionUnit", "targetFileID": "FILEID_ComboCounter", "scriptFileID": "SCRIPT_ComboCounter", "methodName": "IncrementCombo", "parameters": [], "delay": 1.5 },
+        { "type": "TriggerActionUnit", "targetFileID": "FILEID_ComboCounter", "scriptFileID": "SCRIPT_ComboCounter", "methodName": "BreakCombo",     "parameters": [], "delay": 0.1 },
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-004"], "targetFileID": "FILEID_ComboCounter", "scriptFileID": "SCRIPT_ComboCounter", "methodName": "IncrementCombo", "parameters": [], "delay": 0.1 }
+      ]
+    },
+    {
+      "name": "T7_BUG005_AutoTrigger",
+      "_intent": "BUG-005: blocks auto-fly +Z; oracle fires in Update once z>0.5.",
+      "actionUnits": [
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-005"], "targetFileID": "FILEID_BeatBlock_01", "scriptFileID": "SCRIPT_BeatBlock", "methodName": "OnSlash", "parameters": ["down", true], "delay": 1.0, "_note": "Wait 1s for block to drift in +Z so Update detects bug." }
+      ]
+    },
+    {
+      "name": "T8_BUG006_BUG010_FinishReset",
+      "_intent": "BUG-006: finish without enough hits. BUG-010: combo not reset.",
+      "actionUnits": [
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-006"], "targetFileID": "FILEID_StateController", "scriptFileID": "SCRIPT_RhythmBeatStateController", "methodName": "TryFinishSong", "parameters": [], "delay": 0.1 },
+        { "type": "TriggerActionUnit", "_targets_bug": ["BUG-010"], "targetFileID": "FILEID_StateController", "scriptFileID": "SCRIPT_RhythmBeatStateController", "methodName": "ResetAllState", "parameters": [], "delay": 0.1 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "scene": "MiniGame_SandboxBuilder",
+  "version": "1.0",
+  "total_bugs": 10,
+  "oracles": [
+    { "id":"BUG-001","category":"crash","severity":"high","title":"NRE in BlockPlacer.PlaceBlock","script":"SandboxControllers.cs","method":"PlaceBlock","trigger_condition":"PlaceBlock()","detection":{"type":"exception","pattern":"NullReferenceException.*BlockPlacer"} },
+    { "id":"BUG-002","category":"functional","severity":"medium","title":"Block stacked with no support","script":"SandboxControllers.cs","method":"StackOn","trigger_condition":"StackWithoutSupport()","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-002:TRIGGERED\\]"} },
+    { "id":"BUG-003","category":"state","severity":"medium","title":"DeselectTool leaves IsToolActive=true","script":"SandboxControllers.cs","method":"DeselectTool","trigger_condition":"SelectTool→DeselectTool","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-003:TRIGGERED\\]"} },
+    { "id":"BUG-004","category":"functional","severity":"medium","title":"Cooldown timer not reset","script":"SandboxControllers.cs","method":"TriggerCooldown","trigger_condition":"TriggerCooldown→CancelCooldown→TriggerCooldown","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-004:TRIGGERED\\]"} },
+    { "id":"BUG-005","category":"functional","severity":"low","title":"Block rotates around wrong axis","script":"SandboxControllers.cs","method":"Rotate90","trigger_condition":"Any Rotate90","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-005:TRIGGERED\\]"} },
+    { "id":"BUG-006","category":"functional","severity":"high","title":"TryPublish skips min-blocks check","script":"SandboxControllers.cs","method":"TryPublish","trigger_condition":"TryPublish() with BlocksPlaced<5","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-006:TRIGGERED\\]"} },
+    { "id":"BUG-007","category":"state","severity":"medium","title":"SaveLevel accepts empty name","script":"SandboxControllers.cs","method":"SaveLevel","trigger_condition":"SaveWithEmptyName()","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-007:TRIGGERED\\]"} },
+    { "id":"BUG-008","category":"visual","severity":"low","title":"Outline mesh stuck visible","script":"SandboxControllers.cs","method":"Update","trigger_condition":"Show() → wait > duration","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-008:TRIGGERED\\]"} },
+    { "id":"BUG-009","category":"functional","severity":"medium","title":"Block placed before grid validated","script":"SandboxControllers.cs","method":"PlaceBlock","trigger_condition":"PlaceBlock() with gridValidationPassed=false","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-009:TRIGGERED\\]"} },
+    { "id":"BUG-010","category":"state","severity":"medium","title":"ResetAllState doesn't clear SaveLoad","script":"SandboxControllers.cs","method":"ResetAllState","trigger_condition":"SaveLevel(\"x\") → ResetAllState","detection":{"type":"oracle_marker","pattern":"\\[ORACLE:BUG-010:TRIGGERED\\]"} }
+  ]
+}

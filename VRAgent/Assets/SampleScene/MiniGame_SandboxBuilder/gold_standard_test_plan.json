@@ -1,0 +1,44 @@
+{
+  "_comment": "Gold-standard test plan for MiniGame_SandboxBuilder — covers all 10 bugs.",
+  "scene_name": "MiniGame_SandboxBuilder",
+  "version": "1.0",
+  "taskUnits": [
+    { "name":"T1_Power",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_SandboxStateController","methodName":"SetPowerOn","parameters":[true],"delay":0.1 }
+      ]},
+    { "name":"T2_BUG003_ToolSelectDeselect",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Toolbox","scriptFileID":"SCRIPT_ToolboxController","methodName":"SelectTool","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-003"],"targetFileID":"FILEID_Toolbox","scriptFileID":"SCRIPT_ToolboxController","methodName":"DeselectTool","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T3_BUG004_CooldownRetry",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Toolbox","scriptFileID":"SCRIPT_ToolboxController","methodName":"TriggerCooldown","parameters":[],"delay":0.5 },
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Toolbox","scriptFileID":"SCRIPT_ToolboxController","methodName":"CancelCooldown","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-004"],"targetFileID":"FILEID_Toolbox","scriptFileID":"SCRIPT_ToolboxController","methodName":"TriggerCooldown","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T4_BUG001_BUG009_PlaceBlock",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-001","BUG-009"],"targetFileID":"FILEID_BlockPlacer","scriptFileID":"SCRIPT_BlockPlacer","methodName":"PlaceBlock","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T5_BUG002_BUG005_StackRotate",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-002"],"targetFileID":"FILEID_Block_00","scriptFileID":"SCRIPT_BuildingBlock","methodName":"StackWithoutSupport","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-005"],"targetFileID":"FILEID_Block_00","scriptFileID":"SCRIPT_BuildingBlock","methodName":"Rotate90","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T6_BUG007_SaveEmpty",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-007"],"targetFileID":"FILEID_SaveLoad","scriptFileID":"SCRIPT_SaveLoadController","methodName":"SaveWithEmptyName","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T7_BUG008_HighlightStuck",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-008"],"targetFileID":"FILEID_HighlightOutline","scriptFileID":"SCRIPT_HighlightOutline","methodName":"Show","parameters":[],"delay":1.0 }
+      ]},
+    { "name":"T8_BUG006_BUG010_PublishReset",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-006"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_SandboxStateController","methodName":"TryPublish","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-010"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_SandboxStateController","methodName":"ResetAllState","parameters":[],"delay":0.1 }
+      ]}
+  ]
+}

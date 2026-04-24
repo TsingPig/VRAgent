@@ -1,0 +1,45 @@
+{
+  "_comment": "Gold-standard test plan for MiniGame_HorrorSurvival — covers all 10 bugs.",
+  "scene_name": "MiniGame_HorrorSurvival",
+  "version": "1.0",
+  "taskUnits": [
+    { "name":"T1_Power",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_HorrorStateController","methodName":"SetPowerOn","parameters":[true],"delay":0.1 }
+      ]},
+    { "name":"T2_BUG002_BUG005_BatteryNoGrab",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-002","BUG-005"],"targetFileID":"FILEID_Battery","scriptFileID":"SCRIPT_BatteryItem","methodName":"ForceApplyWithoutGrab","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T3_BUG001_BUG009_GrabFlashlightToggle",
+      "actionUnits":[
+        { "type":"GrabActionUnit","objectAFileID":"FILEID_Flashlight","destinationFileID":"FILEID_PlayerHand","delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-001","BUG-009"],"targetFileID":"FILEID_Flashlight","scriptFileID":"SCRIPT_FlashlightController","methodName":"ToggleLight","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T4_BUG007_DoorUnlockNoKey",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_HorrorStateController","methodName":"SetKeyFound","parameters":[true],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-007"],"targetFileID":"FILEID_ExitDoor","scriptFileID":"SCRIPT_DoorLockController","methodName":"TryUnlock","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T5_BUG003_LockToggle",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-003"],"targetFileID":"FILEID_ExitDoor","scriptFileID":"SCRIPT_DoorLockController","methodName":"ToggleLockOff","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T6_BUG004_ChaseRetry",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_EnemyAI","scriptFileID":"SCRIPT_EnemyAI","methodName":"StartChase","parameters":[],"delay":0.5 },
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_EnemyAI","scriptFileID":"SCRIPT_EnemyAI","methodName":"StopChase","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-004"],"targetFileID":"FILEID_EnemyAI","scriptFileID":"SCRIPT_EnemyAI","methodName":"StartChase","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T7_BUG008_HPRedStuck",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_HealthSystem","scriptFileID":"SCRIPT_HealthSystem","methodName":"TakeDamage","parameters":[80],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-008"],"targetFileID":"FILEID_HealthSystem","scriptFileID":"SCRIPT_HealthSystem","methodName":"Heal","parameters":[50],"delay":0.1 }
+      ]},
+    { "name":"T8_BUG006_BUG010_EscapeReset",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-006"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_HorrorStateController","methodName":"TryEscape","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-010"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_HorrorStateController","methodName":"ResetAllState","parameters":[],"delay":0.1 }
+      ]}
+  ]
+}

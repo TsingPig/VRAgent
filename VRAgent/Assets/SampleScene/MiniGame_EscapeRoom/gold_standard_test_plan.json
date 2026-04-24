@@ -1,0 +1,46 @@
+{
+  "_comment": "Gold-standard test plan for MiniGame_EscapeRoom — covers all 10 bugs.",
+  "scene_name": "MiniGame_EscapeRoom",
+  "version": "1.0",
+  "taskUnits": [
+    { "name":"T1_Power_BUG005_Dial",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_EscapeRoomStateController","methodName":"SetPowerOn","parameters":[true],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-005"],"targetFileID":"FILEID_CombinationLock","scriptFileID":"SCRIPT_CombinationLock","methodName":"RotateDial","parameters":[1],"delay":0.1 }
+      ]},
+    { "name":"T2_BUG009_Safe_NoCombo",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-009","BUG-001"],"targetFileID":"FILEID_KeySafe","scriptFileID":"SCRIPT_KeySafeController","methodName":"TryUnlock","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T3_DialCorrect_Then_Unlock",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_CombinationLock","scriptFileID":"SCRIPT_CombinationLock","methodName":"ForceDialCorrect","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T4_BUG004_KeyInsert_Carryover",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Key","scriptFileID":"SCRIPT_KeyController","methodName":"OnInsert","parameters":[],"delay":0.5 },
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_Key","scriptFileID":"SCRIPT_KeyController","methodName":"OnRemove","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-004"],"targetFileID":"FILEID_Key","scriptFileID":"SCRIPT_KeyController","methodName":"OnInsert","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T5_BUG007_OpenDoor_NoKey",
+      "_intent":"Set SafeUnlocked manually then OpenDoor without KeyInserted.",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_EscapeRoomStateController","methodName":"SetSafeUnlocked","parameters":[true],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-007"],"targetFileID":"FILEID_ExitDoor","scriptFileID":"SCRIPT_DoorController","methodName":"OpenDoor","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T6_BUG003_DoorClose",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-003"],"targetFileID":"FILEID_ExitDoor","scriptFileID":"SCRIPT_DoorController","methodName":"CloseDoor","parameters":[],"delay":0.1 }
+      ]},
+    { "name":"T7_BUG002_BUG008_Puzzle_Hint",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","targetFileID":"FILEID_HintLight","scriptFileID":"SCRIPT_HintLight","methodName":"TurnOn","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-002","BUG-008"],"targetFileID":"FILEID_PuzzlePanel","scriptFileID":"SCRIPT_PuzzlePanelController","methodName":"SubmitAnswer","parameters":["WRONG"],"delay":0.1 }
+      ]},
+    { "name":"T8_BUG006_BUG010_Escape_Reset",
+      "actionUnits":[
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-006"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_EscapeRoomStateController","methodName":"TryEscape","parameters":[],"delay":0.1 },
+        { "type":"TriggerActionUnit","_targets_bug":["BUG-010"],"targetFileID":"FILEID_StateController","scriptFileID":"SCRIPT_EscapeRoomStateController","methodName":"ResetAllState","parameters":[],"delay":0.1 }
+      ]}
+  ]
+}

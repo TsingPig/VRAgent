@@ -1,0 +1,174 @@
+{
+  "_comment": "Gold-standard test plan for MiniGame_ShootingRange. Targets all 10 injected bugs.",
+  "_fileid_note": "FileIDs are placeholders — replace with values from FileIdManager after running Build Scene + Save.",
+  "_action_count": "10 Trigger + 2 Grab + 2 Socket = 14 actions across 7 task units",
+  "scene_name": "MiniGame_ShootingRange",
+  "version": "1.0",
+  "taskUnits": [
+    {
+      "name": "T1_PowerOn_StateBaseline",
+      "_intent": "Establish PowerOn=true via state controller; needed before any subsequent gating.",
+      "actionUnits": [
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": [],
+          "targetFileID": "FILEID_StateController",
+          "scriptFileID": "SCRIPTID_ShootingRangeStateController",
+          "methodName": "SetPowerOn",
+          "parameters": [true],
+          "delay": 0.1
+        }
+      ]
+    },
+    {
+      "name": "T2_BUG009_BUG004_Magazine_Reload",
+      "_intent": "BUG-009: Reload with null/unloaded magazine. BUG-004: insert→remove→insert magazine timer carryover.",
+      "actionUnits": [
+        {
+          "type": "SocketActionUnit",
+          "_targets_bug": ["BUG-004"],
+          "targetFileID": "FILEID_MagazineSocket",
+          "subjectFileID": "FILEID_Magazine",
+          "mode": "Insert",
+          "delay": 0.1
+        },
+        {
+          "type": "SocketActionUnit",
+          "_targets_bug": ["BUG-004"],
+          "targetFileID": "FILEID_MagazineSocket",
+          "subjectFileID": "FILEID_Magazine",
+          "mode": "Remove",
+          "_wait_before": 0.5,
+          "delay": 0.1
+        },
+        {
+          "type": "SocketActionUnit",
+          "_targets_bug": ["BUG-004"],
+          "targetFileID": "FILEID_MagazineSocket",
+          "subjectFileID": "FILEID_Magazine",
+          "mode": "Insert",
+          "delay": 0.1
+        }
+      ]
+    },
+    {
+      "name": "T3_BUG001_Grab_Reload_Fire",
+      "_intent": "BUG-001 NRE on Fire (no AudioSource). Also covers happy-path reload+fire.",
+      "actionUnits": [
+        {
+          "type": "GrabActionUnit",
+          "_targets_bug": [],
+          "objectAFileID": "FILEID_Pistol",
+          "destinationFileID": "FILEID_PistolReadyPoint",
+          "delay": 0.1
+        },
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-009"],
+          "targetFileID": "FILEID_Pistol",
+          "scriptFileID": "SCRIPTID_WeaponController",
+          "methodName": "Reload",
+          "parameters": [],
+          "delay": 0.1
+        },
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-001"],
+          "targetFileID": "FILEID_Pistol",
+          "scriptFileID": "SCRIPTID_WeaponController",
+          "methodName": "Fire",
+          "parameters": [],
+          "delay": 0.1
+        }
+      ]
+    },
+    {
+      "name": "T4_BUG003_Wave_Start_Stop",
+      "_intent": "BUG-003: WaveSpawner.StopWave does not reset IsActive.",
+      "actionUnits": [
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": [],
+          "targetFileID": "FILEID_WaveSpawner",
+          "scriptFileID": "SCRIPTID_WaveSpawner",
+          "methodName": "StartWave",
+          "parameters": [],
+          "delay": 0.2
+        },
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-003"],
+          "targetFileID": "FILEID_WaveSpawner",
+          "scriptFileID": "SCRIPTID_WaveSpawner",
+          "methodName": "StopWave",
+          "parameters": [],
+          "delay": 0.1
+        }
+      ]
+    },
+    {
+      "name": "T5_BUG005_BUG002_BUG007_Target",
+      "_intent": "BUG-005: Activate uses negated angle. BUG-002: ForceTriggerHitWithoutBullet awards score. BUG-007: AwardPoints uses IsActive (not IsHit).",
+      "actionUnits": [
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-005"],
+          "targetFileID": "FILEID_Target_00",
+          "scriptFileID": "SCRIPTID_TargetController",
+          "methodName": "Activate",
+          "parameters": [],
+          "delay": 0.1
+        },
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-002"],
+          "targetFileID": "FILEID_Target_00",
+          "scriptFileID": "SCRIPTID_TargetController",
+          "methodName": "ForceTriggerHitWithoutBullet",
+          "parameters": [],
+          "delay": 0.1
+        }
+      ]
+    },
+    {
+      "name": "T6_BUG008_MuzzleFlash_Sticky",
+      "_intent": "BUG-008: MuzzleFlash quad stays SetActive(true) after window expires.",
+      "actionUnits": [
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-008"],
+          "targetFileID": "FILEID_MuzzleFlash",
+          "scriptFileID": "SCRIPTID_MuzzleFlashController",
+          "methodName": "Flash",
+          "parameters": [],
+          "delay": 0.5,
+          "_note": "Wait > visibleDuration (0.06s) — delay covers this"
+        }
+      ]
+    },
+    {
+      "name": "T7_BUG006_BUG010_GameComplete_Reset",
+      "_intent": "BUG-006: TryFinishGame without enough hits. BUG-010: ResetAllState leaves combo non-zero.",
+      "actionUnits": [
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-006"],
+          "targetFileID": "FILEID_StateController",
+          "scriptFileID": "SCRIPTID_ShootingRangeStateController",
+          "methodName": "TryFinishGame",
+          "parameters": [],
+          "delay": 0.1
+        },
+        {
+          "type": "TriggerActionUnit",
+          "_targets_bug": ["BUG-010"],
+          "targetFileID": "FILEID_StateController",
+          "scriptFileID": "SCRIPTID_ShootingRangeStateController",
+          "methodName": "ResetAllState",
+          "parameters": [],
+          "delay": 0.1
+        }
+      ]
+    }
+  ]
+}
