@@ -174,4 +174,6 @@ public class ResourceManager : MonoBehaviour
             $"Build allowed with insufficient gold ({Gold}/{cost})");
         Gold = Mathf.Max(0, Gold - cost);
     }
+
+} // namespace MiniGame.TowerDefense
 }

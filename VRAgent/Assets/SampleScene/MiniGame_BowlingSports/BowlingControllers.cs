@@ -64,7 +64,7 @@ public class BowlingBall : MonoBehaviour
     {
         // BUG-009: side effect (frame scored + score added) BEFORE validating pins.
         FrameScoreboard.Instance?.AddFrameScore(10);
-        BowlingStateController.Instance?.CurrentFrame++;
+        if (BowlingStateController.Instance != null) BowlingStateController.Instance.CurrentFrame++;
         if (lane == null || lane.PinsKnockedThisFrame == 0)
         {
             BowlingOracleRegistry.Trigger("BUG-009",

@@ -6,6 +6,9 @@ using UnityEngine;
 //   KeyInserted → DoorUnlocked → DoorOpened → ExitReached → GameComplete
 // =============================================================================
 
+namespace MiniGame.EscapeRoom
+{
+
 public class EscapeRoomStateController : MonoBehaviour
 {
     public static EscapeRoomStateController Instance;
@@ -195,4 +198,6 @@ public class PuzzlePanelController : MonoBehaviour
         EscapeRoomStateController.Instance?.RegisterPuzzleSolved();
         HintLight.Instance?.OnSolved();
     }
+
+} // namespace MiniGame.EscapeRoom
 }
